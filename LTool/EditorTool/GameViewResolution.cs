@@ -17,10 +17,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEditor;
 
 namespace LTool.EditorTool
 {
-    class GameViewResolution:MonoBehaviour
+    class GameViewResolution : MonoBehaviour
     {
         private Camera _unityCamera;
         private Camera UnityCamera
@@ -47,19 +48,17 @@ namespace LTool.EditorTool
             }
         }
 
-#if UNITY_EDITOR
-    void Update()
-    {   
-        Debug.Log( "[INFO] Resolusion: " + GetScreenPixelDimensions( this ) );
-    }
-#endif
-
+//#if UNITY_EDITOR
+        void Update()
+        {
+            Debug.Log( "[INFO] Resolusion: " + GetScreenPixelDimensions( this ) );
+        }
+//#endif
         // 获得分辨率，当选择 Free Aspect 直接返回相机的像素宽和高
         Vector2 GetScreenPixelDimensions( GameViewResolution settings )
         {
             Vector2 dimensions = new Vector2( ScreenCamera.pixelWidth , ScreenCamera.pixelHeight );
-
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         // 获取编辑器 GameView 的分辨率
         float gameViewPixelWidth = 0, gameViewPixelHeight = 0;
         float gameViewAspect = 0;
@@ -72,12 +71,12 @@ namespace LTool.EditorTool
                 dimensions.y = gameViewPixelHeight;
             }
         }
-#endif
+//#endif
 
             return dimensions;
         }
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
     static bool Editor__getGameViewSizeError = false;
     public static bool Editor__gameViewReflectionError = false;
 
@@ -171,6 +170,6 @@ namespace LTool.EditorTool
         width = height = aspect = 0;
         return false;
     }
-#endif
+//#endif
     }
 }

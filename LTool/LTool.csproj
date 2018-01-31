@@ -47,6 +47,7 @@
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Device\ShowFPS.cs" />
+    <Compile Include="EditorTool\GameViewResolution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

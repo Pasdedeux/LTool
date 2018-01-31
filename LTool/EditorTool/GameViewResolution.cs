@@ -134,18 +134,18 @@ namespace LTool.EditorTool
                 {
                     int aspectRatio = ( int )gameViewType.GetField( "m_AspectRatio" , System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic ).GetValue( mainGameViewInst );
                     string thisViewModeString = viewModeStrings[ aspectRatio ];
-                    if ( thisViewModeString.Contains( "Standalone" ) )
-                    {
-                        width = UnityEditor.PlayerSettings.defaultScreenWidth; height = UnityEditor.PlayerSettings.defaultScreenHeight;
-                        aspect = width / height;
-                    }
-                    else if ( thisViewModeString.Contains( "Web" ) )
-                    {
-                        width = UnityEditor.PlayerSettings.defaultWebScreenWidth; height = UnityEditor.PlayerSettings.defaultWebScreenHeight;
-                        aspect = width / height;
-                    }
-                    else
-                    {
+                    //if ( thisViewModeString.Contains( "Standalone" ) )
+                    //{
+                    //    width = UnityEditor.PlayerSettings.defaultScreenWidth; height = UnityEditor.PlayerSettings.defaultScreenHeight;
+                    //    aspect = width / height;
+                    //}
+                    //else if ( thisViewModeString.Contains( "Web" ) )
+                    //{
+                    //    width = UnityEditor.PlayerSettings.defaultWebScreenWidth; height = UnityEditor.PlayerSettings.defaultWebScreenHeight;
+                    //    aspect = width / height;
+                    //}
+                    //else
+                    //{
                         width = viewModeResolutions[ aspectRatio ].x; height = viewModeResolutions[ aspectRatio ].y;
                         aspect = viewModeAspects[ aspectRatio ];
                         // this is an error state
@@ -153,7 +153,7 @@ namespace LTool.EditorTool
                         {
                             return false;
                         }
-                    }
+                    //}
                     return true;
                 }
             }

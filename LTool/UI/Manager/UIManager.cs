@@ -2,8 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LTool;
 
-public class UIManager : Singleton<UIManager>
+
+/// <summary>
+/// 以下UI类，需配合UImanager.unitypackage使用。
+/// 
+/// 主要包含Cavas_Root及相关Tag等
+/// 
+/// </summary>
+public class UIManager : SingletonMono<UIManager>
 {
     /// <summary>
     /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型

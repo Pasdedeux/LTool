@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using LTool;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMaskManager : Singleton<UIMaskManager> 
+public class UIMaskManager : SingletonMono<UIMaskManager> 
 {
     //UI脚本节点对象
     private Transform _transScriptNode = null;

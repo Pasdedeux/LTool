@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LTool;
 
 /// <summary>
 /// 加载resource文件夹资源，并缓存
@@ -26,6 +27,9 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         if ( _ht.Contains( path ) )
             return _ht[ path ] as T;
+
+        //TODO
+        throw new System.Exception( "加载UI部分需要修改" );
 
         T tResource = Resources.Load<T>( path );
         if ( tResource == null )

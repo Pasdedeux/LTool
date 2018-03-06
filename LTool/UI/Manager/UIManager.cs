@@ -92,7 +92,11 @@ public class UIManager : SingletonMono<UIManager>
     /// </summary>
     private void InitRootCanvasLoading( )
     {
-        ResourceManager.Instance.LoadAssets( @"UI\" + SysDefine.SYS_TAG_ROOTCANVAS , false );
+        if( GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ) == null )
+        {
+            ResourceManager.Instance.LoadAssets( @"UI\" + SysDefine.SYS_TAG_ROOTCANVAS , false );
+        }
+        
     }
 
     /// <summary>

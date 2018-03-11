@@ -9,7 +9,7 @@ public class BaseUI : MonoBehaviour
     /// <summary>
     /// 当前窗口类型
     /// </summary>
-    internal UIType currentUIType
+    public UIType CurrentUIType
     {
         get { return _currentUIType; }
         set { _currentUIType = value; }

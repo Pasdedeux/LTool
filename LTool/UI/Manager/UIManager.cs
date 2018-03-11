@@ -50,6 +50,8 @@ public class UIManager : SingletonMono<UIManager>
     /// </summary>
     private Transform _transManager = null;
 
+    public Func<string , GameObject> GetUIResource;
+
     private void Awake( )
     {
         _stackCurrentUI = new Stack<BaseUI>();
@@ -57,7 +59,7 @@ public class UIManager : SingletonMono<UIManager>
         _dictPrefabPaths = new Dictionary<string , string>();
         _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
 
-        InitRootCanvasLoading();
+        //InitRootCanvasLoading();
 
         _transCanvas = GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ).transform;
         _transNormal = UnityHelper.FindTheChildNode( _transCanvas.gameObject , SysDefine.SYS_TAG_NORMALCANVAS );
@@ -69,35 +71,31 @@ public class UIManager : SingletonMono<UIManager>
         gameObject.transform.SetParent( _transManager , false );
         //根节点不销毁
         DontDestroyOnLoad( _transCanvas );
-        //初始化UI窗体预制件路径
-        InitUIFormsPathsData();
     }
 
     /// <summary>
     /// 初始化UI预制件路径
     /// </summary>
-    private void InitUIFormsPathsData( )
+    public void InitUIFormsPathsData( Dictionary<string , string> dictPrefPath )
     {
-        if ( _dictPrefabPaths != null )
+        if ( dictPrefPath != null )
         {
-            _dictPrefabPaths.Add( "TestUIForm1" , @"Prefabs\TestUIForm1" );
-            _dictPrefabPaths.Add( "TestUIForm2" , @"Prefabs\TestUIForm2" );
-            _dictPrefabPaths.Add( "TestUIForm3" , @"Prefabs\TestUIForm3" );
-            _dictPrefabPaths.Add( "TestUIForm4" , @"Prefabs\TestUIForm4" );
+            _dictPrefabPaths.Clear();
+            foreach( var item in dictPrefPath )
+                _dictPrefabPaths.Add( item.Key , item.Value );
         }
     }
 
     /// <summary>
     /// 加载UI根容器预制件
     /// </summary>
-    private void InitRootCanvasLoading( )
-    {
-        if( GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ) == null )
-        {
-            ResourceManager.Instance.LoadAssets( @"UI\" + SysDefine.SYS_TAG_ROOTCANVAS , false );
-        }
-        
-    }
+    //private void InitRootCanvasLoading( )
+    //{
+    //    if( GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ) == null )
+    //    {
+    //        ResourceManager.Instance.LoadAssets( @"UI\" + SysDefine.SYS_TAG_ROOTCANVAS , false );
+    //    }
+    //}
 
     /// <summary>
     /// 显示（打开）UI窗口
@@ -108,18 +106,21 @@ public class UIManager : SingletonMono<UIManager>
     /// <param name="uiName">UI窗体预制件名称</param>
     public BaseUI Show( string uiName )
     {
+        if( _dictPrefabPaths == null )
+            throw new Exception( "UI列表未初始化" );
+
         BaseUI baseUI = null;
 
-        if ( string.IsNullOrEmpty( uiName ) ) return baseUI;
+        if ( string.IsNullOrEmpty( uiName ) ) throw new Exception( "UI--uiName 为 Null" );
 
         //根据名称加载窗体到UI窗体缓存中
         baseUI = LoadUIToAndFromAllList( uiName );
-        if ( baseUI == null ) return baseUI;
+        if ( baseUI == null ) throw new Exception( "UI--baseUI 加载失败" );
 
         //判断是否清空“栈”结构体集合
-        if ( baseUI.currentUIType.isClearPopUp ) ClearStackArray();
+        if ( baseUI.CurrentUIType.isClearPopUp ) ClearStackArray();
 
-        switch ( baseUI.currentUIType.uiShowMode )
+        switch ( baseUI.CurrentUIType.uiShowMode )
         {
             case UIShowModeEnum.Normal:
                 LoadUIToCurrentCache( uiName );
@@ -178,7 +179,7 @@ public class UIManager : SingletonMono<UIManager>
         if ( baseUI == null ) return;
 
         //不同类型窗体执行各自关闭逻辑
-        switch ( baseUI.currentUIType.uiShowMode )
+        switch ( baseUI.CurrentUIType.uiShowMode )
         {
             case UIShowModeEnum.Normal:
                 UnLoadUIToCurrentCache( uiName );
@@ -207,29 +208,23 @@ public class UIManager : SingletonMono<UIManager>
     /// <returns></returns>
     private BaseUI LoadUI( string uiName )
     {
-        //加载的UI路径
-        string uiPath = null;
         //加载的UI预制体
         BaseUI baseUI = null;
         //UI基类
         GameObject prefClone = null;
 
-        //根据UI名称得到加载路径
-        _dictPrefabPaths.TryGetValue( uiName , out uiPath );
         //加载预制体
-        if ( !string.IsNullOrEmpty( uiPath ) )
-        {
-            prefClone = ResourceManager.Instance.LoadAssets( uiPath , false );
-        }
+        if ( !string.IsNullOrEmpty( uiName ) )
+            prefClone = GetUIResource != null ? GetUIResource( uiName ) : throw new Exception( "未指定UI预制件加载方法" );
 
         //设置父节点
         if ( _transCanvas != null && prefClone != null )
         {
             baseUI = prefClone.GetComponent<BaseUI>();
 
-            if ( baseUI == null ) { Debug.Log( uiName + "UI 脚本加载失败" ); return null; }
+            if ( baseUI == null ) { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
-            switch ( baseUI.currentUIType.uiType )
+            switch ( baseUI.CurrentUIType.uiType )
             {
                 case UITypeEnum.Normal:
                     prefClone.transform.SetParent( _transNormal , false );
@@ -336,7 +331,7 @@ public class UIManager : SingletonMono<UIManager>
         _dictCurrentShowUIs.Remove( uiName );
 
         //如果需要清空已有 popup 窗口
-        if ( baseUI.currentUIType.isClearPopUp ) return;
+        if ( baseUI.CurrentUIType.isClearPopUp ) return;
 
         //正在显示的窗口和栈缓存的窗口再次进行显示处理
         foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )

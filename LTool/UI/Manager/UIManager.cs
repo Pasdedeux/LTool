@@ -106,15 +106,15 @@ public class UIManager : SingletonMono<UIManager>
     /// 2、根据不同UI显示模式，做不同的加载处理
     /// </summary>
     /// <param name="uiName">UI窗体预制件名称</param>
-    public void Show( string uiName )
+    public BaseUI Show( string uiName )
     {
         BaseUI baseUI = null;
 
-        if ( string.IsNullOrEmpty( uiName ) ) return;
+        if ( string.IsNullOrEmpty( uiName ) ) return baseUI;
 
         //根据名称加载窗体到UI窗体缓存中
         baseUI = LoadUIToAndFromAllList( uiName );
-        if ( baseUI == null ) return;
+        if ( baseUI == null ) return baseUI;
 
         //判断是否清空“栈”结构体集合
         if ( baseUI.currentUIType.isClearPopUp ) ClearStackArray();
@@ -133,6 +133,7 @@ public class UIManager : SingletonMono<UIManager>
             default:
                 break;
         }
+        return baseUI;
     }
 
     /// <summary>

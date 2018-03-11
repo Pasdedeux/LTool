@@ -39,6 +39,7 @@ public enum UIShowModeEnum
     /// <summary>
     /// 独占窗口，显示时其他界面隐藏
     /// </summary>
+    //独占窗口，显示时其他界面隐藏
     Unique,
 }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class UIType 
+public class UIType 
 {
     /// <summary>
     /// 是否需要清空弹出窗口栈

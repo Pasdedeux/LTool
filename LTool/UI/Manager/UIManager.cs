@@ -140,7 +140,7 @@ public class UIManager : SingletonMono<UIManager>
     /// <summary>
     /// 清空栈结构集合
     /// </summary>
-    private bool ClearStackArray( )
+    public bool ClearStackArray( )
     {
         if ( _stackCurrentUI != null && _stackCurrentUI.Count > 0 )
         {

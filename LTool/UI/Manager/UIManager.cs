@@ -486,7 +486,7 @@ public class UIManager : Singleton<UIManager>
     public BaseUI GetUIByName( string name )
     {
         BaseUI baseUI;
-        _dictAllUIs.TryGetValue( name , out baseUI );
+        _dictOpenedAllUIs.TryGetValue( name , out baseUI );
         return baseUI;
     }
 }

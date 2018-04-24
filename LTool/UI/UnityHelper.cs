@@ -7,7 +7,7 @@ public class UnityHelper : MonoBehaviour
 
     /// <summary>
     /// 查找子节点对象
-    /// 内部使用“递归算法”
+    /// 内部使用递归算法
     /// </summary>
     /// <param name="goParent">父对象</param>
     /// <param name="chiildName">查找的子对象名称</param>

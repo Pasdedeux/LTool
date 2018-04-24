@@ -18,7 +18,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LTool.UnityMath
+namespace LTool.Unity
 {
     public static class LMath
     {

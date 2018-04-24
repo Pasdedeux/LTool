@@ -25,7 +25,15 @@ public class BaseUI : MonoBehaviour
         //设置模态窗体调用(弹出窗体)
         if ( _currentUIType.uiType == UITypeEnum.PopUp )
             UIMaskManager.Instance.SetMaskWindow( gameObject , _currentUIType.uiTransparent );
+        Update();
     }
+
+
+    /// <summary>
+    /// 刷新窗体
+    /// </summary>
+    /// <param name="replay">是否是重新显示</param>
+    public virtual void Update() { }
 
     /// <summary>
     /// 隐藏窗口

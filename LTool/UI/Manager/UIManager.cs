@@ -394,4 +394,17 @@ public class UIManager : SingletonMono<UIManager>
             topUI.Hide();
         }
     }
+
+
+    /// <summary>
+    /// 从现有缓存中查找目标UI，未加载则返回null
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public BaseUI GetUIByName( string name )
+    {
+        BaseUI baseUI;
+        _dictAllUIs.TryGetValue( name , out baseUI );
+        return baseUI;
+    }
 }

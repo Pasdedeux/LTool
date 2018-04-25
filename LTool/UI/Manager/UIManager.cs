@@ -55,7 +55,6 @@ public class UIManager : Singleton<UIManager>
     public Func<string , GameObject> GetUIResource;
 
 
-
     public void Install( Func<string , GameObject> loadPrefabFunction )
     {
         _allRegisterUIList = new List<string>();
@@ -70,36 +69,6 @@ public class UIManager : Singleton<UIManager>
         _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , SysDefine.SYS_TAG_MANAGERCANVAS );
 
         GetUIResource = loadPrefabFunction;
-        Reflection();
-    }
-
-    private void Reflection()
-    {
-        System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
-
-        System.Type[] assemblyTypes = asb.GetTypes();
-
-        for( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
-        {
-            if( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
-            {
-                //通过程序集获取到他的返回实例对象方法  并且初始化对象
-                System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
-                if( mif != null )
-                {
-                    //目前只认静态方法
-                    if( mif.IsStatic )
-                        mif.Invoke( null , null );
-                    else
-                    {
-                        //TODO 这一部分还没写好
-                        ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
-                        object magicClassObject = magicConstructor.Invoke( new object[] { } );
-                        mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
-        }
-    }
-            }
-        }
     }
 
     public void Uninstall()
@@ -129,21 +98,6 @@ public class UIManager : Singleton<UIManager>
 
 
     /// <summary>
-    /// 反射注册UI回调
-    /// </summary>
-    /// <param name="_assetsName"></param>
-    /// <param name="_className"></param>
-    public void RegistFunctionCallFun( string uiPathName )
-    {
-        if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIList.Contains( uiPathName ) )
-            _allRegisterUIList.Add( uiPathName );
-
-        Debug.LogError( "LTOOL UI添加成功 " + uiPathName );
-    }
-
-
-
-    /// <summary>
     /// 显示（打开）UI窗口
     /// 功能：
     /// 1、根据UI窗体的名称，加载到UI窗口缓存列表
@@ -152,8 +106,8 @@ public class UIManager : Singleton<UIManager>
     /// <param name="uiName">UI窗体预制件名称</param>
     public BaseUI Show( string uiName )
     {
-        if( !_allRegisterUIList.Contains( uiName ) )
-            throw new Exception( "-->UI " + uiName + "并未注册" );
+        //if( !_allRegisterUIList.Contains( uiName ) )
+        //    throw new Exception( "-->UI " + uiName + "并未注册" );
 
         BaseUI baseUI = null;
 
@@ -347,6 +301,7 @@ public class UIManager : Singleton<UIManager>
         _dictCurrentShowUIs.Remove( uiName );
     }
 
+
     /// <summary>
     /// 加载独占UI窗体
     /// </summary>
@@ -379,6 +334,7 @@ public class UIManager : Singleton<UIManager>
 
     }
 
+
     /// <summary>
     /// 卸载当前UI，并将原先被隐藏的UI重新显示
     /// </summary>
@@ -410,6 +366,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+
     /// <summary>
     /// 弹出窗口，入栈
     /// 先冻结栈中窗口，再将此窗口入栈
@@ -437,6 +394,7 @@ public class UIManager : Singleton<UIManager>
         _stackCurrentUI.Push( baseUI );
     }
 
+
     /// <summary>
     /// 弹出窗口，出栈
     /// </summary>
@@ -463,21 +421,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
-    [Obsolete( "这个方法暂时不要用" , true )]
-    /// <summary>
-    /// 加载UI根容器预制件
-    /// </summary>
-    private void InitRootCanvasLoading()
-    {
-        if( GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ) == null )
-        {
-            ResourceManager.Instance.LoadAssets( @"UI\" + SysDefine.SYS_TAG_ROOTCANVAS , false );
-        }
-    }
-
-
-
+    
     /// <summary>
     /// 从现有缓存中查找目标UI，未加载则返回null
     /// </summary>
@@ -489,4 +433,52 @@ public class UIManager : Singleton<UIManager>
         _dictOpenedAllUIs.TryGetValue( name , out baseUI );
         return baseUI;
     }
+
+
+    #region 反射方法，用于热更时UI绑定
+
+    /// <summary>
+    /// 反射注册UI回调
+    /// </summary>
+    /// <param name="_assetsName"></param>
+    /// <param name="_className"></param>
+    public void RegistFunctionCallFun( string uiPathName )
+    {
+        if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIList.Contains( uiPathName ) )
+            _allRegisterUIList.Add( uiPathName );
+
+        Debug.LogError( "LTOOL UI添加成功 " + uiPathName );
+    }
+
+    private void Reflection()
+    {
+        System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
+
+        System.Type[] assemblyTypes = asb.GetTypes();
+
+        for( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
+        {
+            if( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
+            {
+                //通过程序集获取到他的返回实例对象方法  并且初始化对象
+                System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
+                if( mif != null )
+                {
+                    //目前只认静态方法
+                    if( mif.IsStatic )
+                        mif.Invoke( null , null );
+                    //else
+                    //{
+                    //    //TODO 这一部分还没写好
+                    //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
+                    //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
+                    //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
+                    //}
+                }
+            }
+        }
+    }
+
+    #endregion
+
 }

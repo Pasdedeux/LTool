@@ -24,7 +24,7 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// 缓存已经开启过的所有窗体
     /// </summary>
-    private Dictionary<string , BaseUI> _dictOpenedAllUIs;
+    private Dictionary<string , BaseUI> _dictLoadedAllUIs;
     /// <summary>
     /// 当前显示的UI窗体
     /// </summary>
@@ -59,7 +59,7 @@ public class UIManager : Singleton<UIManager>
     {
         _allRegisterUIList = new List<string>();
         _stackCurrentUI = new Stack<BaseUI>();
-        _dictOpenedAllUIs = new Dictionary<string , BaseUI>();
+        _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
         _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
 
         _transCanvas = GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS ).transform;
@@ -73,7 +73,7 @@ public class UIManager : Singleton<UIManager>
 
     public void Uninstall()
     {
-        foreach( var item in _dictOpenedAllUIs )
+        foreach( var item in _dictLoadedAllUIs )
         {
             var baseui = item.Value;
             baseui.DoDestroy();
@@ -81,7 +81,7 @@ public class UIManager : Singleton<UIManager>
         _allRegisterUIList.Clear();
         _stackCurrentUI.Clear();
         _dictCurrentShowUIs.Clear();
-        _dictOpenedAllUIs.Clear();
+        _dictLoadedAllUIs.Clear();
 
         _transFixed = null;
         _transPopUp = null;
@@ -90,7 +90,7 @@ public class UIManager : Singleton<UIManager>
         _transManager = null;
         _stackCurrentUI = null;
         _allRegisterUIList = null;
-        _dictOpenedAllUIs = null;
+        _dictLoadedAllUIs = null;
         _dictCurrentShowUIs = null;
 
         GetUIResource = null;
@@ -126,7 +126,7 @@ public class UIManager : Singleton<UIManager>
         switch( baseUI.CurrentUIType.uiShowMode )
         {
             case UIShowModeEnum.Normal:
-                LoadUIToCurrentCache( uiName );
+                LoadNormalUI( uiName );
                 break;
             case UIShowModeEnum.PopUp:
                 LoadPopUpUI( uiName );
@@ -152,7 +152,7 @@ public class UIManager : Singleton<UIManager>
         BaseUI baseUI = null;
 
         //所有窗体如果没有记录，直接返回
-        _dictOpenedAllUIs.TryGetValue( uiName , out baseUI );
+        _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
         if( baseUI == null )
             return;
 
@@ -160,7 +160,7 @@ public class UIManager : Singleton<UIManager>
         switch( baseUI.CurrentUIType.uiShowMode )
         {
             case UIShowModeEnum.Normal:
-                UnLoadUIToCurrentCache( uiName );
+                UnLoadNormalUI( uiName );
                 break;
             case UIShowModeEnum.PopUp:
                 UnLoadPopUpUI( uiName );
@@ -183,7 +183,7 @@ public class UIManager : Singleton<UIManager>
         {
             foreach( var stackUI in _stackCurrentUI )
             {
-                stackUI.Hide();
+                stackUI.Close();
             }
             _stackCurrentUI.Clear();
             return true;
@@ -200,7 +200,7 @@ public class UIManager : Singleton<UIManager>
     private BaseUI LoadUIToAndFromAllList( string uiName )
     {
         BaseUI result = null;
-        _dictOpenedAllUIs.TryGetValue( uiName , out result );
+        _dictLoadedAllUIs.TryGetValue( uiName , out result );
         if( result == null )
             result = LoadUI( uiName );
         return result;
@@ -225,9 +225,10 @@ public class UIManager : Singleton<UIManager>
 
         //加载预制体
         if( !string.IsNullOrEmpty( uiName ) )
-            prefClone = GetUIResource != null ? GameObject.Instantiate( GetUIResource( uiName ) ) : null;
+            prefClone = GetUIResource != null ? GetUIResource( uiName ) : null;
         if( prefClone == null )
             throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
+        prefClone = GameObject.Instantiate( prefClone );
 
         //设置父节点
         if( _transCanvas != null && prefClone != null )
@@ -252,9 +253,8 @@ public class UIManager : Singleton<UIManager>
                     throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
             }
 
-            prefClone.SetActive( false );
             //加入到所有窗体缓存中
-            _dictOpenedAllUIs.Add( uiName , baseUI );
+            _dictLoadedAllUIs.Add( uiName , baseUI );
             return baseUI;
         }
 
@@ -267,15 +267,21 @@ public class UIManager : Singleton<UIManager>
     /// 加载当前窗体到当前窗体集合
     /// </summary>
     /// <param name="uiName"></param>
-    private void LoadUIToCurrentCache( string uiName )
+    private void LoadNormalUI( string uiName )
     {
         BaseUI baseUI;
         _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
         if( baseUI != null )
+        {
+            if( baseUI.IsShowing )
+                baseUI.Refresh();
+            else
+                baseUI.Show();
             return;
+        }
 
         //加载当前窗体到当前显示集合
-        _dictOpenedAllUIs.TryGetValue( uiName , out baseUI );
+        _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
         if( baseUI != null )
         {
             _dictCurrentShowUIs.Add( uiName , baseUI );
@@ -288,7 +294,7 @@ public class UIManager : Singleton<UIManager>
     /// 从当前UI列表缓存中卸载UI窗体
     /// </summary>
     /// <param name="uiName"></param>
-    private void UnLoadUIToCurrentCache( string uiName )
+    private void UnLoadNormalUI( string uiName )
     {
         BaseUI baseUI;
         //当前UI显示列表中没有记录则直接返回
@@ -297,7 +303,7 @@ public class UIManager : Singleton<UIManager>
             return;
 
         //隐藏窗口并从列表中移除
-        baseUI.Hide();
+        baseUI.Close();
         _dictCurrentShowUIs.Remove( uiName );
     }
 
@@ -312,20 +318,26 @@ public class UIManager : Singleton<UIManager>
         //当前UI显示列表中没有记录则直接返回
         _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
         if( baseUI != null )
+        {
+            if( baseUI.IsShowing )
+                baseUI.Refresh();
+            else
+                baseUI.Show();
             return;
+        }
 
         //正在显示的UI进行隐藏
         foreach( BaseUI baseui in _dictCurrentShowUIs.Values )
         {
-            baseui.Hide();
+            baseui.Close();
         }
         foreach( BaseUI baseui in _stackCurrentUI )
         {
-            baseui.Hide();
+            baseui.Close();
         }
 
         //把当前窗体加载到正显示的UI窗口缓存中去
-        _dictOpenedAllUIs.TryGetValue( uiName , out baseUI );
+        _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
         if( baseUI != null )
         {
             _dictCurrentShowUIs.Add( uiName , baseUI );
@@ -348,7 +360,7 @@ public class UIManager : Singleton<UIManager>
             return;
 
         //指定窗口隐藏
-        baseUI.Hide();
+        baseUI.Close();
         _dictCurrentShowUIs.Remove( uiName );
 
         //如果需要清空已有 popup 窗口
@@ -380,13 +392,18 @@ public class UIManager : Singleton<UIManager>
         if( _stackCurrentUI.Count > 0 )
         {
             BaseUI topUI = _stackCurrentUI.Peek();
-            topUI.Hide( true );
+            topUI.Close( true );
         }
 
         //获取当前UI，进行展示处理
-        _dictOpenedAllUIs.TryGetValue( uiName , out baseUI );
+        _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
         if( baseUI != null )
-            baseUI.Show();
+        {
+            if( baseUI.IsShowing )
+                baseUI.Refresh();
+            else
+                baseUI.Show();
+        }
         else
             throw new Exception( "UIManager catch an error" );
 
@@ -406,7 +423,7 @@ public class UIManager : Singleton<UIManager>
         {
             //第一个出栈
             BaseUI topUI = _stackCurrentUI.Pop();
-            topUI.Hide();
+            topUI.Close();
 
             //第二个重新显示
             BaseUI nextUI = _stackCurrentUI.Peek();
@@ -417,11 +434,11 @@ public class UIManager : Singleton<UIManager>
         {
             //出栈的窗体进行隐藏
             BaseUI topUI = _stackCurrentUI.Pop();
-            topUI.Hide();
+            topUI.Close();
         }
     }
 
-    
+
     /// <summary>
     /// 从现有缓存中查找目标UI，未加载则返回null
     /// </summary>
@@ -430,7 +447,7 @@ public class UIManager : Singleton<UIManager>
     public BaseUI GetUIByName( string name )
     {
         BaseUI baseUI;
-        _dictOpenedAllUIs.TryGetValue( name , out baseUI );
+        _dictLoadedAllUIs.TryGetValue( name , out baseUI );
         return baseUI;
     }
 

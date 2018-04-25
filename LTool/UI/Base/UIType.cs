@@ -11,7 +11,7 @@ public class UIType
     /// <summary>
     /// UI窗体挂载的节点类型
     /// </summary>
-    public UITypeEnum uiType = UITypeEnum.Normal;
+    public UINodeTypeEnum uiNodeType = UINodeTypeEnum.Normal;
     /// <summary>
     /// UI窗体显示方式
     /// Normal - 示窗体与其他窗体可以同时显示
@@ -20,7 +20,7 @@ public class UIType
     /// </summary>
     public UIShowModeEnum uiShowMode = UIShowModeEnum.Normal;
     /// <summary>
-    /// UI窗体透明度类型
+    /// UI窗体透明度类型(PopUp 类型时生效)
     /// </summary>
     public UITransparentEnum uiTransparent = UITransparentEnum.Penetrating;
 }

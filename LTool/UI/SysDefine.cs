@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 引导挂载到不同节点
 /// </summary>
-public enum UITypeEnum
+public enum UINodeTypeEnum
 {
     /// <summary>
     /// 普通窗体

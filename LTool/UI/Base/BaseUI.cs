@@ -20,10 +20,11 @@ public abstract class BaseUI : MonoBehaviour
     public virtual void Show( bool replay = false )
     {
         IsShowing = true;
-        this.enabled = IsShowing;
+
         gameObject.SetActive( IsShowing );
+
         //设置模态窗体调用(弹出窗体)
-        if( CurrentUIType.uiType == UITypeEnum.PopUp )
+        if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             UIMaskManager.Instance.SetMaskWindow( gameObject , CurrentUIType.uiTransparent );
         Refresh();
     }
@@ -38,7 +39,7 @@ public abstract class BaseUI : MonoBehaviour
         {
             gameObject.SetActive( false );
 
-            if( CurrentUIType.uiType == UITypeEnum.PopUp && IsShowing )
+            if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                 UIMaskManager.Instance.CancelMaskWindow();
         }
         else

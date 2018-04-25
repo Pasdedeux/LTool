@@ -238,15 +238,15 @@ public class UIManager : Singleton<UIManager>
             if( baseUI == null )
             { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
-            switch( baseUI.CurrentUIType.uiType )
+            switch( baseUI.CurrentUIType.uiNodeType )
             {
-                case UITypeEnum.Normal:
+                case UINodeTypeEnum.Normal:
                     prefClone.transform.SetParent( _transNormal , false );
                     break;
-                case UITypeEnum.Fixed:
+                case UINodeTypeEnum.Fixed:
                     prefClone.transform.SetParent( _transFixed , false );
                     break;
-                case UITypeEnum.PopUp:
+                case UINodeTypeEnum.PopUp:
                     prefClone.transform.SetParent( _transPopUp , false );
                     break;
                 default:

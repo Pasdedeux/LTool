@@ -33,7 +33,8 @@ public abstract class BaseUI : MonoBehaviour
     /// 隐藏窗口
     /// </summary>
     /// <param name="freeze">是否暂时冻结（功能未想好）</param>
-    public virtual void Close( bool freeze = false )
+    /// <param name="isDestroy">是否摧毁并彻底释放</param>
+    public virtual void Close( bool isDestroy = false , bool freeze = false)
     {
         if( !freeze )
         {
@@ -49,6 +50,9 @@ public abstract class BaseUI : MonoBehaviour
         }
 
         IsShowing = false;
+
+        if( isDestroy )
+            DoDestroy();
     }
 
     /// <summary>
@@ -56,14 +60,10 @@ public abstract class BaseUI : MonoBehaviour
     /// </summary>
     public virtual void Refresh() { }
 
+    public virtual void Dispose() { }
+
     public virtual void OnAdapter() { }
 
-    public virtual void DoDestroy()
-    {
-        OnDestroy();
-    }
-
-    public virtual void OnDispose() { }
 
     #region Alternative Function
 
@@ -75,7 +75,11 @@ public abstract class BaseUI : MonoBehaviour
 
     public virtual void OnStart() { }
 
-
+    private void DoDestroy()
+    {
+        Dispose();
+        GameObject.Destroy( gameObject );
+    }
 
     private void Awake()
     {
@@ -97,11 +101,5 @@ public abstract class BaseUI : MonoBehaviour
         OnDisabled();
     }
 
-    private void OnDestroy()
-    {
-        Close();
-        OnDispose();
-        GameObject.Destroy( gameObject );
-    }
     #endregion
 }

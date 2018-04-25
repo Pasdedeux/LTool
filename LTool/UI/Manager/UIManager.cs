@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LTool;
 using System.Reflection;
+using System.Linq;
 
 /// <summary>
 /// 以下UI类，需配合UImanager.unitypackage使用。
@@ -73,15 +74,17 @@ public class UIManager : Singleton<UIManager>
 
     public void Uninstall()
     {
-        foreach( var item in _dictLoadedAllUIs )
+        if( _dictLoadedAllUIs != null )
         {
-            var baseui = item.Value;
-            baseui.DoDestroy();
+            var list = _dictLoadedAllUIs.ToList();
+            for( int i = list.Count - 1; i >= 0; i-- )
+                Close( list[ i ].Key , true );
+            _dictLoadedAllUIs.Clear();
         }
+
         _allRegisterUIList.Clear();
         _stackCurrentUI.Clear();
         _dictCurrentShowUIs.Clear();
-        _dictLoadedAllUIs.Clear();
 
         _transFixed = null;
         _transPopUp = null;
@@ -94,7 +97,10 @@ public class UIManager : Singleton<UIManager>
         _dictCurrentShowUIs = null;
 
         GetUIResource = null;
+
+        Resources.UnloadUnusedAssets();
     }
+
 
 
     /// <summary>
@@ -106,9 +112,6 @@ public class UIManager : Singleton<UIManager>
     /// <param name="uiName">UI窗体预制件名称</param>
     public BaseUI Show( string uiName )
     {
-        //if( !_allRegisterUIList.Contains( uiName ) )
-        //    throw new Exception( "-->UI " + uiName + "并未注册" );
-
         BaseUI baseUI = null;
 
         if( string.IsNullOrEmpty( uiName ) )
@@ -144,7 +147,8 @@ public class UIManager : Singleton<UIManager>
     /// 关闭指定UI
     /// </summary>
     /// <param name="uiName"></param>
-    public void Close( string uiName )
+    /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
+    public void Close( string uiName , bool isDestroy = false )
     {
         if( string.IsNullOrEmpty( uiName ) )
             return;
@@ -154,24 +158,32 @@ public class UIManager : Singleton<UIManager>
         //所有窗体如果没有记录，直接返回
         _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
         if( baseUI == null )
+        {
+            _dictLoadedAllUIs.Remove( uiName );
             return;
+        }
 
         //不同类型窗体执行各自关闭逻辑
         switch( baseUI.CurrentUIType.uiShowMode )
         {
             case UIShowModeEnum.Normal:
-                UnLoadNormalUI( uiName );
+                UnLoadNormalUI( uiName , isDestroy );
                 break;
             case UIShowModeEnum.PopUp:
-                UnLoadPopUpUI( uiName );
+                UnLoadPopUpUI( uiName , isDestroy );
                 break;
             case UIShowModeEnum.Unique:
-                UnLoadUniqueUI( uiName );
+                UnLoadUniqueUI( uiName , isDestroy );
                 break;
             default:
                 throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
         }
+
+        //销毁
+        if( isDestroy )
+            _dictLoadedAllUIs.Remove( uiName );
     }
+
 
 
     /// <summary>
@@ -191,7 +203,6 @@ public class UIManager : Singleton<UIManager>
         return false;
     }
 
-
     /// <summary>
     /// 根据UI预制件名称加载到UI缓存列表（按需），同时获取实例
     /// </summary>
@@ -205,7 +216,6 @@ public class UIManager : Singleton<UIManager>
             result = LoadUI( uiName );
         return result;
     }
-
 
     /// <summary>
     /// 加载指定名称UI
@@ -262,7 +272,6 @@ public class UIManager : Singleton<UIManager>
         return null;
     }
 
-
     /// <summary>
     /// 加载当前窗体到当前窗体集合
     /// </summary>
@@ -289,24 +298,32 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
     /// <summary>
     /// 从当前UI列表缓存中卸载UI窗体
     /// </summary>
     /// <param name="uiName"></param>
-    private void UnLoadNormalUI( string uiName )
+    private void UnLoadNormalUI( string uiName , bool isDestroy = false )
     {
         BaseUI baseUI;
-        //当前UI显示列表中没有记录则直接返回
+
+        //当前UI显示列表中没有记录或者总表中没有记录则直接返回
         _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
         if( baseUI == null )
-            return;
+        {
+            if( !isDestroy )
+                return;
+            else
+                _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
 
-        //隐藏窗口并从列表中移除
-        baseUI.Close();
-        _dictCurrentShowUIs.Remove( uiName );
+            if( baseUI == null )
+                return;
+        }
+        else
+            //隐藏窗口并从列表中移除
+            _dictCurrentShowUIs.Remove( uiName );
+
+        baseUI.Close( isDestroy: isDestroy );
     }
-
 
     /// <summary>
     /// 加载独占UI窗体
@@ -346,22 +363,30 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-
     /// <summary>
     /// 卸载当前UI，并将原先被隐藏的UI重新显示
     /// </summary>
     /// <param name="uiName"></param>
-    private void UnLoadUniqueUI( string uiName )
+    private void UnLoadUniqueUI( string uiName , bool isDestroy = false )
     {
         BaseUI baseUI;
 
         _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
         if( baseUI == null )
-            return;
+        {
+            if( !isDestroy )
+                return;
+            else
+                _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
 
-        //指定窗口隐藏
-        baseUI.Close();
-        _dictCurrentShowUIs.Remove( uiName );
+            if( baseUI == null )
+                return;
+        }
+        else
+            //隐藏窗口并从列表中移除
+            _dictCurrentShowUIs.Remove( uiName );
+
+        baseUI.Close( isDestroy: isDestroy );
 
         //如果需要清空已有 popup 窗口
         if( baseUI.CurrentUIType.isClearPopUp )
@@ -378,7 +403,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
     /// <summary>
     /// 弹出窗口，入栈
     /// 先冻结栈中窗口，再将此窗口入栈
@@ -392,7 +416,7 @@ public class UIManager : Singleton<UIManager>
         if( _stackCurrentUI.Count > 0 )
         {
             BaseUI topUI = _stackCurrentUI.Peek();
-            topUI.Close( true );
+            topUI.Close( freeze: true );
         }
 
         //获取当前UI，进行展示处理
@@ -411,19 +435,18 @@ public class UIManager : Singleton<UIManager>
         _stackCurrentUI.Push( baseUI );
     }
 
-
     /// <summary>
     /// 弹出窗口，出栈
     /// </summary>
     /// <param name="uiName"></param>
-    private void UnLoadPopUpUI( string uiName )
+    private void UnLoadPopUpUI( string uiName , bool isDestroy = false )
     {
         //有两个以上弹窗出现时
         if( _stackCurrentUI.Count >= 2 )
         {
             //第一个出栈
             BaseUI topUI = _stackCurrentUI.Pop();
-            topUI.Close();
+            topUI.Close( isDestroy: isDestroy );
 
             //第二个重新显示
             BaseUI nextUI = _stackCurrentUI.Peek();
@@ -434,10 +457,9 @@ public class UIManager : Singleton<UIManager>
         {
             //出栈的窗体进行隐藏
             BaseUI topUI = _stackCurrentUI.Pop();
-            topUI.Close();
+            topUI.Close( isDestroy: isDestroy );
         }
     }
-
 
     /// <summary>
     /// 从现有缓存中查找目标UI，未加载则返回null
@@ -450,7 +472,6 @@ public class UIManager : Singleton<UIManager>
         _dictLoadedAllUIs.TryGetValue( name , out baseUI );
         return baseUI;
     }
-
 
     #region 反射方法，用于热更时UI绑定
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
 {
@@ -12,30 +13,41 @@ public abstract class BaseUI : MonoBehaviour
     private UIType _uiType = new UIType();
     public UIType CurrentUIType
     { get { return _uiType; } set { _uiType = value; } }
+    /// <summary>
+    /// 是否执行过Start
+    /// </summary>
+    private bool IsStarted { get; set; }
+    private Coroutine _waitForStartFunc;
 
     /// <summary>
     /// 显示窗体
     /// </summary>
-    /// <param name="replay">是否是重新显示</param>
-    public virtual void Show( bool replay = false )
+    /// <param name="replay">【暂时不管这个参数】</param>
+    public void Show( bool replay = false )
     {
         IsShowing = true;
 
+        //默认执行OnEnable()
         gameObject.SetActive( IsShowing );
 
         //设置模态窗体调用(弹出窗体)
         if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             UIMaskManager.Instance.SetMaskWindow( gameObject , CurrentUIType.uiTransparent );
-        Refresh();
+
+        if( IsStarted )
+            OnShow();
+        else
+            _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
     }
 
     /// <summary>
     /// 隐藏窗口
     /// </summary>
-    /// <param name="freeze">是否暂时冻结（功能未想好）</param>
     /// <param name="isDestroy">是否摧毁并彻底释放</param>
-    public virtual void Close( bool isDestroy = false , bool freeze = false)
+    /// <param name="freeze">是否暂时冻结（功能未想好）</param>
+    public void Close( bool isDestroy = false , bool freeze = false )
     {
+        //默认执行OnDisable()
         if( !freeze )
         {
             gameObject.SetActive( false );
@@ -51,19 +63,26 @@ public abstract class BaseUI : MonoBehaviour
 
         IsShowing = false;
 
+        if( _waitForStartFunc != null )
+        {
+            StopCoroutine( _waitForStartFunc );
+            _waitForStartFunc = null;
+        }
+
         if( isDestroy )
             DoDestroy();
     }
 
-    /// <summary>
+
+    ///<inheritdoc/>
+    /// <remarks>
     /// 刷新窗体
-    /// </summary>
-    public virtual void Refresh() { }
+    /// </remarks>
+    public abstract void OnShow();
 
     public virtual void Dispose() { }
 
     public virtual void OnAdapter() { }
-
 
     #region Alternative Function
 
@@ -75,10 +94,14 @@ public abstract class BaseUI : MonoBehaviour
 
     public virtual void OnStart() { }
 
+    public virtual void OnUpdate() { }
+
     private void DoDestroy()
     {
         Dispose();
+        IsStarted = false;
         GameObject.Destroy( gameObject );
+        Resources.UnloadUnusedAssets();
     }
 
     private void Awake()
@@ -89,6 +112,7 @@ public abstract class BaseUI : MonoBehaviour
     private void Start()
     {
         OnStart();
+        IsStarted = true;
     }
 
     private void OnEnable()
@@ -101,5 +125,15 @@ public abstract class BaseUI : MonoBehaviour
         OnDisabled();
     }
 
+    private void Update()
+    {
+        OnUpdate();
+    }
     #endregion
+
+    private IEnumerator IWaitToOnShow()
+    {
+        yield return new WaitUntil( () => { return IsStarted; } );
+        OnShow();
+    }
 }

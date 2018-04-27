@@ -27,7 +27,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     private Dictionary<string , BaseUI> _dictLoadedAllUIs;
     /// <summary>
-    /// 当前显示的UI窗体
+    /// 当前显示的非弹出类UI窗体
     /// </summary>
     private Dictionary<string , BaseUI> _dictCurrentShowUIs;
     /// <summary>
@@ -74,14 +74,19 @@ public class UIManager : Singleton<UIManager>
 
     public void Uninstall()
     {
+        while( _stackCurrentUI.Count > 0 )
+        {
+            BaseUI ui = _stackCurrentUI.Pop();
+            ui.Close( true );
+        }
+
         if( _dictLoadedAllUIs != null )
         {
             var list = _dictLoadedAllUIs.ToList();
             for( int i = list.Count - 1; i >= 0; i-- )
                 Close( list[ i ].Key , true );
-            _dictLoadedAllUIs.Clear();
+            list = null;
         }
-
         _allRegisterUIList.Clear();
         _stackCurrentUI.Clear();
         _dictCurrentShowUIs.Clear();
@@ -181,7 +186,13 @@ public class UIManager : Singleton<UIManager>
 
         //销毁
         if( isDestroy )
+        {
+            BaseUI ui = null;
+            _dictLoadedAllUIs.TryGetValue( uiName , out ui );
+            if( ui != null )
+                ui.Close( true );
             _dictLoadedAllUIs.Remove( uiName );
+        }
     }
 
 
@@ -283,7 +294,7 @@ public class UIManager : Singleton<UIManager>
         if( baseUI != null )
         {
             if( baseUI.IsShowing )
-                baseUI.Refresh();
+                baseUI.OnShow();
             else
                 baseUI.Show();
             return;
@@ -337,7 +348,7 @@ public class UIManager : Singleton<UIManager>
         if( baseUI != null )
         {
             if( baseUI.IsShowing )
-                baseUI.Refresh();
+                baseUI.OnShow();
             else
                 baseUI.Show();
             return;
@@ -424,15 +435,16 @@ public class UIManager : Singleton<UIManager>
         if( baseUI != null )
         {
             if( baseUI.IsShowing )
-                baseUI.Refresh();
+                baseUI.OnShow();
             else
                 baseUI.Show();
+
+            if( !_stackCurrentUI.Contains( baseUI ) )
+                //该弹出UI入栈
+                _stackCurrentUI.Push( baseUI );
         }
         else
             throw new Exception( "UIManager catch an error" );
-
-        //该弹出UI入栈
-        _stackCurrentUI.Push( baseUI );
     }
 
     /// <summary>

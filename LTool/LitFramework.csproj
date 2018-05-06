@@ -68,6 +68,9 @@
     <Compile Include="EditorTool\LitJSON\JsonWriter.cs" />
     <Compile Include="EditorTool\LitJSON\Lexer.cs" />
     <Compile Include="EditorTool\LitJSON\ParserToken.cs" />
+    <Compile Include="LitPool\PoolManager.cs" />
+    <Compile Include="LitPool\SpawnManager.cs" />
+    <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\HotFix\BaseUI.cs" />
     <Compile Include="UI\HotFix\UIManager.cs" />
@@ -81,5 +84,6 @@
   <ItemGroup>
     <None Include="DerekLitFramework.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

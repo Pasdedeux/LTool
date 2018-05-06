@@ -18,7 +18,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LTool.Device
+namespace LitFramework.Device
 {
     public class ShowFPS:MonoBehaviour
     {

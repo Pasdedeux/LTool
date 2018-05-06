@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace LTool.HotFix
+namespace LitFramework.HotFix
 {
     /// <summary>
     /// 以下UI类，需配合UImanager.unitypackage使用。
@@ -504,7 +504,7 @@ namespace LTool.HotFix
             if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
                 _allRegisterUIDict.Add( uiPathName , className );
 
-            Debug.Log( "LTOOL UI添加成功 " + uiPathName );
+            Debug.Log( "LitFramework UI添加成功 " + uiPathName );
         }
 
         private void Reflection()

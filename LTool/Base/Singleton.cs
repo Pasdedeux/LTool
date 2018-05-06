@@ -12,7 +12,7 @@
  * Copyright @ Derek 2018 All rights reserved 
 *****************************************************************/
 
-namespace LTool
+namespace LitFramework
 {
     /// <summary>
     /// 非组件单例基类

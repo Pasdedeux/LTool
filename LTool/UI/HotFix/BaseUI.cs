@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace LTool.HotFix
+namespace LitFramework.HotFix
 {
 
     public abstract class BaseUI

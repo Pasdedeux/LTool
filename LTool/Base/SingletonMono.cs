@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace LTool
+namespace LitFramework
 {
     /// <summary>
     /// 组件单例基类

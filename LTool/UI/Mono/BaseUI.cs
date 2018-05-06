@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace LTool.Mono
+namespace LitFramework.Mono
 {
 
     public abstract class BaseUI : MonoBehaviour

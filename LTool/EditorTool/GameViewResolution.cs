@@ -19,7 +19,7 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 
-namespace LTool.EditorTool
+namespace LitFramework.EditorTool
 {
     class GameViewResolution : MonoBehaviour
     {

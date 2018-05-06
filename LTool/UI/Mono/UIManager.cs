@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LTool;
+using LitFramework;
 using System.Reflection;
 using System.Linq;
 
-namespace LTool.Mono
+namespace LitFramework.Mono
 {
 
     /// <summary>
@@ -500,7 +500,7 @@ namespace LTool.Mono
             if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIList.Contains( uiPathName ) )
                 _allRegisterUIList.Add( uiPathName );
 
-            Debug.LogError( "LTOOL UI添加成功 " + uiPathName );
+            Debug.LogError( "LitFramework UI添加成功 " + uiPathName );
         }
 
         private void Reflection()

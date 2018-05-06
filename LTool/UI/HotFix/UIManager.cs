@@ -72,6 +72,8 @@ namespace LTool.HotFix
             _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
 
             GetUIResource = loadPrefabFunction;
+
+            Reflection();
         }
 
         public void Uninstall()

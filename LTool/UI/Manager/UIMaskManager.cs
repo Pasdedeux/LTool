@@ -22,8 +22,8 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     private void Awake( )
     {
         //得到UI根节点对象
-        _rootCanvas = GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_ROOTCANVAS );
-        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas , SysDefine.SYS_TAG_MANAGERCANVAS );
+        _rootCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS );
+        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas , UISysDefine.SYS_TAG_MANAGERCANVAS );
         //将本脚本实例作为脚本节点对象子节点
         transform.SetParent( _transScriptNode );
         UnityHelper.AddChildNodeToParentNode( _transScriptNode , transform );
@@ -32,7 +32,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas , "Panel_Mask" ).gameObject;
         _maskImage = _maskPanel.GetComponent<Image>();
         //获得摄像机层深
-        _uiCamera = GameObject.FindGameObjectWithTag( SysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
+        _uiCamera = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
         if ( _uiCamera != null ) _oriUICameraDepth = _uiCamera.depth;
     }
 

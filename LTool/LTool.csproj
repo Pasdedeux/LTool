@@ -63,12 +63,13 @@
     <Compile Include="EditorTool\LitJSON\Lexer.cs" />
     <Compile Include="EditorTool\LitJSON\ParserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Base\BaseUI.cs" />
+    <Compile Include="UI\Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
-    <Compile Include="UI\Manager\UIManager.cs" />
+    <Compile Include="UI\Mono\UIManager.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -67,7 +67,7 @@ public enum UITransparentEnum
 }
 
 
-public class SysDefine
+public class UISysDefine
 {
     #region UI
 

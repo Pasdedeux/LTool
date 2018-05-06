@@ -519,7 +519,7 @@ public class UIManager : Singleton<UIManager>
                         mif.Invoke( null , null );
                     //else
                     //{
-                    //    //TODO 这一部分还没写好
+                    //    //TODO 需要实例化的带参数方法
                     //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
                     //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
                     //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );

@@ -29,13 +29,13 @@ public enum UINodeTypeEnum
 public enum UIShowModeEnum
 {
     /// <summary>
-    /// 示窗体与其他窗体可以同时显示
+    /// 展示窗体与其他窗体可以同时显示
     /// </summary>
-    Normal,
+    Parallel,
     /// <summary>
     /// 多层弹窗，同时需要维护多个弹出窗口并依次恢复显示的情况
     /// </summary>
-    PopUp,
+    Stack,
     /// <summary>
     /// 独占窗口，显示时其他界面隐藏
     /// </summary>

@@ -134,10 +134,10 @@ namespace LitFramework.HotFix
 
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     LoadNormalUI( uiName );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     LoadPopUpUI( uiName );
                     break;
                 case UIShowModeEnum.Unique:
@@ -173,10 +173,10 @@ namespace LitFramework.HotFix
             //不同类型窗体执行各自关闭逻辑
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     UnLoadNormalUI( uiName , isDestroy );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     UnLoadPopUpUI( uiName , isDestroy );
                     break;
                 case UIShowModeEnum.Unique:

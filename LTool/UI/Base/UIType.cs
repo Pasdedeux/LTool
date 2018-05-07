@@ -18,7 +18,7 @@ public class UIType
     /// PopUp - 多层弹窗，同时需要维护多个弹出窗口并依次恢复显示的情况
     /// Unique - 独占窗口，显示时其他界面隐藏
     /// </summary>
-    public UIShowModeEnum uiShowMode = UIShowModeEnum.Normal;
+    public UIShowModeEnum uiShowMode = UIShowModeEnum.Parallel;
     /// <summary>
     /// UI窗体透明度类型(PopUp 类型时生效)
     /// </summary>

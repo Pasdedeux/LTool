@@ -25,16 +25,10 @@
 ======================================*/
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace LitFramework
 {
     using UnityEngine;
     using System.Collections.Generic;
-    using System.Collections;
     using System;
 
     /// <summary>
@@ -44,23 +38,27 @@ namespace LitFramework
     /// </summary>
     class AudioManager : SingletonMono<AudioManager>
     {
+        List<AudioSource> _tempList;
         AudioSource _audioBGM;
         AudioSource _soloAudioSource;
         Stack<AudioSource> _soundAvalibleList;
         Func<string , AudioClip> LoadFunction;
-        List<AudioSource> _tempList = new List<AudioSource>();
+        Dictionary<string , AudioClip> _audios;
         Dictionary<string , AudioSource> _soundLoopPlayingDict;
-        Dictionary<string , AudioClip> _audios = new Dictionary<string , AudioClip>();
-
 
         public float VolumeSE { get; set; }
 
         public float VolumeBGM { get; set; }
 
-
-        public void Awake()
+        /// <summary>
+        /// 启动音频模块
+        /// </summary>
+        /// <param name="loadFunction">提供音频加载方法</param>
+        public void Install( Func<string , AudioClip> loadFunction )
         {
             _soundAvalibleList = new Stack<AudioSource>();
+            _tempList = new List<AudioSource>();
+            _audios = new Dictionary<string , AudioClip>();
             _soundLoopPlayingDict = new Dictionary<string , AudioSource>();
 
             _audioBGM = gameObject.AddComponent<AudioSource>();
@@ -70,15 +68,7 @@ namespace LitFramework
 
             VolumeBGM = PlayerPrefs.GetFloat( "Setting_BGM" , 1 );
             VolumeSE = PlayerPrefs.GetFloat( "Setting_SE" , 1 );
-        }
 
-
-        /// <summary>
-        /// 启动音频模块
-        /// </summary>
-        /// <param name="loadFunction">提供音频加载方法</param>
-        public void Install( Func<string, AudioClip> loadFunction )
-        {
             LoadFunction = loadFunction;
         }
 
@@ -93,7 +83,11 @@ namespace LitFramework
                 LoadFunction = null;
             }
 
-            while( _soundAvalibleList.Count>0 )
+            StopAllSE();
+            _soundLoopPlayingDict = null;
+
+
+            while( _soundAvalibleList.Count > 0 )
             {
                 var ad = _soundAvalibleList.Pop();
                 Destroy( ad );
@@ -101,18 +95,21 @@ namespace LitFramework
             }
             _soundAvalibleList = null;
 
-            StopAllSE();
-            _soundLoopPlayingDict = null;
-
             Destroy( _audioBGM );
             _audioBGM = null;
 
             Destroy( _soloAudioSource );
             _soloAudioSource = null;
+
+            _tempList.Clear();
+            _tempList = null;
+
+            _audios.Clear();
+            _audios = null;
         }
-        
-        
-        
+
+
+
         private void LoadAudio( string name )
         {
             if( _audios.ContainsKey( name ) )
@@ -181,12 +178,15 @@ namespace LitFramework
                 if( !isParallel )
                 {
                     if( _soundAvalibleList.Count > 0 )
-                        currentAS = _soundAvalibleList.Pop();
+                    {
+                        currentAS = _soundAvalibleList.Peek();
+                        currentAS.Stop();
+                    }
                     else
                     {
                         currentAS = gameObject.AddComponent<AudioSource>();
                         _soundAvalibleList.Push( currentAS );
-                        PlaySE( name , loop );
+                        PlaySE( name , loop , isParallel , volumeRate );
                         return;
                     }
                 }
@@ -245,16 +245,16 @@ namespace LitFramework
                 }
                 else
                 {
-                    currentAS.clip = null;
+                    currentAS.clip = GetSE( name );
                     currentAS.volume = VolumeSE * volumeRate;
                     currentAS.loop = false;
 
-                    currentAS.PlayOneShot( GetSE( name ) , VolumeSE * volumeRate );
+                    currentAS.Play();
                 }
             }
         }
 
-        
+
         /// <summary>
         /// 停止持续播放的音效
         /// 只针对loop声效有效
@@ -321,7 +321,7 @@ namespace LitFramework
 
         }
 
-        
+
         /// <summary>
         /// 暂停音乐
         /// </summary>

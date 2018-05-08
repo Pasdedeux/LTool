@@ -6,21 +6,22 @@
 * 命名空间 ：LitFramework
 * 机器名称 ：SKY-20170413SEJ 
 * CLR 版本 ：4.0.30319.42000
-* 作    者 ：LHW
+* 作    者 ：Derek Liu
 * 创建时间 ：2018/5/7 15:23:37
 * 更新时间 ：2018/5/7 15:23:37
 * 版 本 号 ：v1.0.0.0
 *******************************************************************
-* Copyright @ ShengYanTech 2018. All rights reserved.
+* Copyright @ Liu Hanwen 2018. All rights reserved.
 *******************************************************************
 
 -------------------------------------------------------------------
 *Fix Note:
-*修改时间：2018/5/7 15:23:37
+*修改时间：2018/5/8 15:23:37
 *修改人： LHW
 *版本号： V1.0.0.0
 *描述：
 *
+* 精简音频管理器功能
 ======================================*/
 
 
@@ -38,45 +39,30 @@ namespace LitFramework
 
     /// <summary>
     /// 音频组建更新
+    /// 
+    /// 创建时需要外传加载方法
     /// </summary>
     class AudioManager : SingletonMono<AudioManager>
     {
         AudioSource _audioBGM;
         AudioSource _soloAudioSource;
         Stack<AudioSource> _soundAvalibleList;
+        Func<string , AudioClip> LoadFunction;
+        List<AudioSource> _tempList = new List<AudioSource>();
         Dictionary<string , AudioSource> _soundLoopPlayingDict;
         Dictionary<string , AudioClip> _audios = new Dictionary<string , AudioClip>();
-        List<AudioSource> _tempList = new List<AudioSource>();
-        Func<string , AudioClip> LoadFunction;
 
-        float _sevol = 1;
-        float _bgmvol = 1;
 
-        public float VolumeSE
-        {
-            set { _sevol = value; }
-            get { return _sevol; }
-        }
+        public float VolumeSE { get; set; }
 
-        public float VolumeBGM
-        {
-            set
-            {
-                _bgmvol = value;
-                if( _audioBGM != null )
-                    _audioBGM.volume = _bgmvol;
-            }
-            get { return _bgmvol; }
-        }
+        public float VolumeBGM { get; set; }
 
-        public void SetVolume( string config )
-        {
-            VolumeBGM = PlayerPrefs.GetFloat( config + "_BGM" , 1 );
-            VolumeSE = PlayerPrefs.GetFloat( config + "_SE" , 1 );
-        }
 
         public void Awake()
         {
+            _soundAvalibleList = new Stack<AudioSource>();
+            _soundLoopPlayingDict = new Dictionary<string , AudioSource>();
+
             _audioBGM = gameObject.AddComponent<AudioSource>();
             _audioBGM.playOnAwake = false;
 
@@ -84,20 +70,50 @@ namespace LitFramework
 
             VolumeBGM = PlayerPrefs.GetFloat( "Setting_BGM" , 1 );
             VolumeSE = PlayerPrefs.GetFloat( "Setting_SE" , 1 );
-
-            _soundAvalibleList = new Stack<AudioSource>();
-            _soundLoopPlayingDict = new Dictionary<string , AudioSource>();
         }
 
 
+        /// <summary>
+        /// 启动音频模块
+        /// </summary>
+        /// <param name="loadFunction">提供音频加载方法</param>
         public void Install( Func<string, AudioClip> loadFunction )
         {
             LoadFunction = loadFunction;
         }
+
+
+        /// <summary>
+        /// 卸载模块
+        /// </summary>
+        public void Uninstall()
+        {
+            if( gameObject != null )
+            {
+                LoadFunction = null;
+            }
+
+            while( _soundAvalibleList.Count>0 )
+            {
+                var ad = _soundAvalibleList.Pop();
+                Destroy( ad );
+                ad = null;
+            }
+            _soundAvalibleList = null;
+
+            StopAllSE();
+            _soundLoopPlayingDict = null;
+
+            Destroy( _audioBGM );
+            _audioBGM = null;
+
+            Destroy( _soloAudioSource );
+            _soloAudioSource = null;
+        }
         
         
         
-        public void LoadAudio( string name )
+        private void LoadAudio( string name )
         {
             if( _audios.ContainsKey( name ) )
                 return;
@@ -107,20 +123,6 @@ namespace LitFramework
             _audios.Add( name , clip );
         }
 
-        public IEnumerator LoadAudioAsync( string[] names )
-        {
-            for( int i = 0; i < names.Length; i++ )
-            {
-                if( !_audios.ContainsKey( names[ i ] ) )
-                {
-                    AudioClip clip = LoadFunction( name );
-                    _audios.Add( names[ i ] , clip );
-                }
-                yield return 0;
-            }
-
-
-        }
 
         /// <summary>
         /// 获取音乐
@@ -140,6 +142,8 @@ namespace LitFramework
             }
             return _audios[ name ];
         }
+
+
         /// <summary>
         /// 获取音效
         /// </summary>
@@ -158,6 +162,7 @@ namespace LitFramework
             }
             return _audios[ name ];
         }
+
 
         /// <summary>
         /// 播放音效
@@ -233,7 +238,7 @@ namespace LitFramework
                 {
                     currentAS.clip = GetSE( name );
                     currentAS.Play();
-                    currentAS.volume = _sevol * volumeRate;
+                    currentAS.volume = VolumeSE * volumeRate;
                     currentAS.loop = true;
 
                     _soundLoopPlayingDict.Add( name , currentAS );
@@ -241,30 +246,15 @@ namespace LitFramework
                 else
                 {
                     currentAS.clip = null;
-                    currentAS.volume = _sevol * volumeRate;
+                    currentAS.volume = VolumeSE * volumeRate;
                     currentAS.loop = false;
 
-                    currentAS.PlayOneShot( GetSE( name ) , _sevol * volumeRate );
+                    currentAS.PlayOneShot( GetSE( name ) , VolumeSE * volumeRate );
                 }
             }
         }
 
-
-
-        /// <summary>
-        /// 关闭所有类型音效
-        /// </summary>
-        public void StopAllKindsSE()
-        {
-            foreach( var item in _soundAvalibleList )
-            {
-                if( item != null )
-                {
-                    item.Stop();
-                }
-            }
-        }
-
+        
         /// <summary>
         /// 停止持续播放的音效
         /// 只针对loop声效有效
@@ -281,9 +271,12 @@ namespace LitFramework
             }
         }
 
-
+        /// <summary>
+        /// 关闭全部音效
+        /// </summary>
         public void StopAllSE()
         {
+            //关闭循环播放音效
             List<string> nameList = new List<string>();
             foreach( var name in _soundLoopPlayingDict.Keys )
             {
@@ -297,6 +290,15 @@ namespace LitFramework
 
             nameList.Clear();
             nameList = null;
+
+            //单次正在播放的音效关闭
+            foreach( var item in _soundAvalibleList )
+            {
+                if( item != null )
+                {
+                    item.Stop();
+                }
+            }
         }
 
 
@@ -314,7 +316,7 @@ namespace LitFramework
             currentMusicName = name;
             _audioBGM.clip = GetBGM( name );
             _audioBGM.Play();
-            _audioBGM.volume = _bgmvol;
+            _audioBGM.volume = VolumeBGM;
             _audioBGM.loop = loop;
 
         }
@@ -340,16 +342,30 @@ namespace LitFramework
         }
 
 
+        /// <summary>
+        /// 继续播放音乐
+        /// </summary>
         public void ResumeBGM()
         {
             if( _audioBGM.clip != null )
                 _audioBGM.Play();
         }
 
+
+        /// <summary>
+        /// 侦听音量改变
+        /// </summary>
+        /// <param name="vol"></param>
         public void OnBGMValumeChange( float vol )
         {
             VolumeBGM = vol;
         }
+
+
+        /// <summary>
+        /// 侦听音乐改变
+        /// </summary>
+        /// <param name="vol"></param>
         public void OnSEValumeChange( float vol )
         {
             VolumeSE = vol;
@@ -364,8 +380,7 @@ namespace LitFramework
         {
             if( _soloAudioSource == null || _soloAudioSource.isPlaying )
                 return;
-            _soloAudioSource.PlayOneShot( GetSE( name ) , _sevol );
+            _soloAudioSource.PlayOneShot( GetSE( name ) , VolumeSE );
         }
-
     }
 }

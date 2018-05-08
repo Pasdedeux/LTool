@@ -44,6 +44,23 @@ namespace LitFramework.LitPool
             }
         }
 
+
+        /// <summary>
+        /// 卸载模块
+        /// </summary>
+        public void Uninstall()
+        {
+            _prefabNameList.Clear();
+            _prefabNameList = null;
+
+            _pool._perPrefabPoolOptions.Clear();
+            _pool._perPrefabPoolOptions = null;
+            _pool.prefabList.Clear();
+            _pool.prefabList = null;
+            _pool = null;
+            GC.Collect();
+        }
+
         /// <summary>
         /// 从对象池中获取一个对象
         /// </summary>
@@ -70,14 +87,14 @@ namespace LitFramework.LitPool
         /// <summary>
         /// 增加池库
         /// </summary>
-        /// <param name="_spawnPool"></param>
-        /// <param name="_transform"></param>
-        public static void AddPoolManager( SpawnPool _spawnPool , Transform _transform , int initNum = 5 , int limitAmount = 50 , bool limitInstances = true , bool limitFIFO = true )
+        /// <param name="spawnPool"></param>
+        /// <param name="transform"></param>
+        public static void AddPoolManager( SpawnPool spawnPool , Transform transform , int initNum = 5 , int limitAmount = 50 , bool limitInstances = true , bool limitFIFO = true )
         {
-            PrefabPool refabPool = new PrefabPool( _transform );
-            if( !_spawnPool._perPrefabPoolOptions.Contains( refabPool ) )
+            PrefabPool refabPool = new PrefabPool( transform );
+            if( !spawnPool._perPrefabPoolOptions.Contains( refabPool ) )
             {
-                refabPool = new PrefabPool( _transform );
+                refabPool = new PrefabPool( transform );
                 //默认初始化两个Prefab
                 refabPool.preloadAmount = initNum;
                 //开启限制
@@ -95,8 +112,8 @@ namespace LitFramework.LitPool
                 //每次清理几个
                 refabPool.cullMaxPerPass = 10;
                 //初始化内存池
-                _spawnPool._perPrefabPoolOptions.Add( refabPool );
-                _spawnPool.CreatePrefabPool( refabPool );
+                spawnPool._perPrefabPoolOptions.Add( refabPool );
+                spawnPool.CreatePrefabPool( refabPool );
             }
         }
     }

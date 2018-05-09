@@ -30,11 +30,16 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LitFramework.EditorTool
+namespace LitFramework.GameUtility
 {
-    class AssetPathManager: Singleton<AssetPathManager>
+    public class AssetPathManager: Singleton<AssetPathManager>
     {
-        private StringBuilder _sBuilder = new StringBuilder();
+        private StringBuilder _sBuilder;
+
+        public AssetPathManager()
+        {
+            _sBuilder = new StringBuilder();
+        }
 
         /// <summary>
         ///  获取外部persistant路径+"//"
@@ -45,7 +50,7 @@ namespace LitFramework.EditorTool
         /// <returns></returns>
         public string GetPersistentDataPath( string filePath , bool useWWW = false, bool useFile = false )
         {
-            _sBuilder.Remove( 0 , _sBuilder.Length );
+            _sBuilder.Length = 0;
 
             if( useWWW )
             {
@@ -61,7 +66,7 @@ namespace LitFramework.EditorTool
             else
             {
                 _sBuilder.Append( Application.persistentDataPath );
-                if( useFile )
+                if( useFile && ( Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor ) )
                     _sBuilder.Append( "//" );
                 else
                     _sBuilder.Append( "/" );
@@ -79,9 +84,9 @@ namespace LitFramework.EditorTool
         /// <returns></returns>
         public string GetStreamAssetDataPath( string filePath, bool useFile = true )
         {
-            _sBuilder.Remove( 0 , _sBuilder.Length );
+            _sBuilder.Length = 0;
             _sBuilder.Append( Application.streamingAssetsPath );
-            if( useFile )
+            if( useFile && ( Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor ) )
                 _sBuilder.Append( "//" );
             else
                 _sBuilder.Append( "/" );
@@ -97,7 +102,7 @@ namespace LitFramework.EditorTool
         /// <returns></returns>
         public string GetTemporaryCachePath( string filePath )
         {
-            _sBuilder.Remove( 0 , _sBuilder.Length );
+            _sBuilder.Length = 0;
             _sBuilder.Append( Application.temporaryCachePath );
             _sBuilder.Append( "/" );
             _sBuilder.Append( filePath );

@@ -39,6 +39,12 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>.\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>.\Excel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,17 +66,23 @@
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="EditorTool\AssetPathManager.cs" />
-    <Compile Include="EditorTool\GameViewResolution.cs" />
-    <Compile Include="EditorTool\LitJSON\IJsonWrapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonData.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonException.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonMapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonMockWrapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonReader.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonWriter.cs" />
-    <Compile Include="EditorTool\LitJSON\Lexer.cs" />
-    <Compile Include="EditorTool\LitJSON\ParserToken.cs" />
+    <Compile Include="EditorTool\CSVWriter.cs" />
+    <Compile Include="EditorTool\EditorTools.cs" />
+    <Compile Include="EditorTool\XMLConver.cs" />
+    <Compile Include="GameUtility\AssetPathManager.cs" />
+    <Compile Include="EditorTool\CSVParser.cs" />
+    <Compile Include="EditorTool\CSVReader.cs" />
+    <Compile Include="GameUtility\DocumentAccessor.cs" />
+    <Compile Include="GameUtility\GameViewResolution.cs" />
+    <Compile Include="GameUtility\LitJSON\IJsonWrapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonData.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonException.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonMapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonMockWrapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonReader.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonWriter.cs" />
+    <Compile Include="GameUtility\LitJSON\Lexer.cs" />
+    <Compile Include="GameUtility\LitJSON\ParserToken.cs" />
     <Compile Include="LitPool\Pool_UnFinished\BasePool.cs" />
     <Compile Include="LitPool\Pool_UnFinished\BasePoolUnitGroup.cs" />
     <Compile Include="LitPool\Pool_UnFinished\IPoolUnit.cs" />

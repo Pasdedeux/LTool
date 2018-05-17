@@ -91,6 +91,8 @@
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitPool\Pool_UnFinished\UnitGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Base\IManager.cs" />
+    <Compile Include="UI\Manager\UIControlManager.cs" />
     <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />

@@ -1,7 +1,35 @@
-﻿using System;
+﻿/*======================================
+* 项目名称 ：LitFramework.UI.Manager
+* 项目描述 ：
+* 类 名 称 ：UIManager
+* 类 描 述 ：
+*                   
+* 命名空间 ：LitFramework.UI.Manager
+* 机器名称 ：SKY-20170413SEJ 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：Derek Liu
+* 创建时间 ：2018/5/17 11:50:24
+* 更新时间 ：2018/5/17 11:50:24
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ DerekLiu 2018. All rights reserved.
+*******************************************************************
+
+-------------------------------------------------------------------
+*Fix Note:
+*修改时间：2018/5/17 11:50:24
+*修改人： LHW
+*版本号： V1.0.0.0
+*描述：
+*
+======================================*/
+
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using LitFramework.UI.Base;
 
 namespace LitFramework.HotFix
 {
@@ -11,7 +39,7 @@ namespace LitFramework.HotFix
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>
+    public class UIManager : Singleton<UIManager>, IManager
     {
         /// <summary>
         /// 所有的预制件名称列表
@@ -52,10 +80,10 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
-        public Func<string , GameObject> GetUIResource;
+        public Func<string , GameObject> LoadResourceFunc;
 
 
-        public void Install( Func<string , GameObject> loadPrefabFunction )
+        public void Install()
         {
             _allRegisterUIDict = new Dictionary<string , string>();
             _stackCurrentUI = new Stack<BaseUI>();
@@ -68,9 +96,7 @@ namespace LitFramework.HotFix
             _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_POPUPCANVAS );
             _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
 
-            GetUIResource = loadPrefabFunction;
-
-            Reflection();
+            AssemblyReflection();
         }
 
         public void Uninstall()
@@ -102,7 +128,7 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs = null;
             _dictCurrentShowUIs = null;
 
-            GetUIResource = null;
+            LoadResourceFunc = null;
 
             Resources.UnloadUnusedAssets();
         }
@@ -248,7 +274,7 @@ namespace LitFramework.HotFix
 
             //加载预制体
             if( !string.IsNullOrEmpty( uiName ) )
-                prefClone = GetUIResource != null ? GetUIResource( uiName ) : null;
+                prefClone = LoadResourceFunc != null ? LoadResourceFunc( uiName ) : null;
             if( prefClone == null )
                 throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
             prefClone = GameObject.Instantiate( prefClone );
@@ -507,7 +533,7 @@ namespace LitFramework.HotFix
             Debug.Log( "LitFramework UI添加成功 " + uiPathName );
         }
 
-        private void Reflection()
+        private void AssemblyReflection()
         {
             System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
 
@@ -535,7 +561,6 @@ namespace LitFramework.HotFix
                 }
             }
         }
-
         #endregion
 
     }

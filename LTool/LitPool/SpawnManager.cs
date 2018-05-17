@@ -1,18 +1,45 @@
-﻿using PathologicalGames;
+﻿/*======================================
+* 项目名称 ：LitFramework
+* 项目描述 ：
+* 类 名 称 ：SpawnManager
+* 类 描 述 ：
+* 命名空间 ：LitFramework.LitPool
+* 机器名称 ：SKY-20170413SEJ 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：Derek Liu
+* 创建时间 ：2018/5/7 15:23:37
+* 更新时间 ：2018/5/7 15:23:37
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ Liu Hanwen 2018. All rights reserved.
+*******************************************************************
+
+-------------------------------------------------------------------
+*Fix Note:
+*修改时间：2018/5/8 15:23:37
+*修改人： LHW
+*版本号： V1.0.0.0
+*描述：
+*
+* 
+======================================*/
+
+using PathologicalGames;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using LitFramework;
+using LitFramework.UI.Base;
 
 namespace LitFramework.LitPool
 {
     /// <summary>
     /// 对外控制用脚本
     /// </summary>
-    class SpawnManager : Singleton<SpawnManager>
+    class SpawnManager : Singleton<SpawnManager>,IManager
     {
-        SpawnPool _pool;
-        List<string> _prefabNameList;
+        private SpawnPool _pool;
+        private List<string> _prefabNameList;
 
 
         public SpawnManager()

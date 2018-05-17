@@ -30,35 +30,35 @@ namespace LitFramework
     using UnityEngine;
     using System.Collections.Generic;
     using System;
+    using LitFramework.UI.Base;
 
     /// <summary>
     /// 音频组建更新
     /// 
     /// 创建时需要外传加载方法
     /// </summary>
-    class AudioManager : SingletonMono<AudioManager>
+    public class AudioManager : SingletonMono<AudioManager>,IManager
     {
-        List<AudioSource> _tempList;
-        AudioSource _audioBGM;
-        AudioSource _soloAudioSource;
-        Stack<AudioSource> _soundAvalibleList;
-        Func<string , AudioClip> LoadFunction;
-        Dictionary<string , AudioClip> _audios;
-        Dictionary<string , AudioSource> _soundLoopPlayingDict;
-
+        public Func<string , AudioClip> LoadResourceFunc;
         public float VolumeSE { get; set; }
-
         public float VolumeBGM { get; set; }
+
+        private List<AudioSource> _tempList;
+        private AudioSource _audioBGM;
+        private AudioSource _soloAudioSource;
+        private Stack<AudioSource> _soundAvalibleList;
+        private Dictionary<string , AudioClip> _audios;
+        private Dictionary<string , AudioSource> _soundLoopPlayingDict;
 
         /// <summary>
         /// 启动音频模块
         /// </summary>
         /// <param name="loadFunction">提供音频加载方法</param>
-        public void Install( Func<string , AudioClip> loadFunction )
+        public void Install()
         {
-            _soundAvalibleList = new Stack<AudioSource>();
             _tempList = new List<AudioSource>();
             _audios = new Dictionary<string , AudioClip>();
+            _soundAvalibleList = new Stack<AudioSource>();
             _soundLoopPlayingDict = new Dictionary<string , AudioSource>();
 
             _audioBGM = gameObject.AddComponent<AudioSource>();
@@ -68,8 +68,6 @@ namespace LitFramework
 
             VolumeBGM = PlayerPrefs.GetFloat( "Setting_BGM" , 1 );
             VolumeSE = PlayerPrefs.GetFloat( "Setting_SE" , 1 );
-
-            LoadFunction = loadFunction;
         }
 
 
@@ -80,7 +78,7 @@ namespace LitFramework
         {
             if( gameObject != null )
             {
-                LoadFunction = null;
+                LoadResourceFunc = null;
             }
 
             StopAllSE();
@@ -116,7 +114,9 @@ namespace LitFramework
                 return;
 
             //获取音频加载方法
-            AudioClip clip = LoadFunction( name );
+            AudioClip clip = LoadResourceFunc( name );
+            if( clip == null )
+                throw new Exception( "未指定音频文件加载方法或音频文件路径指定错误 ==>" + name );
             _audios.Add( name , clip );
         }
 

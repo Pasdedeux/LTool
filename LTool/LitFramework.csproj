@@ -91,11 +91,11 @@
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitPool\Pool_UnFinished\UnitGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\HotFix\BaseUI.cs" />
-    <Compile Include="UI\HotFix\UIManager.cs" />
-    <Compile Include="UI\Mono\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
-    <Compile Include="UI\Mono\UIManager.cs" />
+    <Compile Include="UI\Version_Mono\UIManager.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />

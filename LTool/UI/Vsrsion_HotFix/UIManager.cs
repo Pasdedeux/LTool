@@ -1,40 +1,50 @@
-﻿/**************************************************************** 
- * 作    者：Derek Liu 
- * CLR 版本：4.0.30319.42000 
- * 创建时间：2018/1/31 15:48:18 
- * 当前版本：1.0.0.1 
- *  
- * 描述说明： 
- * 
- * 修改历史： 
- * 
-***************************************************************** 
- * Copyright @ Derek 2018 All rights reserved 
-*****************************************************************/
+﻿/*======================================
+* 项目名称 ：LitFramework.UI.Manager
+* 项目描述 ：
+* 类 名 称 ：UIManager
+* 类 描 述 ：
+*                   
+* 命名空间 ：LitFramework.UI.Manager
+* 机器名称 ：SKY-20170413SEJ 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：Derek Liu
+* 创建时间 ：2018/5/17 11:50:24
+* 更新时间 ：2018/5/17 11:50:24
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ DerekLiu 2018. All rights reserved.
+*******************************************************************
+
+-------------------------------------------------------------------
+*Fix Note:
+*修改时间：2018/5/17 11:50:24
+*修改人： LHW
+*版本号： V1.0.0.0
+*描述：
+*
+======================================*/
+
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LitFramework;
-using System.Reflection;
 using System.Linq;
+using LitFramework.UI.Base;
 
-namespace LitFramework.Mono
+namespace LitFramework.HotFix
 {
-
     /// <summary>
     /// 以下UI类，需配合UImanager.unitypackage使用。
     /// 
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>
+    public class UIManager : Singleton<UIManager>, IManager
     {
         /// <summary>
         /// 所有的预制件名称列表
         /// </summary>
-        private List<string> _allRegisterUIList;
+        private Dictionary<string , string> _allRegisterUIDict;
         /// <summary>
         /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
         /// </summary>
@@ -70,12 +80,12 @@ namespace LitFramework.Mono
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
-        public Func<string , GameObject> GetUIResource;
+        public Func<string , GameObject> LoadResourceFunc;
 
 
-        public void Install( Func<string , GameObject> loadPrefabFunction )
+        public void Install()
         {
-            _allRegisterUIList = new List<string>();
+            _allRegisterUIDict = new Dictionary<string , string>();
             _stackCurrentUI = new Stack<BaseUI>();
             _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
             _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
@@ -86,7 +96,7 @@ namespace LitFramework.Mono
             _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_POPUPCANVAS );
             _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
 
-            GetUIResource = loadPrefabFunction;
+            AssemblyReflection();
         }
 
         public void Uninstall()
@@ -104,7 +114,7 @@ namespace LitFramework.Mono
                     Close( list[ i ].Key , true );
                 list = null;
             }
-            _allRegisterUIList.Clear();
+            _allRegisterUIDict.Clear();
             _stackCurrentUI.Clear();
             _dictCurrentShowUIs.Clear();
 
@@ -114,11 +124,11 @@ namespace LitFramework.Mono
             _transNormal = null;
             _transManager = null;
             _stackCurrentUI = null;
-            _allRegisterUIList = null;
+            _allRegisterUIDict = null;
             _dictLoadedAllUIs = null;
             _dictCurrentShowUIs = null;
 
-            GetUIResource = null;
+            LoadResourceFunc = null;
 
             Resources.UnloadUnusedAssets();
         }
@@ -150,10 +160,10 @@ namespace LitFramework.Mono
 
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     LoadNormalUI( uiName );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     LoadPopUpUI( uiName );
                     break;
                 case UIShowModeEnum.Unique:
@@ -162,6 +172,7 @@ namespace LitFramework.Mono
                 default:
                     throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
             }
+
             return baseUI;
         }
 
@@ -188,10 +199,10 @@ namespace LitFramework.Mono
             //不同类型窗体执行各自关闭逻辑
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     UnLoadNormalUI( uiName , isDestroy );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     UnLoadPopUpUI( uiName , isDestroy );
                     break;
                 case UIShowModeEnum.Unique:
@@ -263,7 +274,7 @@ namespace LitFramework.Mono
 
             //加载预制体
             if( !string.IsNullOrEmpty( uiName ) )
-                prefClone = GetUIResource != null ? GetUIResource( uiName ) : null;
+                prefClone = LoadResourceFunc != null ? LoadResourceFunc( uiName ) : null;
             if( prefClone == null )
                 throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
             prefClone = GameObject.Instantiate( prefClone );
@@ -271,10 +282,15 @@ namespace LitFramework.Mono
             //设置父节点
             if( _transCanvas != null && prefClone != null )
             {
-                baseUI = prefClone.GetComponent<BaseUI>();
+                if( _allRegisterUIDict.ContainsKey( uiName ) )
+                {
+                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ] , true , true ) ) as BaseUI;
+                    baseUI.GameObjectInstance = prefClone;
+                    baseUI.AssetsName = uiName;
+                }
 
-                if( baseUI == null )
-                { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
+                baseUI.OnAwake();
+                baseUI.OnAdapter();
 
                 switch( baseUI.CurrentUIType.uiNodeType )
                 {
@@ -509,15 +525,15 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="_assetsName"></param>
         /// <param name="_className"></param>
-        public void RegistFunctionCallFun( string uiPathName )
+        public void RegistFunctionCallFun( string uiPathName , string className )
         {
-            if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIList.Contains( uiPathName ) )
-                _allRegisterUIList.Add( uiPathName );
+            if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
+                _allRegisterUIDict.Add( uiPathName , className );
 
-            Debug.LogError( "LitFramework UI添加成功 " + uiPathName );
+            Debug.Log( "LitFramework UI添加成功 " + uiPathName );
         }
 
-        private void Reflection()
+        private void AssemblyReflection()
         {
             System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
 
@@ -533,7 +549,7 @@ namespace LitFramework.Mono
                     {
                         //目前只认静态方法
                         if( mif.IsStatic )
-                            mif.Invoke( null , null );
+                            mif.Invoke( null , new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
                         //else
                         //{
                         //    //TODO 需要实例化的带参数方法
@@ -545,9 +561,7 @@ namespace LitFramework.Mono
                 }
             }
         }
-
         #endregion
 
     }
-
 }

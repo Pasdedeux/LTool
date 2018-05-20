@@ -19,9 +19,9 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 
-namespace LitFramework.EditorTool
+namespace LitFramework.GameUtility
 {
-    class GameViewResolution : MonoBehaviour
+    public class GameViewResolution : MonoBehaviour
     {
         private Camera _unityCamera;
         private Camera UnityCamera

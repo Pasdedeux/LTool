@@ -1,22 +1,55 @@
-﻿using System;
+﻿/*======================================
+* 项目名称 ：LitFramework.UI.Manager
+* 项目描述 ：
+* 类 名 称 ：UIManager
+* 类 描 述 ：非反射版本，不做热更新
+*                   
+* 命名空间 ：LitFramework.UI.Manager
+* 机器名称 ：SKY-20170413SEJ 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：Derek Liu
+* 创建时间 ：2018/5/17 11:50:24
+* 更新时间 ：2018/5/17 11:50:24
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ DerekLiu 2018. All rights reserved.
+*******************************************************************
+
+-------------------------------------------------------------------
+*Fix Note:
+*修改时间：2018/5/17 11:50:24
+*修改人： LHW
+*版本号： V1.0.0.0
+*描述：
+*
+======================================*/
+
+
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitFramework;
+using System.Reflection;
 using System.Linq;
+using LitFramework.UI.Base;
 
-namespace LitFramework.HotFix
+namespace LitFramework.Mono
 {
+
     /// <summary>
     /// 以下UI类，需配合UImanager.unitypackage使用。
     /// 
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>
+    public class UIManager : Singleton<UIManager>,IManager
     {
         /// <summary>
         /// 所有的预制件名称列表
         /// </summary>
-        private Dictionary<string , string> _allRegisterUIDict;
+        private List<string> _allRegisterUIList;
         /// <summary>
         /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
         /// </summary>
@@ -52,12 +85,12 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
-        public Func<string , GameObject> GetUIResource;
+        public Func<string , GameObject> LoadResourceFunc;
 
 
-        public void Install( Func<string , GameObject> loadPrefabFunction )
+        public void Install()
         {
-            _allRegisterUIDict = new Dictionary<string , string>();
+            _allRegisterUIList = new List<string>();
             _stackCurrentUI = new Stack<BaseUI>();
             _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
             _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
@@ -67,10 +100,6 @@ namespace LitFramework.HotFix
             _transFixed = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_FIXEDCANVAS );
             _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_POPUPCANVAS );
             _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
-
-            GetUIResource = loadPrefabFunction;
-
-            Reflection();
         }
 
         public void Uninstall()
@@ -88,7 +117,7 @@ namespace LitFramework.HotFix
                     Close( list[ i ].Key , true );
                 list = null;
             }
-            _allRegisterUIDict.Clear();
+            _allRegisterUIList.Clear();
             _stackCurrentUI.Clear();
             _dictCurrentShowUIs.Clear();
 
@@ -98,11 +127,11 @@ namespace LitFramework.HotFix
             _transNormal = null;
             _transManager = null;
             _stackCurrentUI = null;
-            _allRegisterUIDict = null;
+            _allRegisterUIList = null;
             _dictLoadedAllUIs = null;
             _dictCurrentShowUIs = null;
 
-            GetUIResource = null;
+            LoadResourceFunc = null;
 
             Resources.UnloadUnusedAssets();
         }
@@ -134,10 +163,10 @@ namespace LitFramework.HotFix
 
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     LoadNormalUI( uiName );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     LoadPopUpUI( uiName );
                     break;
                 case UIShowModeEnum.Unique:
@@ -146,7 +175,6 @@ namespace LitFramework.HotFix
                 default:
                     throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
             }
-
             return baseUI;
         }
 
@@ -173,10 +201,10 @@ namespace LitFramework.HotFix
             //不同类型窗体执行各自关闭逻辑
             switch( baseUI.CurrentUIType.uiShowMode )
             {
-                case UIShowModeEnum.Normal:
+                case UIShowModeEnum.Parallel:
                     UnLoadNormalUI( uiName , isDestroy );
                     break;
-                case UIShowModeEnum.PopUp:
+                case UIShowModeEnum.Stack:
                     UnLoadPopUpUI( uiName , isDestroy );
                     break;
                 case UIShowModeEnum.Unique:
@@ -248,7 +276,7 @@ namespace LitFramework.HotFix
 
             //加载预制体
             if( !string.IsNullOrEmpty( uiName ) )
-                prefClone = GetUIResource != null ? GetUIResource( uiName ) : null;
+                prefClone = LoadResourceFunc != null ? LoadResourceFunc( uiName ) : null;
             if( prefClone == null )
                 throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
             prefClone = GameObject.Instantiate( prefClone );
@@ -256,15 +284,10 @@ namespace LitFramework.HotFix
             //设置父节点
             if( _transCanvas != null && prefClone != null )
             {
-                if( _allRegisterUIDict.ContainsKey( uiName ) )
-                {
-                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ] , true , true ) ) as BaseUI;
-                    baseUI.GameObjectInstance = prefClone;
-                    baseUI.AssetsName = uiName;
-                }
+                baseUI = prefClone.GetComponent<BaseUI>();
 
-                baseUI.OnAwake();
-                baseUI.OnAdapter();
+                if( baseUI == null )
+                { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
                 switch( baseUI.CurrentUIType.uiNodeType )
                 {
@@ -491,52 +514,5 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs.TryGetValue( name , out baseUI );
             return baseUI;
         }
-
-        #region 反射方法，用于热更时UI绑定
-
-        /// <summary>
-        /// 反射注册UI回调
-        /// </summary>
-        /// <param name="_assetsName"></param>
-        /// <param name="_className"></param>
-        public void RegistFunctionCallFun( string uiPathName , string className )
-        {
-            if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
-                _allRegisterUIDict.Add( uiPathName , className );
-
-            Debug.Log( "LitFramework UI添加成功 " + uiPathName );
-        }
-
-        private void Reflection()
-        {
-            System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
-
-            System.Type[] assemblyTypes = asb.GetTypes();
-
-            for( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
-            {
-                if( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
-                {
-                    //通过程序集获取到他的返回实例对象方法  并且初始化对象
-                    System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
-                    if( mif != null )
-                    {
-                        //目前只认静态方法
-                        if( mif.IsStatic )
-                            mif.Invoke( null , new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
-                        //else
-                        //{
-                        //    //TODO 需要实例化的带参数方法
-                        //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
-                        //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
-                        //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
-                        //}
-                    }
-                }
-            }
-        }
-
-        #endregion
-
     }
 }

@@ -32,12 +32,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DerekLitFramework.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>.\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>.\Excel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,31 +62,46 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="EditorTool\GameViewResolution.cs" />
-    <Compile Include="EditorTool\LitJSON\IJsonWrapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonData.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonException.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonMapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonMockWrapper.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonReader.cs" />
-    <Compile Include="EditorTool\LitJSON\JsonWriter.cs" />
-    <Compile Include="EditorTool\LitJSON\Lexer.cs" />
-    <Compile Include="EditorTool\LitJSON\ParserToken.cs" />
+    <Compile Include="EditorTool\CSVWriter.cs" />
+    <Compile Include="EditorTool\EditorTools.cs" />
+    <Compile Include="EditorTool\XMLConver.cs" />
+    <Compile Include="GameUtility\AssetPathManager.cs" />
+    <Compile Include="EditorTool\CSVParser.cs" />
+    <Compile Include="EditorTool\CSVReader.cs" />
+    <Compile Include="GameUtility\DocumentAccessor.cs" />
+    <Compile Include="GameUtility\GameViewResolution.cs" />
+    <Compile Include="GameUtility\LitJSON\IJsonWrapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonData.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonException.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonMapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonMockWrapper.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonReader.cs" />
+    <Compile Include="GameUtility\LitJSON\JsonWriter.cs" />
+    <Compile Include="GameUtility\LitJSON\Lexer.cs" />
+    <Compile Include="GameUtility\LitJSON\ParserToken.cs" />
+    <Compile Include="LitPool\Pool_UnFinished\BasePool.cs" />
+    <Compile Include="LitPool\Pool_UnFinished\BasePoolUnitGroup.cs" />
+    <Compile Include="LitPool\Pool_UnFinished\IPoolUnit.cs" />
+    <Compile Include="LitPool\PoolManager.cs" />
+    <Compile Include="LitPool\SpawnManager.cs" />
+    <Compile Include="LitPool\SpawnPool.cs" />
+    <Compile Include="LitPool\Pool_UnFinished\UnitGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\HotFix\BaseUI.cs" />
-    <Compile Include="UI\HotFix\UIManager.cs" />
-    <Compile Include="UI\Mono\BaseUI.cs" />
+    <Compile Include="UI\Base\IManager.cs" />
+    <Compile Include="UI\Manager\UIControlManager.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
-    <Compile Include="UI\Mono\UIManager.cs" />
+    <Compile Include="UI\Version_Mono\UIManager.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="DerekLitFramework.pfx" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

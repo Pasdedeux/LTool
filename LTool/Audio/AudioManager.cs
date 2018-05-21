@@ -61,10 +61,9 @@ namespace LitFramework
             _soundAvalibleList = new Stack<AudioSource>();
             _soundLoopPlayingDict = new Dictionary<string , AudioSource>();
 
+            _soloAudioSource = gameObject.AddComponent<AudioSource>();
             _audioBGM = gameObject.AddComponent<AudioSource>();
             _audioBGM.playOnAwake = false;
-
-            _soloAudioSource = gameObject.AddComponent<AudioSource>();
 
             VolumeBGM = PlayerPrefs.GetFloat( "Setting_BGM" , 1 );
             VolumeSE = PlayerPrefs.GetFloat( "Setting_SE" , 1 );

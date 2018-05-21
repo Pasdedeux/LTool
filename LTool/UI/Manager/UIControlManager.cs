@@ -2,7 +2,8 @@
 * 项目名称 ：LitFramework.UI.Manager
 * 项目描述 ：
 * 类 名 称 ：UIControlManager
-* 类 描 述 ：本类包含在UI界面上的各种操作信息及检测，例如是否点击的UI层，持续点击（按压），抛出对应接口
+* 类 描 述 ：本类包含在UI界面上的各种操作信息及检测，例如是否点击的UI层，持续点击（按压），
+*                 返回键操作、抛出对应接口
 *                   
 * 命名空间 ：LitFramework.UI.Manager
 * 机器名称 ：SKY-20170413SEJ 
@@ -24,7 +25,7 @@
 *
 ======================================*/
 
-namespace LitFramework.UI.Manager
+namespace LitFramework.UI.Extended
 {
 #if UNITY_ANDROID && !UNITY_EDITOR
 #define ANDROID
@@ -100,7 +101,11 @@ namespace LitFramework.UI.Manager
 
         void Update()
         {
-            if( _isInit && IsEnable )
+            //点击返回
+            if ( Input.GetKeyDown( KeyCode.Escape ) )
+                CloseUIByOrder();
+
+            if ( _isInit && IsEnable )
             {
                 if( Input.GetMouseButtonUp( 0 ) || ( Input.touchCount > 0 && Input.GetTouch( 0 ).phase == TouchPhase.Began ) )
                 {
@@ -121,6 +126,21 @@ namespace LitFramework.UI.Manager
                 }
 
             }
+        }
+
+        /// <summary>
+        /// 默认-按顺序关闭UI
+        /// </summary>
+        /// <param name="extendedFunc">采用自定义函数执行返回键功能</param>
+        private void CloseUIByOrder( Action extendedFunc = null )
+        {
+            if( extendedFunc != null )
+            {
+                extendedFunc();
+                return;
+            }
+
+            //UIManager
         }
     }
 }

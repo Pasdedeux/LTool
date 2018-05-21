@@ -35,7 +35,10 @@ namespace LitFramework.Mono
         /// </summary>
         private bool IsStarted { get; set; }
         private Coroutine _waitForStartFunc;
-
+        /// <summary>
+        /// 资源名
+        /// </summary>
+        public string AssetsName { get; set; }
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -152,6 +155,15 @@ namespace LitFramework.Mono
         {
             yield return new WaitUntil( () => { return IsStarted; } );
             OnShow();
+        }
+
+        /// <summary>
+        /// 点击返回事件
+        /// </summary>
+        public virtual void OnBackPushed()
+        {
+            Debug.Log( "关闭ui:" + AssetsName );
+            UIManager.Instance.Close( AssetsName );
         }
     }
 }

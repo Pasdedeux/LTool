@@ -36,11 +36,11 @@ namespace LitFramework.HotFix
             IsShowing = true;
 
             //默认执行OnEnable()
-            GameObjectInstance.SetActive( IsShowing );
+            GameObjectInstance.SetActive(IsShowing);
 
             //设置模态窗体调用(弹出窗体)
-            if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance , CurrentUIType.uiTransparent );
+            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+                UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, CurrentUIType.uiTransparent);
 
             OnEnabled();
             OnShow();
@@ -51,27 +51,27 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
         /// <param name="freeze">是否暂时冻结（功能未想好）</param>
-        public void Close( bool isDestroy = false , bool freeze = false )
+        public void Close( bool isDestroy = false, bool freeze = false )
         {
             OnDisabled();
 
             //默认执行OnDisable()
-            if( !freeze )
+            if ( !freeze )
             {
-                GameObjectInstance.SetActive( false );
+                GameObjectInstance.SetActive(false);
 
-                if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
+                if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
             }
             else
             {
                 //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                GameObjectInstance.SetActive( false );
+                GameObjectInstance.SetActive(false);
             }
 
             IsShowing = false;
 
-            if( isDestroy )
+            if ( isDestroy )
                 DoDestroy();
         }
 
@@ -85,6 +85,15 @@ namespace LitFramework.HotFix
         public virtual void Dispose() { }
 
         public virtual void OnAdapter() { }
+
+        /// <summary>
+        /// 点击返回事件
+        /// </summary>
+        public virtual void OnBackPushed()
+        {
+            Debug.Log("关闭ui:" + AssetsName);
+            UIManager.Instance.Close( AssetsName );
+        }
 
         #region Alternative Function
 
@@ -101,7 +110,7 @@ namespace LitFramework.HotFix
         private void DoDestroy()
         {
             Dispose();
-            GameObject.Destroy( GameObjectInstance );
+            GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
         }
         #endregion

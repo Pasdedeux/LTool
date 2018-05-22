@@ -42,7 +42,7 @@ namespace LitFramework.EditorExtended
             string xlsxpath = Application.dataPath + "/XLSX";
             string csvOutPath = Application.dataPath + "/StreamingAssets/csv";
             string csOutPath = Application.dataPath + "/Scripts/CSV";
-            DirectoryInfo TheFolder = new DirectoryInfo( xlsxpath );
+            DirectoryInfo theXMLFolder = new DirectoryInfo( xlsxpath );
 
             //文件列表
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
@@ -50,7 +50,7 @@ namespace LitFramework.EditorExtended
             StreamWriter listwriter = new StreamWriter( fs , Encoding.UTF8 );
 
             //对文件进行遍历
-            foreach( var NextFile in TheFolder.GetFiles() )
+            foreach( var NextFile in theXMLFolder.GetFiles() )
             {
                 if( Path.GetExtension( NextFile.Name ) == ".xlsx" )
                 {

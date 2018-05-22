@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorTool
+namespace LitFramework.EditorExtended
 {
     using UnityEngine;
     using UnityEditor;
@@ -31,7 +31,7 @@ namespace LitFramework.EditorTool
     using System.Data;
     using Excel;
 
-    public class EditorTools
+    public class EditorMenuExtention
     {
 #if UNITY_EDITOR
         [MenuItem( "Tools/配置文件转换为代码" )]
@@ -40,8 +40,8 @@ namespace LitFramework.EditorTool
         {
             Debug.Log( "配置文件转化为代码  开始!" );
             string xlsxpath = Application.dataPath + "/XLSX";
-            string csvpath = Application.dataPath + "/StreamingAssets/csv";
-            string outpath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework/CSV";
+            string csvOutPath = Application.dataPath + "/StreamingAssets/csv";
+            string csOutPath = Application.dataPath + "/Scripts/CSV";
             DirectoryInfo TheFolder = new DirectoryInfo( xlsxpath );
 
             //文件列表
@@ -57,20 +57,18 @@ namespace LitFramework.EditorTool
                     //var reader = NextFile.OpenText();
                     string csvfile = XLSXTOCSV( NextFile.OpenRead() );
                     CSVParser cp = new CSVParser();
-                    CreateCSFile( outpath ,
-                        NextFile.Name.Split( '.' )[ 0 ] + ".cs" ,
-                        cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ] , csvfile ) );
-                    CreateCSVFile( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" , csvfile );
+                    CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
+                    CreateCSVFile( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
                     Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
 
                     listwriter.WriteLine( NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                 }
                 else if( Path.GetExtension( NextFile.Name ) == ".txt" )
                 {
-                    FileInfo fi = new FileInfo( csvpath + "/" + NextFile.Name );
+                    FileInfo fi = new FileInfo( csvOutPath + "/" + NextFile.Name );
                     if( fi.Exists )
                         fi.Delete();
-                    NextFile.CopyTo( csvpath + "/" + NextFile.Name );
+                    NextFile.CopyTo( csvOutPath + "/" + NextFile.Name );
                     listwriter.WriteLine( NextFile.Name );
                 }
             }

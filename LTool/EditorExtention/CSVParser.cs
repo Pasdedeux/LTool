@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorTool
+namespace LitFramework.EditorExtended
 {
     /// <summary>
     /// 表头为3行制

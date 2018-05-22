@@ -23,7 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorTool
+namespace LitFramework.EditorExtended
 {
     class XMLConver
     {

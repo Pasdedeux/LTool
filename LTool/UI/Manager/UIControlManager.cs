@@ -45,6 +45,12 @@ namespace LitFramework.UI.Extended
 
     public class UIControlManager : SingletonMono<UIControlManager>, IManager
     {
+        public event Action<bool> TouchedOnUI;
+        /// <summary>
+        /// 持续点击灵敏度-持续指定时间视为按压
+        /// </summary>
+        public float PressDownDetectionSensitivity { get; set; }
+
         /// <summary>
         /// 当前是否在点击UI
         /// </summary>
@@ -59,18 +65,14 @@ namespace LitFramework.UI.Extended
                 if( _isInit )
                     return _isEnable;
                 else
-                {
                     throw new Exception( "UIControlManager is not installed" );
-                }
             }
             set
             {
                 if( _isInit )
                     _isEnable = value;
                 else
-                {
                     throw new Exception( "UIControlManager is not installed" );
-                }
             }
         }
         private bool _isEnable = false;
@@ -117,11 +119,13 @@ namespace LitFramework.UI.Extended
                     {
                         Debug.Log( "====> 点击到UI" );
                         CurrentIsOnUI = true;
+                        TouchedOnUI?.Invoke( true );
                     }
                     else
                     {
                         Debug.Log( "====> 没有点击UI" );
                         CurrentIsOnUI = false;
+                        TouchedOnUI?.Invoke( false );
                     }
                 }
 

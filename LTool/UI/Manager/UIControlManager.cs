@@ -27,15 +27,6 @@
 
 namespace LitFramework.UI.Extended
 {
-#if UNITY_ANDROID && !UNITY_EDITOR
-#define ANDROID
-#endif
-
-
-#if UNITY_IPHONE && !UNITY_EDITOR
-#define IPHONE
-#endif
-
     using UnityEngine;
     using UnityEngine.UI;
     using System.Collections;
@@ -45,11 +36,23 @@ namespace LitFramework.UI.Extended
 
     public class UIControlManager : SingletonMono<UIControlManager>, IManager
     {
-        public event Action<bool> TouchedOnUI;
         /// <summary>
-        /// 持续点击灵敏度-持续指定时间视为按压
+        /// 点击返回键
         /// </summary>
-        public float PressDownDetectionSensitivity { get; set; }
+        public event Action EscapeCallBack;
+        /// <summary>
+        /// 点击到UI上时事件绑定
+        /// </summary>
+        public event Action<bool> IsTouchedOnUICallBack;
+        /// <summary>
+        /// 持续点击触发
+        /// </summary>
+        public event Action<bool> TouchedContinuePressCallBack;
+        /// <summary>
+        /// 滑动事件反馈
+        /// </summary>
+        public event Action<Vector2> TouchedMoveScreenPosCallBack;
+
 
         /// <summary>
         /// 当前是否在点击UI
@@ -62,25 +65,34 @@ namespace LitFramework.UI.Extended
         {
             get
             {
-                if( _isInit )
+                if ( _isInit )
                     return _isEnable;
                 else
                     throw new Exception( "UIControlManager is not installed" );
             }
             set
             {
-                if( _isInit )
+                if ( _isInit )
                     _isEnable = value;
                 else
                     throw new Exception( "UIControlManager is not installed" );
             }
         }
-        private bool _isEnable = false;
 
-        /// <summary>
-        /// 是否模块已安装
-        /// </summary>
+        //持续点击灵敏度-持续指定时间视为按压
+        private float _curPressTime = 0;
+        private const float PRESS_DOWN_SENSITIVITY = 0.5f;
+        private readonly float PRESS_DOWN_SENSITIVITY_CEIL = PRESS_DOWN_SENSITIVITY + Time.deltaTime;
+
+        private const TouchPhase began = TouchPhase.Began;
+        private const TouchPhase moved = TouchPhase.Moved;
+        private const TouchPhase ended = TouchPhase.Ended;
+        private const TouchPhase canceled = TouchPhase.Canceled;
+        private const TouchPhase stationary = TouchPhase.Stationary;
+
+        //是否模块已安装
         private bool _isInit = false;
+        private bool _isEnable = false;
 
         public void Install()
         {
@@ -109,38 +121,90 @@ namespace LitFramework.UI.Extended
 
             if ( _isInit && IsEnable )
             {
-                if( Input.GetMouseButtonUp( 0 ) || ( Input.touchCount > 0 && Input.GetTouch( 0 ).phase == TouchPhase.Began ) )
+                if ( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer )
                 {
-#if IPHONE || ANDROID
-                    if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) )
-#else
-                    if( EventSystem.current.IsPointerOverGameObject() )
-#endif
+                    //是否点击到UI界面
+                    if ( Input.touchCount > 0 )
                     {
-                        Debug.Log( "====> 点击到UI" );
-                        CurrentIsOnUI = true;
-                        TouchedOnUI?.Invoke( true );
-                    }
-                    else
-                    {
-                        Debug.Log( "====> 没有点击UI" );
-                        CurrentIsOnUI = false;
-                        TouchedOnUI?.Invoke( false );
-                    }
-                }
+                        var touch0 = Input.GetTouch( 0 );
+                        if ( touch0.phase == began )
+                        {
+                            if ( EventSystem.current.IsPointerOverGameObject( Input.GetTouch( 0 ).fingerId ) )
+                            {
+                                CurrentIsOnUI = true;
+                                IsTouchedOnUICallBack?.Invoke( true );
+                            }
+                            else
+                            {
+                                CurrentIsOnUI = false;
+                                IsTouchedOnUICallBack?.Invoke( false );
+                            }
+                        }
+                        else if ( touch0.phase == moved )
+                        {
+                            TouchedMoveScreenPosCallBack?.Invoke( touch0.position );
+                        }
+                        else if ( touch0.phase == stationary )
+                            CalculateTimeByPressStart();
+                        else if ( touch0.phase == ended || touch0.phase == canceled )
+                            CalculateTimeByPressOver();
 
+                    }
+
+                }
+                else if( Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor )
+                {
+                    if ( Input.GetButton( "Fire1" ) )
+                    {
+                        CalculateTimeByPressStart();
+
+                        //点击UI检测
+                        if ( EventSystem.current.IsPointerOverGameObject() )
+                        {
+                            CurrentIsOnUI = true;
+                            IsTouchedOnUICallBack?.Invoke( true );
+                        }
+                        else
+                        {
+                            CurrentIsOnUI = false;
+                            IsTouchedOnUICallBack?.Invoke( false );
+                        }
+                    }
+
+                    if ( Input.GetButtonUp( "Fire1" ) )
+                        CalculateTimeByPressOver();
+                }
             }
+        }
+
+        /// <summary>
+        /// 按住屏幕开始计时
+        /// </summary>
+        private void CalculateTimeByPressStart()
+        {
+            _curPressTime += Time.deltaTime;
+            if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY_CEIL )
+                TouchedContinuePressCallBack?.Invoke( true );
+        }
+        /// <summary>
+        /// 离开屏幕计时
+        /// </summary>
+        private void CalculateTimeByPressOver()
+        {
+            if ( _curPressTime > 0 )
+                TouchedContinuePressCallBack?.Invoke( false );
+            _curPressTime = 0;
         }
 
         /// <summary>
         /// 默认-按顺序关闭UI
         /// </summary>
         /// <param name="extendedFunc">采用自定义函数执行返回键功能</param>
-        private void CloseUIByOrder( Action extendedFunc = null )
+        private void CloseUIByOrder()
         {
-            if( extendedFunc != null )
+            if ( EscapeCallBack != null )
             {
-                extendedFunc();
+                EscapeCallBack();
                 return;
             }
 

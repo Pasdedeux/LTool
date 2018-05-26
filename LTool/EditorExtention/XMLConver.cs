@@ -17,11 +17,14 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using Excel;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace LitFramework.EditorExtended
 {
@@ -30,39 +33,40 @@ namespace LitFramework.EditorExtended
         public static string XLSXTOCSV( FileStream stream )
         {
 #if UNITY_EDITOR
-        //FileStream stream = File.Open(xlsxpath, FileMode.Open, FileAccess.Read);
-        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
-        DataSet result = excelReader.AsDataSet();
-        //string csv = "";
-        CSVWriter writer = new CSVWriter();
+            //FileStream stream = File.Open(xlsxpath, FileMode.Open, FileAccess.Read);
+            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader( stream );
 
-        int rows = result.Tables[0].Rows.Count;
+                DataSet result = excelReader.AsDataSet();
+                //string csv = "";
+                CSVWriter writer = new CSVWriter();
 
-        //获得每一行的长度
-        int rowlen = 0;
-        for (int j = 0; j < result.Tables[0].Rows[0].ItemArray.Length; j++)
-        {
-            if (result.Tables[0].Rows[0].ItemArray[j].ToString() == "")
-                break;
-            rowlen++;
-        }
+                int rows = result.Tables[ 0 ].Rows.Count;
 
-        for (int i = 0; i < rows; i++)
-        {
-            if (result.Tables[0].Rows[i].ItemArray[0].ToString() == "")
-                break;
+                //获得每一行的长度
+                int rowlen = 0;
+                for ( int j = 0; j < result.Tables[ 0 ].Rows[ 0 ].ItemArray.Length; j++ )
+                {
+                    if ( result.Tables[ 0 ].Rows[ 0 ].ItemArray[ j ].ToString() == "" )
+                        break;
+                    rowlen++;
+                }
 
-            List<object> rowlist = new List<object>();
-            
-            for (int j = 0; j < rowlen; j++)
-            {
-                rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
-            }
-            writer.AddRow(rowlist.ToArray());
-        }
+                for ( int i = 0; i < rows; i++ )
+                {
+                    if ( result.Tables[ 0 ].Rows[ i ].ItemArray[ 0 ].ToString() == "" )
+                        break;
 
-        return writer.ToString();
+                    List<object> rowlist = new List<object>();
+
+                    for ( int j = 0; j < rowlen; j++ )
+                    {
+                        rowlist.Add( result.Tables[ 0 ].Rows[ i ].ItemArray[ j ] );
+                    }
+                    writer.AddRow( rowlist.ToArray() );
+                }
+
+                return writer.ToString();
 #endif
             return "";
         }

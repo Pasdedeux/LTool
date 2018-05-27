@@ -82,7 +82,6 @@ namespace LitFramework.UI.Extended
         //持续点击灵敏度-持续指定时间视为按压
         private float _curPressTime = 0;
         private const float PRESS_DOWN_SENSITIVITY = 0.5f;
-        private readonly float PRESS_DOWN_SENSITIVITY_CEIL = PRESS_DOWN_SENSITIVITY + Time.deltaTime;
 
         private const TouchPhase began = TouchPhase.Began;
         private const TouchPhase moved = TouchPhase.Moved;
@@ -183,7 +182,7 @@ namespace LitFramework.UI.Extended
         private void CalculateTimeByPressStart()
         {
             _curPressTime += Time.deltaTime;
-            if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY_CEIL )
+            if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY + Time.deltaTime )
                 TouchedContinuePressCallBack?.Invoke( true );
         }
         /// <summary>

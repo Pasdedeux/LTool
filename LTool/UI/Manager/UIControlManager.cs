@@ -115,7 +115,7 @@ namespace LitFramework.UI.Extended
         void Update()
         {
             //点击返回
-            if ( Input.GetKeyDown( KeyCode.Escape ) )
+            if (Input.GetKeyDown( KeyCode.Escape ))
                 CloseUIByOrder();
 
             if ( _isInit && IsEnable )
@@ -201,13 +201,7 @@ namespace LitFramework.UI.Extended
         /// <param name="extendedFunc">采用自定义函数执行返回键功能</param>
         private void CloseUIByOrder()
         {
-            if ( EscapeCallBack != null )
-            {
-                EscapeCallBack();
-                return;
-            }
-
-            //UIManager
+            EscapeCallBack?.Invoke();
         }
     }
 }

@@ -515,5 +515,19 @@ namespace LitFramework.Mono
             _dictLoadedAllUIs.TryGetValue( name , out baseUI );
             return baseUI;
         }
+
+
+        /// <summary>
+        /// 返回键执行关闭窗口操作
+        /// </summary>
+        public void OnEscapeCallback()
+        {
+            if (_stackCurrentUI.Count > 0)
+            {
+                var baseUi = _stackCurrentUI.Pop();
+                baseUi.Close();
+                return;
+            }
+        }
     }
 }

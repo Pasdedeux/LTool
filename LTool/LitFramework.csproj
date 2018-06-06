@@ -96,6 +96,7 @@
     <Compile Include="GameUtility\LitJSON\JsonWriter.cs" />
     <Compile Include="GameUtility\LitJSON\Lexer.cs" />
     <Compile Include="GameUtility\LitJSON\ParserToken.cs" />
+    <Compile Include="Input\TouchDirectionControl.cs" />
     <Compile Include="LitPool\_UnFinishedPool\BasePool.cs" />
     <Compile Include="LitPool\_UnFinishedPool\BasePoolUnitGroup.cs" />
     <Compile Include="LitPool\_UnFinishedPool\IPoolUnit.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="LitPool\_UnFinishedPool\UnitGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Base\IManager.cs" />
-    <Compile Include="UI\Manager\UIControlManager.cs" />
+    <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
@@ -115,8 +116,6 @@
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Net\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

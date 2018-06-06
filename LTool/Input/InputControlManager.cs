@@ -25,7 +25,7 @@
 *
 ======================================*/
 
-namespace LitFramework.UI.Extended
+namespace LitFramework.Input
 {
     using UnityEngine;
     using UnityEngine.UI;
@@ -34,16 +34,13 @@ namespace LitFramework.UI.Extended
     using LitFramework.UI.Base;
     using System;
 
-    public class UIControlManager : SingletonMono<UIControlManager>, IManager
+    public class InputControlManager : SingletonMono<InputControlManager>, IManager
     {
+        #region 事件委托
         /// <summary>
         /// 点击返回键
         /// </summary>
         public event Action EscapeCallBack;
-        /// <summary>
-        /// 点击到UI上时事件绑定
-        /// </summary>
-        public event Action<bool> IsTouchedOnUICallBack;
         /// <summary>
         /// 持续点击触发
         /// </summary>
@@ -52,12 +49,26 @@ namespace LitFramework.UI.Extended
         /// 滑动事件反馈
         /// </summary>
         public event Action<Vector2> TouchedMoveScreenPosCallBack;
+        /// <summary>
+        /// 是否点击到UI反馈
+        /// </summary>
+        public event Action<bool> TouchedOnUICallBack;
+        #endregion
 
+        #region 常量
+        private const RuntimePlatform PLATFORM_ANDROID = RuntimePlatform.Android;
+        private const RuntimePlatform PLATFORM_IOS = RuntimePlatform.IPhonePlayer;
+        private const RuntimePlatform PLATFORM_WINDOWEDITOR = RuntimePlatform.WindowsEditor;
+        private const RuntimePlatform PLATFORM_IOSEDITOR = RuntimePlatform.OSXEditor;
+        #endregion
 
         /// <summary>
         /// 当前是否在点击UI
         /// </summary>
-        public bool CurrentIsOnUI { get; private set; }
+        public bool CurrentIsOnUI
+        {
+            get { return ( _touchResult & TouchDirection.OnUI ) == TouchDirection.OnUI; }
+        }
         /// <summary>
         /// 鼠标点击操作功能是否开启
         /// </summary>
@@ -79,37 +90,49 @@ namespace LitFramework.UI.Extended
             }
         }
 
+        private RuntimePlatform _currentPlatform = Application.platform;
+        //滑动方向捕捉器
+        private TouchDirectionControl _touchDirectionCalculator;
         //持续点击灵敏度-持续指定时间视为按压
         private float _curPressTime = 0;
         private const float PRESS_DOWN_SENSITIVITY = 0.5f;
-
-        private const TouchPhase began = TouchPhase.Began;
-        private const TouchPhase moved = TouchPhase.Moved;
-        private const TouchPhase ended = TouchPhase.Ended;
-        private const TouchPhase canceled = TouchPhase.Canceled;
-        private const TouchPhase stationary = TouchPhase.Stationary;
 
         //是否模块已安装
         private bool _isInit = false;
         private bool _isEnable = false;
 
+        //输出的滑动结果
+        private TouchDirection _touchResult = TouchDirection.None;
+
         public void Install()
         {
             _isInit = true;
-
             IsEnable = true;
+
+            _touchDirectionCalculator = TouchDirectionControl.Instance;
+            _touchDirectionCalculator.TouchMoveCallback = TouchedMoveScreenPosCallBack;
+            _touchDirectionCalculator.TouchStationaryCallback = CalculateTimeByPressStart;
+            _touchDirectionCalculator.TouchEndCallback = CalculateTimeByPressOver;
         }
 
         public void Uninstall()
         {
             _isInit = false;
-
             IsEnable = false;
+
+            _touchDirectionCalculator.TouchEndCallback = null;
+            _touchDirectionCalculator.TouchMoveCallback = null;
+            _touchDirectionCalculator.TouchStationaryCallback = null;
+            _touchDirectionCalculator.DoDestroy();
+            _touchDirectionCalculator = null;
+
+            EscapeCallBack = null;
+            TouchedOnUICallBack = null;
+            TouchedContinuePressCallBack = null;
+            TouchedMoveScreenPosCallBack = null;
+
             DoDestroy();
         }
-
-
-
 
 
         void Update()
@@ -120,58 +143,41 @@ namespace LitFramework.UI.Extended
 
             if ( _isInit && IsEnable )
             {
-                if ( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer )
+                if ( _currentPlatform == PLATFORM_ANDROID || _currentPlatform == PLATFORM_IOS )
                 {
                     //是否点击到UI界面
                     if ( Input.touchCount > 0 )
                     {
-                        var touch0 = Input.GetTouch( 0 );
-                        if ( touch0.phase == began )
-                        {
-                            if ( EventSystem.current.IsPointerOverGameObject( Input.GetTouch( 0 ).fingerId ) )
-                            {
-                                CurrentIsOnUI = true;
-                                IsTouchedOnUICallBack?.Invoke( true );
-                            }
-                            else
-                            {
-                                CurrentIsOnUI = false;
-                                IsTouchedOnUICallBack?.Invoke( false );
-                            }
-                        }
-                        else if ( touch0.phase == moved )
-                        {
-                            TouchedMoveScreenPosCallBack?.Invoke( touch0.position );
-                        }
-                        else if ( touch0.phase == stationary )
-                            CalculateTimeByPressStart();
-                        else if ( touch0.phase == ended || touch0.phase == canceled )
-                            CalculateTimeByPressOver();
-
+                        _touchResult =_touchDirectionCalculator.GetTouchMoveDirection( _touchResult );
+                        if( CurrentIsOnUI )
+                            TouchedOnUICallBack?.Invoke( true );
                     }
-
+                    else
+                        _touchResult = TouchDirection.None;
                 }
-                else if( Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor )
+                else if( _currentPlatform == PLATFORM_WINDOWEDITOR || _currentPlatform == PLATFORM_IOSEDITOR )
                 {
-                    if ( Input.GetButton( "Fire1" ) )
+                    if ( Input.GetButtonDown( "Fire1" ) )
                     {
-                        CalculateTimeByPressStart();
+                        CalculateTimeByPressStart( Input.mousePosition );
 
                         //点击UI检测
                         if ( EventSystem.current.IsPointerOverGameObject() )
                         {
-                            CurrentIsOnUI = true;
-                            IsTouchedOnUICallBack?.Invoke( true );
+                            _touchResult |= TouchDirection.OnUI;
+                            TouchedOnUICallBack?.Invoke( true );
                         }
                         else
                         {
-                            CurrentIsOnUI = false;
-                            IsTouchedOnUICallBack?.Invoke( false );
+                            TouchedOnUICallBack?.Invoke( false );
                         }
                     }
 
                     if ( Input.GetButtonUp( "Fire1" ) )
-                        CalculateTimeByPressOver();
+                    {
+                        CalculateTimeByPressOver( Input.mousePosition );
+                        _touchResult = TouchDirection.None;
+                    }
                 }
             }
         }
@@ -179,7 +185,7 @@ namespace LitFramework.UI.Extended
         /// <summary>
         /// 按住屏幕开始计时
         /// </summary>
-        private void CalculateTimeByPressStart()
+        private void CalculateTimeByPressStart( Vector2 touchPos )
         {
             _curPressTime += Time.deltaTime;
             if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY + Time.deltaTime )
@@ -188,7 +194,7 @@ namespace LitFramework.UI.Extended
         /// <summary>
         /// 离开屏幕计时
         /// </summary>
-        private void CalculateTimeByPressOver()
+        private void CalculateTimeByPressOver( Vector2 inputPos )
         {
             if ( _curPressTime > 0 )
                 TouchedContinuePressCallBack?.Invoke( false );

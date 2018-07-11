@@ -46,13 +46,17 @@ namespace LitFramework.Input
         /// </summary>
         public event Action<bool> TouchedContinuePressCallBack;
         /// <summary>
-        /// 滑动事件反馈
-        /// </summary>
-        public event Action<Vector2> TouchedMoveScreenPosCallBack;
-        /// <summary>
         /// 是否点击到UI反馈
         /// </summary>
         public event Action<bool> TouchedOnUICallBack;
+        /// <summary>
+        /// 开始触屏
+        /// </summary>
+        public event Action<Vector2> TouchedBeganCallBack;
+        /// <summary>
+        /// 滑动事件反馈
+        /// </summary>
+        public event Action<Vector2> TouchedMoveScreenPosCallBack;
         #endregion
 
         #region 常量
@@ -110,9 +114,10 @@ namespace LitFramework.Input
             IsEnable = true;
 
             _touchDirectionCalculator = TouchDirectionControl.Instance;
+            _touchDirectionCalculator.TouchBeganCallback = TouchedBeganCallBack;
+            _touchDirectionCalculator.TouchEndCallback = CalculateTimeByPressOver;
             _touchDirectionCalculator.TouchMoveCallback = TouchedMoveScreenPosCallBack;
             _touchDirectionCalculator.TouchStationaryCallback = CalculateTimeByPressStart;
-            _touchDirectionCalculator.TouchEndCallback = CalculateTimeByPressOver;
         }
 
         public void Uninstall()
@@ -122,12 +127,14 @@ namespace LitFramework.Input
 
             _touchDirectionCalculator.TouchEndCallback = null;
             _touchDirectionCalculator.TouchMoveCallback = null;
+            _touchDirectionCalculator.TouchBeganCallback = null;
             _touchDirectionCalculator.TouchStationaryCallback = null;
             _touchDirectionCalculator.DoDestroy();
             _touchDirectionCalculator = null;
 
             EscapeCallBack = null;
             TouchedOnUICallBack = null;
+            TouchedBeganCallBack = null;
             TouchedContinuePressCallBack = null;
             TouchedMoveScreenPosCallBack = null;
 

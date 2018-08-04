@@ -111,19 +111,26 @@ namespace LitFramework.Input
         public void Install()
         {
             _isInit = true;
-            IsEnable = true;
+            _isEnable = true;
 
             _touchDirectionCalculator = TouchDirectionControl.Instance;
             _touchDirectionCalculator.TouchBeganCallback = TouchedBeganCallBack;
             _touchDirectionCalculator.TouchEndCallback = CalculateTimeByPressOver;
-            _touchDirectionCalculator.TouchMoveCallback = TouchedMoveScreenPosCallBack;
             _touchDirectionCalculator.TouchStationaryCallback = CalculateTimeByPressStart;
+            _touchDirectionCalculator.TouchMoveCallback = TouchedMoveScreenPosCallBack;
+
+            if(GameObject.Find( "EventSystem" )==null)
+            {
+                GameObject go = new GameObject( "EventSystem" );
+                go.AddComponent<EventSystem>();
+                go.AddComponent<StandaloneInputModule>();
+            }
         }
 
         public void Uninstall()
         {
             _isInit = false;
-            IsEnable = false;
+            _isEnable = false;
 
             _touchDirectionCalculator.TouchEndCallback = null;
             _touchDirectionCalculator.TouchMoveCallback = null;
@@ -159,15 +166,12 @@ namespace LitFramework.Input
                         if( CurrentIsOnUI )
                             TouchedOnUICallBack?.Invoke( true );
                     }
-                    else
-                        _touchResult = TouchDirection.None;
+                    else _touchResult = TouchDirection.None;
                 }
                 else if( _currentPlatform == PLATFORM_WINDOWEDITOR || _currentPlatform == PLATFORM_IOSEDITOR )
                 {
-                    if ( Input.GetButtonDown( "Fire1" ) )
+                    if ( Input.GetMouseButtonDown(0) )
                     {
-                        CalculateTimeByPressStart( Input.mousePosition );
-
                         //点击UI检测
                         if ( EventSystem.current.IsPointerOverGameObject() )
                         {
@@ -175,12 +179,14 @@ namespace LitFramework.Input
                             TouchedOnUICallBack?.Invoke( true );
                         }
                         else
-                        {
                             TouchedOnUICallBack?.Invoke( false );
-                        }
+                        //按压计时
+                        CalculateTimeByPressStart( Input.mousePosition );
+                        //输出开始点击事件
+                        TouchedBeganCallBack?.Invoke( Input.mousePosition );
                     }
 
-                    if ( Input.GetButtonUp( "Fire1" ) )
+                    if ( Input.GetMouseButtonUp(0))
                     {
                         CalculateTimeByPressOver( Input.mousePosition );
                         _touchResult = TouchDirection.None;

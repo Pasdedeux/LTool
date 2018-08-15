@@ -14,7 +14,7 @@ public enum UINodeTypeEnum
     Normal,
     /// <summary>
     /// 固定窗体
-    /// <para>非全屏非弹出窗体</para>
+    /// <para>用于最底层的全屏界面UI   </para>
     /// </summary>
     Fixed,
     /// <summary>
@@ -39,7 +39,6 @@ public enum UIShowModeEnum
     /// <summary>
     /// 独占窗口，显示时其他界面隐藏
     /// </summary>
-    //独占窗口，显示时其他界面隐藏
     Unique,
 }
 

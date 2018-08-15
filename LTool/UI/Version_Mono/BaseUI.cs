@@ -108,9 +108,9 @@ namespace LitFramework.Mono
 
         public abstract void OnAwake();
 
-        public abstract void OnEnabled();
+        public virtual void OnEnabled() { }
 
-        public abstract void OnDisabled();
+        public virtual void OnDisabled() { }
 
         public virtual void OnStart() { }
 

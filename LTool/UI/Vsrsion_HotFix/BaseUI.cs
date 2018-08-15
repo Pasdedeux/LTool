@@ -43,6 +43,7 @@ namespace LitFramework.HotFix
                 UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, CurrentUIType.uiTransparent);
 
             OnEnabled();
+            OnStart();
             OnShow();
         }
 
@@ -99,9 +100,9 @@ namespace LitFramework.HotFix
 
         public abstract void OnAwake();
 
-        public abstract void OnEnabled();
+        public virtual void OnEnabled() { }
 
-        public abstract void OnDisabled();
+        public virtual void OnDisabled() { }
 
         public virtual void OnStart() { }
 

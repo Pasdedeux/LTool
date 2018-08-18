@@ -285,6 +285,8 @@ namespace LitFramework.Mono
             if( _transCanvas != null && prefClone != null )
             {
                 baseUI = prefClone.GetComponent<BaseUI>();
+                if ( prefClone == null )
+                    throw new Exception( string.Format( "UI预制件 {0} 未挂载方法 {1} ", prefClone.name, uiName ) );
                 baseUI.AssetsName = uiName;
 
                 if ( baseUI == null )

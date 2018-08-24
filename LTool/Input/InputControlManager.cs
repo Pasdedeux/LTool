@@ -153,7 +153,7 @@ namespace LitFramework.Input
         {
             //点击返回
             if (Input.GetKeyDown( KeyCode.Escape ))
-                CloseUIByOrder();
+                EscapeBtnClick();
 
             if ( _isInit && IsEnable )
             {
@@ -218,7 +218,7 @@ namespace LitFramework.Input
         /// 默认-按顺序关闭UI
         /// </summary>
         /// <param name="extendedFunc">采用自定义函数执行返回键功能</param>
-        private void CloseUIByOrder()
+        private void EscapeBtnClick()
         {
             EscapeCallBack?.Invoke();
         }

@@ -82,6 +82,9 @@
     <Compile Include="EditorExtention\CSVWriter.cs" />
     <Compile Include="EditorExtention\EditorMenuExtention.cs" />
     <Compile Include="EditorExtention\XMLConver.cs" />
+    <Compile Include="GameFlow\Controller\GameFlowController.cs" />
+    <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
+    <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameUtility\AssetPathManager.cs" />
     <Compile Include="EditorExtention\CSVParser.cs" />
     <Compile Include="EditorExtention\CSVReader.cs" />
@@ -116,6 +119,8 @@
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GameFlow\View\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -46,14 +46,17 @@ namespace LitFramework.GameFlow
         }
 
         /// <summary>
-        ///  在指定加载进度位置执行代码
+        ///  在指定加载进度位置执行代码 
+        ///  
+        /// 【不要手动添加100的回调函数，100默认为加载进度条结束时的回调】
         /// </summary>
         /// <param name="framePercent">指定的百分比</param>
         /// <param name="funcCallBack">需要执行的回调函数</param>
         public void AddTask( int framePercent, Func<bool> funcCallBack )
         {
             if ( _taskDic.ContainsKey( framePercent ) )
-                _taskDic[ framePercent ] = funcCallBack;
+                //_taskDic[ framePercent ] = funcCallBack;
+                throw new Exception( string.Format( "进度位置 {0} 已有处理函数！ 建议更换其它时间点处理！ ", framePercent ) );
             else
                 _taskDic.Add( framePercent, funcCallBack );
         }
@@ -71,10 +74,19 @@ namespace LitFramework.GameFlow
         }
 
 
+        /// <summary>
+        /// 清楚本次UI登记的任务
+        /// </summary>
+        public void ClearTask()
+        {
+            _taskDic.Clear();
+        }
+
+
         
         public override void DoDestroy()
         {
-            _taskDic.Clear();
+            ClearTask();
             base.DoDestroy();
         }
     }

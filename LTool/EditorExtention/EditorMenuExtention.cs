@@ -118,6 +118,40 @@ namespace LitFramework.EditorExtended
             fs.Dispose();
         }
 
+
+#if UNITY_EDITOR
+        [MenuItem( "Tools/拷贝到Unity工程" )]
+#endif
+        public static void CopyToUnity()
+        {
+            string uPath = Application.dataPath + "/Scripts/DllFramework/";
+            string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework/";
+
+            FolderCopy.CopyTo( hPath, uPath );
+            Debug.Log( "所有文件拷贝完毕" );
+        }
+
+#if UNITY_EDITOR
+        [MenuItem( "Tools/拷贝到热更新工程" )]
+        public static void CopyToHotFix()
+        {
+            if ( EditorUtility.DisplayDialog( "提示", "是否拷贝到热更新工程", "确认", "取消" ) )
+            {
+                string uPath = Application.dataPath + "/Scripts/DllFramework";
+                string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework";
+
+                FolderCopy.CopyTo( uPath, hPath );
+            }
+            else
+            {
+                Debug.Log( "Cancel" );
+            }
+        }
+#endif
+
+
+
+
         /// <summary>
         /// 创建CS文件
         /// </summary>

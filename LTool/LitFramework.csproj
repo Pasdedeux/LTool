@@ -84,6 +84,7 @@
     <Compile Include="Device\ShowFPS.cs" />
     <Compile Include="EditorExtention\CSVWriter.cs" />
     <Compile Include="EditorExtention\EditorMenuExtention.cs" />
+    <Compile Include="EditorExtention\FolderCopy.cs" />
     <Compile Include="EditorExtention\XMLConver.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />

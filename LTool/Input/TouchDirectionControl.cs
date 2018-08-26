@@ -40,10 +40,10 @@ namespace LitFramework.Input
 
     public class TouchDirectionControl : SingletonMono<TouchDirectionControl>
     {
+        //滑动距离限制，超过这个距离视为滑动有效
         private const float MOVE_MIX_DISTANCE = 1f;
         //触碰阶段外发函数
         public Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
-        //滑动距离限制，超过这个距离视为滑动有效
         private Vector2 _touchBeginPos;
         private Vector2 _touchEndPos;
         private float _clockWiseDegree = 0;

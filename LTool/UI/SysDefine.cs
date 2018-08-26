@@ -100,7 +100,7 @@ public class UISysDefine
     public static string SYS_TAG_NORMALCANVAS = "Canvas_RootNormal";
     public static string SYS_TAG_FIXEDCANVAS = "Canvas_RootFixed";
     public static string SYS_TAG_POPUPCANVAS = "Canvas_RootPopUp";
-    public static string SYS_TAG_MANAGERCANVAS = "Canvas_RootScript";
+    public static string SYS_TAG_GLOBALCANVAS = "Canvas_RootGlobal";
 
     public static string SYS_TAG_UICAMERA = "UICamera";
 

@@ -30,6 +30,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using LitFramework.UI.Base;
+using UnityEngine.UI;
+using LitFramework.GameUtility;
 
 namespace LitFramework.HotFix
 {
@@ -39,7 +41,7 @@ namespace LitFramework.HotFix
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>, IManager
+    public class UIManager : Singleton<UIManager>, IManager , IUIManager
     {
         /// <summary>
         /// 所有的预制件名称列表
@@ -74,13 +76,17 @@ namespace LitFramework.HotFix
         /// </summary>
         private Transform _transPopUp = null;
         /// <summary>
-        /// 管理器节点
+        /// 全局UI节点
         /// </summary>
-        private Transform _transManager = null;
+        private Transform _transGlobal = null;
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
         public Func<string , GameObject> LoadResourceFunc;
+        /// <summary>
+        /// 全局渐变遮罩
+        /// </summary>
+        private Image _fadeImage;
 
 
         public void Install()
@@ -94,7 +100,13 @@ namespace LitFramework.HotFix
             _transNormal = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_NORMALCANVAS );
             _transFixed = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_FIXEDCANVAS );
             _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_POPUPCANVAS );
-            _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
+            _transGlobal = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_GLOBALCANVAS );
+            _fadeImage = UnityHelper.FindTheChildNode( _transGlobal.gameObject, "Image_fadeBG" ).GetComponent<Image>();
+
+            if ( _fadeImage == null )
+                Debug.LogWarning( "Image_fadeBG 未定义" );
+            else if( !_fadeImage.gameObject.activeInHierarchy )
+                Debug.LogWarning( "Image_fadeBG 未启用" );
 
             AssemblyReflection();
         }
@@ -122,7 +134,7 @@ namespace LitFramework.HotFix
             _transPopUp = null;
             _transCanvas = null;
             _transNormal = null;
-            _transManager = null;
+            _transGlobal = null;
             _stackCurrentUI = null;
             _allRegisterUIDict = null;
             _dictLoadedAllUIs = null;
@@ -133,6 +145,46 @@ namespace LitFramework.HotFix
             Resources.UnloadUnusedAssets();
         }
 
+
+        /// <summary>
+        /// 隐退开始
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="callBack"></param>
+        public void ShowFade(float time, Action callBack = null )
+        {
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            {
+                if ( callBack != null )
+                    callBack.Invoke();
+                return;
+            }
+
+            _fadeImage.CrossFadeAlpha( 1, time, false );
+            if ( callBack != null )
+                LitTool.DelayPlayFunction( time, callBack );
+        }
+
+
+        /// <summary>
+        /// 隐退结束
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="callBack"></param>
+        public void HideFade( float time, Action callBack = null )
+        {
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            {
+                if ( callBack != null )
+                    callBack.Invoke();
+                return;
+            }
+
+            _fadeImage.CrossFadeAlpha( 0, time, false );
+            
+            if ( callBack != null )
+                LitTool.DelayPlayFunction( time, callBack );
+        }
 
 
         /// <summary>

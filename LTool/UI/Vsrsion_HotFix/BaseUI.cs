@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace LitFramework.HotFix
 {
-
     public abstract class BaseUI
     {
         /// <summary>
@@ -54,9 +53,9 @@ namespace LitFramework.HotFix
         /// <param name="freeze">是否暂时冻结（功能未想好）</param>
         public void Close( bool isDestroy = false, bool freeze = false )
         {
+            //默认执行OnDisable()
             OnDisabled();
 
-            //默认执行OnDisable()
             if ( !freeze )
             {
                 GameObjectInstance.SetActive(false);

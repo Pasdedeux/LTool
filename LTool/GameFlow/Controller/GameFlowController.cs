@@ -25,6 +25,7 @@
 ======================================*/
 
 using LitFramework.GameFlow.Manager;
+using LitFramework.UI.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace LitFramework.GameFlow
     {
         private SceneLoadManager _sceneLoadMng;
         private AsyncOperation _asyncOperation = null;
+        private IUIManager _iUIManger = null;
 
         public GameFlowController()
         {
@@ -54,34 +56,56 @@ namespace LitFramework.GameFlow
         /// <param name="needLoadingUI">是否需要转场UI</param>
         /// <param name="needFading">是否需要黑屏渐变</param>
         /// <param name="isHot">是否是热更版本</param>
-        public void ChangeScene( int sceneID, string loadingUIPath = "", Action callBackAfterChanging = null, bool isAdditive = false, bool needFading = true , bool isHot = false)
+        public void ChangeScene( int sceneID, string loadingUIPath = "", Action callBackAfterChanging = null, bool isAdditive = false, bool isHot = false, bool needFading = true, float fadingTime = 0.5f )
         {
+            _iUIManger = isHot ? ( ( IUIManager )HotFix.UIManager.Instance ) : ( ( IUIManager )Mono.UIManager.Instance );
+            
+            if ( needFading )            
+                _iUIManger.HideFade( fadingTime );
+
             _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
             _asyncOperation.allowSceneActivation = false;
-
+            
             // 如果需要配合显示进度条，则将场景加载至于进度为0的时候执行
             if ( loadingUIPath != string.Empty )
             {
                 //牺牲了场景加载的进度性
                 LoadingTaskModel.Instance.AddTask( 0, () =>
                 {
-                    return _asyncOperation.progress >= 0.9f;
-                } );
+                    bool over = _asyncOperation.progress >= 0.9f;
+                    if ( over ) _asyncOperation.allowSceneActivation = true;
+                    return over;
+                }, true );
 
                 //场景加载完成后的回调
                 LoadingTaskModel.Instance.AddTask( 100, () =>
                 {
                     _asyncOperation.allowSceneActivation = true;
+                    
+                    if ( needFading )
+                        _iUIManger.ShowFade( fadingTime, () =>
+                        {
+                            if ( isHot )
+                                HotFix.UIManager.Instance.Close( loadingUIPath );
+                            else
+                                Mono.UIManager.Instance.Close( loadingUIPath );
 
-                    if ( isHot )
-                        HotFix.UIManager.Instance.Close( loadingUIPath );
+                            if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+                            _iUIManger.HideFade( fadingTime );
+                        } );
                     else
-                        Mono.UIManager.Instance.Close( loadingUIPath );
+                    {
+                        if ( isHot )
+                            HotFix.UIManager.Instance.Close( loadingUIPath );
+                        else
+                            Mono.UIManager.Instance.Close( loadingUIPath );
 
-                    if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+                        if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+                    }
+
                     LoadingTaskModel.Instance.ClearTask();
                     return true;
-                } );
+                }, true );
 
                 if ( isHot )
                     HotFix.UIManager.Instance.Show( loadingUIPath );
@@ -93,8 +117,17 @@ namespace LitFramework.GameFlow
             {
                 while ( _asyncOperation.progress < 0.9f ) { }
                 _asyncOperation.allowSceneActivation = true;
-            }
 
+                if ( needFading )
+                    _iUIManger.ShowFade( fadingTime, () =>
+                    {
+                        if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+                        _iUIManger.HideFade( fadingTime );
+                    } );
+                else
+                     if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+            }
+            
         }
 
 

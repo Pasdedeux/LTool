@@ -37,7 +37,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     {
         //得到UI根节点对象
         _rootCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS );
-        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas , UISysDefine.SYS_TAG_MANAGERCANVAS );
+        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas , UISysDefine.SYS_TAG_GLOBALCANVAS );
         //将本脚本实例作为脚本节点对象子节点
         transform.SetParent( _transScriptNode );
         UnityHelper.AddChildNodeToParentNode( _transScriptNode , transform );

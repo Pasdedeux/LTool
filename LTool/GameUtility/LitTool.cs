@@ -29,7 +29,8 @@ namespace LitFramework.GameUtility
     public class LitTool
     {
         public static MonoBehaviour monoBehaviour;
-
+        private static WaitForSeconds _waitSeconds;
+        private static WaitUntil _waitUntil;
         #region 延迟调用方法
         public static void DelayPlayFunction( float time, System.Action func )
         {
@@ -38,17 +39,36 @@ namespace LitFramework.GameUtility
                 GameObject go = new GameObject( "Monobehavior" );
                 monoBehaviour = go.AddComponent<MonoForCorouting>();
             }
+            _waitSeconds = new WaitForSeconds( time );
             monoBehaviour.StartCoroutine( DelayFunction( time, func ) );
         }
         static IEnumerator DelayFunction( float time, System.Action func )
         {
-            yield return new WaitForSeconds( time );
+            yield return _waitSeconds;
             func?.Invoke();
         }
 
         public static void StopDelayPlayFunction()
         {
             monoBehaviour.StopCoroutine( "DelayFunction" );
+        }
+
+
+        public static void WaitUntilFunction( Func<bool> conditionFunc, System.Action func )
+        {
+            if ( monoBehaviour == null )
+            {
+                GameObject go = new GameObject( "Monobehavior" );
+                monoBehaviour = go.AddComponent<MonoForCorouting>();
+            }
+            _waitUntil = new WaitUntil( conditionFunc );
+            monoBehaviour.StartCoroutine( WaitUntilFunction( func ) );
+        }
+
+        static IEnumerator WaitUntilFunction( Action func )
+        {
+            yield return _waitUntil;
+            func?.Invoke();
         }
         #endregion
     }

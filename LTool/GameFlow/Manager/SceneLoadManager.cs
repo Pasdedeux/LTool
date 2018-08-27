@@ -53,9 +53,9 @@ namespace LitFramework.GameFlow.Manager
         /// 同步加载场景
         /// </summary>
         /// <param name="sceneID"></param>
-        public void LoadScene( int sceneID )
+        public void LoadScene( int sceneID, bool isAdditive )
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene( sceneID );
+            UnityEngine.SceneManagement.SceneManager.LoadScene( sceneID , !isAdditive ? UnityEngine.SceneManagement.LoadSceneMode.Single : UnityEngine.SceneManagement.LoadSceneMode.Additive );
         }
 
 

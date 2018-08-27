@@ -48,6 +48,16 @@ namespace LitFramework.Mono
     /// </summary>
     public class UIManager : Singleton<UIManager>,IManager,IUIManager
     {
+        private bool _useFading = true;
+        public bool UseFading
+        {
+            get { return _useFading; }
+            set
+            {
+                if ( _fadeImage != null ) _fadeImage.gameObject.SetActive( value );
+                _useFading = value;
+            }
+        }
         /// <summary>
         /// 所有的预制件名称列表
         /// </summary>
@@ -156,7 +166,7 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public void ShowFade( float time, Action callBack = null )
         {
-            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack !=null )
                     callBack.Invoke();  
@@ -176,7 +186,7 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public void HideFade( float time, Action callBack = null )
         {
-            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();
@@ -195,7 +205,7 @@ namespace LitFramework.Mono
         /// 2、根据不同UI显示模式，做不同的加载处理
         /// </summary>
         /// <param name="uiName">UI窗体预制件名称</param>
-        public BaseUI Show( string uiName )
+        public IBaseUI Show( string uiName )
         {
             BaseUI baseUI = null;
 

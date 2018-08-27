@@ -63,6 +63,7 @@ namespace LitFramework.GameFlow
         public void ChangeScene( int sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isHot = false, bool isAdditive = false )
         {
             _iUIManger = isHot ? ( ( IUIManager )HotFix.UIManager.Instance ) : ( ( IUIManager )Mono.UIManager.Instance );
+            _iUIManger.UseFading = needFading;
 
             //No UIloading && No Fading
             if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )
@@ -74,7 +75,7 @@ namespace LitFramework.GameFlow
                 while ( _asyncOperation.progress < 0.9f ) { }
                 _asyncOperation.allowSceneActivation = true;
 
-                callBackAfterChanging?.Invoke();
+                GameUtility.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
             }
 
             //No UIloading && Fading
@@ -89,7 +90,7 @@ namespace LitFramework.GameFlow
                     while ( _asyncOperation.progress < 0.9f ) { }
                     _asyncOperation.allowSceneActivation = true;
 
-                    callBackAfterChanging?.Invoke();
+                    GameUtility.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
 
                     _iUIManger.HideFade( fadingTime );
                 } );
@@ -102,15 +103,15 @@ namespace LitFramework.GameFlow
                 LoadingTaskModel.Instance.AddTask( 0, () =>
                 {
                     callBackBeforeChanging?.Invoke();
+
+                    _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                    _asyncOperation.allowSceneActivation = false;
                     return true;
                 }, true );
 
                 // 默认占用1帧 牺牲了场景加载的进度性
                 LoadingTaskModel.Instance.AddTask( 1, () =>
                 {
-                    _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
-                    _asyncOperation.allowSceneActivation = false;
-
                     bool over = _asyncOperation.progress >= 0.9f;
                     if ( over ) _asyncOperation.allowSceneActivation = true;
                     return over;
@@ -144,15 +145,15 @@ namespace LitFramework.GameFlow
                     LoadingTaskModel.Instance.AddTask( 0, () =>
                     {
                         callBackBeforeChanging?.Invoke();
+
+                        _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                        _asyncOperation.allowSceneActivation = false;
                         return true;
                     }, true );
 
                     // 默认占用1帧 牺牲了场景加载的进度性
                     LoadingTaskModel.Instance.AddTask( 1, () =>
                     {
-                        _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
-                        _asyncOperation.allowSceneActivation = false;
-
                         bool over = _asyncOperation.progress >= 0.9f;
                         if ( over ) _asyncOperation.allowSceneActivation = true;
                         return over;

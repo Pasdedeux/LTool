@@ -26,6 +26,7 @@ namespace LitFramework.UI.Base
 {
     public interface IUIManager
     {
+        bool UseFading { get; set; }
         void ShowFade( float time, Action callBack = null );
         void HideFade( float time, Action callBack = null );
         void Close( string uiName, bool isDestroy = false );

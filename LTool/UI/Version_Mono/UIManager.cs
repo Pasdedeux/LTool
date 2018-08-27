@@ -238,11 +238,9 @@ namespace LitFramework.Mono
             if( string.IsNullOrEmpty( uiName ) )
                 return;
 
-            BaseUI baseUI = null;
-
             //所有窗体如果没有记录，直接返回
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out BaseUI baseUI );
+            if ( baseUI == null )
             {
                 _dictLoadedAllUIs.Remove( uiName );
                 return;

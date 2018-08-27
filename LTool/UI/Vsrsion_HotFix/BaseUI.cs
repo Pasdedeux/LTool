@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LitFramework.HotFix
 {
-    public abstract class BaseUI
+    public abstract class BaseUI : UI.Base.IBaseUI
     {
         /// <summary>
         /// 该窗口是否开启中

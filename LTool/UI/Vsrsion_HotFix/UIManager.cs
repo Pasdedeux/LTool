@@ -97,6 +97,11 @@ namespace LitFramework.HotFix
         /// 全局渐变遮罩
         /// </summary>
         private Image _fadeImage;
+        /// <summary>
+        ///  遮罩结束时回调
+        /// </summary>
+        /// <returns></returns>
+        private Action DelHideCallBack = null;
 
 
         public void Install()
@@ -150,6 +155,7 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs = null;
             _dictCurrentShowUIs = null;
 
+            DelHideCallBack = null;
             LoadResourceFunc = null;
 
             Resources.UnloadUnusedAssets();
@@ -161,7 +167,7 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public void ShowFade(float time, Action callBack = null )
+        public void ShowFade( float time, Action callBack = null )
         {
             if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -169,7 +175,8 @@ namespace LitFramework.HotFix
                     callBack.Invoke();
                 return;
             }
-
+            
+            _fadeImage.raycastTarget = true;
             _fadeImage.CrossFadeAlpha( 1, time, false );
             if ( callBack != null )
                 LitTool.DelayPlayFunction( time, callBack );
@@ -191,8 +198,11 @@ namespace LitFramework.HotFix
             }
 
             _fadeImage.CrossFadeAlpha( 0, time, false );
-            if ( callBack != null )
-                LitTool.DelayPlayFunction( time, callBack );
+
+            if ( callBack != null ) DelHideCallBack += callBack;
+            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
+            DelHideCallBack += () => { DelHideCallBack = null; };
+            LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
 
 

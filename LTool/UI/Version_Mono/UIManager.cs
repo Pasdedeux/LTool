@@ -102,7 +102,11 @@ namespace LitFramework.Mono
         /// 全局渐变遮罩
         /// </summary>
         private Image _fadeImage;
-
+        /// <summary>
+        ///  遮罩结束时回调
+        /// </summary>
+        /// <returns></returns>
+        private Action DelHideCallBack = null;
 
         public void Install()
         {
@@ -159,6 +163,7 @@ namespace LitFramework.Mono
             Resources.UnloadUnusedAssets();
         }
 
+
         /// <summary>
         /// 隐退开始
         /// </summary>
@@ -168,11 +173,12 @@ namespace LitFramework.Mono
         {
             if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
-                if ( callBack !=null )
-                    callBack.Invoke();  
+                if ( callBack != null )
+                    callBack.Invoke();
                 return;
             }
-
+            
+            _fadeImage.raycastTarget = true;
             _fadeImage.CrossFadeAlpha( 1, time, false );
             if ( callBack != null )
                 LitTool.DelayPlayFunction( time, callBack );
@@ -194,9 +200,13 @@ namespace LitFramework.Mono
             }
 
             _fadeImage.CrossFadeAlpha( 0, time, false );
-            if ( callBack != null )
-                LitTool.DelayPlayFunction( time, callBack );
+            
+            if ( callBack != null ) DelHideCallBack += callBack;
+            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
+            DelHideCallBack += () => { DelHideCallBack = null; };
+            LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
+
 
         /// <summary>
         /// 显示（打开）UI窗口

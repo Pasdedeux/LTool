@@ -56,7 +56,7 @@ namespace LitFramework.GameFlow
         /// <param name="needLoadingUI">是否需要转场UI</param>
         /// <param name="needFading">是否需要黑屏渐变</param>
         /// <param name="isHot">是否是热更版本</param>
-        public void ChangeScene( int sceneID, string loadingUIPath = "", Action callBackAfterChanging = null, bool isAdditive = false, bool isHot = false, bool needFading = true, float fadingTime = 0.5f )
+        public void ChangeScene( int sceneID, string loadingUIPath = null, Action callBackAfterChanging = null, bool isAdditive = false, bool isHot = false, bool needFading = true, float fadingTime = 0.5f )
         {
             _iUIManger = isHot ? ( ( IUIManager )HotFix.UIManager.Instance ) : ( ( IUIManager )Mono.UIManager.Instance );
             
@@ -67,7 +67,7 @@ namespace LitFramework.GameFlow
             _asyncOperation.allowSceneActivation = false;
             
             // 如果需要配合显示进度条，则将场景加载至于进度为0的时候执行
-            if ( loadingUIPath != string.Empty )
+            if ( !string.IsNullOrEmpty( loadingUIPath ) )
             {
                 //牺牲了场景加载的进度性
                 LoadingTaskModel.Instance.AddTask( 0, () =>

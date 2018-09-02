@@ -161,8 +161,8 @@ namespace LitFramework.HotFix
             }
 
             _fadeImage.CrossFadeAlpha( 1, time, false );
-            if ( callBack != null )
-                LitTool.DelayPlayFunction( time, callBack );
+            if ( callBack != null ) LitTool.DelayPlayFunction( time, callBack );
+            LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = true; } );
         }
 
 
@@ -182,8 +182,8 @@ namespace LitFramework.HotFix
 
             _fadeImage.CrossFadeAlpha( 0, time, false );
             
-            if ( callBack != null )
-                LitTool.DelayPlayFunction( time, callBack );
+            if ( callBack != null ) LitTool.DelayPlayFunction( time, callBack );
+            LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = false; } );
         }
 
 

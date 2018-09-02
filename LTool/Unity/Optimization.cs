@@ -91,7 +91,7 @@ namespace LTool.Unity
                 combine[ i ].transform = mfChildren[ i ].transform.localToWorldMatrix;
                 mfChildren[ i ].gameObject.SetActive( false );
             }
-            //生成新的网格，赋值给熄灯呢网格渲染组件
+            //生成新的网格，赋值给新的网格渲染组件
             Mesh newMesh = new Mesh();
             newMesh.CombineMeshes( combine , true , true );
             mfSelf.mesh = newMesh;

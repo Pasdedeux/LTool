@@ -48,6 +48,16 @@ namespace LitFramework.Mono
     /// </summary>
     public class UIManager : Singleton<UIManager>,IManager,IUIManager
     {
+        private bool _useFading = true;
+        public bool UseFading
+        {
+            get { return _useFading; }
+            set
+            {
+                if ( _fadeImage != null ) _fadeImage.gameObject.SetActive( value );
+                _useFading = value;
+            }
+        }
         /// <summary>
         /// 所有的预制件名称列表
         /// </summary>
@@ -92,7 +102,11 @@ namespace LitFramework.Mono
         /// 全局渐变遮罩
         /// </summary>
         private Image _fadeImage;
-
+        /// <summary>
+        ///  遮罩结束时回调
+        /// </summary>
+        /// <returns></returns>
+        private Action DelHideCallBack = null;
 
         public void Install()
         {
@@ -149,6 +163,7 @@ namespace LitFramework.Mono
             Resources.UnloadUnusedAssets();
         }
 
+
         /// <summary>
         /// 隐退开始
         /// </summary>
@@ -156,16 +171,17 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public void ShowFade( float time, Action callBack = null )
         {
-            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
-                if ( callBack !=null )
-                    callBack.Invoke();  
+                if ( callBack != null )
+                    callBack.Invoke();
                 return;
             }
-
+            
+            _fadeImage.raycastTarget = true;
             _fadeImage.CrossFadeAlpha( 1, time, false );
-            if ( callBack != null ) LitTool.DelayPlayFunction( time, callBack );
-            LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = true; } );
+            if ( callBack != null )
+                LitTool.DelayPlayFunction( time, callBack );
         }
 
 
@@ -176,7 +192,7 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public void HideFade( float time, Action callBack = null )
         {
-            if ( _fadeImage == null || !_fadeImage.gameObject.activeSelf )
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();
@@ -184,9 +200,13 @@ namespace LitFramework.Mono
             }
 
             _fadeImage.CrossFadeAlpha( 0, time, false );
-            if ( callBack != null ) LitTool.DelayPlayFunction( time, callBack );
-            LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = false; } );
+            
+            if ( callBack != null ) DelHideCallBack += callBack;
+            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
+            DelHideCallBack += () => { DelHideCallBack = null; };
+            LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
+
 
         /// <summary>
         /// 显示（打开）UI窗口
@@ -195,7 +215,7 @@ namespace LitFramework.Mono
         /// 2、根据不同UI显示模式，做不同的加载处理
         /// </summary>
         /// <param name="uiName">UI窗体预制件名称</param>
-        public BaseUI Show( string uiName )
+        public IBaseUI Show( string uiName )
         {
             BaseUI baseUI = null;
 
@@ -238,11 +258,9 @@ namespace LitFramework.Mono
             if( string.IsNullOrEmpty( uiName ) )
                 return;
 
-            BaseUI baseUI = null;
-
             //所有窗体如果没有记录，直接返回
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out BaseUI baseUI );
+            if ( baseUI == null )
             {
                 _dictLoadedAllUIs.Remove( uiName );
                 return;

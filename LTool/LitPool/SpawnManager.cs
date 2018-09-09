@@ -36,7 +36,7 @@ namespace LitFramework.LitPool
     /// <summary>
     /// 对外控制用脚本
     /// </summary>
-    class SpawnManager : Singleton<SpawnManager>,IManager
+    public class SpawnManager : Singleton<SpawnManager>,IManager
     {
         private SpawnPool _pool;
         private List<string> _prefabNameList;

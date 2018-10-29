@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework" kind="namespace">
+    <compoundname>LitFramework</compoundname>
+    <innerclass refid="class_lit_framework_1_1_app_config" prot="public">LitFramework::AppConfig</innerclass>
+    <innerclass refid="class_lit_framework_1_1_audio_manager" prot="public">LitFramework::AudioManager</innerclass>
+    <innerclass refid="class_lit_framework_1_1_singleton_3_01_t_01_4" prot="public">LitFramework::Singleton&lt; T &gt;</innerclass>
+    <innerclass refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4" prot="public">LitFramework::SingletonMono&lt; T &gt;</innerclass>
+    <innernamespace refid="namespace_lit_framework_1_1_device">LitFramework::Device</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_editor_extended">LitFramework::EditorExtended</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_game_flow">LitFramework::GameFlow</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_game_utility">LitFramework::GameUtility</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_hot_fix">LitFramework::HotFix</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_input">LitFramework::Input</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_lit_pool">LitFramework::LitPool</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_mono">LitFramework::Mono</innernamespace>
+    <innernamespace refid="namespace_lit_framework_1_1_u_i">LitFramework::UI</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/AppConfig.cs" line="26" column="1"/>
+  </compounddef>
+</doxygen>

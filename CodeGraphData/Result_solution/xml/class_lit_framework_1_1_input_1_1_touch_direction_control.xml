@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_input_1_1_touch_direction_control" kind="class" prot="public">
+    <compoundname>LitFramework::Input::TouchDirectionControl</compoundname>
+    <basecompoundref refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4" prot="public" virt="non-virtual">LitFramework.SingletonMono&lt; T &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1a0401ba133ba8cff42d1721bc3bebdf98" prot="private" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float LitFramework.Input.TouchDirectionControl.MOVE_MIX_DISTANCE</definition>
+        <argsstring></argsstring>
+        <name>MOVE_MIX_DISTANCE</name>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="44" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1a740e43d7084442b2fe45f8d2c3343bbb" prot="private" static="no" mutable="no">
+        <type>Action&lt; Vector2 &gt;</type>
+        <definition>Action&lt;Vector2&gt; LitFramework.Input.TouchDirectionControl.TouchEndCallback</definition>
+        <argsstring></argsstring>
+        <name>TouchEndCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1afb4b50bfc421f58d80da2bddeef96ce2" prot="private" static="no" mutable="no">
+        <type>Action&lt; Vector2 &gt;</type>
+        <definition>Action&lt;Vector2&gt; LitFramework.Input.TouchDirectionControl.TouchStationaryCallback</definition>
+        <argsstring></argsstring>
+        <name>TouchStationaryCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1a1949d399c2916aa054532d12f3c04dd7" prot="private" static="no" mutable="no">
+        <type>Action&lt; Vector2 &gt;</type>
+        <definition>Action&lt;Vector2&gt; LitFramework.Input.TouchDirectionControl.TouchMoveCallback</definition>
+        <argsstring></argsstring>
+        <name>TouchMoveCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1abd47c8a397b24c02b9f1f8b2dec1a2d8" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 LitFramework.Input.TouchDirectionControl._touchBeginPos</definition>
+        <argsstring></argsstring>
+        <name>_touchBeginPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="47" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1afbca28990264ab7678c567b867e6e5bf" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 LitFramework.Input.TouchDirectionControl._touchEndPos</definition>
+        <argsstring></argsstring>
+        <name>_touchEndPos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="48" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1ac98326cf94dd96f9b95797bdb981f0fd" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float LitFramework.Input.TouchDirectionControl._clockWiseDegree</definition>
+        <argsstring></argsstring>
+        <name>_clockWiseDegree</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="49" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa10a92467e03ccfb7298b13a980cb332" prot="private" static="no" mutable="no">
+        <type>EventSystem</type>
+        <definition>EventSystem LitFramework.Input.TouchDirectionControl._currentEventSys</definition>
+        <argsstring></argsstring>
+        <name>_currentEventSys</name>
+        <initializer>= EventSystem.current</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="50" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1a341464ccc727c8c567d91451e31d4e45" prot="public" static="no" mutable="no">
+        <type>Action&lt; Vector2 &gt;</type>
+        <definition>Action&lt;Vector2&gt; LitFramework.Input.TouchDirectionControl.TouchBeganCallback</definition>
+        <argsstring></argsstring>
+        <name>TouchBeganCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa272fc4f984fce827887897ea3a93f13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.Input.TouchDirectionControl.SetRotateClockwise</definition>
+        <argsstring>(float degree)</argsstring>
+        <name>SetRotateClockwise</name>
+        <param>
+          <type>float</type>
+          <declname>degree</declname>
+        </param>
+        <briefdescription>
+<para>设置触控方向的【顺时针】旋转角度 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degree</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="56" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_input_1_1_touch_direction_control_1ab73976e6e35688fbe48e7680d3ac033d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fed" kindref="member">TouchDirection</ref></type>
+        <definition>TouchDirection LitFramework.Input.TouchDirectionControl.GetTouchMoveDirection</definition>
+        <argsstring>(TouchDirection dirResult)</argsstring>
+        <name>GetTouchMoveDirection</name>
+        <param>
+          <type><ref refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fed" kindref="member">TouchDirection</ref></type>
+          <declname>dirResult</declname>
+        </param>
+        <briefdescription>
+<para>获取一次滑动行为 </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="66" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="66" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="217">
+        <label>SingletonMono&lt; TouchDirectionControl &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4"/>
+        <childnode refid="218" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="216">
+        <label>LitFramework.Input.TouchDirectionControl</label>
+        <link refid="class_lit_framework_1_1_input_1_1_touch_direction_control"/>
+        <childnode refid="217" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="218">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="220">
+        <label>SingletonMono&lt; TouchDirectionControl &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4"/>
+        <childnode refid="221" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="219">
+        <label>LitFramework.Input.TouchDirectionControl</label>
+        <link refid="class_lit_framework_1_1_input_1_1_touch_direction_control"/>
+        <childnode refid="220" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="221">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="42" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="41" bodyend="119"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1ac98326cf94dd96f9b95797bdb981f0fd" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>_clockWiseDegree</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa10a92467e03ccfb7298b13a980cb332" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>_currentEventSys</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1abd47c8a397b24c02b9f1f8b2dec1a2d8" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>_touchBeginPos</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1afbca28990264ab7678c567b867e6e5bf" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>_touchEndPos</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1abc3de937113f36fe40fc7ff6d45ba1b5" prot="public" virt="virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>DoDestroy</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1ab73976e6e35688fbe48e7680d3ac033d" prot="public" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>GetTouchMoveDirection</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a10e80f9406dfdd3b71e31459aac3ed11" prot="public" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>Instance</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a0401ba133ba8cff42d1721bc3bebdf98" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>MOVE_MIX_DISTANCE</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a8d5ad204b316c56fc32a4e539455bb2d" prot="public" virt="virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>OnApplicationQuit</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa272fc4f984fce827887897ea3a93f13" prot="public" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>SetRotateClockwise</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a341464ccc727c8c567d91451e31d4e45" prot="public" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>TouchBeganCallback</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a740e43d7084442b2fe45f8d2c3343bbb" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>TouchEndCallback</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a1949d399c2916aa054532d12f3c04dd7" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>TouchMoveCallback</name></member>
+      <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1afb4b50bfc421f58d80da2bddeef96ce2" prot="private" virt="non-virtual"><scope>LitFramework::Input::TouchDirectionControl</scope><name>TouchStationaryCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

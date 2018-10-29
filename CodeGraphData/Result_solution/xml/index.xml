@@ -1,0 +1,1271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.6">
+  <compound refid="class_lit_framework_1_1_app_config" kind="class"><name>LitFramework::AppConfig</name>
+  </compound>
+  <compound refid="struct_lit_json_1_1_array_metadata" kind="struct"><name>LitJson::ArrayMetadata</name>
+    <member refid="struct_lit_json_1_1_array_metadata_1ad4928e5aebabeacaf4460ca131183285" kind="variable"><name>element_type</name></member>
+    <member refid="struct_lit_json_1_1_array_metadata_1ae25bca8f340d2902a9970bdad5012282" kind="variable"><name>is_array</name></member>
+    <member refid="struct_lit_json_1_1_array_metadata_1a9245d9d9cc497a609df6031c61e1fe3d" kind="variable"><name>is_list</name></member>
+    <member refid="struct_lit_json_1_1_array_metadata_1a7d5118adc4219180d2dd6176218eab65" kind="property"><name>ElementType</name></member>
+    <member refid="struct_lit_json_1_1_array_metadata_1abf6c0a2e89f8ea900819e791b2fb3708" kind="property"><name>IsArray</name></member>
+    <member refid="struct_lit_json_1_1_array_metadata_1a835b53b6f72bd19251366a86604bf68b" kind="property"><name>IsList</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager" kind="class"><name>LitFramework::GameUtility::AssetPathManager</name>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a13391763b9a36794a49b5b3efbfbc20a" kind="variable"><name>_sBuilder</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a72b0d0e172329bc13ec9e79021c5386a" kind="function"><name>AssetPathManager</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a8c4cdf7e8b4fc2d726d2ac648ba037d2" kind="function"><name>GetPersistentDataPath</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a91079c358293487d0dfb617eb5a12148" kind="function"><name>GetStreamAssetDataPath</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a0b5f4c69dc7489148785d2a351ba8687" kind="function"><name>GetTemporaryCachePath</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_audio_manager" kind="class"><name>LitFramework::AudioManager</name>
+    <member refid="class_lit_framework_1_1_audio_manager_1ab33a3c76c30c54d895bb75880a8f52a9" kind="variable"><name>LoadResourceFunc</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a911dff1ac1144aadab9fcf123a153655" kind="variable"><name>currentMusicName</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1aa0b1a39708fecc74ac25efdb8de8ab4a" kind="property"><name>VolumeSE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1acd2233ed42dd61babdedf26f1d6d6d46" kind="property"><name>VolumeBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a8c562f221f78b46b2a592774f5a4e66d" kind="variable"><name>_tempList</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a7eb65183ac399653fd8550dad55a955b" kind="variable"><name>_audioBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a5da0212a4a2116a92df3ac1116a657f0" kind="variable"><name>_soloAudioSource</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1aa8a57067653a50b89dc200748260fd16" kind="variable"><name>_soundAvalibleList</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1ac532fb7064922a25927fbde84e209867" kind="variable"><name>_audios</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1aac27bf5aea9c73dfd85193aced3da3bc" kind="variable"><name>_soundLoopPlayingDict</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a07df8fb92d1ae64b635f99a590ef0e0e" kind="function"><name>Install</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1aa1d8f50f4994ba21b7376d7a361854ff" kind="function"><name>Uninstall</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1add803045935334523c587d585492d435" kind="function"><name>GetBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a77d3334abe1b74134b0feab8a69227fc" kind="function"><name>GetSE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a22c8876eadb6a19ac1eb5ee383e9c9a7" kind="function"><name>PlaySE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a71e84a13219689c51e0b37f855e75ef5" kind="function"><name>StopSE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a80a44bca8debd2fe74538d84449e7556" kind="function"><name>StopAllSE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1ab40c2c0e9de74b8209fef56f8f46b985" kind="function"><name>PlayBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a68be5b8f086622eb76e2a463aca4353d" kind="function"><name>PauseBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a322dc783c52d7aff74a1b17b78338fba" kind="function"><name>StopBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a6ee458dcbd0e6707ad2e927b72e27b43" kind="function"><name>ResumeBGM</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1ae3484b09705c20cb60c7d9251613bdf0" kind="function"><name>OnBGMValumeChange</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a0ce675f791b82d4ad6a191672e4803c9" kind="function"><name>OnSEValumeChange</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1acc75be9bf50aa87174a50dd12ffb58f4" kind="function"><name>PlaySoloSE</name></member>
+    <member refid="class_lit_framework_1_1_audio_manager_1a88fd1e8928b5b3b775f7b9cca006ea95" kind="function"><name>LoadAudio</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4" kind="class"><name>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</name>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a69fa1f262a61fad4769df25c933d7698" kind="variable"><name>_allUnitPool</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1af7f0c2f071c49db3de30e9c5faf1e2f3" kind="function"><name>Take&lt; T &gt;</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a1ddb9a14f688ef468386cab0ff719814" kind="function"><name>GetGroup&lt; T &gt;</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a89eab635d75bbc52bf1e4230852e6677" kind="function"><name>CreateUnitGroup&lt; UT &gt;</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4" kind="class"><name>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</name>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a938a39b92622421fb49badd54561ec33" kind="variable"><name>template</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ae71ddb455afc4087fc8eef722eec0c44" kind="variable"><name>idleList</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a89ea66734ce561b94ad043d31208372c" kind="variable"><name>workList</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a18a5b31c54e2a1c3e76810bec2fa6bd5" kind="variable"><name>createdNum</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a116ba8877324bf36772f24acd7cffd9a" kind="function"><name>BasePoolUnitGroup</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a372ed1e10d703000148436d7ff93992b" kind="function"><name>TakeUnit&lt; UT &gt;</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a832517031abb2050f7a7dbd2787047df" kind="function"><name>RestoreUnit</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a09d89df969999e4f3f204c976deb3314" kind="function"><name>SetTemplate</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ab836ab3a45e2fa1b1457639abe70c7aa" kind="function"><name>OnUnitChangePool</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1aff3448b1915fed522bbf7ff64563abc6" kind="function"><name>CreateUnit&lt; UT &gt;</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_mono_1_1_base_u_i" kind="class"><name>LitFramework::Mono::BaseUI</name>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a4ec2cea9fc493d893a114192cd5b969e" kind="property"><name>IsShowing</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a0f953d8f4ff7dcefdd35e88f103f62ce" kind="property"><name>CurrentUIType</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a4e85b3744628ece6167dd50f69f6f495" kind="property"><name>IsStarted</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a24ea4de0a835ab9ef639d683fe80adc8" kind="property"><name>AssetsName</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a8d57dc4768bfdd87ef4214b862fd327b" kind="variable"><name>_uiType</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1ae4189d1bdc31d0bb7d37fd3177359c13" kind="variable"><name>_waitForStartFunc</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1ac5a7a9c5ca47143d4c93f122ae75ac2f" kind="function"><name>Show</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a732795e65847e84f3347ec1f0e3fe9f0" kind="function"><name>Close</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1ace329cec957d0a2cb53160c3283ead0b" kind="function"><name>OnShow</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1addd170dce573451cb8761dc827708556" kind="function"><name>Dispose</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a7f05c1628e0ef062649434c64a28deb1" kind="function"><name>OnAdapter</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a87e17f5717acd85b60809a95289fecab" kind="function"><name>OnAwake</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a7a168ddff5d5d10135114286778560d4" kind="function"><name>OnEnabled</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a968528d5f5f1a1b87c3e7b5c5764d359" kind="function"><name>OnDisabled</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a65c2c8a343c22993d790b1305b6b5e63" kind="function"><name>OnStart</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a744555dd99ed01f74bee07a0ca91d124" kind="function"><name>OnUpdate</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a966aa0948417e937a97eed5c605c8faa" kind="function"><name>OnBackPushed</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a5c3c02b48e97b0c7b40ca26d6f8fa415" kind="function"><name>DoDestroy</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1ac3ac1f2468d2b41bfeab07ff71d9cc5d" kind="function"><name>Awake</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a24ad50b7b6b183e18eb7e267c27780f5" kind="function"><name>Start</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1ac522a611ab59a6e89e556c2c74f9a63e" kind="function"><name>OnEnable</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1aaad4d60f86d7f574fccfe5ad2aaeecc6" kind="function"><name>OnDisable</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a479ed60b7d41e3817a1b9fc3445bf38c" kind="function"><name>Update</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_base_u_i_1a4aac1ee8dbd012f31a2892fc473778ea" kind="function"><name>IWaitToOnShow</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i" kind="class"><name>LitFramework::HotFix::BaseUI</name>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a1e3324db9f308384f77f9754edd46789" kind="property"><name>IsShowing</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a6039c44098126ccc1ad45b7d7514fddd" kind="property"><name>CurrentUIType</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a36e16e16c794d41806dd0e15c308221d" kind="property"><name>GameObjectInstance</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1aa5e0b786f21dc3f221c5c2af64ef2e67" kind="property"><name>AssetsName</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a7b9395ff6a7e72100a5c082856292ef5" kind="variable"><name>_uiType</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1adc5c10f5210dbcd020928b6d6e979d5c" kind="function"><name>Show</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1ac4e737f272c0d146e0eda5872004234a" kind="function"><name>Close</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1ad370aac938035d8673df13a0398b6f2c" kind="function"><name>OnShow</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a2d4652e5d4cdfae6ec5a77ea22a5eb3d" kind="function"><name>Dispose</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a0d785a6e9074b6b91d85669adf0a3d5f" kind="function"><name>OnAdapter</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a444fad2c0df7f3981b26db685ebec463" kind="function"><name>OnBackPushed</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a7e4a379a9d1babbd33ee86c8d5279443" kind="function"><name>OnAwake</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1a5c6cdc0a155854e73a7c9d9900eaa515" kind="function"><name>OnEnabled</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1accf89a73b9319548c296f6eabe1e3c30" kind="function"><name>OnDisabled</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1aad527ff6e1343858f5579f5f5005e68c" kind="function"><name>OnStart</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1ab61d9de2c1fa0246cad3bdce5d15c131" kind="function"><name>OnUpdate</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i_1aa7dc577464d68757202b9ce415bff6c4" kind="function"><name>DoDestroy</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser" kind="class"><name>LitFramework::EditorExtended::CSVParser</name>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7d" kind="enum"><name>EnMethodType</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da4ee29ca12c7d126654bd0e5275de6135" kind="enumvalue"><name>List</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da3beb75d1563ebc22253341be4ce57f44" kind="enumvalue"><name>Dictionary</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abb5091313a9154bab7fceea2664253fe" kind="variable"><name>description</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae76a2cdd8d94ccca05ca3e974c7d4052" kind="variable"><name>attribute</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abd38600eb070b418f02094bc69adcb95" kind="variable"><name>type</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a60210e0ba0e0df6924edf9ccd715d3d1" kind="variable"><name>ClassName</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a141198894c4005ca7252d0c07f58e114" kind="variable"><name>spaceName</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a9c308a2bc70be71f058556ddcd60594e" kind="variable"><name>CSString</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae9622ceb6558b730c48f148ed04351e5" kind="function"><name>CreateCS</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1e6e1f0e92bc538ee89dcfa01991f075" kind="function"><name>CheckCsv</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a3122f68f45e68242f54ab8f775ca89fc" kind="function"><name>AddHead</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ab39447260f8d218066cd7602a46749f7" kind="function"><name>AddTail</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a55056901d017c833e8e35a484c578eaf" kind="function"><name>DicConvert</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1acefb11fa9f08d294d73238e914cf0f9d" kind="function"><name>CheckEn</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a0349102a7bc54a3b9f2aac7d2e63d16e" kind="function"><name>AddBody</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1392c475ecd412b21e38a47d3e94b792" kind="function"><name>AddParseVector3</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a14b59d166c8adfec780d52686fb6d9ba" kind="function"><name>AddMethod</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac400af2ea7d36f10be30cccf992a6904" kind="function"><name>CheckStringType</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a129999fbb75ca49d7602e7bbc0d84368" kind="function"><name>GetFomatedCS</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae5f9bebc664b033f2de7865a6887f5aa" kind="function"><name>ParseBaseType</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader" kind="class"><name>LitFramework::EditorExtended::CSVReader</name>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1ad17f2c02739154a6a59f926c10cec9b8" kind="variable"><name>csvData</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1a70845204166d78f8e275a898ab44114a" kind="property"><name>Row</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1a8eb073b21887c8a58f156ef21ff18e20" kind="property"><name>Colume</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1a0afba871b1749aa4a880b9edb91771b1" kind="function"><name>CSVReader</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1a9c7776ca498890d0aea6981f3e4791f3" kind="function"><name>GetRow</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1abd6716abee54db1ff37485b44bded8c1" kind="function"><name>ParseCSV</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader_1abf68f5fe17f9ead292b02638a743cfa2" kind="function"><name>GetData</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer" kind="class"><name>LitFramework::EditorExtended::CSVWriter</name>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1ac117a736c577ff3f84f3a94d7b569de9" kind="variable"><name>csv</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1ae61bd56ec29798a8c49e98dc985f7574" kind="function"><name>CSVWriter</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1ad7287b0f25aabe0050797efb990b1f07" kind="function"><name>CSVWriter</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1a395ab3a8e0e4fca25bf9831c9ed56965" kind="function"><name>Write</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1ae322210315aa72f1eb3d2df8db359cdd" kind="function"><name>AddRow</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer_1ae4779fcc461b0c56d7fc001bb784958d" kind="function"><name>ToString</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_utility_1_1_document_accessor" kind="class"><name>LitFramework::GameUtility::DocumentAccessor</name>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1aac8918032c4ccf9a4912873e93f53790" kind="variable"><name>_lock</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1a5b89bb6b258fc85999b42bba0a0b6ec3" kind="variable"><name>ReadTextAdditionalCondition</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1a357cb0e02f4e884474bd056a242becc2" kind="function"><name>OpenText</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1a42fb7c9eb06a0d2afa6277f3e58cbe72" kind="function"><name>SaveText</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1afce4e8744b70f62fb3eb99b887ee151d" kind="function"><name>WriteFile</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1afe9e0b4590e53754784aaab67c39513c" kind="function"><name>ReadFile</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1a5f030b6a1a41ce6eaa5806f6e6686a90" kind="function"><name>WWWLoading</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1ae914b02a077b3fb17f6d477476b6651d" kind="function"><name>WWWLoadingWithWaiting</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_document_accessor_1a15430ec5727d65e1790a451f1556ada0" kind="function"><name>SaveAsset2LocalFile</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention" kind="class"><name>LitFramework::EditorExtended::EditorMenuExtention</name>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1af946b1156f31d732c48256933f89ec8b" kind="function"><name>CsvToCs</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a41bf398eeda8eec90ebcc8542a979df9" kind="function"><name>XlsxToCSV</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a01056900ac263e0960d4207b256a5d19" kind="function"><name>CopyToUnity</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a6672759da799850b086984394a64a398" kind="function"><name>CreateCSFile</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ac959e3d70b24d3d78e0a5c0d42004ec5" kind="function"><name>CreateCSVFile</name></member>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ad7f2d0755a326718d2c7988742046477" kind="function"><name>XLSXTOCSV</name></member>
+  </compound>
+  <compound refid="class_folder_copy" kind="class"><name>FolderCopy</name>
+    <member refid="class_folder_copy_1aaf931bfbe43dbe1ac835179c7a7f946d" kind="function"><name>CopyTo</name></member>
+    <member refid="class_folder_copy_1aff64a1df30737d4a0f7926ba3d781467" kind="function"><name>MoveTo</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_fsm_context" kind="class"><name>LitJson::FsmContext</name>
+    <member refid="class_lit_json_1_1_fsm_context_1a4482628e49602af88c40ba6619eaed6c" kind="variable"><name>Return</name></member>
+    <member refid="class_lit_json_1_1_fsm_context_1af2d890ab6853475d1f50ea100a6bc705" kind="variable"><name>NextState</name></member>
+    <member refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" kind="variable"><name>L</name></member>
+    <member refid="class_lit_json_1_1_fsm_context_1a5047c8c16775363143864daff807f9b0" kind="variable"><name>StateStack</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller" kind="class"><name>LitFramework::GameFlow::GameFlowController</name>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1ad27e77299a2c8fa9abc508fd706dd6ec" kind="variable"><name>_sceneLoadMng</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1abbfa5181946f20950c33bcd7637e0dc2" kind="variable"><name>_asyncOperation</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1adbc5b4439bc34f220da6b6c434789716" kind="variable"><name>_iUIManger</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1a0db44725595a952866980201f67c0320" kind="function"><name>GameFlowController</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1a6de6f35c6478540de6239371fef89fd8" kind="function"><name>ChangeScene</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1a508a53b22a289b2da9709c857877b746" kind="function"><name>DoDestroy</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution" kind="class"><name>LitFramework::GameUtility::GameViewResolution</name>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a126cae58ce1a813a36a5adb7bc779f0c" kind="variable"><name>_unityCamera</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a10b73c16f3337ca40e34cd76da9ad661" kind="property"><name>UnityCamera</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a9f68630caa4534510ed4cc8c5d9568e8" kind="property"><name>ScreenCamera</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a41ad5c10cb6e7b7bb1d6f036cf44bff1" kind="variable"><name>Editor__getGameViewSizeError</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a3e4a941a30a95a19a2c93afcb0a48557" kind="variable"><name>Editor__gameViewReflectionError</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1a1d0ecc3241336de9ba33b1e0bcf89eaa" kind="function"><name>GetScreenPixelDimensions</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_game_view_resolution_1abe8d0a14bb94ab094fcd2eb9e0b3e3c9" kind="function"><name>Editor__GetGameViewSize</name></member>
+  </compound>
+  <compound refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" kind="interface"><name>LitFramework::UI::Base::IBaseUI</name>
+  </compound>
+  <compound refid="interface_lit_json_1_1_i_json_wrapper" kind="interface"><name>LitJson::IJsonWrapper</name>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a925f398e88ca57fb7af8688d5373313d" kind="property"><name>IsArray</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a673cd6687d16458f5ba2c29495c2e32a" kind="property"><name>IsBoolean</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a591409aa66872df2ff74b6dff4d731ec" kind="property"><name>IsDouble</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1afa4035de99001ecc371e3bbbf25a843a" kind="property"><name>IsInt</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a36245e485c47fdbd6df20557728ea104" kind="property"><name>IsLong</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1aa733cc8aa5a59d2c9f1d49516cea3c83" kind="property"><name>IsObject</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1ad7cb2ed8581ddc80538306574b78b19e" kind="property"><name>IsString</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a5858785575ed9e67ebd52472e05040c8" kind="function"><name>GetBoolean</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a3807ea9ecb5e401906f92bd9931ad6ce" kind="function"><name>GetDouble</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a8e9c32a33081593d10c915e72477028b" kind="function"><name>GetInt</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a4e67f5e9104e675730ce5c753d818f1e" kind="function"><name>GetJsonType</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a8483c8c0792eccb567dff819d41ff04c" kind="function"><name>GetLong</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1aa9c0a755b8d6d0f1bae91cbfbcde2494" kind="function"><name>GetString</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a876a61379c4cb6029f815c2e11683254" kind="function"><name>SetBoolean</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1adef6d613da35e09346b453f012f35581" kind="function"><name>SetDouble</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a732d79e453de3305e9ac766615c7ded4" kind="function"><name>SetInt</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a5c6b0aa4e1e1a7f397e5328cbe15039e" kind="function"><name>SetJsonType</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1a5dbe90e107597a8e51d7dfc8c988fe6f" kind="function"><name>SetLong</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1ab6ca92789ee0738754dea5e01893b2fc" kind="function"><name>SetString</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1ad26b65434a18cb944f932b5871fb81f6" kind="function"><name>ToJson</name></member>
+    <member refid="interface_lit_json_1_1_i_json_wrapper_1ac8a9a416706837b8e9a65181c2fe3831" kind="function"><name>ToJson</name></member>
+  </compound>
+  <compound refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_manager" kind="interface"><name>LitFramework::UI::Base::IManager</name>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_manager_1a2c7679738fa6f3dca6b7e0bfe650993b" kind="function"><name>Install</name></member>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_manager_1a9e14ef8025f1f07e5dd2d90a8122b045" kind="function"><name>Uninstall</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_input_1_1_input_control_manager" kind="class"><name>LitFramework::Input::InputControlManager</name>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a7997afe81344334afd9df2771b850e08" kind="event"><name>EscapeCallBack</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1aab3177c60a5e29e90ba917747e832c44" kind="event"><name>TouchedContinuePressCallBack</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a7800d9074249449f84ad30e5a3055b16" kind="event"><name>TouchedOnUICallBack</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1adf6ce3379a5c2bb5c294517528d9607e" kind="event"><name>TouchedBeganCallBack</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a8ae4e05c6ffe78fbb231c284ea0679db" kind="event"><name>TouchedMoveScreenPosCallBack</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a2a8bf1237d4579700d7e56e0329225b7" kind="variable"><name>PLATFORM_ANDROID</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a8108a071f049de2daa69f82f88535c3c" kind="variable"><name>PLATFORM_IOS</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1afd57d83916d801004fc69b9e8d1d4a10" kind="variable"><name>PLATFORM_WINDOWEDITOR</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a76ee15463dddb33f16b91a433b0122c4" kind="variable"><name>PLATFORM_IOSEDITOR</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a3872945fc56d61df924fd2763e27fc2e" kind="variable"><name>_currentPlatform</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a023308030d5b5491419e2b266e76795e" kind="variable"><name>_touchDirectionCalculator</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a662859e065b6697deff77fb177c69ee7" kind="variable"><name>_curPressTime</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a237d2afa0d4d365e2100e80d5d70029f" kind="variable"><name>PRESS_DOWN_SENSITIVITY</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1adb372d3aa2216cefd077eddb989afce4" kind="variable"><name>_isInit</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a3479d39d8fd133415f94c3bb13d97b3e" kind="variable"><name>_isEnable</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a9d34bfa3d42c2e3f86baf87e830ef7e2" kind="variable"><name>_touchResult</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a037a487f8fe8ce91ef01417094719fa0" kind="property"><name>CurrentIsOnUI</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1ad4b10a9793af470c3125c9226e08a774" kind="property"><name>IsEnable</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a5ff7d64c3d8d9f51dea5659b5924dc4c" kind="function"><name>Install</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a861bac5b70eeb671f6f8fb948729f044" kind="function"><name>Uninstall</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1ac19a8cbf505b7533c8e8291a05722602" kind="function"><name>Update</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a85f282e4bc7507cb714c16c35128000b" kind="function"><name>CalculateTimeByPressStart</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1a78065dda0b7f67833178b71153fba757" kind="function"><name>CalculateTimeByPressOver</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_input_control_manager_1aa4c8cc5da2cc54afd372a86e0aa8da2b" kind="function"><name>EscapeBtnClick</name></member>
+  </compound>
+  <compound refid="interface_lit_framework_1_1_lit_pool_1_1_i_pool_unit" kind="interface"><name>LitFramework::LitPool::IPoolUnit</name>
+    <member refid="interface_lit_framework_1_1_lit_pool_1_1_i_pool_unit_1abc12f8b54d9166ce6c6b824901ae793c" kind="property"><name>State</name></member>
+    <member refid="interface_lit_framework_1_1_lit_pool_1_1_i_pool_unit_1acbf1e00ca00c14891305cdd072c0645e" kind="function"><name>SetParentList</name></member>
+    <member refid="interface_lit_framework_1_1_lit_pool_1_1_i_pool_unit_1abc63fee10f08b28e87d53356f109cc00" kind="function"><name>Restore</name></member>
+  </compound>
+  <compound refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" kind="interface"><name>LitFramework::UI::Base::IUIManager</name>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1aa8faa2658192a22a884c5f875d300a40" kind="property"><name>UseFading</name></member>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a673e1d93c684e00cf6f7467160f47bd8" kind="function"><name>ShowFade</name></member>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a3b05fc3dbee52dba1e90a1523206324e" kind="function"><name>HideFade</name></member>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1ad846c7dd51edf6a1382eb60fde75f516" kind="function"><name>Close</name></member>
+    <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a534a07b1e8f448c93c6bdfeb48b78b81" kind="function"><name>Show</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_data" kind="class"><name>LitJson::JsonData</name>
+    <member refid="class_lit_json_1_1_json_data_1a82ade31744b50dfb217a744fc601472e" kind="variable"><name>inst_array</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa39cde8bcf719b031b4fe45fa94524e9" kind="variable"><name>inst_boolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1ac7647dd86b8a172c7c593a59bec21615" kind="variable"><name>inst_double</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa5113521d47809acb4c3e49da7b0d939" kind="variable"><name>inst_int</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aaf1fdc49318504136bcd55cfd16128dc" kind="variable"><name>inst_long</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a536143f4f893bd7bcf636b15c283f2ce" kind="variable"><name>inst_object</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a9d08da228bc6667b3a4523185fe2b0f3" kind="variable"><name>inst_string</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a0c5c4882893d351a1a0c2531a6d1aed7" kind="variable"><name>json</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a38bc31246563a7c00af768714dc02467" kind="variable"><name>type</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a32d15e9144e8d757aac62e0128870984" kind="variable"><name>object_list</name></member>
+    <member refid="class_lit_json_1_1_json_data_1abf273c9acb67beb83823d62f02d7b198" kind="property"><name>Count</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a03385ab60b1854faab88bb151301de09" kind="property"><name>IsArray</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a7543adad4c8548e15ca60b5360fa60c6" kind="property"><name>IsBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1af232a01c34238a614f9f0b347af9957a" kind="property"><name>IsDouble</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a686313f83f38da3954938d8c820e95e3" kind="property"><name>IsInt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a249a0ca1152deaaa22c203a6023e43db" kind="property"><name>IsLong</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a91eca22459ae9926cdbfe81f31af48e8" kind="property"><name>IsObject</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa622181370234bd316f105b365997468" kind="property"><name>IsString</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a01cc571eda73d9000e9aca402c512aae" kind="property"><name>Count</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a270493f7cf1a2eb852abda5f0dd0b8b1" kind="property"><name>IsSynchronized</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a83cc28fe73630072e53a5fce9cb0c633" kind="property"><name>SyncRoot</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aee2f13af0b766eaeaeb4f84188964e51" kind="property"><name>IsFixedSize</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a7d7e6f02c4023196f7e679fd1e5ceef8" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a6811dd5dc2309c9e5688c79871858c8e" kind="property"><name>Keys</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5a0f492e95c6f64cd72ef0d4bbce3d13" kind="property"><name>Values</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a6ab5349f8b2bf92a206211e3aa110239" kind="property"><name>IsArray</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5516d1f65195891997af53588edab347" kind="property"><name>IsBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1abb492685a67a9e5c51bfb78df448d529" kind="property"><name>IsDouble</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5c08dfdb0d40ab317d8b79e412436d9f" kind="property"><name>IsInt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a3e10c79d2b350d4e88aa37a33942188f" kind="property"><name>IsLong</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a3c3da05a0710f980560714240d14c9b5" kind="property"><name>IsObject</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a82dc326be9acbf02fb030ed665d98964" kind="property"><name>IsString</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4db5466bdbcc4d5e218ba151d300532d" kind="property"><name>IsFixedSize</name></member>
+    <member refid="class_lit_json_1_1_json_data_1af759fe65a8d6101734258393afd99442" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_lit_json_1_1_json_data_1afe0d49c50b14fc697bfa60c990c28ef4" kind="property"><name>this[object key]</name></member>
+    <member refid="class_lit_json_1_1_json_data_1acf1272afd62e1c5bf630cc90043301a2" kind="property"><name>this[int idx]</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a603037a5e628bee3a7f8f98926e76b11" kind="property"><name>this[int index]</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a0655cb8e6cccf0aedc16b8604e72751c" kind="property"><name>this[string prop_name]</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4f0bdd533484344c61a089e17290f77d" kind="property"><name>this[int index]</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a6c44a549ab3fa5f94cb6687537ac9c3d" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a9b50678d43ffcc89ca5c343450a56507" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4a00de9ff17bcad8ea8d2245449d9f15" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1afb093f787bb377c9d79ed4bb92b98d85" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aff05241366f26bced9940633013acadc" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a02ed51a2bb9f35e6523a48944734cd88" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a64a0e9be298e80bcd14f7bb2fe4d1ac2" kind="function"><name>JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5b3bfb1ec8fc26721f24f523c9b4af3d" kind="function"><name>Add</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a9dea8bbd8b5c1b2b87728d48024e6872" kind="function"><name>Clear</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa6156c8317425278c9952aaf2cbf65ac" kind="function"><name>Equals</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a61485265a3b9b5cd248bd69c9d0774ff" kind="function"><name>GetJsonType</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a168548a7863872935e9d4c1d75762e35" kind="function"><name>SetJsonType</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a51094b57245fedf463efece6dc364687" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a04bf2ae3a69eae354fa70aa531813476" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa4bd4343b182faa1ecf081a2565445b7" kind="function"><name>ToString</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a2952df6c898ecaeb65862235f562b56b" kind="function"><name>operator JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a57cdbe139d89a4870ac287719b5fe8d3" kind="function"><name>operator JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a64864f2d856538028b327bea2b16f87d" kind="function"><name>operator JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a1cf5192366b87de3ba0486b50e0c8797" kind="function"><name>operator JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1af2146e6e3ffde031dd17702f466f6609" kind="function"><name>operator JsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a2675195c59fd6608d5d0781c8819cb85" kind="function"><name>operator Boolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a10ea495cba6dca18c3fec372e23f9d22" kind="function"><name>operator Double</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a297e9a58413c33a9537b43077ee4b758" kind="function"><name>operator Int32</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a40789a8be1689ecc22cf9228159e45b0" kind="function"><name>operator Int64</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a9da5f169ac10248aa4c319a8072f9415" kind="function"><name>operator String</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a80af18415601b1e6c4bfff4d427d3da6" kind="function"><name>CopyTo</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a535b23f8f01311cfd1b4fc7987867502" kind="function"><name>Add</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a61ebebf3fb0900bb2437ff5d80c475db" kind="function"><name>Clear</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a0e7266a10d6582053fe296e2337d3fcc" kind="function"><name>Contains</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a0ee2d85fd97292df81ee5d81d15d2a96" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4be7a4ac65f828c457031dfdb2ac0b32" kind="function"><name>Remove</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a296e0efd6fd8e51477912b20473eefb0" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5e19a6dad634c624445f04e23c6733bf" kind="function"><name>GetBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1ac022c891ad5864de738c59f7a46fe6b4" kind="function"><name>GetDouble</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a2b0813d592be53b2b403614a03fd7e7c" kind="function"><name>GetInt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aadf51f9badcc198a5db22a0382884c2c" kind="function"><name>GetLong</name></member>
+    <member refid="class_lit_json_1_1_json_data_1af6ec0c6d2525cab66235b0b697fddc06" kind="function"><name>GetString</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aec49907c2e7af2237eda30e7217d393d" kind="function"><name>SetBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a51925f2e6ad3ccefcc33c753048b4197" kind="function"><name>SetDouble</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a7107a36a98cc40050faf6326ba9d1585" kind="function"><name>SetInt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a2bc29eacb6600491cefa7cce0a481c2c" kind="function"><name>SetLong</name></member>
+    <member refid="class_lit_json_1_1_json_data_1ae4e0656a87b9d03b8509bd127ff4cfb0" kind="function"><name>SetString</name></member>
+    <member refid="class_lit_json_1_1_json_data_1adf87f298a4b5e1e83076c9d754378e65" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a5683a8dbfa867e2118c909ae0865568a" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_data_1af78823012033314df937b7193be1d19d" kind="function"><name>Add</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aed7c34643ab3ee4224c4c50f8884f992" kind="function"><name>Clear</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4b8f9aab5e8e0179542ae35b4e0230f3" kind="function"><name>Contains</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aba1c09c67b74e99363666603e34ffbe3" kind="function"><name>IndexOf</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a2d13db0eae87177330eda7084e1f6d37" kind="function"><name>Insert</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a4d16f0cce6ce48c02614ecf71e335cba" kind="function"><name>Remove</name></member>
+    <member refid="class_lit_json_1_1_json_data_1ac2a17b21cb08145258956a6b8b781f21" kind="function"><name>RemoveAt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aa5e24165e85840341fd0f7a49b3b3cc3" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aacc99fd5945269297e33f8a27fdf0842" kind="function"><name>Insert</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a456e2fd26e3c58310630c88aa2a1fd55" kind="function"><name>RemoveAt</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a3b6e02f2d4e02da647100948b3c3af9a" kind="function"><name>EnsureCollection</name></member>
+    <member refid="class_lit_json_1_1_json_data_1ab2fdf9183ace0ef5a08f027d15a75b12" kind="function"><name>EnsureDictionary</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a43c93ae5eae170d198b97227fdc84176" kind="function"><name>EnsureList</name></member>
+    <member refid="class_lit_json_1_1_json_data_1aea85ca44ddadb79dc47bde7c3da37950" kind="function"><name>ToJsonData</name></member>
+    <member refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" kind="function"><name>WriteJson</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_exception" kind="class"><name>LitJson::JsonException</name>
+    <member refid="class_lit_json_1_1_json_exception_1a4386137b2ee4a606556c0ea28dbee169" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1a6a048c13712e6d24951cb9462d816059" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1a103418dc7d40fcc398d3346d04182d72" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1a5be4d6bec9b75e103b86d4c14f7092d1" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1a0ba84f0a7ce0ec809469d230d5e07e8a" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1aa5d41f6b4dc0eec1ebee5f97afb0cac7" kind="function"><name>JsonException</name></member>
+    <member refid="class_lit_json_1_1_json_exception_1a361da4e0d32ea5509e05401d25d413f9" kind="function"><name>JsonException</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_mapper" kind="class"><name>LitJson::JsonMapper</name>
+    <member refid="class_lit_json_1_1_json_mapper_1a5209fc56980eecdd2f5cc4604a18222c" kind="variable"><name>max_nesting_depth</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" kind="variable"><name>datetime_format</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" kind="variable"><name>base_exporters_table</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" kind="variable"><name>custom_exporters_table</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" kind="variable"><name>base_importers_table</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" kind="variable"><name>custom_importers_table</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" kind="variable"><name>array_metadata</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a34840cbfe701e7dc4e21bf8819f286b1" kind="variable"><name>array_metadata_lock</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a92e7081766e02c898bae1434b4a04ee5" kind="variable"><name>conv_ops</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ac40ee6c25a76662354f9bf9a1b52413f" kind="variable"><name>conv_ops_lock</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" kind="variable"><name>object_metadata</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a093065cf81f8a7aa5a9c2ef5776612e6" kind="variable"><name>object_metadata_lock</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" kind="variable"><name>type_properties</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a84061ae9adfb283b2baf8d0cfa1ba54b" kind="variable"><name>type_properties_lock</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ac5a2ff9f983a63ab77e3f88442120b64" kind="variable"><name>static_writer</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1aeb74244ebfd32bfa5aa5ff76ddebf07d" kind="variable"><name>static_writer_lock</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" kind="function"><name>JsonMapper</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" kind="function"><name>AddArrayMetadata</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" kind="function"><name>AddObjectMetadata</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" kind="function"><name>AddTypeProperties</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" kind="function"><name>GetConvOp</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" kind="function"><name>ReadValue</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a8b5f1c7dd042ab7c8c58e1700590785e" kind="function"><name>ReadValue</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a6638a736cd3b79061996c3ab47fee015" kind="function"><name>ReadSkip</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" kind="function"><name>RegisterBaseExporters</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" kind="function"><name>RegisterBaseImporters</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ad4ab96617d3805408cf2f6d868b2f1f4" kind="function"><name>RegisterImporter</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" kind="function"><name>WriteValue</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a238546bde151c5b8f7a9d311b260187d" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1af5a726451e61ddf8cc7ac239b9e5b26d" kind="function"><name>ToObject</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a8535f2b6a430fed3cf732ca01c33d831" kind="function"><name>ToObject</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a2af4c03e83f9e1dc04c292449dfd5c02" kind="function"><name>ToObject</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a26503ae1437dff40b46e654710261569" kind="function"><name>ToObject&lt; T &gt;</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a27c13a03714e7bc42cbe50929755a650" kind="function"><name>ToObject&lt; T &gt;</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a177e8eb25f92969172eee9f67da2da4e" kind="function"><name>ToObject&lt; T &gt;</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" kind="function"><name>ToWrapper</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ae9dc84400d287372e4906ce7f3602177" kind="function"><name>ToWrapper</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a6bbb88387fb7e0d6df09bd75fdf5b898" kind="function"><name>RegisterExporter&lt; T &gt;</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" kind="function"><name>RegisterImporter&lt; TJson, TValue &gt;</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1ad4a3e20cf8404d05289286bf19a736eb" kind="function"><name>UnregisterExporters</name></member>
+    <member refid="class_lit_json_1_1_json_mapper_1a176492a0dd81627ad1e6c5a7c7a1e22a" kind="function"><name>UnregisterImporters</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_mock_wrapper" kind="class"><name>LitJson::JsonMockWrapper</name>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a150e906c93d489146746bf46a9cba084" kind="property"><name>IsArray</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a253c5a904b578196c1f13a43a1353275" kind="property"><name>IsBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a7209451ccceeee72dd416f4fc0dd9e5e" kind="property"><name>IsDouble</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a0f0bef561fcbf75d826a277db7828371" kind="property"><name>IsInt</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a15fd02e24c6f577346960f380b30c07f" kind="property"><name>IsLong</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a0e0ca4781655113b5e0980eed62500b7" kind="property"><name>IsObject</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a3cefed68b82b0a9b6b66ce886d69e623" kind="property"><name>IsString</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ad6b157cc682dcf0462808428193df884" kind="property"><name>IsFixedSize</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ad28436c3822ceb3e258a29b6c11d5902" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a19115ab6895165a4f2390e62c15b3d18" kind="property"><name>this[int index]</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1af97e153599f7b5fbd2cae149debde94e" kind="property"><name>Count</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a136fc55a5a5ac66764b2649668c16e6c" kind="property"><name>IsSynchronized</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a319a99114fa4e877db3610631be9ef22" kind="property"><name>SyncRoot</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1adf5ca6cdaba55da169efcb010ba84529" kind="property"><name>IsFixedSize</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a4fcd33f50fd51fe99018ef6ac75922d8" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a96e1c873db9cc4197e7961500a0ce98c" kind="property"><name>Keys</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ae5afeb51622cb3d18fe14ab742ed3538" kind="property"><name>Values</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a23367a560bd276ad348f5016addb52e7" kind="property"><name>this[object key]</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a8a3ec1d3be1654e7fb5daab38db9363f" kind="property"><name>this[int idx]</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a2385f94c3c883d81243d2253be529d23" kind="function"><name>GetBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ad4c96aa9b9be61a69fd8c429cfc4a1e5" kind="function"><name>GetDouble</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1aad18a6ea53502746e56464426c4016fd" kind="function"><name>GetInt</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a871dccb462dd0fea5e1aec107f457714" kind="function"><name>GetJsonType</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1adae5bf6ec1e5b5689ff337c1bbadd365" kind="function"><name>GetLong</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a21a6cb097704194b65170f8017418d4a" kind="function"><name>GetString</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1adcd91bf768f33358c05876a6418a137a" kind="function"><name>SetBoolean</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a684096f4136c86dcb0e18c250d7858e5" kind="function"><name>SetDouble</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a0fd28120fba46663d91fb5e73cddbe89" kind="function"><name>SetInt</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a3f176aaab41998ba0bc4302ee31189ac" kind="function"><name>SetJsonType</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1aef42273b6b601a61d9bac3f95a51e81e" kind="function"><name>SetLong</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1acb55337a4a365e9908a5b0fa339600a7" kind="function"><name>SetString</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ade44a1bd707a9af1bd4769b00eaf8abc" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a405c8000c7f3e9bd5be5bd60cb025744" kind="function"><name>ToJson</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a58a7637883bbea7a841082a4a8b457f4" kind="function"><name>Add</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a2be8c324d9fcb5abb03f2deafd22831a" kind="function"><name>Clear</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a478614274396263fcee8718c036467a4" kind="function"><name>Contains</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1adf9b2b0f19032afd00523ebfc4c14aec" kind="function"><name>IndexOf</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a0d032a9705e583bca7e011d1e73192ff" kind="function"><name>Insert</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a3b2c5a8df5c576c1e09c35caa857ed32" kind="function"><name>Remove</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1abc557ed2b0a16354c646bfa9795d84ad" kind="function"><name>RemoveAt</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1acd1b1368d511ca18578f9a4ac9a1b14c" kind="function"><name>CopyTo</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a72368bbd96e5932e9f1d59a2eece4997" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a68f6cd6ebb11a2c939d36bbfb316bdfc" kind="function"><name>Add</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1af24eb2432c994175525f96e86b117ffb" kind="function"><name>Clear</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1ab56728f7d64fed93fc912663b701dfda" kind="function"><name>Contains</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a081a823d12339a7f3f28eec1a19a29c1" kind="function"><name>Remove</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a726a191fc5c8a683a3f3433b771f25a0" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a5aeb60e582cfd1f4ed3c58fc84c7dfb3" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a6a978b3ae6f3d4a8ca4fee06785414bb" kind="function"><name>Insert</name></member>
+    <member refid="class_lit_json_1_1_json_mock_wrapper_1a0d58b7ac03d479a1a117083127ea1ed0" kind="function"><name>RemoveAt</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_reader" kind="class"><name>LitJson::JsonReader</name>
+    <member refid="class_lit_json_1_1_json_reader_1ae22f27b038c116a64ec6398b9ee43fae" kind="variable"><name>parse_table</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ae250349c53c3df3a83bb287a20fc5aac" kind="variable"><name>automaton_stack</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a892972b2fcdb4ef48f9d59447cae6db3" kind="variable"><name>current_input</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1afae3a8c1f1c34fd464acc1f726f3ca80" kind="variable"><name>current_symbol</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a0d431d096855f7a2053565f25fd1a099" kind="variable"><name>end_of_json</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a0125c27fa252ea10387d9dbd0d07c495" kind="variable"><name>end_of_input</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a9f32da6716f6c2a3abad02c89bbdbdff" kind="variable"><name>lexer</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1abd796d804651373e8127620014ff0568" kind="variable"><name>parser_in_string</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a45e140b2209da9fd308528e85e3b3333" kind="variable"><name>parser_return</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a94be990ea9e1446eba3a7f304317f957" kind="variable"><name>read_started</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ab73793208116f57d668d02dc11c36542" kind="variable"><name>reader</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a47a94887f264b95f733a010a97da03a0" kind="variable"><name>reader_is_owned</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a3265d923eca2459656defb2cb0b3f11f" kind="variable"><name>skip_non_members</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a4ee10fbf03529ea1720cffd84657b62a" kind="variable"><name>token_value</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a689b929708149fb149b48439c4ca39c5" kind="variable"><name>token</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ad999d20163921fda1857411b3996c404" kind="property"><name>AllowComments</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a807fa6b4a0ca649c3ca91e6c2c469425" kind="property"><name>AllowSingleQuotedStrings</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a8e87c357362dd1ad540728c3220ac026" kind="property"><name>SkipNonMembers</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a61af458ba0f6656fd61c4688d8f1c5ed" kind="property"><name>EndOfInput</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a096bd05543bac7ad2b8dc1b59cbb7ac1" kind="property"><name>EndOfJson</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a9b7e46b195218ece31d2190902630610" kind="property"><name>Token</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ab6e8456eb1dcb115030f1a92261ed366" kind="property"><name>Value</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1afad1644c2828f6ef6c0c0c1786f7ca86" kind="function"><name>JsonReader</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a60a8d57111d912f32d54a5cbb7dc6562" kind="function"><name>PopulateParseTable</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ae1518faf8885ad70e7788c7898444a91" kind="function"><name>TableAddCol</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ac3673ccf429cbe563073299cb25b15ff" kind="function"><name>TableAddRow</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a4f71d2f54afa64f2ed53c7e7e04b20d6" kind="function"><name>JsonReader</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1aed7e5781d8ba6fd9b041595159b39444" kind="function"><name>JsonReader</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a35e40ff5d51b55463d894449375d84b1" kind="function"><name>Close</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ac30e0d4d3a60604649c413c12c01cb5f" kind="function"><name>Read</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1ac20040d3cdb8f658b74d6fcafbd7f26d" kind="function"><name>JsonReader</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a52a244b7be17efc68b8ff56e738827ee" kind="function"><name>ProcessNumber</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a65da79edd7dc5449db8ed9f2936fdc06" kind="function"><name>ProcessSymbol</name></member>
+    <member refid="class_lit_json_1_1_json_reader_1a3b2bea8b5ff1dc9653c139514f687f75" kind="function"><name>ReadToken</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_json_writer" kind="class"><name>LitJson::JsonWriter</name>
+    <member refid="class_lit_json_1_1_json_writer_1a5f3a99bdefc1705b43c7c7190966593e" kind="variable"><name>number_format</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a27224a0b8f5abd13043690759d4be3cd" kind="variable"><name>context</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a8260a8437b3263bc0cf747b981af27b4" kind="variable"><name>ctx_stack</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1afb6107b16b9944ef2c3d585e31cf9f1f" kind="variable"><name>has_reached_end</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a127cf2503f34eb8feee50045c400edd8" kind="variable"><name>hex_seq</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a1c515a74b0428241f59ab5b7513ff9c2" kind="variable"><name>indentation</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1ac5b12f5728fc407ed27782f9e50023f5" kind="variable"><name>indent_value</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1ab5d0c54102c51496b5cb9893958aeea7" kind="variable"><name>inst_string_builder</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1aeef0046be10e2dba8f34b4f96f8a540a" kind="variable"><name>pretty_print</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1aaf3c9b15f9533b01a4f65a9de94754e4" kind="variable"><name>validate</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a4431e29634623101652fafa1e95b0eaa" kind="variable"><name>writer</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1acab03df49c881d5d547e0284634d3fac" kind="property"><name>IndentValue</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a14310445ddeccd8f5922e2b3b160886d" kind="property"><name>PrettyPrint</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a60132b41fd7fada959a086cb6a1ce1a2" kind="property"><name>TextWriter</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a19676de61acf1a4e232c41d982694442" kind="property"><name>Validate</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1aef85548e61ea8fea2047d06a05636a1b" kind="function"><name>JsonWriter</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a4d5e53a16b2741ac7cf1c6b90e3b24f3" kind="function"><name>IntToHex</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a4a4cc19074bbf7bdb08d826675a8be81" kind="function"><name>JsonWriter</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1aed9a66790d711d7d4169b5cfa2cb2f15" kind="function"><name>JsonWriter</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1acd7180ceebf172060fdb9cb0882bdd56" kind="function"><name>JsonWriter</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a412397db2ef2a7b251bb6c6969323e1c" kind="function"><name>ToString</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a113a1900e3b5098d8b5e3db52287bcb2" kind="function"><name>Reset</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1acb8665eab51bec093e75a0e47143962a" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1af151ddfa7427c2a40c9a0e4056476ae8" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a0f76ebe319067e0cc16398c832dd1b84" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a7b7d4beb737856e490310bbc71b92643" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a08d3a82052ada0bb8727a88d5c72c116" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a1eeea70d490dc83a6e90c97f91e2a8f9" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a018cd96b08f3c80c4ba10e42fa54eb46" kind="function"><name>Write</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a437978e514f661a22c94bf9f11ba4da2" kind="function"><name>WriteArrayEnd</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1ae364fa45b85eef77756fb807360ad9e7" kind="function"><name>WriteArrayStart</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a161fa383f9075d21feaa55206b6c2eb1" kind="function"><name>WriteObjectEnd</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1aa65b589083c46c7a358bc6fcc6926106" kind="function"><name>WriteObjectStart</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a422584d6fefd1dbe5bcd5d5f23f79ce7" kind="function"><name>WritePropertyName</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a0eee001b8439ab11e56d541bc13cbb79" kind="function"><name>DoValidation</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a174d70acfaacac6164652691a088bef5" kind="function"><name>Init</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a752bb13d0fb67aacaf34b7707f4d5856" kind="function"><name>Indent</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a3125cae8438f2058700e2a3382913a9c" kind="function"><name>Put</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1af743595271d02603bd24813b15c395d8" kind="function"><name>PutNewline</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a588daac9bb5080024aef61ab2e87afea" kind="function"><name>PutNewline</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a8a03a1c51b6abc241e4b3bb6ae6a21a5" kind="function"><name>PutString</name></member>
+    <member refid="class_lit_json_1_1_json_writer_1a980fc83a5f7e428a58bdcc8c513c57b5" kind="function"><name>Unindent</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_lexer" kind="class"><name>LitJson::Lexer</name>
+    <member refid="class_lit_json_1_1_lexer_1a16abb9d07cb6f10654b36ed0982b4004" kind="variable"><name>fsm_return_table</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ad688b78797d94e3a585b5d9ccf4eb9e1" kind="variable"><name>fsm_handler_table</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a1c3eac7f7048f6c78adacd9bbf06a4e1" kind="variable"><name>allow_comments</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aa9e6264d3d6a91e9105ee4f2e91d5622" kind="variable"><name>allow_single_quoted_strings</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" kind="variable"><name>end_of_input</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a3c3961b8d1040ee7f81a88fc5c9b5f35" kind="variable"><name>fsm_context</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" kind="variable"><name>input_buffer</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" kind="variable"><name>input_char</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aae46659b80212370eff6153619d1c323" kind="variable"><name>reader</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a89ea88921e55f4bd50b3958f1b04e126" kind="variable"><name>state</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a6208df7546c86ae13df2b8c1a1ce9d58" kind="variable"><name>string_buffer</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a37a682c179ce565f3c1a23f339be6b20" kind="variable"><name>string_value</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a7fc54f0e978f85e4d6b67e00ebe7e5e3" kind="variable"><name>token</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ab7730de3942da57da876784243e3466d" kind="variable"><name>unichar</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aed786601be4f9797a6356890fc0b45aa" kind="property"><name>AllowComments</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a0642ddf09159c117dbefbdbc4695b086" kind="property"><name>AllowSingleQuotedStrings</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a5db22c6d26058971e31c60877b62d27e" kind="property"><name>EndOfInput</name></member>
+    <member refid="class_lit_json_1_1_lexer_1af1c1347cf4899cf618aae8d4e8df887f" kind="property"><name>Token</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a58da446f8a685488219dee128a665bc7" kind="property"><name>StringValue</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a15efcafbd8887b62359eaeaf7bca9bfd" kind="function"><name>StateHandler</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" kind="function"><name>GetChar</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a4c9516fdb2e43d0fbed2f4e02508782f" kind="function"><name>NextChar</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ade31d9bb23b50bc6b1f91588cf0b073d" kind="function"><name>UngetChar</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a86fff54cd31a200245b9815f51111847" kind="function"><name>Lexer</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a9fd0a21e6333e336c5a6fb0434533dce" kind="function"><name>HexValue</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" kind="function"><name>PopulateFsmTables</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a55053093fd64ff31eb82ed17095af14e" kind="function"><name>ProcessEscChar</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" kind="function"><name>State1</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" kind="function"><name>State2</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" kind="function"><name>State3</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" kind="function"><name>State4</name></member>
+    <member refid="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" kind="function"><name>State5</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" kind="function"><name>State6</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" kind="function"><name>State7</name></member>
+    <member refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" kind="function"><name>State8</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" kind="function"><name>State9</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" kind="function"><name>State10</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" kind="function"><name>State11</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" kind="function"><name>State12</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" kind="function"><name>State13</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" kind="function"><name>State14</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" kind="function"><name>State15</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" kind="function"><name>State16</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" kind="function"><name>State17</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" kind="function"><name>State18</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" kind="function"><name>State19</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" kind="function"><name>State20</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" kind="function"><name>State21</name></member>
+    <member refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" kind="function"><name>State22</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" kind="function"><name>State23</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" kind="function"><name>State24</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" kind="function"><name>State25</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" kind="function"><name>State26</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" kind="function"><name>State27</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" kind="function"><name>State28</name></member>
+    <member refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" kind="function"><name>Lexer</name></member>
+    <member refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" kind="function"><name>NextToken</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_utility_1_1_lit_tool" kind="class"><name>LitFramework::GameUtility::LitTool</name>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a24e8ce47e85194bbd29bda159bb12902" kind="variable"><name>monoBehaviour</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac7c0775fd2bf9033cb4aadd44da7d567" kind="variable"><name>_waitSeconds</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac331d7fc52c2569fdc2ba0699b177398" kind="variable"><name>_waitUntil</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a8a9dd7d0ac79a4b7b71eb67bc5a3bf59" kind="function"><name>DelayPlayFunction</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ae34cdd74dc7f914ba618b1481deda4dd" kind="function"><name>StopDelayPlayFunction</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a11ee0d3e0b2c8efc1569623080297a9e" kind="function"><name>WaitUntilFunction</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a82935dee06e538df47565da39f5f6bb5" kind="function"><name>DelayFunction</name></member>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a05622a3cbcf8eca761399b3008104735" kind="function"><name>WaitUntilFunction</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" kind="class"><name>LitFramework::GameFlow::LoadingTaskModel</name>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a346b39605d80d8ab6fd1bad2744d3472" kind="variable"><name>_defaultFuncTrue</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a48f288bd53ce2fe64193a1f8ba46ee09" kind="variable"><name>_taskDic</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1ad825b27742f8c873d6eadb17b844aad5" kind="function"><name>LoadingTaskModel</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1abc357766546bcae73eccb8632bd88b3a" kind="function"><name>AddTask</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a46fac8be5dc02b897d3bb039b9121995" kind="function"><name>TryGetTask</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a6f8885fcd875de0a6a69fd94c710e13b" kind="function"><name>ClearTask</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a10b94abf03ffb0ba0273ad0cca19c6e5" kind="function"><name>DoDestroy</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" kind="class"><name>LitFramework::GameUtility::MonoForCorouting</name>
+    <member refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting_1a7293cd861ba98fb028766c6a0616f583" kind="function"><name>Awake</name></member>
+  </compound>
+  <compound refid="struct_lit_json_1_1_object_metadata" kind="struct"><name>LitJson::ObjectMetadata</name>
+    <member refid="struct_lit_json_1_1_object_metadata_1a4cd0d197b321518ac7f0b45460037f6d" kind="variable"><name>element_type</name></member>
+    <member refid="struct_lit_json_1_1_object_metadata_1acc1bd4bc7ddacde865262e5fc36f0260" kind="variable"><name>is_dictionary</name></member>
+    <member refid="struct_lit_json_1_1_object_metadata_1a89882ca26bf0e3ce716eed678f9e194b" kind="variable"><name>properties</name></member>
+    <member refid="struct_lit_json_1_1_object_metadata_1a1dc9c2cd23937ab36fb875051c978549" kind="property"><name>ElementType</name></member>
+    <member refid="struct_lit_json_1_1_object_metadata_1aed8c7b51b7985e5ed33fc3987c3a33a1" kind="property"><name>IsDictionary</name></member>
+    <member refid="struct_lit_json_1_1_object_metadata_1aa1ee1d3d3388cab8af6719c290c66d22" kind="property"><name>Properties</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_ordered_dictionary_enumerator" kind="class"><name>LitJson::OrderedDictionaryEnumerator</name>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1ae5589ab8580bdb79479e60d417390bfa" kind="variable"><name>list_enumerator</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1a88ba8bddb3288acbc0a74c8fea281cd5" kind="property"><name>Current</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1aff263cde4b94c59422986510849822c3" kind="property"><name>Entry</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1a246a0658aedfae66852e5aa4f1e3601c" kind="property"><name>Key</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1a572d094396553beb0859725013dc879e" kind="property"><name>Value</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1a34b876dc13d7b214b272abaeaf131a40" kind="function"><name>OrderedDictionaryEnumerator</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1ae388296df343746c1b9b53da219d4785" kind="function"><name>MoveNext</name></member>
+    <member refid="class_lit_json_1_1_ordered_dictionary_enumerator_1a0cb2f112b17ff05b809085333861b0b4" kind="function"><name>Reset</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_pool_manager" kind="class"><name>PathologicalGames::PoolManager</name>
+    <member refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kind="variable"><name>Pools</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_pool_manager_utils" kind="class"><name>PathologicalGames::PoolManagerUtils</name>
+    <member refid="class_pathological_games_1_1_pool_manager_utils_1a5e46c0c1d3f4f96c757578c7482dbe3a" kind="function"><name>SetActive</name></member>
+    <member refid="class_pathological_games_1_1_pool_manager_utils_1a70d6b43dd9b638d1eab56d69a9ec9e4a" kind="function"><name>activeInHierarchy</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_prefab_pool" kind="class"><name>PathologicalGames::PrefabPool</name>
+    <member refid="class_pathological_games_1_1_prefab_pool_1aee34304a32370cb237414cebec5ddd5a" kind="variable"><name>prefab</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" kind="variable"><name>preloadAmount</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a0c89d377a85917e63e827dfa6dbb6147" kind="variable"><name>preloadTime</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a9a7b3d353943c58dfbc5965ce1020022" kind="variable"><name>preloadFrames</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a5d567af6a04b27c2bcd6f3ee7a9a2257" kind="variable"><name>preloadDelay</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" kind="variable"><name>limitInstances</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1abff57f5d9c60c270fe38cede3f214f40" kind="variable"><name>limitAmount</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1aa9a449c279d63ac49acfb151c0ca5f85" kind="variable"><name>limitFIFO</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a9ab1d5c333a4e210684a212bfb89f5c9" kind="variable"><name>cullDespawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" kind="variable"><name>cullAbove</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a632a5abce4698cf9e8be123620ef5006" kind="variable"><name>cullDelay</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a093b8a566a3d26e74c791622ecaa86c6" kind="variable"><name>cullMaxPerPass</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1aa0f3bef55aa3efe141cf38778cb01af7" kind="variable"><name>_logMessages</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a7b490c3a1e99c792af941e7a5a62af4c" kind="variable"><name>spawnPool</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a32da6e6ac8711bd935f51ecea7324e05" kind="variable"><name>prefabGO</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a5cc9db5a9fd14862782b56b8ffe3149e" kind="variable"><name>_spawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" kind="variable"><name>_despawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" kind="property"><name>logMessages</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a8cdeb1412397050c8cd165b2f680d1a2" kind="property"><name>spawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a0e01835909e20d5d6d0276fd4133a8f3" kind="property"><name>despawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" kind="property"><name>totalCount</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1aa8e39fc54738578f8eed8b94d4ec937e" kind="property"><name>preloaded</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a2abdbf32d2855fbbd3fc3038d7a2027a" kind="variable"><name>forceLoggingSilent</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a7dc79c2d56bec5b65c29cedb853fd69e" kind="variable"><name>cullingActive</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a68fc501b500f18baa608b1dceccff99f" kind="variable"><name>_preloaded</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a2abcd06edf81b285bcae619413c7626a" kind="function"><name>PrefabPool</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1ab504d2b0877b6c7577e09697ee421d4a" kind="function"><name>PrefabPool</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1ae7be9f06e1bd3ec0a2da86a87faf3888" kind="function"><name>SpawnNew</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" kind="function"><name>SpawnNew</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1acdcfe526a4786e5b97e821d763c97896" kind="function"><name>Contains</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a90f9a4cbe70ea5878e00059d0845f3ae" kind="function"><name>inspectorInstanceConstructor</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1abb5df557d913109ac355f8057f8b4af7" kind="function"><name>SelfDestruct</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a8b4468914919f5a0f2f26ac65e060c8a" kind="function"><name>DespawnInstance</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" kind="function"><name>DespawnInstance</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" kind="function"><name>CullDespawned</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" kind="function"><name>SpawnInstance</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a717e77a639f58529a2fe358aedec9d7c" kind="function"><name>AddUnpooled</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" kind="function"><name>PreloadInstances</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a983f11343d2e79ff745b714ea9802de6" kind="function"><name>SetRecursively</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" kind="function"><name>PreloadOverTime</name></member>
+    <member refid="class_pathological_games_1_1_prefab_pool_1a2cd741e419caff38e6ff25fd1cb353a9" kind="function"><name>nameInstance</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_prefabs_dict" kind="class"><name>PathologicalGames::PrefabsDict</name>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a2d5a637f57f93706b963f30da498979f" kind="variable"><name>_prefabs</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a56587bedb5116b9ebb6ff61e56a3003d" kind="property"><name>Count</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a0a708de79050f0e16f2d7f832e403265" kind="property"><name>this[string key]</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a20f2ff87a20fb0a5ba2db2583ec9755c" kind="property"><name>Keys</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1acca3f3ffa2c9ea1baee1cc8f4e824d90" kind="property"><name>Values</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a13c8ba77c394a097db992da77178b64a" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a9dcb14506ce31ece0f4f116e410fe9dd" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a26d0c3a5d7fdca59879314af6e29466a" kind="function"><name>ToString</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a69a96d4530eb8cb3c1c062fc2480b0f5" kind="function"><name>ContainsKey</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a04ce71a9f9459878ddf10b42fddaf376" kind="function"><name>TryGetValue</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1addba0d969972e6027cae080365d0c001" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1acc8a8a731b16b1d40e33c109a8ae90fc" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a8a039ebc799ff7ba44d2cc274b959dd8" kind="function"><name>Contains</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1ae87a985d7a2ce51c6e8e640a3cb7999e" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a52cadf80a89498d91435e0162451b7b9" kind="function"><name>Clear</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a2e7603f73a02af1d404b7980e8d7aadb" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a02d3fa36b549070226cfcc4b3a622dfb" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a28149061f0608c60faa570638d530cce" kind="function"><name>_Add</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1a3a837b0ba50a146d242e583afd40a5f0" kind="function"><name>_Remove</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1af22a4d5479e9124df79ce41bf95a4b72" kind="function"><name>_Clear</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1aa6f4d244e6b89de76a78d2f38665a558" kind="function"><name>CopyTo</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1ad10f87eea6a6d330e935dd7e668b6ab2" kind="function"><name>CopyTo</name></member>
+    <member refid="class_pathological_games_1_1_prefabs_dict_1aa7048407f9ea7b31e76ac17bc7b1bca9" kind="function"><name>GetEnumerator</name></member>
+  </compound>
+  <compound refid="struct_lit_json_1_1_property_metadata" kind="struct"><name>LitJson::PropertyMetadata</name>
+    <member refid="struct_lit_json_1_1_property_metadata_1a98c604bce92fdeda2f0daf11aa53da44" kind="variable"><name>Info</name></member>
+    <member refid="struct_lit_json_1_1_property_metadata_1a0823eac6e49119eaf4a57863fd1dd35f" kind="variable"><name>IsField</name></member>
+    <member refid="struct_lit_json_1_1_property_metadata_1a6f2c9e287ca8c03327f997fe10515515" kind="variable"><name>Type</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager" kind="class"><name>LitFramework::GameFlow::Manager::SceneLoadManager</name>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager_1aca8a7a476a4269e18d01159a48b65064" kind="variable"><name>_asyncLoadTask</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager_1a1fc7ddc33b3bfe284f64956c17073fe0" kind="function"><name>LoadSceneAsync</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager_1a7e0a7178432f3f6a9cf86ae3dce099d5" kind="function"><name>LoadScene</name></member>
+    <member refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager_1a161ccf12916984cf6f2a562472143522" kind="function"><name>DoDestroy</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_device_1_1_show_f_p_s" kind="class"><name>LitFramework::Device::ShowFPS</name>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a7961bb8487d69b1b3ad1ce77f005ee8c" kind="variable"><name>fpsMeasuringDelta</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a23e6b9766243e6a372d3eb6032584852" kind="variable"><name>timePassed</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a8b774d7a53cd6686fac9a29945c96406" kind="variable"><name>m_FrameCount</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a59eb62a82575632d99e902e92a701d56" kind="variable"><name>m_FPS</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1abed16712e21daa2965df460872c59446" kind="variable"><name>titlestyle</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a91927258ef0be73ea374fa796dcb840a" kind="variable"><name>customstring</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a143cfebff66b000f4749e4a7c3fe64f7" kind="function"><name>Awake</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa714a566d27f81ff544f7f7e6c0b2aaa" kind="function"><name>Start</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a08d5c18450d365a0151e3791c1553c53" kind="function"><name>OnGUI</name></member>
+    <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa0d1767c7a46c0bf7316336b02ceb7aa" kind="function"><name>Update</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_singleton_3_01_t_01_4" kind="class"><name>LitFramework::Singleton&lt; T &gt;</name>
+    <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1ae77a04a689f2c5c15348a8d878a3b58d" kind="variable"><name>_instance</name></member>
+    <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1a85c164c71b1329ce3134b2fb89003047" kind="variable"><name>_lock</name></member>
+    <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1a3bad24086e765238f4fca1f5f689aa5e" kind="property"><name>Instance</name></member>
+    <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1afbe33a1f185588f325e8ddde92468030" kind="function"><name>DoDestroy</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4" kind="class"><name>LitFramework::SingletonMono&lt; T &gt;</name>
+    <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1ab52747bd11ede118630327a357e217ef" kind="variable"><name>_instance</name></member>
+    <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a10e80f9406dfdd3b71e31459aac3ed11" kind="property"><name>Instance</name></member>
+    <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1abc3de937113f36fe40fc7ff6d45ba1b5" kind="function"><name>DoDestroy</name></member>
+    <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a8d5ad204b316c56fc32a4e539455bb2d" kind="function"><name>OnApplicationQuit</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager" kind="class"><name>LitFramework::LitPool::SpawnManager</name>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1abb88bed68512f207224e54d59100f65d" kind="variable"><name>_pool</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1a20d63ad553149c095a677a95dd67d13f" kind="variable"><name>_prefabNameList</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1ad8b486b1686486bc9cf69651ccfed335" kind="function"><name>SpawnManager</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1a15026ea051ba2fdc406b0fb08e7dce53" kind="function"><name>Install</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1a18cfe69ad03ddc0f7fc9e2798fc45bdf" kind="function"><name>Uninstall</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1aaf45a8380dcddd89ba91ac42cf9f2772" kind="function"><name>SpwanObject</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1a7849e2dd9691b2038f2bebf568a4532c" kind="function"><name>DespawnObject</name></member>
+    <member refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1ae55fe7276d62ceef2f8db7c7c6ac691a" kind="function"><name>AddPoolManager</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_spawn_pool" kind="class"><name>PathologicalGames::SpawnPool</name>
+    <member refid="class_pathological_games_1_1_spawn_pool_1acbf8f39f8342982648fac384039f71b3" kind="variable"><name>prefabList</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" kind="variable"><name>poolName</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a10237fa0ec1d883a455763125e08bbbf" kind="variable"><name>matchPoolScale</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a268985c80023afba079bf331909bdc17" kind="variable"><name>matchPoolLayer</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a1acf124f1e89e7e7e339c4c7fd5175bc" kind="variable"><name>dontReparent</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ae01c56f81362210fd4909cc3d250a263" kind="variable"><name>_dontDestroyOnLoad</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" kind="variable"><name>logMessages</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a1d2bd549c4c8e8824f41911cb1dd40f8" kind="variable"><name>_perPrefabPoolOptions</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a9a5d8f6d2c82349aaded8e0379e65a50" kind="variable"><name>prefabsFoldOutStates</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a870a76218d3dde217c8893041b59272f" kind="variable"><name>maxParticleDespawnTime</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1accafb1f17a603aab9f846e282a31594b" kind="variable"><name>prefabs</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1af8b99076d0162feb72d7b4e43f4f8078" kind="variable"><name>_editorListItemStates</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a6cd9d0be97bf95107693e4039562e9f9" kind="property"><name>dontDestroyOnLoad</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ad87ea22e5bc01b9bf042049636099044" kind="property"><name>group</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1adbc8aec0b9d6757a1991830b184ceda4" kind="property"><name>prefabPools</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a933f306f2cb2f81dea8c4e18d827874c" kind="property"><name>this[int index]</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a1844e8a5b26c416ba8dd1dbabee6c4d4" kind="property"><name>Count</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a16cd0517170056d965949abee0193265" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" kind="variable"><name>_prefabPools</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" kind="variable"><name>_spawned</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" kind="function"><name>Awake</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac096b46bd3f40d3db00301ad55717700" kind="function"><name>OnDestroy</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a5a88b9465d510bb9ff753343b2e374ff" kind="function"><name>DoDespawnAfterSeconds</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a6e291ca377ed0f3a878fc2c0c905348a" kind="function"><name>ListForAudioStop</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1afce7cfbfaebe872367a168e19dc86004" kind="function"><name>ListenForEmitDespawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a2c4bd8b45dce00dc81c01e0c91c2aa06" kind="function"><name>ListenForEmitDespawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac3d2420bafad7e4503bbb4b50c6ebff9" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac2428de9332fb33a31c374e04d61bcca" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a41c0c4bf4dbdb5cff7fbb50d626c4851" kind="function"><name>CreatePrefabPool</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a7c456dedaa04bae62e17b86e97784eca" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a874af6d9e53b89f5063ad969821d3791" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ab7595c0bd7bd47586f0b1d0a65916b51" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a464278ce9a75dd7bdb6fb2e8dc4863a5" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ad2ecd4f625f5aa7ca99f1f5baf4f880a" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a4c9bd9beab1e5b855b12a70db8a53efe" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a319fbcf869af5082a32502c24a34d84c" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a53438681dc430872fdf032e0207ec7c7" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a2da622c419137984a32dcf630bb6b150" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1aae1ecea456d4273535e3ec09cfe67128" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a35f9a8be38d8ee78f1b2a32f527d4eb3" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a418b6889daf8ce8d2f7c5cafbecfb25f" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a13aea53576a9560e645639965b6b48f1" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1af2d9c85587b5981da1494efb794bfaae" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a3d5e333350cec1f787668c90658049a4" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a55e384eaa0b20f6936866f60c7d978f6" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a4edce7f46132baa25716500263e1dc90" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a56d2638a72edda54de45cf2092b538b6" kind="function"><name>Spawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kind="function"><name>Despawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ab126203a7fe97b973818734fdbd52e71" kind="function"><name>Despawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1aced4b8516688d8088ccc987a4f93c8ad" kind="function"><name>Despawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a50157087bd40d44bccd710fceb94871d" kind="function"><name>Despawn</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a6407135d31b4e27456967dcd581ecc1c" kind="function"><name>DespawnAll</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a7f5c1eabeeda6cf16a4bf08908b25020" kind="function"><name>IsSpawned</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a50044aeb0771ecfa618a862025236664" kind="function"><name>GetPrefabPool</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac3e1969a06406e2a3658e951359f22a9" kind="function"><name>GetPrefabPool</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ab1b67a2e7f6ffc1a594bb4974097a671" kind="function"><name>GetPrefab</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a790567ae8adb0aee8fd53f626deae854" kind="function"><name>GetPrefab</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ac77bb0dbb1d2765143250f24ac9c6338" kind="function"><name>ToString</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a6548752d06950b1a4b1f3dec1b439992" kind="function"><name>Contains</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ad1161ef837193b29be2e464fcde52f83" kind="function"><name>CopyTo</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ad483cae69aef090973577d61c034b200" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a7349e8b03c214f3c8d7b5fd57f2faad3" kind="function"><name>IndexOf</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a59a6f3559ce0b875666a6b5c2b165d1d" kind="function"><name>Insert</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1ae36b2db25d89ce342f528bb1e03172fe" kind="function"><name>RemoveAt</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pool_1a34217ef7822801d167eee659d0394b1c" kind="function"><name>Clear</name></member>
+  </compound>
+  <compound refid="class_pathological_games_1_1_spawn_pools_dict" kind="class"><name>PathologicalGames::SpawnPoolsDict</name>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" kind="variable"><name>onCreatedDelegates</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ae7573e7b550f9414f094e1625ab7c51e" kind="variable"><name>_pools</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a00c74a549088ceadbb66a470dfc94b34" kind="property"><name>Count</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a576cd8f7ec09c13d99b8fe5cbdcad583" kind="property"><name>this[string key]</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1abfe6bbc7ca3a020212c4e8ac9243595f" kind="property"><name>Keys</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ae1c427c6d65458f6816f3a6f9fc4b570" kind="property"><name>Values</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1abce85d3526efa10735e17a2fdc48c5e0" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a2a84d85118884967aca55c209044171d" kind="property"><name>IsReadOnly</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" kind="function"><name>OnCreatedDelegate</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac909f94f3d09b9c0fb73a270b44eddf1" kind="function"><name>AddOnCreatedDelegate</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1afeeb8a927fbd5d2fb06874bcc8ec3ede" kind="function"><name>RemoveOnCreatedDelegate</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac641055005cf856822f85557db3866b3" kind="function"><name>Create</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a1f532fe587fefd9449bbde325dffa310" kind="function"><name>Create</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a1ba8758d67b3294bbd243b091a78a760" kind="function"><name>ToString</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac6275d25a3a2af877a8e0f15f331657c" kind="function"><name>Destroy</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a6948016e7cbf5d62936c7d99c3279cda" kind="function"><name>DestroyAll</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a5d17e4fa5ab1621d9ca2105a42284cde" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a878c3e1ad63b0dae27e7f125f4890745" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" kind="function"><name>ContainsKey</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a2c28da1c51641754914a88fd1c9a08e7" kind="function"><name>TryGetValue</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a5abcbf827d76e622566a0c3ec2bfef0c" kind="function"><name>Contains</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a612b56e2109c645a629e79ea222127c5" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a171d9c68881bae59044c662be94171eb" kind="function"><name>Clear</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a33ebc905ce9281719c012001382895dd" kind="function"><name>Remove</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a903f8bf4ee047d6b353ea312ee24cf79" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a0102dea464bf7755afd7ee8bc692a0f7" kind="function"><name>assertValidPoolName</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a0a6165e56659a0acf09f1f6dbfe69ebe" kind="function"><name>CopyTo</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1ade437ced0cbb4e7660387710e5b80e8e" kind="function"><name>CopyTo</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a41a57408f5b7fe7f704ab0c6e81ade82" kind="function"><name>GetEnumerator</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" kind="function"><name>Add</name></member>
+    <member refid="class_pathological_games_1_1_spawn_pools_dict_1abe9c4ea779c2f71e7adcd8967d68777c" kind="function"><name>Remove</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_input_1_1_touch_direction_control" kind="class"><name>LitFramework::Input::TouchDirectionControl</name>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a0401ba133ba8cff42d1721bc3bebdf98" kind="variable"><name>MOVE_MIX_DISTANCE</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a740e43d7084442b2fe45f8d2c3343bbb" kind="variable"><name>TouchEndCallback</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1afb4b50bfc421f58d80da2bddeef96ce2" kind="variable"><name>TouchStationaryCallback</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a1949d399c2916aa054532d12f3c04dd7" kind="variable"><name>TouchMoveCallback</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1abd47c8a397b24c02b9f1f8b2dec1a2d8" kind="variable"><name>_touchBeginPos</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1afbca28990264ab7678c567b867e6e5bf" kind="variable"><name>_touchEndPos</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1ac98326cf94dd96f9b95797bdb981f0fd" kind="variable"><name>_clockWiseDegree</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa10a92467e03ccfb7298b13a980cb332" kind="variable"><name>_currentEventSys</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1a341464ccc727c8c567d91451e31d4e45" kind="variable"><name>TouchBeganCallback</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1aa272fc4f984fce827887897ea3a93f13" kind="function"><name>SetRotateClockwise</name></member>
+    <member refid="class_lit_framework_1_1_input_1_1_touch_direction_control_1ab73976e6e35688fbe48e7680d3ac033d" kind="function"><name>GetTouchMoveDirection</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_mono_1_1_u_i_manager" kind="class"><name>LitFramework::Mono::UIManager</name>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ab9c519edf615920908f40c5c6b1c9d36" kind="variable"><name>_useFading</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a30eaf35b9fb8bee3eae93f7b22edb188" kind="variable"><name>_allRegisterUIList</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ac538342d914d62d23bdc6e4b6e73131a" kind="variable"><name>_stackCurrentUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1aecc018805266a407884d5b831972d6bd" kind="variable"><name>_dictLoadedAllUIs</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a21f54a9821f858dd10025d9c865a12dc" kind="variable"><name>_dictCurrentShowUIs</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1aa15ee3ec7e1f48db08109d55765095dd" kind="variable"><name>_transCanvas</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ad141de8f80285bb979546ceebdf29fc4" kind="variable"><name>_transNormal</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ab37cc13529d53e38c646ba7fc43f1ed1" kind="variable"><name>_transFixed</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a8d359910e3a60672344619d93aeaed1d" kind="variable"><name>_transPopUp</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a3b30d5b7b0070fa4e2145b309406276b" kind="variable"><name>_transGlobal</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1af997e1f2c4d31c7dd11d3c567d5bdca5" kind="variable"><name>_fadeImage</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1aace167bce7499ec184f66e15013bbb72" kind="variable"><name>DelHideCallBack</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a73dc888933b1500d50299f9305c80136" kind="property"><name>UseFading</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ad60dbad7a6f921c20df15caa4d1e721b" kind="variable"><name>LoadResourceFunc</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" kind="function"><name>Install</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a80abfcf8aed1262b11b974dd11025174" kind="function"><name>Uninstall</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a9da16214bf85aec0981ff744f5cc2d17" kind="function"><name>ShowFade</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ac50cf3e5ac925a5d72d38f8413821524" kind="function"><name>HideFade</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1adcddc913677992c594f7ea13c4495c22" kind="function"><name>Show</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1aa3f8a7cd9fddc8756c1a2130a81f7587" kind="function"><name>Close</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a9a778e07c065e65098fc6e35629a01f6" kind="function"><name>ClearPopUpStackArray</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a6732546db9447622c72fef479cc4340e" kind="function"><name>GetUIByName</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a9560a1e3ea8c24eec307a90a4b422ce5" kind="function"><name>OnEscapeCallback</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ad51debf83db3c21ba86f9e1635176b23" kind="function"><name>LoadUIToAndFromAllList</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a0edf517a8f13952a55c594be7cf87d1b" kind="function"><name>LoadUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a40f84f821e658646614c118ee2a1a630" kind="function"><name>LoadNormalUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1abe4eb80aad8f2cf9d34b7e7499e66700" kind="function"><name>UnLoadNormalUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ae7d72e5b76c60b906d283ede52dce657" kind="function"><name>LoadUniqueUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a908583c6c90a61da684c3abd8653485a" kind="function"><name>UnLoadUniqueUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ac844a97ff15d4caea5c674a83b9dd48b" kind="function"><name>LoadPopUpUI</name></member>
+    <member refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a63d1dc636b277cb487b852fb4f99bc4e" kind="function"><name>UnLoadPopUpUI</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager" kind="class"><name>LitFramework::HotFix::UIManager</name>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a585dfaa8724e4d37e90eb463b97a9ce5" kind="variable"><name>_useFading</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a96c7b5920fbc60b3337cd4486dbb92a6" kind="variable"><name>_allRegisterUIDict</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ac5c440d40014efd50b865b01539cfb8b" kind="variable"><name>_stackCurrentUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a2e5954f42317552de6e0ae5e17bcfdb5" kind="variable"><name>_dictLoadedAllUIs</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ab11c2e64e038407c072ba9e164ea28e5" kind="variable"><name>_dictCurrentShowUIs</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a30efc00a2ddeda28931cd704ad843568" kind="variable"><name>_transCanvas</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af20a66b35bf72bc6e65dc4db2deec0bf" kind="variable"><name>_transNormal</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a4d143337e9eb29e6da42e49caf10fece" kind="variable"><name>_transFixed</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a79b0e0acea496d46aa2c3c83e91eb1b9" kind="variable"><name>_transPopUp</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a7c3e92b87b25739c705fed1f4aa5de97" kind="variable"><name>_transGlobal</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ab3c1034a68213fba80a3111768ff1a5c" kind="variable"><name>_fadeImage</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ae88adf171d4ad61101ec321c403eb80a" kind="variable"><name>DelHideCallBack</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a09456452d65bf49ca11e23c0616610dd" kind="property"><name>UseFading</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a966e46e3a387b69520a9e91afab41ecb" kind="variable"><name>LoadResourceFunc</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" kind="function"><name>Install</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1aef057dad238b1df4b97557dfb849deb2" kind="function"><name>Uninstall</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a27f51bc599618f38caa99c857f1db3e4" kind="function"><name>ShowFade</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ad685ab9e4a9d1e888eba0eef852d947a" kind="function"><name>HideFade</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a0a928b24bcaaa52875c0d7923d58ad86" kind="function"><name>Show</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a66ec70f07464be8583a3df252af071da" kind="function"><name>Close</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ab3d35c137206a9ec46cf081a20da726b" kind="function"><name>ClearPopUpStackArray</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a83bafc55dd99434ded5fda539a9dead3" kind="function"><name>GetUIByName</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1aa9e321e5d436caef85676262d6faa581" kind="function"><name>OnEscapeCallback</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ad1e17d46463d610871f21e3b62dc289f" kind="function"><name>RegistFunctionCallFun</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a030f314b53de9ff30623f1739bd39087" kind="function"><name>LoadUIToAndFromAllList</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a564ce10b2ac57eb85c17d0980aacc292" kind="function"><name>LoadUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a7914330e8778444b9150965e6db7958d" kind="function"><name>LoadNormalUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a26acefd29e9eb2dcfb9f4cda2ccb7f3a" kind="function"><name>UnLoadNormalUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a32faf12a71eb7c73acb9e5ae1cf8b278" kind="function"><name>LoadUniqueUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a312178b84af8732d074e4fc903fb6a83" kind="function"><name>UnLoadUniqueUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a44c81dfb471221e02b85edb36b3e1b33" kind="function"><name>LoadPopUpUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1afb0bf3ebd11b1b38a9b754add6f81ff7" kind="function"><name>UnLoadPopUpUI</name></member>
+    <member refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a9453b935e83e10c136805f9056ae8bdf" kind="function"><name>AssemblyReflection</name></member>
+  </compound>
+  <compound refid="class_u_i_mask_manager" kind="class"><name>UIMaskManager</name>
+    <member refid="class_u_i_mask_manager_1a2bf0386e46d3299da76eeb704f3e3b29" kind="variable"><name>_transScriptNode</name></member>
+    <member refid="class_u_i_mask_manager_1a5e1295753e989578e521f7e58383c17c" kind="variable"><name>_rootCanvas</name></member>
+    <member refid="class_u_i_mask_manager_1a0a786d357be8ba8779aec2ac6a94650d" kind="variable"><name>_topPanel</name></member>
+    <member refid="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" kind="variable"><name>_maskPanel</name></member>
+    <member refid="class_u_i_mask_manager_1ae219849268a772652664744b4bd6b024" kind="variable"><name>_maskImage</name></member>
+    <member refid="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" kind="variable"><name>_uiCamera</name></member>
+    <member refid="class_u_i_mask_manager_1ae6c5c54ab44d38f5130ece169998435e" kind="variable"><name>_oriUICameraDepth</name></member>
+    <member refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" kind="function"><name>Awake</name></member>
+    <member refid="class_u_i_mask_manager_1a73928ee3cf098b17421761bc88dfc9e9" kind="function"><name>SetMaskWindow</name></member>
+    <member refid="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" kind="function"><name>CancelMaskWindow</name></member>
+  </compound>
+  <compound refid="class_u_i_sys_define" kind="class"><name>UISysDefine</name>
+    <member refid="class_u_i_sys_define_1aa6edde089ad581b761251b187ed6c10e" kind="variable"><name>SYS_TAG_ROOTCANVAS</name></member>
+    <member refid="class_u_i_sys_define_1ab969bdc431a7086ee35f14028973cabc" kind="variable"><name>SYS_TAG_NORMALCANVAS</name></member>
+    <member refid="class_u_i_sys_define_1a4830316ce1bc29267a87ad9dc2fdf371" kind="variable"><name>SYS_TAG_FIXEDCANVAS</name></member>
+    <member refid="class_u_i_sys_define_1a7e912d17e0f82fb667a9f46ebf6c3197" kind="variable"><name>SYS_TAG_POPUPCANVAS</name></member>
+    <member refid="class_u_i_sys_define_1ae70858afb8e1721d23d62dd680e56e0e" kind="variable"><name>SYS_TAG_GLOBALCANVAS</name></member>
+    <member refid="class_u_i_sys_define_1ae63fec6bb58a0ca19e4b67ef330b9af0" kind="variable"><name>SYS_TAG_UICAMERA</name></member>
+  </compound>
+  <compound refid="class_u_i_type" kind="class"><name>UIType</name>
+    <member refid="class_u_i_type_1abad34984e4affcce0fd649845493f9a2" kind="variable"><name>isClearPopUp</name></member>
+    <member refid="class_u_i_type_1a72a69b4b5de9d9011f383dae08afac4b" kind="variable"><name>uiNodeType</name></member>
+    <member refid="class_u_i_type_1af030bc8452445c3112bd80550746cbbc" kind="variable"><name>uiShowMode</name></member>
+    <member refid="class_u_i_type_1abad7fc92d73ede6d84a03bb8f531680b" kind="variable"><name>uiTransparent</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_lit_pool_1_1_unit_group" kind="class"><name>LitFramework::LitPool::UnitGroup</name>
+  </compound>
+  <compound refid="class_unity_helper" kind="class"><name>UnityHelper</name>
+    <member refid="class_unity_helper_1a17e64c98f427ea6a127f1269e6af6c7e" kind="function"><name>FindTheChildNode</name></member>
+    <member refid="class_unity_helper_1ac23f37a6d1af23bd4544b8cb2a0ed4f3" kind="function"><name>GetTheChildNodeComponetScripts&lt; T &gt;</name></member>
+    <member refid="class_unity_helper_1a2ee07bf3ebb07bf14b37cddc339a641a" kind="function"><name>AddChildNodeCompnent&lt; T &gt;</name></member>
+    <member refid="class_unity_helper_1ac2bf704e89e74ab7ab23f7315473a448" kind="function"><name>AddChildNodeToParentNode</name></member>
+  </compound>
+  <compound refid="class_lit_json_1_1_writer_context" kind="class"><name>LitJson::WriterContext</name>
+    <member refid="class_lit_json_1_1_writer_context_1ae99406d73a27ad3e8594ab8cb8d33873" kind="variable"><name>Count</name></member>
+    <member refid="class_lit_json_1_1_writer_context_1ab88358633a99aa13859c6d02ee37041d" kind="variable"><name>InArray</name></member>
+    <member refid="class_lit_json_1_1_writer_context_1af8d8f129bd276f60401f250333c0d86d" kind="variable"><name>InObject</name></member>
+    <member refid="class_lit_json_1_1_writer_context_1a3c7d49614fe716dabc12046d91c8b0c5" kind="variable"><name>ExpectingValue</name></member>
+    <member refid="class_lit_json_1_1_writer_context_1acfcc4516f984be2b40c4ff35c0c59c11" kind="variable"><name>Padding</name></member>
+  </compound>
+  <compound refid="class_lit_framework_1_1_editor_extended_1_1_x_m_l_conver" kind="class"><name>LitFramework::EditorExtended::XMLConver</name>
+    <member refid="class_lit_framework_1_1_editor_extended_1_1_x_m_l_conver_1a48c23e7ceaa8ea51309c6df749ef05a8" kind="function"><name>XLSXTOCSV</name></member>
+  </compound>
+  <compound refid="namespace_excel" kind="namespace"><name>Excel</name>
+  </compound>
+  <compound refid="namespace_lit_framework" kind="namespace"><name>LitFramework</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_device" kind="namespace"><name>LitFramework::Device</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_editor_extended" kind="namespace"><name>LitFramework::EditorExtended</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_game_flow" kind="namespace"><name>LitFramework::GameFlow</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_game_flow_1_1_manager" kind="namespace"><name>LitFramework::GameFlow::Manager</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_game_utility" kind="namespace"><name>LitFramework::GameUtility</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_hot_fix" kind="namespace"><name>LitFramework::HotFix</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_input" kind="namespace"><name>LitFramework::Input</name>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fed" kind="enum"><name>TouchDirection</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda945d5e233cf7d6240f6b783b36a374ff" kind="enumvalue"><name>Left</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda92b09c7c48c520c3c55e497875da437c" kind="enumvalue"><name>Right</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda258f49887ef8d14ac268c92b02503aaa" kind="enumvalue"><name>Up</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda08a38277b0309070706f6652eeae9a53" kind="enumvalue"><name>Down</name></member>
+    <member refid="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fedabf11a7b8d1f2e61ee2462830b1f92edf" kind="enumvalue"><name>OnUI</name></member>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_lit_pool" kind="namespace"><name>LitFramework::LitPool</name>
+    <member refid="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71" kind="enum"><name>PoolType</name></member>
+    <member refid="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71ae599161956d626eda4cb0a5ffb85271c" kind="enumvalue"><name>Idle</name></member>
+    <member refid="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71a0f9263536b9fc61ada745644735bfd8f" kind="enumvalue"><name>Work</name></member>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_mono" kind="namespace"><name>LitFramework::Mono</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_u_i" kind="namespace"><name>LitFramework::UI</name>
+  </compound>
+  <compound refid="namespace_lit_framework_1_1_u_i_1_1_base" kind="namespace"><name>LitFramework::UI::Base</name>
+  </compound>
+  <compound refid="namespace_lit_json" kind="namespace"><name>LitJson</name>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757" kind="enum"><name>JsonType</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kind="enumvalue"><name>Object</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a4410ec34d9e6c1a68100ca0ce033fb17" kind="enumvalue"><name>Array</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a1686a6c336b71b36d77354cea19a8b52" kind="enumvalue"><name>Int</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a8394f0347c184cf156ac5924dccb773b" kind="enumvalue"><name>Long</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757ad909d38d705ce75386dd86e611a82f5b" kind="enumvalue"><name>Double</name></member>
+    <member refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27226c864bac7454a8504f8edb15d95b" kind="enumvalue"><name>Boolean</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508" kind="enum"><name>JsonToken</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1b8c043fb4e9955580a04d1a3bc3b97d" kind="enumvalue"><name>ObjectStart</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a0c7a70fe1a1717fc7c61a4621daa144d" kind="enumvalue"><name>PropertyName</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a80cde5f072530ad7cc0fc892779eb51c" kind="enumvalue"><name>ObjectEnd</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1046518c67498429fe8028c8a96b83ad" kind="enumvalue"><name>ArrayStart</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a03e0b2db421eff9b75d3cffd9aa8e340" kind="enumvalue"><name>ArrayEnd</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1686a6c336b71b36d77354cea19a8b52" kind="enumvalue"><name>Int</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a8394f0347c184cf156ac5924dccb773b" kind="enumvalue"><name>Long</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508ad909d38d705ce75386dd86e611a82f5b" kind="enumvalue"><name>Double</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a27226c864bac7454a8504f8edb15d95b" kind="enumvalue"><name>Boolean</name></member>
+    <member refid="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508abbb93ef26e3c101ff11cdd21cab08a94" kind="enumvalue"><name>Null</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fd" kind="enum"><name>Condition</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda1dd434ab03234427196327564f19f2e9" kind="enumvalue"><name>InArray</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fdadaff60416e9ab0d467514f2ceec55d2b" kind="enumvalue"><name>InObject</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda0187d20e5c73aef50c90fad1949d1dfc" kind="enumvalue"><name>NotAProperty</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda5ad234cb2cde4266195252a23ca7d84e" kind="enumvalue"><name>Property</name></member>
+    <member refid="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda689202409e48743b914713f96d93947c" kind="enumvalue"><name>Value</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27" kind="enum"><name>ParserToken</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ab2ee912b91d69b435159c7c3f6df7f5f" kind="enumvalue"><name>Number</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27af827cf462f62848df37c5e1e94a4da74" kind="enumvalue"><name>True</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27af8320b26d30ab433c5a54546d21f414c" kind="enumvalue"><name>False</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27abbb93ef26e3c101ff11cdd21cab08a94" kind="enumvalue"><name>Null</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a5976f5b2e7620b7230562a881438be83" kind="enumvalue"><name>CharSeq</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a8e95e84813830072b7516cfaa7dbc1a9" kind="enumvalue"><name>Char</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a9dffbf69ffba8bc38bc4e01abf4b1675" kind="enumvalue"><name>Text</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a497031794414a552435f90151ac3b54b" kind="enumvalue"><name>Object</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27aa5cd3cceb3cc7cd7055dfbfb1ba00d06" kind="enumvalue"><name>ObjectPrime</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ad0bd662806a73209a1c6fbe55591fbff" kind="enumvalue"><name>Pair</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a38281dd144645dc9c5e70c4330b74d73" kind="enumvalue"><name>PairRest</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a4410ec34d9e6c1a68100ca0ce033fb17" kind="enumvalue"><name>Array</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ab3b6a378560a43ed0dbdf4e0bafcf109" kind="enumvalue"><name>ArrayPrime</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a689202409e48743b914713f96d93947c" kind="enumvalue"><name>Value</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a81845e510a4396a3ffa208cbc66d2e1f" kind="enumvalue"><name>ValueRest</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a27118326006d3829667a400ad23d5d98" kind="enumvalue"><name>String</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a87557f11575c0ad78e4e28abedc13b6e" kind="enumvalue"><name>End</name></member>
+    <member refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a99f2b3f30bec5a8826333eaec7ce7044" kind="enumvalue"><name>Epsilon</name></member>
+    <member refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51" kind="function"><name>ExporterFunc</name></member>
+    <member refid="namespace_lit_json_1aac67cdf1fa92053c731208d700defa75" kind="function"><name>ExporterFunc&lt; T &gt;</name></member>
+    <member refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kind="function"><name>ImporterFunc</name></member>
+    <member refid="namespace_lit_json_1af6f335cd368b5f784586a2e43bdab353" kind="function"><name>ImporterFunc&lt; TJson, TValue &gt;</name></member>
+    <member refid="namespace_lit_json_1a034d96afd28b6356ff3a4df002112573" kind="function"><name>WrapperFactory</name></member>
+  </compound>
+  <compound refid="namespace_pathological_games" kind="namespace"><name>PathologicalGames</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections" kind="namespace"><name>System::Collections</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_specialized" kind="namespace"><name>System::Collections::Specialized</name>
+  </compound>
+  <compound refid="namespace_system_1_1_data" kind="namespace"><name>System::Data</name>
+  </compound>
+  <compound refid="namespace_system_1_1_globalization" kind="namespace"><name>System::Globalization</name>
+  </compound>
+  <compound refid="namespace_system_1_1_i_o" kind="namespace"><name>System::IO</name>
+  </compound>
+  <compound refid="namespace_system_1_1_linq" kind="namespace"><name>System::Linq</name>
+  </compound>
+  <compound refid="namespace_system_1_1_reflection" kind="namespace"><name>System::Reflection</name>
+  </compound>
+  <compound refid="namespace_system_1_1_runtime_1_1_compiler_services" kind="namespace"><name>System::Runtime::CompilerServices</name>
+  </compound>
+  <compound refid="namespace_system_1_1_runtime_1_1_interop_services" kind="namespace"><name>System::Runtime::InteropServices</name>
+  </compound>
+  <compound refid="namespace_system_1_1_text" kind="namespace"><name>System::Text</name>
+  </compound>
+  <compound refid="namespace_unity_editor" kind="namespace"><name>UnityEditor</name>
+  </compound>
+  <compound refid="namespace_unity_engine" kind="namespace"><name>UnityEngine</name>
+  </compound>
+  <compound refid="namespace_unity_engine_1_1_event_systems" kind="namespace"><name>UnityEngine::EventSystems</name>
+  </compound>
+  <compound refid="namespace_unity_engine_1_1_u_i" kind="namespace"><name>UnityEngine::UI</name>
+  </compound>
+  <compound refid="_app_config_8cs" kind="file"><name>AppConfig.cs</name>
+  </compound>
+  <compound refid="_audio_manager_8cs" kind="file"><name>AudioManager.cs</name>
+  </compound>
+  <compound refid="_i_manager_8cs" kind="file"><name>IManager.cs</name>
+  </compound>
+  <compound refid="_singleton_8cs" kind="file"><name>Singleton.cs</name>
+  </compound>
+  <compound refid="_singleton_mono_8cs" kind="file"><name>SingletonMono.cs</name>
+  </compound>
+  <compound refid="_show_f_p_s_8cs" kind="file"><name>ShowFPS.cs</name>
+  </compound>
+  <compound refid="_c_s_v_parser_8cs" kind="file"><name>CSVParser.cs</name>
+  </compound>
+  <compound refid="_c_s_v_reader_8cs" kind="file"><name>CSVReader.cs</name>
+  </compound>
+  <compound refid="_c_s_v_writer_8cs" kind="file"><name>CSVWriter.cs</name>
+  </compound>
+  <compound refid="_editor_menu_extention_8cs" kind="file"><name>EditorMenuExtention.cs</name>
+  </compound>
+  <compound refid="_folder_copy_8cs" kind="file"><name>FolderCopy.cs</name>
+  </compound>
+  <compound refid="_x_m_l_conver_8cs" kind="file"><name>XMLConver.cs</name>
+  </compound>
+  <compound refid="_game_flow_controller_8cs" kind="file"><name>GameFlowController.cs</name>
+  </compound>
+  <compound refid="_scene_load_manager_8cs" kind="file"><name>SceneLoadManager.cs</name>
+  </compound>
+  <compound refid="_loading_task_model_8cs" kind="file"><name>LoadingTaskModel.cs</name>
+  </compound>
+  <compound refid="_asset_path_manager_8cs" kind="file"><name>AssetPathManager.cs</name>
+  </compound>
+  <compound refid="_document_accessor_8cs" kind="file"><name>DocumentAccessor.cs</name>
+  </compound>
+  <compound refid="_game_view_resolution_8cs" kind="file"><name>GameViewResolution.cs</name>
+  </compound>
+  <compound refid="_i_json_wrapper_8cs" kind="file"><name>IJsonWrapper.cs</name>
+  </compound>
+  <compound refid="_json_data_8cs" kind="file"><name>JsonData.cs</name>
+  </compound>
+  <compound refid="_json_exception_8cs" kind="file"><name>JsonException.cs</name>
+  </compound>
+  <compound refid="_json_mapper_8cs" kind="file"><name>JsonMapper.cs</name>
+  </compound>
+  <compound refid="_json_mock_wrapper_8cs" kind="file"><name>JsonMockWrapper.cs</name>
+  </compound>
+  <compound refid="_json_reader_8cs" kind="file"><name>JsonReader.cs</name>
+  </compound>
+  <compound refid="_json_writer_8cs" kind="file"><name>JsonWriter.cs</name>
+  </compound>
+  <compound refid="_lexer_8cs" kind="file"><name>Lexer.cs</name>
+  </compound>
+  <compound refid="_parser_token_8cs" kind="file"><name>ParserToken.cs</name>
+  </compound>
+  <compound refid="_lit_tool_8cs" kind="file"><name>LitTool.cs</name>
+  </compound>
+  <compound refid="_input_control_manager_8cs" kind="file"><name>InputControlManager.cs</name>
+  </compound>
+  <compound refid="_touch_direction_control_8cs" kind="file"><name>TouchDirectionControl.cs</name>
+  </compound>
+  <compound refid="_base_pool_8cs" kind="file"><name>BasePool.cs</name>
+  </compound>
+  <compound refid="_base_pool_unit_group_8cs" kind="file"><name>BasePoolUnitGroup.cs</name>
+  </compound>
+  <compound refid="_i_pool_unit_8cs" kind="file"><name>IPoolUnit.cs</name>
+  </compound>
+  <compound refid="_unit_group_8cs" kind="file"><name>UnitGroup.cs</name>
+  </compound>
+  <compound refid="_pool_manager_8cs" kind="file"><name>PoolManager.cs</name>
+  </compound>
+  <compound refid="_spawn_manager_8cs" kind="file"><name>SpawnManager.cs</name>
+  </compound>
+  <compound refid="_spawn_pool_8cs" kind="file"><name>SpawnPool.cs</name>
+  </compound>
+  <compound refid="_assembly_info_8cs" kind="file"><name>AssemblyInfo.cs</name>
+  </compound>
+  <compound refid="_i_u_i_manager_8cs" kind="file"><name>IUIManager.cs</name>
+  </compound>
+  <compound refid="_u_i_type_8cs" kind="file"><name>UIType.cs</name>
+  </compound>
+  <compound refid="_u_i_mask_manager_8cs" kind="file"><name>UIMaskManager.cs</name>
+  </compound>
+  <compound refid="_sys_define_8cs" kind="file"><name>SysDefine.cs</name>
+    <member refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899" kind="enum"><name>UINodeTypeEnum</name></member>
+    <member refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899a960b44c579bc2f6818d2daaf9e4c16f0" kind="enumvalue"><name>Normal</name></member>
+    <member refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899a4457d440870ad6d42bab9082d9bf9b61" kind="enumvalue"><name>Fixed</name></member>
+    <member refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899a401ccff94adf0af5e065d67c3faa0e70" kind="enumvalue"><name>PopUp</name></member>
+    <member refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320f" kind="enum"><name>UIShowModeEnum</name></member>
+    <member refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320fa98402eecfbcefc336954458a01752131" kind="enumvalue"><name>Parallel</name></member>
+    <member refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320fa2187e1021a911b3807cc1bea2eb1a9ca" kind="enumvalue"><name>Stack</name></member>
+    <member refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320fad019979a29c88c8d69bab3a63388da97" kind="enumvalue"><name>Unique</name></member>
+    <member refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2" kind="enum"><name>UITransparentEnum</name></member>
+    <member refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2ad466cedb01680756a5264c65a2c5004a" kind="enumvalue"><name>NoPenetratingLow</name></member>
+    <member refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2a60c2d1ee9492e328394f722980c3c6d5" kind="enumvalue"><name>NoPenetratingMiddle</name></member>
+    <member refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2ad366ad5b0976aa15690e14bd27f4687f" kind="enumvalue"><name>NoPenetratingTotal</name></member>
+    <member refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2a994117094f01932277bcb11cc4917639" kind="enumvalue"><name>Penetrating</name></member>
+  </compound>
+  <compound refid="_unity_helper_8cs" kind="file"><name>UnityHelper.cs</name>
+  </compound>
+  <compound refid="_version___mono_2_base_u_i_8cs" kind="file"><name>BaseUI.cs</name>
+  </compound>
+  <compound refid="_vsrsion___hot_fix_2_base_u_i_8cs" kind="file"><name>BaseUI.cs</name>
+  </compound>
+  <compound refid="_version___mono_2_u_i_manager_8cs" kind="file"><name>UIManager.cs</name>
+  </compound>
+  <compound refid="_vsrsion___hot_fix_2_u_i_manager_8cs" kind="file"><name>UIManager.cs</name>
+  </compound>
+  <compound refid="dir_102d865224358ae9bd1c625798f3144c" kind="dir"><name>E:/Personal/LTool/LTool/LitPool/_UnFinishedPool</name>
+  </compound>
+  <compound refid="dir_58df8ffd147cf54f31452c8f41b74ef9" kind="dir"><name>E:/Personal/LTool/LTool/Audio</name>
+  </compound>
+  <compound refid="dir_860d4301f8b900ea625dec52c0d459c5" kind="dir"><name>E:/Personal/LTool/LTool/UI/Base</name>
+  </compound>
+  <compound refid="dir_2b61df5cc8b0d1feae68b224931aaaa1" kind="dir"><name>E:/Personal/LTool/LTool/Base</name>
+  </compound>
+  <compound refid="dir_f791a04a248f5478cbcdf222cde0ff75" kind="dir"><name>E:/Personal/LTool/LTool/GameFlow/Controller</name>
+  </compound>
+  <compound refid="dir_8476889b9f98a88c4fe7f7e85408f38b" kind="dir"><name>E:/Personal/LTool/LTool/Device</name>
+  </compound>
+  <compound refid="dir_885cc87fac2d91e269af0a5a959fa5f6" kind="dir"><name>E:</name>
+  </compound>
+  <compound refid="dir_3db713a69035ebb8996074a87f928041" kind="dir"><name>E:/Personal/LTool/LTool/EditorExtention</name>
+  </compound>
+  <compound refid="dir_47c65fdee112a59f8199fdeb89dd8aee" kind="dir"><name>E:/Personal/LTool/LTool/GameFlow</name>
+  </compound>
+  <compound refid="dir_28346b7ff6522b69cad894d13d134f56" kind="dir"><name>E:/Personal/LTool/LTool/GameUtility</name>
+  </compound>
+  <compound refid="dir_b25561d88c8811c221887fe03152d2a5" kind="dir"><name>E:/Personal/LTool/LTool/Input</name>
+  </compound>
+  <compound refid="dir_bc4d90b767ef65a972f83335a9fda497" kind="dir"><name>E:/Personal/LTool/LTool/GameUtility/LitJSON</name>
+  </compound>
+  <compound refid="dir_bc93f91de925718847109d7ed07c932d" kind="dir"><name>E:/Personal/LTool/LTool/LitPool</name>
+  </compound>
+  <compound refid="dir_bb86d2470edfd806b947fd5857e51084" kind="dir"><name>E:/Personal/LTool/LTool</name>
+  </compound>
+  <compound refid="dir_d2398621734da24af96aee8967190040" kind="dir"><name>E:/Personal/LTool</name>
+  </compound>
+  <compound refid="dir_0f40920c232a2cbacb6c5d3856905cbb" kind="dir"><name>E:/Personal/LTool/LTool/UI/Manager</name>
+  </compound>
+  <compound refid="dir_0c7648a2391feddb58adc97d8f7434ba" kind="dir"><name>E:/Personal/LTool/LTool/GameFlow/Manager</name>
+  </compound>
+  <compound refid="dir_9c7a80ded0c01860356414257ad9b634" kind="dir"><name>E:/Personal/LTool/LTool/GameFlow/Model</name>
+  </compound>
+  <compound refid="dir_a3f00ff660b42ca41031a214b41f2d80" kind="dir"><name>E:/Personal</name>
+  </compound>
+  <compound refid="dir_6ee8ab7944a190788308cedc42fb32cc" kind="dir"><name>E:/Personal/LTool/LTool/Properties</name>
+  </compound>
+  <compound refid="dir_968e5ca74b52e0bc60618446129afcab" kind="dir"><name>E:/Personal/LTool/LTool/UI</name>
+  </compound>
+  <compound refid="dir_746c8ea49dcdccf0fe8f41441401985f" kind="dir"><name>E:/Personal/LTool/LTool/UI/Version_Mono</name>
+  </compound>
+  <compound refid="dir_36be6c45703f49b667cfd56007156010" kind="dir"><name>E:/Personal/LTool/LTool/UI/Vsrsion_HotFix</name>
+  </compound>
+</doxygenindex>

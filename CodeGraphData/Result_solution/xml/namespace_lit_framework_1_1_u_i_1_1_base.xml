@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_u_i_1_1_base" kind="namespace">
+    <compoundname>LitFramework::UI::Base</compoundname>
+    <innerclass refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_manager" prot="public">LitFramework::UI::Base::IManager</innerclass>
+    <innerclass refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" prot="public">LitFramework::UI::Base::IUIManager</innerclass>
+    <innerclass refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" prot="public">LitFramework::UI::Base::IBaseUI</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/Base/IManager.cs" line="31" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_860d4301f8b900ea625dec52c0d459c5" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/UI/Base</compoundname>
+    <innerfile refid="_i_u_i_manager_8cs">IUIManager.cs</innerfile>
+    <innerfile refid="_u_i_type_8cs">UIType.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/UI/Base/"/>
+  </compounddef>
+</doxygen>

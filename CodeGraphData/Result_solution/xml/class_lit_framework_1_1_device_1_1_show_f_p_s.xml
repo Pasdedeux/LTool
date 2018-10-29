@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_device_1_1_show_f_p_s" kind="class" prot="public">
+    <compoundname>LitFramework::Device::ShowFPS</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a7961bb8487d69b1b3ad1ce77f005ee8c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float LitFramework.Device.ShowFPS.fpsMeasuringDelta</definition>
+        <argsstring></argsstring>
+        <name>fpsMeasuringDelta</name>
+        <initializer>= 2.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="25" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a23e6b9766243e6a372d3eb6032584852" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float LitFramework.Device.ShowFPS.timePassed</definition>
+        <argsstring></argsstring>
+        <name>timePassed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="27" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a8b774d7a53cd6686fac9a29945c96406" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitFramework.Device.ShowFPS.m_FrameCount</definition>
+        <argsstring></argsstring>
+        <name>m_FrameCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="28" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a59eb62a82575632d99e902e92a701d56" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float LitFramework.Device.ShowFPS.m_FPS</definition>
+        <argsstring></argsstring>
+        <name>m_FPS</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="29" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1abed16712e21daa2965df460872c59446" prot="private" static="no" mutable="no">
+        <type>GUIStyle</type>
+        <definition>GUIStyle LitFramework.Device.ShowFPS.titlestyle</definition>
+        <argsstring></argsstring>
+        <name>titlestyle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="30" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a91927258ef0be73ea374fa796dcb840a" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string LitFramework.Device.ShowFPS.customstring</definition>
+        <argsstring></argsstring>
+        <name>customstring</name>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="31" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a143cfebff66b000f4749e4a7c3fe64f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.Device.ShowFPS.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="32" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="32" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa714a566d27f81ff544f7f7e6c0b2aaa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.Device.ShowFPS.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="40" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1a08d5c18450d365a0151e3791c1553c53" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.Device.ShowFPS.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="47" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa0d1767c7a46c0bf7316336b02ceb7aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.Device.ShowFPS.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="55" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="55" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="172">
+        <label>LitFramework.Device.ShowFPS</label>
+        <link refid="class_lit_framework_1_1_device_1_1_show_f_p_s"/>
+        <childnode refid="173" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="173">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="174">
+        <label>LitFramework.Device.ShowFPS</label>
+        <link refid="class_lit_framework_1_1_device_1_1_show_f_p_s"/>
+        <childnode refid="175" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="175">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/Device/ShowFPS.cs" line="24" column="1" bodyfile="E:/Personal/LTool/LTool/Device/ShowFPS.cs" bodystart="23" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a143cfebff66b000f4749e4a7c3fe64f7" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>Awake</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a91927258ef0be73ea374fa796dcb840a" prot="public" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>customstring</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a7961bb8487d69b1b3ad1ce77f005ee8c" prot="public" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>fpsMeasuringDelta</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a59eb62a82575632d99e902e92a701d56" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>m_FPS</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a8b774d7a53cd6686fac9a29945c96406" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>m_FrameCount</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a08d5c18450d365a0151e3791c1553c53" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>OnGUI</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa714a566d27f81ff544f7f7e6c0b2aaa" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>Start</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1a23e6b9766243e6a372d3eb6032584852" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>timePassed</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1abed16712e21daa2965df460872c59446" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>titlestyle</name></member>
+      <member refid="class_lit_framework_1_1_device_1_1_show_f_p_s_1aa0d1767c7a46c0bf7316336b02ceb7aa" prot="private" virt="non-virtual"><scope>LitFramework::Device::ShowFPS</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

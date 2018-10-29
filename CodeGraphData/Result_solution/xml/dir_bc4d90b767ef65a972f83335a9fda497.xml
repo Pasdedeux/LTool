@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_bc4d90b767ef65a972f83335a9fda497" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/GameUtility/LitJSON</compoundname>
+    <innerfile refid="_i_json_wrapper_8cs">IJsonWrapper.cs</innerfile>
+    <innerfile refid="_json_data_8cs">JsonData.cs</innerfile>
+    <innerfile refid="_json_exception_8cs">JsonException.cs</innerfile>
+    <innerfile refid="_json_mapper_8cs">JsonMapper.cs</innerfile>
+    <innerfile refid="_json_mock_wrapper_8cs">JsonMockWrapper.cs</innerfile>
+    <innerfile refid="_json_reader_8cs">JsonReader.cs</innerfile>
+    <innerfile refid="_json_writer_8cs">JsonWriter.cs</innerfile>
+    <innerfile refid="_lexer_8cs">Lexer.cs</innerfile>
+    <innerfile refid="_parser_token_8cs">ParserToken.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/"/>
+  </compounddef>
+</doxygen>

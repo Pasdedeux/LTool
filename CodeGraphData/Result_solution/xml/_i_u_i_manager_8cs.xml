@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_i_u_i_manager_8cs" kind="file">
+    <compoundname>IUIManager.cs</compoundname>
+    <innerclass refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" prot="public">LitFramework::UI::Base::IUIManager</innerclass>
+    <innerclass refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" prot="public">LitFramework::UI::Base::IBaseUI</innerclass>
+    <innernamespace refid="namespace_lit_framework_1_1_u_i_1_1_base">LitFramework::UI::Base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#region<sp/>&lt;&lt;<sp/>版<sp/>本<sp/>注<sp/>释<sp/>&gt;&gt;</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="comment">/*----------------------------------------------------------------</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>项目名称<sp/>：LitFramework.UI.Base</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>项目描述<sp/>：</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>类<sp/>名<sp/>称<sp/>：IUIManager</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>类<sp/>描<sp/>述<sp/>：</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>所在的域<sp/>：DEREK-HOMEPC</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>命名空间<sp/>：LitFramework.UI.Base</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>CLR<sp/>版本<sp/>：4.0.30319.42000</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>作<sp/><sp/><sp/><sp/>者<sp/>：Derek<sp/>Liu</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>创建时间<sp/>：2018/8/26<sp/>16:24:38</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>更新时间<sp/>：2018/8/26<sp/>16:24:38</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>版<sp/>本<sp/>号<sp/>：v1.0.0.0</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>Copyright<sp/>@<sp/>Liu<sp/>Hanwen<sp/>2018.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">//----------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endregion</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Text;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">LitFramework.UI.Base</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27" refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal"><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" kindref="compound">IUIManager</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29" refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1aa8faa2658192a22a884c5f875d300a40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1aa8faa2658192a22a884c5f875d300a40" kindref="member">UseFading</ref><sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a673e1d93c684e00cf6f7467160f47bd8" kindref="member">ShowFade</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time,<sp/>Action<sp/>callBack<sp/>=<sp/>null<sp/>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a3b05fc3dbee52dba1e90a1523206324e" kindref="member">HideFade</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time,<sp/>Action<sp/>callBack<sp/>=<sp/>null<sp/>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1ad846c7dd51edf6a1382eb60fde75f516" kindref="member">Close</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>uiName,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isDestroy<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" kindref="compound">IBaseUI</ref><sp/><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a534a07b1e8f448c93c6bdfeb48b78b81" kindref="member">Show</ref>(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>uiName<sp/>);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">interface<sp/></highlight><highlight class="normal"><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" kindref="compound">IBaseUI</ref><sp/>{<sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs"/>
+  </compounddef>
+</doxygen>

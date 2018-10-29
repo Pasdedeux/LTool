@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_pathological_games" kind="namespace">
+    <compoundname>PathologicalGames</compoundname>
+    <innerclass refid="class_pathological_games_1_1_pool_manager" prot="public">PathologicalGames::PoolManager</innerclass>
+    <innerclass refid="class_pathological_games_1_1_pool_manager_utils" prot="public">PathologicalGames::PoolManagerUtils</innerclass>
+    <innerclass refid="class_pathological_games_1_1_spawn_pools_dict" prot="public">PathologicalGames::SpawnPoolsDict</innerclass>
+    <innerclass refid="class_pathological_games_1_1_spawn_pool" prot="public">PathologicalGames::SpawnPool</innerclass>
+    <innerclass refid="class_pathological_games_1_1_prefab_pool" prot="public">PathologicalGames::PrefabPool</innerclass>
+    <innerclass refid="class_pathological_games_1_1_prefabs_dict" prot="public">PathologicalGames::PrefabsDict</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="13" column="1"/>
+  </compounddef>
+</doxygen>

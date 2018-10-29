@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_editor_extended" kind="namespace">
+    <compoundname>LitFramework::EditorExtended</compoundname>
+    <innerclass refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser" prot="public">LitFramework::EditorExtended::CSVParser</innerclass>
+    <innerclass refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_reader" prot="public">LitFramework::EditorExtended::CSVReader</innerclass>
+    <innerclass refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_writer" prot="public">LitFramework::EditorExtended::CSVWriter</innerclass>
+    <innerclass refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention" prot="public">LitFramework::EditorExtended::EditorMenuExtention</innerclass>
+    <innerclass refid="class_lit_framework_1_1_editor_extended_1_1_x_m_l_conver" prot="public">LitFramework::EditorExtended::XMLConver</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="26" column="1"/>
+  </compounddef>
+</doxygen>

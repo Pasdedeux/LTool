@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_hot_fix" kind="namespace">
+    <compoundname>LitFramework::HotFix</compoundname>
+    <innerclass refid="class_lit_framework_1_1_hot_fix_1_1_base_u_i" prot="public">LitFramework::HotFix::BaseUI</innerclass>
+    <innerclass refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager" prot="public">LitFramework::HotFix::UIManager</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/UI/Vsrsion_HotFix/BaseUI.cs" line="5" column="1"/>
+  </compounddef>
+</doxygen>

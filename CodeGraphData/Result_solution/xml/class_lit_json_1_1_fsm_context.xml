@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_json_1_1_fsm_context" kind="class" prot="package">
+    <compoundname>LitJson::FsmContext</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_lit_json_1_1_fsm_context_1a4482628e49602af88c40ba6619eaed6c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool LitJson.FsmContext.Return</definition>
+        <argsstring></argsstring>
+        <name>Return</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="22" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_fsm_context_1af2d890ab6853475d1f50ea100a6bc705" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.FsmContext.NextState</definition>
+        <argsstring></argsstring>
+        <name>NextState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="23" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" prot="public" static="no" mutable="no">
+        <type><ref refid="class_lit_json_1_1_lexer" kindref="compound">Lexer</ref></type>
+        <definition>Lexer LitJson.FsmContext.L</definition>
+        <argsstring></argsstring>
+        <name>L</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="24" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" compoundref="_lexer_8cs" startline="523" endline="535">LitJson.Lexer.State10</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" compoundref="_lexer_8cs" startline="537" endline="550">LitJson.Lexer.State11</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" compoundref="_lexer_8cs" startline="552" endline="564">LitJson.Lexer.State12</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" compoundref="_lexer_8cs" startline="566" endline="578">LitJson.Lexer.State13</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" compoundref="_lexer_8cs" startline="580" endline="592">LitJson.Lexer.State14</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" compoundref="_lexer_8cs" startline="594" endline="607">LitJson.Lexer.State15</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" compoundref="_lexer_8cs" startline="609" endline="621">LitJson.Lexer.State16</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" compoundref="_lexer_8cs" startline="623" endline="635">LitJson.Lexer.State17</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" compoundref="_lexer_8cs" startline="637" endline="650">LitJson.Lexer.State18</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" compoundref="_lexer_8cs" startline="652" endline="674">LitJson.Lexer.State19</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" compoundref="_lexer_8cs" startline="305" endline="324">LitJson.Lexer.State2</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" compoundref="_lexer_8cs" startline="676" endline="689">LitJson.Lexer.State20</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" compoundref="_lexer_8cs" startline="691" endline="717">LitJson.Lexer.State21</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" compoundref="_lexer_8cs" startline="719" endline="751">LitJson.Lexer.State22</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" compoundref="_lexer_8cs" startline="753" endline="775">LitJson.Lexer.State23</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" compoundref="_lexer_8cs" startline="777" endline="791">LitJson.Lexer.State24</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" compoundref="_lexer_8cs" startline="793" endline="809">LitJson.Lexer.State25</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" compoundref="_lexer_8cs" startline="811" endline="821">LitJson.Lexer.State26</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" compoundref="_lexer_8cs" startline="823" endline="833">LitJson.Lexer.State27</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" compoundref="_lexer_8cs" startline="835" endline="851">LitJson.Lexer.State28</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" compoundref="_lexer_8cs" startline="326" endline="366">LitJson.Lexer.State3</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" compoundref="_lexer_8cs" startline="368" endline="402">LitJson.Lexer.State4</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" compoundref="_lexer_8cs" startline="404" endline="415">LitJson.Lexer.State5</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" compoundref="_lexer_8cs" startline="417" endline="453">LitJson.Lexer.State6</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" compoundref="_lexer_8cs" startline="455" endline="475">LitJson.Lexer.State7</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" compoundref="_lexer_8cs" startline="477" endline="507">LitJson.Lexer.State8</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" compoundref="_lexer_8cs" startline="509" endline="521">LitJson.Lexer.State9</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_fsm_context_1a5047c8c16775363143864daff807f9b0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.FsmContext.StateStack</definition>
+        <argsstring></argsstring>
+        <name>StateStack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="25" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="49">
+        <label>LitJson.FsmContext</label>
+        <link refid="class_lit_json_1_1_fsm_context"/>
+        <childnode refid="50" relation="usage">
+          <edgelabel>L</edgelabel>
+        </childnode>
+      </node>
+      <node id="50">
+        <label>LitJson.Lexer</label>
+        <link refid="class_lit_json_1_1_lexer"/>
+        <childnode refid="49" relation="usage">
+          <edgelabel>fsm_context</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="21" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="20" bodyend="26"/>
+    <listofallmembers>
+      <member refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" prot="public" virt="non-virtual"><scope>LitJson::FsmContext</scope><name>L</name></member>
+      <member refid="class_lit_json_1_1_fsm_context_1af2d890ab6853475d1f50ea100a6bc705" prot="public" virt="non-virtual"><scope>LitJson::FsmContext</scope><name>NextState</name></member>
+      <member refid="class_lit_json_1_1_fsm_context_1a4482628e49602af88c40ba6619eaed6c" prot="public" virt="non-virtual"><scope>LitJson::FsmContext</scope><name>Return</name></member>
+      <member refid="class_lit_json_1_1_fsm_context_1a5047c8c16775363143864daff807f9b0" prot="public" virt="non-virtual"><scope>LitJson::FsmContext</scope><name>StateStack</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,901 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_json_1_1_json_mapper" kind="class" prot="public">
+    <compoundname>LitJson::JsonMapper</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a5209fc56980eecdd2f5cc4604a18222c" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.JsonMapper.max_nesting_depth</definition>
+        <argsstring></argsstring>
+        <name>max_nesting_depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="103" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="103" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" prot="private" static="yes" mutable="no">
+        <type>IFormatProvider</type>
+        <definition>IFormatProvider LitJson.JsonMapper.datetime_format</definition>
+        <argsstring></argsstring>
+        <name>datetime_format</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="105" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="105" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" compoundref="_json_mapper_8cs" startline="547" endline="594">LitJson.JsonMapper.RegisterBaseExporters</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" compoundref="_json_mapper_8cs" startline="596" endline="672">LitJson.JsonMapper.RegisterBaseImporters</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, <ref refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51" kindref="member">ExporterFunc</ref> &gt;</type>
+        <definition>IDictionary&lt;Type, ExporterFunc&gt; LitJson.JsonMapper.base_exporters_table</definition>
+        <argsstring></argsstring>
+        <name>base_exporters_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="107" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="107" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" compoundref="_json_mapper_8cs" startline="547" endline="594">LitJson.JsonMapper.RegisterBaseExporters</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, <ref refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51" kindref="member">ExporterFunc</ref> &gt;</type>
+        <definition>IDictionary&lt;Type, ExporterFunc&gt; LitJson.JsonMapper.custom_exporters_table</definition>
+        <argsstring></argsstring>
+        <name>custom_exporters_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="108" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="108" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6bbb88387fb7e0d6df09bd75fdf5b898" compoundref="_json_mapper_8cs" startline="893" endline="901">LitJson.JsonMapper.RegisterExporter&lt; T &gt;</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, IDictionary&lt; Type, <ref refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kindref="member">ImporterFunc</ref> &gt; &gt;</type>
+        <definition>IDictionary&lt;Type, IDictionary&lt;Type, ImporterFunc&gt; &gt; LitJson.JsonMapper.base_importers_table</definition>
+        <argsstring></argsstring>
+        <name>base_importers_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="111" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="111" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" compoundref="_json_mapper_8cs" startline="596" endline="672">LitJson.JsonMapper.RegisterBaseImporters</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, IDictionary&lt; Type, <ref refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kindref="member">ImporterFunc</ref> &gt; &gt;</type>
+        <definition>IDictionary&lt;Type, IDictionary&lt;Type, ImporterFunc&gt; &gt; LitJson.JsonMapper.custom_importers_table</definition>
+        <argsstring></argsstring>
+        <name>custom_importers_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="113" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="113" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" compoundref="_json_mapper_8cs" startline="903" endline="913">LitJson.JsonMapper.RegisterImporter&lt; TJson, TValue &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, <ref refid="struct_lit_json_1_1_array_metadata" kindref="compound">ArrayMetadata</ref> &gt;</type>
+        <definition>IDictionary&lt;Type, ArrayMetadata&gt; LitJson.JsonMapper.array_metadata</definition>
+        <argsstring></argsstring>
+        <name>array_metadata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="115" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="115" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" compoundref="_json_mapper_8cs" startline="164" endline="196">LitJson.JsonMapper.AddArrayMetadata</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a34840cbfe701e7dc4e21bf8819f286b1" prot="private" static="yes" mutable="no">
+        <type>readonly object</type>
+        <definition>readonly object LitJson.JsonMapper.array_metadata_lock</definition>
+        <argsstring></argsstring>
+        <name>array_metadata_lock</name>
+        <initializer>= new <ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kindref="member">Object</ref> ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="116" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="116" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" compoundref="_json_mapper_8cs" startline="164" endline="196">LitJson.JsonMapper.AddArrayMetadata</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a92e7081766e02c898bae1434b4a04ee5" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, IDictionary&lt; Type, MethodInfo &gt; &gt;</type>
+        <definition>IDictionary&lt;Type, IDictionary&lt;Type, MethodInfo&gt; &gt; LitJson.JsonMapper.conv_ops</definition>
+        <argsstring></argsstring>
+        <name>conv_ops</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="119" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="119" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" compoundref="_json_mapper_8cs" startline="282" endline="304">LitJson.JsonMapper.GetConvOp</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1ac40ee6c25a76662354f9bf9a1b52413f" prot="private" static="yes" mutable="no">
+        <type>readonly object</type>
+        <definition>readonly object LitJson.JsonMapper.conv_ops_lock</definition>
+        <argsstring></argsstring>
+        <name>conv_ops_lock</name>
+        <initializer>= new <ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kindref="member">Object</ref> ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="120" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="120" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" compoundref="_json_mapper_8cs" startline="282" endline="304">LitJson.JsonMapper.GetConvOp</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, <ref refid="struct_lit_json_1_1_object_metadata" kindref="compound">ObjectMetadata</ref> &gt;</type>
+        <definition>IDictionary&lt;Type, ObjectMetadata&gt; LitJson.JsonMapper.object_metadata</definition>
+        <argsstring></argsstring>
+        <name>object_metadata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="122" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="122" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" compoundref="_json_mapper_8cs" startline="198" endline="246">LitJson.JsonMapper.AddObjectMetadata</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a093065cf81f8a7aa5a9c2ef5776612e6" prot="private" static="yes" mutable="no">
+        <type>readonly object</type>
+        <definition>readonly object LitJson.JsonMapper.object_metadata_lock</definition>
+        <argsstring></argsstring>
+        <name>object_metadata_lock</name>
+        <initializer>= new <ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kindref="member">Object</ref> ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="123" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="123" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" compoundref="_json_mapper_8cs" startline="198" endline="246">LitJson.JsonMapper.AddObjectMetadata</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" prot="private" static="yes" mutable="no">
+        <type>IDictionary&lt; Type, IList&lt; <ref refid="struct_lit_json_1_1_property_metadata" kindref="compound">PropertyMetadata</ref> &gt; &gt;</type>
+        <definition>IDictionary&lt;Type, IList&lt;PropertyMetadata&gt; &gt; LitJson.JsonMapper.type_properties</definition>
+        <argsstring></argsstring>
+        <name>type_properties</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="126" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="126" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" compoundref="_json_mapper_8cs" startline="248" endline="280">LitJson.JsonMapper.AddTypeProperties</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1a84061ae9adfb283b2baf8d0cfa1ba54b" prot="private" static="yes" mutable="no">
+        <type>readonly object</type>
+        <definition>readonly object LitJson.JsonMapper.type_properties_lock</definition>
+        <argsstring></argsstring>
+        <name>type_properties_lock</name>
+        <initializer>= new <ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kindref="member">Object</ref> ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="127" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="127" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" compoundref="_json_mapper_8cs" startline="248" endline="280">LitJson.JsonMapper.AddTypeProperties</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1ac5a2ff9f983a63ab77e3f88442120b64" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+        <definition>JsonWriter LitJson.JsonMapper.static_writer</definition>
+        <argsstring></argsstring>
+        <name>static_writer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="129" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="129" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" compoundref="_json_mapper_8cs" startline="824" endline="833">LitJson.JsonMapper.ToJson</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_json_mapper_1aeb74244ebfd32bfa5aa5ff76ddebf07d" prot="private" static="yes" mutable="no">
+        <type>readonly object</type>
+        <definition>readonly object LitJson.JsonMapper.static_writer_lock</definition>
+        <argsstring></argsstring>
+        <name>static_writer_lock</name>
+        <initializer>= new <ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" kindref="member">Object</ref> ()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="130" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="130" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" compoundref="_json_mapper_8cs" startline="824" endline="833">LitJson.JsonMapper.ToJson</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>static</type>
+        <definition>static LitJson.JsonMapper.JsonMapper</definition>
+        <argsstring>()</argsstring>
+        <name>JsonMapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="135" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="135" bodyend="159"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" compoundref="_json_mapper_8cs" startline="115">LitJson.JsonMapper.array_metadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" compoundref="_json_mapper_8cs" startline="107">LitJson.JsonMapper.base_exporters_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" compoundref="_json_mapper_8cs" startline="111">LitJson.JsonMapper.base_importers_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a92e7081766e02c898bae1434b4a04ee5" compoundref="_json_mapper_8cs" startline="119">LitJson.JsonMapper.conv_ops</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" compoundref="_json_mapper_8cs" startline="108">LitJson.JsonMapper.custom_exporters_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" compoundref="_json_mapper_8cs" startline="113">LitJson.JsonMapper.custom_importers_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" compoundref="_json_mapper_8cs" startline="105">LitJson.JsonMapper.datetime_format</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a5209fc56980eecdd2f5cc4604a18222c" compoundref="_json_mapper_8cs" startline="103">LitJson.JsonMapper.max_nesting_depth</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" compoundref="_json_mapper_8cs" startline="122">LitJson.JsonMapper.object_metadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" compoundref="_json_mapper_8cs" startline="547" endline="594">LitJson.JsonMapper.RegisterBaseExporters</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" compoundref="_json_mapper_8cs" startline="596" endline="672">LitJson.JsonMapper.RegisterBaseImporters</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ac5a2ff9f983a63ab77e3f88442120b64" compoundref="_json_mapper_8cs" startline="129">LitJson.JsonMapper.static_writer</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" compoundref="_json_mapper_8cs" startline="126">LitJson.JsonMapper.type_properties</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.AddArrayMetadata</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>AddArrayMetadata</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="164" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="164" bodyend="196"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" compoundref="_json_mapper_8cs" startline="115">LitJson.JsonMapper.array_metadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a34840cbfe701e7dc4e21bf8819f286b1" compoundref="_json_mapper_8cs" startline="116">LitJson.JsonMapper.array_metadata_lock</references>
+        <references refid="struct_lit_json_1_1_array_metadata_1a7d5118adc4219180d2dd6176218eab65" compoundref="_json_mapper_8cs" startline="37">LitJson.ArrayMetadata.ElementType</references>
+        <references refid="struct_lit_json_1_1_array_metadata_1a835b53b6f72bd19251366a86604bf68b" compoundref="_json_mapper_8cs" startline="53">LitJson.ArrayMetadata.IsList</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.AddObjectMetadata</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>AddObjectMetadata</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="198" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="198" bodyend="246"/>
+        <references refid="struct_lit_json_1_1_object_metadata_1aed8c7b51b7985e5ed33fc3987c3a33a1" compoundref="_json_mapper_8cs" startline="79">LitJson.ObjectMetadata.IsDictionary</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" compoundref="_json_mapper_8cs" startline="122">LitJson.JsonMapper.object_metadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a093065cf81f8a7aa5a9c2ef5776612e6" compoundref="_json_mapper_8cs" startline="123">LitJson.JsonMapper.object_metadata_lock</references>
+        <references refid="struct_lit_json_1_1_object_metadata_1aa1ee1d3d3388cab8af6719c290c66d22" compoundref="_json_mapper_8cs" startline="84">LitJson.ObjectMetadata.Properties</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.AddTypeProperties</definition>
+        <argsstring>(Type type)</argsstring>
+        <name>AddTypeProperties</name>
+        <param>
+          <type>Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="248" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="248" bodyend="280"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" compoundref="_json_mapper_8cs" startline="126">LitJson.JsonMapper.type_properties</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a84061ae9adfb283b2baf8d0cfa1ba54b" compoundref="_json_mapper_8cs" startline="127">LitJson.JsonMapper.type_properties_lock</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>MethodInfo</type>
+        <definition>static MethodInfo LitJson.JsonMapper.GetConvOp</definition>
+        <argsstring>(Type t1, Type t2)</argsstring>
+        <name>GetConvOp</name>
+        <param>
+          <type>Type</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="282" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="282" bodyend="304"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a92e7081766e02c898bae1434b4a04ee5" compoundref="_json_mapper_8cs" startline="119">LitJson.JsonMapper.conv_ops</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ac40ee6c25a76662354f9bf9a1b52413f" compoundref="_json_mapper_8cs" startline="120">LitJson.JsonMapper.conv_ops_lock</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>object</type>
+        <definition>static object LitJson.JsonMapper.ReadValue</definition>
+        <argsstring>(Type inst_type, JsonReader reader)</argsstring>
+        <name>ReadValue</name>
+        <param>
+          <type>Type</type>
+          <declname>inst_type</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="306" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="306" bodyend="472"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" compoundref="_json_mapper_8cs" startline="164" endline="196">LitJson.JsonMapper.AddArrayMetadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" compoundref="_json_mapper_8cs" startline="198" endline="246">LitJson.JsonMapper.AddObjectMetadata</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a4410ec34d9e6c1a68100ca0ce033fb17">LitJson.Array</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" compoundref="_json_mapper_8cs" startline="115">LitJson.JsonMapper.array_metadata</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" compoundref="_json_mapper_8cs" startline="111">LitJson.JsonMapper.base_importers_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" compoundref="_json_mapper_8cs" startline="113">LitJson.JsonMapper.custom_importers_table</references>
+        <references refid="struct_lit_json_1_1_object_metadata_1a1dc9c2cd23937ab36fb875051c978549" compoundref="_json_mapper_8cs" startline="68">LitJson.ObjectMetadata.ElementType</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" compoundref="_json_mapper_8cs" startline="282" endline="304">LitJson.JsonMapper.GetConvOp</references>
+        <references refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0">LitJson.ImporterFunc</references>
+        <references refid="struct_lit_json_1_1_property_metadata_1a98c604bce92fdeda2f0daf11aa53da44" compoundref="_json_mapper_8cs" startline="24">LitJson.PropertyMetadata.Info</references>
+        <references refid="struct_lit_json_1_1_array_metadata_1abf6c0a2e89f8ea900819e791b2fb3708" compoundref="_json_mapper_8cs" startline="48">LitJson.ArrayMetadata.IsArray</references>
+        <references refid="struct_lit_json_1_1_object_metadata_1aed8c7b51b7985e5ed33fc3987c3a33a1" compoundref="_json_mapper_8cs" startline="79">LitJson.ObjectMetadata.IsDictionary</references>
+        <references refid="struct_lit_json_1_1_property_metadata_1a0823eac6e49119eaf4a57863fd1dd35f" compoundref="_json_mapper_8cs" startline="25">LitJson.PropertyMetadata.IsField</references>
+        <references refid="struct_lit_json_1_1_array_metadata_1a835b53b6f72bd19251366a86604bf68b" compoundref="_json_mapper_8cs" startline="53">LitJson.ArrayMetadata.IsList</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" compoundref="_json_mapper_8cs" startline="122">LitJson.JsonMapper.object_metadata</references>
+        <references refid="struct_lit_json_1_1_object_metadata_1aa1ee1d3d3388cab8af6719c290c66d22" compoundref="_json_mapper_8cs" startline="84">LitJson.ObjectMetadata.Properties</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a6638a736cd3b79061996c3ab47fee015" compoundref="_json_mapper_8cs" startline="541" endline="545">LitJson.JsonMapper.ReadSkip</references>
+        <references refid="class_lit_json_1_1_json_reader_1a8e87c357362dd1ad540728c3220ac026" compoundref="_json_reader_8cs" startline="75">LitJson.JsonReader.SkipNonMembers</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27118326006d3829667a400ad23d5d98">LitJson.String</references>
+        <references refid="class_lit_json_1_1_json_reader_1a9b7e46b195218ece31d2190902630610" compoundref="_json_reader_8cs" startline="88">LitJson.JsonReader.Token</references>
+        <references refid="struct_lit_json_1_1_property_metadata_1a6f2c9e287ca8c03327f997fe10515515" compoundref="_json_mapper_8cs" startline="26">LitJson.PropertyMetadata.Type</references>
+        <references refid="class_lit_json_1_1_json_reader_1ab6e8456eb1dcb115030f1a92261ed366" compoundref="_json_reader_8cs" startline="92">LitJson.JsonReader.Value</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a8b5f1c7dd042ab7c8c58e1700590785e" compoundref="_json_mapper_8cs" startline="474" endline="539">LitJson.JsonMapper.ReadValue</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a26503ae1437dff40b46e654710261569" compoundref="_json_mapper_8cs" startline="860" endline="863">LitJson.JsonMapper.ToObject&lt; T &gt;</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" compoundref="_json_mapper_8cs" startline="879" endline="883">LitJson.JsonMapper.ToWrapper</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a8b5f1c7dd042ab7c8c58e1700590785e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_lit_json_1_1_i_json_wrapper" kindref="compound">IJsonWrapper</ref></type>
+        <definition>static IJsonWrapper LitJson.JsonMapper.ReadValue</definition>
+        <argsstring>(WrapperFactory factory, JsonReader reader)</argsstring>
+        <name>ReadValue</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1a034d96afd28b6356ff3a4df002112573" kindref="member">WrapperFactory</ref></type>
+          <declname>factory</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="474" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="474" bodyend="539"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+        <references refid="class_lit_json_1_1_json_reader_1a9b7e46b195218ece31d2190902630610" compoundref="_json_reader_8cs" startline="88">LitJson.JsonReader.Token</references>
+        <references refid="class_lit_json_1_1_json_reader_1ab6e8456eb1dcb115030f1a92261ed366" compoundref="_json_reader_8cs" startline="92">LitJson.JsonReader.Value</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a6638a736cd3b79061996c3ab47fee015" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.ReadSkip</definition>
+        <argsstring>(JsonReader reader)</argsstring>
+        <name>ReadSkip</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="541" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="541" bodyend="545"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" compoundref="_json_mapper_8cs" startline="879" endline="883">LitJson.JsonMapper.ToWrapper</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.RegisterBaseExporters</definition>
+        <argsstring>()</argsstring>
+        <name>RegisterBaseExporters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="547" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="547" bodyend="594"/>
+        <references refid="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" compoundref="_json_mapper_8cs" startline="107">LitJson.JsonMapper.base_exporters_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" compoundref="_json_mapper_8cs" startline="105">LitJson.JsonMapper.datetime_format</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.RegisterBaseImporters</definition>
+        <argsstring>()</argsstring>
+        <name>RegisterBaseImporters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="596" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="596" bodyend="672"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" compoundref="_json_mapper_8cs" startline="111">LitJson.JsonMapper.base_importers_table</references>
+        <references refid="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" compoundref="_json_mapper_8cs" startline="105">LitJson.JsonMapper.datetime_format</references>
+        <references refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0">LitJson.ImporterFunc</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ad4ab96617d3805408cf2f6d868b2f1f4" compoundref="_json_mapper_8cs" startline="674" endline="682">LitJson.JsonMapper.RegisterImporter</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" compoundref="_json_mapper_8cs" startline="135" endline="159">LitJson.JsonMapper.JsonMapper</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1ad4ab96617d3805408cf2f6d868b2f1f4" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.RegisterImporter</definition>
+        <argsstring>(IDictionary&lt; Type, IDictionary&lt; Type, ImporterFunc &gt;&gt; table, Type json_type, Type value_type, ImporterFunc importer)</argsstring>
+        <name>RegisterImporter</name>
+        <param>
+          <type>IDictionary&lt; Type, IDictionary&lt; Type, <ref refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kindref="member">ImporterFunc</ref> &gt;&gt;</type>
+          <declname>table</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>json_type</declname>
+        </param>
+        <param>
+          <type>Type</type>
+          <declname>value_type</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kindref="member">ImporterFunc</ref></type>
+          <declname>importer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="674" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="674" bodyend="682"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" compoundref="_json_mapper_8cs" startline="596" endline="672">LitJson.JsonMapper.RegisterBaseImporters</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" compoundref="_json_mapper_8cs" startline="903" endline="913">LitJson.JsonMapper.RegisterImporter&lt; TJson, TValue &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.WriteValue</definition>
+        <argsstring>(object obj, JsonWriter writer, bool writer_is_private, int depth)</argsstring>
+        <name>WriteValue</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>writer_is_private</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="684" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="684" bodyend="820"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" compoundref="_json_mapper_8cs" startline="248" endline="280">LitJson.JsonMapper.AddTypeProperties</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a4410ec34d9e6c1a68100ca0ce033fb17">LitJson.Array</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" compoundref="_json_mapper_8cs" startline="107">LitJson.JsonMapper.base_exporters_table</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27226c864bac7454a8504f8edb15d95b">LitJson.Boolean</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" compoundref="_json_mapper_8cs" startline="108">LitJson.JsonMapper.custom_exporters_table</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757ad909d38d705ce75386dd86e611a82f5b">LitJson.Double</references>
+        <references refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51">LitJson.ExporterFunc</references>
+        <references refid="struct_lit_json_1_1_property_metadata_1a98c604bce92fdeda2f0daf11aa53da44" compoundref="_json_mapper_8cs" startline="24">LitJson.PropertyMetadata.Info</references>
+        <references refid="struct_lit_json_1_1_property_metadata_1a0823eac6e49119eaf4a57863fd1dd35f" compoundref="_json_mapper_8cs" startline="25">LitJson.PropertyMetadata.IsField</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a5209fc56980eecdd2f5cc4604a18222c" compoundref="_json_mapper_8cs" startline="103">LitJson.JsonMapper.max_nesting_depth</references>
+        <references refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27118326006d3829667a400ad23d5d98">LitJson.String</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" compoundref="_json_mapper_8cs" startline="126">LitJson.JsonMapper.type_properties</references>
+        <references refid="class_lit_json_1_1_json_writer_1acb8665eab51bec093e75a0e47143962a" compoundref="_json_writer_8cs" startline="300" endline="308">LitJson.JsonWriter.Write</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" compoundref="_json_mapper_8cs" startline="824" endline="833">LitJson.JsonMapper.ToJson</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string LitJson.JsonMapper.ToJson</definition>
+        <argsstring>(object obj)</argsstring>
+        <name>ToJson</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="824" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="824" bodyend="833"/>
+        <references refid="class_lit_json_1_1_json_mapper_1ac5a2ff9f983a63ab77e3f88442120b64" compoundref="_json_mapper_8cs" startline="129">LitJson.JsonMapper.static_writer</references>
+        <references refid="class_lit_json_1_1_json_mapper_1aeb74244ebfd32bfa5aa5ff76ddebf07d" compoundref="_json_mapper_8cs" startline="130">LitJson.JsonMapper.static_writer_lock</references>
+        <references refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a238546bde151c5b8f7a9d311b260187d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.ToJson</definition>
+        <argsstring>(object obj, JsonWriter writer)</argsstring>
+        <name>ToJson</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+          <declname>writer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="835" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="835" bodyend="838"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1af5a726451e61ddf8cc7ac239b9e5b26d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_lit_json_1_1_json_data" kindref="compound">JsonData</ref></type>
+        <definition>static JsonData LitJson.JsonMapper.ToObject</definition>
+        <argsstring>(JsonReader reader)</argsstring>
+        <name>ToObject</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="840" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="840" bodyend="844"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" compoundref="_json_mapper_8cs" startline="879" endline="883">LitJson.JsonMapper.ToWrapper</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a8535f2b6a430fed3cf732ca01c33d831" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_lit_json_1_1_json_data" kindref="compound">JsonData</ref></type>
+        <definition>static JsonData LitJson.JsonMapper.ToObject</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>ToObject</name>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="846" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="846" bodyend="852"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" compoundref="_json_mapper_8cs" startline="879" endline="883">LitJson.JsonMapper.ToWrapper</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a2af4c03e83f9e1dc04c292449dfd5c02" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_lit_json_1_1_json_data" kindref="compound">JsonData</ref></type>
+        <definition>static JsonData LitJson.JsonMapper.ToObject</definition>
+        <argsstring>(string json)</argsstring>
+        <name>ToObject</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="854" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="854" bodyend="858"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" compoundref="_json_mapper_8cs" startline="879" endline="883">LitJson.JsonMapper.ToWrapper</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a26503ae1437dff40b46e654710261569" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T LitJson.JsonMapper.ToObject&lt; T &gt;</definition>
+        <argsstring>(JsonReader reader)</argsstring>
+        <name>ToObject&lt; T &gt;</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="860" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="860" bodyend="863"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a27c13a03714e7bc42cbe50929755a650" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T LitJson.JsonMapper.ToObject&lt; T &gt;</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>ToObject&lt; T &gt;</name>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="865" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="865" bodyend="870"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a177e8eb25f92969172eee9f67da2da4e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T LitJson.JsonMapper.ToObject&lt; T &gt;</definition>
+        <argsstring>(string json)</argsstring>
+        <name>ToObject&lt; T &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="872" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="872" bodyend="877"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_lit_json_1_1_i_json_wrapper" kindref="compound">IJsonWrapper</ref></type>
+        <definition>static IJsonWrapper LitJson.JsonMapper.ToWrapper</definition>
+        <argsstring>(WrapperFactory factory, JsonReader reader)</argsstring>
+        <name>ToWrapper</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1a034d96afd28b6356ff3a4df002112573" kindref="member">WrapperFactory</ref></type>
+          <declname>factory</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_reader" kindref="compound">JsonReader</ref></type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="879" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="879" bodyend="883"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6638a736cd3b79061996c3ab47fee015" compoundref="_json_mapper_8cs" startline="541" endline="545">LitJson.JsonMapper.ReadSkip</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1af5a726451e61ddf8cc7ac239b9e5b26d" compoundref="_json_mapper_8cs" startline="840" endline="844">LitJson.JsonMapper.ToObject</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1ae9dc84400d287372e4906ce7f3602177" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="interface_lit_json_1_1_i_json_wrapper" kindref="compound">IJsonWrapper</ref></type>
+        <definition>static IJsonWrapper LitJson.JsonMapper.ToWrapper</definition>
+        <argsstring>(WrapperFactory factory, string json)</argsstring>
+        <name>ToWrapper</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1a034d96afd28b6356ff3a4df002112573" kindref="member">WrapperFactory</ref></type>
+          <declname>factory</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="885" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="885" bodyend="891"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a6bbb88387fb7e0d6df09bd75fdf5b898" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.RegisterExporter&lt; T &gt;</definition>
+        <argsstring>(ExporterFunc&lt; T &gt; exporter)</argsstring>
+        <name>RegisterExporter&lt; T &gt;</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51" kindref="member">ExporterFunc</ref>&lt; T &gt;</type>
+          <declname>exporter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="893" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="893" bodyend="901"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" compoundref="_json_mapper_8cs" startline="108">LitJson.JsonMapper.custom_exporters_table</references>
+        <references refid="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51">LitJson.ExporterFunc</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.RegisterImporter&lt; TJson, TValue &gt;</definition>
+        <argsstring>(ImporterFunc&lt; TJson, TValue &gt; importer)</argsstring>
+        <name>RegisterImporter&lt; TJson, TValue &gt;</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" kindref="member">ImporterFunc</ref>&lt; TJson, TValue &gt;</type>
+          <declname>importer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="903" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="903" bodyend="913"/>
+        <references refid="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" compoundref="_json_mapper_8cs" startline="113">LitJson.JsonMapper.custom_importers_table</references>
+        <references refid="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0">LitJson.ImporterFunc</references>
+        <references refid="class_lit_json_1_1_json_mapper_1ad4ab96617d3805408cf2f6d868b2f1f4" compoundref="_json_mapper_8cs" startline="674" endline="682">LitJson.JsonMapper.RegisterImporter</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1ad4a3e20cf8404d05289286bf19a736eb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.UnregisterExporters</definition>
+        <argsstring>()</argsstring>
+        <name>UnregisterExporters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="915" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="915" bodyend="918"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_mapper_1a176492a0dd81627ad1e6c5a7c7a1e22a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.JsonMapper.UnregisterImporters</definition>
+        <argsstring>()</argsstring>
+        <name>UnregisterImporters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="920" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="920" bodyend="923"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="112">
+        <label>LitJson.JsonMapper</label>
+        <link refid="class_lit_json_1_1_json_mapper"/>
+        <childnode refid="113" relation="usage">
+          <edgelabel>static_writer</edgelabel>
+        </childnode>
+      </node>
+      <node id="113">
+        <label>LitJson.JsonWriter</label>
+        <link refid="class_lit_json_1_1_json_writer"/>
+        <childnode refid="114" relation="usage">
+          <edgelabel>context</edgelabel>
+        </childnode>
+      </node>
+      <node id="114">
+        <label>LitJson.WriterContext</label>
+        <link refid="class_lit_json_1_1_writer_context"/>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="101" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" bodystart="100" bodyend="924"/>
+    <listofallmembers>
+      <member refid="class_lit_json_1_1_json_mapper_1a37fcdaa8f63e81b85b1cb60551524f60" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>AddArrayMetadata</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a8121d9f6da5180ab76ac0adf172c4deb" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>AddObjectMetadata</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a77561dc121156b7c0fade077ec82e9fa" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>AddTypeProperties</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a2ef4a8666c20580d08f60e807fc9dd4a" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>array_metadata</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a34840cbfe701e7dc4e21bf8819f286b1" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>array_metadata_lock</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ac4ca900a875a9473e8a97e6ee64dc73f" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>base_exporters_table</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a7257ba4d7a53a3792a55880e7b48e9e4" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>base_importers_table</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a92e7081766e02c898bae1434b4a04ee5" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>conv_ops</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ac40ee6c25a76662354f9bf9a1b52413f" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>conv_ops_lock</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a3fbe32352d29259dc99951f06530e34b" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>custom_exporters_table</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a6fdbd16281f0e026e6b3bd92b1e98f17" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>custom_importers_table</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1afa64492a38dd283c3d8c106558abb3a1" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>datetime_format</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a0bc40198065870f876867027fa43cf49" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>GetConvOp</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1af05d4eee731b8f59c0727ded5ee33911" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>JsonMapper</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a5209fc56980eecdd2f5cc4604a18222c" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>max_nesting_depth</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a7d2ae37ac4686749696bf1b884d8d3cd" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>object_metadata</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a093065cf81f8a7aa5a9c2ef5776612e6" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>object_metadata_lock</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a6638a736cd3b79061996c3ab47fee015" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ReadSkip</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ReadValue</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a8b5f1c7dd042ab7c8c58e1700590785e" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ReadValue</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a78ea87193032ae63ec633e4c8547c025" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>RegisterBaseExporters</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>RegisterBaseImporters</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a6bbb88387fb7e0d6df09bd75fdf5b898" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>RegisterExporter&lt; T &gt;</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ad4ab96617d3805408cf2f6d868b2f1f4" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>RegisterImporter</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>RegisterImporter&lt; TJson, TValue &gt;</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ac5a2ff9f983a63ab77e3f88442120b64" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>static_writer</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1aeb74244ebfd32bfa5aa5ff76ddebf07d" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>static_writer_lock</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a36894948629b746ebf3868c677702034" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToJson</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a238546bde151c5b8f7a9d311b260187d" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToJson</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1af5a726451e61ddf8cc7ac239b9e5b26d" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a8535f2b6a430fed3cf732ca01c33d831" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a2af4c03e83f9e1dc04c292449dfd5c02" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a26503ae1437dff40b46e654710261569" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject&lt; T &gt;</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a27c13a03714e7bc42cbe50929755a650" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject&lt; T &gt;</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a177e8eb25f92969172eee9f67da2da4e" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToObject&lt; T &gt;</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a9a296dc62e0cdadcd98b23c553b2e206" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToWrapper</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ae9dc84400d287372e4906ce7f3602177" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>ToWrapper</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a890cf75dbbc1abc49f38cb09b027a050" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>type_properties</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a84061ae9adfb283b2baf8d0cfa1ba54b" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>type_properties_lock</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1ad4a3e20cf8404d05289286bf19a736eb" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>UnregisterExporters</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a176492a0dd81627ad1e6c5a7c7a1e22a" prot="public" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>UnregisterImporters</name></member>
+      <member refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" prot="private" virt="non-virtual"><scope>LitJson::JsonMapper</scope><name>WriteValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

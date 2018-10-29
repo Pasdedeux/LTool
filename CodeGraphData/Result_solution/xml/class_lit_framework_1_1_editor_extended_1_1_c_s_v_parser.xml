@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser" kind="class" prot="public">
+    <compoundname>LitFramework::EditorExtended::CSVParser</compoundname>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7d" prot="private" static="no">
+        <name>EnMethodType</name>
+        <enumvalue id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da4ee29ca12c7d126654bd0e5275de6135" prot="public">
+          <name>List</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da3beb75d1563ebc22253341be4ce57f44" prot="public">
+          <name>Dictionary</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="33" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="32" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abb5091313a9154bab7fceea2664253fe" prot="private" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] LitFramework.EditorExtended.CSVParser.description</definition>
+        <argsstring></argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="38" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae76a2cdd8d94ccca05ca3e974c7d4052" prot="private" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] LitFramework.EditorExtended.CSVParser.attribute</definition>
+        <argsstring></argsstring>
+        <name>attribute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="39" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abd38600eb070b418f02094bc69adcb95" prot="private" static="no" mutable="no">
+        <type>string[]</type>
+        <definition>string [] LitFramework.EditorExtended.CSVParser.type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="40" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a60210e0ba0e0df6924edf9ccd715d3d1" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.ClassName</definition>
+        <argsstring></argsstring>
+        <name>ClassName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="41" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a141198894c4005ca7252d0c07f58e114" prot="private" static="no" mutable="no">
+        <type>const string</type>
+        <definition>const string LitFramework.EditorExtended.CSVParser.spaceName</definition>
+        <argsstring></argsstring>
+        <name>spaceName</name>
+        <initializer>= &quot;LitFramework&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="42" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a9c308a2bc70be71f058556ddcd60594e" prot="private" static="no" mutable="no">
+        <type><ref refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da4ee29ca12c7d126654bd0e5275de6135" kindref="member">List</ref>&lt; string &gt;</type>
+        <definition>List&lt;string&gt; LitFramework.EditorExtended.CSVParser.CSString</definition>
+        <argsstring></argsstring>
+        <name>CSString</name>
+        <initializer>= new <ref refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7da4ee29ca12c7d126654bd0e5275de6135" kindref="member">List</ref>&lt;string&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="44" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae9622ceb6558b730c48f148ed04351e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.CreateCS</definition>
+        <argsstring>(string className, string csv)</argsstring>
+        <name>CreateCS</name>
+        <param>
+          <type>string</type>
+          <declname>className</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>csv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="46" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1e6e1f0e92bc538ee89dcfa01991f075" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.CheckCsv</definition>
+        <argsstring>()</argsstring>
+        <name>CheckCsv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="67" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a3122f68f45e68242f54ab8f775ca89fc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.AddHead</definition>
+        <argsstring>()</argsstring>
+        <name>AddHead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="72" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="72" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ab39447260f8d218066cd7602a46749f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.AddTail</definition>
+        <argsstring>()</argsstring>
+        <name>AddTail</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="85" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="85" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a55056901d017c833e8e35a484c578eaf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.DicConvert</definition>
+        <argsstring>(string type)</argsstring>
+        <name>DicConvert</name>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="92" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="92" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1acefb11fa9f08d294d73238e914cf0f9d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.CheckEn</definition>
+        <argsstring>(string type)</argsstring>
+        <name>CheckEn</name>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="97" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="97" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a0349102a7bc54a3b9f2aac7d2e63d16e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.AddBody</definition>
+        <argsstring>()</argsstring>
+        <name>AddBody</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="106" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="106" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1392c475ecd412b21e38a47d3e94b792" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.AddParseVector3</definition>
+        <argsstring>()</argsstring>
+        <name>AddParseVector3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="128" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="128" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a14b59d166c8adfec780d52686fb6d9ba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.EditorExtended.CSVParser.AddMethod</definition>
+        <argsstring>(EnMethodType mtype)</argsstring>
+        <name>AddMethod</name>
+        <param>
+          <type><ref refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7d" kindref="member">EnMethodType</ref></type>
+          <declname>mtype</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="148" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="148" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac400af2ea7d36f10be30cccf992a6904" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.CheckStringType</definition>
+        <argsstring>(string type)</argsstring>
+        <name>CheckStringType</name>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="243" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="243" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a129999fbb75ca49d7602e7bbc0d84368" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.GetFomatedCS</definition>
+        <argsstring>()</argsstring>
+        <name>GetFomatedCS</name>
+        <briefdescription>
+<para>最终整合 </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>原代码文件</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="261" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="261" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae5f9bebc664b033f2de7865a6887f5aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.EditorExtended.CSVParser.ParseBaseType</definition>
+        <argsstring>(string type, string attribute)</argsstring>
+        <name>ParseBaseType</name>
+        <param>
+          <type>string</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>attribute</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="287" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="287" bodyend="329"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>表头为3行制 </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" line="31" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/CSVParser.cs" bodystart="30" bodyend="330"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a0349102a7bc54a3b9f2aac7d2e63d16e" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>AddBody</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a3122f68f45e68242f54ab8f775ca89fc" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>AddHead</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a14b59d166c8adfec780d52686fb6d9ba" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>AddMethod</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1392c475ecd412b21e38a47d3e94b792" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>AddParseVector3</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ab39447260f8d218066cd7602a46749f7" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>AddTail</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae76a2cdd8d94ccca05ca3e974c7d4052" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>attribute</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a1e6e1f0e92bc538ee89dcfa01991f075" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>CheckCsv</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1acefb11fa9f08d294d73238e914cf0f9d" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>CheckEn</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac400af2ea7d36f10be30cccf992a6904" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>CheckStringType</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a60210e0ba0e0df6924edf9ccd715d3d1" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>ClassName</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae9622ceb6558b730c48f148ed04351e5" prot="public" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>CreateCS</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a9c308a2bc70be71f058556ddcd60594e" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>CSString</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abb5091313a9154bab7fceea2664253fe" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>description</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a55056901d017c833e8e35a484c578eaf" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>DicConvert</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ac076f26b85d6e6bc53a8359cb38a7b7d" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>EnMethodType</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a129999fbb75ca49d7602e7bbc0d84368" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>GetFomatedCS</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1ae5f9bebc664b033f2de7865a6887f5aa" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>ParseBaseType</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1a141198894c4005ca7252d0c07f58e114" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>spaceName</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_c_s_v_parser_1abd38600eb070b418f02094bc69adcb95" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::CSVParser</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

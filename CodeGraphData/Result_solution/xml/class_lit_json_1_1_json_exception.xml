@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_json_1_1_json_exception" kind="class" prot="public">
+    <compoundname>LitJson::JsonException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ApplicationException</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a4386137b2ee4a606556c0ea28dbee169" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>()</argsstring>
+        <name>JsonException</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="19" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a6a048c13712e6d24951cb9462d816059" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(string message)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="51" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="51" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a103418dc7d40fcc398d3346d04182d72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(string message, Exception inner_exception)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type>string</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>inner_exception</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="55" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="55" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a5be4d6bec9b75e103b86d4c14f7092d1" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(ParserToken token)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27" kindref="member">ParserToken</ref></type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="23" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="23" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a0ba84f0a7ce0ec809469d230d5e07e8a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(ParserToken token, Exception inner_exception)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type><ref refid="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27" kindref="member">ParserToken</ref></type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>inner_exception</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="29" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="29" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1aa5d41f6b4dc0eec1ebee5f97afb0cac7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(int c)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type>int</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="37" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="37" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_json_exception_1a361da4e0d32ea5509e05401d25d413f9" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.JsonException.JsonException</definition>
+        <argsstring>(int c, Exception inner_exception)</argsstring>
+        <name>JsonException</name>
+        <param>
+          <type>int</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>Exception</type>
+          <declname>inner_exception</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="43" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="43" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="108">
+        <label>ApplicationException</label>
+      </node>
+      <node id="107">
+        <label>LitJson.JsonException</label>
+        <link refid="class_lit_json_1_1_json_exception"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="110">
+        <label>ApplicationException</label>
+      </node>
+      <node id="109">
+        <label>LitJson.JsonException</label>
+        <link refid="class_lit_json_1_1_json_exception"/>
+        <childnode refid="110" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" line="18" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonException.cs" bodystart="17" bodyend="59"/>
+    <listofallmembers>
+      <member refid="class_lit_json_1_1_json_exception_1a4386137b2ee4a606556c0ea28dbee169" prot="public" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1a5be4d6bec9b75e103b86d4c14f7092d1" prot="package" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1a0ba84f0a7ce0ec809469d230d5e07e8a" prot="package" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1aa5d41f6b4dc0eec1ebee5f97afb0cac7" prot="package" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1a361da4e0d32ea5509e05401d25d413f9" prot="package" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1a6a048c13712e6d24951cb9462d816059" prot="public" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+      <member refid="class_lit_json_1_1_json_exception_1a103418dc7d40fcc398d3346d04182d72" prot="public" virt="non-virtual"><scope>LitJson::JsonException</scope><name>JsonException</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

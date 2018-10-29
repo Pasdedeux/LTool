@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_unity_helper" kind="class" prot="public">
+    <compoundname>UnityHelper</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_unity_helper_1a17e64c98f427ea6a127f1269e6af6c7e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>static Transform UnityHelper.FindTheChildNode</definition>
+        <argsstring>(GameObject goParent, string chiildName)</argsstring>
+        <name>FindTheChildNode</name>
+        <param>
+          <type>GameObject</type>
+          <declname>goParent</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>chiildName</declname>
+        </param>
+        <briefdescription>
+<para>查找子节点对象 内部使用递归算法 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goParent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父对象</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chiildName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>查找的子对象名称</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/UnityHelper.cs" line="15" column="1" bodyfile="E:/Personal/LTool/LTool/UI/UnityHelper.cs" bodystart="15" bodyend="33"/>
+        <referencedby refid="class_unity_helper_1a2ee07bf3ebb07bf14b37cddc339a641a" compoundref="_unity_helper_8cs" startline="64" endline="89">AddChildNodeCompnent&lt; T &gt;</referencedby>
+        <referencedby refid="class_unity_helper_1ac23f37a6d1af23bd4544b8cb2a0ed4f3" compoundref="_unity_helper_8cs" startline="42" endline="55">GetTheChildNodeComponetScripts&lt; T &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_unity_helper_1ac23f37a6d1af23bd4544b8cb2a0ed4f3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T UnityHelper.GetTheChildNodeComponetScripts&lt; T &gt;</definition>
+        <argsstring>(GameObject goParent, string childName)</argsstring>
+        <name>GetTheChildNodeComponetScripts&lt; T &gt;</name>
+        <param>
+          <type>GameObject</type>
+          <declname>goParent</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>childName</declname>
+        </param>
+        <briefdescription>
+<para>获取子节点（对象）脚本 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>泛型</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goParent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父对象</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>childName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>子对象名称</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/UnityHelper.cs" line="42" column="1" bodyfile="E:/Personal/LTool/LTool/UI/UnityHelper.cs" bodystart="42" bodyend="55"/>
+        <references refid="class_unity_helper_1a17e64c98f427ea6a127f1269e6af6c7e" compoundref="_unity_helper_8cs" startline="15" endline="33">FindTheChildNode</references>
+      </memberdef>
+      <memberdef kind="function" id="class_unity_helper_1a2ee07bf3ebb07bf14b37cddc339a641a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T UnityHelper.AddChildNodeCompnent&lt; T &gt;</definition>
+        <argsstring>(GameObject goParent, string childName)</argsstring>
+        <name>AddChildNodeCompnent&lt; T &gt;</name>
+        <param>
+          <type>GameObject</type>
+          <declname>goParent</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>childName</declname>
+        </param>
+        <briefdescription>
+<para>给子节点添加脚本 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goParent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父对象</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>childName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>子对象名称</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/UnityHelper.cs" line="64" column="1" bodyfile="E:/Personal/LTool/LTool/UI/UnityHelper.cs" bodystart="64" bodyend="89"/>
+        <references refid="class_unity_helper_1a17e64c98f427ea6a127f1269e6af6c7e" compoundref="_unity_helper_8cs" startline="15" endline="33">FindTheChildNode</references>
+      </memberdef>
+      <memberdef kind="function" id="class_unity_helper_1ac2bf704e89e74ab7ab23f7315473a448" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void UnityHelper.AddChildNodeToParentNode</definition>
+        <argsstring>(Transform parents, Transform child)</argsstring>
+        <name>AddChildNodeToParentNode</name>
+        <param>
+          <type>Transform</type>
+          <declname>parents</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>child</declname>
+        </param>
+        <briefdescription>
+<para>给子节点添加父对象 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>父对象的方位</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>child</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>子对象的方法</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/UnityHelper.cs" line="96" column="1" bodyfile="E:/Personal/LTool/LTool/UI/UnityHelper.cs" bodystart="96" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="248">
+        <label>UnityHelper</label>
+        <link refid="class_unity_helper"/>
+        <childnode refid="249" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="249">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="250">
+        <label>UnityHelper</label>
+        <link refid="class_unity_helper"/>
+        <childnode refid="251" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="251">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/UI/UnityHelper.cs" line="6" column="1" bodyfile="E:/Personal/LTool/LTool/UI/UnityHelper.cs" bodystart="5" bodyend="103"/>
+    <listofallmembers>
+      <member refid="class_unity_helper_1a2ee07bf3ebb07bf14b37cddc339a641a" prot="public" virt="non-virtual"><scope>UnityHelper</scope><name>AddChildNodeCompnent&lt; T &gt;</name></member>
+      <member refid="class_unity_helper_1ac2bf704e89e74ab7ab23f7315473a448" prot="public" virt="non-virtual"><scope>UnityHelper</scope><name>AddChildNodeToParentNode</name></member>
+      <member refid="class_unity_helper_1a17e64c98f427ea6a127f1269e6af6c7e" prot="public" virt="non-virtual"><scope>UnityHelper</scope><name>FindTheChildNode</name></member>
+      <member refid="class_unity_helper_1ac23f37a6d1af23bd4544b8cb2a0ed4f3" prot="public" virt="non-virtual"><scope>UnityHelper</scope><name>GetTheChildNodeComponetScripts&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

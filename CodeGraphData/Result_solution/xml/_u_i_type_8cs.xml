@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_u_i_type_8cs" kind="file">
+    <compoundname>UIType.cs</compoundname>
+    <innerclass refid="class_u_i_type" prot="public">UIType</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="class_u_i_type" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_u_i_type" kindref="compound">UIType</ref><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="class_u_i_type_1abad34984e4affcce0fd649845493f9a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_u_i_type_1abad34984e4affcce0fd649845493f9a2" kindref="member">isClearPopUp</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="14" refid="class_u_i_type_1a72a69b4b5de9d9011f383dae08afac4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899" kindref="member">UINodeTypeEnum</ref><sp/><ref refid="class_u_i_type_1a72a69b4b5de9d9011f383dae08afac4b" kindref="member">uiNodeType</ref><sp/>=<sp/><ref refid="_sys_define_8cs_1ae1a7f98bea5333840f43f41655828899a960b44c579bc2f6818d2daaf9e4c16f0" kindref="member">UINodeTypeEnum.Normal</ref>;</highlight></codeline>
+<codeline lineno="21" refid="class_u_i_type_1af030bc8452445c3112bd80550746cbbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320f" kindref="member">UIShowModeEnum</ref><sp/><ref refid="class_u_i_type_1af030bc8452445c3112bd80550746cbbc" kindref="member">uiShowMode</ref><sp/>=<sp/><ref refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320fa98402eecfbcefc336954458a01752131" kindref="member">UIShowModeEnum.Parallel</ref>;</highlight></codeline>
+<codeline lineno="25" refid="class_u_i_type_1abad7fc92d73ede6d84a03bb8f531680b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2" kindref="member">UITransparentEnum</ref><sp/><ref refid="class_u_i_type_1abad7fc92d73ede6d84a03bb8f531680b" kindref="member">uiTransparent</ref><sp/>=<sp/><ref refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2a994117094f01932277bcb11cc4917639" kindref="member">UITransparentEnum.Penetrating</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="E:/Personal/LTool/LTool/UI/Base/UIType.cs"/>
+  </compounddef>
+</doxygen>

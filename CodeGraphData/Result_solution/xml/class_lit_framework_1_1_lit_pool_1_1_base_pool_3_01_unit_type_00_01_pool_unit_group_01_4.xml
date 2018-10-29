@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4" kind="class" prot="public" abstract="yes">
+    <compoundname>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>UnitType</type>
+      </param>
+      <param>
+        <type>PoolUnitGroup</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a69fa1f262a61fad4769df25c933d7698" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; Type, PoolUnitGroup &gt;</type>
+        <definition>Dictionary&lt;Type , PoolUnitGroup&gt; LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;._allUnitPool</definition>
+        <argsstring></argsstring>
+        <name>_allUnitPool</name>
+        <initializer>= new Dictionary&lt;Type , PoolUnitGroup&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1af7f0c2f071c49db3de30e9c5faf1e2f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;.Take&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>Take&lt; T &gt;</name>
+        <briefdescription>
+<para>获取一个指定类型空闲单元 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="42" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" bodystart="42" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a1ddb9a14f688ef468386cab0ff719814" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>PoolUnitGroup</type>
+        <definition>PoolUnitGroup LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;.GetGroup&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>GetGroup&lt; T &gt;</name>
+        <briefdescription>
+<para>获取或者新创建指定类型的池 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>对象单元类型</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="53" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" bodystart="53" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a89eab635d75bbc52bf1e4230852e6677" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract PoolUnitGroup</type>
+        <definition>abstract PoolUnitGroup LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;.CreateUnitGroup&lt; UT &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>CreateUnitGroup&lt; UT &gt;</name>
+        <briefdescription>
+<para>将创建对象池的方法交由子类具体实现 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>UT</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="72" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>对象池基类 </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>UnitType</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>PoolUnitGroup</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="16">
+        <label>LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;</label>
+        <link refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>UnityEngine::MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="18">
+        <label>LitFramework.LitPool.BasePool&lt; UnitType, PoolUnitGroup &gt;</label>
+        <link refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>UnityEngine::MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="33" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" bodystart="32" bodyend="73"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a69fa1f262a61fad4769df25c933d7698" prot="private" virt="non-virtual"><scope>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</scope><name>_allUnitPool</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a89eab635d75bbc52bf1e4230852e6677" prot="protected" virt="pure-virtual"><scope>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</scope><name>CreateUnitGroup&lt; UT &gt;</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1a1ddb9a14f688ef468386cab0ff719814" prot="private" virt="non-virtual"><scope>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</scope><name>GetGroup&lt; T &gt;</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4_1af7f0c2f071c49db3de30e9c5faf1e2f3" prot="public" virt="non-virtual"><scope>LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</scope><name>Take&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

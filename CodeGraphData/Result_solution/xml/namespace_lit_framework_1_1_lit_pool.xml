@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_lit_pool" kind="namespace">
+    <compoundname>LitFramework::LitPool</compoundname>
+    <innerclass refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_3_01_unit_type_00_01_pool_unit_group_01_4" prot="public">LitFramework::LitPool::BasePool&lt; UnitType, PoolUnitGroup &gt;</innerclass>
+    <innerclass refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4" prot="public">LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</innerclass>
+    <innerclass refid="interface_lit_framework_1_1_lit_pool_1_1_i_pool_unit" prot="public">LitFramework::LitPool::IPoolUnit</innerclass>
+    <innerclass refid="class_lit_framework_1_1_lit_pool_1_1_unit_group" prot="package">LitFramework::LitPool::UnitGroup</innerclass>
+    <innerclass refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager" prot="public">LitFramework::LitPool::SpawnManager</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71" prot="public" static="no">
+        <name>PoolType</name>
+        <enumvalue id="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71ae599161956d626eda4cb0a5ffb85271c" prot="public">
+          <name>Idle</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_lit_pool_1a2bfcd3f950257c8e56aa0a69dcdb1e71a0f9263536b9fc61ada745644735bfd8f" prot="public">
+          <name>Work</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/IPoolUnit.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/IPoolUnit.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePool.cs" line="26" column="1"/>
+  </compounddef>
+</doxygen>

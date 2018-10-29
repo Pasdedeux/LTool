@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_input" kind="namespace">
+    <compoundname>LitFramework::Input</compoundname>
+    <innerclass refid="class_lit_framework_1_1_input_1_1_input_control_manager" prot="public">LitFramework::Input::InputControlManager</innerclass>
+    <innerclass refid="class_lit_framework_1_1_input_1_1_touch_direction_control" prot="public">LitFramework::Input::TouchDirectionControl</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fed" prot="public" static="no">
+        <name>TouchDirection</name>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= 1&lt;&lt;0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda945d5e233cf7d6240f6b783b36a374ff" prot="public">
+          <name>Left</name>
+          <initializer>= 1&lt;&lt;1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda92b09c7c48c520c3c55e497875da437c" prot="public">
+          <name>Right</name>
+          <initializer>= 1&lt;&lt;2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda258f49887ef8d14ac268c92b02503aaa" prot="public">
+          <name>Up</name>
+          <initializer>= 1&lt;&lt;3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696feda08a38277b0309070706f6652eeae9a53" prot="public">
+          <name>Down</name>
+          <initializer>= 1&lt;&lt;4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_framework_1_1_input_1a68fda94d98c4f30ce7298492ac696fedabf11a7b8d1f2e61ee2462830b1f92edf" prot="public">
+          <name>OnUI</name>
+          <initializer>= 1&lt;&lt;5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" line="32" column="1" bodyfile="E:/Personal/LTool/LTool/Input/TouchDirectionControl.cs" bodystart="31" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/Input/InputControlManager.cs" line="29" column="1"/>
+  </compounddef>
+</doxygen>

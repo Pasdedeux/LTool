@@ -50,6 +50,8 @@ namespace LitFramework.GameFlow
         /// 场景切换，此方法用于Async加载方式
         /// </summary>
         /// <param name="sceneID">要切换到的目标ID</param>
+        /// <param name="loadingUIPath">Loading界面路径</param>
+        /// <param name="callBackAfterChanging">加载完成后回调，</param>
         /// <param name="isAdditive">是否叠加场景，默认为false</param>
         /// <param name="needLoadingUI">是否需要转场UI</param>
         /// <param name="needFading">是否需要黑屏渐变</param>
@@ -73,12 +75,13 @@ namespace LitFramework.GameFlow
                 {
                     _asyncOperation.allowSceneActivation = true;
 
+                    if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
+
                     if ( isHot )
                         HotFix.UIManager.Instance.Close( loadingUIPath );
                     else
                         Mono.UIManager.Instance.Close( loadingUIPath );
 
-                    if ( callBackAfterChanging != null ) callBackAfterChanging.Invoke();
                     LoadingTaskModel.Instance.ClearTask();
                     return true;
                 } );

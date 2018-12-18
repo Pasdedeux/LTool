@@ -18,7 +18,7 @@ using UnityEngine;
 namespace LitFramework.Mono
 {
 
-    public abstract class BaseUI : MonoBehaviour
+    public abstract class BaseUI : MonoBehaviour , UI.Base.IBaseUI
     {
         /// <summary>
         /// 该窗口是否开启中

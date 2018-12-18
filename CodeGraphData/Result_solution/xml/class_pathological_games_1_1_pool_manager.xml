@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_pathological_games_1_1_pool_manager" kind="class" prot="public">
+    <compoundname>PathologicalGames::PoolManager</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" prot="public" static="yes" mutable="no">
+        <type>readonly <ref refid="class_pathological_games_1_1_spawn_pools_dict" kindref="compound">SpawnPoolsDict</ref></type>
+        <definition>readonly SpawnPoolsDict PathologicalGames.PoolManager.Pools</definition>
+        <argsstring></argsstring>
+        <name>Pools</name>
+        <initializer>= new <ref refid="class_pathological_games_1_1_spawn_pools_dict" kindref="compound">SpawnPoolsDict</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="27" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> v2.0<itemizedlist>
+<listitem><para><ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> is not a complete implimentation of the IDictionary interface Which enabled:<itemizedlist>
+<listitem><para>Much more acurate and clear error handling</para></listitem><listitem><para>Member access protection so you can&apos;t run anything you aren&apos;t supposed to.</para></listitem></itemizedlist>
+</para></listitem><listitem><para>Moved all functions for working with Pools from <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> to <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> which enabled shorter names to reduces the length of lines of code. Online Docs: <ulink url="http://docs.poolmanager2.path-o-logical.com">http://docs.poolmanager2.path-o-logical.com</ulink>  </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="152">
+        <label>IDictionary&lt; string, SpawnPool &gt;</label>
+      </node>
+      <node id="151">
+        <label>PathologicalGames.SpawnPoolsDict</label>
+        <link refid="class_pathological_games_1_1_spawn_pools_dict"/>
+        <childnode refid="152" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="150">
+        <label>PathologicalGames.PoolManager</label>
+        <link refid="class_pathological_games_1_1_pool_manager"/>
+        <childnode refid="151" relation="usage">
+          <edgelabel>Pools</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="26" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="25" bodyend="28"/>
+    <listofallmembers>
+      <member refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" prot="public" virt="non-virtual"><scope>PathologicalGames::PoolManager</scope><name>Pools</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1619 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_pathological_games_1_1_spawn_pool" kind="class" prot="public">
+    <compoundname>PathologicalGames::SpawnPool</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IList&lt; Transform &gt;</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1acbf8f39f8342982648fac384039f71b3" prot="public" static="no" mutable="no">
+        <type>List&lt; GameObject &gt;</type>
+        <definition>List&lt;GameObject&gt; PathologicalGames.SpawnPool.prefabList</definition>
+        <argsstring></argsstring>
+        <name>prefabList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string PathologicalGames.SpawnPool.poolName</definition>
+        <argsstring></argsstring>
+        <name>poolName</name>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+<para>Returns the name of this pool used by <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref>. This will always be the same as the name in Unity, unless the name contains the work &quot;Pool&quot;, which <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> will strip out. This is done so you can name a prefab or GameObject in a way that is development friendly. For example, &quot;EnemiesPool&quot; is easier to understand than just &quot;Enemies&quot; when looking through a project. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="57" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="57" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" compoundref="_pool_manager_8cs" startline="253" endline="269">PathologicalGames.SpawnPoolsDict.Add</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" compoundref="_spawn_pool_8cs" startline="161" endline="204">PathologicalGames.SpawnPool.Awake</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1abe9c4ea779c2f71e7adcd8967d68777c" compoundref="_pool_manager_8cs" startline="287" endline="299">PathologicalGames.SpawnPoolsDict.Remove</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a10237fa0ec1d883a455763125e08bbbf" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.matchPoolScale</definition>
+        <argsstring></argsstring>
+        <name>matchPoolScale</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Matches new instances to the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> GameObject&apos;s scale. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="62" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="62" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a268985c80023afba079bf331909bdc17" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.matchPoolLayer</definition>
+        <argsstring></argsstring>
+        <name>matchPoolLayer</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Matches new instances to the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> GameObject&apos;s layer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="67" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="67" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a1acf124f1e89e7e7e339c4c7fd5175bc" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.dontReparent</definition>
+        <argsstring></argsstring>
+        <name>dontReparent</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>If True, do not reparent instances under the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>&apos;s Transform. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="72" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="72" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1ae01c56f81362210fd4909cc3d250a263" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool._dontDestroyOnLoad</definition>
+        <argsstring></argsstring>
+        <name>_dontDestroyOnLoad</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="93" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="93" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" compoundref="_spawn_pool_8cs" startline="161" endline="204">PathologicalGames.SpawnPool.Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.logMessages</definition>
+        <argsstring></argsstring>
+        <name>logMessages</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Print information to the Unity Console </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="98" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="98" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a7c456dedaa04bae62e17b86e97784eca" compoundref="_spawn_pool_8cs" startline="310" endline="344">PathologicalGames.SpawnPool.Add</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" compoundref="_spawn_pool_8cs" startline="161" endline="204">PathologicalGames.SpawnPool.Awake</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a41c0c4bf4dbdb5cff7fbb50d626c4851" compoundref="_spawn_pool_8cs" startline="264" endline="297">PathologicalGames.SpawnPool.CreatePrefabPool</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac096b46bd3f40d3db00301ad55717700" compoundref="_spawn_pool_8cs" startline="210" endline="228">PathologicalGames.SpawnPool.OnDestroy</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a1d2bd549c4c8e8824f41911cb1dd40f8" prot="public" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> &gt;</type>
+        <definition>List&lt;PrefabPool&gt; PathologicalGames.SpawnPool._perPrefabPoolOptions</definition>
+        <argsstring></argsstring>
+        <name>_perPrefabPoolOptions</name>
+        <initializer>= new List&lt;<ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref>&gt;()</initializer>
+        <briefdescription>
+<para>A list of PreloadDef options objects used by the inspector for user input </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="103" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="103" bodyend="-1"/>
+        <referencedby refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager_1ae55fe7276d62ceef2f8db7c7c6ac691a" compoundref="_spawn_manager_8cs" startline="119" endline="145">LitFramework.LitPool.SpawnManager.AddPoolManager</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" compoundref="_spawn_pool_8cs" startline="161" endline="204">PathologicalGames.SpawnPool.Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a9a5d8f6d2c82349aaded8e0379e65a50" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; object, bool &gt;</type>
+        <definition>Dictionary&lt;object, bool&gt; PathologicalGames.SpawnPool.prefabsFoldOutStates</definition>
+        <argsstring></argsstring>
+        <name>prefabsFoldOutStates</name>
+        <initializer>= new Dictionary&lt;object, bool&gt;()</initializer>
+        <briefdescription>
+<para>Used by the inspector to store this instances foldout states. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="108" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a870a76218d3dde217c8893041b59272f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float PathologicalGames.SpawnPool.maxParticleDespawnTime</definition>
+        <argsstring></argsstring>
+        <name>maxParticleDespawnTime</name>
+        <initializer>= 300</initializer>
+        <briefdescription>
+<para>The time in seconds to stop waiting for particles to die. A warning will be logged if this is triggered. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="118" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="118" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1afce7cfbfaebe872367a168e19dc86004" compoundref="_spawn_pool_8cs" startline="1010" endline="1043">PathologicalGames.SpawnPool.ListenForEmitDespawn</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1accafb1f17a603aab9f846e282a31594b" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathological_games_1_1_prefabs_dict" kindref="compound">PrefabsDict</ref></type>
+        <definition>PrefabsDict PathologicalGames.SpawnPool.prefabs</definition>
+        <argsstring></argsstring>
+        <name>prefabs</name>
+        <initializer>= new <ref refid="class_pathological_games_1_1_prefabs_dict" kindref="compound">PrefabsDict</ref>()</initializer>
+        <briefdescription>
+<para>Returns the prefab of the given name (dictionary key) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="129" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1af8b99076d0162feb72d7b4e43f4f8078" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; object, bool &gt;</type>
+        <definition>Dictionary&lt;object, bool&gt; PathologicalGames.SpawnPool._editorListItemStates</definition>
+        <argsstring></argsstring>
+        <name>_editorListItemStates</name>
+        <initializer>= new Dictionary&lt;object, bool&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="132" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1a6cd9d0be97bf95107693e4039562e9f9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.dontDestroyOnLoad</definition>
+        <argsstring></argsstring>
+        <name>dontDestroyOnLoad</name>
+        <briefdescription>
+<para>If true, the Pool&apos;s group, GameObject, will be set to Unity&apos;s Object.DontDestroyOnLoad() </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="78" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1ad87ea22e5bc01b9bf042049636099044" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.group</definition>
+        <argsstring></argsstring>
+        <name>group</name>
+        <briefdescription>
+<para>The group is an empty game object which will be the parent of all instances in the pool. This helps keep the scene easy to work with. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="124" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1adbc8aec0b9d6757a1991830b184ceda4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> &gt;</type>
+        <definition>Dictionary&lt;string, PrefabPool&gt; PathologicalGames.SpawnPool.prefabPools</definition>
+        <argsstring></argsstring>
+        <name>prefabPools</name>
+        <briefdescription>
+<para>Readonly access to prefab pools via a dictionary&lt;string, PrefabPool&gt;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="137" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1a933f306f2cb2f81dea8c4e18d827874c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.this[int index]</definition>
+        <argsstring></argsstring>
+        <name>this[int index]</name>
+        <briefdescription>
+<para>Read-only index access. You can still modify the instance at the given index. Read-only reffers to setting an index to a new instance reference, which would change the list. Setting via index is never needed to work with index access. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>int address of the item to get</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1111" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1a1844e8a5b26c416ba8dd1dbabee6c4d4" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.SpawnPool.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+<para>Returns the number of items in this (the collection). Readonly. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1146" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pool_1a16cd0517170056d965949abee0193265" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.IsReadOnly</definition>
+        <argsstring></argsstring>
+        <name>IsReadOnly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1177" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1177" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> &gt;</type>
+        <definition>List&lt;PrefabPool&gt; PathologicalGames.SpawnPool._prefabPools</definition>
+        <argsstring></argsstring>
+        <name>_prefabPools</name>
+        <initializer>= new List&lt;<ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="154" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="154" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a7c456dedaa04bae62e17b86e97784eca" compoundref="_spawn_pool_8cs" startline="310" endline="344">PathologicalGames.SpawnPool.Add</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" compoundref="_spawn_pool_8cs" startline="788" endline="823">PathologicalGames.SpawnPool.Despawn</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ab1b67a2e7f6ffc1a594bb4974097a671" compoundref="_spawn_pool_8cs" startline="965" endline="973">PathologicalGames.SpawnPool.GetPrefab</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac3e1969a06406e2a3658e951359f22a9" compoundref="_spawn_pool_8cs" startline="942" endline="956">PathologicalGames.SpawnPool.GetPrefabPool</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac096b46bd3f40d3db00301ad55717700" compoundref="_spawn_pool_8cs" startline="210" endline="228">PathologicalGames.SpawnPool.OnDestroy</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" prot="package" static="no" mutable="no">
+        <type>List&lt; Transform &gt;</type>
+        <definition>List&lt;Transform&gt; PathologicalGames.SpawnPool._spawned</definition>
+        <argsstring></argsstring>
+        <name>_spawned</name>
+        <initializer>= new List&lt;Transform&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="155" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="155" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" compoundref="_spawn_pool_8cs" startline="788" endline="823">PathologicalGames.SpawnPool.Despawn</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ad483cae69aef090973577d61c034b200" compoundref="_spawn_pool_8cs" startline="1156" endline="1160">PathologicalGames.SpawnPool.GetEnumerator</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ac77bb0dbb1d2765143250f24ac9c6338" compoundref="_spawn_pool_8cs" startline="1092" endline="1101">PathologicalGames.SpawnPool.ToString</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="161" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="161" bodyend="204"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ae01c56f81362210fd4909cc3d250a263" compoundref="_spawn_pool_8cs" startline="93">PathologicalGames.SpawnPool._dontDestroyOnLoad</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a1d2bd549c4c8e8824f41911cb1dd40f8" compoundref="_spawn_pool_8cs" startline="103">PathologicalGames.SpawnPool._perPrefabPoolOptions</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" compoundref="_spawn_pool_8cs" startline="98">PathologicalGames.SpawnPool.logMessages</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" compoundref="_spawn_pool_8cs" startline="57">PathologicalGames.SpawnPool.poolName</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac096b46bd3f40d3db00301ad55717700" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <briefdescription>
+<para>Runs when this group GameObject is destroyed and executes clean-up </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="210" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="210" bodyend="228"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" compoundref="_spawn_pool_8cs" startline="98">PathologicalGames.SpawnPool.logMessages</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a5a88b9465d510bb9ff753343b2e374ff" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.SpawnPool.DoDespawnAfterSeconds</definition>
+        <argsstring>(Transform instance, float seconds, bool useParent, Transform parent)</argsstring>
+        <name>DoDespawnAfterSeconds</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>seconds</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useParent</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Waits X seconds before despawning. See the docs for DespawnAfterSeconds() the argument useParent is used because a null parent is valid in Unity. It will make the scene root the parent </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="869" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="869" bodyend="887"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a6e291ca377ed0f3a878fc2c0c905348a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.SpawnPool.ListForAudioStop</definition>
+        <argsstring>(AudioSource src)</argsstring>
+        <name>ListForAudioStop</name>
+        <param>
+          <type>AudioSource</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="993" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="993" bodyend="1002"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1afce7cfbfaebe872367a168e19dc86004" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.SpawnPool.ListenForEmitDespawn</definition>
+        <argsstring>(ParticleEmitter emitter)</argsstring>
+        <name>ListenForEmitDespawn</name>
+        <param>
+          <type>ParticleEmitter</type>
+          <declname>emitter</declname>
+        </param>
+        <briefdescription>
+<para>Used to determine when a particle emiter should be despawned </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>emitter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ParticleEmitter to process</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1010" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1010" bodyend="1043"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a870a76218d3dde217c8893041b59272f" compoundref="_spawn_pool_8cs" startline="118">PathologicalGames.SpawnPool.maxParticleDespawnTime</references>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a56d2638a72edda54de45cf2092b538b6" compoundref="_spawn_pool_8cs" startline="754" endline="778">PathologicalGames.SpawnPool.Spawn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a2c4bd8b45dce00dc81c01e0c91c2aa06" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.SpawnPool.ListenForEmitDespawn</definition>
+        <argsstring>(ParticleSystem emitter)</argsstring>
+        <name>ListenForEmitDespawn</name>
+        <param>
+          <type>ParticleSystem</type>
+          <declname>emitter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1046" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1046" bodyend="1083"/>
+        <references refid="class_pathological_games_1_1_pool_manager_utils_1a70d6b43dd9b638d1eab56d69a9ec9e4a" compoundref="_pool_manager_8cs" startline="42" endline="50">PathologicalGames.PoolManagerUtils.activeInHierarchy</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a870a76218d3dde217c8893041b59272f" compoundref="_spawn_pool_8cs" startline="118">PathologicalGames.SpawnPool.maxParticleDespawnTime</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac3d2420bafad7e4503bbb4b50c6ebff9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator IEnumerable.</type>
+        <definition>IEnumerator IEnumerable. PathologicalGames.SpawnPool.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+<para>Impliments the ability to use this list in a foreach loop </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1166" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1166" bodyend="1170"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" compoundref="_spawn_pool_8cs" startline="155">PathologicalGames.SpawnPool._spawned</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac2428de9332fb33a31c374e04d61bcca" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool ICollection&lt; Transform &gt;.</type>
+        <definition>bool ICollection&lt;Transform&gt;. PathologicalGames.SpawnPool.Remove</definition>
+        <argsstring>(Transform item)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1178" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1178" bodyend="1178"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a41c0c4bf4dbdb5cff7fbb50d626c4851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.CreatePrefabPool</definition>
+        <argsstring>(PrefabPool prefabPool)</argsstring>
+        <name>CreatePrefabPool</name>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref></type>
+          <declname>prefabPool</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> in this Pool and instances the requested number of instances (set by <ref refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" kindref="member">PrefabPool.preloadAmount</ref>). If preload amount is 0, nothing will be spawned and the return list will be empty. </para>        </briefdescription>
+        <detaileddescription>
+<para>It is rare this function is needed during regular usage. This function should only be used if you need to set the preferences of a new <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref>, such as culling or pre-loading, before use. Otherwise, just use <ref refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" kindref="member">Spawn()</ref> and if the prefab is used for the first time a <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> will automatically be created with defaults anyway.</para><para>Note: Instances with ParticleEmitters can be preloaded too because it won&apos;t trigger the emmiter or the coroutine which waits for particles to die, which <ref refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" kindref="member">Spawn()</ref> does.</para><para>Usage Example: // Creates a prefab pool and sets culling options but doesn&apos;t // need to spawn any instances (this is fine) <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> prefabPool = new PrefabPool() prefabPool.prefab = myPrefabReference; prefabPool.preloadAmount = 0; prefabPool.cullDespawned = True; prefabPool.cullAbove = 50; prefabPool.cullDelay = 30;</para><para>// Enemies is just an example. Any pool is fine. <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref>[&quot;Enemies&quot;].CreatePrefabPool(prefabPool);</para><para>// Then, just use as normal... <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref>[&quot;Enemies&quot;].Spawn(myPrefabReference); </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefabPool</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> object</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A List of instances spawned or an empty List</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="264" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="264" bodyend="297"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" compoundref="_spawn_pool_8cs" startline="98">PathologicalGames.SpawnPool.logMessages</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1aa8e39fc54738578f8eed8b94d4ec937e" compoundref="_spawn_pool_8cs" startline="1427">PathologicalGames.PrefabPool.preloaded</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a7c456dedaa04bae62e17b86e97784eca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Add</definition>
+        <argsstring>(Transform instance, string prefabName, bool despawn, bool parent)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>despawn</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Add an existing instance to this pool. This is used during game start to pool objects which are not instanciated at runtime </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to add</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prefabName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the prefab used to create this instance </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>despawn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True to depawn on start</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True to make a child of the pool&apos;s group</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="310" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="310" bodyend="344"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" compoundref="_spawn_pool_8cs" startline="98">PathologicalGames.SpawnPool.logMessages</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a874af6d9e53b89f5063ad969821d3791" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Add</definition>
+        <argsstring>(Transform item)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>Not Implimented. Use <ref refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" kindref="member">Spawn()</ref> to properly add items to the pool. This is required because the prefab needs to be stored in the internal data structure in order for the pool to function properly. Items can only be added by instencing them using SpawnInstance(). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="357" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="357" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ab7595c0bd7bd47586f0b1d0a65916b51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Remove</definition>
+        <argsstring>(Transform item)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>Not Implimented. Use <ref refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kindref="member">Despawn()</ref> to properly manage items that should remain in the Queue but be deactivated. There is currently no way to safetly remove items from the pool permentantly. Destroying Objects would defeat the purpose of the pool. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="371" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="371" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(Transform prefab, Vector3 pos, Quaternion rot, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Spawns an instance or creates a new instance if none are available. Either way, an instance will be set to the passed position and rotation.</para><para>Detailed Information: Checks the Data structure for an instance that was already created using the prefab. If the prefab has been used before, such as by setting it in the Unity Editor to preload instances, or just used before via this function, one of its instances will be used if one is available, or a new one will be created.</para><para>If the prefab has never been used a new <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> will be started with default options.</para><para>To alter the options on a prefab pool, use the Unity Editor or see the documentation for the <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> class and SpawnPool.SpawnPrefabPool()</para><para>Broadcasts &quot;OnSpawned&quot; to the instance. Use this to manage states.</para><para>An overload of this function has the same initial signature as Unity&apos;s Instantiate() that takes position and rotation. The return Type is different though. Unity uses and returns a GameObject reference. <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> uses and returns a Transform reference (or other supported type, such as AudioSource and ParticleSystem)  <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prefab used to spawn an instance. Only used for reference if an instance is already in the pool and available for respawn. NOTE: Type = Transform </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position to set the instance to</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rotation to set the instance to</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An optional parent for the instance</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The instance&apos;s Transform.</para><para>If the Limit option was used for the <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> associated with the passed prefab, then this method will return null if the limit is reached. You DO NOT need to test for null return values unless you used the limit option. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="426" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="426" bodyend="506"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1af2d9c85587b5981da1494efb794bfaae" compoundref="_spawn_pool_8cs" startline="632" endline="649">PathologicalGames.SpawnPool.Spawn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a464278ce9a75dd7bdb6fb2e8dc4863a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(Transform prefab, Vector3 pos, Quaternion rot)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="512" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="512" bodyend="520"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ad2ecd4f625f5aa7ca99f1f5baf4f880a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(Transform prefab)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload to take only a prefab and instance using an &apos;empty&apos; position and rotation. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="529" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="529" bodyend="532"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a4c9bd9beab1e5b855b12a70db8a53efe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(Transform prefab, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to take only a prefab and parent the new instance under the given parent </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="541" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="541" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a319fbcf869af5082a32502c24a34d84c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(string prefabName)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload to take only a prefab name. The cached reference is pulled from the <ref refid="class_pathological_games_1_1_spawn_pool_1accafb1f17a603aab9f846e282a31594b" kindref="member">SpawnPool.prefabs</ref> dictionary. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="553" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="553" bodyend="557"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a53438681dc430872fdf032e0207ec7c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(string prefabName, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to take only a prefab name and parent the new instance under the given parent </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="566" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="566" bodyend="570"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a2da622c419137984a32dcf630bb6b150" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(string prefabName, Vector3 pos, Quaternion rot)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload to take only a prefab name. The cached reference is pulled from the <ref refid="class_pathological_games_1_1_spawn_pool_1accafb1f17a603aab9f846e282a31594b" kindref="member">SpawnPool.prefabs</ref> dictionary. An instance will be set to the passed position and rotation. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="580" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="580" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1aae1ecea456d4273535e3ec09cfe67128" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(string prefabName, Vector3 pos, Quaternion rot, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to take only a prefab name and parent the new instance under the given parent. An instance will be set to the passed position and rotation. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="594" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="594" bodyend="599"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a35f9a8be38d8ee78f1b2a32f527d4eb3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>AudioSource</type>
+        <definition>AudioSource PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(AudioSource prefab, Vector3 pos, Quaternion rot)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>AudioSource</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="602" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="602" bodyend="606"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a418b6889daf8ce8d2f7c5cafbecfb25f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>AudioSource</type>
+        <definition>AudioSource PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(AudioSource prefab)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>AudioSource</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="609" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="609" bodyend="617"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a13aea53576a9560e645639965b6b48f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>AudioSource</type>
+        <definition>AudioSource PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(AudioSource prefab, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>AudioSource</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="620" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="620" bodyend="629"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1af2d9c85587b5981da1494efb794bfaae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>AudioSource</type>
+        <definition>AudioSource PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(AudioSource prefab, Vector3 pos, Quaternion rot, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>AudioSource</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="632" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="632" bodyend="649"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" compoundref="_spawn_pool_8cs" startline="426" endline="506">PathologicalGames.SpawnPool.Spawn</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a3d5e333350cec1f787668c90658049a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ParticleSystem</type>
+        <definition>ParticleSystem PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(ParticleSystem prefab, Vector3 pos, Quaternion rot)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>ParticleSystem</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>See docs for SpawnInstance(Transform prefab, Vector3 pos, Quaternion rot) for basic functionalty information. </para>        </briefdescription>
+        <detaileddescription>
+<para>Pass a ParticleSystem component of a prefab to instantiate, trigger emit, then listen for when all particles have died to &quot;auto-destruct&quot;, but instead of destroying the game object it will be deactivated and added to the pool to be reused.</para><para>IMPORTANT:<itemizedlist>
+<listitem><para>You must pass a ParticleSystem next time as well, or the emitter will be treated as a regular prefab and simply activate, but emit will not be triggered!</para></listitem><listitem><para>The listner that waits for the death of all particles will time-out after a set number of seconds and log a warning. This is done to keep the developer aware of any unexpected usage cases. Change the public property &quot;maxParticleDespawnTime&quot; to adjust this length of time.</para></listitem></itemizedlist>
+</para><para>Broadcasts &quot;OnSpawned&quot; to the instance. Use this instead of <ref refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" kindref="member">Awake()</ref></para><para>This function has the same initial signature as Unity&apos;s Instantiate() that takes position and rotation. The return Type is different though. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="676" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="676" bodyend="681"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" compoundref="_spawn_pool_8cs" startline="426" endline="506">PathologicalGames.SpawnPool.Spawn</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a55e384eaa0b20f6936866f60c7d978f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ParticleSystem</type>
+        <definition>ParticleSystem PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(ParticleSystem prefab, Vector3 pos, Quaternion rot, Transform parent)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>ParticleSystem</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See primary Spawn ParticleSystem method for documentation. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to take only a prefab name and parent the new instance under the given parent. An instance will be set to the passed position and rotation. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="690" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="690" bodyend="707"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a4edce7f46132baa25716500263e1dc90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ParticleEmitter</type>
+        <definition>ParticleEmitter PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(ParticleEmitter prefab, Vector3 pos, Quaternion rot)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>ParticleEmitter</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>See docs for SpawnInstance(ParticleSystems prefab, Vector3 pos, Quaternion rot) This is the same but for ParticleEmitters </para>        </briefdescription>
+        <detaileddescription>
+<para>IMPORTANT:<itemizedlist>
+<listitem><para>This function turns off Unity&apos;s ParticleAnimator autodestruct if one is found. </para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="718" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="718" bodyend="738"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a56d2638a72edda54de45cf2092b538b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ParticleEmitter</type>
+        <definition>ParticleEmitter PathologicalGames.SpawnPool.Spawn</definition>
+        <argsstring>(ParticleEmitter prefab, Vector3 pos, Quaternion rot, string colorPropertyName, Color color)</argsstring>
+        <name>Spawn</name>
+        <param>
+          <type>ParticleEmitter</type>
+          <declname>prefab</declname>
+        </param>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>colorPropertyName</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>This will not be supported for Shuriken particles. This will eventually be depricated. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prefab to instance. Not used if an instance already exists in the scene that is queued for reuse. Type = ParticleEmitter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position to set the instance to</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The rotation to set the instance to</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>colorPropertyName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Same as Material.SetColor()</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a Color object. Same as Material.SetColor()</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The instance&apos;s ParticleEmitter</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="754" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="754" bodyend="778"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1afce7cfbfaebe872367a168e19dc86004" compoundref="_spawn_pool_8cs" startline="1010" endline="1043">PathologicalGames.SpawnPool.ListenForEmitDespawn</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Despawn</definition>
+        <argsstring>(Transform instance)</argsstring>
+        <name>Despawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>If the passed object is managed by the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>, it will be deactivated and made available to be spawned again. </para>        </briefdescription>
+        <detaileddescription>
+<para>Despawned instances are removed from the primary list. </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transform of the gameobject to process</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="788" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="788" bodyend="823"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" compoundref="_spawn_pool_8cs" startline="155">PathologicalGames.SpawnPool._spawned</references>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a6407135d31b4e27456967dcd581ecc1c" compoundref="_spawn_pool_8cs" startline="893" endline="898">PathologicalGames.SpawnPool.DespawnAll</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ab126203a7fe97b973818734fdbd52e71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Despawn</definition>
+        <argsstring>(Transform instance, Transform parent)</argsstring>
+        <name>Despawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See docs for <ref refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kindref="member">Despawn(Transform instance)</ref> for basic functionalty information. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to provide the option to re-parent for the instance just before despawn. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="832" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="832" bodyend="836"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1aced4b8516688d8088ccc987a4f93c8ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Despawn</definition>
+        <argsstring>(Transform instance, float seconds)</argsstring>
+        <name>Despawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>seconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>See docs for <ref refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kindref="member">Despawn(Transform instance)</ref>. This expands that functionality. If the passed object is managed by this <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>, it will be deactivated and made available to be spawned again.  <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transform of the instance to process</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seconds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in seconds to wait before despawning</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="846" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="846" bodyend="849"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a50157087bd40d44bccd710fceb94871d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Despawn</definition>
+        <argsstring>(Transform instance, float seconds, Transform parent)</argsstring>
+        <name>Despawn</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>seconds</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>See docs for <ref refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kindref="member">Despawn(Transform instance)</ref> for basic functionalty information. </para>        </briefdescription>
+        <detaileddescription>
+<para>Convienince overload to provide the option to re-parent for the instance just before despawn. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="858" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="858" bodyend="861"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a6407135d31b4e27456967dcd581ecc1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.DespawnAll</definition>
+        <argsstring>()</argsstring>
+        <name>DespawnAll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Despawns all active instances in this <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>  </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="893" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="893" bodyend="898"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" compoundref="_spawn_pool_8cs" startline="788" endline="823">PathologicalGames.SpawnPool.Despawn</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a7f5c1eabeeda6cf16a4bf08908b25020" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.IsSpawned</definition>
+        <argsstring>(Transform instance)</argsstring>
+        <name>IsSpawned</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if the passed transform is currently spawned.  <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transform of the gameobject to test</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="905" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="905" bodyend="908"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a50044aeb0771ecfa618a862025236664" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref></type>
+        <definition>PrefabPool PathologicalGames.SpawnPool.GetPrefabPool</definition>
+        <argsstring>(Transform prefab)</argsstring>
+        <name>GetPrefabPool</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefab pool for a given prefab. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Transform of an instance</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="920" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="920" bodyend="934"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac3e1969a06406e2a3658e951359f22a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref></type>
+        <definition>PrefabPool PathologicalGames.SpawnPool.GetPrefabPool</definition>
+        <argsstring>(GameObject prefab)</argsstring>
+        <name>GetPrefabPool</name>
+        <param>
+          <type>GameObject</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefab pool for a given prefab. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefab</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The GameObject of an instance</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="942" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="942" bodyend="956"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ab1b67a2e7f6ffc1a594bb4974097a671" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.SpawnPool.GetPrefab</definition>
+        <argsstring>(Transform instance)</argsstring>
+        <name>GetPrefab</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefab used to create the passed instance. This is provided for convienince as Unity doesn&apos;t offer this feature. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Transform of an instance</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Transform</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="965" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="965" bodyend="973"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a6548752d06950b1a4b1f3dec1b439992" compoundref="_spawn_pool_8cs" startline="1122" endline="1126">PathologicalGames.SpawnPool.Contains</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a790567ae8adb0aee8fd53f626deae854" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>GameObject</type>
+        <definition>GameObject PathologicalGames.SpawnPool.GetPrefab</definition>
+        <argsstring>(GameObject instance)</argsstring>
+        <name>GetPrefab</name>
+        <param>
+          <type>GameObject</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>Returns the prefab used to create the passed instance. This is provided for convienince as Unity doesn&apos;t offer this feature. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The GameObject of an instance</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>GameObject</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="982" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="982" bodyend="990"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" compoundref="_spawn_pool_8cs" startline="154">PathologicalGames.SpawnPool._prefabPools</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a6548752d06950b1a4b1f3dec1b439992" compoundref="_spawn_pool_8cs" startline="1122" endline="1126">PathologicalGames.SpawnPool.Contains</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ac77bb0dbb1d2765143250f24ac9c6338" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string PathologicalGames.SpawnPool.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+<para>Returns a formatted string showing all the spawned member names </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1092" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1092" bodyend="1101"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" compoundref="_spawn_pool_8cs" startline="155">PathologicalGames.SpawnPool._spawned</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a6548752d06950b1a4b1f3dec1b439992" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPool.Contains</definition>
+        <argsstring>(Transform item)</argsstring>
+        <name>Contains</name>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>The name &quot;Contains&quot; is misleading so IsSpawned was implimented instead. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1122" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1122" bodyend="1126"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1ab1b67a2e7f6ffc1a594bb4974097a671" compoundref="_spawn_pool_8cs" startline="965" endline="973">PathologicalGames.SpawnPool.GetPrefab</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ad1161ef837193b29be2e464fcde52f83" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.CopyTo</definition>
+        <argsstring>(Transform[] array, int arrayIndex)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>Transform[]</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arrayIndex</declname>
+        </param>
+        <briefdescription>
+<para>Used by OTHERList.AddRange() This adds this list to the passed list </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list AddRange is being called on</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arrayIndex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting index for the copy operation. AddRange seems to pass the last index. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1137" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1137" bodyend="1140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ad483cae69aef090973577d61c034b200" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator&lt; Transform &gt;</type>
+        <definition>IEnumerator&lt;Transform&gt; PathologicalGames.SpawnPool.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+<para>Impliments the ability to use this list in a foreach loop </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1156" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1156" bodyend="1160"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" compoundref="_spawn_pool_8cs" startline="155">PathologicalGames.SpawnPool._spawned</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a7349e8b03c214f3c8d7b5fd57f2faad3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int PathologicalGames.SpawnPool.IndexOf</definition>
+        <argsstring>(Transform item)</argsstring>
+        <name>IndexOf</name>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1173" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1173" bodyend="1173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a59a6f3559ce0b875666a6b5c2b165d1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Insert</definition>
+        <argsstring>(int index, Transform item)</argsstring>
+        <name>Insert</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1174" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1174" bodyend="1174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1ae36b2db25d89ce342f528bb1e03172fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.RemoveAt</definition>
+        <argsstring>(int index)</argsstring>
+        <name>RemoveAt</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1175" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1175" bodyend="1175"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pool_1a34217ef7822801d167eee659d0394b1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPool.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1176" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1176" bodyend="1176"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Online Docs: <ulink url="http://docs.poolmanager2.path-o-logical.com/code-reference/spawnpool">http://docs.poolmanager2.path-o-logical.com/code-reference/spawnpool</ulink></para><para>A special List class that manages object pools and keeps the scene organized.</para><para><itemizedlist>
+<listitem><para>Only active/spawned instances are iterable. Inactive/despawned instances in the pool are kept internally only.</para></listitem><listitem><para>Instanciated objects can optionally be made a child of this GameObject (reffered to as a &apos;group&apos;) to keep the scene hierachy organized.</para></listitem><listitem><para>Instances will get a number appended to the end of their name. E.g. an &quot;Enemy&quot; prefab will be called &quot;Enemy(Clone)001&quot;, &quot;Enemy(Clone)002&quot;, &quot;Enemy(Clone)003&quot;, etc. Unity names all clones the same which can be confusing to work with.</para></listitem><listitem><para>Objects aren&apos;t destroyed by the <ref refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" kindref="member">Despawn()</ref> method. Instead, they are deactivated and stored to an internal queue to be used again. This avoids the time it takes unity to destroy gameobjects and helps performance by reusing GameObjects.</para></listitem><listitem><para>Two events are implimented to enable objects to handle their own reset needs. Both are optional. 1) When objects are Despawned BroadcastMessage(&quot;OnDespawned()&quot;) is sent. 2) When reactivated, a BroadcastMessage(&quot;OnRespawned()&quot;) is sent. This  </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="206">
+        <label>IList&lt; Transform &gt;</label>
+      </node>
+      <node id="204">
+        <label>PathologicalGames.SpawnPool</label>
+        <link refid="class_pathological_games_1_1_spawn_pool"/>
+        <childnode refid="205" relation="public-inheritance">
+        </childnode>
+        <childnode refid="206" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="205">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="210">
+        <label>PathologicalGames.PrefabsDict</label>
+        <link refid="class_pathological_games_1_1_prefabs_dict"/>
+        <childnode refid="211" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="209">
+        <label>IList&lt; Transform &gt;</label>
+      </node>
+      <node id="207">
+        <label>PathologicalGames.SpawnPool</label>
+        <link refid="class_pathological_games_1_1_spawn_pool"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+        <childnode refid="209" relation="public-inheritance">
+        </childnode>
+        <childnode refid="210" relation="usage">
+          <edgelabel>prefabs</edgelabel>
+        </childnode>
+      </node>
+      <node id="211">
+        <label>IDictionary&lt; string, Transform &gt;</label>
+      </node>
+      <node id="208">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="45" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="44" bodyend="1180"/>
+    <listofallmembers>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ae01c56f81362210fd4909cc3d250a263" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>_dontDestroyOnLoad</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1af8b99076d0162feb72d7b4e43f4f8078" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>_editorListItemStates</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a1d2bd549c4c8e8824f41911cb1dd40f8" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>_perPrefabPoolOptions</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a0829f79c722367969291efefbeea22d6" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>_prefabPools</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ad95953c6d636110778f6accb13bd7d92" prot="package" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>_spawned</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a7c456dedaa04bae62e17b86e97784eca" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a874af6d9e53b89f5063ad969821d3791" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a79b5b4dfb48a09424bec0817849a9653" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Awake</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a34217ef7822801d167eee659d0394b1c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Clear</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a6548752d06950b1a4b1f3dec1b439992" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Contains</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ad1161ef837193b29be2e464fcde52f83" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>CopyTo</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a1844e8a5b26c416ba8dd1dbabee6c4d4" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Count</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a41c0c4bf4dbdb5cff7fbb50d626c4851" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>CreatePrefabPool</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac55999f7378f10262c2512966393ce93" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Despawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ab126203a7fe97b973818734fdbd52e71" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Despawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1aced4b8516688d8088ccc987a4f93c8ad" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Despawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a50157087bd40d44bccd710fceb94871d" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Despawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a6407135d31b4e27456967dcd581ecc1c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>DespawnAll</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a5a88b9465d510bb9ff753343b2e374ff" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>DoDespawnAfterSeconds</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a6cd9d0be97bf95107693e4039562e9f9" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>dontDestroyOnLoad</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a1acf124f1e89e7e7e339c4c7fd5175bc" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>dontReparent</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ad483cae69aef090973577d61c034b200" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac3d2420bafad7e4503bbb4b50c6ebff9" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ab1b67a2e7f6ffc1a594bb4974097a671" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetPrefab</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a790567ae8adb0aee8fd53f626deae854" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetPrefab</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a50044aeb0771ecfa618a862025236664" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetPrefabPool</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac3e1969a06406e2a3658e951359f22a9" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>GetPrefabPool</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ad87ea22e5bc01b9bf042049636099044" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>group</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a7349e8b03c214f3c8d7b5fd57f2faad3" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>IndexOf</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a59a6f3559ce0b875666a6b5c2b165d1d" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Insert</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a16cd0517170056d965949abee0193265" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>IsReadOnly</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a7f5c1eabeeda6cf16a4bf08908b25020" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>IsSpawned</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1afce7cfbfaebe872367a168e19dc86004" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>ListenForEmitDespawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a2c4bd8b45dce00dc81c01e0c91c2aa06" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>ListenForEmitDespawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a6e291ca377ed0f3a878fc2c0c905348a" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>ListForAudioStop</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a09dd8e7f4895d3f52b288ecf9defc7dc" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>logMessages</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a268985c80023afba079bf331909bdc17" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>matchPoolLayer</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a10237fa0ec1d883a455763125e08bbbf" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>matchPoolScale</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a870a76218d3dde217c8893041b59272f" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>maxParticleDespawnTime</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac096b46bd3f40d3db00301ad55717700" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>OnDestroy</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>poolName</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1acbf8f39f8342982648fac384039f71b3" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>prefabList</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1adbc8aec0b9d6757a1991830b184ceda4" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>prefabPools</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1accafb1f17a603aab9f846e282a31594b" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>prefabs</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a9a5d8f6d2c82349aaded8e0379e65a50" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>prefabsFoldOutStates</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ab7595c0bd7bd47586f0b1d0a65916b51" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac2428de9332fb33a31c374e04d61bcca" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ae36b2db25d89ce342f528bb1e03172fe" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>RemoveAt</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a464278ce9a75dd7bdb6fb2e8dc4863a5" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ad2ecd4f625f5aa7ca99f1f5baf4f880a" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a4c9bd9beab1e5b855b12a70db8a53efe" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a319fbcf869af5082a32502c24a34d84c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a53438681dc430872fdf032e0207ec7c7" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a2da622c419137984a32dcf630bb6b150" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1aae1ecea456d4273535e3ec09cfe67128" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a35f9a8be38d8ee78f1b2a32f527d4eb3" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a418b6889daf8ce8d2f7c5cafbecfb25f" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a13aea53576a9560e645639965b6b48f1" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1af2d9c85587b5981da1494efb794bfaae" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a3d5e333350cec1f787668c90658049a4" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a55e384eaa0b20f6936866f60c7d978f6" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a4edce7f46132baa25716500263e1dc90" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a56d2638a72edda54de45cf2092b538b6" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>Spawn</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1a933f306f2cb2f81dea8c4e18d827874c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>this[int index]</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pool_1ac77bb0dbb1d2765143250f24ac9c6338" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPool</scope><name>ToString</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

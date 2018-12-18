@@ -1,0 +1,1188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_json_1_1_lexer" kind="class" prot="package">
+    <compoundname>LitJson::Lexer</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a16abb9d07cb6f10654b36ed0982b4004" prot="private" static="yes" mutable="no">
+        <type>int[]</type>
+        <definition>int [] LitJson.Lexer.fsm_return_table</definition>
+        <argsstring></argsstring>
+        <name>fsm_return_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="34" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1ad688b78797d94e3a585b5d9ccf4eb9e1" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_lit_json_1_1_lexer_1a15efcafbd8887b62359eaeaf7bca9bfd" kindref="member">StateHandler</ref>[]</type>
+        <definition>StateHandler [] LitJson.Lexer.fsm_handler_table</definition>
+        <argsstring></argsstring>
+        <name>fsm_handler_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a1c3eac7f7048f6c78adacd9bbf06a4e1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.allow_comments</definition>
+        <argsstring></argsstring>
+        <name>allow_comments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="37" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1aa9e6264d3d6a91e9105ee4f2e91d5622" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.allow_single_quoted_strings</definition>
+        <argsstring></argsstring>
+        <name>allow_single_quoted_strings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="38" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.end_of_input</definition>
+        <argsstring></argsstring>
+        <name>end_of_input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="39" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a3c3961b8d1040ee7f81a88fc5c9b5f35" prot="private" static="no" mutable="no">
+        <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+        <definition>FsmContext LitJson.Lexer.fsm_context</definition>
+        <argsstring></argsstring>
+        <name>fsm_context</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="40" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.input_buffer</definition>
+        <argsstring></argsstring>
+        <name>input_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="41" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="41" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4c9516fdb2e43d0fbed2f4e02508782f" compoundref="_lexer_8cs" startline="864" endline="874">LitJson.Lexer.NextChar</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ade31d9bb23b50bc6b1f91588cf0b073d" compoundref="_lexer_8cs" startline="907" endline="910">LitJson.Lexer.UngetChar</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.input_char</definition>
+        <argsstring></argsstring>
+        <name>input_char</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="42" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="42" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" compoundref="_lexer_8cs" startline="523" endline="535">LitJson.Lexer.State10</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" compoundref="_lexer_8cs" startline="537" endline="550">LitJson.Lexer.State11</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" compoundref="_lexer_8cs" startline="552" endline="564">LitJson.Lexer.State12</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" compoundref="_lexer_8cs" startline="566" endline="578">LitJson.Lexer.State13</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" compoundref="_lexer_8cs" startline="580" endline="592">LitJson.Lexer.State14</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" compoundref="_lexer_8cs" startline="594" endline="607">LitJson.Lexer.State15</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" compoundref="_lexer_8cs" startline="609" endline="621">LitJson.Lexer.State16</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" compoundref="_lexer_8cs" startline="623" endline="635">LitJson.Lexer.State17</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" compoundref="_lexer_8cs" startline="637" endline="650">LitJson.Lexer.State18</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" compoundref="_lexer_8cs" startline="652" endline="674">LitJson.Lexer.State19</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" compoundref="_lexer_8cs" startline="305" endline="324">LitJson.Lexer.State2</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" compoundref="_lexer_8cs" startline="676" endline="689">LitJson.Lexer.State20</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" compoundref="_lexer_8cs" startline="691" endline="717">LitJson.Lexer.State21</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" compoundref="_lexer_8cs" startline="719" endline="751">LitJson.Lexer.State22</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" compoundref="_lexer_8cs" startline="753" endline="775">LitJson.Lexer.State23</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" compoundref="_lexer_8cs" startline="777" endline="791">LitJson.Lexer.State24</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" compoundref="_lexer_8cs" startline="793" endline="809">LitJson.Lexer.State25</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" compoundref="_lexer_8cs" startline="811" endline="821">LitJson.Lexer.State26</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" compoundref="_lexer_8cs" startline="823" endline="833">LitJson.Lexer.State27</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" compoundref="_lexer_8cs" startline="835" endline="851">LitJson.Lexer.State28</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" compoundref="_lexer_8cs" startline="326" endline="366">LitJson.Lexer.State3</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" compoundref="_lexer_8cs" startline="368" endline="402">LitJson.Lexer.State4</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" compoundref="_lexer_8cs" startline="404" endline="415">LitJson.Lexer.State5</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" compoundref="_lexer_8cs" startline="417" endline="453">LitJson.Lexer.State6</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" compoundref="_lexer_8cs" startline="455" endline="475">LitJson.Lexer.State7</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" compoundref="_lexer_8cs" startline="477" endline="507">LitJson.Lexer.State8</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" compoundref="_lexer_8cs" startline="509" endline="521">LitJson.Lexer.State9</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ade31d9bb23b50bc6b1f91588cf0b073d" compoundref="_lexer_8cs" startline="907" endline="910">LitJson.Lexer.UngetChar</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1aae46659b80212370eff6153619d1c323" prot="private" static="no" mutable="no">
+        <type>TextReader</type>
+        <definition>TextReader LitJson.Lexer.reader</definition>
+        <argsstring></argsstring>
+        <name>reader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="43" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="43" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a89ea88921e55f4bd50b3958f1b04e126" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="44" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="44" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a6208df7546c86ae13df2b8c1a1ce9d58" prot="private" static="no" mutable="no">
+        <type>StringBuilder</type>
+        <definition>StringBuilder LitJson.Lexer.string_buffer</definition>
+        <argsstring></argsstring>
+        <name>string_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="45" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" compoundref="_lexer_8cs" startline="83" endline="96">LitJson.Lexer.Lexer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a37a682c179ce565f3c1a23f339be6b20" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string LitJson.Lexer.string_value</definition>
+        <argsstring></argsstring>
+        <name>string_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="46" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="46" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1a7fc54f0e978f85e4d6b67e00ebe7e5e3" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.token</definition>
+        <argsstring></argsstring>
+        <name>token</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="47" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="47" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" compoundref="_lexer_8cs" startline="876" endline="905">LitJson.Lexer.NextToken</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_json_1_1_lexer_1ab7730de3942da57da876784243e3466d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.unichar</definition>
+        <argsstring></argsstring>
+        <name>unichar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="48" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_lit_json_1_1_lexer_1aed786601be4f9797a6356890fc0b45aa" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.AllowComments</definition>
+        <argsstring></argsstring>
+        <name>AllowComments</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="53" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_lit_json_1_1_lexer_1a0642ddf09159c117dbefbdbc4695b086" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.AllowSingleQuotedStrings</definition>
+        <argsstring></argsstring>
+        <name>AllowSingleQuotedStrings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="58" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_lit_json_1_1_lexer_1a5db22c6d26058971e31c60877b62d27e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.EndOfInput</definition>
+        <argsstring></argsstring>
+        <name>EndOfInput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="63" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="63" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_reader_1a3b2bea8b5ff1dc9653c139514f687f75" compoundref="_json_reader_8cs" startline="357" endline="373">LitJson.JsonReader.ReadToken</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_lit_json_1_1_lexer_1af1c1347cf4899cf618aae8d4e8df887f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int LitJson.Lexer.Token</definition>
+        <argsstring></argsstring>
+        <name>Token</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="67" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_lit_json_1_1_lexer_1a58da446f8a685488219dee128a665bc7" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>string</type>
+        <definition>string LitJson.Lexer.StringValue</definition>
+        <argsstring></argsstring>
+        <name>StringValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="71" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="71" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_reader_1a65da79edd7dc5449db8ed9f2936fdc06" compoundref="_json_reader_8cs" startline="298" endline="355">LitJson.JsonReader.ProcessSymbol</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a15efcafbd8887b62359eaeaf7bca9bfd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate bool</type>
+        <definition>delegate bool LitJson.Lexer.StateHandler</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>StateHandler</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="32" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.GetChar</definition>
+        <argsstring>()</argsstring>
+        <name>GetChar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="855" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="855" bodyend="862"/>
+        <references refid="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" compoundref="_lexer_8cs" startline="39">LitJson.Lexer.end_of_input</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_lexer_1a4c9516fdb2e43d0fbed2f4e02508782f" compoundref="_lexer_8cs" startline="864" endline="874">LitJson.Lexer.NextChar</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" compoundref="_lexer_8cs" startline="652" endline="674">LitJson.Lexer.State19</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" compoundref="_lexer_8cs" startline="719" endline="751">LitJson.Lexer.State22</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" compoundref="_lexer_8cs" startline="753" endline="775">LitJson.Lexer.State23</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" compoundref="_lexer_8cs" startline="811" endline="821">LitJson.Lexer.State26</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" compoundref="_lexer_8cs" startline="823" endline="833">LitJson.Lexer.State27</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" compoundref="_lexer_8cs" startline="835" endline="851">LitJson.Lexer.State28</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" compoundref="_lexer_8cs" startline="326" endline="366">LitJson.Lexer.State3</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" compoundref="_lexer_8cs" startline="417" endline="453">LitJson.Lexer.State6</referencedby>
+        <referencedby refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" compoundref="_lexer_8cs" startline="477" endline="507">LitJson.Lexer.State8</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a4c9516fdb2e43d0fbed2f4e02508782f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int LitJson.Lexer.NextChar</definition>
+        <argsstring>()</argsstring>
+        <name>NextChar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="864" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="864" bodyend="874"/>
+        <references refid="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" compoundref="_lexer_8cs" startline="41">LitJson.Lexer.input_buffer</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ade31d9bb23b50bc6b1f91588cf0b073d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.Lexer.UngetChar</definition>
+        <argsstring>()</argsstring>
+        <name>UngetChar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="907" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="907" bodyend="910"/>
+        <references refid="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" compoundref="_lexer_8cs" startline="41">LitJson.Lexer.input_buffer</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a86fff54cd31a200245b9815f51111847" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>static</type>
+        <definition>static LitJson.Lexer.Lexer</definition>
+        <argsstring>()</argsstring>
+        <name>Lexer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="78" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="78" bodyend="81"/>
+        <references refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a9fd0a21e6333e336c5a6fb0434533dce" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int LitJson.Lexer.HexValue</definition>
+        <argsstring>(int digit)</argsstring>
+        <name>HexValue</name>
+        <param>
+          <type>int</type>
+          <declname>digit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="101" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="101" bodyend="131"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" compoundref="_lexer_8cs" startline="719" endline="751">LitJson.Lexer.State22</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitJson.Lexer.PopulateFsmTables</definition>
+        <argsstring>()</argsstring>
+        <name>PopulateFsmTables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="133" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="133" bodyend="198"/>
+        <references refid="class_lit_json_1_1_lexer_1ad688b78797d94e3a585b5d9ccf4eb9e1" compoundref="_lexer_8cs" startline="35">LitJson.Lexer.fsm_handler_table</references>
+        <references refid="class_lit_json_1_1_lexer_1a16abb9d07cb6f10654b36ed0982b4004" compoundref="_lexer_8cs" startline="34">LitJson.Lexer.fsm_return_table</references>
+        <references refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" compoundref="_lexer_8cs" startline="230" endline="303">LitJson.Lexer.State1</references>
+        <references refid="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" compoundref="_lexer_8cs" startline="523" endline="535">LitJson.Lexer.State10</references>
+        <references refid="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" compoundref="_lexer_8cs" startline="537" endline="550">LitJson.Lexer.State11</references>
+        <references refid="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" compoundref="_lexer_8cs" startline="552" endline="564">LitJson.Lexer.State12</references>
+        <references refid="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" compoundref="_lexer_8cs" startline="566" endline="578">LitJson.Lexer.State13</references>
+        <references refid="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" compoundref="_lexer_8cs" startline="580" endline="592">LitJson.Lexer.State14</references>
+        <references refid="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" compoundref="_lexer_8cs" startline="594" endline="607">LitJson.Lexer.State15</references>
+        <references refid="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" compoundref="_lexer_8cs" startline="609" endline="621">LitJson.Lexer.State16</references>
+        <references refid="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" compoundref="_lexer_8cs" startline="623" endline="635">LitJson.Lexer.State17</references>
+        <references refid="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" compoundref="_lexer_8cs" startline="637" endline="650">LitJson.Lexer.State18</references>
+        <references refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" compoundref="_lexer_8cs" startline="652" endline="674">LitJson.Lexer.State19</references>
+        <references refid="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" compoundref="_lexer_8cs" startline="305" endline="324">LitJson.Lexer.State2</references>
+        <references refid="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" compoundref="_lexer_8cs" startline="676" endline="689">LitJson.Lexer.State20</references>
+        <references refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" compoundref="_lexer_8cs" startline="691" endline="717">LitJson.Lexer.State21</references>
+        <references refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" compoundref="_lexer_8cs" startline="719" endline="751">LitJson.Lexer.State22</references>
+        <references refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" compoundref="_lexer_8cs" startline="753" endline="775">LitJson.Lexer.State23</references>
+        <references refid="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" compoundref="_lexer_8cs" startline="777" endline="791">LitJson.Lexer.State24</references>
+        <references refid="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" compoundref="_lexer_8cs" startline="793" endline="809">LitJson.Lexer.State25</references>
+        <references refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" compoundref="_lexer_8cs" startline="811" endline="821">LitJson.Lexer.State26</references>
+        <references refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" compoundref="_lexer_8cs" startline="823" endline="833">LitJson.Lexer.State27</references>
+        <references refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" compoundref="_lexer_8cs" startline="835" endline="851">LitJson.Lexer.State28</references>
+        <references refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" compoundref="_lexer_8cs" startline="326" endline="366">LitJson.Lexer.State3</references>
+        <references refid="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" compoundref="_lexer_8cs" startline="368" endline="402">LitJson.Lexer.State4</references>
+        <references refid="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" compoundref="_lexer_8cs" startline="404" endline="415">LitJson.Lexer.State5</references>
+        <references refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" compoundref="_lexer_8cs" startline="417" endline="453">LitJson.Lexer.State6</references>
+        <references refid="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" compoundref="_lexer_8cs" startline="455" endline="475">LitJson.Lexer.State7</references>
+        <references refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" compoundref="_lexer_8cs" startline="477" endline="507">LitJson.Lexer.State8</references>
+        <references refid="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" compoundref="_lexer_8cs" startline="509" endline="521">LitJson.Lexer.State9</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a86fff54cd31a200245b9815f51111847" compoundref="_lexer_8cs" startline="78" endline="81">LitJson.Lexer.Lexer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a55053093fd64ff31eb82ed17095af14e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>char</type>
+        <definition>static char LitJson.Lexer.ProcessEscChar</definition>
+        <argsstring>(int esc_char)</argsstring>
+        <name>ProcessEscChar</name>
+        <param>
+          <type>int</type>
+          <declname>esc_char</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="200" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="200" bodyend="228"/>
+        <referencedby refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" compoundref="_lexer_8cs" startline="691" endline="717">LitJson.Lexer.State21</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State1</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State1</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="230" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="230" bodyend="303"/>
+        <references refid="class_lit_json_1_1_lexer_1a1c3eac7f7048f6c78adacd9bbf06a4e1" compoundref="_lexer_8cs" startline="37">LitJson.Lexer.allow_comments</references>
+        <references refid="class_lit_json_1_1_lexer_1aa9e6264d3d6a91e9105ee4f2e91d5622" compoundref="_lexer_8cs" startline="38">LitJson.Lexer.allow_single_quoted_strings</references>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State2</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State2</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="305" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="305" bodyend="324"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State3</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State3</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="326" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="326" bodyend="366"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State4</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State4</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="368" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="368" bodyend="402"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State5</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State5</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="404" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="404" bodyend="415"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State6</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State6</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="417" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="417" bodyend="453"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State7</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State7</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="455" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="455" bodyend="475"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State8</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State8</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="477" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="477" bodyend="507"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State9</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State9</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="509" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="509" bodyend="521"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State10</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State10</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="523" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="523" bodyend="535"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State11</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State11</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="537" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="537" bodyend="550"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State12</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State12</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="552" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="552" bodyend="564"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State13</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State13</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="566" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="566" bodyend="578"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State14</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State14</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="580" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="580" bodyend="592"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State15</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State15</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="594" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="594" bodyend="607"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State16</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State16</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="609" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="609" bodyend="621"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State17</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State17</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="623" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="623" bodyend="635"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State18</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State18</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="637" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="637" bodyend="650"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State19</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State19</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="652" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="652" bodyend="674"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State20</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State20</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="676" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="676" bodyend="689"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State21</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State21</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="691" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="691" bodyend="717"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <references refid="class_lit_json_1_1_lexer_1a55053093fd64ff31eb82ed17095af14e" compoundref="_lexer_8cs" startline="200" endline="228">LitJson.Lexer.ProcessEscChar</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State22</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State22</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="719" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="719" bodyend="751"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a9fd0a21e6333e336c5a6fb0434533dce" compoundref="_lexer_8cs" startline="101" endline="131">LitJson.Lexer.HexValue</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State23</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State23</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="753" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="753" bodyend="775"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State24</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State24</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="777" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="777" bodyend="791"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State25</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State25</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="793" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="793" bodyend="809"/>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State26</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State26</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="811" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="811" bodyend="821"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State27</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State27</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="823" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="823" bodyend="833"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool LitJson.Lexer.State28</definition>
+        <argsstring>(FsmContext ctx)</argsstring>
+        <name>State28</name>
+        <param>
+          <type><ref refid="class_lit_json_1_1_fsm_context" kindref="compound">FsmContext</ref></type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="835" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="835" bodyend="851"/>
+        <references refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" compoundref="_lexer_8cs" startline="855" endline="862">LitJson.Lexer.GetChar</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a5e0c206139b243110974bd12a0afdd41" compoundref="_lexer_8cs" startline="24">LitJson.FsmContext.L</references>
+        <referencedby refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" compoundref="_lexer_8cs" startline="133" endline="198">LitJson.Lexer.PopulateFsmTables</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitJson.Lexer.Lexer</definition>
+        <argsstring>(TextReader reader)</argsstring>
+        <name>Lexer</name>
+        <param>
+          <type>TextReader</type>
+          <declname>reader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="83" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="83" bodyend="96"/>
+        <references refid="class_lit_json_1_1_lexer_1a1c3eac7f7048f6c78adacd9bbf06a4e1" compoundref="_lexer_8cs" startline="37">LitJson.Lexer.allow_comments</references>
+        <references refid="class_lit_json_1_1_lexer_1aa9e6264d3d6a91e9105ee4f2e91d5622" compoundref="_lexer_8cs" startline="38">LitJson.Lexer.allow_single_quoted_strings</references>
+        <references refid="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" compoundref="_lexer_8cs" startline="39">LitJson.Lexer.end_of_input</references>
+        <references refid="class_lit_json_1_1_lexer_1a3c3961b8d1040ee7f81a88fc5c9b5f35" compoundref="_lexer_8cs" startline="40">LitJson.Lexer.fsm_context</references>
+        <references refid="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" compoundref="_lexer_8cs" startline="41">LitJson.Lexer.input_buffer</references>
+        <references refid="class_lit_json_1_1_lexer_1aae46659b80212370eff6153619d1c323" compoundref="_lexer_8cs" startline="43">LitJson.Lexer.reader</references>
+        <references refid="class_lit_json_1_1_lexer_1a89ea88921e55f4bd50b3958f1b04e126" compoundref="_lexer_8cs" startline="44">LitJson.Lexer.state</references>
+        <references refid="class_lit_json_1_1_lexer_1a6208df7546c86ae13df2b8c1a1ce9d58" compoundref="_lexer_8cs" startline="45">LitJson.Lexer.string_buffer</references>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LitJson.Lexer.NextToken</definition>
+        <argsstring>()</argsstring>
+        <name>NextToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="876" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="876" bodyend="905"/>
+        <references refid="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" compoundref="_lexer_8cs" startline="39">LitJson.Lexer.end_of_input</references>
+        <references refid="class_lit_json_1_1_lexer_1a3c3961b8d1040ee7f81a88fc5c9b5f35" compoundref="_lexer_8cs" startline="40">LitJson.Lexer.fsm_context</references>
+        <references refid="class_lit_json_1_1_lexer_1ad688b78797d94e3a585b5d9ccf4eb9e1" compoundref="_lexer_8cs" startline="35">LitJson.Lexer.fsm_handler_table</references>
+        <references refid="class_lit_json_1_1_lexer_1a16abb9d07cb6f10654b36ed0982b4004" compoundref="_lexer_8cs" startline="34">LitJson.Lexer.fsm_return_table</references>
+        <references refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" compoundref="_lexer_8cs" startline="42">LitJson.Lexer.input_char</references>
+        <references refid="class_lit_json_1_1_fsm_context_1a4482628e49602af88c40ba6619eaed6c" compoundref="_lexer_8cs" startline="22">LitJson.FsmContext.Return</references>
+        <references refid="class_lit_json_1_1_lexer_1a89ea88921e55f4bd50b3958f1b04e126" compoundref="_lexer_8cs" startline="44">LitJson.Lexer.state</references>
+        <references refid="class_lit_json_1_1_lexer_1a37a682c179ce565f3c1a23f339be6b20" compoundref="_lexer_8cs" startline="46">LitJson.Lexer.string_value</references>
+        <references refid="class_lit_json_1_1_lexer_1a7fc54f0e978f85e4d6b67e00ebe7e5e3" compoundref="_lexer_8cs" startline="47">LitJson.Lexer.token</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="132">
+        <label>LitJson.FsmContext</label>
+        <link refid="class_lit_json_1_1_fsm_context"/>
+        <childnode refid="131" relation="usage">
+          <edgelabel>L</edgelabel>
+        </childnode>
+      </node>
+      <node id="131">
+        <label>LitJson.Lexer</label>
+        <link refid="class_lit_json_1_1_lexer"/>
+        <childnode refid="132" relation="usage">
+          <edgelabel>fsm_context</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" line="30" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/Lexer.cs" bodystart="29" bodyend="911"/>
+    <listofallmembers>
+      <member refid="class_lit_json_1_1_lexer_1a1c3eac7f7048f6c78adacd9bbf06a4e1" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>allow_comments</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aa9e6264d3d6a91e9105ee4f2e91d5622" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>allow_single_quoted_strings</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aed786601be4f9797a6356890fc0b45aa" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>AllowComments</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a0642ddf09159c117dbefbdbc4695b086" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>AllowSingleQuotedStrings</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a4bd606170a4ce896d672c4ab9ef1a96f" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>end_of_input</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a5db22c6d26058971e31c60877b62d27e" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>EndOfInput</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a3c3961b8d1040ee7f81a88fc5c9b5f35" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>fsm_context</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ad688b78797d94e3a585b5d9ccf4eb9e1" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>fsm_handler_table</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a16abb9d07cb6f10654b36ed0982b4004" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>fsm_return_table</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ab4af96c2bba7fb0960317bea02908d99" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>GetChar</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a9fd0a21e6333e336c5a6fb0434533dce" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>HexValue</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a4208e51b5ec46237f251c84e58e25234" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>input_buffer</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a2e9cb933df2aebe6ae6ea32d40d64523" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>input_char</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a86fff54cd31a200245b9815f51111847" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>Lexer</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a7f751a1aa770757d3e332b21e29f20ca" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>Lexer</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a4c9516fdb2e43d0fbed2f4e02508782f" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>NextChar</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aab9685b62dd1110f5532c54482232447" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>NextToken</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a3fc8823a572c414f51eaed2d5bf6a44d" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>PopulateFsmTables</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a55053093fd64ff31eb82ed17095af14e" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>ProcessEscChar</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aae46659b80212370eff6153619d1c323" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>reader</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a89ea88921e55f4bd50b3958f1b04e126" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>state</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a4e10af3d3862e83f776246de868793c7" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State1</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a2a26707d6fbed836736116dea52a81dc" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State10</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a5501e36115573196db9f8b0fb97c4b3e" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State11</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a32a2cf1870a9fc47cdfc95a416e09fda" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State12</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a468513b3e9068ddb564ca92ebd175da4" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State13</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a0ba92ffd04ee86ce96744c1790f19e45" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State14</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a6d649af964d9a56dc534193a330a02d2" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State15</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ada96689cd97a6cb4eb3702fe9644c783" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State16</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a265c1758c72c93006cca997d76359a63" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State17</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ae0aaad6f2217da7907c44d95849a0cc5" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State18</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ab6180844fda25573f79a3df1d3442448" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State19</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a73e426857f105e2d1ae0cc9d35845b0b" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State2</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ad10a8651241d653f1a6de27c48533ad7" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State20</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a70475100d36c5151e84e42ad1a2e7901" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State21</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ab2f3a486d96fc889da6074b5ee1a97f1" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State22</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a690aa8154e920d38b235853f976f29d0" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State23</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a1c3bd4857d6f7af0b7fbc19d5d98159a" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State24</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a7331b3af6d08ca1fb608f736cda860f2" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State25</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aaeb64532fde8aff14fee97af7c00b0e9" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State26</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a9f3c1aac76dc758724e9d13ecdaf8dd9" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State27</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a2706e921ee9ac154a82f76a94e282cf0" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State28</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a7409844bd8a38f9efc2235e5da3ceb26" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State3</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a956c0a337468f1f0a6d08ef7b8f14506" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State4</name></member>
+      <member refid="class_lit_json_1_1_lexer_1af6380adc38c16701dbb651a8e6f20afa" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State5</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a36c5ba6bfaac7a141956d962bbcfbf56" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State6</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a77116fe872bd2536d189968edf2abedc" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State7</name></member>
+      <member refid="class_lit_json_1_1_lexer_1af572944005d9d778755bcf00d770014b" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State8</name></member>
+      <member refid="class_lit_json_1_1_lexer_1aa30184c3f23254b1d364a138ced9206a" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>State9</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a15efcafbd8887b62359eaeaf7bca9bfd" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>StateHandler</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a6208df7546c86ae13df2b8c1a1ce9d58" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>string_buffer</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a37a682c179ce565f3c1a23f339be6b20" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>string_value</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a58da446f8a685488219dee128a665bc7" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>StringValue</name></member>
+      <member refid="class_lit_json_1_1_lexer_1a7fc54f0e978f85e4d6b67e00ebe7e5e3" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>token</name></member>
+      <member refid="class_lit_json_1_1_lexer_1af1c1347cf4899cf618aae8d4e8df887f" prot="public" virt="non-virtual"><scope>LitJson::Lexer</scope><name>Token</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ade31d9bb23b50bc6b1f91588cf0b073d" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>UngetChar</name></member>
+      <member refid="class_lit_json_1_1_lexer_1ab7730de3942da57da876784243e3466d" prot="private" virt="non-virtual"><scope>LitJson::Lexer</scope><name>unichar</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

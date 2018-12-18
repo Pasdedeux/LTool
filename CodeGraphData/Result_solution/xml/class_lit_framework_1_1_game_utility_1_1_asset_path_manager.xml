@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager" kind="class" prot="public">
+    <compoundname>LitFramework::GameUtility::AssetPathManager</compoundname>
+    <basecompoundref refid="class_lit_framework_1_1_singleton_3_01_t_01_4" prot="public" virt="non-virtual">LitFramework.Singleton&lt; T &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a13391763b9a36794a49b5b3efbfbc20a" prot="private" static="no" mutable="no">
+        <type>StringBuilder</type>
+        <definition>StringBuilder LitFramework.GameUtility.AssetPathManager._sBuilder</definition>
+        <argsstring></argsstring>
+        <name>_sBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="37" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a72b0d0e172329bc13ec9e79021c5386a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitFramework.GameUtility.AssetPathManager.AssetPathManager</definition>
+        <argsstring>()</argsstring>
+        <name>AssetPathManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="39" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a8c4cdf7e8b4fc2d726d2ac648ba037d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.GameUtility.AssetPathManager.GetPersistentDataPath</definition>
+        <argsstring>(string filePath, bool useWWW=false, bool useFile=false)</argsstring>
+        <name>GetPersistentDataPath</name>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useWWW</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useFile</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>获取外部persistant路径+&quot;//&quot; </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要加载的文件名</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>useWWW</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>是否采用www加载</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>useFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>是否采用FileInfo类加载</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="51" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="51" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a91079c358293487d0dfb617eb5a12148" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.GameUtility.AssetPathManager.GetStreamAssetDataPath</definition>
+        <argsstring>(string filePath, bool useFile=true)</argsstring>
+        <name>GetStreamAssetDataPath</name>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useFile</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要加载的文件名</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>useFile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>是否用于FileInfo FileStream</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="85" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="85" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a0b5f4c69dc7489148785d2a351ba8687" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitFramework.GameUtility.AssetPathManager.GetTemporaryCachePath</definition>
+        <argsstring>(string filePath)</argsstring>
+        <name>GetTemporaryCachePath</name>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filePath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>要加载的文件名</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="103" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="103" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Singleton&lt; AssetPathManager &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_3_01_t_01_4"/>
+      </node>
+      <node id="4">
+        <label>LitFramework.GameUtility.AssetPathManager</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>Singleton&lt; AssetPathManager &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_3_01_t_01_4"/>
+      </node>
+      <node id="6">
+        <label>LitFramework.GameUtility.AssetPathManager</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" line="36" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/AssetPathManager.cs" bodystart="35" bodyend="111"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a13391763b9a36794a49b5b3efbfbc20a" prot="private" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>_sBuilder</name></member>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a72b0d0e172329bc13ec9e79021c5386a" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>AssetPathManager</name></member>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1afbe33a1f185588f325e8ddde92468030" prot="public" virt="virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>DoDestroy</name></member>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a8c4cdf7e8b4fc2d726d2ac648ba037d2" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>GetPersistentDataPath</name></member>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a91079c358293487d0dfb617eb5a12148" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>GetStreamAssetDataPath</name></member>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager_1a0b5f4c69dc7489148785d2a351ba8687" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>GetTemporaryCachePath</name></member>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1a3bad24086e765238f4fca1f5f689aa5e" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::AssetPathManager</scope><name>Instance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

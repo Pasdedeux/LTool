@@ -34,6 +34,8 @@ using LitFramework;
 using System.Reflection;
 using System.Linq;
 using LitFramework.UI.Base;
+using UnityEngine.UI;
+using LitFramework.GameUtility;
 
 namespace LitFramework.Mono
 {
@@ -44,8 +46,18 @@ namespace LitFramework.Mono
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>,IManager
+    public class UIManager : Singleton<UIManager>,IManager,IUIManager
     {
+        private bool _useFading = true;
+        public bool UseFading
+        {
+            get { return _useFading; }
+            set
+            {
+                if ( _fadeImage != null ) _fadeImage.gameObject.SetActive( value );
+                _useFading = value;
+            }
+        }
         /// <summary>
         /// 所有的预制件名称列表
         /// </summary>
@@ -81,25 +93,40 @@ namespace LitFramework.Mono
         /// <summary>
         /// 管理器节点
         /// </summary>
-        private Transform _transManager = null;
+        private Transform _transGlobal = null;
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
         public Func<string , GameObject> LoadResourceFunc;
-
+        /// <summary>
+        /// 全局渐变遮罩
+        /// </summary>
+        private Image _fadeImage;
+        /// <summary>
+        ///  遮罩结束时回调
+        /// </summary>
+        /// <returns></returns>
+        private Action DelHideCallBack = null;
 
         public void Install()
         {
             _allRegisterUIList = new List<string>();
             _stackCurrentUI = new Stack<BaseUI>();
-            _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
-            _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
+            _dictLoadedAllUIs = new Dictionary<string, BaseUI>();
+            _dictCurrentShowUIs = new Dictionary<string, BaseUI>();
 
             _transCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS ).transform;
-            _transNormal = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_NORMALCANVAS );
-            _transFixed = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_FIXEDCANVAS );
-            _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_POPUPCANVAS );
-            _transManager = UnityHelper.FindTheChildNode( _transCanvas.gameObject , UISysDefine.SYS_TAG_MANAGERCANVAS );
+            _transNormal = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_NORMALCANVAS );
+            _transFixed = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_FIXEDCANVAS );
+            _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_POPUPCANVAS );
+            _transGlobal = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_GLOBALCANVAS );
+            _fadeImage = UnityHelper.FindTheChildNode( _transGlobal.gameObject, "Image_fadeBG" ).GetComponent<Image>();
+
+            if ( _fadeImage == null )
+                Debug.LogWarning( "Image_fadeBG 未定义" );
+            else if ( !_fadeImage.gameObject.activeInHierarchy )
+                Debug.LogWarning( "Image_fadeBG 未启用" );
+
         }
 
         public void Uninstall()
@@ -125,7 +152,7 @@ namespace LitFramework.Mono
             _transPopUp = null;
             _transCanvas = null;
             _transNormal = null;
-            _transManager = null;
+            _transGlobal = null;
             _stackCurrentUI = null;
             _allRegisterUIList = null;
             _dictLoadedAllUIs = null;
@@ -137,6 +164,49 @@ namespace LitFramework.Mono
         }
 
 
+        /// <summary>
+        /// 隐退开始
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="callBack"></param>
+        public void ShowFade( float time, Action callBack = null )
+        {
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            {
+                if ( callBack != null )
+                    callBack.Invoke();
+                return;
+            }
+            
+            _fadeImage.raycastTarget = true;
+            _fadeImage.CrossFadeAlpha( 1, time, false );
+            if ( callBack != null )
+                LitTool.DelayPlayFunction( time, callBack );
+        }
+
+
+        /// <summary>
+        /// 隐退结束
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="callBack"></param>
+        public void HideFade( float time, Action callBack = null )
+        {
+            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            {
+                if ( callBack != null )
+                    callBack.Invoke();
+                return;
+            }
+
+            _fadeImage.CrossFadeAlpha( 0, time, false );
+            
+            if ( callBack != null ) DelHideCallBack += callBack;
+            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
+            DelHideCallBack += () => { DelHideCallBack = null; };
+            LitTool.DelayPlayFunction( time, DelHideCallBack );
+        }
+
 
         /// <summary>
         /// 显示（打开）UI窗口
@@ -145,7 +215,7 @@ namespace LitFramework.Mono
         /// 2、根据不同UI显示模式，做不同的加载处理
         /// </summary>
         /// <param name="uiName">UI窗体预制件名称</param>
-        public BaseUI Show( string uiName )
+        public IBaseUI Show( string uiName )
         {
             BaseUI baseUI = null;
 
@@ -188,11 +258,9 @@ namespace LitFramework.Mono
             if( string.IsNullOrEmpty( uiName ) )
                 return;
 
-            BaseUI baseUI = null;
-
             //所有窗体如果没有记录，直接返回
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out BaseUI baseUI );
+            if ( baseUI == null )
             {
                 _dictLoadedAllUIs.Remove( uiName );
                 return;
@@ -285,6 +353,8 @@ namespace LitFramework.Mono
             if( _transCanvas != null && prefClone != null )
             {
                 baseUI = prefClone.GetComponent<BaseUI>();
+                if ( prefClone == null )
+                    throw new Exception( string.Format( "UI预制件 {0} 未挂载方法 {1} ", prefClone.name, uiName ) );
                 baseUI.AssetsName = uiName;
 
                 if ( baseUI == null )

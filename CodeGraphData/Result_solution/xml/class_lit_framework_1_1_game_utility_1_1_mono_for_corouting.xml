@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" kind="class" prot="public">
+    <compoundname>LitFramework::GameUtility::MonoForCorouting</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting_1a7293cd861ba98fb028766c6a0616f583" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.GameUtility.MonoForCorouting.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitTool.cs" line="79" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitTool.cs" bodystart="79" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="139">
+        <label>LitFramework.GameUtility.MonoForCorouting</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting"/>
+        <childnode refid="140" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="140">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="141">
+        <label>LitFramework.GameUtility.MonoForCorouting</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting"/>
+        <childnode refid="142" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="142">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitTool.cs" line="78" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitTool.cs" bodystart="77" bodyend="83"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting_1a7293cd861ba98fb028766c6a0616f583" prot="public" virt="non-virtual"><scope>LitFramework::GameUtility::MonoForCorouting</scope><name>Awake</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

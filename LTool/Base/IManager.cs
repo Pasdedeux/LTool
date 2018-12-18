@@ -29,7 +29,7 @@ using UnityEngine;
 
 namespace LitFramework.UI.Base
 {
-    interface IManager
+    public interface IManager
     {
         void Install();
         void Uninstall();

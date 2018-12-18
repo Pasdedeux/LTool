@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_968e5ca74b52e0bc60618446129afcab" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/UI</compoundname>
+    <innerdir refid="dir_860d4301f8b900ea625dec52c0d459c5">E:/Personal/LTool/LTool/UI/Base</innerdir>
+    <innerdir refid="dir_0f40920c232a2cbacb6c5d3856905cbb">E:/Personal/LTool/LTool/UI/Manager</innerdir>
+    <innerdir refid="dir_746c8ea49dcdccf0fe8f41441401985f">E:/Personal/LTool/LTool/UI/Version_Mono</innerdir>
+    <innerdir refid="dir_36be6c45703f49b667cfd56007156010">E:/Personal/LTool/LTool/UI/Vsrsion_HotFix</innerdir>
+    <innerfile refid="_sys_define_8cs">SysDefine.cs</innerfile>
+    <innerfile refid="_unity_helper_8cs">UnityHelper.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/UI/"/>
+  </compounddef>
+</doxygen>

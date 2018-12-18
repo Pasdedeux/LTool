@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4" kind="class" prot="public" abstract="yes">
+    <compoundname>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a938a39b92622421fb49badd54561ec33" prot="protected" static="no" mutable="no">
+        <type>object</type>
+        <definition>object LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.template</definition>
+        <argsstring></argsstring>
+        <name>template</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="33" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ae71ddb455afc4087fc8eef722eec0c44" prot="protected" static="no" mutable="no">
+        <type><ref refid="_sys_define_8cs_1ac212e429467bc46d2879951cb676320fa2187e1021a911b3807cc1bea2eb1a9ca" kindref="member">Stack</ref>&lt; T &gt;</type>
+        <definition>Stack&lt;T&gt; LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.idleList</definition>
+        <argsstring></argsstring>
+        <name>idleList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="34" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a89ea66734ce561b94ad043d31208372c" prot="protected" static="no" mutable="no">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt;T&gt; LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.workList</definition>
+        <argsstring></argsstring>
+        <name>workList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a18a5b31c54e2a1c3e76810bec2fa6bd5" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.createdNum</definition>
+        <argsstring></argsstring>
+        <name>createdNum</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="36" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a116ba8877324bf36772f24acd7cffd9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.BasePoolUnitGroup</definition>
+        <argsstring>()</argsstring>
+        <name>BasePoolUnitGroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="38" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="38" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a372ed1e10d703000148436d7ff93992b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>T</type>
+        <definition>virtual T LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.TakeUnit&lt; UT &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>TakeUnit&lt; UT &gt;</name>
+        <briefdescription>
+<para>获取一个实例对象 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>UT</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="49" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="49" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a832517031abb2050f7a7dbd2787047df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.RestoreUnit</definition>
+        <argsstring>(T unit)</argsstring>
+        <name>RestoreUnit</name>
+        <param>
+          <type>T</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+<para>放回对象到对应池 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>unit</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="71" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="71" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a09d89df969999e4f3f204c976deb3314" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.SetTemplate</definition>
+        <argsstring>(object template)</argsstring>
+        <name>SetTemplate</name>
+        <param>
+          <type>object</type>
+          <declname>template</declname>
+        </param>
+        <briefdescription>
+<para>设置模板 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>template</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="87" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="87" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ab836ab3a45e2fa1b1457639abe70c7aa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.OnUnitChangePool</definition>
+        <argsstring>(T unit)</argsstring>
+        <name>OnUnitChangePool</name>
+        <param>
+          <type>T</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="91" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1aff3448b1915fed522bbf7ff64563abc6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract T</type>
+        <definition>abstract T LitFramework.LitPool.BasePoolUnitGroup&lt; T &gt;.CreateUnit&lt; UT &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>CreateUnit&lt; UT &gt;</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="92" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>一组特定对象的对象池 </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" line="32" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/_UnFinishedPool/BasePoolUnitGroup.cs" bodystart="31" bodyend="93"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a116ba8877324bf36772f24acd7cffd9a" prot="public" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>BasePoolUnitGroup</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a18a5b31c54e2a1c3e76810bec2fa6bd5" prot="protected" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>createdNum</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1aff3448b1915fed522bbf7ff64563abc6" prot="protected" virt="pure-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>CreateUnit&lt; UT &gt;</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ae71ddb455afc4087fc8eef722eec0c44" prot="protected" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>idleList</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1ab836ab3a45e2fa1b1457639abe70c7aa" prot="protected" virt="pure-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>OnUnitChangePool</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a832517031abb2050f7a7dbd2787047df" prot="public" virt="virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>RestoreUnit</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a09d89df969999e4f3f204c976deb3314" prot="public" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>SetTemplate</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a372ed1e10d703000148436d7ff93992b" prot="public" virt="virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>TakeUnit&lt; UT &gt;</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a938a39b92622421fb49badd54561ec33" prot="protected" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>template</name></member>
+      <member refid="class_lit_framework_1_1_lit_pool_1_1_base_pool_unit_group_3_01_t_01_4_1a89ea66734ce561b94ad043d31208372c" prot="protected" virt="non-virtual"><scope>LitFramework::LitPool::BasePoolUnitGroup&lt; T &gt;</scope><name>workList</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -30,6 +30,7 @@ namespace LitFramework.EditorExtended
     using LitFramework.GameUtility;
     using System.Data;
     using Excel;
+    using System.Reflection;
 
     public class EditorMenuExtention
     {
@@ -118,6 +119,40 @@ namespace LitFramework.EditorExtended
             fs.Dispose();
         }
 
+
+#if UNITY_EDITOR
+        [MenuItem( "Tools/拷贝到Unity工程" )]
+#endif
+        public static void CopyToUnity()
+        {
+            string uPath = Application.dataPath + "/Scripts/DllFramework/";
+            string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework/";
+
+            FolderCopy.CopyTo( hPath, uPath );
+            Debug.Log( "所有文件拷贝完毕" );
+        }
+
+#if UNITY_EDITOR
+        [MenuItem( "Tools/拷贝到热更新工程" )]
+        public static void CopyToHotFix()
+        {
+            if ( EditorUtility.DisplayDialog( "提示", "是否拷贝到热更新工程", "确认", "取消" ) )
+            {
+                string uPath = Application.dataPath + "/Scripts/DllFramework";
+                string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework";
+
+                FolderCopy.CopyTo( uPath, hPath );
+            }
+            else
+            {
+                Debug.Log( "Cancel" );
+            }
+        }
+#endif
+
+
+
+
         /// <summary>
         /// 创建CS文件
         /// </summary>
@@ -187,6 +222,23 @@ namespace LitFramework.EditorExtended
             return writer.ToString();
 #endif
             return "";
+        }
+    }
+
+    public class EditorTool
+    {
+        /// <summary>
+        /// 获取场景内所有对象，无论是否Active
+        /// </summary>
+        /// <returns></returns>
+        public static UnityEngine.Object[] GetAll()
+        {
+            Assembly assembly = Assembly.GetAssembly( typeof( EditorWindow ) );
+            Type hierarchy = assembly.GetType( "UnityEditor.SceneHierarchyWindow" );
+            MethodInfo info = hierarchy.GetMethod( "SelectAll", BindingFlags.NonPublic | BindingFlags.Instance );
+            var obj = ScriptableObject.CreateInstance( "SceneHierarchyWindow" );
+            info.Invoke( obj, null );
+            return Selection.objects;
         }
     }
 }

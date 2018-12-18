@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_3db713a69035ebb8996074a87f928041" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/EditorExtention</compoundname>
+    <innerfile refid="_c_s_v_parser_8cs">CSVParser.cs</innerfile>
+    <innerfile refid="_c_s_v_reader_8cs">CSVReader.cs</innerfile>
+    <innerfile refid="_c_s_v_writer_8cs">CSVWriter.cs</innerfile>
+    <innerfile refid="_editor_menu_extention_8cs">EditorMenuExtention.cs</innerfile>
+    <innerfile refid="_folder_copy_8cs">FolderCopy.cs</innerfile>
+    <innerfile refid="_x_m_l_conver_8cs">XMLConver.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/EditorExtention/"/>
+  </compounddef>
+</doxygen>

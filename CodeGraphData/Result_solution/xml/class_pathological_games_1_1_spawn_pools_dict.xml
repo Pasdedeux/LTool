@@ -1,0 +1,697 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_pathological_games_1_1_spawn_pools_dict" kind="class" prot="public">
+    <compoundname>PathologicalGames::SpawnPoolsDict</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDictionary&lt; string, SpawnPool &gt;</basecompoundref>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" prot="package" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" kindref="member">OnCreatedDelegate</ref> &gt;</type>
+        <definition>Dictionary&lt;string , OnCreatedDelegate&gt; PathologicalGames.SpawnPoolsDict.onCreatedDelegates</definition>
+        <argsstring></argsstring>
+        <name>onCreatedDelegates</name>
+        <initializer>=
+             new Dictionary&lt;string , <ref refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" kindref="member">OnCreatedDelegate</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="59" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="59" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" compoundref="_pool_manager_8cs" startline="253" endline="269">PathologicalGames.SpawnPoolsDict.Add</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1ac909f94f3d09b9c0fb73a270b44eddf1" compoundref="_pool_manager_8cs" startline="62" endline="72">PathologicalGames.SpawnPoolsDict.AddOnCreatedDelegate</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1afeeb8a927fbd5d2fb06874bcc8ec3ede" compoundref="_pool_manager_8cs" startline="74" endline="83">PathologicalGames.SpawnPoolsDict.RemoveOnCreatedDelegate</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_spawn_pools_dict_1ae7573e7b550f9414f094e1625ab7c51e" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;</type>
+        <definition>Dictionary&lt;string , SpawnPool&gt; PathologicalGames.SpawnPoolsDict._pools</definition>
+        <argsstring></argsstring>
+        <name>_pools</name>
+        <initializer>= new Dictionary&lt;string , <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="246" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="246" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1ac6275d25a3a2af877a8e0f15f331657c" compoundref="_pool_manager_8cs" startline="203" endline="224">PathologicalGames.SpawnPoolsDict.Destroy</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a6948016e7cbf5d62936c7d99c3279cda" compoundref="_pool_manager_8cs" startline="232" endline="239">PathologicalGames.SpawnPoolsDict.DestroyAll</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1a00c74a549088ceadbb66a470dfc94b34" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.SpawnPoolsDict.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+<para>Get the number of SpawnPools in <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="314" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="314" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1a576cd8f7ec09c13d99b8fe5cbdcad583" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+        <definition>SpawnPool PathologicalGames.SpawnPoolsDict.this[string key]</definition>
+        <argsstring></argsstring>
+        <name>this[string key]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="347" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="348" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1abfe6bbc7ca3a020212c4e8ac9243595f" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>ICollection&lt; string &gt;</type>
+        <definition>ICollection&lt;string&gt; PathologicalGames.SpawnPoolsDict.Keys</definition>
+        <argsstring></argsstring>
+        <name>Keys</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="377" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1ae1c427c6d65458f6816f3a6f9fc4b570" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>ICollection&lt; <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;</type>
+        <definition>ICollection&lt;SpawnPool&gt; PathologicalGames.SpawnPoolsDict.Values</definition>
+        <argsstring></argsstring>
+        <name>Values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="387" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1abce85d3526efa10735e17a2fdc48c5e0" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.IsReadOnly</definition>
+        <argsstring></argsstring>
+        <name>IsReadOnly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="398" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="398" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_spawn_pools_dict_1a2a84d85118884967aca55c209044171d" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool ICollection&lt; KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt; &gt;.</type>
+        <definition>bool ICollection&lt;KeyValuePair&lt;string , SpawnPool&gt; &gt;. PathologicalGames.SpawnPoolsDict.IsReadOnly</definition>
+        <argsstring></argsstring>
+        <name>IsReadOnly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="399" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void PathologicalGames.SpawnPoolsDict.OnCreatedDelegate</definition>
+        <argsstring>(SpawnPool pool)</argsstring>
+        <name>OnCreatedDelegate</name>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+          <declname>pool</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1ac909f94f3d09b9c0fb73a270b44eddf1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.AddOnCreatedDelegate</definition>
+        <argsstring>(string poolName, OnCreatedDelegate createdDelegate)</argsstring>
+        <name>AddOnCreatedDelegate</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" kindref="member">OnCreatedDelegate</ref></type>
+          <declname>createdDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="62" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="62" bodyend="72"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" compoundref="_pool_manager_8cs" startline="59">PathologicalGames.SpawnPoolsDict.onCreatedDelegates</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1afeeb8a927fbd5d2fb06874bcc8ec3ede" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.RemoveOnCreatedDelegate</definition>
+        <argsstring>(string poolName, OnCreatedDelegate createdDelegate)</argsstring>
+        <name>RemoveOnCreatedDelegate</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" kindref="member">OnCreatedDelegate</ref></type>
+          <declname>createdDelegate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="74" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="74" bodyend="83"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" compoundref="_pool_manager_8cs" startline="59">PathologicalGames.SpawnPoolsDict.onCreatedDelegates</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1ac641055005cf856822f85557db3866b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+        <definition>SpawnPool PathologicalGames.SpawnPoolsDict.Create</definition>
+        <argsstring>(string poolName)</argsstring>
+        <name>Create</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new GameObject with a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> Component which registers itself with the <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> dictionary. The <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> can then be accessed directly via the return value of this function or by via the <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> dictionary using a &apos;key&apos; (string : the name of the pool, <ref refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" kindref="member">SpawnPool.poolName</ref>). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name for the new <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>. The GameObject will have the word &quot;Pool&quot; Added at the end. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the new <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> component</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="99" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="99" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a1f532fe587fefd9449bbde325dffa310" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+        <definition>SpawnPool PathologicalGames.SpawnPoolsDict.Create</definition>
+        <argsstring>(string poolName, GameObject owner)</argsstring>
+        <name>Create</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <param>
+          <type>GameObject</type>
+          <declname>owner</declname>
+        </param>
+        <briefdescription>
+<para>Creates a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> Component on an &apos;owner&apos; GameObject which registers itself with the <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> dictionary. The <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> can then be accessed directly via the return value of this function or via the <ref refid="class_pathological_games_1_1_pool_manager_1a2dd38288e9a0e76a3bea0cc73f5146e8" kindref="member">PoolManager.Pools</ref> dictionary. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name for the new <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>. The GameObject will have the word &quot;Pool&quot; Added at the end. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>owner</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A GameObject to add the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> Component</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the new <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> component</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="120" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="120" bodyend="143"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1a0102dea464bf7755afd7ee8bc692a0f7" compoundref="_pool_manager_8cs" startline="151" endline="178">PathologicalGames.SpawnPoolsDict.assertValidPoolName</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a1ba8758d67b3294bbd243b091a78a760" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string PathologicalGames.SpawnPoolsDict.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+<para>Returns a formatted string showing all the pool names </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="185" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="185" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1ac6275d25a3a2af877a8e0f15f331657c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.Destroy</definition>
+        <argsstring>(string poolName)</argsstring>
+        <name>Destroy</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <briefdescription>
+<para>Destroy an entire <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>, including its GameObject and all children. You can also just destroy the GameObject directly to achieve the same result. This is really only here to make it easier when a reference isn&apos;t at hand. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spawnPool</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="203" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="203" bodyend="224"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1ae7573e7b550f9414f094e1625ab7c51e" compoundref="_pool_manager_8cs" startline="246">PathologicalGames.SpawnPoolsDict._pools</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a6948016e7cbf5d62936c7d99c3279cda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.DestroyAll</definition>
+        <argsstring>()</argsstring>
+        <name>DestroyAll</name>
+        <briefdescription>
+<para>Destroy ALL SpawnPools, including their GameObjects and all children. You can also just destroy the GameObjects directly to achieve the same result. This is really only here to make it easier when a reference isn&apos;t at hand. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spawnPool</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="232" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="232" bodyend="239"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1ae7573e7b550f9414f094e1625ab7c51e" compoundref="_pool_manager_8cs" startline="246">PathologicalGames.SpawnPoolsDict._pools</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a5d17e4fa5ab1621d9ca2105a42284cde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.Add</definition>
+        <argsstring>(string key, SpawnPool value)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="272" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="272" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a878c3e1ad63b0dae27e7f125f4890745" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.Remove</definition>
+        <argsstring>(string poolName)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="302" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="302" bodyend="309"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.ContainsKey</definition>
+        <argsstring>(string poolName)</argsstring>
+        <name>ContainsKey</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if a pool exists with the passed pool name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name to look for</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the pool exists, otherwise, false.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="321" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="321" bodyend="324"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" compoundref="_pool_manager_8cs" startline="253" endline="269">PathologicalGames.SpawnPoolsDict.Add</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a0102dea464bf7755afd7ee8bc692a0f7" compoundref="_pool_manager_8cs" startline="151" endline="178">PathologicalGames.SpawnPoolsDict.assertValidPoolName</referencedby>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1abe9c4ea779c2f71e7adcd8967d68777c" compoundref="_pool_manager_8cs" startline="287" endline="299">PathologicalGames.SpawnPoolsDict.Remove</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a2c28da1c51641754914a88fd1c9a08e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.TryGetValue</definition>
+        <argsstring>(string poolName, out SpawnPool spawnPool)</argsstring>
+        <name>TryGetValue</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <param>
+          <type>out <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+          <declname>spawnPool</declname>
+        </param>
+        <briefdescription>
+<para>Used to get a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> when the user is not sure if the pool name is used. This is faster than checking IsPool(poolName) and then accessing Pools][poolName.] </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="333" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="333" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a5abcbf827d76e622566a0c3ec2bfef0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.Contains</definition>
+        <argsstring>(KeyValuePair&lt; string, SpawnPool &gt; item)</argsstring>
+        <name>Contains</name>
+        <param>
+          <type>KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="341" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="341" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a612b56e2109c645a629e79ea222127c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.Add</definition>
+        <argsstring>(KeyValuePair&lt; string, SpawnPool &gt; item)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="401" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="401" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a171d9c68881bae59044c662be94171eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="410" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="410" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a33ebc905ce9281719c012001382895dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.Remove</definition>
+        <argsstring>(KeyValuePair&lt; string, SpawnPool &gt; item)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="429" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="429" bodyend="436"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a903f8bf4ee047d6b353ea312ee24cf79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator&lt; KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt; &gt;</type>
+        <definition>IEnumerator&lt;KeyValuePair&lt;string , SpawnPool&gt; &gt; PathologicalGames.SpawnPoolsDict.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="444" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="444" bodyend="447"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a0102dea464bf7755afd7ee8bc692a0f7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.assertValidPoolName</definition>
+        <argsstring>(string poolName)</argsstring>
+        <name>assertValidPoolName</name>
+        <param>
+          <type>string</type>
+          <declname>poolName</declname>
+        </param>
+        <briefdescription>
+<para>Used to ensure a name is valid before creating anything. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>poolName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name to test</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if sucessful, false if failed.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="151" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="151" bodyend="178"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" compoundref="_pool_manager_8cs" startline="321" endline="324">PathologicalGames.SpawnPoolsDict.ContainsKey</references>
+        <referencedby refid="class_pathological_games_1_1_spawn_pools_dict_1a1f532fe587fefd9449bbde325dffa310" compoundref="_pool_manager_8cs" startline="120" endline="143">PathologicalGames.SpawnPoolsDict.Create</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a0a6165e56659a0acf09f1f6dbfe69ebe" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.CopyTo</definition>
+        <argsstring>(KeyValuePair&lt; string, SpawnPool &gt;[] array, int arrayIndex)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;[]</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arrayIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="417" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="417" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1ade437ced0cbb4e7660387710e5b80e8e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void ICollection&lt; KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt; &gt;.</type>
+        <definition>void ICollection&lt;KeyValuePair&lt;string , SpawnPool&gt; &gt;. PathologicalGames.SpawnPoolsDict.CopyTo</definition>
+        <argsstring>(KeyValuePair&lt; string, SpawnPool &gt;[] array, int arrayIndex)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>KeyValuePair&lt; string, <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> &gt;[]</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arrayIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="423" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="423" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a41a57408f5b7fe7f704ab0c6e81ade82" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Collections.IEnumerator System.Collections.IEnumerable.</type>
+        <definition>System.Collections.IEnumerator System.Collections.IEnumerable. PathologicalGames.SpawnPoolsDict.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="453" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="453" bodyend="456"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.SpawnPoolsDict.Add</definition>
+        <argsstring>(SpawnPool spawnPool)</argsstring>
+        <name>Add</name>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+          <declname>spawnPool</declname>
+        </param>
+        <briefdescription>
+<para>Used internally by SpawnPools to add themseleves on Awake(). Use PoolManager.CreatePool() to create an entirely new <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> GameObject </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spawnPool</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="253" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="253" bodyend="269"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" compoundref="_pool_manager_8cs" startline="321" endline="324">PathologicalGames.SpawnPoolsDict.ContainsKey</references>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" compoundref="_pool_manager_8cs" startline="59">PathologicalGames.SpawnPoolsDict.onCreatedDelegates</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" compoundref="_spawn_pool_8cs" startline="57">PathologicalGames.SpawnPool.poolName</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_spawn_pools_dict_1abe9c4ea779c2f71e7adcd8967d68777c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.SpawnPoolsDict.Remove</definition>
+        <argsstring>(SpawnPool spawnPool)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+          <declname>spawnPool</declname>
+        </param>
+        <briefdescription>
+<para>Used internally by SpawnPools to remove themseleves on <ref refid="class_pathological_games_1_1_spawn_pools_dict_1ac6275d25a3a2af877a8e0f15f331657c" kindref="member">Destroy()</ref>. Use PoolManager.Destroy() to destroy an entire <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> GameObject. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>spawnPool</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="287" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="287" bodyend="299"/>
+        <references refid="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" compoundref="_pool_manager_8cs" startline="321" endline="324">PathologicalGames.SpawnPoolsDict.ContainsKey</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a00195b7a5f68f9843b234406033326e0" compoundref="_spawn_pool_8cs" startline="57">PathologicalGames.SpawnPool.poolName</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="213">
+        <label>IDictionary&lt; string, SpawnPool &gt;</label>
+      </node>
+      <node id="212">
+        <label>PathologicalGames.SpawnPoolsDict</label>
+        <link refid="class_pathological_games_1_1_spawn_pools_dict"/>
+        <childnode refid="213" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="215">
+        <label>IDictionary&lt; string, SpawnPool &gt;</label>
+      </node>
+      <node id="214">
+        <label>PathologicalGames.SpawnPoolsDict</label>
+        <link refid="class_pathological_games_1_1_spawn_pools_dict"/>
+        <childnode refid="215" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" line="55" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/PoolManager.cs" bodystart="54" bodyend="461"/>
+    <listofallmembers>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ae7573e7b550f9414f094e1625ab7c51e" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>_pools</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a4ce2ae7c0724492ac10e6c6708246210" prot="package" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a5d17e4fa5ab1621d9ca2105a42284cde" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a612b56e2109c645a629e79ea222127c5" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac909f94f3d09b9c0fb73a270b44eddf1" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>AddOnCreatedDelegate</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a0102dea464bf7755afd7ee8bc692a0f7" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>assertValidPoolName</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a171d9c68881bae59044c662be94171eb" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Clear</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a5abcbf827d76e622566a0c3ec2bfef0c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Contains</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1aa43b4ff5b72197cccbd544e5670c453e" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>ContainsKey</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a0a6165e56659a0acf09f1f6dbfe69ebe" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>CopyTo</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ade437ced0cbb4e7660387710e5b80e8e" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>CopyTo</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a00c74a549088ceadbb66a470dfc94b34" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Count</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac641055005cf856822f85557db3866b3" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Create</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a1f532fe587fefd9449bbde325dffa310" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Create</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ac6275d25a3a2af877a8e0f15f331657c" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Destroy</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a6948016e7cbf5d62936c7d99c3279cda" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>DestroyAll</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a903f8bf4ee047d6b353ea312ee24cf79" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a41a57408f5b7fe7f704ab0c6e81ade82" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1abce85d3526efa10735e17a2fdc48c5e0" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>IsReadOnly</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a2a84d85118884967aca55c209044171d" prot="private" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>IsReadOnly</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1abfe6bbc7ca3a020212c4e8ac9243595f" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Keys</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a8c9ff8fa5432a06793746b64ee9a40da" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>OnCreatedDelegate</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ad974d328086d8e32f053e346550c2dbb" prot="package" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>onCreatedDelegates</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1abe9c4ea779c2f71e7adcd8967d68777c" prot="package" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a878c3e1ad63b0dae27e7f125f4890745" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a33ebc905ce9281719c012001382895dd" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1afeeb8a927fbd5d2fb06874bcc8ec3ede" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>RemoveOnCreatedDelegate</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a576cd8f7ec09c13d99b8fe5cbdcad583" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>this[string key]</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a1ba8758d67b3294bbd243b091a78a760" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>ToString</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1a2c28da1c51641754914a88fd1c9a08e7" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>TryGetValue</name></member>
+      <member refid="class_pathological_games_1_1_spawn_pools_dict_1ae1c427c6d65458f6816f3a6f9fc4b570" prot="public" virt="non-virtual"><scope>PathologicalGames::SpawnPoolsDict</scope><name>Values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

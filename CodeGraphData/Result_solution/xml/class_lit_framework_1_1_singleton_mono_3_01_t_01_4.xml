@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_singleton_mono_3_01_t_01_4" kind="class" prot="public">
+    <compoundname>LitFramework::SingletonMono&lt; T &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_audio_manager" prot="public" virt="non-virtual">LitFramework.AudioManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_input_1_1_input_control_manager" prot="public" virt="non-virtual">LitFramework.Input.InputControlManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_input_1_1_touch_direction_control" prot="public" virt="non-virtual">LitFramework.Input.TouchDirectionControl</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1ab52747bd11ede118630327a357e217ef" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T LitFramework.SingletonMono&lt; T &gt;._instance</definition>
+        <argsstring></argsstring>
+        <name>_instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/SingletonMono.cs" line="26" column="1" bodyfile="E:/Personal/LTool/LTool/Base/SingletonMono.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a10e80f9406dfdd3b71e31459aac3ed11" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>T</type>
+        <definition>T LitFramework.SingletonMono&lt; T &gt;.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/SingletonMono.cs" line="27" column="1" bodyfile="E:/Personal/LTool/LTool/Base/SingletonMono.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1abc3de937113f36fe40fc7ff6d45ba1b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void LitFramework.SingletonMono&lt; T &gt;.DoDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>DoDestroy</name>
+        <briefdescription>
+<para>移除 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/SingletonMono.cs" line="58" column="1" bodyfile="E:/Personal/LTool/LTool/Base/SingletonMono.cs" bodystart="58" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a8d5ad204b316c56fc32a4e539455bb2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void LitFramework.SingletonMono&lt; T &gt;.OnApplicationQuit</definition>
+        <argsstring>()</argsstring>
+        <name>OnApplicationQuit</name>
+        <briefdescription>
+<para>应用程序退出 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/SingletonMono.cs" line="70" column="1" bodyfile="E:/Personal/LTool/LTool/Base/SingletonMono.cs" bodystart="70" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>组件单例基类 </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>继承子类类名</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="189">
+        <label>LitFramework.Input.InputControlManager</label>
+        <link refid="class_lit_framework_1_1_input_1_1_input_control_manager"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="190">
+        <label>LitFramework.Input.TouchDirectionControl</label>
+        <link refid="class_lit_framework_1_1_input_1_1_touch_direction_control"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="188">
+        <label>LitFramework.AudioManager</label>
+        <link refid="class_lit_framework_1_1_audio_manager"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="187">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="186">
+        <label>LitFramework.SingletonMono&lt; T &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4"/>
+        <childnode refid="187" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="192">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="191">
+        <label>LitFramework.SingletonMono&lt; T &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4"/>
+        <childnode refid="192" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/Base/SingletonMono.cs" line="25" column="1" bodyfile="E:/Personal/LTool/LTool/Base/SingletonMono.cs" bodystart="24" bodyend="78"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1ab52747bd11ede118630327a357e217ef" prot="private" virt="non-virtual"><scope>LitFramework::SingletonMono&lt; T &gt;</scope><name>_instance</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1abc3de937113f36fe40fc7ff6d45ba1b5" prot="public" virt="virtual"><scope>LitFramework::SingletonMono&lt; T &gt;</scope><name>DoDestroy</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a10e80f9406dfdd3b71e31459aac3ed11" prot="public" virt="non-virtual"><scope>LitFramework::SingletonMono&lt; T &gt;</scope><name>Instance</name></member>
+      <member refid="class_lit_framework_1_1_singleton_mono_3_01_t_01_4_1a8d5ad204b316c56fc32a4e539455bb2d" prot="public" virt="virtual"><scope>LitFramework::SingletonMono&lt; T &gt;</scope><name>OnApplicationQuit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

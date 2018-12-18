@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_json" kind="namespace">
+    <compoundname>LitJson</compoundname>
+    <innerclass refid="interface_lit_json_1_1_i_json_wrapper" prot="public">LitJson::IJsonWrapper</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_data" prot="public">LitJson::JsonData</innerclass>
+    <innerclass refid="class_lit_json_1_1_ordered_dictionary_enumerator" prot="package">LitJson::OrderedDictionaryEnumerator</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_exception" prot="public">LitJson::JsonException</innerclass>
+    <innerclass refid="struct_lit_json_1_1_property_metadata" prot="package">LitJson::PropertyMetadata</innerclass>
+    <innerclass refid="struct_lit_json_1_1_array_metadata" prot="package">LitJson::ArrayMetadata</innerclass>
+    <innerclass refid="struct_lit_json_1_1_object_metadata" prot="package">LitJson::ObjectMetadata</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_mapper" prot="public">LitJson::JsonMapper</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_mock_wrapper" prot="public">LitJson::JsonMockWrapper</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_reader" prot="public">LitJson::JsonReader</innerclass>
+    <innerclass refid="class_lit_json_1_1_writer_context" prot="package">LitJson::WriterContext</innerclass>
+    <innerclass refid="class_lit_json_1_1_json_writer" prot="public">LitJson::JsonWriter</innerclass>
+    <innerclass refid="class_lit_json_1_1_fsm_context" prot="package">LitJson::FsmContext</innerclass>
+    <innerclass refid="class_lit_json_1_1_lexer" prot="package">LitJson::Lexer</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757" prot="public" static="no">
+        <name>JsonType</name>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a497031794414a552435f90151ac3b54b" prot="public">
+          <name>Object</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a4410ec34d9e6c1a68100ca0ce033fb17" prot="public">
+          <name>Array</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27118326006d3829667a400ad23d5d98" prot="public">
+          <name>String</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a1686a6c336b71b36d77354cea19a8b52" prot="public">
+          <name>Int</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a8394f0347c184cf156ac5924dccb773b" prot="public">
+          <name>Long</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757ad909d38d705ce75386dd86e611a82f5b" prot="public">
+          <name>Double</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757a27226c864bac7454a8504f8edb15d95b" prot="public">
+          <name>Boolean</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="21" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="20" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508" prot="public" static="no">
+        <name>JsonToken</name>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1b8c043fb4e9955580a04d1a3bc3b97d" prot="public">
+          <name>ObjectStart</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a0c7a70fe1a1717fc7c61a4621daa144d" prot="public">
+          <name>PropertyName</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a80cde5f072530ad7cc0fc892779eb51c" prot="public">
+          <name>ObjectEnd</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1046518c67498429fe8028c8a96b83ad" prot="public">
+          <name>ArrayStart</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a03e0b2db421eff9b75d3cffd9aa8e340" prot="public">
+          <name>ArrayEnd</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a1686a6c336b71b36d77354cea19a8b52" prot="public">
+          <name>Int</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a8394f0347c184cf156ac5924dccb773b" prot="public">
+          <name>Long</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508ad909d38d705ce75386dd86e611a82f5b" prot="public">
+          <name>Double</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a27118326006d3829667a400ad23d5d98" prot="public">
+          <name>String</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508a27226c864bac7454a8504f8edb15d95b" prot="public">
+          <name>Boolean</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1aab19a256ec9a89316eb6afd67a5c9508abbb93ef26e3c101ff11cdd21cab08a94" prot="public">
+          <name>Null</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonReader.cs" line="21" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonReader.cs" bodystart="20" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fd" prot="package" static="no">
+        <name>Condition</name>
+        <enumvalue id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda1dd434ab03234427196327564f19f2e9" prot="public">
+          <name>InArray</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fdadaff60416e9ab0d467514f2ceec55d2b" prot="public">
+          <name>InObject</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda0187d20e5c73aef50c90fad1949d1dfc" prot="public">
+          <name>NotAProperty</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda5ad234cb2cde4266195252a23ca7d84e" prot="public">
+          <name>Property</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a26bd1047c8c6c52130fc95517f76e2fda689202409e48743b914713f96d93947c" prot="public">
+          <name>Value</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonWriter.cs" line="22" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonWriter.cs" bodystart="21" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="enum" id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27" prot="package" static="no">
+        <name>ParserToken</name>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a6adf97f83acf6453d4a6a4b1070f3754" prot="public">
+          <name>None</name>
+          <initializer>= System.Char.MaxValue + 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ab2ee912b91d69b435159c7c3f6df7f5f" prot="public">
+          <name>Number</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27af827cf462f62848df37c5e1e94a4da74" prot="public">
+          <name>True</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27af8320b26d30ab433c5a54546d21f414c" prot="public">
+          <name>False</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27abbb93ef26e3c101ff11cdd21cab08a94" prot="public">
+          <name>Null</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a5976f5b2e7620b7230562a881438be83" prot="public">
+          <name>CharSeq</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a8e95e84813830072b7516cfaa7dbc1a9" prot="public">
+          <name>Char</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a9dffbf69ffba8bc38bc4e01abf4b1675" prot="public">
+          <name>Text</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a497031794414a552435f90151ac3b54b" prot="public">
+          <name>Object</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27aa5cd3cceb3cc7cd7055dfbfb1ba00d06" prot="public">
+          <name>ObjectPrime</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ad0bd662806a73209a1c6fbe55591fbff" prot="public">
+          <name>Pair</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a38281dd144645dc9c5e70c4330b74d73" prot="public">
+          <name>PairRest</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a4410ec34d9e6c1a68100ca0ce033fb17" prot="public">
+          <name>Array</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27ab3b6a378560a43ed0dbdf4e0bafcf109" prot="public">
+          <name>ArrayPrime</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a689202409e48743b914713f96d93947c" prot="public">
+          <name>Value</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a81845e510a4396a3ffa208cbc66d2e1f" prot="public">
+          <name>ValueRest</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a27118326006d3829667a400ad23d5d98" prot="public">
+          <name>String</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a87557f11575c0ad78e4e28abedc13b6e" prot="public">
+          <name>End</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_lit_json_1a87e39ae1e556dcc5a49ead5026027b27a99f2b3f30bec5a8826333eaec7ce7044" prot="public">
+          <name>Epsilon</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/ParserToken.cs" line="15" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/ParserToken.cs" bodystart="14" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_lit_json_1afd50ff34e421d7aa3beaf8937ff9ca51" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void LitJson.ExporterFunc</definition>
+        <argsstring>(object obj, JsonWriter writer)</argsstring>
+        <name>ExporterFunc</name>
+        <param>
+          <type>object</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+          <declname>writer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="91" column="1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6bbb88387fb7e0d6df09bd75fdf5b898" compoundref="_json_mapper_8cs" startline="893" endline="901">LitJson.JsonMapper.RegisterExporter&lt; T &gt;</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a543d8b40f4688700d531f4f1bfb102ee" compoundref="_json_mapper_8cs" startline="684" endline="820">LitJson.JsonMapper.WriteValue</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespace_lit_json_1aac67cdf1fa92053c731208d700defa75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate void</type>
+        <definition>delegate void LitJson.ExporterFunc&lt; T &gt;</definition>
+        <argsstring>(T obj, JsonWriter writer)</argsstring>
+        <name>ExporterFunc&lt; T &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+          <declname>writer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_lit_json_1ad7ff875301d53f3f2c480ccba9ef89d0" prot="package" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate object</type>
+        <definition>delegate object LitJson.ImporterFunc</definition>
+        <argsstring>(object input)</argsstring>
+        <name>ImporterFunc</name>
+        <param>
+          <type>object</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="94" column="1"/>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a6a1785316bdfa26803dc22d7b2d96474" compoundref="_json_mapper_8cs" startline="306" endline="472">LitJson.JsonMapper.ReadValue</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a749adf3e73f688f2cf82446a9ffa691d" compoundref="_json_mapper_8cs" startline="596" endline="672">LitJson.JsonMapper.RegisterBaseImporters</referencedby>
+        <referencedby refid="class_lit_json_1_1_json_mapper_1a5e9a049fc62eadedc8edcd7a72fbcd08" compoundref="_json_mapper_8cs" startline="903" endline="913">LitJson.JsonMapper.RegisterImporter&lt; TJson, TValue &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespace_lit_json_1af6f335cd368b5f784586a2e43bdab353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate TValue</type>
+        <definition>delegate TValue LitJson.ImporterFunc&lt; TJson, TValue &gt;</definition>
+        <argsstring>(TJson input)</argsstring>
+        <name>ImporterFunc&lt; TJson, TValue &gt;</name>
+        <param>
+          <type>TJson</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="95" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_lit_json_1a034d96afd28b6356ff3a4df002112573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate <ref refid="interface_lit_json_1_1_i_json_wrapper" kindref="compound">IJsonWrapper</ref></type>
+        <definition>delegate IJsonWrapper LitJson.WrapperFactory</definition>
+        <argsstring>()</argsstring>
+        <name>WrapperFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/JsonMapper.cs" line="97" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="_parser_token_8cs" kindref="compound">ParserToken.cs</ref> Internal representation of the tokens used by the lexer and the parser.</para><para>The authors disclaim copyright to this source code. For more details, see the COPYING file included with this distribution. </para>    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="19" column="1"/>
+  </compounddef>
+</doxygen>

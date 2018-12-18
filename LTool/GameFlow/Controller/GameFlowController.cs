@@ -165,9 +165,9 @@ namespace LitFramework.GameFlow
                         _iUIManger.ShowFade( fadingTime, () =>
                         {
                             LoadingTaskModel.Instance.ClearTask();
-                            _iUIManger.Close( loadingUIPath );
                             callBackAfterChanging?.Invoke();
-                            //显示UILoading
+
+                            _iUIManger.Close( loadingUIPath );
                             _iUIManger.HideFade( fadingTime );
                         });
                         return true;

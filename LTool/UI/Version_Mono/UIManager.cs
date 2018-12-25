@@ -33,9 +33,10 @@ using UnityEngine;
 using LitFramework;
 using System.Reflection;
 using System.Linq;
-using LitFramework.UI.Base;
+using LitFramework.Base;
 using UnityEngine.UI;
 using LitFramework.GameUtility;
+using LitFramework.UI.Base;
 
 namespace LitFramework.Mono
 {

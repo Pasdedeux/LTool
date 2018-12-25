@@ -32,6 +32,7 @@ using System.Linq;
 using LitFramework.UI.Base;
 using UnityEngine.UI;
 using LitFramework.GameUtility;
+using LitFramework.Base;
 
 namespace LitFramework.HotFix
 {

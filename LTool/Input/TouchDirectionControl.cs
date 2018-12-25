@@ -47,7 +47,12 @@ namespace LitFramework.Input
         private Vector2 _touchBeginPos;
         private Vector2 _touchEndPos;
         private float _clockWiseDegree = 0;
-        private EventSystem _currentEventSys = EventSystem.current;
+        private EventSystem _currentEventSys;
+
+        public void Init( EventSystem esys )
+        {
+            _currentEventSys = esys;
+        }
 
         /// <summary>
         /// 设置触控方向的【顺时针】旋转角度
@@ -68,7 +73,7 @@ namespace LitFramework.Input
             if ( Input.touchCount > 0 )
             {
                 //实时检测触碰到UI
-                if ( _currentEventSys.IsPointerOverGameObject( Input.GetTouch( 0 ).fingerId ) )
+                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
                     dirResult |= TouchDirection.OnUI;
 
                 if ( Input.touches[ 0 ].phase != TouchPhase.Canceled )
@@ -82,6 +87,7 @@ namespace LitFramework.Input
                             break;
                         case TouchPhase.Ended:
                             _touchEndPos = inputPos;
+
                             TouchEndCallback?.Invoke( inputPos );
                             if ( Vector2.Distance( _touchBeginPos, _touchEndPos ) < MOVE_MIX_DISTANCE )
                                 return dirResult;
@@ -115,6 +121,12 @@ namespace LitFramework.Input
             }
             else
                 return dirResult = TouchDirection.None;
+        }
+
+        public override void DoDestroy()
+        {
+            _currentEventSys = null;
+            base.DoDestroy();
         }
     }
 }

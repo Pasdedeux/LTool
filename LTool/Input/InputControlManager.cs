@@ -31,8 +31,19 @@ namespace LitFramework.Input
     using UnityEngine.UI;
     using System.Collections;
     using UnityEngine.EventSystems;
-    using LitFramework.UI.Base;
+    using LitFramework.Base;
     using System;
+
+    [Flags]
+    public enum TouchDirection
+    {
+        None = 1 << 0,
+        Left = 1 << 1,
+        Right = 1 << 2,
+        Up = 1 << 3,
+        Down = 1 << 4,
+        OnUI = 1 << 5
+    }
 
     public class InputControlManager : SingletonMono<InputControlManager>, IManager
     {
@@ -42,21 +53,13 @@ namespace LitFramework.Input
         /// </summary>
         public event Action EscapeCallBack;
         /// <summary>
-        /// 持续点击触发
+        /// 是否持续点击触发
         /// </summary>
-        public event Action<bool> TouchedContinuePressCallBack;
+        public Action<bool> IsTouchedContinuePressCallBack;
         /// <summary>
         /// 是否点击到UI反馈
         /// </summary>
-        public event Action<bool> TouchedOnUICallBack;
-        /// <summary>
-        /// 开始触屏
-        /// </summary>
-        public event Action<Vector2> TouchedBeganCallBack;
-        /// <summary>
-        /// 滑动事件反馈
-        /// </summary>
-        public event Action<Vector2> TouchedMoveScreenPosCallBack;
+        public Action<bool> IsTouchedOnUICallBack;
         #endregion
 
         #region 常量
@@ -64,7 +67,15 @@ namespace LitFramework.Input
         private const RuntimePlatform PLATFORM_IOS = RuntimePlatform.IPhonePlayer;
         private const RuntimePlatform PLATFORM_WINDOWEDITOR = RuntimePlatform.WindowsEditor;
         private const RuntimePlatform PLATFORM_IOSEDITOR = RuntimePlatform.OSXEditor;
+        private const float MOVE_MIX_DISTANCE = 1f; //滑动距离限制，超过这个距离视为滑动有效
         #endregion
+
+        //触碰阶段外发函数
+        public Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
+        private Vector2 _touchBeginPos;
+        private Vector2 _touchEndPos;
+        private EventSystem _currentEventSys;
+        private float _clockWiseDegree = 0;
 
         /// <summary>
         /// 当前是否在点击UI
@@ -95,8 +106,6 @@ namespace LitFramework.Input
         }
 
         private RuntimePlatform _currentPlatform = Application.platform;
-        //滑动方向捕捉器
-        private TouchDirectionControl _touchDirectionCalculator;
         //持续点击灵敏度-持续指定时间视为按压
         private float _curPressTime = 0;
         private const float PRESS_DOWN_SENSITIVITY = 0.5f;
@@ -113,37 +122,27 @@ namespace LitFramework.Input
             _isInit = true;
             _isEnable = true;
 
-            _touchDirectionCalculator = TouchDirectionControl.Instance;
-            _touchDirectionCalculator.TouchBeganCallback = TouchedBeganCallBack;
-            _touchDirectionCalculator.TouchEndCallback = CalculateTimeByPressOver;
-            _touchDirectionCalculator.TouchStationaryCallback = CalculateTimeByPressStart;
-            _touchDirectionCalculator.TouchMoveCallback = TouchedMoveScreenPosCallBack;
-
-            if(GameObject.Find( "EventSystem" )==null)
+            if ( GameObject.Find( "EventSystem" ) == null )
             {
                 GameObject go = new GameObject( "EventSystem" );
-                go.AddComponent<EventSystem>();
                 go.AddComponent<StandaloneInputModule>();
+                _currentEventSys = go.AddComponent<EventSystem>();
             }
+            
+            //给内部方法绑定一个计算当前是否是持续性按压状态
+            TouchEndCallback = CalculateTimeByPressOver;
+            TouchStationaryCallback = CalculateTimeByPressStart;
         }
 
         public void Uninstall()
         {
+            EscapeCallBack = null;
+            IsTouchedOnUICallBack = null;
+            IsTouchedContinuePressCallBack = null;
+
             _isInit = false;
             _isEnable = false;
-
-            _touchDirectionCalculator.TouchEndCallback = null;
-            _touchDirectionCalculator.TouchMoveCallback = null;
-            _touchDirectionCalculator.TouchBeganCallback = null;
-            _touchDirectionCalculator.TouchStationaryCallback = null;
-            _touchDirectionCalculator.DoDestroy();
-            _touchDirectionCalculator = null;
-
-            EscapeCallBack = null;
-            TouchedOnUICallBack = null;
-            TouchedBeganCallBack = null;
-            TouchedContinuePressCallBack = null;
-            TouchedMoveScreenPosCallBack = null;
+            _currentEventSys = null;
 
             DoDestroy();
         }
@@ -162,9 +161,9 @@ namespace LitFramework.Input
                     //是否点击到UI界面
                     if ( Input.touchCount > 0 )
                     {
-                        _touchResult =_touchDirectionCalculator.GetTouchMoveDirection( _touchResult );
+                        _touchResult =GetTouchMoveDirection( _touchResult );
                         if( CurrentIsOnUI )
-                            TouchedOnUICallBack?.Invoke( true );
+                            IsTouchedOnUICallBack?.Invoke( true );
                     }
                     else _touchResult = TouchDirection.None;
                 }
@@ -176,19 +175,21 @@ namespace LitFramework.Input
                         if ( EventSystem.current.IsPointerOverGameObject() )
                         {
                             _touchResult |= TouchDirection.OnUI;
-                            TouchedOnUICallBack?.Invoke( true );
+                            IsTouchedOnUICallBack?.Invoke( true );
                         }
                         else
-                            TouchedOnUICallBack?.Invoke( false );
+                            IsTouchedOnUICallBack?.Invoke( false );
                         //按压计时
                         CalculateTimeByPressStart( Input.mousePosition );
                         //输出开始点击事件
-                        TouchedBeganCallBack?.Invoke( Input.mousePosition );
+                        TouchBeganCallback?.Invoke( Input.mousePosition );
                     }
 
                     if ( Input.GetMouseButtonUp(0))
                     {
+                        TouchEndCallback?.Invoke( Input.mousePosition );
                         CalculateTimeByPressOver( Input.mousePosition );
+
                         _touchResult = TouchDirection.None;
                     }
                 }
@@ -202,7 +203,7 @@ namespace LitFramework.Input
         {
             _curPressTime += Time.deltaTime;
             if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY + Time.deltaTime )
-                TouchedContinuePressCallBack?.Invoke( true );
+                IsTouchedContinuePressCallBack?.Invoke( true );
         }
         /// <summary>
         /// 离开屏幕计时
@@ -210,7 +211,7 @@ namespace LitFramework.Input
         private void CalculateTimeByPressOver( Vector2 inputPos )
         {
             if ( _curPressTime > 0 )
-                TouchedContinuePressCallBack?.Invoke( false );
+                IsTouchedContinuePressCallBack?.Invoke( false );
             _curPressTime = 0;
         }
 
@@ -222,5 +223,75 @@ namespace LitFramework.Input
         {
             EscapeCallBack?.Invoke();
         }
+
+        /// <summary>
+        /// 设置触控方向的【顺时针】旋转角度
+        /// </summary>
+        /// <param name="degree"></param>
+        public void SetRotateClockwise( float degree )
+        {
+            _clockWiseDegree = degree;
+        }
+
+
+        /// <summary>
+        /// 获取一次滑动行为
+        /// </summary>
+        /// <returns></returns>
+        public TouchDirection GetTouchMoveDirection( TouchDirection dirResult )
+        {
+            if ( Input.touchCount > 0 )
+            {
+                //实时检测触碰到UI
+                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
+                    dirResult |= TouchDirection.OnUI;
+
+                if ( Input.touches[ 0 ].phase != TouchPhase.Canceled )
+                {
+                    Vector2 inputPos = Input.touches[ 0 ].position;
+                    switch ( Input.touches[ 0 ].phase )
+                    {
+                        case TouchPhase.Began:
+                            _touchBeginPos = inputPos;
+                            TouchBeganCallback?.Invoke( inputPos );
+                            break;
+                        case TouchPhase.Ended:
+                            _touchEndPos = inputPos;
+
+                            TouchEndCallback?.Invoke( inputPos );
+                            if ( Vector2.Distance( _touchBeginPos, _touchEndPos ) < MOVE_MIX_DISTANCE )
+                                return dirResult;
+                            float offSetX = _touchEndPos.x - _touchBeginPos.x;
+                            float offSetY = _touchEndPos.y - _touchBeginPos.y;
+                            float angle = Mathf.Atan2( offSetY, offSetX ) * Mathf.Rad2Deg;
+                            //顺时针偏移
+                            angle += _clockWiseDegree;
+                            if ( angle > 180 )
+                                angle = 360 - angle;
+                            else if ( angle < -180 )
+                                angle += 360;
+                            if ( angle <= 45f && angle > -45f )
+                                dirResult |= TouchDirection.Right;
+                            else if ( angle > 45f && angle <= 135f )
+                                dirResult |= TouchDirection.Up;
+                            else if ( ( angle > 135f && angle < 180f ) || ( angle > -180f && angle <= -135f ) )
+                                dirResult |= TouchDirection.Left;
+                            else if ( angle > -135f && angle <= -45f )
+                                dirResult |= TouchDirection.Down;
+                            break;
+                        case TouchPhase.Moved:
+                            TouchMoveCallback?.Invoke( inputPos );
+                            break;
+                        case TouchPhase.Stationary:
+                            TouchStationaryCallback?.Invoke( inputPos );
+                            break;
+                    }
+                }
+                return dirResult;
+            }
+            else
+                return dirResult = TouchDirection.None;
+        }
+
     }
 }

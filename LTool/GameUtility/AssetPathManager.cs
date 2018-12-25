@@ -85,11 +85,16 @@ namespace LitFramework.GameUtility
         public string GetStreamAssetDataPath( string filePath, bool useFile = true )
         {
             _sBuilder.Length = 0;
-            _sBuilder.Append( Application.streamingAssetsPath );
-            if( useFile && ( Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor ) )
-                _sBuilder.Append( "//" );
+
+            if ( Application.platform == RuntimePlatform.Android )
+                _sBuilder.Append( "jar:file://" + Application.dataPath + "!assets" );
+            else if ( Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor )
+                //_sBuilder.Append( Application.dataPath + "!assets" );
+                throw new Exception( "IOS下streamAssets路径未配置" );
             else
-                _sBuilder.Append( "/" );
+                _sBuilder.Append( Application.streamingAssetsPath );
+
+            _sBuilder.Append( "/" );
             _sBuilder.Append( filePath );
             return _sBuilder.ToString();
         }
@@ -103,6 +108,14 @@ namespace LitFramework.GameUtility
         public string GetTemporaryCachePath( string filePath )
         {
             _sBuilder.Length = 0;
+
+            //if ( Application.platform == RuntimePlatform.Android )
+            //    _sBuilder.Append( "file:" );
+            //else if ( Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor )
+            //    _sBuilder.Append( "file:///" );
+            //else
+            //    _sBuilder.Append( "file:/" );
+
             _sBuilder.Append( Application.temporaryCachePath );
             _sBuilder.Append( "/" );
             _sBuilder.Append( filePath );

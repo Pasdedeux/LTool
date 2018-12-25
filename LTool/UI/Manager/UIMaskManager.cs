@@ -32,22 +32,25 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     private Camera _uiCamera;
     //UI相机原始层深度
     private float _oriUICameraDepth;
+    private Color _color;
 
     private void Awake( )
     {
         //得到UI根节点对象
         _rootCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS );
-        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas , UISysDefine.SYS_TAG_GLOBALCANVAS );
+        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas.transform , UISysDefine.SYS_TAG_GLOBALCANVAS );
         //将本脚本实例作为脚本节点对象子节点
         transform.SetParent( _transScriptNode );
         UnityHelper.AddChildNodeToParentNode( _transScriptNode , transform );
         //顶层面板、遮罩面板
         _topPanel = _rootCanvas;
-        _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas , "Panel_Mask" ).gameObject;
+        _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas.transform, "Panel_Mask" ).gameObject;
         _maskImage = _maskPanel.GetComponent<Image>();
         //获得摄像机层深
         _uiCamera = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
         if ( _uiCamera != null ) _oriUICameraDepth = _uiCamera.depth;
+
+        _color = new Color( 0 / 255F, 0 / 255F, 0 / 255F, 0 / 255F );
     }
 
     /// <summary>
@@ -62,17 +65,20 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         {
             case UITransparentEnum.NoPenetratingLow:
                 _maskPanel.SetActive( true );
-                _maskImage.color = new Color( 50 / 255F , 50 / 255F , 50 / 255F , 200F / 255F );
+                _color.a = 200F / 255F;
+                _maskImage.color = _color;
                 break;
                 //半透明
             case UITransparentEnum.NoPenetratingMiddle:
                 _maskPanel.SetActive( true );
-                _maskImage.color = new Color( 220 / 255F , 220 / 255F , 220 / 255F , 50F / 255F );
+                _color.a = 50F / 255F;
+                _maskImage.color = _color;
                 break;
                 //完全透明
             case UITransparentEnum.NoPenetratingTotal:
                 _maskPanel.SetActive( true );
-                _maskImage.color = new Color( 255 / 255F , 255 / 255F , 255 / 255F , 0F / 255F );
+                _color.a = 0F / 255F;
+                _maskImage.color = _color;
                 break;
                 //可以穿透
             case UITransparentEnum.Penetrating:

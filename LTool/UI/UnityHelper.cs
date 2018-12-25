@@ -12,16 +12,16 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="chiildName">查找的子对象名称</param>
     /// <returns></returns>
-    public static Transform FindTheChildNode( GameObject goParent , string chiildName )
+    public static Transform FindTheChildNode( Transform goParent , string chiildName )
     {
         Transform searchTrans = null;                   //查找结果
 
-        searchTrans = goParent.transform.Find( chiildName );
+        searchTrans = goParent.Find( chiildName );
         if ( searchTrans == null )
         {
-            foreach ( Transform trans in goParent.transform )
+            foreach ( Transform trans in goParent )
             {
-                searchTrans = FindTheChildNode( trans.gameObject , chiildName );
+                searchTrans = FindTheChildNode( trans , chiildName );
                 if ( searchTrans != null )
                 {
                     return searchTrans;
@@ -39,7 +39,7 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="childName">子对象名称</param>
     /// <returns></returns>
-    public static T GetTheChildNodeComponetScripts<T>( GameObject goParent , string childName ) where T : Component
+    public static T GetTheChildNodeComponetScripts<T>( Transform goParent , string childName ) where T : Component
     {
         Transform searchTranformNode = null;            //查找特定子节点
 
@@ -61,7 +61,7 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="childName">子对象名称</param>
     /// <returns></returns>
-    public static T AddChildNodeCompnent<T>( GameObject goParent , string childName ) where T : Component
+    public static T AddChildNodeCompnent<T>( Transform goParent , string childName ) where T : Component
     {
         Transform searchTranform = null;                //查找特定节点结果
 

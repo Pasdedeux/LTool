@@ -117,11 +117,11 @@ namespace LitFramework.Mono
             _dictCurrentShowUIs = new Dictionary<string, BaseUI>();
 
             _transCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS ).transform;
-            _transNormal = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_NORMALCANVAS );
-            _transFixed = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_FIXEDCANVAS );
-            _transPopUp = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_POPUPCANVAS );
-            _transGlobal = UnityHelper.FindTheChildNode( _transCanvas.gameObject, UISysDefine.SYS_TAG_GLOBALCANVAS );
-            _fadeImage = UnityHelper.FindTheChildNode( _transGlobal.gameObject, "Image_fadeBG" ).GetComponent<Image>();
+            _transNormal = UnityHelper.FindTheChildNode( _transCanvas, UISysDefine.SYS_TAG_NORMALCANVAS );
+            _transFixed = UnityHelper.FindTheChildNode( _transCanvas, UISysDefine.SYS_TAG_FIXEDCANVAS );
+            _transPopUp = UnityHelper.FindTheChildNode( _transCanvas, UISysDefine.SYS_TAG_POPUPCANVAS );
+            _transGlobal = UnityHelper.FindTheChildNode( _transCanvas, UISysDefine.SYS_TAG_GLOBALCANVAS );
+            _fadeImage = UnityHelper.FindTheChildNode( _transGlobal, "Image_fadeBG" ).GetComponent<Image>();
 
             if ( _fadeImage == null )
                 Debug.LogWarning( "Image_fadeBG 未定义" );

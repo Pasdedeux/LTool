@@ -122,13 +122,15 @@ namespace LitFramework.Input
             _isInit = true;
             _isEnable = true;
 
-            if ( GameObject.Find( "EventSystem" ) == null )
+            var eventsys = GameObject.Find( "EventSystem" );
+            if ( eventsys == null )
             {
                 GameObject go = new GameObject( "EventSystem" );
                 go.AddComponent<StandaloneInputModule>();
-                _currentEventSys = go.AddComponent<EventSystem>();
+                go.AddComponent<EventSystem>();
             }
-            
+            _currentEventSys = eventsys.GetComponent<EventSystem>();
+
             //给内部方法绑定一个计算当前是否是持续性按压状态
             TouchEndCallback = CalculateTimeByPressOver;
             TouchStationaryCallback = CalculateTimeByPressStart;

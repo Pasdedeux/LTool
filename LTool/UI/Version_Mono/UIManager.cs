@@ -128,6 +128,7 @@ namespace LitFramework.Mono
             else if ( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            GameObject.DontDestroyOnLoad( _transCanvas.gameObject );
         }
 
         public void Uninstall()

@@ -124,6 +124,8 @@ namespace LitFramework.HotFix
             else if( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            GameObject.DontDestroyOnLoad( _transCanvas.gameObject );
+
             AssemblyReflection();
         }
 

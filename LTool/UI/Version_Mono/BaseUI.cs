@@ -47,9 +47,6 @@ namespace LitFramework.Mono
         {
             IsShowing = true;
 
-            //默认执行OnEnable()
-            gameObject.SetActive( IsShowing );
-
             //设置模态窗体调用(弹出窗体)
             if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
                 UIMaskManager.Instance.SetMaskWindow( gameObject , CurrentUIType.uiTransparent );
@@ -58,6 +55,9 @@ namespace LitFramework.Mono
                 OnShow();
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
+            
+            //默认执行OnEnable()
+            gameObject.SetActive( IsShowing );
         }
 
         /// <summary>

@@ -84,6 +84,7 @@
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameUtility\AssetPathManager.cs" />
+    <Compile Include="GameUtility\CSExtention.cs" />
     <Compile Include="GameUtility\DocumentAccessor.cs" />
     <Compile Include="GameUtility\GameViewResolution.cs" />
     <Compile Include="GameUtility\LitJSON\IJsonWrapper.cs" />

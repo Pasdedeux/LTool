@@ -85,14 +85,7 @@ namespace LitFramework.GameUtility
         public string GetStreamAssetDataPath( string filePath, bool useFile = true )
         {
             _sBuilder.Length = 0;
-
-            if ( Application.platform == RuntimePlatform.Android )
-                _sBuilder.Append( "jar:file://" + Application.dataPath + "!assets" );
-            else if ( Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor )
-                //_sBuilder.Append( Application.dataPath + "!assets" );
-                throw new Exception( "IOS下streamAssets路径未配置" );
-            else
-                _sBuilder.Append( Application.streamingAssetsPath );
+            _sBuilder.Append( Application.streamingAssetsPath );
 
             _sBuilder.Append( "/" );
             _sBuilder.Append( filePath );

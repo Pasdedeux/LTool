@@ -14,6 +14,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LitFramework.Mono
 {
@@ -39,6 +40,8 @@ namespace LitFramework.Mono
         /// 资源名
         /// </summary>
         public string AssetsName { get; set; }
+
+
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -137,6 +140,7 @@ namespace LitFramework.Mono
 
         private void OnEnable()
         {
+
             OnEnabled();
         }
 

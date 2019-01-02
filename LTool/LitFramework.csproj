@@ -116,6 +116,7 @@
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
+    <Compile Include="Unity\LMath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameFlow\View\" />

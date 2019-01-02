@@ -71,7 +71,7 @@ namespace LitFramework.Input
         #endregion
 
         //触碰阶段外发函数
-        public Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
+        public event Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
         private Vector2 _touchBeginPos;
         private Vector2 _touchEndPos;
         private EventSystem _currentEventSys;
@@ -108,7 +108,7 @@ namespace LitFramework.Input
         private RuntimePlatform _currentPlatform = Application.platform;
         //持续点击灵敏度-持续指定时间视为按压
         private float _curPressTime = 0;
-        private const float PRESS_DOWN_SENSITIVITY = 0.5f;
+        private float PRESS_DOWN_SENSITIVITY = 0.5f;
 
         //是否模块已安装
         private bool _isInit = false;
@@ -132,13 +132,17 @@ namespace LitFramework.Input
             _currentEventSys = eventsys.GetComponent<EventSystem>();
 
             //给内部方法绑定一个计算当前是否是持续性按压状态
-            TouchEndCallback = CalculateTimeByPressOver;
-            TouchStationaryCallback = CalculateTimeByPressStart;
+            TouchEndCallback += CalculateTimeByPressOver;
+            TouchStationaryCallback += CalculateTimeByPressStart;
         }
 
         public void Uninstall()
         {
             EscapeCallBack = null;
+            TouchBeganCallback = null;
+            TouchMoveCallback = null;
+            TouchStationaryCallback = null;
+            TouchEndCallback = null;
             IsTouchedOnUICallBack = null;
             IsTouchedContinuePressCallBack = null;
 
@@ -247,6 +251,8 @@ namespace LitFramework.Input
                 //实时检测触碰到UI
                 if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
                     dirResult |= TouchDirection.OnUI;
+
+                Debug.Log( ">>>>>>>>>>" + Input.touches[ 0 ].phase );
 
                 if ( Input.touches[ 0 ].phase != TouchPhase.Canceled )
                 {

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace LitFramework.GameUtility
 {
@@ -29,6 +30,8 @@ namespace LitFramework.GameUtility
     /// </summary>
     public static class CSExtention
     {
+        #region 字符串
+
         /// <summary>
         /// 单字符串
         /// </summary>
@@ -45,5 +48,20 @@ namespace LitFramework.GameUtility
             stringBuilder.AppendFormat( format, args );
             return stringBuilder.ToString();
         }
+
+        #endregion
+
+        #region 协程
+        /// <summary>
+        /// 停止制定协程，并自动释放
+        /// </summary>
+        /// <param name="mono"></param>
+        /// <param name="func"></param>
+        public static void StopCoroutineWith(this MonoBehaviour mono, ref Coroutine func )
+        {
+            mono.StopCoroutine( func );
+            func = null;
+        }
+        #endregion
     }
 }

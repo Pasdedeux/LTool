@@ -65,7 +65,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         {
             case UITransparentEnum.NoPenetratingLow:
                 _maskPanel.SetActive( true );
-                _color.a = 200F / 255F;
+                _color.a = 255F / 255F;
                 _maskImage.color = _color;
                 break;
                 //半透明

@@ -41,7 +41,7 @@ namespace LitFramework.Mono
         /// </summary>
         public string AssetsName { get; set; }
 
-
+        private Canvas _rootCanvas;
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -58,9 +58,9 @@ namespace LitFramework.Mono
                 OnShow();
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
-            
+
             //默认执行OnEnable()
-            gameObject.SetActive( IsShowing );
+            _rootCanvas.enabled= IsShowing;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace LitFramework.Mono
             //默认执行OnDisable()
             if( !freeze )
             {
-                gameObject.SetActive( false );
+                _rootCanvas.enabled = false ;
 
                 if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
@@ -81,7 +81,7 @@ namespace LitFramework.Mono
             else
             {
                 //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                gameObject.SetActive( false );
+                _rootCanvas.enabled = false;
             }
 
             IsShowing = false;
@@ -129,6 +129,7 @@ namespace LitFramework.Mono
 
         private void Awake()
         {
+            _rootCanvas = gameObject.GetComponent<Canvas>();
             OnAwake();
         }
 

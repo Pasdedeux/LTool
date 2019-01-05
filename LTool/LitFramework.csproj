@@ -78,20 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
-    <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
-    <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="Extention_Editor\CSVWriter.cs" />
-    <Compile Include="Extention_Editor\EditorMenuExtention.cs" />
-    <Compile Include="Extention_Editor\FolderCopy.cs" />
-    <Compile Include="Extention_Editor\XMLConver.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameUtility\AssetPathManager.cs" />
-    <Compile Include="Extention_Editor\CSVParser.cs" />
-    <Compile Include="Extention_Editor\CSVReader.cs" />
     <Compile Include="GameUtility\DocumentAccessor.cs" />
     <Compile Include="GameUtility\GameViewResolution.cs" />
     <Compile Include="GameUtility\LitJSON\IJsonWrapper.cs" />
@@ -115,39 +107,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
     <Compile Include="Input\InputControlManager.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Editor\HighlightingBaseEditor.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Editor\HighlightingBlitterEditor.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Editor\HighlightingRendererEditor.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\HighlightableObject.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\HighlighterBlocker.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\HighlightingBlitter.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\HighlightingEffect.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\HighlightingRenderer.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\Internal\HighlighterInternal.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\Internal\HighlighterRenderer.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\Internal\HighlightingBase.cs" />
-    <Compile Include="Third_Plugins\HighlightingSystem\Scripts\Internal\ShaderPropertyID.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameFlow\View\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingBlur.shader" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingComposite.shader" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingInclude.cginc" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingStencilOpaque.shader" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingStencilOpaqueZ.shader" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingStencilTransparent.shader" />
-    <None Include="Third_Plugins\HighlightingSystem\Resources\HighlightingStencilTransparentZ.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

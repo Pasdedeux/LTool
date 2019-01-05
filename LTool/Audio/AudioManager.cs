@@ -30,7 +30,7 @@ namespace LitFramework
     using UnityEngine;
     using System.Collections.Generic;
     using System;
-    using LitFramework.UI.Base;
+    using LitFramework.Base;
 
     /// <summary>
     /// 音频组建更新

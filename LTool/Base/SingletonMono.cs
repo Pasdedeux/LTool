@@ -75,6 +75,8 @@ namespace LitFramework
                 _instance = null;
             }
         }
+
+
     }
 }
 

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention" kind="class" prot="public">
+    <compoundname>LitFramework::EditorExtended::EditorMenuExtention</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1af946b1156f31d732c48256933f89ec8b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitFramework.EditorExtended.EditorMenuExtention.CsvToCs</definition>
+        <argsstring>()</argsstring>
+        <name>CsvToCs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="39" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="39" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a41bf398eeda8eec90ebcc8542a979df9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitFramework.EditorExtended.EditorMenuExtention.XlsxToCSV</definition>
+        <argsstring>()</argsstring>
+        <name>XlsxToCSV</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="84" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="84" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a01056900ac263e0960d4207b256a5d19" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitFramework.EditorExtended.EditorMenuExtention.CopyToUnity</definition>
+        <argsstring>()</argsstring>
+        <name>CopyToUnity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="125" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="125" bodyend="132"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a6672759da799850b086984394a64a398" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitFramework.EditorExtended.EditorMenuExtention.CreateCSFile</definition>
+        <argsstring>(string path, string className, string cs)</argsstring>
+        <name>CreateCSFile</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>className</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>cs</declname>
+        </param>
+        <briefdescription>
+<para>创建CS文件 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="158" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="158" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ac959e3d70b24d3d78e0a5c0d42004ec5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void LitFramework.EditorExtended.EditorMenuExtention.CreateCSVFile</definition>
+        <argsstring>(string path, string data)</argsstring>
+        <name>CreateCSVFile</name>
+        <param>
+          <type>string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="176" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="176" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ad7f2d0755a326718d2c7988742046477" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string LitFramework.EditorExtended.EditorMenuExtention.XLSXTOCSV</definition>
+        <argsstring>(FileStream stream)</argsstring>
+        <name>XLSXTOCSV</name>
+        <param>
+          <type>FileStream</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="186" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="186" bodyend="224"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/EditorMenuExtention.cs" bodystart="34" bodyend="225"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a01056900ac263e0960d4207b256a5d19" prot="public" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>CopyToUnity</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a6672759da799850b086984394a64a398" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>CreateCSFile</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ac959e3d70b24d3d78e0a5c0d42004ec5" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>CreateCSVFile</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1af946b1156f31d732c48256933f89ec8b" prot="public" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>CsvToCs</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1a41bf398eeda8eec90ebcc8542a979df9" prot="public" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>XlsxToCSV</name></member>
+      <member refid="class_lit_framework_1_1_editor_extended_1_1_editor_menu_extention_1ad7f2d0755a326718d2c7988742046477" prot="private" virt="non-virtual"><scope>LitFramework::EditorExtended::EditorMenuExtention</scope><name>XLSXTOCSV</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

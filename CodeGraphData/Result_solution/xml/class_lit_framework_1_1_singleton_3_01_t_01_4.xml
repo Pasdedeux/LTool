@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_lit_framework_1_1_singleton_3_01_t_01_4" kind="class" prot="public">
+    <compoundname>LitFramework::Singleton&lt; T &gt;</compoundname>
+    <derivedcompoundref refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller" prot="public" virt="non-virtual">LitFramework.GameFlow.GameFlowController</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" prot="public" virt="non-virtual">LitFramework.GameFlow.LoadingTaskModel</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager" prot="public" virt="non-virtual">LitFramework.GameFlow.Manager.SceneLoadManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager" prot="public" virt="non-virtual">LitFramework.GameUtility.AssetPathManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_game_utility_1_1_document_accessor" prot="public" virt="non-virtual">LitFramework.GameUtility.DocumentAccessor</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager" prot="public" virt="non-virtual">LitFramework.HotFix.UIManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager" prot="public" virt="non-virtual">LitFramework.LitPool.SpawnManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_mono_1_1_u_i_manager" prot="public" virt="non-virtual">LitFramework.Mono.UIManager</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_lit_framework_1_1_singleton_3_01_t_01_4_1ae77a04a689f2c5c15348a8d878a3b58d" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>volatile T LitFramework.Singleton&lt; T &gt;._instance</definition>
+        <argsstring></argsstring>
+        <name>_instance</name>
+        <briefdescription>
+<para>volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/Singleton.cs" line="26" column="1" bodyfile="E:/Personal/LTool/LTool/Base/Singleton.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_lit_framework_1_1_singleton_3_01_t_01_4_1a85c164c71b1329ce3134b2fb89003047" prot="private" static="yes" mutable="no">
+        <type>object</type>
+        <definition>object LitFramework.Singleton&lt; T &gt;._lock</definition>
+        <argsstring></argsstring>
+        <name>_lock</name>
+        <initializer>= new object()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/Singleton.cs" line="28" column="1" bodyfile="E:/Personal/LTool/LTool/Base/Singleton.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_lit_framework_1_1_singleton_3_01_t_01_4_1a3bad24086e765238f4fca1f5f689aa5e" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="no">
+        <type>T</type>
+        <definition>T LitFramework.Singleton&lt; T &gt;.Instance</definition>
+        <argsstring></argsstring>
+        <name>Instance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/Singleton.cs" line="31" column="1" bodyfile="E:/Personal/LTool/LTool/Base/Singleton.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lit_framework_1_1_singleton_3_01_t_01_4_1afbe33a1f185588f325e8ddde92468030" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void LitFramework.Singleton&lt; T &gt;.DoDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>DoDestroy</name>
+        <reimplementedby refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager_1a161ccf12916984cf6f2a562472143522">DoDestroy</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a10b94abf03ffb0ba0273ad0cca19c6e5">DoDestroy</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller_1a508a53b22a289b2da9709c857877b746">DoDestroy</reimplementedby>
+        <briefdescription>
+<para>移除 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/Base/Singleton.cs" line="51" column="1" bodyfile="E:/Personal/LTool/LTool/Base/Singleton.cs" bodystart="51" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>非组件单例基类 </para>    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="181">
+        <label>LitFramework.GameUtility.DocumentAccessor</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_document_accessor"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="176">
+        <label>LitFramework.Singleton&lt; T &gt;</label>
+        <link refid="class_lit_framework_1_1_singleton_3_01_t_01_4"/>
+      </node>
+      <node id="183">
+        <label>LitFramework.LitPool.SpawnManager</label>
+        <link refid="class_lit_framework_1_1_lit_pool_1_1_spawn_manager"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="184">
+        <label>LitFramework.Mono.UIManager</label>
+        <link refid="class_lit_framework_1_1_mono_1_1_u_i_manager"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>LitFramework.GameFlow.GameFlowController</label>
+        <link refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="182">
+        <label>LitFramework.HotFix.UIManager</label>
+        <link refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="179">
+        <label>LitFramework.GameFlow.Manager.SceneLoadManager</label>
+        <link refid="class_lit_framework_1_1_game_flow_1_1_manager_1_1_scene_load_manager"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="180">
+        <label>LitFramework.GameUtility.AssetPathManager</label>
+        <link refid="class_lit_framework_1_1_game_utility_1_1_asset_path_manager"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="178">
+        <label>LitFramework.GameFlow.LoadingTaskModel</label>
+        <link refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model"/>
+        <childnode refid="176" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="E:/Personal/LTool/LTool/Base/Singleton.cs" line="22" column="1" bodyfile="E:/Personal/LTool/LTool/Base/Singleton.cs" bodystart="21" bodyend="57"/>
+    <listofallmembers>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1ae77a04a689f2c5c15348a8d878a3b58d" prot="private" virt="non-virtual"><scope>LitFramework::Singleton&lt; T &gt;</scope><name>_instance</name></member>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1a85c164c71b1329ce3134b2fb89003047" prot="private" virt="non-virtual"><scope>LitFramework::Singleton&lt; T &gt;</scope><name>_lock</name></member>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1afbe33a1f185588f325e8ddde92468030" prot="public" virt="virtual"><scope>LitFramework::Singleton&lt; T &gt;</scope><name>DoDestroy</name></member>
+      <member refid="class_lit_framework_1_1_singleton_3_01_t_01_4_1a3bad24086e765238f4fca1f5f689aa5e" prot="public" virt="non-virtual"><scope>LitFramework::Singleton&lt; T &gt;</scope><name>Instance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

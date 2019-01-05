@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager" kind="interface" prot="public">
+    <compoundname>LitFramework::UI::Base::IUIManager</compoundname>
+    <derivedcompoundref refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager" prot="public" virt="non-virtual">LitFramework.HotFix.UIManager</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_framework_1_1_mono_1_1_u_i_manager" prot="public" virt="non-virtual">LitFramework.Mono.UIManager</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1aa8faa2658192a22a884c5f875d300a40" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool LitFramework.UI.Base.IUIManager.UseFading</definition>
+        <argsstring></argsstring>
+        <name>UseFading</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="29" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a673e1d93c684e00cf6f7467160f47bd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.UI.Base.IUIManager.ShowFade</definition>
+        <argsstring>(float time, Action callBack=null)</argsstring>
+        <name>ShowFade</name>
+        <reimplementedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a27f51bc599618f38caa99c857f1db3e4">ShowFade</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a9da16214bf85aec0981ff744f5cc2d17">ShowFade</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>Action</type>
+          <declname>callBack</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="30" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a3b05fc3dbee52dba1e90a1523206324e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.UI.Base.IUIManager.HideFade</definition>
+        <argsstring>(float time, Action callBack=null)</argsstring>
+        <name>HideFade</name>
+        <reimplementedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1ad685ab9e4a9d1e888eba0eef852d947a">HideFade</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1ac50cf3e5ac925a5d72d38f8413821524">HideFade</reimplementedby>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>Action</type>
+          <declname>callBack</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="31" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1ad846c7dd51edf6a1382eb60fde75f516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitFramework.UI.Base.IUIManager.Close</definition>
+        <argsstring>(string uiName, bool isDestroy=false)</argsstring>
+        <name>Close</name>
+        <reimplementedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a66ec70f07464be8583a3df252af071da">Close</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1aa3f8a7cd9fddc8756c1a2130a81f7587">Close</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>uiName</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isDestroy</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="32" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a534a07b1e8f448c93c6bdfeb48b78b81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_base_u_i" kindref="compound">IBaseUI</ref></type>
+        <definition>IBaseUI LitFramework.UI.Base.IUIManager.Show</definition>
+        <argsstring>(string uiName)</argsstring>
+        <name>Show</name>
+        <reimplementedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1a0a928b24bcaaa52875c0d7923d58ad86">Show</reimplementedby>
+        <reimplementedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1adcddc913677992c594f7ea13c4495c22">Show</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>uiName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="33" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="95">
+        <label>LitFramework.Mono.UIManager</label>
+        <link refid="class_lit_framework_1_1_mono_1_1_u_i_manager"/>
+        <childnode refid="93" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>LitFramework.HotFix.UIManager</label>
+        <link refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager"/>
+        <childnode refid="93" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="93">
+        <label>LitFramework.UI.Base.IUIManager</label>
+        <link refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager"/>
+      </node>
+    </inheritancegraph>
+    <location file="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" line="28" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Base/IUIManager.cs" bodystart="27" bodyend="34"/>
+    <listofallmembers>
+      <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1ad846c7dd51edf6a1382eb60fde75f516" prot="public" virt="non-virtual"><scope>LitFramework::UI::Base::IUIManager</scope><name>Close</name></member>
+      <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a3b05fc3dbee52dba1e90a1523206324e" prot="public" virt="non-virtual"><scope>LitFramework::UI::Base::IUIManager</scope><name>HideFade</name></member>
+      <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a534a07b1e8f448c93c6bdfeb48b78b81" prot="public" virt="non-virtual"><scope>LitFramework::UI::Base::IUIManager</scope><name>Show</name></member>
+      <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1a673e1d93c684e00cf6f7467160f47bd8" prot="public" virt="non-virtual"><scope>LitFramework::UI::Base::IUIManager</scope><name>ShowFade</name></member>
+      <member refid="interface_lit_framework_1_1_u_i_1_1_base_1_1_i_u_i_manager_1aa8faa2658192a22a884c5f875d300a40" prot="public" virt="non-virtual"><scope>LitFramework::UI::Base::IUIManager</scope><name>UseFading</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

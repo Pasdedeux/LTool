@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitFramework;
 using LitFramework.UI.Base;
+using LitFramework.Base;
 
 namespace LitFramework.LitPool
 {

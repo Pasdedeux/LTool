@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="interface_lit_json_1_1_i_json_wrapper" kind="interface" prot="public">
+    <compoundname>LitJson::IJsonWrapper</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IList</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IOrderedDictionary</basecompoundref>
+    <derivedcompoundref refid="class_lit_json_1_1_json_data" prot="public" virt="non-virtual">LitJson.JsonData</derivedcompoundref>
+    <derivedcompoundref refid="class_lit_json_1_1_json_mock_wrapper" prot="public" virt="non-virtual">LitJson.JsonMockWrapper</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1a925f398e88ca57fb7af8688d5373313d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsArray</definition>
+        <argsstring></argsstring>
+        <name>IsArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="35" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="35" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1a673cd6687d16458f5ba2c29495c2e32a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsBoolean</definition>
+        <argsstring></argsstring>
+        <name>IsBoolean</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="36" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="36" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1a591409aa66872df2ff74b6dff4d731ec" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsDouble</definition>
+        <argsstring></argsstring>
+        <name>IsDouble</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="37" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="37" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1afa4035de99001ecc371e3bbbf25a843a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsInt</definition>
+        <argsstring></argsstring>
+        <name>IsInt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="38" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="38" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1a36245e485c47fdbd6df20557728ea104" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsLong</definition>
+        <argsstring></argsstring>
+        <name>IsLong</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="39" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="39" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1aa733cc8aa5a59d2c9f1d49516cea3c83" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsObject</definition>
+        <argsstring></argsstring>
+        <name>IsObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="40" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="40" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="interface_lit_json_1_1_i_json_wrapper_1ad7cb2ed8581ddc80538306574b78b19e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.IsString</definition>
+        <argsstring></argsstring>
+        <name>IsString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="41" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="41" bodyend="-1"/>
+        <referencedby refid="class_lit_json_1_1_json_data_1a10e2ca3f4c19b502627c9fe8155172b0" compoundref="_json_data_8cs" startline="738" endline="790">LitJson.JsonData.WriteJson</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a5858785575ed9e67ebd52472e05040c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool LitJson.IJsonWrapper.GetBoolean</definition>
+        <argsstring>()</argsstring>
+        <name>GetBoolean</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a2385f94c3c883d81243d2253be529d23">GetBoolean</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a5e19a6dad634c624445f04e23c6733bf">GetBoolean</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a3807ea9ecb5e401906f92bd9931ad6ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double LitJson.IJsonWrapper.GetDouble</definition>
+        <argsstring>()</argsstring>
+        <name>GetDouble</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1ad4c96aa9b9be61a69fd8c429cfc4a1e5">GetDouble</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1ac022c891ad5864de738c59f7a46fe6b4">GetDouble</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="44" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a8e9c32a33081593d10c915e72477028b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int LitJson.IJsonWrapper.GetInt</definition>
+        <argsstring>()</argsstring>
+        <name>GetInt</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1aad18a6ea53502746e56464426c4016fd">GetInt</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a2b0813d592be53b2b403614a03fd7e7c">GetInt</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a4e67f5e9104e675730ce5c753d818f1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757" kindref="member">JsonType</ref></type>
+        <definition>JsonType LitJson.IJsonWrapper.GetJsonType</definition>
+        <argsstring>()</argsstring>
+        <name>GetJsonType</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a871dccb462dd0fea5e1aec107f457714">GetJsonType</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a61485265a3b9b5cd248bd69c9d0774ff">GetJsonType</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a8483c8c0792eccb567dff819d41ff04c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long LitJson.IJsonWrapper.GetLong</definition>
+        <argsstring>()</argsstring>
+        <name>GetLong</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1adae5bf6ec1e5b5689ff337c1bbadd365">GetLong</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1aadf51f9badcc198a5db22a0382884c2c">GetLong</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="47" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1aa9c0a755b8d6d0f1bae91cbfbcde2494" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitJson.IJsonWrapper.GetString</definition>
+        <argsstring>()</argsstring>
+        <name>GetString</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a21a6cb097704194b65170f8017418d4a">GetString</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1af6ec0c6d2525cab66235b0b697fddc06">GetString</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="48" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a876a61379c4cb6029f815c2e11683254" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetBoolean</definition>
+        <argsstring>(bool val)</argsstring>
+        <name>SetBoolean</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1adcd91bf768f33358c05876a6418a137a">SetBoolean</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1aec49907c2e7af2237eda30e7217d393d">SetBoolean</reimplementedby>
+        <param>
+          <type>bool</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1adef6d613da35e09346b453f012f35581" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetDouble</definition>
+        <argsstring>(double val)</argsstring>
+        <name>SetDouble</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a684096f4136c86dcb0e18c250d7858e5">SetDouble</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a51925f2e6ad3ccefcc33c753048b4197">SetDouble</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="51" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a732d79e453de3305e9ac766615c7ded4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetInt</definition>
+        <argsstring>(int val)</argsstring>
+        <name>SetInt</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a0fd28120fba46663d91fb5e73cddbe89">SetInt</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a7107a36a98cc40050faf6326ba9d1585">SetInt</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="52" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a5c6b0aa4e1e1a7f397e5328cbe15039e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetJsonType</definition>
+        <argsstring>(JsonType type)</argsstring>
+        <name>SetJsonType</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a3f176aaab41998ba0bc4302ee31189ac">SetJsonType</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a168548a7863872935e9d4c1d75762e35">SetJsonType</reimplementedby>
+        <param>
+          <type><ref refid="namespace_lit_json_1acd123a28f60df4f396dc0fcd8f9c9757" kindref="member">JsonType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="53" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1a5dbe90e107597a8e51d7dfc8c988fe6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetLong</definition>
+        <argsstring>(long val)</argsstring>
+        <name>SetLong</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1aef42273b6b601a61d9bac3f95a51e81e">SetLong</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a2bc29eacb6600491cefa7cce0a481c2c">SetLong</reimplementedby>
+        <param>
+          <type>long</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1ab6ca92789ee0738754dea5e01893b2fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.SetString</definition>
+        <argsstring>(string val)</argsstring>
+        <name>SetString</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1acb55337a4a365e9908a5b0fa339600a7">SetString</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1ae4e0656a87b9d03b8509bd127ff4cfb0">SetString</reimplementedby>
+        <param>
+          <type>string</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1ad26b65434a18cb944f932b5871fb81f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string LitJson.IJsonWrapper.ToJson</definition>
+        <argsstring>()</argsstring>
+        <name>ToJson</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1ade44a1bd707a9af1bd4769b00eaf8abc">ToJson</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1adf87f298a4b5e1e83076c9d754378e65">ToJson</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a51094b57245fedf463efece6dc364687">ToJson</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_lit_json_1_1_i_json_wrapper_1ac8a9a416706837b8e9a65181c2fe3831" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void LitJson.IJsonWrapper.ToJson</definition>
+        <argsstring>(JsonWriter writer)</argsstring>
+        <name>ToJson</name>
+        <reimplementedby refid="class_lit_json_1_1_json_mock_wrapper_1a405c8000c7f3e9bd5be5bd60cb025744">ToJson</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a5683a8dbfa867e2118c909ae0865568a">ToJson</reimplementedby>
+        <reimplementedby refid="class_lit_json_1_1_json_data_1a04bf2ae3a69eae354fa70aa531813476">ToJson</reimplementedby>
+        <param>
+          <type><ref refid="class_lit_json_1_1_json_writer" kindref="compound">JsonWriter</ref></type>
+          <declname>writer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="58" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="68">
+        <label>IOrderedDictionary</label>
+      </node>
+      <node id="69">
+        <label>LitJson.JsonData</label>
+        <link refid="class_lit_json_1_1_json_data"/>
+        <childnode refid="66" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>LitJson.IJsonWrapper</label>
+        <link refid="interface_lit_json_1_1_i_json_wrapper"/>
+        <childnode refid="67" relation="public-inheritance">
+        </childnode>
+        <childnode refid="68" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>IList</label>
+      </node>
+      <node id="70">
+        <label>LitJson.JsonMockWrapper</label>
+        <link refid="class_lit_json_1_1_json_mock_wrapper"/>
+        <childnode refid="66" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="73">
+        <label>IOrderedDictionary</label>
+      </node>
+      <node id="71">
+        <label>LitJson.IJsonWrapper</label>
+        <link refid="interface_lit_json_1_1_i_json_wrapper"/>
+        <childnode refid="72" relation="public-inheritance">
+        </childnode>
+        <childnode refid="73" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>IList</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" line="34" column="1" bodyfile="E:/Personal/LTool/LTool/GameUtility/LitJSON/IJsonWrapper.cs" bodystart="33" bodyend="59"/>
+    <listofallmembers>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a5858785575ed9e67ebd52472e05040c8" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetBoolean</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a3807ea9ecb5e401906f92bd9931ad6ce" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetDouble</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a8e9c32a33081593d10c915e72477028b" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetInt</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a4e67f5e9104e675730ce5c753d818f1e" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetJsonType</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a8483c8c0792eccb567dff819d41ff04c" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetLong</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1aa9c0a755b8d6d0f1bae91cbfbcde2494" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>GetString</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a925f398e88ca57fb7af8688d5373313d" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsArray</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a673cd6687d16458f5ba2c29495c2e32a" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsBoolean</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a591409aa66872df2ff74b6dff4d731ec" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsDouble</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1afa4035de99001ecc371e3bbbf25a843a" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsInt</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a36245e485c47fdbd6df20557728ea104" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsLong</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1aa733cc8aa5a59d2c9f1d49516cea3c83" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsObject</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1ad7cb2ed8581ddc80538306574b78b19e" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>IsString</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a876a61379c4cb6029f815c2e11683254" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetBoolean</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1adef6d613da35e09346b453f012f35581" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetDouble</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a732d79e453de3305e9ac766615c7ded4" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetInt</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a5c6b0aa4e1e1a7f397e5328cbe15039e" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetJsonType</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1a5dbe90e107597a8e51d7dfc8c988fe6f" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetLong</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1ab6ca92789ee0738754dea5e01893b2fc" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>SetString</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1ad26b65434a18cb944f932b5871fb81f6" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>ToJson</name></member>
+      <member refid="interface_lit_json_1_1_i_json_wrapper_1ac8a9a416706837b8e9a65181c2fe3831" prot="public" virt="non-virtual"><scope>LitJson::IJsonWrapper</scope><name>ToJson</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

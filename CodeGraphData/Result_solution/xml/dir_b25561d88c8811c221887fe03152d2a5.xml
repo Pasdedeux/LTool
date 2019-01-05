@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_b25561d88c8811c221887fe03152d2a5" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/Input</compoundname>
+    <innerfile refid="_input_control_manager_8cs">InputControlManager.cs</innerfile>
+    <innerfile refid="_touch_direction_control_8cs">TouchDirectionControl.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/Input/"/>
+  </compounddef>
+</doxygen>

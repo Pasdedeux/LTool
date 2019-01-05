@@ -1,0 +1,851 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_pathological_games_1_1_prefab_pool" kind="class" prot="public">
+    <compoundname>PathologicalGames::PrefabPool</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1aee34304a32370cb237414cebec5ddd5a" prot="public" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.PrefabPool.prefab</definition>
+        <argsstring></argsstring>
+        <name>prefab</name>
+        <briefdescription>
+<para>The prefab to preload </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1202" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.preloadAmount</definition>
+        <argsstring></argsstring>
+        <name>preloadAmount</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>The number of instances to preload </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1212" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1212" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" compoundref="_spawn_pool_8cs" startline="1848" endline="1898">PathologicalGames.PrefabPool.PreloadOverTime</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a0c89d377a85917e63e827dfa6dbb6147" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.preloadTime</definition>
+        <argsstring></argsstring>
+        <name>preloadTime</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Displays the &apos;preload over time&apos; options </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1217" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1217" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a9a7b3d353943c58dfbc5965ce1020022" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.preloadFrames</definition>
+        <argsstring></argsstring>
+        <name>preloadFrames</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+<para>The number of frames it will take to preload all requested instances </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1222" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1222" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" compoundref="_spawn_pool_8cs" startline="1848" endline="1898">PathologicalGames.PrefabPool.PreloadOverTime</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a5d567af6a04b27c2bcd6f3ee7a9a2257" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float PathologicalGames.PrefabPool.preloadDelay</definition>
+        <argsstring></argsstring>
+        <name>preloadDelay</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>The number of seconds to wait before preloading any instances </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1227" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1227" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" compoundref="_spawn_pool_8cs" startline="1848" endline="1898">PathologicalGames.PrefabPool.PreloadOverTime</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.limitInstances</definition>
+        <argsstring></argsstring>
+        <name>limitInstances</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Limits the number of instances allowed in the game. Turning this ON means when &apos;Limit Amount&apos; is hit, no more instances will be created. CALLS TO <ref refid="class_pathological_games_1_1_spawn_pool_1ae7d683463121426352e6d959fe59fbd2" kindref="member">SpawnPool.Spawn()</ref> WILL BE IGNORED, and return null! </para>        </briefdescription>
+        <detaileddescription>
+<para>This can be good for non-critical objects like bullets or explosion Flares. You would never want to use this for enemies unless it makes sense to begin ignoring enemy spawns in the context of your game. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1238" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1238" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" compoundref="_spawn_pool_8cs" startline="1571" endline="1641">PathologicalGames.PrefabPool.SpawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1abff57f5d9c60c270fe38cede3f214f40" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.limitAmount</definition>
+        <argsstring></argsstring>
+        <name>limitAmount</name>
+        <initializer>= 100</initializer>
+        <briefdescription>
+<para>This is the max number of instances allowed if &apos;limitInstances&apos; is ON. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1243" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1243" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1aa9a449c279d63ac49acfb151c0ca5f85" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.limitFIFO</definition>
+        <argsstring></argsstring>
+        <name>limitFIFO</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>FIFO stands for &quot;first-in-first-out&quot;. Normally, limiting instances will stop spawning and return null. If this is turned on (set to true) the first spawned instance will be despawned and reused instead, keeping the total spawned instances limited but still spawning new instances. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1251" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1251" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" compoundref="_spawn_pool_8cs" startline="1571" endline="1641">PathologicalGames.PrefabPool.SpawnInstance</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a9ab1d5c333a4e210684a212bfb89f5c9" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.cullDespawned</definition>
+        <argsstring></argsstring>
+        <name>cullDespawned</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Turn this ON to activate the culling feature for this Pool. Use this feature to remove despawned (inactive) instances from the pool if the size of the pool grows too large. </para>        </briefdescription>
+        <detaileddescription>
+<para>DO NOT USE THIS UNLESS YOU NEED TO MANAGE MEMORY ISSUES! This should only be used in extreme cases for memory management. For most pools (or games for that matter), it is better to leave this off as memory is more plentiful than performance. If you do need this you can fine tune how often this is triggered to target extreme events.</para><para>A good example of when to use this would be if you you are Pooling projectiles and usually never need more than 10 at a time, but then there is a big one-off fire-fight where 50 projectiles are needed. Rather than keep the extra 40 around in memory from then on, set the &apos;Cull Above&apos; property to 15 (well above the expected max) and the Pool will Destroy() the extra instances from the game to free up the memory.</para><para>This won&apos;t be done immediately, because you wouldn&apos;t want this culling feature to be fighting the Pool and causing extra Instantiate() and Destroy() calls while the fire-fight is still going on. See &quot;Cull Delay&quot; for more information about how to fine tune this. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1276" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1276" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.cullAbove</definition>
+        <argsstring></argsstring>
+        <name>cullAbove</name>
+        <initializer>= 50</initializer>
+        <briefdescription>
+<para>The number of TOTAL (spawned + despawned) instances to keep. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1281" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1281" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a632a5abce4698cf9e8be123620ef5006" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.cullDelay</definition>
+        <argsstring></argsstring>
+        <name>cullDelay</name>
+        <initializer>= 60</initializer>
+        <briefdescription>
+<para>The amount of time, in seconds, to wait before culling. This is timed from the moment when the Queue&apos;s TOTAL count (spawned + despawned) becomes greater than &apos;Cull Above&apos;. Once triggered, the timer is repeated until the count falls below &apos;Cull Above&apos;. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1289" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1289" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a093b8a566a3d26e74c791622ecaa86c6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.cullMaxPerPass</definition>
+        <argsstring></argsstring>
+        <name>cullMaxPerPass</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para>The maximum number of instances to destroy per this.cullDelay </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1294" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1aa0f3bef55aa3efe141cf38778cb01af7" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool._logMessages</definition>
+        <argsstring></argsstring>
+        <name>_logMessages</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Prints information during run-time to make debugging easier. This will be set to true if the owner <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> is true, otherwise the user&apos;s setting here will be used </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1301" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1301" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a7b490c3a1e99c792af941e7a5a62af4c" prot="public" static="no" mutable="no">
+        <type><ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref></type>
+        <definition>SpawnPool PathologicalGames.PrefabPool.spawnPool</definition>
+        <argsstring></argsstring>
+        <name>spawnPool</name>
+        <briefdescription>
+<para>Used internally to reference back to the owner spawnPool for things like anchoring co-routines. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1323" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1323" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a32da6e6ac8711bd935f51ecea7324e05" prot="package" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject PathologicalGames.PrefabPool.prefabGO</definition>
+        <argsstring></argsstring>
+        <name>prefabGO</name>
+        <briefdescription>
+<para>A reference of the prefab&apos;s GameObject stored for performance reasons </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1207" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a5cc9db5a9fd14862782b56b8ffe3149e" prot="package" static="no" mutable="no">
+        <type>List&lt; Transform &gt;</type>
+        <definition>List&lt;Transform&gt; PathologicalGames.PrefabPool._spawned</definition>
+        <argsstring></argsstring>
+        <name>_spawned</name>
+        <initializer>= new List&lt;Transform&gt;()</initializer>
+        <briefdescription>
+<para>The active instances associated with this prefab. This is the pool of instances created by this prefab. </para>        </briefdescription>
+        <detaileddescription>
+<para>Managed by a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1393" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1393" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1abb5df557d913109ac355f8057f8b4af7" compoundref="_spawn_pool_8cs" startline="1357" endline="1375">PathologicalGames.PrefabPool.SelfDestruct</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" compoundref="_spawn_pool_8cs" startline="1571" endline="1641">PathologicalGames.PrefabPool.SpawnInstance</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" prot="package" static="no" mutable="no">
+        <type>List&lt; Transform &gt;</type>
+        <definition>List&lt;Transform&gt; PathologicalGames.PrefabPool._despawned</definition>
+        <argsstring></argsstring>
+        <name>_despawned</name>
+        <initializer>= new List&lt;Transform&gt;()</initializer>
+        <briefdescription>
+<para>The deactive instances associated with this prefab. This is the pool of instances created by this prefab. </para>        </briefdescription>
+        <detaileddescription>
+<para>Managed by a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1402" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1402" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1abb5df557d913109ac355f8057f8b4af7" compoundref="_spawn_pool_8cs" startline="1357" endline="1375">PathologicalGames.PrefabPool.SelfDestruct</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" compoundref="_spawn_pool_8cs" startline="1571" endline="1641">PathologicalGames.PrefabPool.SpawnInstance</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.logMessages</definition>
+        <argsstring></argsstring>
+        <name>logMessages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1302" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1303" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" compoundref="_spawn_pool_8cs" startline="1571" endline="1641">PathologicalGames.PrefabPool.SpawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefab_pool_1a8cdeb1412397050c8cd165b2f680d1a2" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; Transform &gt;</type>
+        <definition>List&lt;Transform&gt; PathologicalGames.PrefabPool.spawned</definition>
+        <argsstring></argsstring>
+        <name>spawned</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1394" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefab_pool_1a0e01835909e20d5d6d0276fd4133a8f3" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>List&lt; Transform &gt;</type>
+        <definition>List&lt;Transform&gt; PathologicalGames.PrefabPool.despawned</definition>
+        <argsstring></argsstring>
+        <name>despawned</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1403" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabPool.totalCount</definition>
+        <argsstring></argsstring>
+        <name>totalCount</name>
+        <briefdescription>
+<para>Returns the total count of instances in the <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1409" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1410" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" compoundref="_spawn_pool_8cs" startline="1848" endline="1898">PathologicalGames.PrefabPool.PreloadOverTime</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" compoundref="_spawn_pool_8cs" startline="1659" endline="1704">PathologicalGames.PrefabPool.SpawnNew</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefab_pool_1aa8e39fc54738578f8eed8b94d4ec937e" prot="package" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.preloaded</definition>
+        <argsstring></argsstring>
+        <name>preloaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1426" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1427" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_spawn_pool_1a41c0c4bf4dbdb5cff7fbb50d626c4851" compoundref="_spawn_pool_8cs" startline="264" endline="297">PathologicalGames.SpawnPool.CreatePrefabPool</referencedby>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" compoundref="_spawn_pool_8cs" startline="1750" endline="1846">PathologicalGames.PrefabPool.PreloadInstances</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a2abdbf32d2855fbbd3fc3038d7a2027a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.forceLoggingSilent</definition>
+        <argsstring></argsstring>
+        <name>forceLoggingSilent</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1316" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1316" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a7dc79c2d56bec5b65c29cedb853fd69e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.cullingActive</definition>
+        <argsstring></argsstring>
+        <name>cullingActive</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Is set to true when the culling coroutine is started so another one won&apos;t be </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1384" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1384" bodyend="-1"/>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefab_pool_1a68fc501b500f18baa608b1dceccff99f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool._preloaded</definition>
+        <argsstring></argsstring>
+        <name>_preloaded</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Used to make <ref refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" kindref="member">PreloadInstances()</ref> a one-time event. Read-only. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1425" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1425" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a2abcd06edf81b285bcae619413c7626a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>PathologicalGames.PrefabPool.PrefabPool</definition>
+        <argsstring>(Transform prefab)</argsstring>
+        <name>PrefabPool</name>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor to require a prefab Transform  </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1331" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1331" bodyend="1335"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1ab504d2b0877b6c7577e09697ee421d4a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>PathologicalGames.PrefabPool.PrefabPool</definition>
+        <argsstring>()</argsstring>
+        <name>PrefabPool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor for Serializable inspector use only  </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1340" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1340" bodyend="1340"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1ae7be9f06e1bd3ec0a2da86a87faf3888" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.PrefabPool.SpawnNew</definition>
+        <argsstring>()</argsstring>
+        <name>SpawnNew</name>
+        <briefdescription>
+<para>Spawns a NEW instance of this prefab and adds it to the spawned list. The new instance is placed at the passed position and rotation </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pos</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector3</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Quaternion</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The new instance&apos;s Transform.</para><para>If the Limit option was used for the <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> associated with the passed prefab, then this method will return null if the limit is reached. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1658" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1658" bodyend="1658"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.PrefabPool.SpawnNew</definition>
+        <argsstring>(Vector3 pos, Quaternion rot)</argsstring>
+        <name>SpawnNew</name>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1659" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1659" bodyend="1704"/>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a1acf124f1e89e7e7e339c4c7fd5175bc" compoundref="_spawn_pool_8cs" startline="72">PathologicalGames.SpawnPool.dontReparent</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1abff57f5d9c60c270fe38cede3f214f40" compoundref="_spawn_pool_8cs" startline="1243">PathologicalGames.PrefabPool.limitAmount</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" compoundref="_spawn_pool_8cs" startline="1238">PathologicalGames.PrefabPool.limitInstances</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" compoundref="_spawn_pool_8cs" startline="1303">PathologicalGames.PrefabPool.logMessages</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a268985c80023afba079bf331909bdc17" compoundref="_spawn_pool_8cs" startline="67">PathologicalGames.SpawnPool.matchPoolLayer</references>
+        <references refid="class_pathological_games_1_1_spawn_pool_1a10237fa0ec1d883a455763125e08bbbf" compoundref="_spawn_pool_8cs" startline="62">PathologicalGames.SpawnPool.matchPoolScale</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a7b490c3a1e99c792af941e7a5a62af4c" compoundref="_spawn_pool_8cs" startline="1323">PathologicalGames.PrefabPool.spawnPool</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" compoundref="_spawn_pool_8cs" startline="1410">PathologicalGames.PrefabPool.totalCount</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1acdcfe526a4786e5b97e821d763c97896" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.Contains</definition>
+        <argsstring>(Transform transform)</argsstring>
+        <name>Contains</name>
+        <param>
+          <type>Transform</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+<para>If this <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> spawned or despawned lists contain the given transform, true is returned. Othrewise, false is returned </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A transform to test.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1910" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1910" bodyend="1927"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a90f9a4cbe70ea5878e00059d0845f3ae" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.inspectorInstanceConstructor</definition>
+        <argsstring>()</argsstring>
+        <name>inspectorInstanceConstructor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A pseudo constructor to init stuff not init by the serialized inspector-created instance of this class.  </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1346" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1346" bodyend="1351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1abb5df557d913109ac355f8057f8b4af7" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.SelfDestruct</definition>
+        <argsstring>()</argsstring>
+        <name>SelfDestruct</name>
+        <briefdescription>
+<para>Run by a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> when it is destroyed </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1357" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1357" bodyend="1375"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" compoundref="_spawn_pool_8cs" startline="1402">PathologicalGames.PrefabPool._despawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a5cc9db5a9fd14862782b56b8ffe3149e" compoundref="_spawn_pool_8cs" startline="1393">PathologicalGames.PrefabPool._spawned</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a8b4468914919f5a0f2f26ac65e060c8a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.DespawnInstance</definition>
+        <argsstring>(Transform xform)</argsstring>
+        <name>DespawnInstance</name>
+        <param>
+          <type>Transform</type>
+          <declname>xform</declname>
+        </param>
+        <briefdescription>
+<para>Move an instance from despawned to spawned, set the position and rotation, activate it and all children and return the transform </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if successfull, false if xform isn&apos;t in the spawned list </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1440" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1440" bodyend="1443"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabPool.DespawnInstance</definition>
+        <argsstring>(Transform xform, bool sendEventMessage)</argsstring>
+        <name>DespawnInstance</name>
+        <param>
+          <type>Transform</type>
+          <declname>xform</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>sendEventMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1445" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1445" bodyend="1482"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" compoundref="_spawn_pool_8cs" startline="1281">PathologicalGames.PrefabPool.cullAbove</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9ab1d5c333a4e210684a212bfb89f5c9" compoundref="_spawn_pool_8cs" startline="1276">PathologicalGames.PrefabPool.cullDespawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" compoundref="_spawn_pool_8cs" startline="1492" endline="1554">PathologicalGames.PrefabPool.CullDespawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a7dc79c2d56bec5b65c29cedb853fd69e" compoundref="_spawn_pool_8cs" startline="1384">PathologicalGames.PrefabPool.cullingActive</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" compoundref="_spawn_pool_8cs" startline="1303">PathologicalGames.PrefabPool.logMessages</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" compoundref="_spawn_pool_8cs" startline="1410">PathologicalGames.PrefabPool.totalCount</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.PrefabPool.CullDespawned</definition>
+        <argsstring>()</argsstring>
+        <name>CullDespawned</name>
+        <briefdescription>
+<para>Waits for &apos;cullDelay&apos; in seconds and culls the &apos;despawned&apos; list if above &apos;cullingAbove&apos; amount. </para>        </briefdescription>
+        <detaileddescription>
+<para>Triggered by <ref refid="class_pathological_games_1_1_prefab_pool_1a8b4468914919f5a0f2f26ac65e060c8a" kindref="member">DespawnInstance()</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1492" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1492" bodyend="1554"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" compoundref="_spawn_pool_8cs" startline="1402">PathologicalGames.PrefabPool._despawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" compoundref="_spawn_pool_8cs" startline="1281">PathologicalGames.PrefabPool.cullAbove</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a632a5abce4698cf9e8be123620ef5006" compoundref="_spawn_pool_8cs" startline="1289">PathologicalGames.PrefabPool.cullDelay</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" compoundref="_spawn_pool_8cs" startline="1303">PathologicalGames.PrefabPool.logMessages</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" compoundref="_spawn_pool_8cs" startline="1410">PathologicalGames.PrefabPool.totalCount</references>
+        <referencedby refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" compoundref="_spawn_pool_8cs" startline="1445" endline="1482">PathologicalGames.PrefabPool.DespawnInstance</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.PrefabPool.SpawnInstance</definition>
+        <argsstring>(Vector3 pos, Quaternion rot)</argsstring>
+        <name>SpawnInstance</name>
+        <param>
+          <type>Vector3</type>
+          <declname>pos</declname>
+        </param>
+        <param>
+          <type>Quaternion</type>
+          <declname>rot</declname>
+        </param>
+        <briefdescription>
+<para>Move an instance from despawned to spawned, set the position and rotation, activate it and all children and return the transform. </para>        </briefdescription>
+        <detaileddescription>
+<para>If there isn&apos;t an instance available, a new one is made. </para><para><simplesect kind="return"><para>The new instance&apos;s Transform.</para><para>If the Limit option was used for the <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref> associated with the passed prefab, then this method will return null if the limit is reached. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1571" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1571" bodyend="1641"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" compoundref="_spawn_pool_8cs" startline="1402">PathologicalGames.PrefabPool._despawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a5cc9db5a9fd14862782b56b8ffe3149e" compoundref="_spawn_pool_8cs" startline="1393">PathologicalGames.PrefabPool._spawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1aa9a449c279d63ac49acfb151c0ca5f85" compoundref="_spawn_pool_8cs" startline="1251">PathologicalGames.PrefabPool.limitFIFO</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" compoundref="_spawn_pool_8cs" startline="1238">PathologicalGames.PrefabPool.limitInstances</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" compoundref="_spawn_pool_8cs" startline="1303">PathologicalGames.PrefabPool.logMessages</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a717e77a639f58529a2fe358aedec9d7c" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.AddUnpooled</definition>
+        <argsstring>(Transform inst, bool despawn)</argsstring>
+        <name>AddUnpooled</name>
+        <param>
+          <type>Transform</type>
+          <declname>inst</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>despawn</declname>
+        </param>
+        <briefdescription>
+<para>Used by a <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> to add an existing instance to this <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref>. This is used during game start to pool objects which are not instantiated at runtime </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inst</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The instance to add</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>despawn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True to despawn on add</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1727" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1727" bodyend="1741"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.PreloadInstances</definition>
+        <argsstring>()</argsstring>
+        <name>PreloadInstances</name>
+        <briefdescription>
+<para>Preload <ref refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" kindref="member">PrefabPool.preloadAmount</ref> instances if they don&apos;t already exist. In otherwords, if there are 7 and 10 should be preloaded, this only creates 3. This is to allow asynchronous Spawn() usage in Awake() at game start </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1750" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1750" bodyend="1846"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" compoundref="_spawn_pool_8cs" startline="1281">PathologicalGames.PrefabPool.cullAbove</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9ab1d5c333a4e210684a212bfb89f5c9" compoundref="_spawn_pool_8cs" startline="1276">PathologicalGames.PrefabPool.cullDespawned</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1abff57f5d9c60c270fe38cede3f214f40" compoundref="_spawn_pool_8cs" startline="1243">PathologicalGames.PrefabPool.limitAmount</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" compoundref="_spawn_pool_8cs" startline="1238">PathologicalGames.PrefabPool.limitInstances</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" compoundref="_spawn_pool_8cs" startline="1212">PathologicalGames.PrefabPool.preloadAmount</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1aa8e39fc54738578f8eed8b94d4ec937e" compoundref="_spawn_pool_8cs" startline="1427">PathologicalGames.PrefabPool.preloaded</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9a7b3d353943c58dfbc5965ce1020022" compoundref="_spawn_pool_8cs" startline="1222">PathologicalGames.PrefabPool.preloadFrames</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a0c89d377a85917e63e827dfa6dbb6147" compoundref="_spawn_pool_8cs" startline="1217">PathologicalGames.PrefabPool.preloadTime</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" compoundref="_spawn_pool_8cs" startline="1410">PathologicalGames.PrefabPool.totalCount</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a983f11343d2e79ff745b714ea9802de6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.SetRecursively</definition>
+        <argsstring>(Transform xform, int layer)</argsstring>
+        <name>SetRecursively</name>
+        <param>
+          <type>Transform</type>
+          <declname>xform</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>layer</declname>
+        </param>
+        <briefdescription>
+<para>Sets the layer of the passed transform and all of its children </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transform to process</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>layer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new layer</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1712" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1712" bodyend="1717"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator PathologicalGames.PrefabPool.PreloadOverTime</definition>
+        <argsstring>()</argsstring>
+        <name>PreloadOverTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1848" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1848" bodyend="1898"/>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" compoundref="_spawn_pool_8cs" startline="1212">PathologicalGames.PrefabPool.preloadAmount</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a5d567af6a04b27c2bcd6f3ee7a9a2257" compoundref="_spawn_pool_8cs" startline="1227">PathologicalGames.PrefabPool.preloadDelay</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a9a7b3d353943c58dfbc5965ce1020022" compoundref="_spawn_pool_8cs" startline="1222">PathologicalGames.PrefabPool.preloadFrames</references>
+        <references refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" compoundref="_spawn_pool_8cs" startline="1410">PathologicalGames.PrefabPool.totalCount</references>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefab_pool_1a2cd741e419caff38e6ff25fd1cb353a9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabPool.nameInstance</definition>
+        <argsstring>(Transform instance)</argsstring>
+        <name>nameInstance</name>
+        <param>
+          <type>Transform</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+<para>Appends a number to the end of the passed transform. The number will be one more than the total objects in this <ref refid="class_pathological_games_1_1_prefab_pool" kindref="compound">PrefabPool</ref>, so name the object BEFORE adding it to the spawn or depsawn lists. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>instance</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1935" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1935" bodyend="1941"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class is used to display a more complex user entry interface in the Unity Editor so we can collect more options related to each Prefab. </para>    </briefdescription>
+    <detaileddescription>
+<para>See this class documentation for Editor Options.</para><para>This class is also the primary pool functionality for <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref>. <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> manages the Pool using these settings and methods. See the <ref refid="class_pathological_games_1_1_spawn_pool" kindref="compound">SpawnPool</ref> documentation for user documentation and usage. </para>    </detaileddescription>
+    <collaborationgraph>
+      <node id="160">
+        <label>PathologicalGames.PrefabsDict</label>
+        <link refid="class_pathological_games_1_1_prefabs_dict"/>
+        <childnode refid="161" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>PathologicalGames.PrefabPool</label>
+        <link refid="class_pathological_games_1_1_prefab_pool"/>
+        <childnode refid="157" relation="usage">
+          <edgelabel>spawnPool</edgelabel>
+        </childnode>
+      </node>
+      <node id="159">
+        <label>IList&lt; Transform &gt;</label>
+      </node>
+      <node id="157">
+        <label>PathologicalGames.SpawnPool</label>
+        <link refid="class_pathological_games_1_1_spawn_pool"/>
+        <childnode refid="158" relation="public-inheritance">
+        </childnode>
+        <childnode refid="159" relation="public-inheritance">
+        </childnode>
+        <childnode refid="160" relation="usage">
+          <edgelabel>prefabs</edgelabel>
+        </childnode>
+      </node>
+      <node id="161">
+        <label>IDictionary&lt; string, Transform &gt;</label>
+      </node>
+      <node id="158">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1196" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1195" bodyend="1944"/>
+    <listofallmembers>
+      <member refid="class_pathological_games_1_1_prefab_pool_1accf51fb59b073eb1f4168685d245ee72" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>_despawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1aa0f3bef55aa3efe141cf38778cb01af7" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>_logMessages</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a68fc501b500f18baa608b1dceccff99f" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>_preloaded</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a5cc9db5a9fd14862782b56b8ffe3149e" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>_spawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a717e77a639f58529a2fe358aedec9d7c" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>AddUnpooled</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1acdcfe526a4786e5b97e821d763c97896" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>Contains</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a9699aa77914e2c0e955333f33d049edb" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>cullAbove</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a632a5abce4698cf9e8be123620ef5006" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>cullDelay</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a9ab1d5c333a4e210684a212bfb89f5c9" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>cullDespawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1ad0d481e0d920e387ee0ce8926b7f4e61" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>CullDespawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a7dc79c2d56bec5b65c29cedb853fd69e" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>cullingActive</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a093b8a566a3d26e74c791622ecaa86c6" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>cullMaxPerPass</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a0e01835909e20d5d6d0276fd4133a8f3" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>despawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a8b4468914919f5a0f2f26ac65e060c8a" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>DespawnInstance</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1ad5da8a12ffaecad197a4a7b09efe9003" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>DespawnInstance</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a2abdbf32d2855fbbd3fc3038d7a2027a" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>forceLoggingSilent</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a90f9a4cbe70ea5878e00059d0845f3ae" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>inspectorInstanceConstructor</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1abff57f5d9c60c270fe38cede3f214f40" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>limitAmount</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1aa9a449c279d63ac49acfb151c0ca5f85" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>limitFIFO</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a9ba14c545448a740f3b392db01b319a7" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>limitInstances</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a9aba0ff8c7986f330d0b50f273446f9e" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>logMessages</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a2cd741e419caff38e6ff25fd1cb353a9" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>nameInstance</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1aee34304a32370cb237414cebec5ddd5a" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>prefab</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a32da6e6ac8711bd935f51ecea7324e05" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>prefabGO</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a2abcd06edf81b285bcae619413c7626a" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>PrefabPool</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1ab504d2b0877b6c7577e09697ee421d4a" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>PrefabPool</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a10d67a97391cab85949a003c28ea06ea" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>preloadAmount</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a5d567af6a04b27c2bcd6f3ee7a9a2257" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>preloadDelay</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1aa8e39fc54738578f8eed8b94d4ec937e" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>preloaded</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a9a7b3d353943c58dfbc5965ce1020022" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>preloadFrames</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1aee100399473ee7252f4001b447a6421a" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>PreloadInstances</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a0b0fabe1ad4835339b5fc4425a6a6f81" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>PreloadOverTime</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a0c89d377a85917e63e827dfa6dbb6147" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>preloadTime</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1abb5df557d913109ac355f8057f8b4af7" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>SelfDestruct</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a983f11343d2e79ff745b714ea9802de6" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>SetRecursively</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a8cdeb1412397050c8cd165b2f680d1a2" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>spawned</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1af7f51021a2cb39bbbfb3c2bb6e74551b" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>SpawnInstance</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1ae7be9f06e1bd3ec0a2da86a87faf3888" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>SpawnNew</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a164b74f16c19a706fc577151e2827a02" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>SpawnNew</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a7b490c3a1e99c792af941e7a5a62af4c" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>spawnPool</name></member>
+      <member refid="class_pathological_games_1_1_prefab_pool_1a30c6566b518136f8388ba4ed8975a870" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabPool</scope><name>totalCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

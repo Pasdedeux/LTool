@@ -1,0 +1,459 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_pathological_games_1_1_prefabs_dict" kind="class" prot="public">
+    <compoundname>PathologicalGames::PrefabsDict</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IDictionary&lt; string, Transform &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pathological_games_1_1_prefabs_dict_1a2d5a637f57f93706b963f30da498979f" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; string, Transform &gt;</type>
+        <definition>Dictionary&lt;string, Transform&gt; PathologicalGames.PrefabsDict._prefabs</definition>
+        <argsstring></argsstring>
+        <name>_prefabs</name>
+        <initializer>= new Dictionary&lt;string, Transform&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1988" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1988" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1a56587bedb5116b9ebb6ff61e56a3003d" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>int</type>
+        <definition>int PathologicalGames.PrefabsDict.Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <briefdescription>
+<para>Get the number of SpawnPools in <ref refid="class_pathological_games_1_1_pool_manager" kindref="compound">PoolManager</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1993" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1993" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1a0a708de79050f0e16f2d7f832e403265" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Transform</type>
+        <definition>Transform PathologicalGames.PrefabsDict.this[string key]</definition>
+        <argsstring></argsstring>
+        <name>this[string key]</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2035" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2036" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1a20f2ff87a20fb0a5ba2db2583ec9755c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>ICollection&lt; string &gt;</type>
+        <definition>ICollection&lt;string&gt; PathologicalGames.PrefabsDict.Keys</definition>
+        <argsstring></argsstring>
+        <name>Keys</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2060" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2061" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1acca3f3ffa2c9ea1baee1cc8f4e824d90" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>ICollection&lt; Transform &gt;</type>
+        <definition>ICollection&lt;Transform&gt; PathologicalGames.PrefabsDict.Values</definition>
+        <argsstring></argsstring>
+        <name>Values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2069" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2070" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1a13c8ba77c394a097db992da77178b64a" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.IsReadOnly</definition>
+        <argsstring></argsstring>
+        <name>IsReadOnly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2079" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2079" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_pathological_games_1_1_prefabs_dict_1a9dcb14506ce31ece0f4f116e410fe9dd" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool ICollection&lt; KeyValuePair&lt; string, Transform &gt; &gt;.</type>
+        <definition>bool ICollection&lt;KeyValuePair&lt;string, Transform&gt; &gt;. PathologicalGames.PrefabsDict.IsReadOnly</definition>
+        <argsstring></argsstring>
+        <name>IsReadOnly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2080" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2080" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a26d0c3a5d7fdca59879314af6e29466a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override string</type>
+        <definition>override string PathologicalGames.PrefabsDict.ToString</definition>
+        <argsstring>()</argsstring>
+        <name>ToString</name>
+        <briefdescription>
+<para>Returns a formatted string showing all the prefab names </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1955" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1955" bodyend="1963"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a69a96d4530eb8cb3c1c062fc2480b0f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.ContainsKey</definition>
+        <argsstring>(string prefabName)</argsstring>
+        <name>ContainsKey</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <briefdescription>
+<para>Returns true if a prefab exists with the passed prefab name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefabName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name to look for</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the prefab exists, otherwise, false.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2000" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2000" bodyend="2003"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a04ce71a9f9459878ddf10b42fddaf376" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.TryGetValue</definition>
+        <argsstring>(string prefabName, out Transform prefab)</argsstring>
+        <name>TryGetValue</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>out Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+<para>Used to get a prefab when the user is not sure if the prefabName is used. This is faster than checking Contains(prefabName) and then accessing the dict </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2012" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2012" bodyend="2015"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1addba0d969972e6027cae080365d0c001" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict.Add</definition>
+        <argsstring>(string key, Transform value)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2019" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2019" bodyend="2022"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1acc8a8a731b16b1d40e33c109a8ae90fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.Remove</definition>
+        <argsstring>(string prefabName)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2024" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2024" bodyend="2027"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a8a039ebc799ff7ba44d2cc274b959dd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.Contains</definition>
+        <argsstring>(KeyValuePair&lt; string, Transform &gt; item)</argsstring>
+        <name>Contains</name>
+        <param>
+          <type>KeyValuePair&lt; string, Transform &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2029" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2029" bodyend="2033"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1ae87a985d7a2ce51c6e8e640a3cb7999e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict.Add</definition>
+        <argsstring>(KeyValuePair&lt; string, Transform &gt; item)</argsstring>
+        <name>Add</name>
+        <param>
+          <type>KeyValuePair&lt; string, Transform &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2082" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2082" bodyend="2085"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a52cadf80a89498d91435e0162451b7b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict.Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2087" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2087" bodyend="2087"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a2e7603f73a02af1d404b7980e8d7aadb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict.Remove</definition>
+        <argsstring>(KeyValuePair&lt; string, Transform &gt; item)</argsstring>
+        <name>Remove</name>
+        <param>
+          <type>KeyValuePair&lt; string, Transform &gt;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2101" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2101" bodyend="2104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a02d3fa36b549070226cfcc4b3a622dfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator&lt; KeyValuePair&lt; string, Transform &gt; &gt;</type>
+        <definition>IEnumerator&lt;KeyValuePair&lt;string, Transform&gt; &gt; PathologicalGames.PrefabsDict.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2112" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2112" bodyend="2115"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a28149061f0608c60faa570638d530cce" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict._Add</definition>
+        <argsstring>(string prefabName, Transform prefab)</argsstring>
+        <name>_Add</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <param>
+          <type>Transform</type>
+          <declname>prefab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1969" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1969" bodyend="1972"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1a3a837b0ba50a146d242e583afd40a5f0" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PathologicalGames.PrefabsDict._Remove</definition>
+        <argsstring>(string prefabName)</argsstring>
+        <name>_Remove</name>
+        <param>
+          <type>string</type>
+          <declname>prefabName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1974" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1974" bodyend="1977"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1af22a4d5479e9124df79ce41bf95a4b72" prot="package" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict._Clear</definition>
+        <argsstring>()</argsstring>
+        <name>_Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1979" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1979" bodyend="1982"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1aa6f4d244e6b89de76a78d2f38665a558" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PathologicalGames.PrefabsDict.CopyTo</definition>
+        <argsstring>(KeyValuePair&lt; string, Transform &gt;[] array, int arrayIndex)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>KeyValuePair&lt; string, Transform &gt;[]</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arrayIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2089" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2089" bodyend="2093"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1ad10f87eea6a6d330e935dd7e668b6ab2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void ICollection&lt; KeyValuePair&lt; string, Transform &gt; &gt;.</type>
+        <definition>void ICollection&lt;KeyValuePair&lt;string, Transform&gt; &gt;. PathologicalGames.PrefabsDict.CopyTo</definition>
+        <argsstring>(KeyValuePair&lt; string, Transform &gt;[] array, int arrayIndex)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>KeyValuePair&lt; string, Transform &gt;[]</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>arrayIndex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2095" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2095" bodyend="2099"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pathological_games_1_1_prefabs_dict_1aa7048407f9ea7b31e76ac17bc7b1bca9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Collections.IEnumerator System.Collections.IEnumerable.</type>
+        <definition>System.Collections.IEnumerator System.Collections.IEnumerable. PathologicalGames.PrefabsDict.GetEnumerator</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnumerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="2121" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="2121" bodyend="2124"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="162">
+        <label>PathologicalGames.PrefabsDict</label>
+        <link refid="class_pathological_games_1_1_prefabs_dict"/>
+        <childnode refid="163" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="163">
+        <label>IDictionary&lt; string, Transform &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="164">
+        <label>PathologicalGames.PrefabsDict</label>
+        <link refid="class_pathological_games_1_1_prefabs_dict"/>
+        <childnode refid="165" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>IDictionary&lt; string, Transform &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" line="1949" column="1" bodyfile="E:/Personal/LTool/LTool/LitPool/SpawnPool.cs" bodystart="1948" bodyend="2129"/>
+    <listofallmembers>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a28149061f0608c60faa570638d530cce" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>_Add</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1af22a4d5479e9124df79ce41bf95a4b72" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>_Clear</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a2d5a637f57f93706b963f30da498979f" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>_prefabs</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a3a837b0ba50a146d242e583afd40a5f0" prot="package" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>_Remove</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1addba0d969972e6027cae080365d0c001" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1ae87a985d7a2ce51c6e8e640a3cb7999e" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Add</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a52cadf80a89498d91435e0162451b7b9" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Clear</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a8a039ebc799ff7ba44d2cc274b959dd8" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Contains</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a69a96d4530eb8cb3c1c062fc2480b0f5" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>ContainsKey</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1aa6f4d244e6b89de76a78d2f38665a558" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>CopyTo</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1ad10f87eea6a6d330e935dd7e668b6ab2" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>CopyTo</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a56587bedb5116b9ebb6ff61e56a3003d" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Count</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a02d3fa36b549070226cfcc4b3a622dfb" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1aa7048407f9ea7b31e76ac17bc7b1bca9" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>GetEnumerator</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a13c8ba77c394a097db992da77178b64a" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>IsReadOnly</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a9dcb14506ce31ece0f4f116e410fe9dd" prot="private" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>IsReadOnly</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a20f2ff87a20fb0a5ba2db2583ec9755c" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Keys</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1acc8a8a731b16b1d40e33c109a8ae90fc" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a2e7603f73a02af1d404b7980e8d7aadb" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Remove</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a0a708de79050f0e16f2d7f832e403265" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>this[string key]</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a26d0c3a5d7fdca59879314af6e29466a" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>ToString</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1a04ce71a9f9459878ddf10b42fddaf376" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>TryGetValue</name></member>
+      <member refid="class_pathological_games_1_1_prefabs_dict_1acca3f3ffa2c9ea1baee1cc8f4e824d90" prot="public" virt="non-virtual"><scope>PathologicalGames::PrefabsDict</scope><name>Values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

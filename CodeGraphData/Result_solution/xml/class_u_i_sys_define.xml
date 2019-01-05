@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_u_i_sys_define" kind="class" prot="public">
+    <compoundname>UISysDefine</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_u_i_sys_define_1aa6edde089ad581b761251b187ed6c10e" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_ROOTCANVAS</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_ROOTCANVAS</name>
+        <initializer>= &quot;Canvas_Root&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="99" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="99" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">UIMaskManager.Awake</referencedby>
+        <referencedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" compoundref="_vsrsion___hot_fix_2_u_i_manager_8cs" startline="107" endline="127">LitFramework.HotFix.UIManager.Install</referencedby>
+        <referencedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" compoundref="_version___mono_2_u_i_manager_8cs" startline="111" endline="130">LitFramework.Mono.UIManager.Install</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_sys_define_1ab969bdc431a7086ee35f14028973cabc" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_NORMALCANVAS</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_NORMALCANVAS</name>
+        <initializer>= &quot;Canvas_RootNormal&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="100" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="100" bodyend="-1"/>
+        <referencedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" compoundref="_vsrsion___hot_fix_2_u_i_manager_8cs" startline="107" endline="127">LitFramework.HotFix.UIManager.Install</referencedby>
+        <referencedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" compoundref="_version___mono_2_u_i_manager_8cs" startline="111" endline="130">LitFramework.Mono.UIManager.Install</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_sys_define_1a4830316ce1bc29267a87ad9dc2fdf371" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_FIXEDCANVAS</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_FIXEDCANVAS</name>
+        <initializer>= &quot;Canvas_RootFixed&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="101" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="101" bodyend="-1"/>
+        <referencedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" compoundref="_vsrsion___hot_fix_2_u_i_manager_8cs" startline="107" endline="127">LitFramework.HotFix.UIManager.Install</referencedby>
+        <referencedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" compoundref="_version___mono_2_u_i_manager_8cs" startline="111" endline="130">LitFramework.Mono.UIManager.Install</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_sys_define_1a7e912d17e0f82fb667a9f46ebf6c3197" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_POPUPCANVAS</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_POPUPCANVAS</name>
+        <initializer>= &quot;Canvas_RootPopUp&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="102" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="102" bodyend="-1"/>
+        <referencedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" compoundref="_vsrsion___hot_fix_2_u_i_manager_8cs" startline="107" endline="127">LitFramework.HotFix.UIManager.Install</referencedby>
+        <referencedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" compoundref="_version___mono_2_u_i_manager_8cs" startline="111" endline="130">LitFramework.Mono.UIManager.Install</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_sys_define_1ae70858afb8e1721d23d62dd680e56e0e" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_GLOBALCANVAS</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_GLOBALCANVAS</name>
+        <initializer>= &quot;Canvas_RootGlobal&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="103" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="103" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">UIMaskManager.Awake</referencedby>
+        <referencedby refid="class_lit_framework_1_1_hot_fix_1_1_u_i_manager_1af573193ef29ad35e771cdb2d5144d342" compoundref="_vsrsion___hot_fix_2_u_i_manager_8cs" startline="107" endline="127">LitFramework.HotFix.UIManager.Install</referencedby>
+        <referencedby refid="class_lit_framework_1_1_mono_1_1_u_i_manager_1a7d285f0ab3f003fde6d6831db1686d30" compoundref="_version___mono_2_u_i_manager_8cs" startline="111" endline="130">LitFramework.Mono.UIManager.Install</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_sys_define_1ae63fec6bb58a0ca19e4b67ef330b9af0" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string UISysDefine.SYS_TAG_UICAMERA</definition>
+        <argsstring></argsstring>
+        <name>SYS_TAG_UICAMERA</name>
+        <initializer>= &quot;UICamera&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="105" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="105" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">UIMaskManager.Awake</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/UI/SysDefine.cs" line="96" column="1" bodyfile="E:/Personal/LTool/LTool/UI/SysDefine.cs" bodystart="95" bodyend="108"/>
+    <listofallmembers>
+      <member refid="class_u_i_sys_define_1a4830316ce1bc29267a87ad9dc2fdf371" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_FIXEDCANVAS</name></member>
+      <member refid="class_u_i_sys_define_1ae70858afb8e1721d23d62dd680e56e0e" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_GLOBALCANVAS</name></member>
+      <member refid="class_u_i_sys_define_1ab969bdc431a7086ee35f14028973cabc" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_NORMALCANVAS</name></member>
+      <member refid="class_u_i_sys_define_1a7e912d17e0f82fb667a9f46ebf6c3197" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_POPUPCANVAS</name></member>
+      <member refid="class_u_i_sys_define_1aa6edde089ad581b761251b187ed6c10e" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_ROOTCANVAS</name></member>
+      <member refid="class_u_i_sys_define_1ae63fec6bb58a0ca19e4b67ef330b9af0" prot="public" virt="non-virtual"><scope>UISysDefine</scope><name>SYS_TAG_UICAMERA</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

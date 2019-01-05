@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_28346b7ff6522b69cad894d13d134f56" kind="dir">
+    <compoundname>E:/Personal/LTool/LTool/GameUtility</compoundname>
+    <innerdir refid="dir_bc4d90b767ef65a972f83335a9fda497">E:/Personal/LTool/LTool/GameUtility/LitJSON</innerdir>
+    <innerfile refid="_asset_path_manager_8cs">AssetPathManager.cs</innerfile>
+    <innerfile refid="_document_accessor_8cs">DocumentAccessor.cs</innerfile>
+    <innerfile refid="_game_view_resolution_8cs">GameViewResolution.cs</innerfile>
+    <innerfile refid="_lit_tool_8cs">LitTool.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/GameUtility/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_folder_copy" kind="class" prot="public">
+    <compoundname>FolderCopy</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_folder_copy_1aaf931bfbe43dbe1ac835179c7a7f946d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void FolderCopy.CopyTo</definition>
+        <argsstring>(string oripath, string despath)</argsstring>
+        <name>CopyTo</name>
+        <param>
+          <type>string</type>
+          <declname>oripath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>despath</declname>
+        </param>
+        <briefdescription>
+<para>拷贝文件夹 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>oripath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>源目录</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>despath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目标目录</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" line="14" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" bodystart="14" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_folder_copy_1aff64a1df30737d4a0f7926ba3d781467" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void FolderCopy.MoveTo</definition>
+        <argsstring>(string oripath, string despath)</argsstring>
+        <name>MoveTo</name>
+        <param>
+          <type>string</type>
+          <declname>oripath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>despath</declname>
+        </param>
+        <briefdescription>
+<para>移动文件夹 </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>oripath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>源目录</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>despath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>目标目录</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" line="45" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" bodystart="45" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" line="7" column="1" bodyfile="E:/Personal/LTool/LTool/EditorExtention/FolderCopy.cs" bodystart="6" bodyend="72"/>
+    <listofallmembers>
+      <member refid="class_folder_copy_1aaf931bfbe43dbe1ac835179c7a7f946d" prot="public" virt="non-virtual"><scope>FolderCopy</scope><name>CopyTo</name></member>
+      <member refid="class_folder_copy_1aff64a1df30737d4a0f7926ba3d781467" prot="public" virt="non-virtual"><scope>FolderCopy</scope><name>MoveTo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -27,7 +27,7 @@
 using System;
 using UnityEngine;
 
-namespace LitFramework.UI.Base
+namespace LitFramework.Base
 {
     public interface IManager
     {

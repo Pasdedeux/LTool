@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_loading_task_model_8cs" kind="file">
+    <compoundname>LoadingTaskModel.cs</compoundname>
+    <innerclass refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" prot="public">LitFramework::GameFlow::LoadingTaskModel</innerclass>
+    <innernamespace refid="namespace_lit_framework_1_1_game_flow">LitFramework::GameFlow</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*======================================</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>项目名称<sp/>：LitFramework</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>项目描述<sp/>：</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>类<sp/>名<sp/>称<sp/>：LoadingTaskModel</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>类<sp/>描<sp/>述<sp/>：</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>命名空间<sp/>：LitFramework.GameFlow</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>机器名称<sp/>：SKY-20170413SEJ<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>CLR<sp/>版本<sp/>：4.0.30319.42000</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>作<sp/><sp/><sp/><sp/>者<sp/>：Derek<sp/>Liu</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>创建时间<sp/>：2018/8/23<sp/>20:50:24</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>更新时间<sp/>：2018/8/23<sp/>20:50:24</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>版<sp/>本<sp/>号<sp/>：v1.0.0.0</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>Copyright<sp/>@<sp/>DerekLiu<sp/>2018.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">-------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">*Fix<sp/>Note:</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">*修改时间：2018//23<sp/>21:50:24</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">*修改人：<sp/>LHW</highlight></codeline>
+<codeline lineno="22"><highlight class="comment">*版本号：<sp/>V1.0.0.0</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">*描述：</highlight></codeline>
+<codeline lineno="24"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment">======================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Text;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">LitFramework.GameFlow</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" kindref="compound">LoadingTaskModel</ref><sp/>:<sp/>Singleton&lt;LoadingTaskModel&gt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a346b39605d80d8ab6fd1bad2744d3472" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Func&lt;bool&gt;<sp/>_defaultFuncTrue<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="41" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a48f288bd53ce2fe64193a1f8ba46ee09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Dictionary&lt;int,<sp/>Func&lt;bool&gt;&gt;<sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a48f288bd53ce2fe64193a1f8ba46ee09" kindref="member">_taskDic</ref>;</highlight></codeline>
+<codeline lineno="42" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1ad825b27742f8c873d6eadb17b844aad5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1ad825b27742f8c873d6eadb17b844aad5" kindref="member">LoadingTaskModel</ref>()</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_defaultFuncTrue<sp/>=<sp/>()<sp/>=&gt;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_taskDic<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Dictionary&lt;int,<sp/>Func&lt;bool&gt;&gt;();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1abc357766546bcae73eccb8632bd88b3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1abc357766546bcae73eccb8632bd88b3a" kindref="member">AddTask</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>framePercent,<sp/>Func&lt;bool&gt;<sp/>funcCallBack<sp/>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>forceReplace<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>_taskDic.ContainsKey(<sp/>framePercent<sp/>)<sp/>||<sp/>framePercent<sp/>&lt;<sp/>5<sp/>)<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>!forceReplace<sp/>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Exception(<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">.Format(<sp/></highlight><highlight class="stringliteral">&quot;进度位置<sp/>{0}<sp/>已有处理函数或为框架预留！<sp/>建议更换其它时间点处理！<sp/>&quot;</highlight><highlight class="normal">,<sp/>framePercent<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_taskDic[<sp/>framePercent<sp/>]<sp/>=<sp/>funcCallBack;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_taskDic.Add(<sp/>framePercent,<sp/>funcCallBack<sp/>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a46fac8be5dc02b897d3bb039b9121995" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Func&lt;bool&gt;<sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a46fac8be5dc02b897d3bb039b9121995" kindref="member">TryGetTask</ref>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>framePercent<sp/>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_taskDic.TryGetValue(<sp/>framePercent,<sp/>out<sp/>Func&lt;bool&gt;<sp/>result<sp/>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result<sp/>??<sp/>_defaultFuncTrue;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a6f8885fcd875de0a6a69fd94c710e13b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a6f8885fcd875de0a6a69fd94c710e13b" kindref="member">ClearTask</ref>()</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_taskDic.Clear();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a10b94abf03ffb0ba0273ad0cca19c6e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model_1a10b94abf03ffb0ba0273ad0cca19c6e5" kindref="member">DoDestroy</ref>()</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ClearTask();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.DoDestroy();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="E:/Personal/LTool/LTool/GameFlow/Model/LoadingTaskModel.cs"/>
+  </compounddef>
+</doxygen>

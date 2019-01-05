@@ -25,8 +25,9 @@ public class HighlightingSystemEditor : Editor
 		#endif
 		
 		EditorGUILayout.Space();
-		
+        #if UNITY_EDITOR
 		he.stencilZBufferEnabled = EditorGUILayout.Toggle("Use Z-Buffer", he.stencilZBufferEnabled);
+        #endif
 		EditorGUILayout.HelpBox("Always enable 'Use Z-Buffer' if you wish to use highlighting occluders in your project. Otherwise - keep it unchecked (in terms of performance optimization).", MessageType.Info);
 		
 		EditorGUILayout.LabelField("Preset:");

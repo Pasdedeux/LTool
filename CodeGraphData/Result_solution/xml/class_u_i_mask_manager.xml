@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_u_i_mask_manager" kind="class" prot="public">
+    <compoundname>UIMaskManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">SingletonMono&lt; UIMaskManager &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_u_i_mask_manager_1a2bf0386e46d3299da76eeb704f3e3b29" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform UIMaskManager._transScriptNode</definition>
+        <argsstring></argsstring>
+        <name>_transScriptNode</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="22" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="22" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1a5e1295753e989578e521f7e58383c17c" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject UIMaskManager._rootCanvas</definition>
+        <argsstring></argsstring>
+        <name>_rootCanvas</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="24" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="24" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1a0a786d357be8ba8779aec2ac6a94650d" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject UIMaskManager._topPanel</definition>
+        <argsstring></argsstring>
+        <name>_topPanel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="26" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="26" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" prot="private" static="no" mutable="no">
+        <type>GameObject</type>
+        <definition>GameObject UIMaskManager._maskPanel</definition>
+        <argsstring></argsstring>
+        <name>_maskPanel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="28" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="28" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+        <referencedby refid="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" compoundref="_u_i_mask_manager_8cs" startline="95" endline="105">CancelMaskWindow</referencedby>
+        <referencedby refid="class_u_i_mask_manager_1a73928ee3cf098b17421761bc88dfc9e9" compoundref="_u_i_mask_manager_8cs" startline="56" endline="90">SetMaskWindow</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1ae219849268a772652664744b4bd6b024" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image UIMaskManager._maskImage</definition>
+        <argsstring></argsstring>
+        <name>_maskImage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="30" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="30" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" prot="private" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera UIMaskManager._uiCamera</definition>
+        <argsstring></argsstring>
+        <name>_uiCamera</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="32" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="32" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+        <referencedby refid="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" compoundref="_u_i_mask_manager_8cs" startline="95" endline="105">CancelMaskWindow</referencedby>
+        <referencedby refid="class_u_i_mask_manager_1a73928ee3cf098b17421761bc88dfc9e9" compoundref="_u_i_mask_manager_8cs" startline="56" endline="90">SetMaskWindow</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_mask_manager_1ae6c5c54ab44d38f5130ece169998435e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float UIMaskManager._oriUICameraDepth</definition>
+        <argsstring></argsstring>
+        <name>_oriUICameraDepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="34" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="34" bodyend="-1"/>
+        <referencedby refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" compoundref="_u_i_mask_manager_8cs" startline="36" endline="51">Awake</referencedby>
+        <referencedby refid="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" compoundref="_u_i_mask_manager_8cs" startline="95" endline="105">CancelMaskWindow</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIMaskManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="36" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="36" bodyend="51"/>
+        <references refid="class_u_i_mask_manager_1ae219849268a772652664744b4bd6b024" compoundref="_u_i_mask_manager_8cs" startline="30">_maskImage</references>
+        <references refid="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" compoundref="_u_i_mask_manager_8cs" startline="28">_maskPanel</references>
+        <references refid="class_u_i_mask_manager_1ae6c5c54ab44d38f5130ece169998435e" compoundref="_u_i_mask_manager_8cs" startline="34">_oriUICameraDepth</references>
+        <references refid="class_u_i_mask_manager_1a5e1295753e989578e521f7e58383c17c" compoundref="_u_i_mask_manager_8cs" startline="24">_rootCanvas</references>
+        <references refid="class_u_i_mask_manager_1a0a786d357be8ba8779aec2ac6a94650d" compoundref="_u_i_mask_manager_8cs" startline="26">_topPanel</references>
+        <references refid="class_u_i_mask_manager_1a2bf0386e46d3299da76eeb704f3e3b29" compoundref="_u_i_mask_manager_8cs" startline="22">_transScriptNode</references>
+        <references refid="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" compoundref="_u_i_mask_manager_8cs" startline="32">_uiCamera</references>
+        <references refid="class_u_i_sys_define_1ae70858afb8e1721d23d62dd680e56e0e" compoundref="_sys_define_8cs" startline="103">UISysDefine.SYS_TAG_GLOBALCANVAS</references>
+        <references refid="class_u_i_sys_define_1aa6edde089ad581b761251b187ed6c10e" compoundref="_sys_define_8cs" startline="99">UISysDefine.SYS_TAG_ROOTCANVAS</references>
+        <references refid="class_u_i_sys_define_1ae63fec6bb58a0ca19e4b67ef330b9af0" compoundref="_sys_define_8cs" startline="105">UISysDefine.SYS_TAG_UICAMERA</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_u_i_mask_manager_1a73928ee3cf098b17421761bc88dfc9e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIMaskManager.SetMaskWindow</definition>
+        <argsstring>(GameObject displayUIForms, UITransparentEnum transparent=UITransparentEnum.NoPenetratingTotal)</argsstring>
+        <name>SetMaskWindow</name>
+        <param>
+          <type>GameObject</type>
+          <declname>displayUIForms</declname>
+        </param>
+        <param>
+          <type><ref refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2" kindref="member">UITransparentEnum</ref></type>
+          <declname>transparent</declname>
+          <defval><ref refid="_sys_define_8cs_1aa8343fa35dc7fb3fe2fdba57b40206d2ad366ad5b0976aa15690e14bd27f4687f" kindref="member">UITransparentEnum.NoPenetratingTotal</ref></defval>
+        </param>
+        <briefdescription>
+<para>设置遮罩状态 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="56" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="56" bodyend="90"/>
+        <references refid="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" compoundref="_u_i_mask_manager_8cs" startline="28">_maskPanel</references>
+        <references refid="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" compoundref="_u_i_mask_manager_8cs" startline="32">_uiCamera</references>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIMaskManager.CancelMaskWindow</definition>
+        <argsstring>()</argsstring>
+        <name>CancelMaskWindow</name>
+        <briefdescription>
+<para>取消遮罩 </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="95" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="95" bodyend="105"/>
+        <references refid="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" compoundref="_u_i_mask_manager_8cs" startline="28">_maskPanel</references>
+        <references refid="class_u_i_mask_manager_1ae6c5c54ab44d38f5130ece169998435e" compoundref="_u_i_mask_manager_8cs" startline="34">_oriUICameraDepth</references>
+        <references refid="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" compoundref="_u_i_mask_manager_8cs" startline="32">_uiCamera</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="239">
+        <label>SingletonMono&lt; UIMaskManager &gt;</label>
+      </node>
+      <node id="238">
+        <label>UIMaskManager</label>
+        <link refid="class_u_i_mask_manager"/>
+        <childnode refid="239" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="241">
+        <label>SingletonMono&lt; UIMaskManager &gt;</label>
+      </node>
+      <node id="240">
+        <label>UIMaskManager</label>
+        <link refid="class_u_i_mask_manager"/>
+        <childnode refid="241" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" line="20" column="1" bodyfile="E:/Personal/LTool/LTool/UI/Manager/UIMaskManager.cs" bodystart="19" bodyend="106"/>
+    <listofallmembers>
+      <member refid="class_u_i_mask_manager_1ae219849268a772652664744b4bd6b024" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_maskImage</name></member>
+      <member refid="class_u_i_mask_manager_1ad90d54665017a92626191040b9944aaa" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_maskPanel</name></member>
+      <member refid="class_u_i_mask_manager_1ae6c5c54ab44d38f5130ece169998435e" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_oriUICameraDepth</name></member>
+      <member refid="class_u_i_mask_manager_1a5e1295753e989578e521f7e58383c17c" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_rootCanvas</name></member>
+      <member refid="class_u_i_mask_manager_1a0a786d357be8ba8779aec2ac6a94650d" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_topPanel</name></member>
+      <member refid="class_u_i_mask_manager_1a2bf0386e46d3299da76eeb704f3e3b29" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_transScriptNode</name></member>
+      <member refid="class_u_i_mask_manager_1a755fb2d0de6bf7705687275fadb19222" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>_uiCamera</name></member>
+      <member refid="class_u_i_mask_manager_1a84b9872c3396e6e8d6ef49c36ee8e120" prot="private" virt="non-virtual"><scope>UIMaskManager</scope><name>Awake</name></member>
+      <member refid="class_u_i_mask_manager_1aa770fa857c8b3845f3cbcf0b3acbeb46" prot="public" virt="non-virtual"><scope>UIMaskManager</scope><name>CancelMaskWindow</name></member>
+      <member refid="class_u_i_mask_manager_1a73928ee3cf098b17421761bc88dfc9e9" prot="public" virt="non-virtual"><scope>UIMaskManager</scope><name>SetMaskWindow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

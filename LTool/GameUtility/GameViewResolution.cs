@@ -18,11 +18,27 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace LitFramework.GameUtility
 {
+    /// <summary>
+    /// 屏幕分辨率自适应，需要配合RootCanvas使用
+    /// </summary>
     public class GameViewResolution : MonoBehaviour
     {
+        void Awake()
+        {
+            var uiRoot = GameObject.Find( "Canvas_Root" );
+            if ( uiRoot != null )
+            {
+                var canvasScaler = uiRoot.transform.GetComponent<CanvasScaler>();
+                canvasScaler.referenceResolution = new Vector2( Screen.width, Screen.height );
+            }
+        }
+
+        #region 待验证版本
+
         private Camera _unityCamera;
         private Camera UnityCamera
         {
@@ -170,5 +186,6 @@ namespace LitFramework.GameUtility
             return false;
         }
 
+        #endregion
     }
 }

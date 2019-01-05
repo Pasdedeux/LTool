@@ -34,9 +34,6 @@ namespace LitFramework.HotFix
         {
             IsShowing = true;
 
-            //默认执行OnEnable()
-            GameObjectInstance.SetActive(IsShowing);
-
             //设置模态窗体调用(弹出窗体)
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
                 UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, CurrentUIType.uiTransparent);
@@ -44,6 +41,9 @@ namespace LitFramework.HotFix
             OnEnabled();
             OnStart();
             OnShow();
+
+            //默认执行OnEnable()
+            GameObjectInstance.SetActive( IsShowing );
         }
 
         /// <summary>

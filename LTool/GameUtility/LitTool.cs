@@ -24,21 +24,34 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+/// 还有new 的问题没有解决
+/// </summary>
 namespace LitFramework.GameUtility
 {
-    public class LitTool
+    public class LitTool:SingletonMono<LitTool>
     {
-        public static MonoBehaviour monoBehaviour;
+        private static MonoBehaviour _mono;
+        public static MonoBehaviour monoBehaviour
+        {
+            get
+            {
+                if ( _mono == null )
+                {
+                    GameObject go = new GameObject( "Monobehavior" );
+                    monoBehaviour = go.AddComponent<MonoForCorouting>();
+                }
+                return _mono;
+            }
+            private set { _mono = value; }
+        }
         private static WaitForSeconds _waitSeconds;
         private static WaitUntil _waitUntil;
+
+
         #region 延迟调用方法
         public static void DelayPlayFunction( float time, System.Action func )
         {
-            if ( monoBehaviour == null )
-            {
-                GameObject go = new GameObject( "Monobehavior" );
-                monoBehaviour = go.AddComponent<MonoForCorouting>();
-            }
             _waitSeconds = new WaitForSeconds( time );
             monoBehaviour.StartCoroutine( DelayFunction( time, func ) );
         }
@@ -56,11 +69,6 @@ namespace LitFramework.GameUtility
 
         public static void WaitUntilFunction( Func<bool> conditionFunc, System.Action func )
         {
-            if ( monoBehaviour == null )
-            {
-                GameObject go = new GameObject( "Monobehavior" );
-                monoBehaviour = go.AddComponent<MonoForCorouting>();
-            }
             _waitUntil = new WaitUntil( conditionFunc );
             monoBehaviour.StartCoroutine( WaitUntilFunction( func ) );
         }

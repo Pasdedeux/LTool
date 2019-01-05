@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_lit_tool_8cs" kind="file">
+    <compoundname>LitTool.cs</compoundname>
+    <innerclass refid="class_lit_framework_1_1_game_utility_1_1_lit_tool" prot="public">LitFramework::GameUtility::LitTool</innerclass>
+    <innerclass refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" prot="public">LitFramework::GameUtility::MonoForCorouting</innerclass>
+    <innernamespace refid="namespace_lit_framework_1_1_game_utility">LitFramework::GameUtility</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#region<sp/>&lt;&lt;<sp/>版<sp/>本<sp/>注<sp/>释<sp/>&gt;&gt;</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="comment">/*----------------------------------------------------------------</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>项目名称<sp/>：LitFramework.GameUtility</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/>项目描述<sp/>：</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>类<sp/>名<sp/>称<sp/>：LitTool</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>类<sp/>描<sp/>述<sp/>：</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>所在的域<sp/>：DEREK-HOMEPC</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>命名空间<sp/>：LitFramework.GameUtility</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*<sp/>CLR<sp/>版本<sp/>：4.0.30319.42000</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>作<sp/><sp/><sp/><sp/>者<sp/>：Derek<sp/>Liu</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>创建时间<sp/>：2018/8/26<sp/>17:04:10</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>更新时间<sp/>：2018/8/26<sp/>17:04:10</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*<sp/>版<sp/>本<sp/>号<sp/>：v1.0.0.0</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">*<sp/>Copyright<sp/>@<sp/>Liu<sp/>Hanwen<sp/>2018.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">*******************************************************************</highlight></codeline>
+<codeline lineno="17"><highlight class="comment">//----------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endregion</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections.Generic;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Text;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">LitFramework.GameUtility</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool" kindref="compound">LitTool</ref></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a24e8ce47e85194bbd29bda159bb12902" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>MonoBehaviour<sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a24e8ce47e85194bbd29bda159bb12902" kindref="member">monoBehaviour</ref>;</highlight></codeline>
+<codeline lineno="32" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac7c0775fd2bf9033cb4aadd44da7d567" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>WaitForSeconds<sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac7c0775fd2bf9033cb4aadd44da7d567" kindref="member">_waitSeconds</ref>;</highlight></codeline>
+<codeline lineno="33" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac331d7fc52c2569fdc2ba0699b177398" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>WaitUntil<sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ac331d7fc52c2569fdc2ba0699b177398" kindref="member">_waitUntil</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#region<sp/>延迟调用方法</highlight></codeline>
+<codeline lineno="35" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a8a9dd7d0ac79a4b7b71eb67bc5a3bf59" refkind="member"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a8a9dd7d0ac79a4b7b71eb67bc5a3bf59" kindref="member">DelayPlayFunction</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time,<sp/>System.Action<sp/>func<sp/>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>monoBehaviour<sp/>==<sp/>null<sp/>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameObject<sp/>go<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject(<sp/></highlight><highlight class="stringliteral">&quot;Monobehavior&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>monoBehaviour<sp/>=<sp/>go.AddComponent&lt;<ref refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" kindref="compound">MonoForCorouting</ref>&gt;();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_waitSeconds<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>WaitForSeconds(<sp/>time<sp/>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>monoBehaviour.StartCoroutine(<sp/>DelayFunction(<sp/>time,<sp/>func<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a82935dee06e538df47565da39f5f6bb5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>IEnumerator<sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a82935dee06e538df47565da39f5f6bb5" kindref="member">DelayFunction</ref>(<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time,<sp/>System.Action<sp/>func<sp/>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_waitSeconds;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>func?.Invoke();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ae34cdd74dc7f914ba618b1481deda4dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1ae34cdd74dc7f914ba618b1481deda4dd" kindref="member">StopDelayPlayFunction</ref>()</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>monoBehaviour.StopCoroutine(<sp/></highlight><highlight class="stringliteral">&quot;DelayFunction&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a11ee0d3e0b2c8efc1569623080297a9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a11ee0d3e0b2c8efc1569623080297a9e" kindref="member">WaitUntilFunction</ref>(<sp/>Func&lt;bool&gt;<sp/>conditionFunc,<sp/>System.Action<sp/>func<sp/>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>monoBehaviour<sp/>==<sp/>null<sp/>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameObject<sp/>go<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject(<sp/></highlight><highlight class="stringliteral">&quot;Monobehavior&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>monoBehaviour<sp/>=<sp/>go.AddComponent&lt;<ref refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" kindref="compound">MonoForCorouting</ref>&gt;();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_waitUntil<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>WaitUntil(<sp/>conditionFunc<sp/>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>monoBehaviour.StartCoroutine(<sp/>WaitUntilFunction(<sp/>func<sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a05622a3cbcf8eca761399b3008104735" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>IEnumerator<sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_lit_tool_1a05622a3cbcf8eca761399b3008104735" kindref="member">WaitUntilFunction</ref>(<sp/>Action<sp/>func<sp/>)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_waitUntil;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>func?.Invoke();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endregion</highlight></codeline>
+<codeline lineno="74"><highlight class="preprocessor"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting" kindref="compound">MonoForCorouting</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79" refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting_1a7293cd861ba98fb028766c6a0616f583" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_lit_framework_1_1_game_utility_1_1_mono_for_corouting_1a7293cd861ba98fb028766c6a0616f583" kindref="member">Awake</ref>()</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DontDestroyOnLoad(<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="E:/Personal/LTool/LTool/GameUtility/LitTool.cs"/>
+  </compounddef>
+</doxygen>

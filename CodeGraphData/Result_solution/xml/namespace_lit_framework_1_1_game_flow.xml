@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_lit_framework_1_1_game_flow" kind="namespace">
+    <compoundname>LitFramework::GameFlow</compoundname>
+    <innerclass refid="class_lit_framework_1_1_game_flow_1_1_game_flow_controller" prot="public">LitFramework::GameFlow::GameFlowController</innerclass>
+    <innerclass refid="class_lit_framework_1_1_game_flow_1_1_loading_task_model" prot="public">LitFramework::GameFlow::LoadingTaskModel</innerclass>
+    <innernamespace refid="namespace_lit_framework_1_1_game_flow_1_1_manager">LitFramework::GameFlow::Manager</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="E:/Personal/LTool/LTool/GameFlow/Controller/GameFlowController.cs" line="36" column="1"/>
+  </compounddef>
+</doxygen>

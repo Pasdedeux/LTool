@@ -209,12 +209,14 @@ namespace LitFramework.GameUtility
         /// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
         /// <param name="callBack">加载完成后的回调</param>
         /// <returns></returns>
-        IEnumerator WWWLoading( string filePath , Action<WWW> callBack = null )
+        public IEnumerator WWWLoading( string filePath , Action<WWW> callBack = null )
         {
             WWW www = new WWW( filePath );
+
+            //while ( !www.isDone ) { }
             yield return www;
 
-            if( www.error != null )
+            if ( www.error != null )
             {
                 if( Application.platform == RuntimePlatform.WindowsEditor )
                     throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}" , www.error , filePath ) );
@@ -228,39 +230,41 @@ namespace LitFramework.GameUtility
                     callBack.Invoke( www );
             }
 
-            www.Dispose();
-            www = null;
-        }
-
-
-        /// <summary>
-        /// www加载
-        /// </summary>
-        /// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
-        /// <param name="callBack">加载完成后的回调</param>
-        /// <returns></returns>
-        void WWWLoadingWithWaiting( string wwwFilePath , Action<WWW> callBack = null )
-        {
-            WWW www = new WWW( wwwFilePath );
-            while( !www.isDone ) { }
-
-            if( www.error != null )
-            {
-                if( Application.platform == RuntimePlatform.WindowsEditor )
-                    throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}  " , www.error , wwwFilePath ) );
-                else
-                    Debug.LogError( "WWW Error: " + www.error );
-            }
-
-            if( www.isDone )
-            {
-                if( callBack != null )
-                    callBack.Invoke( www );
-            }
+            yield return null;
 
             www.Dispose();
             www = null;
         }
+
+
+        ///// <summary>
+        ///// www加载
+        ///// </summary>
+        ///// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+        ///// <param name="callBack">加载完成后的回调</param>
+        ///// <returns></returns>
+        //void WWWLoadingWithWaiting( string wwwFilePath , Action<WWW> callBack = null )
+        //{
+        //    WWW www = new WWW( wwwFilePath );
+        //    while( !www.isDone ) { }
+
+        //    if( www.error != null )
+        //    {
+        //        if( Application.platform == RuntimePlatform.WindowsEditor )
+        //            throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}  " , www.error , wwwFilePath ) );
+        //        else
+        //            Debug.LogError( "WWW Error: " + www.error );
+        //    }
+
+        //    if( www.isDone )
+        //    {
+        //        if( callBack != null )
+        //            callBack.Invoke( www );
+        //    }
+
+        //    www.Dispose();
+        //    www = null;
+        //}
 
 
         /// <summary>

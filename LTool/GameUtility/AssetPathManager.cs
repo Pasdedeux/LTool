@@ -85,6 +85,8 @@ namespace LitFramework.GameUtility
         public string GetStreamAssetDataPath( string filePath, bool useFile = true )
         {
             _sBuilder.Length = 0;
+            if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
+                _sBuilder.Append("file:///");
             _sBuilder.Append( Application.streamingAssetsPath );
 
             _sBuilder.Append( "/" );

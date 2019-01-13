@@ -389,7 +389,6 @@ namespace LitFramework.Mono
         /// <summary>
         /// 加载当前窗体到当前窗体集合
         /// </summary>
-        /// <param name="uiName"></param>
         private void LoadNormalUI( string uiName )
         {
             BaseUI baseUI;

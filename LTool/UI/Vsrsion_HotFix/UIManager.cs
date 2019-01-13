@@ -363,9 +363,6 @@ namespace LitFramework.HotFix
                     baseUI.AssetsName = uiName;
                 }
 
-                baseUI.OnAwake();
-                baseUI.OnAdapter();
-
                 switch( baseUI.CurrentUIType.uiNodeType )
                 {
                     case UINodeTypeEnum.Normal:
@@ -380,6 +377,9 @@ namespace LitFramework.HotFix
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
                 }
+
+                baseUI.OnAwake();
+                baseUI.OnAdapter();
 
                 //加入到所有窗体缓存中
                 _dictLoadedAllUIs.Add( uiName , baseUI );

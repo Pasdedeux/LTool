@@ -32,7 +32,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     private Camera _uiCamera;
     //UI相机原始层深度
     private float _oriUICameraDepth;
-    private Color _color;
+    private static Color _color = new Color( 0 / 255F, 0 / 255F, 0 / 255F, 0 / 255F );
 
     private void Awake( )
     {
@@ -49,8 +49,6 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //获得摄像机层深
         _uiCamera = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
         if ( _uiCamera != null ) _oriUICameraDepth = _uiCamera.depth;
-
-        _color = new Color( 0 / 255F, 0 / 255F, 0 / 255F, 0 / 255F );
     }
 
     /// <summary>
@@ -108,6 +106,14 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //恢复UI相机层深
         if ( _uiCamera != null )
             _uiCamera.depth = _oriUICameraDepth;
+    }
+
+
+    public static void SetMaskColor(Color color)
+    {
+        _color.r = color.r;
+        _color.g = color.g;
+        _color.b = color.b;
     }
 
 }

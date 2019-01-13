@@ -61,7 +61,8 @@ namespace LitFramework.Mono
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
 
             //默认执行OnEnable()
-            _rootCanvas.enabled= IsShowing;
+            //_rootCanvas.enabled= IsShowing;
+            gameObject.SetActive( IsShowing );
         }
 
         /// <summary>
@@ -74,15 +75,17 @@ namespace LitFramework.Mono
             //默认执行OnDisable()
             if( !freeze )
             {
-                _rootCanvas.enabled = false ;
+                //_rootCanvas.enabled = false ;
+                gameObject.SetActive( false );
 
-                if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
+                if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
             }
             else
             {
                 //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                _rootCanvas.enabled = false;
+                //_rootCanvas.enabled = false;
+                gameObject.SetActive( false );
             }
 
             IsShowing = false;
@@ -147,7 +150,6 @@ namespace LitFramework.Mono
 
         private void OnEnable()
         {
-
             OnEnabled();
         }
 

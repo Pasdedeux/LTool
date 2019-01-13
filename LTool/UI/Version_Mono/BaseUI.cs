@@ -42,6 +42,7 @@ namespace LitFramework.Mono
         public string AssetsName { get; set; }
 
         private Canvas _rootCanvas;
+        private RectTransform _rootRectTransform;
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -130,6 +131,11 @@ namespace LitFramework.Mono
         private void Awake()
         {
             _rootCanvas = gameObject.GetComponent<Canvas>();
+            _rootRectTransform = gameObject.GetComponent<RectTransform>();
+            _rootRectTransform.anchorMin = Vector2.zero;
+            _rootRectTransform.anchorMax = Vector2.one;
+            _rootRectTransform.offsetMax = Vector2.zero;
+            _rootRectTransform.offsetMin = Vector2.zero;
             OnAwake();
         }
 

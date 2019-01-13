@@ -5,6 +5,7 @@ namespace LitFramework.HotFix
 {
     public abstract class BaseUI : UI.Base.IBaseUI
     {
+        private RectTransform _rootRectTransform;
         /// <summary>
         /// 该窗口是否开启中
         /// </summary>
@@ -84,7 +85,16 @@ namespace LitFramework.HotFix
 
         public virtual void Dispose() { }
 
-        public virtual void OnAdapter() { }
+        public virtual void OnAdapter()
+        {
+            if(_rootRectTransform==null)
+                _rootRectTransform = GameObjectInstance.GetComponent<RectTransform>();
+            _rootRectTransform.anchorMax = Vector2.one;
+            _rootRectTransform.anchorMin = Vector2.zero;
+            _rootRectTransform.offsetMax = Vector2.zero;
+            _rootRectTransform.offsetMin = Vector2.zero;
+
+        }
 
         /// <summary>
         /// 点击返回事件

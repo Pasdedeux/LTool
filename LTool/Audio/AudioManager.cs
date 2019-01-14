@@ -40,8 +40,36 @@ namespace LitFramework
     public class AudioManager : SingletonMono<AudioManager>,IManager
     {
         public Func<string , AudioClip> LoadResourceFunc;
-        public float VolumeSE { get; set; }
-        public float VolumeBGM { get; set; }
+        private float _sevol = 1;
+        private float _bgmvol = 1;
+
+        /// <summary>
+        /// 音效音量
+        /// </summary>
+        public float VolumeSE
+        {
+            set
+            {
+                _sevol = value;
+                PlayerPrefs.SetFloat( "Setting_SE", value );
+                if ( _soloAudioSource != null ) _soloAudioSource.volume = _sevol;
+            }
+            get { return _sevol; }
+        }
+
+        /// <summary>
+        /// 音乐音量
+        /// </summary>
+        public float VolumeBGM
+        {
+            set
+            {
+                _bgmvol = value;
+                PlayerPrefs.SetFloat( "Setting_BGM", value );
+                if ( _audioBGM != null ) _audioBGM.volume = _bgmvol;
+            }
+            get { return _bgmvol; }
+        }
 
         private List<AudioSource> _tempList;
         private AudioSource _audioBGM;

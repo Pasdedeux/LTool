@@ -17,6 +17,8 @@ namespace LitFramework.HotFix
         public UIType CurrentUIType
         { get { return _uiType; } set { _uiType = value; } }
 
+
+        private Canvas _rootCanvas;
         /// <summary>
         /// 关联的UI实例
         /// </summary>
@@ -43,6 +45,7 @@ namespace LitFramework.HotFix
             OnStart();
             OnShow();
 
+            _rootCanvas.enabled = true;
             //默认执行OnEnable()
             GameObjectInstance.SetActive( IsShowing );
         }
@@ -59,6 +62,7 @@ namespace LitFramework.HotFix
 
             if ( !freeze )
             {
+                _rootCanvas.enabled = false;
                 GameObjectInstance.SetActive(false);
 
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
@@ -66,6 +70,7 @@ namespace LitFramework.HotFix
             }
             else
             {
+                _rootCanvas.enabled = false;
                 //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
                 GameObjectInstance.SetActive(false);
             }
@@ -93,7 +98,8 @@ namespace LitFramework.HotFix
             _rootRectTransform.anchorMin = Vector2.zero;
             _rootRectTransform.offsetMax = Vector2.zero;
             _rootRectTransform.offsetMin = Vector2.zero;
-
+            _rootCanvas = GameObjectInstance.GetComponent<Canvas>();
+            _rootCanvas.enabled = false;
         }
 
         /// <summary>

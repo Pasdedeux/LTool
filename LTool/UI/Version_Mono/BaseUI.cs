@@ -19,7 +19,7 @@ using UnityEngine.UI;
 namespace LitFramework.Mono
 {
 
-    public abstract class BaseUI : MonoBehaviour , UI.Base.IBaseUI
+    public abstract class BaseUI : MonoBehaviour, UI.Base.IBaseUI
     {
         /// <summary>
         /// 该窗口是否开启中
@@ -52,16 +52,16 @@ namespace LitFramework.Mono
             IsShowing = true;
 
             //设置模态窗体调用(弹出窗体)
-            if( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow( gameObject , CurrentUIType.uiTransparent );
+            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+                UIMaskManager.Instance.SetMaskWindow( gameObject, CurrentUIType.uiTransparent );
 
-            if( IsStarted )
+            if ( IsStarted )
+            {
                 OnShow();
+                _rootCanvas.enabled = true;
+            }
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
-
-            //默认执行OnEnable()
-            //_rootCanvas.enabled= IsShowing;
             gameObject.SetActive( IsShowing );
         }
 
@@ -70,10 +70,10 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
         /// <param name="freeze">是否暂时冻结（功能未想好）</param>
-        public void Close( bool isDestroy = false , bool freeze = false )
+        public void Close( bool isDestroy = false, bool freeze = false )
         {
             //默认执行OnDisable()
-            if( !freeze )
+            if ( !freeze )
             {
                 //_rootCanvas.enabled = false ;
                 gameObject.SetActive( false );
@@ -90,13 +90,13 @@ namespace LitFramework.Mono
 
             IsShowing = false;
 
-            if( _waitForStartFunc != null )
+            if ( _waitForStartFunc != null )
             {
                 StopCoroutine( _waitForStartFunc );
                 _waitForStartFunc = null;
             }
 
-            if( isDestroy )
+            if ( isDestroy )
                 DoDestroy();
         }
 
@@ -139,6 +139,8 @@ namespace LitFramework.Mono
             _rootRectTransform.anchorMax = Vector2.one;
             _rootRectTransform.offsetMax = Vector2.zero;
             _rootRectTransform.offsetMin = Vector2.zero;
+            _rootCanvas.enabled = false;
+
             OnAwake();
         }
 
@@ -168,6 +170,7 @@ namespace LitFramework.Mono
         {
             yield return new WaitUntil( () => { return IsStarted; } );
             OnShow();
+            _rootCanvas.enabled = true;
         }
 
         /// <summary>

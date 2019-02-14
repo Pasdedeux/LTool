@@ -79,6 +79,29 @@ namespace LitFramework.GameUtility
             func?.Invoke();
         }
         #endregion
+
+        #region 时间转换工具
+
+        private TimeSpan _timtSpan = new TimeSpan();
+        /// <summary>
+        /// 获取指定显示显示格式的时间跨度表达
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
+        {
+            _timtSpan = endTime - startTime;
+            //todo 尚待扩展
+            if ( format.Equals( "{0:00}:{1:00}" ) )
+            {
+                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+            }
+            return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+        }
+
+        #endregion
     }
 
 

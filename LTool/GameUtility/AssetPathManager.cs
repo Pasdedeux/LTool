@@ -82,15 +82,15 @@ namespace LitFramework.GameUtility
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useFile">是否用于FileInfo FileStream</param>
         /// <returns></returns>
-        public string GetStreamAssetDataPath( string filePath, bool useFile = true )
+        public string GetStreamAssetDataPath(string filePath, bool useWWW = false)
         {
             _sBuilder.Length = 0;
-            if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor)
+            if (useWWW && (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor))
                 _sBuilder.Append("file:///");
-            _sBuilder.Append( Application.streamingAssetsPath );
+            _sBuilder.Append(Application.streamingAssetsPath);
 
-            _sBuilder.Append( "/" );
-            _sBuilder.Append( filePath );
+            _sBuilder.Append("/");
+            _sBuilder.Append(filePath);
             return _sBuilder.ToString();
         }
 

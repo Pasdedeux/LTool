@@ -80,7 +80,7 @@ namespace LitFramework.GameUtility
         /// 
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
-        /// <param name="useFile">是否用于FileInfo FileStream</param>
+        /// <param name="useWWW">是否用于FileInfo FileStream</param>
         /// <returns></returns>
         public string GetStreamAssetDataPath(string filePath, bool useWWW = false)
         {

@@ -20,7 +20,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 
-namespace LitFramework.LitTool
+namespace LitFramework.GameUtility
 {
     /// <summary>
     /// 屏幕分辨率自适应，需要配合RootCanvas使用

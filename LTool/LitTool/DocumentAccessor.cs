@@ -1,11 +1,11 @@
 ﻿#region << 版 本 注 释 >>
 /*----------------------------------------------------------------
-* 项目名称 ：LitFramework.LitTool
+* 项目名称 ：LitFramework.GameUtility
 * 项目描述 ：
 * 类 名 称 ：FileSerilizer
 * 类 描 述 ：
 * 所在的域 ：DEREK-HOMEPC
-* 命名空间 ：LitFramework.LitTool
+* 命名空间 ：LitFramework.GameUtility
 * CLR 版本 ：4.0.30319.42000
 * 作    者 ：Derek Liu
 * 创建时间 ：2018/5/9 21:24:56
@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LitFramework.LitTool
+namespace LitFramework.GameUtility
 {
     public class DocumentAccessor : Singleton<DocumentAccessor>
     {

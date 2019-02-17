@@ -1,11 +1,11 @@
 ﻿#region << 版 本 注 释 >>
 /*----------------------------------------------------------------
-* 项目名称 ：LitFramework.LitTool
+* 项目名称 ：LitFramework.GameUtility
 * 项目描述 ：
 * 类 名 称 ：LitTool
 * 类 描 述 ：
 * 所在的域 ：DEREK-HOMEPC
-* 命名空间 ：LitFramework.LitTool
+* 命名空间 ：LitFramework.GameUtility
 * CLR 版本 ：4.0.30319.42000
 * 作    者 ：Derek Liu
 * 创建时间 ：2018/8/26 17:04:10
@@ -27,7 +27,7 @@ using UnityEngine;
 /// <summary>
 /// 还有new 的问题没有解决
 /// </summary>
-namespace LitFramework.LitTool
+namespace LitFramework.GameUtility
 {
     public class LitTool:SingletonMono<LitTool>
     {
@@ -78,6 +78,29 @@ namespace LitFramework.LitTool
             yield return _waitUntil;
             func?.Invoke();
         }
+        #endregion
+
+        #region 时间转换工具
+
+        private static TimeSpan _timtSpan = new TimeSpan(); 
+        /// <summary>
+        /// 获取指定显示显示格式的时间跨度表达
+        /// </summary>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
+        {
+            _timtSpan = endTime - startTime;
+            //todo 尚待扩展
+            if ( format.Equals( "{0:00}:{1:00}" ) )
+            {
+                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+            }
+            return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+        }
+
         #endregion
     }
 

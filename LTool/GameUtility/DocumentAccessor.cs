@@ -217,12 +217,7 @@ namespace LitFramework.GameUtility
             yield return www;
 
             if ( www.error != null )
-            {
-                if( Application.platform == RuntimePlatform.WindowsEditor )
-                    throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}" , www.error , filePath ) );
-                else
-                    Debug.LogError( "WWW Error: " + www.error );
-            }
+                throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}", www.error, filePath ) );
 
             if( www.isDone )
             {

@@ -82,7 +82,7 @@ namespace LitFramework.GameUtility
 
         #region 时间转换工具
 
-        private static TimeSpan _timtSpan = new TimeSpan();
+        private static TimeSpan _timtSpan = new TimeSpan(); 
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
         /// </summary>

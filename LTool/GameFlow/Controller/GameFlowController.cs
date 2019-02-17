@@ -75,7 +75,7 @@ namespace LitFramework.GameFlow
                 while ( _asyncOperation.progress < 0.9f ) { }
                 _asyncOperation.allowSceneActivation = true;
 
-                GameUtility.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
+                LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
             }
 
             //No UIloading && Fading
@@ -90,7 +90,7 @@ namespace LitFramework.GameFlow
                     while ( _asyncOperation.progress < 0.9f ) { }
                     _asyncOperation.allowSceneActivation = true;
 
-                    GameUtility.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
+                    LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
 
                     _iUIManger.HideFade( fadingTime );
                 } );

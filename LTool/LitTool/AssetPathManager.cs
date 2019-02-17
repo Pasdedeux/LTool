@@ -30,7 +30,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace LitFramework.GameUtility
+namespace LitFramework.LitTool
 {
     public class AssetPathManager: Singleton<AssetPathManager>
     {

@@ -31,7 +31,7 @@ using UnityEngine;
 using System.Linq;
 using LitFramework.UI.Base;
 using UnityEngine.UI;
-using LitFramework.GameUtility;
+using LitFramework.LitTool;
 using LitFramework.Base;
 
 namespace LitFramework.HotFix
@@ -182,7 +182,7 @@ namespace LitFramework.HotFix
             _fadeImage.raycastTarget = true;
             _fadeImage.CrossFadeAlpha( 1, time, false );
             if ( callBack != null )
-                LitTool.DelayPlayFunction( time, callBack );
+                LitTool.LitTool.DelayPlayFunction( time, callBack );
         }
 
 
@@ -205,7 +205,7 @@ namespace LitFramework.HotFix
             if ( callBack != null ) DelHideCallBack += callBack;
             DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
             DelHideCallBack += () => { DelHideCallBack = null; };
-            LitTool.DelayPlayFunction( time, DelHideCallBack );
+            LitTool.LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
 
 

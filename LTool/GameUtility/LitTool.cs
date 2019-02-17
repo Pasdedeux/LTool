@@ -82,7 +82,7 @@ namespace LitFramework.GameUtility
 
         #region 时间转换工具
 
-        private TimeSpan _timtSpan = new TimeSpan();
+        private static TimeSpan _timtSpan = new TimeSpan();
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
         /// </summary>
@@ -90,7 +90,7 @@ namespace LitFramework.GameUtility
         /// <param name="endTime"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        public string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
+        public static string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
         {
             _timtSpan = endTime - startTime;
             //todo 尚待扩展

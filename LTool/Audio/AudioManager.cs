@@ -39,6 +39,7 @@ namespace LitFramework
     /// </summary>
     public class AudioManager : SingletonMono<AudioManager>,IManager
     {
+        public bool IsEnabled { get; set; }
         public Func<string , AudioClip> LoadResourceFunc;
         private float _sevol = 1;
         private float _bgmvol = 1;
@@ -84,6 +85,8 @@ namespace LitFramework
         /// <param name="loadFunction">提供音频加载方法</param>
         public void Install()
         {
+            IsEnabled = true;
+
             _tempList = new List<AudioSource>();
             _audios = new Dictionary<string , AudioClip>();
             _soundAvalibleList = new Stack<AudioSource>();
@@ -196,7 +199,7 @@ namespace LitFramework
         /// <param name="name">名称</param>
         public void PlaySE( string name , bool loop = false , bool isParallel = true , float volumeRate = 1f )
         {
-            if( string.IsNullOrEmpty( name ) )
+            if ( string.IsNullOrEmpty( name ) || !IsEnabled ) 
                 return;
             if( !_soundLoopPlayingDict.ContainsKey( name ) )
             {
@@ -337,7 +340,7 @@ namespace LitFramework
         /// <param name="loop"></param>
         public void PlayBGM( string name , bool loop = true )
         {
-            if( string.IsNullOrEmpty( name ) || currentMusicName == name )
+            if( string.IsNullOrEmpty( name ) || currentMusicName == name || !IsEnabled )
                 return;
 
             currentMusicName = name;
@@ -374,6 +377,8 @@ namespace LitFramework
         /// </summary>
         public void ResumeBGM()
         {
+            if ( !IsEnabled ) return;
+
             if( _audioBGM.clip != null )
                 _audioBGM.Play();
         }
@@ -405,7 +410,7 @@ namespace LitFramework
         /// <param name="name"></param>
         public void PlaySoloSE( string name )
         {
-            if( _soloAudioSource == null || _soloAudioSource.isPlaying )
+            if( _soloAudioSource == null || _soloAudioSource.isPlaying || !IsEnabled )
                 return;
             _soloAudioSource.PlayOneShot( GetSE( name ) , VolumeSE );
         }

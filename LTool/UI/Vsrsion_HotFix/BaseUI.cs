@@ -11,6 +11,10 @@ namespace LitFramework.HotFix
         /// </summary>
         public bool IsShowing { get; set; }
         /// <summary>
+        /// 是否执行过Start
+        /// </summary>
+        private bool IsStarted { get; set; }
+        /// <summary>
         /// 当前窗口类型
         /// </summary>
         private UIType _uiType = new UIType();
@@ -32,7 +36,7 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 显示窗体
         /// </summary>
-        /// <param name="replay">【暂时不管这个参数】</param>
+        /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
         public void Show( bool replay = false )
         {
             IsShowing = true;
@@ -41,28 +45,27 @@ namespace LitFramework.HotFix
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
                 UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, CurrentUIType.uiTransparent);
 
-            OnEnabled();
-            OnStart();
+            OnEnabled( replay );
+            if ( !IsStarted ) DoStart();
             OnShow();
 
             _rootCanvas.enabled = true;
-            //默认执行OnEnable()
-            GameObjectInstance.SetActive( IsShowing );
+
+            if ( !replay )
+                GameObjectInstance.SetActive( IsShowing );
         }
 
         /// <summary>
         /// 隐藏窗口
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
-        /// <param name="freeze">是否暂时冻结（功能未想好）</param>
+        /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
         public void Close( bool isDestroy = false, bool freeze = false )
         {
-            //默认执行OnDisable()
-            OnDisabled();
-
             if ( !freeze )
             {
                 _rootCanvas.enabled = false;
+                OnDisabled( false );
                 GameObjectInstance.SetActive(false);
 
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
@@ -71,8 +74,9 @@ namespace LitFramework.HotFix
             else
             {
                 _rootCanvas.enabled = false;
-                //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                GameObjectInstance.SetActive(false);
+                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
+                OnDisabled( true );
+                //GameObjectInstance.SetActive(false);
             }
 
             IsShowing = false;
@@ -115,17 +119,24 @@ namespace LitFramework.HotFix
 
         public abstract void OnAwake();
 
-        public virtual void OnEnabled() { }
+        public virtual void OnEnabled( bool replay ) { }
 
-        public virtual void OnDisabled() { }
+        public virtual void OnDisabled( bool freeze ) { }
 
         public virtual void OnStart() { }
 
         public virtual void OnUpdate() { }
 
+        private void DoStart()
+        {
+            IsStarted = true;
+            OnStart();
+        }
+
         private void DoDestroy()
         {
             Dispose();
+            IsStarted = false;
             GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
         }

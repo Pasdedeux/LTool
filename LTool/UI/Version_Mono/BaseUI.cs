@@ -46,7 +46,7 @@ namespace LitFramework.Mono
         /// <summary>
         /// 显示窗体
         /// </summary>
-        /// <param name="replay">【暂时不管这个参数】</param>
+        /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
         public void Show( bool replay = false )
         {
             IsShowing = true;
@@ -55,6 +55,11 @@ namespace LitFramework.Mono
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
                 UIMaskManager.Instance.SetMaskWindow( gameObject, CurrentUIType.uiTransparent );
 
+            if ( !replay )
+                gameObject.SetActive( IsShowing );
+            else
+                OnEnabled( replay );
+
             if ( IsStarted )
             {
                 OnShow();
@@ -62,20 +67,19 @@ namespace LitFramework.Mono
             }
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
-            gameObject.SetActive( IsShowing );
         }
 
         /// <summary>
         /// 隐藏窗口
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
-        /// <param name="freeze">是否暂时冻结（功能未想好）</param>
+        /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
         public void Close( bool isDestroy = false, bool freeze = false )
         {
             //默认执行OnDisable()
             if ( !freeze )
             {
-                //_rootCanvas.enabled = false ;
+                _rootCanvas.enabled = false;
                 gameObject.SetActive( false );
 
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
@@ -83,9 +87,9 @@ namespace LitFramework.Mono
             }
             else
             {
-                //TODO 对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                //_rootCanvas.enabled = false;
-                gameObject.SetActive( false );
+                _rootCanvas.enabled = false;
+                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
+                OnDisabled( freeze );
             }
 
             IsShowing = false;
@@ -115,9 +119,9 @@ namespace LitFramework.Mono
 
         public abstract void OnAwake();
 
-        public virtual void OnEnabled() { }
+        public virtual void OnEnabled( bool replay ) { }
 
-        public virtual void OnDisabled() { }
+        public virtual void OnDisabled( bool freeze ) { }
 
         public virtual void OnStart() { }
 
@@ -152,12 +156,12 @@ namespace LitFramework.Mono
 
         private void OnEnable()
         {
-            OnEnabled();
+            OnEnabled( false );
         }
 
         private void OnDisable()
         {
-            OnDisabled();
+            OnDisabled( false );
         }
 
         private void Update()

@@ -24,11 +24,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-/// <summary>
-/// 还有new 的问题没有解决
-/// </summary>
+
 namespace LitFramework.LitTool
 {
+    /// <summary>
+    /// 工具类
+    /// </summary>
     public class LitTool:SingletonMono<LitTool>
     {
         private static MonoBehaviour _mono;

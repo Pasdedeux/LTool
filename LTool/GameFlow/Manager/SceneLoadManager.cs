@@ -41,7 +41,7 @@ namespace LitFramework.GameFlow.Manager
         /// 异步加载场景
         /// </summary>
         /// <param name="sceneID"></param>
-        /// <param name="isAsync"></param>
+        /// <param name="isAdditive"></param>
         /// <returns></returns>
         public AsyncOperation LoadSceneAsync( int sceneID, bool isAdditive )
         {

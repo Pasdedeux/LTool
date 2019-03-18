@@ -52,6 +52,7 @@ namespace LitFramework.GameFlow
         /// </summary>
         /// <param name="framePercent">指定的百分比</param>
         /// <param name="funcCallBack">需要执行的回调函数</param>
+        /// <param name="forceReplace">忽略限制，按参数信息赋值</param>
         public void AddTask( int framePercent, Func<bool> funcCallBack , bool forceReplace = false )
         {
             if ( _taskDic.ContainsKey( framePercent ) || framePercent < 5 ) 

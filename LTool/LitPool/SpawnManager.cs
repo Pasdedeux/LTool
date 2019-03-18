@@ -39,37 +39,21 @@ namespace LitFramework.LitPool
     /// </summary>
     public class SpawnManager : Singleton<SpawnManager>,IManager
     {
-        private SpawnPool _pool;
-        private List<string> _prefabNameList;
-
-
-        public SpawnManager()
-        {
-
-        }
+        public SpawnPool Pool { get; private set; }
 
         /// <summary>
         /// 初始化并获取对象池
         /// </summary>
         public void Install()
         {
-            _prefabNameList = new List<string>();
-
             //初始化对象池
             var pool = GameObject.Find( "PoolManager" );
             if( pool == null )
                 pool = new GameObject( "PoolManager" );
 
-            _pool = pool.transform.GetComponent<SpawnPool>();
-            if( _pool == null )
+            Pool = pool.transform.GetComponent<SpawnPool>();
+            if( Pool == null )
                 throw new Exception( "对象池初始化失败" );
-
-            //建立对象池库及名单列表
-            foreach( var item in _pool.prefabList )
-            {
-                _prefabNameList.Add( item.name );
-                AddPoolManager( _pool , item.transform );
-            }
         }
 
 
@@ -78,14 +62,10 @@ namespace LitFramework.LitPool
         /// </summary>
         public void Uninstall()
         {
-            _prefabNameList.Clear();
-            _prefabNameList = null;
-
-            _pool._perPrefabPoolOptions.Clear();
-            _pool._perPrefabPoolOptions = null;
-            _pool.prefabList.Clear();
-            _pool.prefabList = null;
-            _pool = null;
+            Pool.prefabPools.Clear();
+            Pool._perPrefabPoolOptions.Clear();
+            Pool._perPrefabPoolOptions = null;
+            Pool = null;
             GC.Collect();
         }
 
@@ -96,10 +76,7 @@ namespace LitFramework.LitPool
         /// <returns></returns>
         public GameObject SpwanObject( string name )
         {
-            if( !_prefabNameList.Contains( name ) )
-                throw new Exception( "不存在预制件 " + name );
-
-            return _pool.Spawn( name ).gameObject;
+            return Pool.Spawn( name ).gameObject;
         }
 
         /// <summary>
@@ -108,41 +85,7 @@ namespace LitFramework.LitPool
         /// <param name="item"></param>
         public void DespawnObject( Transform item )
         {
-            _pool.Despawn( item , _pool.transform );
-        }
-
-
-        /// <summary>
-        /// 增加池库
-        /// </summary>
-        /// <param name="spawnPool"></param>
-        /// <param name="transform"></param>
-        public static void AddPoolManager( SpawnPool spawnPool , Transform transform , int initNum = 5 , int limitAmount = 50 , bool limitInstances = true , bool limitFIFO = true )
-        {
-            PrefabPool refabPool = new PrefabPool( transform );
-            if( !spawnPool._perPrefabPoolOptions.Contains( refabPool ) )
-            {
-                refabPool = new PrefabPool( transform );
-                //默认初始化两个Prefab
-                refabPool.preloadAmount = initNum;
-                //开启限制
-                refabPool.limitInstances = limitInstances;
-                //关闭无限取Prefab
-                refabPool.limitFIFO = limitFIFO;
-                //限制池子里最大的Prefab数量
-                refabPool.limitAmount = limitAmount;
-                //开启自动清理池子
-                refabPool.cullDespawned = true;
-                //最终保留
-                refabPool.cullAbove = 20;
-                //多久清理一次
-                refabPool.cullDelay = 15;
-                //每次清理几个
-                refabPool.cullMaxPerPass = 10;
-                //初始化内存池
-                spawnPool._perPrefabPoolOptions.Add( refabPool );
-                spawnPool.CreatePrefabPool( refabPool );
-            }
+            Pool.Despawn( item , Pool.transform );
         }
     }
 }

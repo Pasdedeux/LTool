@@ -43,9 +43,6 @@ namespace PathologicalGames
     [AddComponentMenu("Path-o-logical/PoolManager/SpawnPool")]
     public sealed class SpawnPool : MonoBehaviour, IList<Transform>
     {
-        public List<GameObject> prefabList;
-
-
         #region Inspector Parameters
         /// <summary>
         /// Returns the name of this pool used by PoolManager. This will always be the

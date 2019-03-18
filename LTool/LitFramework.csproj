@@ -83,13 +83,9 @@
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
-    <Compile Include="LitPool\_UnFinishedPool\BasePool.cs" />
-    <Compile Include="LitPool\_UnFinishedPool\BasePoolUnitGroup.cs" />
-    <Compile Include="LitPool\_UnFinishedPool\IPoolUnit.cs" />
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
-    <Compile Include="LitPool\_UnFinishedPool\UnitGroup.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />
@@ -107,6 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
     <Compile Include="Input\InputControlManager.cs" />
+    <Compile Include="ThirdParty\IAd.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />

@@ -79,6 +79,8 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
+    <Compile Include="Crypto\Crypto.cs" />
+    <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Model\BaseFlowModel.cs" />

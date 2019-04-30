@@ -83,7 +83,6 @@
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
-    <Compile Include="GameFlow\Model\BaseFlowModel.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="LitPool\PoolManager.cs" />

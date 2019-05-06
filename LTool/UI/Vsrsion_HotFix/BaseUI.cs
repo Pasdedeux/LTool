@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace LitFramework.HotFix
@@ -41,10 +42,8 @@ namespace LitFramework.HotFix
         {
             IsShowing = true;
 
-            //设置模态窗体调用(弹出窗体)
-            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, CurrentUIType.uiTransparent);
-
+            CheckMask();
+            
             OnEnabled( replay );
             if ( !IsStarted ) DoStart();
             OnShow();
@@ -53,6 +52,13 @@ namespace LitFramework.HotFix
 
             if ( !replay )
                 GameObjectInstance.SetActive( IsShowing );
+        }
+
+        public void CheckMask()
+        {
+            //设置模态窗体调用(弹出窗体)
+            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance, CurrentUIType.uiTransparent );
         }
 
         /// <summary>

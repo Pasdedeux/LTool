@@ -235,11 +235,11 @@ namespace LitFramework.HotFix
             switch( baseUI.CurrentUIType.uiShowMode )
             {
                 case UIShowModeEnum.Parallel:
-                    LoadNormalUI( uiName );
+                    LoadParallelUI( uiName );
                     break;
                 case UIShowModeEnum.Stack:
-                    LoadPopUpUI( uiName );
-                    break;
+                    LoadStackUI( uiName );
+                    break; 
                 case UIShowModeEnum.Unique:
                     LoadUniqueUI( uiName );
                     break;
@@ -274,10 +274,10 @@ namespace LitFramework.HotFix
             switch( baseUI.CurrentUIType.uiShowMode )
             {
                 case UIShowModeEnum.Parallel:
-                    UnLoadNormalUI( uiName , isDestroy );
+                    UnLoadParallelUI( uiName , isDestroy );
                     break;
                 case UIShowModeEnum.Stack:
-                    UnLoadPopUpUI( uiName , isDestroy );
+                    UnLoadStackUI( uiName , isDestroy );
                     break;
                 case UIShowModeEnum.Unique:
                     UnLoadUniqueUI( uiName , isDestroy );
@@ -394,7 +394,7 @@ namespace LitFramework.HotFix
         /// 加载当前窗体到当前窗体集合
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadNormalUI( string uiName )
+        private void LoadParallelUI( string uiName )
         {
             BaseUI baseUI;
             _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
@@ -420,7 +420,7 @@ namespace LitFramework.HotFix
         /// 从当前UI列表缓存中卸载UI窗体
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadNormalUI( string uiName , bool isDestroy = false )
+        private void UnLoadParallelUI( string uiName , bool isDestroy = false )
         {
             BaseUI baseUI;
 
@@ -441,6 +441,22 @@ namespace LitFramework.HotFix
                 _dictCurrentShowUIs.Remove( uiName );
 
             baseUI.Close( isDestroy: isDestroy );
+
+            //如果需要清空已有 popup 窗口
+            if ( baseUI.CurrentUIType.isClearPopUp )
+                ClearPopUpStackArray();
+
+            //正在显示的窗口和栈缓存的窗口再次进行显示处理
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
+            {
+                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
+                else baseui.Show( true );
+            }
+            foreach ( BaseUI baseui in _stackCurrentUI )
+            {
+                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
+                else baseui.Show( true );
+            }
         }
 
         /// <summary>
@@ -462,20 +478,20 @@ namespace LitFramework.HotFix
             }
 
             //正在显示的UI进行隐藏
-            foreach( BaseUI baseui in _dictCurrentShowUIs.Values )
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
-                baseui.Close();
+                baseui.Close( freeze: true );
             }
-            foreach( BaseUI baseui in _stackCurrentUI )
+            foreach ( BaseUI baseui in _stackCurrentUI )
             {
-                baseui.Close();
+                baseui.Close( freeze: true );
             }
 
             //把当前窗体加载到正显示的UI窗口缓存中去
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                _dictCurrentShowUIs.Add( uiName , baseUI );
+                _dictCurrentShowUIs.Add( uiName, baseUI );
                 baseUI.Show();
             }
 
@@ -526,7 +542,7 @@ namespace LitFramework.HotFix
         /// 先冻结栈中窗口，再将此窗口入栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadPopUpUI( string uiName )
+        private void LoadStackUI( string uiName )
         {
             BaseUI baseUI;
 
@@ -558,7 +574,7 @@ namespace LitFramework.HotFix
         /// 弹出窗口，出栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadPopUpUI( string uiName , bool isDestroy = false )
+        private void UnLoadStackUI( string uiName , bool isDestroy = false )
         {
             //有两个以上弹窗出现时
             if( _stackCurrentUI.Count >= 2 )

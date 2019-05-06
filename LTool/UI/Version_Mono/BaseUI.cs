@@ -12,6 +12,7 @@
  * Copyright @ Derek 2018 All rights reserved 
 *****************************************************************/
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,10 +52,8 @@ namespace LitFramework.Mono
         {
             IsShowing = true;
 
-            //设置模态窗体调用(弹出窗体)
-            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow( gameObject, CurrentUIType.uiTransparent );
-
+            CheckMask();
+            
             if ( !replay )
                 gameObject.SetActive( IsShowing );
             else
@@ -67,6 +66,13 @@ namespace LitFramework.Mono
             }
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
+        }
+
+        public void CheckMask()
+        {
+            //设置模态窗体调用(弹出窗体)
+            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+                UIMaskManager.Instance.SetMaskWindow( gameObject, CurrentUIType.uiTransparent );
         }
 
         /// <summary>

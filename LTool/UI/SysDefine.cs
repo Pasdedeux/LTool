@@ -34,17 +34,17 @@ using UnityEngine;
 public enum UINodeTypeEnum
 {
     /// <summary>
-    /// 普通窗体
+    /// 节点 - 普通窗体
     /// <para>一般性可拖动</para>
     /// </summary>
     Normal,
     /// <summary>
-    /// 固定窗体
+    /// 节点 - 固定窗体
     /// <para>用于最底层的全屏界面UI   </para>
     /// </summary>
     Fixed,
     /// <summary>
-    /// 弹出窗体
+    /// 节点 - 弹出窗体，可使用黑色遮罩
     /// </summary>
     PopUp,
 }

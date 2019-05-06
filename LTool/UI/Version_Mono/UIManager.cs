@@ -70,11 +70,11 @@ namespace LitFramework.Mono
         /// <summary>
         /// 缓存已经开启过的所有窗体
         /// </summary>
-        private Dictionary<string , BaseUI> _dictLoadedAllUIs;
+        private Dictionary<string, BaseUI> _dictLoadedAllUIs;
         /// <summary>
         /// 当前显示的非弹出类UI窗体
         /// </summary>
-        private Dictionary<string , BaseUI> _dictCurrentShowUIs;
+        private Dictionary<string, BaseUI> _dictCurrentShowUIs;
         /// <summary>
         /// UI根节点
         /// </summary>
@@ -98,7 +98,7 @@ namespace LitFramework.Mono
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
-        public Func<string , GameObject> LoadResourceFunc;
+        public Func<string, GameObject> LoadResourceFunc;
         /// <summary>
         /// 全局渐变遮罩
         /// </summary>
@@ -133,17 +133,17 @@ namespace LitFramework.Mono
 
         public void Uninstall()
         {
-            while( _stackCurrentUI.Count > 0 )
+            while ( _stackCurrentUI.Count > 0 )
             {
                 BaseUI ui = _stackCurrentUI.Pop();
                 ui.Close( true );
             }
 
-            if( _dictLoadedAllUIs != null )
+            if ( _dictLoadedAllUIs != null )
             {
                 var list = _dictLoadedAllUIs.ToList();
-                for( int i = list.Count - 1; i >= 0; i-- )
-                    Close( list[ i ].Key , true );
+                for ( int i = list.Count - 1; i >= 0; i-- )
+                    Close( list[ i ].Key, true );
                 list = null;
             }
             _allRegisterUIList.Clear();
@@ -179,7 +179,7 @@ namespace LitFramework.Mono
                     callBack.Invoke();
                 return;
             }
-            
+
             _fadeImage.raycastTarget = true;
             _fadeImage.CrossFadeAlpha( 1, time, false );
             if ( callBack != null )
@@ -202,7 +202,7 @@ namespace LitFramework.Mono
             }
 
             _fadeImage.CrossFadeAlpha( 0, time, false );
-            
+
             if ( callBack != null ) DelHideCallBack += callBack;
             DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
             DelHideCallBack += () => { DelHideCallBack = null; };
@@ -221,25 +221,25 @@ namespace LitFramework.Mono
         {
             BaseUI baseUI = null;
 
-            if( string.IsNullOrEmpty( uiName ) )
+            if ( string.IsNullOrEmpty( uiName ) )
                 throw new Exception( "UI--uiName 为 Null" );
 
             //根据名称加载窗体到UI窗体缓存中
             baseUI = LoadUIToAndFromAllList( uiName );
-            if( baseUI == null )
+            if ( baseUI == null )
                 throw new Exception( "UI--baseUI 加载失败" );
 
             //判断是否清空“栈”结构体集合
-            if( baseUI.CurrentUIType.isClearPopUp )
+            if ( baseUI.CurrentUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            switch( baseUI.CurrentUIType.uiShowMode )
+            switch ( baseUI.CurrentUIType.uiShowMode )
             {
                 case UIShowModeEnum.Parallel:
-                    LoadNormalUI( uiName );
+                    LoadParallelUI( uiName );
                     break;
                 case UIShowModeEnum.Stack:
-                    LoadPopUpUI( uiName );
+                    LoadStackUI( uiName );
                     break;
                 case UIShowModeEnum.Unique:
                     LoadUniqueUI( uiName );
@@ -255,13 +255,13 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
-        public void Close( string uiName , bool isDestroy = false )
+        public void Close( string uiName, bool isDestroy = false )
         {
-            if( string.IsNullOrEmpty( uiName ) )
+            if ( string.IsNullOrEmpty( uiName ) )
                 return;
-
+            BaseUI baseUI;
             //所有窗体如果没有记录，直接返回
-            _dictLoadedAllUIs.TryGetValue( uiName, out BaseUI baseUI );
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
             if ( baseUI == null )
             {
                 _dictLoadedAllUIs.Remove( uiName );
@@ -269,27 +269,27 @@ namespace LitFramework.Mono
             }
 
             //不同类型窗体执行各自关闭逻辑
-            switch( baseUI.CurrentUIType.uiShowMode )
+            switch ( baseUI.CurrentUIType.uiShowMode )
             {
                 case UIShowModeEnum.Parallel:
-                    UnLoadNormalUI( uiName , isDestroy );
+                    UnLoadParallelUI( uiName, isDestroy );
                     break;
                 case UIShowModeEnum.Stack:
-                    UnLoadPopUpUI( uiName , isDestroy );
+                    UnLoadStackUI( uiName, isDestroy );
                     break;
                 case UIShowModeEnum.Unique:
-                    UnLoadUniqueUI( uiName , isDestroy );
+                    UnLoadUniqueUI( uiName, isDestroy );
                     break;
                 default:
                     throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
             }
 
             //销毁
-            if( isDestroy )
+            if ( isDestroy )
             {
                 BaseUI ui = null;
-                _dictLoadedAllUIs.TryGetValue( uiName , out ui );
-                if( ui != null )
+                _dictLoadedAllUIs.TryGetValue( uiName, out ui );
+                if ( ui != null )
                     ui.Close( true );
                 _dictLoadedAllUIs.Remove( uiName );
             }
@@ -302,9 +302,9 @@ namespace LitFramework.Mono
         /// </summary>
         public bool ClearPopUpStackArray()
         {
-            if( _stackCurrentUI != null && _stackCurrentUI.Count > 0 )
+            if ( _stackCurrentUI != null && _stackCurrentUI.Count > 0 )
             {
-                foreach( var stackUI in _stackCurrentUI )
+                foreach ( var stackUI in _stackCurrentUI )
                 {
                     stackUI.Close();
                 }
@@ -322,8 +322,8 @@ namespace LitFramework.Mono
         private BaseUI LoadUIToAndFromAllList( string uiName )
         {
             BaseUI result = null;
-            _dictLoadedAllUIs.TryGetValue( uiName , out result );
-            if( result == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out result );
+            if ( result == null )
                 result = LoadUI( uiName );
             return result;
         }
@@ -345,14 +345,14 @@ namespace LitFramework.Mono
             GameObject prefClone = null;
 
             //加载预制体
-            if( !string.IsNullOrEmpty( uiName ) )
+            if ( !string.IsNullOrEmpty( uiName ) )
                 prefClone = LoadResourceFunc != null ? LoadResourceFunc( uiName ) : null;
-            if( prefClone == null )
+            if ( prefClone == null )
                 throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
             prefClone = GameObject.Instantiate( prefClone );
 
             //设置父节点
-            if( _transCanvas != null && prefClone != null )
+            if ( _transCanvas != null && prefClone != null )
             {
                 baseUI = prefClone.GetComponent<BaseUI>();
                 if ( prefClone == null )
@@ -362,26 +362,26 @@ namespace LitFramework.Mono
                 if ( baseUI == null )
                 { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
-                switch( baseUI.CurrentUIType.uiNodeType )
+                switch ( baseUI.CurrentUIType.uiNodeType )
                 {
                     case UINodeTypeEnum.Normal:
-                        prefClone.transform.SetParent( _transNormal , false );
+                        prefClone.transform.SetParent( _transNormal, false );
                         break;
                     case UINodeTypeEnum.Fixed:
-                        prefClone.transform.SetParent( _transFixed , false );
+                        prefClone.transform.SetParent( _transFixed, false );
                         break;
                     case UINodeTypeEnum.PopUp:
-                        prefClone.transform.SetParent( _transPopUp , false );
+                        prefClone.transform.SetParent( _transPopUp, false );
                         break;
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
                 }
 
                 //加入到所有窗体缓存中
-                _dictLoadedAllUIs.Add( uiName , baseUI );
+                _dictLoadedAllUIs.Add( uiName, baseUI );
                 return baseUI;
             }
-            
+
             Debug.Log( "窗体加载失败！" );
             return null;
         }
@@ -389,25 +389,27 @@ namespace LitFramework.Mono
         /// <summary>
         /// 加载当前窗体到当前窗体集合
         /// </summary>
-        private void LoadNormalUI( string uiName )
+        private void LoadParallelUI( string uiName )
         {
             BaseUI baseUI;
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
                     baseUI.Show();
+
                 return;
             }
 
             //加载当前窗体到当前显示集合
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                _dictCurrentShowUIs.Add( uiName , baseUI );
+                _dictCurrentShowUIs.Add( uiName, baseUI );
                 baseUI.Show();
+
             }
         }
 
@@ -415,20 +417,20 @@ namespace LitFramework.Mono
         /// 从当前UI列表缓存中卸载UI窗体
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadNormalUI( string uiName , bool isDestroy = false )
+        private void UnLoadParallelUI( string uiName, bool isDestroy = false )
         {
             BaseUI baseUI;
 
             //当前UI显示列表中没有记录或者总表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI == null )
             {
-                if( !isDestroy )
+                if ( !isDestroy )
                     return;
                 else
-                    _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
+                    _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
 
-                if( baseUI == null )
+                if ( baseUI == null )
                     return;
             }
             else
@@ -436,6 +438,22 @@ namespace LitFramework.Mono
                 _dictCurrentShowUIs.Remove( uiName );
 
             baseUI.Close( isDestroy: isDestroy );
+
+            //如果需要清空已有 popup 窗口
+            if ( baseUI.CurrentUIType.isClearPopUp )
+                ClearPopUpStackArray();
+
+            //正在显示的窗口和栈缓存的窗口再次进行显示处理
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
+            {
+                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
+                else baseui.Show( true );
+            }
+            foreach ( BaseUI baseui in _stackCurrentUI )
+            {
+                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
+                else baseui.Show( true );
+            }
         }
 
         /// <summary>
@@ -446,10 +464,10 @@ namespace LitFramework.Mono
         {
             BaseUI baseUI;
             //当前UI显示列表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
                     baseUI.Show();
@@ -457,20 +475,20 @@ namespace LitFramework.Mono
             }
 
             //正在显示的UI进行隐藏
-            foreach( BaseUI baseui in _dictCurrentShowUIs.Values )
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
-                baseui.Close();
+                baseui.Close( freeze: true );
             }
-            foreach( BaseUI baseui in _stackCurrentUI )
+            foreach ( BaseUI baseui in _stackCurrentUI )
             {
-                baseui.Close();
+                baseui.Close( freeze: true );
             }
 
             //把当前窗体加载到正显示的UI窗口缓存中去
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                _dictCurrentShowUIs.Add( uiName , baseUI );
+                _dictCurrentShowUIs.Add( uiName, baseUI );
                 baseUI.Show();
             }
 
@@ -480,19 +498,19 @@ namespace LitFramework.Mono
         /// 卸载当前UI，并将原先被隐藏的UI重新显示
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadUniqueUI( string uiName , bool isDestroy = false )
+        private void UnLoadUniqueUI( string uiName, bool isDestroy = false )
         {
             BaseUI baseUI;
 
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI == null )
             {
-                if( !isDestroy )
+                if ( !isDestroy )
                     return;
                 else
-                    _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
+                    _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
 
-                if( baseUI == null )
+                if ( baseUI == null )
                     return;
             }
             else
@@ -502,15 +520,15 @@ namespace LitFramework.Mono
             baseUI.Close( isDestroy: isDestroy );
 
             //如果需要清空已有 popup 窗口
-            if( baseUI.CurrentUIType.isClearPopUp )
+            if ( baseUI.CurrentUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            foreach( BaseUI baseui in _dictCurrentShowUIs.Values )
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
                 baseui.Show( true );
             }
-            foreach( BaseUI baseui in _stackCurrentUI )
+            foreach ( BaseUI baseui in _stackCurrentUI )
             {
                 baseui.Show( true );
             }
@@ -521,27 +539,27 @@ namespace LitFramework.Mono
         /// 先冻结栈中窗口，再将此窗口入栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadPopUpUI( string uiName )
+        private void LoadStackUI( string uiName )
         {
             BaseUI baseUI;
 
             //判断栈里是否有窗口，有则冻结响应
-            if( _stackCurrentUI.Count > 0 )
+            if ( _stackCurrentUI.Count > 0 )
             {
                 BaseUI topUI = _stackCurrentUI.Peek();
                 topUI.Close( freeze: true );
             }
 
             //获取当前UI，进行展示处理
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
                     baseUI.Show();
 
-                if( !_stackCurrentUI.Contains( baseUI ) )
+                if ( !_stackCurrentUI.Contains( baseUI ) )
                     //该弹出UI入栈
                     _stackCurrentUI.Push( baseUI );
             }
@@ -553,10 +571,10 @@ namespace LitFramework.Mono
         /// 弹出窗口，出栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadPopUpUI( string uiName , bool isDestroy = false )
+        private void UnLoadStackUI( string uiName, bool isDestroy = false )
         {
             //有两个以上弹窗出现时
-            if( _stackCurrentUI.Count >= 2 )
+            if ( _stackCurrentUI.Count >= 2 )
             {
                 //第一个出栈
                 BaseUI topUI = _stackCurrentUI.Pop();
@@ -567,7 +585,7 @@ namespace LitFramework.Mono
                 nextUI.Show( true );
             }
             //当前只有一个弹窗
-            else if( _stackCurrentUI.Count == 1 )
+            else if ( _stackCurrentUI.Count == 1 )
             {
                 //出栈的窗体进行隐藏
                 BaseUI topUI = _stackCurrentUI.Pop();
@@ -583,7 +601,7 @@ namespace LitFramework.Mono
         public BaseUI GetUIByName( string name )
         {
             BaseUI baseUI;
-            _dictLoadedAllUIs.TryGetValue( name , out baseUI );
+            _dictLoadedAllUIs.TryGetValue( name, out baseUI );
             return baseUI;
         }
 
@@ -593,7 +611,7 @@ namespace LitFramework.Mono
         /// </summary>
         public void OnEscapeCallback()
         {
-            if (_stackCurrentUI.Count > 0)
+            if ( _stackCurrentUI.Count > 0 )
             {
                 var baseUi = _stackCurrentUI.Pop();
                 baseUi.Close();

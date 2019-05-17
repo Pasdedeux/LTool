@@ -108,7 +108,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
     <Compile Include="Input\InputControlManager.cs" />
-    <Compile Include="ThirdParty\IAd.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
@@ -118,10 +117,12 @@
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
+    <Compile Include="Unity\LDebug.cs" />
     <Compile Include="Unity\LMath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameFlow\View\" />
+    <Folder Include="ThirdParty\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,74 @@
+﻿/*======================================
+* 项目名称 ：LitFramework.Unity
+* 项目描述 ：
+* 类 名 称 ：LDebug
+* 类 描 述 ：一个自定义的日志输出
+* 命名空间 ：LitFramework.Unity
+* 机器名称 ：DEREK-SURFACEPR 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：Derek Liu
+* 创建时间 ：2019/5/17 16:40:02
+* 更新时间 ：2019/5/17 16:40:02
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ Inplayable 2019. All rights reserved.
+*******************************************************************
+
+-------------------------------------------------------------------
+*Fix Note:  首版本增加颜色控制，便于阅读，根据需要支持更多类型
+*修改时间：2019/5/17 16:40:02
+*修改人： Derek Liu
+*版本号： V1.0.0.0
+*描述：
+*
+======================================*/
+
+
+using System.Collections;
+
+namespace LitFramework.Unity
+{
+    public enum LogColor
+    {
+        white,
+        red,
+        yellow,
+        green,
+        blue,
+        purple,
+        orange,
+        grey
+    }
+
+    public static class LDebug
+    {
+        public static bool Enable { get; set; }
+
+        public static void Log( string content, LogColor color = LogColor.white )
+        {
+            if ( !Enable ) return;
+            UnityEngine.Debug.LogFormat( "<color={0}>{1}</color>", color, content );
+        }
+
+        public static void LogWarning( string content, LogColor color = LogColor.white )
+        {
+            if ( !Enable ) return;
+            UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
+        }
+
+        public static void LogError( string content, LogColor color = LogColor.white )
+        {
+            if ( !Enable ) return;
+            UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );
+        }
+
+        public static void LogForEach(ICollection contens, LogColor color = LogColor.white )
+        {
+            if ( !Enable ) return;
+            foreach ( var item in contens )
+            {
+                UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, item.ToString() );
+            }
+        }
+    }
+}

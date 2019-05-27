@@ -30,6 +30,7 @@ namespace LitFramework.Unity
 {
     public enum LogColor
     {
+        black,
         white,
         red,
         yellow,
@@ -44,25 +45,25 @@ namespace LitFramework.Unity
     {
         public static bool Enable { get; set; }
 
-        public static void Log( string content, LogColor color = LogColor.white )
+        public static void Log( string content, LogColor color = LogColor.black )
         {
             if ( !Enable ) return;
             UnityEngine.Debug.LogFormat( "<color={0}>{1}</color>", color, content );
         }
 
-        public static void LogWarning( string content, LogColor color = LogColor.white )
+        public static void LogWarning( string content, LogColor color = LogColor.black )
         {
             if ( !Enable ) return;
             UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
         }
 
-        public static void LogError( string content, LogColor color = LogColor.white )
+        public static void LogError( string content, LogColor color = LogColor.black )
         {
             if ( !Enable ) return;
             UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );
         }
 
-        public static void LogForEach(ICollection contens, LogColor color = LogColor.white )
+        public static void LogForEach(ICollection contens, LogColor color = LogColor.black )
         {
             if ( !Enable ) return;
             foreach ( var item in contens )

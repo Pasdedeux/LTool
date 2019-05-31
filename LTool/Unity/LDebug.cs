@@ -26,50 +26,47 @@
 
 using System.Collections;
 
-namespace LitFramework.Unity
+public enum LogColor
 {
-    public enum LogColor
+    black,
+    white,
+    red,
+    yellow,
+    green,
+    blue,
+    purple,
+    orange,
+    grey
+}
+
+public static class LDebug
+{
+    public static bool Enable { get; set; }
+
+    public static void Log( string content, LogColor color = LogColor.black )
     {
-        black,
-        white,
-        red,
-        yellow,
-        green,
-        blue,
-        purple,
-        orange,
-        grey
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogFormat( "<color={0}>{1}</color>", color, content );
     }
 
-    public static class LDebug
+    public static void LogWarning( string content, LogColor color = LogColor.black )
     {
-        public static bool Enable { get; set; }
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
+    }
 
-        public static void Log( string content, LogColor color = LogColor.black )
-        {
-            if ( !Enable ) return;
-            UnityEngine.Debug.LogFormat( "<color={0}>{1}</color>", color, content );
-        }
+    public static void LogError( string content, LogColor color = LogColor.black )
+    {
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );
+    }
 
-        public static void LogWarning( string content, LogColor color = LogColor.black )
+    public static void LogForEach( ICollection contens, LogColor color = LogColor.black )
+    {
+        if ( !Enable ) return;
+        foreach ( var item in contens )
         {
-            if ( !Enable ) return;
-            UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
-        }
-
-        public static void LogError( string content, LogColor color = LogColor.black )
-        {
-            if ( !Enable ) return;
-            UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );
-        }
-
-        public static void LogForEach(ICollection contens, LogColor color = LogColor.black )
-        {
-            if ( !Enable ) return;
-            foreach ( var item in contens )
-            {
-                UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, item.ToString() );
-            }
+            UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, item.ToString() );
         }
     }
 }

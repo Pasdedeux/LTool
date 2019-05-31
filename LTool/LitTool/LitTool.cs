@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace LitFramework.LitTool
 {
@@ -100,6 +100,10 @@ namespace LitFramework.LitTool
             {
                 return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
             }
+            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) ) 
+            {
+                return string.Format( "{0:00}:{1:00}:{2:00}", _timtSpan.Hours, _timtSpan.Minutes, _timtSpan.Seconds );
+            }
             return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
         }
 
@@ -131,6 +135,41 @@ namespace LitFramework.LitTool
             return targetDt;
         }
 
+        #endregion
+
+        #region UI格式扩展
+        public static void CreateLinkStyle( Text target, string contents, string style = "_" )
+        {
+            if ( target == null )
+                return;
+            //克隆Text，获得相同的属性  
+            Text underline = Instantiate( target ) as Text;
+            underline.name = "lhw";
+            underline.transform.SetParent( target.transform );
+            target.text = contents;
+            RectTransform rt = underline.rectTransform;
+            //设置下划线坐标和位置  
+            rt.anchoredPosition3D = Vector3.zero;
+            rt.offsetMax = Vector2.zero;
+            rt.offsetMin = Vector2.zero;
+            rt.anchorMax = Vector2.one;
+            rt.anchorMin = Vector2.zero;
+            underline.text = style;
+            float perlineWidth = underline.preferredWidth;      //单个下划线宽度  
+            LDebug.Log( perlineWidth.ToString() );
+            float width = target.preferredWidth;
+            LDebug.Log( width.ToString() );
+            int lineCount = ( int )Mathf.Round( width / perlineWidth );
+            LDebug.Log( lineCount.ToString() );
+
+            StringBuilder sb = new StringBuilder();
+            for ( int k = 0; k < lineCount; k++ )
+            {
+                sb.Append( style );
+            }
+            underline.text += sb.ToString();
+            underline.transform.localScale = Vector3.one;
+        }
         #endregion
     }
 

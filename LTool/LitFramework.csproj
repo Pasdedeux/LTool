@@ -110,6 +110,8 @@
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="ThirdParty\AD\IAd.cs" />
+    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />

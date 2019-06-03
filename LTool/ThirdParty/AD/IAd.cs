@@ -30,14 +30,14 @@ public interface IAdPlatform
     void CreateBanner();
     void ShowBanner();
     void HideBanner( bool destroy );
-    void InitBannerCallBack();
+    //void InitBannerCallBack();
     #endregion
 
     #region Interstitial
     void CreateInterstitial();
     void ShowInterstitial();
     void HideInterstitial();
-    void InitInitCallBack();
+    //void InitInitCallBack();
     bool IsIntersititialReady();
     #endregion
 
@@ -45,7 +45,7 @@ public interface IAdPlatform
     void CreateRewarded();
     void ShowRewarded();
     void HideRewarded();
-    void InitRewardedCallBack();
+    //void InitRewardedCallBack();
     bool IsRewardedVideoAvailable();
     #endregion
 

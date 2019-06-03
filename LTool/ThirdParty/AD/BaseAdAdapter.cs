@@ -33,6 +33,10 @@ public abstract class BaseAdAdapter : IAdPlatform
     public BaseAdAdapter()
     {
         Init();
+
+        InitInitCallBack();
+        InitBannerCallBack();
+        InitRewardedCallBack();
     }
 
     public abstract void Init();
@@ -60,11 +64,11 @@ public abstract class BaseAdAdapter : IAdPlatform
 
     public virtual void HideRewarded() { }
 
-    public abstract void InitBannerCallBack();
+    protected abstract void InitBannerCallBack();
 
-    public abstract void InitInitCallBack();
+    protected abstract void InitInitCallBack();
 
-    public abstract void InitRewardedCallBack();
+    protected abstract void InitRewardedCallBack();
 
     public abstract void ShowBanner();
 

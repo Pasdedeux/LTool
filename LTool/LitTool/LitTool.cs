@@ -138,7 +138,7 @@ namespace LitFramework.LitTool
         #endregion
 
         #region UI格式扩展
-        public static void CreateLinkStyle( Text target, string contents, string style = "_" )
+        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false )
         {
             if ( target == null )
                 return;
@@ -146,6 +146,7 @@ namespace LitFramework.LitTool
             Text underline = Instantiate( target ) as Text;
             underline.name = "lhw";
             underline.transform.SetParent( target.transform );
+            underline.alignByGeometry = alignByGeometry;
             target.text = contents;
             RectTransform rt = underline.rectTransform;
             //设置下划线坐标和位置  

@@ -87,10 +87,13 @@ namespace LitFramework.HotFix
 
             IsShowing = false;
 
+            OnClose();
+
             if ( isDestroy )
                 DoDestroy();
         }
 
+        public virtual void OnClose() { }
 
         ///<inheritdoc/>
         /// <remarks>

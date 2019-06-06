@@ -106,10 +106,13 @@ namespace LitFramework.Mono
                 _waitForStartFunc = null;
             }
 
+            OnClose();
+
             if ( isDestroy )
                 DoDestroy();
         }
 
+        public virtual void OnClose() { }
 
         ///<inheritdoc/>
         /// <remarks>

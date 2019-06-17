@@ -84,6 +84,7 @@ namespace LitFramework.LitTool
 
         #region 时间转换工具
 
+        private static DateTime _dateStart = new DateTime( 1970, 1, 1, 8, 0, 0 );
         private static TimeSpan _timtSpan = new TimeSpan(); 
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
@@ -98,11 +99,11 @@ namespace LitFramework.LitTool
             //todo 尚待扩展
             if ( format.Equals( "{0:00}:{1:00}" ) )
             {
-                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes + (  _timtSpan.Days * 24 * 60  ) , _timtSpan.Seconds );
             }
             else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) ) 
             {
-                return string.Format( "{0:00}:{1:00}:{2:00}", _timtSpan.Hours, _timtSpan.Minutes, _timtSpan.Seconds );
+                return string.Format( "{0:00}:{1:00}:{2:00}", ( _timtSpan.Hours + ( _timtSpan.Days * 24 ) ), _timtSpan.Minutes, _timtSpan.Seconds );
             }
             return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
         }
@@ -115,8 +116,7 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static int GetTimeStamp( DateTime dt )
         {
-            DateTime dateStart = new DateTime( 1970, 1, 1, 8, 0, 0 );
-            int timeStamp = Convert.ToInt32( ( dt - dateStart ).TotalSeconds );
+            int timeStamp = Convert.ToInt32( ( dt - _dateStart ).TotalSeconds );
             return timeStamp;
         }
 
@@ -128,7 +128,7 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static DateTime GetDateTime( int timeStamp )
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime( new DateTime( 1970, 1, 1 ) );
+            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime( _dateStart );
             long lTime = ( ( long )timeStamp * 10000000 );
             TimeSpan toNow = new TimeSpan( lTime );
             DateTime targetDt = dtStart.Add( toNow );
@@ -138,12 +138,30 @@ namespace LitFramework.LitTool
         #endregion
 
         #region UI格式扩展
-        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false )
+        private static List<Component> _textComponets = new List<Component>( 8 );
+        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false /*, bool removeAllComponents = true*/ )
         {
             if ( target == null )
                 return;
             //克隆Text，获得相同的属性  
             Text underline = Instantiate( target ) as Text;
+
+            //if ( removeAllComponents )
+            //{
+            //    var components = underline.GetComponents<Component>();
+            //    for ( int i = 0; i < components.Length; i++ )
+            //    {
+            //        var component = components[ i ];
+            //        if ( component is RectTransform || component is Text || component is Shadow ) continue;
+            //        _textComponets.Add( component );
+            //    }
+            //    for ( int i = _textComponets.Count - 1; i > -1; i-- )
+            //    {
+            //        DestroyImmediate( _textComponets[ i ] );
+            //    }
+            //    _textComponets.Clear();
+            //}
+
             underline.name = "lhw";
             underline.transform.SetParent( target.transform );
             underline.alignByGeometry = alignByGeometry;

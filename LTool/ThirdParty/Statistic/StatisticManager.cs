@@ -32,36 +32,34 @@ using LitFramework.Base;
 
 namespace Assets.Scripts
 {
-    public class StatisticManager : Singleton<StatisticManager>,IManager
+    public class StatisticManager : Singleton<StatisticManager>, IManager
     {
         public Action<StatisticManager> InstallEventHandler;
         //统计绑定接口
         public event Action<string, string, string> DOTEventHandler;
         public List<BaseStatistician> StatisticianList { get; set; }
 
-        public void DOT( string key, string value, string tag = null )
+        public void DOT( string key, string value = null, string tag = null )
         {
             if ( DOTEventHandler != null )
-            {
                 DOTEventHandler.Invoke( key, value, tag );
-            }
         }
 
         public void Install()
         {
             StatisticianList = new List<BaseStatistician>();
-            if ( InstallEventHandler != null ) InstallEventHandler( this );
+            InstallEventHandler?.Invoke( this );
         }
 
         public void Uninstall()
         {
-            for ( int i = StatisticianList.Count-1; i > -1; i-- )
+            for ( int i = StatisticianList.Count - 1; i > -1; i-- )
             {
                 StatisticianList[ i ].Dispose();
                 StatisticianList[ i ] = null;
                 StatisticianList.RemoveAt( i );
             }
-            
+
             StatisticianList.Clear();
             StatisticianList = null;
             InstallEventHandler = null;

@@ -82,3 +82,42 @@ public abstract class BaseAdAdapter : IAdPlatform
 
     public virtual void OnApplicationPause( bool pause ) { }
 }
+
+public class BlankAdapter : BaseAdAdapter
+{
+    public override void CreateBanner() { }
+
+    public override void CreateInterstitial() { }
+
+    public override void CreateRewarded() { }
+
+    public override void HideBanner( bool destroy ) { }
+
+    public override void HideInterstitial() { }
+
+    public override void Init() { }
+
+    public override bool IsIntersititialReady()
+    {
+        return false;
+    }
+
+    public override bool IsRewardedVideoAvailable()
+    {
+        return false;
+    }
+
+    public override void ShowBanner() { }
+
+    public override void ShowInterstitial() { }
+
+    public override void ShowRewarded() { }
+
+    public override void SubDispose() { }
+
+    protected override void InitBannerCallBack() { }
+
+    protected override void InitInitCallBack() { }
+
+    protected override void InitRewardedCallBack() { }
+}

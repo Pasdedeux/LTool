@@ -44,6 +44,7 @@ namespace Assets.Scripts
 
         public void Dispose()
         {
+            staticMng.StatisticianList.Remove( this );
             staticMng.DOTEventHandler -= DOT;
             staticMng = null;
         }

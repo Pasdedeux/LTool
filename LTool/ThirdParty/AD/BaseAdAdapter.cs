@@ -34,8 +34,8 @@ public abstract class BaseAdAdapter : IAdPlatform
     {
         Init();
 
-        InitInitCallBack();
         InitBannerCallBack();
+        InitInterstitialCallBack();
         InitRewardedCallBack();
     }
 
@@ -66,7 +66,7 @@ public abstract class BaseAdAdapter : IAdPlatform
 
     protected abstract void InitBannerCallBack();
 
-    protected abstract void InitInitCallBack();
+    protected abstract void InitInterstitialCallBack();
 
     protected abstract void InitRewardedCallBack();
 
@@ -117,7 +117,7 @@ public class BlankAdapter : BaseAdAdapter
 
     protected override void InitBannerCallBack() { }
 
-    protected override void InitInitCallBack() { }
+    protected override void InitInterstitialCallBack() { }
 
     protected override void InitRewardedCallBack() { }
 }

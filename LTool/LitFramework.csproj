@@ -82,12 +82,6 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
-    <Compile Include="Crypto\Crypto.cs" />
-    <Compile Include="Crypto\CryptoMD5.cs" />
-    <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="GameFlow\Controller\GameFlowController.cs" />
-    <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
-    <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
@@ -113,8 +107,6 @@
     <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
     <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />
@@ -123,8 +115,12 @@
     <Compile Include="UI\UnityHelper.cs" />
     <Compile Include="Unity\LDebug.cs" />
     <Compile Include="Unity\LMath.cs" />
+    <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="GameFlow\Controller\" />
+    <Folder Include="GameFlow\Manager\" />
+    <Folder Include="GameFlow\Model\" />
     <Folder Include="GameFlow\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

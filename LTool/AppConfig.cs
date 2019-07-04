@@ -24,6 +24,9 @@ using System.Text;
 
 namespace LitFramework
 {
+    /// <summary>
+    ///  Respect
+    /// </summary>
     public class AppConfig
     {
         

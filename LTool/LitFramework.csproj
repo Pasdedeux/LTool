@@ -105,9 +105,13 @@
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="ThirdParty\AD\IAd.cs" />
+    <Compile Include="ThirdParty\IAP\Purchaser.cs" />
+    <Compile Include="ThirdParty\IAP\StoreItem.cs" />
     <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
     <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
+    <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
+    <Compile Include="UI\Base\IViewModel.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />

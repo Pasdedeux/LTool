@@ -72,6 +72,7 @@ namespace LitFramework.Input
 
         //触碰阶段外发函数
         public event Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
+
         private Vector2 _touchBeginPos;
         private Vector2 _touchEndPos;
         private EventSystem _currentEventSys;
@@ -125,9 +126,9 @@ namespace LitFramework.Input
             var eventsys = GameObject.Find( "EventSystem" );
             if ( eventsys == null )
             {
-                GameObject go = new GameObject( "EventSystem" );
-                go.AddComponent<StandaloneInputModule>();
-                go.AddComponent<EventSystem>();
+                eventsys = new GameObject( "EventSystem" );
+                eventsys.AddComponent<StandaloneInputModule>();
+                eventsys.AddComponent<EventSystem>();
             }
             _currentEventSys = eventsys.GetComponent<EventSystem>();
 
@@ -154,10 +155,10 @@ namespace LitFramework.Input
         }
 
 
-        void Update()
+        public void InputUpdateHandler()
         {
             //点击返回
-            if (Input.GetKeyDown( KeyCode.Escape ))
+            if ( Input.GetKeyDown( KeyCode.Escape ) )
                 EscapeBtnClick();
 
             if ( _isInit && IsEnable )
@@ -167,15 +168,15 @@ namespace LitFramework.Input
                     //是否点击到UI界面
                     if ( Input.touchCount > 0 )
                     {
-                        _touchResult =GetTouchMoveDirection( _touchResult );
-                        if( CurrentIsOnUI )
+                        _touchResult = GetTouchMoveDirection( _touchResult );
+                        if ( CurrentIsOnUI )
                             IsTouchedOnUICallBack?.Invoke( true );
                     }
                     else _touchResult = TouchDirection.None;
                 }
-                else if( _currentPlatform == PLATFORM_WINDOWEDITOR || _currentPlatform == PLATFORM_IOSEDITOR )
+                else if ( _currentPlatform == PLATFORM_WINDOWEDITOR || _currentPlatform == PLATFORM_IOSEDITOR )
                 {
-                    if ( Input.GetMouseButtonDown(0) )
+                    if ( Input.GetMouseButtonDown( 0 ) )
                     {
                         //点击UI检测
                         if ( EventSystem.current.IsPointerOverGameObject() )
@@ -191,7 +192,12 @@ namespace LitFramework.Input
                         TouchBeganCallback?.Invoke( Input.mousePosition );
                     }
 
-                    if ( Input.GetMouseButtonUp(0))
+                    if ( Input.GetButton( "Fire1" ) )
+                    {
+                        TouchMoveCallback?.Invoke( Input.mousePosition );
+                    }
+
+                    if ( Input.GetMouseButtonUp( 0 ) )
                     {
                         TouchEndCallback?.Invoke( Input.mousePosition );
                         CalculateTimeByPressOver( Input.mousePosition );
@@ -252,8 +258,6 @@ namespace LitFramework.Input
                 if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
                     dirResult |= TouchDirection.OnUI;
 
-                Debug.Log( ">>>>>>>>>>" + Input.touches[ 0 ].phase );
-
                 if ( Input.touches[ 0 ].phase != TouchPhase.Canceled )
                 {
                     Vector2 inputPos = Input.touches[ 0 ].position;
@@ -265,7 +269,6 @@ namespace LitFramework.Input
                             break;
                         case TouchPhase.Ended:
                             _touchEndPos = inputPos;
-
                             TouchEndCallback?.Invoke( inputPos );
                             if ( Vector2.Distance( _touchBeginPos, _touchEndPos ) < MOVE_MIX_DISTANCE )
                                 return dirResult;

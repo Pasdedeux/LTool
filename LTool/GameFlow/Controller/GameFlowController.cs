@@ -62,7 +62,7 @@ namespace LitFramework.GameFlow
         /// <param name="isAdditive"></param>
         public void ChangeScene( int sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isHot = false, bool isAdditive = false )
         {
-            _iUIManger = isHot ? ( ( IUIManager )HotFix.UIManager.Instance ) : ( ( IUIManager )Mono.UIManager.Instance );
+            _iUIManger = Mono.UIManager.Instance;
             _iUIManger.UseFading = needFading;
 
             //No UIloading && No Fading
@@ -97,7 +97,7 @@ namespace LitFramework.GameFlow
             }
 
             //UIloading && No Fading
-            else if( !string.IsNullOrEmpty( loadingUIPath ) && !needFading )
+            else if ( !string.IsNullOrEmpty( loadingUIPath ) && !needFading )
             {
                 // 默认占用0帧
                 LoadingTaskModel.Instance.AddTask( 0, () =>
@@ -113,7 +113,6 @@ namespace LitFramework.GameFlow
                 LoadingTaskModel.Instance.AddTask( 1, () =>
                 {
                     bool over = _asyncOperation.progress >= 0.9f;
-                    if ( over ) _asyncOperation.allowSceneActivation = true;
                     return over;
                 }, true );
 
@@ -121,6 +120,7 @@ namespace LitFramework.GameFlow
                 LoadingTaskModel.Instance.AddTask( 100, () =>
                 {
                     LoadingTaskModel.Instance.ClearTask();
+                    _asyncOperation.allowSceneActivation = true;
                     callBackAfterChanging?.Invoke();
 
                     _iUIManger.Close( loadingUIPath );
@@ -155,7 +155,6 @@ namespace LitFramework.GameFlow
                     LoadingTaskModel.Instance.AddTask( 1, () =>
                     {
                         bool over = _asyncOperation.progress >= 0.9f;
-                        if ( over ) _asyncOperation.allowSceneActivation = true;
                         return over;
                     }, true );
 
@@ -165,16 +164,16 @@ namespace LitFramework.GameFlow
                         _iUIManger.ShowFade( fadingTime, () =>
                         {
                             LoadingTaskModel.Instance.ClearTask();
+                            _asyncOperation.allowSceneActivation = true;
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );
                             _iUIManger.HideFade( fadingTime );
-                        });
+                        } );
                         return true;
                     }, true );
                 } );
             }
-
         }
 
 

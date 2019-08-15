@@ -103,7 +103,7 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <returns></returns>
         private Action DelHideCallBack = null;
-
+        public Image FadeImage { get { return _fadeImage; } }
 
         public void Install()
         {

@@ -82,6 +82,9 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
+    <Compile Include="GameFlow\Controller\GameFlowController.cs" />
+    <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
+    <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\SpawnManager.cs" />
@@ -123,9 +126,6 @@
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GameFlow\Controller\" />
-    <Folder Include="GameFlow\Manager\" />
-    <Folder Include="GameFlow\Model\" />
     <Folder Include="GameFlow\View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -49,6 +49,8 @@ namespace LitFramework.Mono
     /// </summary>
     public class UIManager : Singleton<UIManager>,IManager,IUIManager
     {
+        public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
+
         private bool _useFading = true;
         public bool UseFading
         {
@@ -108,6 +110,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <returns></returns>
         private Action DelHideCallBack = null;
+        public Image FadeImage { get { return _fadeImage; } }
 
         public void Install()
         {
@@ -171,7 +174,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public void ShowFade( float time, Action callBack = null )
+        public virtual void ShowFade( float time, Action callBack = null )
         {
             if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -179,8 +182,10 @@ namespace LitFramework.Mono
                     callBack.Invoke();
                 return;
             }
-
             _fadeImage.raycastTarget = true;
+
+            if( FadeStartAction != null ) { FadeStartAction( time, callBack );return; }
+
             _fadeImage.CrossFadeAlpha( 1, time, false );
             if ( callBack != null )
                 LitTool.LitTool.DelayPlayFunction( time, callBack );
@@ -192,7 +197,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public void HideFade( float time, Action callBack = null )
+        public virtual void HideFade( float time, Action callBack = null )
         {
             if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -201,10 +206,14 @@ namespace LitFramework.Mono
                 return;
             }
 
-            _fadeImage.CrossFadeAlpha( 0, time, false );
+            if ( FadeHideAction == null ) _fadeImage.CrossFadeAlpha( 0, time, false );
 
             if ( callBack != null ) DelHideCallBack += callBack;
-            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
+            DelHideCallBack += () => 
+            {
+                _fadeImage.raycastTarget = false;
+                FadeHideAction?.Invoke( time, callBack );
+            };
             DelHideCallBack += () => { DelHideCallBack = null; };
             LitTool.LitTool.DelayPlayFunction( time, DelHideCallBack );
         }

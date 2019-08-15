@@ -42,6 +42,7 @@ public class ResourceManager : Singleton<ResourceManager>, IManager
     public void Uninstall()
     {
         _atlasDict.Clear();
+        Resources.UnloadUnusedAssets();
     }
 
     public Sprite LoadSprite( string spriteName, string atlasPath = null )

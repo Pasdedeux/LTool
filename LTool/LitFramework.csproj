@@ -28,7 +28,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;IAP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -52,6 +52,12 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apple">
+      <HintPath>.\Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>.\ChannelPurchase.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus">
       <HintPath>.\EPPlus.dll</HintPath>
     </Reference>
@@ -60,6 +66,9 @@
     </Reference>
     <Reference Include="Purchasing.Common">
       <HintPath>.\Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>.\Stores.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,8 +82,14 @@
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>.\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>.\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>.\UnityStore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

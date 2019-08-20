@@ -11,7 +11,7 @@ using UnityEngine.Purchasing;
 // Placing the Purchaser class in the CompleteProject namespace allows it to interact with ScoreManager
 // Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
 public class Purchaser : SingletonMono<Purchaser>
-    #if IAP
+#if IAP
     , IStoreListener
 #endif
 {
@@ -19,6 +19,7 @@ public class Purchaser : SingletonMono<Purchaser>
     public List<string> fakePrice;
     public List<string> fakeDesc;
     public List<string> fakeName;
+    public List<string> Rewards;
 #if IAP
     public event Action<string> ProcessPurchaseEventHandler;
     public event Action<ProductCollection> InitializedEventHandler;
@@ -40,7 +41,7 @@ public class Purchaser : SingletonMono<Purchaser>
     void Start()
     {
         // If we haven't set up the Unity Purchasing reference
-        if (m_StoreController == null)
+        if ( m_StoreController == null )
         {
             // Begin to configure our connection to Purchasing
             InitializePurchasing();
@@ -49,47 +50,44 @@ public class Purchaser : SingletonMono<Purchaser>
     public void InitializePurchasing()
     {
         // If we have already connected to Purchasing ...
-        Debug.Log("====> If we have already connected to Purchasing ...");
-        if (IsInitialized())
+        LDebug.Log( "====> If we have already connected to Purchasing ..." );
+        if ( IsInitialized() )
         {
             // ... we are done here.
-            Debug.Log("====> ....we are done here.");
+            LDebug.Log( "====> ....we are done here." );
             return;
         }
 
 
         // Create a builder, first passing in a suite of Unity provided stores.
-        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        var builder = ConfigurationBuilder.Instance( StandardPurchasingModule.Instance() );
 
-        if (Application.platform == RuntimePlatform.IPhonePlayer ||
-           Application.platform == RuntimePlatform.OSXPlayer)
+        if ( Application.platform == RuntimePlatform.IPhonePlayer ||
+           Application.platform == RuntimePlatform.OSXPlayer )
         {
-            for (int i = 0; i < products.Count; i++)
+            for ( int i = 0; i < products.Count; i++ )
             {
-                builder.AddProduct(products[i], ProductType.Consumable, new IDs
+                builder.AddProduct( products[ i ], ProductType.Consumable, new IDs
                 {
                     {products[i], AppleAppStore.Name }
-                });
+                } );
             }
         }
         //Android && PC 
         else
         {
-            for (int i = 0; i < products.Count; i++)
+            for ( int i = 0; i < products.Count; i++ )
             {
-                builder.AddProduct(products[i], ProductType.Consumable, new IDs
+                builder.AddProduct( products[ i ], ProductType.Consumable, new IDs
                 {
                     {products[i], GooglePlay.Name }
-                });
+                } );
             }
         }
 
-        //InitCallback
-        var pp = PurchaserDataModel.Instance;
-
         // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
         // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
-        UnityPurchasing.Initialize(this, builder);
+        UnityPurchasing.Initialize( this, builder );
     }
     private bool IsInitialized()
     {
@@ -118,28 +116,28 @@ public class Purchaser : SingletonMono<Purchaser>
     //}
 
 
-    public void BuyProductID(int productIndex)
+    public void BuyProductID( string productId )
     {
         // If Purchasing has been initialized ...
-        if (IsInitialized())
+        if ( IsInitialized() )
         {
             // ... look up the Product reference with the general product identifier and the Purchasing 
             // system's products collection.
-            Product product = m_StoreController.products.WithID(products[productIndex]);
+            Product product = m_StoreController.products.WithID( productId );
 
             // If the look up found a product for this device's store and that product is ready to be sold ... 
-            if (product != null && product.availableToPurchase)
+            if ( product != null && product.availableToPurchase )
             {
-                Debug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.id));
+                LDebug.Log( string.Format( "Purchasing product asychronously: '{0}'", product.definition.storeSpecificId ) );
                 // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed 
                 // asynchronously.
-                m_StoreController.InitiatePurchase(product);
+                m_StoreController.InitiatePurchase( product );
             }
             // Otherwise ...
             else
             {
                 // ... report the product look-up failure situation  
-                Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                LDebug.Log( "BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase" );
             }
         }
         // Otherwise ...
@@ -147,7 +145,7 @@ public class Purchaser : SingletonMono<Purchaser>
         {
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
-            Debug.Log("BuyProductID FAIL. Not initialized.");
+            LDebug.Log( "BuyProductID FAIL. Not initialized." );
         }
     }
 
@@ -157,36 +155,36 @@ public class Purchaser : SingletonMono<Purchaser>
     public void RestorePurchases()
     {
         // If Purchasing has not yet been set up ...
-        if (!IsInitialized())
+        if ( !IsInitialized() )
         {
             // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
-            Debug.Log("RestorePurchases FAIL. Not initialized.");
+            LDebug.Log( "RestorePurchases FAIL. Not initialized." );
             return;
         }
 
         // If we are running on an Apple device ... 
-        if (Application.platform == RuntimePlatform.IPhonePlayer ||
-            Application.platform == RuntimePlatform.OSXPlayer)
+        if ( Application.platform == RuntimePlatform.IPhonePlayer ||
+            Application.platform == RuntimePlatform.OSXPlayer )
         {
             // ... begin restoring purchases
-            Debug.Log("RestorePurchases started ...");
+            LDebug.Log( "RestorePurchases started ..." );
 
             // Fetch the Apple store-specific subsystem.
             var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
             // Begin the asynchronous process of restoring purchases. Expect a confirmation response in 
             // the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
-            apple.RestoreTransactions((result) =>
-            {
+            apple.RestoreTransactions( ( result ) =>
+             {
                 // The first phase of restoration. If no more responses are received on ProcessPurchase then 
                 // no purchases are available to be restored.
-                Debug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
-            });
+                LDebug.Log( "RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore." );
+             } );
         }
         // Otherwise ...
         else
         {
             // We are not running on an Apple device. No work is necessary to restore purchases.
-            Debug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
+            LDebug.Log( "RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform );
         }
     }
 
@@ -197,44 +195,44 @@ public class Purchaser : SingletonMono<Purchaser>
     //  
     // --- IStoreListener
     //
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+    public void OnInitialized( IStoreController controller, IExtensionProvider extensions )
     {
         // Purchasing has succeeded initializing. Collect our Purchasing references.
-        Debug.Log("OnInitialized: PASS");
+        LDebug.Log( "OnInitialized: PASS" );
 
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
         m_StoreExtensionProvider = extensions;
 
-        if (InitializedEventHandler != null) InitializedEventHandler(m_StoreController.products);
+        if ( InitializedEventHandler != null ) InitializedEventHandler( m_StoreController.products );
     }
 
 
-    public void OnInitializeFailed(InitializationFailureReason error)
+    public void OnInitializeFailed( InitializationFailureReason error )
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
-        Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+        LDebug.Log( "OnInitializeFailed InitializationFailureReason:" + error );
     }
 
     //购买不同商品结束后的处理方法 对应定义的商品
-    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
+    public PurchaseProcessingResult ProcessPurchase( PurchaseEventArgs args )
     {
-        for (int i = 0; i < products.Count; i++)
+        for ( int i = 0; i < products.Count; i++ )
         {
             // A consumable product has been purchased by this user.
-            if (String.Equals(args.purchasedProduct.definition.id, products[i], StringComparison.Ordinal))
+            if ( String.Equals( args.purchasedProduct.definition.id, products[ i ], StringComparison.Ordinal ) )
             {
-                Debug.Log(string.Format("ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id));
+                LDebug.Log( string.Format( "ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id ) );
 
-                if (ProcessPurchaseEventHandler != null) ProcessPurchaseEventHandler(products[i]);
+                if ( ProcessPurchaseEventHandler != null ) ProcessPurchaseEventHandler( products[ i ] );
 
-                var product = m_StoreController.products.WithID(products[i]);
+                var product = m_StoreController.products.WithID( products[ i ] );
                 string receipt = product.receipt;
                 string currency = product.metadata.isoCurrencyCode;
-                int amount = decimal.ToInt32(product.metadata.localizedPrice * 100);
-                Receipt receiptClass = JsonUtility.FromJson<Receipt>(receipt);
-                if (ProcessPurchaseReceiptEventHandler != null) ProcessPurchaseReceiptEventHandler(currency, products[i], amount, receiptClass);
+                int amount = decimal.ToInt32( product.metadata.localizedPrice * 100 );
+                Receipt receiptClass = JsonUtility.FromJson<Receipt>( receipt );
+                if ( ProcessPurchaseReceiptEventHandler != null ) ProcessPurchaseReceiptEventHandler( currency, products[ i ], amount, receiptClass );
 
                 // Return a flag indicating whether this product has completely been received, or if the application needs 
                 // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
@@ -243,7 +241,7 @@ public class Purchaser : SingletonMono<Purchaser>
             }
         }
 
-        Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
+        LDebug.Log( string.Format( "ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id ) );
 
         // Return a flag indicating whether this product has completely been received, or if the application needs 
         // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
@@ -251,11 +249,11 @@ public class Purchaser : SingletonMono<Purchaser>
         return PurchaseProcessingResult.Pending;
     }
 
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    public void OnPurchaseFailed( Product product, PurchaseFailureReason failureReason )
     {
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
-        Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+        LDebug.Log( string.Format( "OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason ) );
     }
 
     #endregion
@@ -275,7 +273,7 @@ public class Receipt
         Store = TransactionID = Payload = "";
     }
 
-    public Receipt(string store, string transactionID, string payload)
+    public Receipt( string store, string transactionID, string payload )
     {
         Store = store;
         TransactionID = transactionID;
@@ -293,7 +291,7 @@ public class PayloadAndroid
         json = signature = "";
     }
 
-    public PayloadAndroid(string _json, string _signature)
+    public PayloadAndroid( string _json, string _signature )
     {
         json = _json;
         signature = _signature;

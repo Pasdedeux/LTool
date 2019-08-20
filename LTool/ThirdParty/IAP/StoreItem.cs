@@ -35,11 +35,13 @@ namespace LitFramework
     public class StoreItem : IDisposable
     {
         public Sprite Icon;
+        public Transform UI;
         public string Name;
         public string BuyID;
         public string Price;
         public string Description;
         public string PriceDiscount;
+        public Dictionary<short, ushort> Rewards = new Dictionary<short, ushort>();
 
         public event Action<string, bool> AddStoreItemEventHandler;
         public bool IsBought
@@ -56,6 +58,7 @@ namespace LitFramework
 
         public void Dispose()
         {
+            UI = null;
             Icon = null;
             Price = null;
             Name = null;

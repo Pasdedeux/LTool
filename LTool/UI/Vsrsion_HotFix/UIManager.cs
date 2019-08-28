@@ -70,26 +70,28 @@ namespace LitFramework.HotFix
         /// 当前显示的非弹出类UI窗体
         /// </summary>
         private Dictionary<string , BaseUI> _dictCurrentShowUIs;
+       
         /// <summary>
         /// UI根节点
         /// </summary>
-        private Transform _transCanvas = null;
+        public Transform TransRoot { get; private set; }
         /// <summary>
         /// 普通窗口节点
         /// </summary>
-        private Transform _transNormal = null;
+        public Transform TransNormal { get; private set; }
         /// <summary>
         /// 固定UI节点
         /// </summary>
-        private Transform _transFixed = null;
+        public Transform TransFixed { get; private set; }
         /// <summary>
         /// 弹出窗口节点
         /// </summary>
-        private Transform _transPopUp = null;
+        public Transform TransPopUp { get; private set; }
         /// <summary>
         /// 全局UI节点
         /// </summary>
-        private Transform _transGlobal = null;
+        public Transform TransGlobal { get; private set; }
+
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
@@ -112,19 +114,19 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
             _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
 
-            _transCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS ).transform;
-            _transNormal = UnityHelper.FindTheChildNode( _transCanvas , UISysDefine.SYS_TAG_NORMALCANVAS );
-            _transFixed = UnityHelper.FindTheChildNode( _transCanvas , UISysDefine.SYS_TAG_FIXEDCANVAS );
-            _transPopUp = UnityHelper.FindTheChildNode( _transCanvas , UISysDefine.SYS_TAG_POPUPCANVAS );
-            _transGlobal = UnityHelper.FindTheChildNode( _transCanvas , UISysDefine.SYS_TAG_GLOBALCANVAS );
-            _fadeImage = UnityHelper.FindTheChildNode( _transGlobal, "Image_fadeBG" ).GetComponent<Image>();
+            TransRoot = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS ).transform;
+            TransNormal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_NORMALCANVAS );
+            TransFixed = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_FIXEDCANVAS );
+            TransPopUp = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_POPUPCANVAS );
+            TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
+            _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
 
             if ( _fadeImage == null )
                 Debug.LogWarning( "Image_fadeBG 未定义" );
             else if( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
-            GameObject.DontDestroyOnLoad( _transCanvas.gameObject );
+            GameObject.DontDestroyOnLoad( TransRoot.gameObject );
 
             AssemblyReflection();
         }
@@ -148,11 +150,11 @@ namespace LitFramework.HotFix
             _stackCurrentUI.Clear();
             _dictCurrentShowUIs.Clear();
 
-            _transFixed = null;
-            _transPopUp = null;
-            _transCanvas = null;
-            _transNormal = null;
-            _transGlobal = null;
+            TransFixed = null;
+            TransPopUp = null;
+            TransRoot = null;
+            TransNormal = null;
+            TransGlobal = null;
             _stackCurrentUI = null;
             _allRegisterUIDict = null;
             _dictLoadedAllUIs = null;
@@ -354,7 +356,7 @@ namespace LitFramework.HotFix
             prefClone = GameObject.Instantiate( prefClone );
 
             //设置父节点
-            if( _transCanvas != null && prefClone != null )
+            if( TransRoot != null && prefClone != null )
             {
                 if( _allRegisterUIDict.ContainsKey( uiName ) )
                 {
@@ -366,13 +368,13 @@ namespace LitFramework.HotFix
                 switch( baseUI.CurrentUIType.uiNodeType )
                 {
                     case UINodeTypeEnum.Normal:
-                        prefClone.transform.SetParent( _transNormal , false );
+                        prefClone.transform.SetParent( TransNormal, false );
                         break;
                     case UINodeTypeEnum.Fixed:
-                        prefClone.transform.SetParent( _transFixed , false );
+                        prefClone.transform.SetParent( TransFixed, false );
                         break;
                     case UINodeTypeEnum.PopUp:
-                        prefClone.transform.SetParent( _transPopUp , false );
+                        prefClone.transform.SetParent( TransPopUp, false );
                         break;
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );

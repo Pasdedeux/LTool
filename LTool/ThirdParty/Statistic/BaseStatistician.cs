@@ -33,6 +33,7 @@ namespace Assets.Scripts
     public abstract class BaseStatistician
     {
         public StatisticManager staticMng { get; private set; }
+
         public BaseStatistician( StatisticManager mng )
         {
             staticMng = mng;

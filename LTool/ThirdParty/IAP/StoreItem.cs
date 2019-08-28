@@ -41,6 +41,10 @@ namespace LitFramework
         public string Price;
         public string Description;
         public string PriceDiscount;
+#if IAP
+        //商店SDK类型接口
+        public UnityEngine.Purchasing.ProductType ProductType;
+#endif
         public Dictionary<short, ushort> Rewards = new Dictionary<short, ushort>();
 
         public event Action<string, bool> AddStoreItemEventHandler;
@@ -67,6 +71,6 @@ namespace LitFramework
             PriceDiscount = null;
             AddStoreItemEventHandler = null;
         }
-    }
+}
 
 }

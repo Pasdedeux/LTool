@@ -136,8 +136,6 @@
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="Unity\LDebug.cs" />
     <Compile Include="Unity\LMath.cs" />
     <Compile Include="Unity\Optimization.cs" />

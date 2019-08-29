@@ -206,15 +206,21 @@ namespace LitFramework.Mono
                 return;
             }
 
-            if ( FadeHideAction == null ) _fadeImage.CrossFadeAlpha( 0, time, false );
-
-            if ( callBack != null ) DelHideCallBack += callBack;
-            DelHideCallBack += () => 
+            if ( FadeHideAction == null )
             {
-                _fadeImage.raycastTarget = false;
-                FadeHideAction?.Invoke( time, callBack );
-            };
+                _fadeImage.CrossFadeAlpha( 0, time, false );
+                if ( callBack != null ) DelHideCallBack += callBack;
+            }
+            else
+            {
+                DelHideCallBack += () =>
+                {
+                    _fadeImage.raycastTarget = false;
+                    FadeHideAction?.Invoke( time, callBack );
+                };
+            }
             DelHideCallBack += () => { DelHideCallBack = null; };
+
             LitTool.LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
 

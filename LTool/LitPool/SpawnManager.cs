@@ -63,8 +63,8 @@ namespace LitFramework.LitPool
         public void Uninstall()
         {
             Pool.prefabPools.Clear();
-            Pool._perPrefabPoolOptions.Clear();
-            Pool._perPrefabPoolOptions = null;
+            Pool.perPrefabPoolOptions.Clear();
+            Pool.perPrefabPoolOptions = null;
             Pool = null;
             GC.Collect();
         }

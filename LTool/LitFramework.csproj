@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LitFramework</RootNamespace>
     <AssemblyName>LitFramework</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -50,6 +50,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>
     </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apple">
@@ -101,9 +104,6 @@
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
-    <Compile Include="LitPool\PoolManager.cs" />
-    <Compile Include="LitPool\SpawnManager.cs" />
-    <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />

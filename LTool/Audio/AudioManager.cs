@@ -292,6 +292,17 @@ namespace LitFramework
         /// <param name="name"></param>
         public void StopSE( string name )
         {
+            name = GetSourceName( name );
+            
+            foreach ( var item in _soundAvalibleList )
+            {
+                if ( item.clip.name == name )
+                {
+                    item.Stop();
+                    break;
+                }
+            }
+
             if( _soundLoopPlayingDict.ContainsKey( name ) )
             {
                 AudioSource currentSE = _soundLoopPlayingDict[ name ];
@@ -414,5 +425,24 @@ namespace LitFramework
                 return;
             _soloAudioSource.PlayOneShot( GetSE( name ) , VolumeSE );
         }
+
+        public void StopSoloSE( string name )
+        {
+            if ( _soloAudioSource == null || !_soloAudioSource.isPlaying || !IsEnabled )
+                return;
+            _soloAudioSource.Stop();
+        }
+
+
+        private string GetSourceName( string name )
+        {
+            if ( name.Contains( "/" ) )
+            {
+                var strings = name.Split( '/' );
+                name = strings[ strings.Length - 1 ];
+            }
+            return name;
+        }
+
     }
 }

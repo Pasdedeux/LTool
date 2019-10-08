@@ -130,12 +130,14 @@
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />
-    <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Base\UIType.cs" />
-    <Compile Include="UI\Version_Mono\UIManager.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />
     <Compile Include="UI\UnityHelper.cs" />
+    <Compile Include="UI\Version_Mono\BaseUI.cs" />
+    <Compile Include="UI\Version_Mono\UIManager.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="Unity\LDebug.cs" />
     <Compile Include="Unity\LMath.cs" />
     <Compile Include="Unity\Optimization.cs" />

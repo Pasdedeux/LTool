@@ -45,6 +45,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //顶层面板、遮罩面板
         _topPanel = _rootCanvas;
         _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas.transform, "Panel_Mask" ).gameObject;
+        _maskPanel.SetActive( true );
         _maskImage = _maskPanel.GetComponent<Image>();
         //获得摄像机层深
         _uiCamera = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
@@ -62,25 +63,28 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         switch ( transparent )
         {
             case UITransparentEnum.NoPenetratingLow:
-                _maskPanel.SetActive( true );
+                //_maskPanel.SetActive( true );
+                _maskImage.enabled = true;
                 _color.a = 255F / 255F;
                 _maskImage.color = _color;
                 break;
                 //半透明
             case UITransparentEnum.NoPenetratingMiddle:
-                _maskPanel.SetActive( true );
+                //_maskPanel.SetActive( true );
+                _maskImage.enabled = true;
                 _color.a = 175F / 255F;
                 _maskImage.color = _color;
                 break;
                 //完全透明
             case UITransparentEnum.NoPenetratingTotal:
-                _maskPanel.SetActive( true );
+                //_maskPanel.SetActive( true );
+                _maskImage.enabled = true;
                 _color.a = 0F / 255F;
                 _maskImage.color = _color;
                 break;
                 //可以穿透
             case UITransparentEnum.Penetrating:
-                if ( _maskPanel.activeInHierarchy ) _maskPanel.SetActive( false );
+                if ( _maskPanel.activeInHierarchy ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
                 break;
         }
 

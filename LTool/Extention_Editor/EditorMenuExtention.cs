@@ -27,7 +27,6 @@ namespace LitFramework.EditorExtended
     using UnityEngine;
     using UnityEditor;
     using System.IO;
-    using LitFramework.GameUtility;
     using System.Data;
     using Excel;
     using System.Reflection;
@@ -222,23 +221,6 @@ namespace LitFramework.EditorExtended
             return writer.ToString();
 #endif
             return "";
-        }
-    }
-
-    public class EditorTool
-    {
-        /// <summary>
-        /// 获取场景内所有对象，无论是否Active
-        /// </summary>
-        /// <returns></returns>
-        public static UnityEngine.Object[] GetAll()
-        {
-            Assembly assembly = Assembly.GetAssembly( typeof( EditorWindow ) );
-            Type hierarchy = assembly.GetType( "UnityEditor.SceneHierarchyWindow" );
-            MethodInfo info = hierarchy.GetMethod( "SelectAll", BindingFlags.NonPublic | BindingFlags.Instance );
-            var obj = ScriptableObject.CreateInstance( "SceneHierarchyWindow" );
-            info.Invoke( obj, null );
-            return Selection.objects;
         }
     }
 }

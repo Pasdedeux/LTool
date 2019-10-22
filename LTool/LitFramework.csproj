@@ -64,8 +64,11 @@
     <Reference Include="EPPlus">
       <HintPath>.\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="Excel">
-      <HintPath>.\Excel.dll</HintPath>
+    <Reference Include="ExcelDataReader">
+      <HintPath>.\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>.\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="Purchasing.Common">
       <HintPath>.\Purchasing.Common.dll</HintPath>

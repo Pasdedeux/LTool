@@ -181,6 +181,7 @@ namespace LitFramework.GameFlow
         {
             base.DoDestroy();
             _sceneLoadMng = null;
+            _asyncOperation = null;
         }
     }
 }

@@ -105,8 +105,10 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //顶层窗体上移
         _topPanel.transform.SetAsFirstSibling();
         //禁用遮罩窗体
-        if ( _maskPanel.activeInHierarchy )
-            _maskPanel.SetActive( false );
+        //if ( _maskPanel.activeInHierarchy )
+        //    _maskPanel.SetActive( false );
+        if ( _maskImage.enabled )
+            _maskImage.enabled = false;
         //恢复UI相机层深
         if ( _uiCamera != null )
             _uiCamera.depth = _oriUICameraDepth;

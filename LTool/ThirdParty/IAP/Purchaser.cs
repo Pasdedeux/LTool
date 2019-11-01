@@ -21,6 +21,7 @@ public class Purchaser : SingletonMono<Purchaser>
     public List<string> fakeName;
     public List<string> Rewards;
 #if IAP
+    public event Action<ushort> ProcessPurchaseFailEventHandler;
     public event Action<string> ProcessPurchaseEventHandler;
     public event Action<ProductCollection> InitializedEventHandler;
     public event Action<string, string, int, Receipt> ProcessPurchaseReceiptEventHandler;
@@ -136,6 +137,7 @@ public class Purchaser : SingletonMono<Purchaser>
             // Otherwise ...
             else
             {
+                ProcessPurchaseFailEventHandler?.Invoke( 1 );
                 // ... report the product look-up failure situation  
                 LDebug.Log( "BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase" );
             }
@@ -143,6 +145,7 @@ public class Purchaser : SingletonMono<Purchaser>
         // Otherwise ...
         else
         {
+            ProcessPurchaseFailEventHandler?.Invoke( 0 );
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
             LDebug.Log( "BuyProductID FAIL. Not initialized." );

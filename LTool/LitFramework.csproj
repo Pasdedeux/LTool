@@ -103,8 +103,6 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
-    <Compile Include="GameFlow\Controller\GameFlowController.cs" />
-    <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
@@ -139,14 +137,10 @@
     <Compile Include="UI\UnityHelper.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="Unity\LDebug.cs" />
     <Compile Include="Unity\LMath.cs" />
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameFlow\View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

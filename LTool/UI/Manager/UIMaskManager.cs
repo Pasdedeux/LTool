@@ -84,7 +84,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 break;
                 //可以穿透
             case UITransparentEnum.Penetrating:
-                if ( _maskPanel.activeInHierarchy ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
+                if ( _maskImage.enabled/*_maskPanel.activeInHierarchy*/ ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
                 break;
         }
 

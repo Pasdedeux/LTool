@@ -40,7 +40,8 @@ namespace LitFramework
         public string BuyID;
         public string Price;
         public string Description;
-        public string PriceDiscount;
+        public string AlternativePrice;
+        public string AlternativeBuyID;
 #if IAP
         //商店SDK类型接口
         public UnityEngine.Purchasing.ProductType ProductType;
@@ -68,7 +69,8 @@ namespace LitFramework
             Name = null;
             BuyID = null;
             Description = null;
-            PriceDiscount = null;
+            AlternativePrice = null;
+            AlternativeBuyID = null;
             AddStoreItemEventHandler = null;
         }
 }

@@ -13,6 +13,7 @@
 *****************************************************************/
 
 using LitFramework;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,8 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     private Camera _uiCamera;
     //UI相机原始层深度
     private float _oriUICameraDepth;
+    //全局按钮
+    private Button _maskBtn;
     private static Color _color = new Color( 0 / 255F, 0 / 255F, 0 / 255F, 0 / 255F );
 
     private void Awake( )
@@ -47,10 +50,28 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas.transform, "Panel_Mask" ).gameObject;
         _maskPanel.SetActive( true );
         _maskImage = _maskPanel.GetComponent<Image>();
+        //_maskBtn = _maskPanel.GetComponent<Button>();
+        //_maskBtn.enabled = false;
         //获得摄像机层深
         _uiCamera = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_UICAMERA ).GetComponent<Camera>();
         if ( _uiCamera != null ) _oriUICameraDepth = _uiCamera.depth;
     }
+
+
+    //public void AddEventListener( Action callBack )
+    //{
+    //    if ( callBack!=null )
+    //    {
+    //        _maskBtn.enabled = true;
+    //        _maskBtn.onClick.AddListener( ()=> { callBack(); } );
+    //    }
+    //}
+
+    //public void RemoveEventListener()
+    //{
+    //    _maskBtn.enabled = false;
+    //    _maskBtn.onClick.RemoveAllListeners();
+    //}
 
     /// <summary>
     /// 设置遮罩状态

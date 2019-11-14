@@ -20,6 +20,7 @@ public class Purchaser : SingletonMono<Purchaser>
     public List<string> fakeDesc;
     public List<string> fakeName;
     public List<string> Rewards;
+    public List<Sprite> Icons;
 #if IAP
     public event Action<ushort> ProcessPurchaseFailEventHandler;
     public event Action<string> ProcessPurchaseEventHandler;

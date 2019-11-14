@@ -84,7 +84,7 @@ namespace LitFramework.LitTool
 
         #region 时间转换工具
 
-        private static DateTime _dateStart = new DateTime( 1970, 1, 1, 8, 0, 0 );
+        private static DateTime _dateStart = new DateTime( 1970, 1, 1, 0, 0, 0 );
         private static TimeSpan _timtSpan = new TimeSpan(); 
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
@@ -126,10 +126,16 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>
-        public static DateTime GetDateTime( int timeStamp )
+        public static DateTime GetDateTime( int timeStamp , bool removeOffset = true )
         {
             DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime( _dateStart );
-            long lTime = ( ( long )timeStamp * 10000000 );
+            if ( removeOffset )
+            {
+                TimeSpan timeSpan = TimeZone.CurrentTimeZone.GetUtcOffset( _dateStart );
+                dtStart = dtStart.AddHours( timeSpan.Hours * -1 );
+            }
+            long lTime = ( long )timeStamp * 10000000;
+
             TimeSpan toNow = new TimeSpan( lTime );
             DateTime targetDt = dtStart.Add( toNow );
             return targetDt;

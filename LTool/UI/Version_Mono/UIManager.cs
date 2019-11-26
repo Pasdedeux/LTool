@@ -210,6 +210,7 @@ namespace LitFramework.Mono
             if ( FadeHideAction == null )
             {
                 _fadeImage.CrossFadeAlpha( 0, time, false );
+                LitTool.LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = false; } );
                 if ( callBack != null ) DelHideCallBack += callBack;
             }
             else

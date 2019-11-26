@@ -74,14 +74,8 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     //    _maskBtn.onClick.RemoveAllListeners();
     //}
 
-    /// <summary>
-    /// 设置遮罩状态
-    /// </summary>
-    public void SetMaskWindow( GameObject displayUIForms, UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
+    public void SetMaskEnable( UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
     {
-        //顶层窗体下移
-        _topPanel.transform.SetAsLastSibling();
-
         switch ( transparent )
         {
             case UITransparentEnum.NoPenetratingLow:
@@ -90,26 +84,37 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _color.a = 255F / 255F;
                 _maskImage.color = _color;
                 break;
-                //半透明
+            //半透明
             case UITransparentEnum.NoPenetratingMiddle:
                 //_maskPanel.SetActive( true );
                 _maskImage.enabled = true;
                 _color.a = 175F / 255F;
                 _maskImage.color = _color;
                 break;
-                //完全透明
+            //完全透明
             case UITransparentEnum.NoPenetratingTotal:
                 //_maskPanel.SetActive( true );
                 _maskImage.enabled = true;
                 _color.a = 0F / 255F;
                 _maskImage.color = _color;
                 break;
-                //可以穿透
+            //可以穿透
             case UITransparentEnum.Penetrating:
                 if ( _maskImage.enabled/*_maskPanel.activeInHierarchy*/ ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
                 break;
         }
+    }
 
+    /// <summary>
+    /// 设置遮罩状态
+    /// </summary>
+    public void SetMaskWindow( GameObject displayUIForms, UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
+    {
+        //顶层窗体下移
+        _topPanel.transform.SetAsLastSibling();
+        //开启并设定遮罩级别
+        SetMaskEnable( transparent );
+        //推送消息
         MaskEnableEventHandler?.Invoke( _maskImage.enabled );
 
         //遮罩窗体下移

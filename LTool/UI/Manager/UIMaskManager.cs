@@ -19,6 +19,7 @@ using UnityEngine.UI;
 
 public class UIMaskManager : SingletonMono<UIMaskManager> 
 {
+    public Action<bool> MaskEnableEventHandler;
     //UI脚本节点对象
     private Transform _transScriptNode = null;
     //UI根节点对象
@@ -109,6 +110,8 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 break;
         }
 
+        MaskEnableEventHandler?.Invoke( _maskImage.enabled );
+
         //遮罩窗体下移
         _maskPanel.transform.SetAsLastSibling();
         //显示窗体的下移
@@ -130,6 +133,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //    _maskPanel.SetActive( false );
         if ( _maskImage.enabled )
             _maskImage.enabled = false;
+        MaskEnableEventHandler?.Invoke( _maskImage.enabled );
         //恢复UI相机层深
         if ( _uiCamera != null )
             _uiCamera.depth = _oriUICameraDepth;

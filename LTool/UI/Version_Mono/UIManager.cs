@@ -246,11 +246,14 @@ namespace LitFramework.Mono
             if ( baseUI == null )
                 throw new Exception( "UI--baseUI 加载失败" );
 
+            var modelType = UIModelBehavior.Instance.GetBehavior( uiName );
+            UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
+
             //判断是否清空“栈”结构体集合
-            if ( baseUI.CurrentUIType.isClearPopUp )
+            if ( targetUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            switch ( baseUI.CurrentUIType.uiShowMode )
+            switch ( targetUIType.uiShowMode )
             {
                 case UIShowModeEnum.Parallel:
                     LoadParallelUI( uiName );
@@ -262,7 +265,7 @@ namespace LitFramework.Mono
                     LoadUniqueUI( uiName );
                     break;
                 default:
-                    throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
+                    throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
             }
             return baseUI;
         }

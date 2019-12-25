@@ -131,6 +131,7 @@
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />
+    <Compile Include="UI\Base\UIModelBehavior.cs" />
     <Compile Include="UI\Base\UIType.cs" />
     <Compile Include="UI\Manager\UIMaskManager.cs" />
     <Compile Include="UI\SysDefine.cs" />

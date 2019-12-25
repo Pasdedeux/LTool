@@ -56,6 +56,8 @@ public abstract class BaseAdAdapter : IAdPlatform
         RewardShowEventHandler = null;
     }
 
+    public abstract bool IsSdkInitialized();
+
     public abstract void SubDispose();
 
     public abstract void HideBanner( bool destroy );
@@ -103,6 +105,11 @@ public class BlankAdapter : BaseAdAdapter
     }
 
     public override bool IsRewardedVideoAvailable()
+    {
+        return false;
+    }
+
+    public override bool IsSdkInitialized()
     {
         return false;
     }

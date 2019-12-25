@@ -111,6 +111,7 @@ namespace LitFramework.Mono
         /// <returns></returns>
         private Action DelHideCallBack = null;
         public Image FadeImage { get { return _fadeImage; } }
+        public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
 
         public void Install()
         {

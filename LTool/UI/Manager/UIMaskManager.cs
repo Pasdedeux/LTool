@@ -19,6 +19,7 @@ using UnityEngine.UI;
 
 public class UIMaskManager : SingletonMono<UIMaskManager> 
 {
+    public Image Mask { get { return _maskImage;  } }
     //UI脚本节点对象
     private Transform _transScriptNode = null;
     //UI根节点对象

@@ -413,6 +413,15 @@ namespace LitFramework.Mono
         private void LoadParallelUI( string uiName )
         {
             BaseUI baseUI;
+
+            //判断栈里是否有窗口，有则冻结响应
+            if ( _stackCurrentUI.Count > 0 )
+            {
+                BaseUI topUI = _stackCurrentUI.Peek();
+                if ( !topUI.AssetsName.Equals( uiName ) )
+                    topUI.OnDisabled( true );
+            }
+
             _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
             if ( baseUI != null )
             {
@@ -465,15 +474,16 @@ namespace LitFramework.Mono
                 ClearPopUpStackArray();
 
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
+            //判断栈里是否有窗口，有则冻结响应
+            if ( _stackCurrentUI.Count > 0 )
             {
-                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
-                else baseui.Show( true );
-            }
-            foreach ( BaseUI baseui in _stackCurrentUI )
-            {
-                if ( baseui.IsShowing ) { baseui.OnShow(); baseui.CheckMask(); }
-                else baseui.Show( true );
+                BaseUI topUI = _stackCurrentUI.Peek();
+                if ( !topUI.AssetsName.Equals( uiName ) )
+                {
+                    topUI.OnEnabled( true );
+                    topUI.OnShow();
+                    topUI.CheckMask();
+                }
             }
         }
 
@@ -568,7 +578,8 @@ namespace LitFramework.Mono
             if ( _stackCurrentUI.Count > 0 )
             {
                 BaseUI topUI = _stackCurrentUI.Peek();
-                topUI.Close( freeze: true );
+                if ( !topUI.AssetsName.Equals( uiName ) )
+                    topUI.Close( freeze: true );
             }
 
             //获取当前UI，进行展示处理

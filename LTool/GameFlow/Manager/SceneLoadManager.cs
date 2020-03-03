@@ -59,6 +59,12 @@ namespace LitFramework.GameFlow.Manager
         }
 
 
+        public void UnLoadScene( int sceneID )
+        {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync( sceneID );
+        }
+
+
         public override void DoDestroy()
         {
             base.DoDestroy();

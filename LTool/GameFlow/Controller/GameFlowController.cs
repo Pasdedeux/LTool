@@ -177,6 +177,11 @@ namespace LitFramework.GameFlow
         }
 
 
+        public void UnLoadScene( int sceneID  )
+        {
+            _sceneLoadMng.UnLoadScene( sceneID );
+        }
+
         public override void DoDestroy()
         {
             base.DoDestroy();

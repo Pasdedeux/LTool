@@ -108,7 +108,27 @@ namespace LitFramework.LitTool
             return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
         }
 
-        
+        /// <summary>
+        /// 获取指定显示显示格式的时间跨度表达
+        /// </summary>
+        /// <param name="span"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string GetTimeSpanWithFormat(TimeSpan span, string format = "{0:00}:{1:00}" )
+        {
+            //todo 尚待扩展
+            if ( format.Equals( "{0:00}:{1:00}" ) )
+            {
+                return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours*60, span.Seconds );
+            }
+            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) )
+            {
+                return string.Format( "{0:00}:{1:00}:{2:00}",  span.Hours + span.Days * 24 , span.Minutes, span.Seconds );
+            }
+            return string.Format( "{0:00}:{1:00}", span.Minutes+ span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
+        }
+
+
         /// <summary>
         /// 获取时间戳Timestamp  
         /// </summary>

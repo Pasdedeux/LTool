@@ -612,10 +612,27 @@ namespace LitFramework.Mono
                 if ( !_stackCurrentUI.Contains( baseUI ) )
                     //该弹出UI入栈
                     _stackCurrentUI.Push( baseUI );
+                else
+                //对于栈内存在，则将其提升至栈顶
+                {
+                    while ( _stackCurrentUI.Count > 0 )
+                    {
+                        var ui = _stackCurrentUI.Pop();
+                        if ( ui != baseUI ) _backStack.Push( ui );
+                    }
+
+                    while ( _backStack.Count > 0 )
+                    {
+                        _stackCurrentUI.Push( _backStack.Pop() );
+                    }
+
+                    _stackCurrentUI.Push( baseUI );
+                }
             }
             else
                 throw new Exception( "UIManager catch an error" );
         }
+        private Stack<BaseUI> _backStack = new Stack<BaseUI>();
 
         /// <summary>
         /// 弹出窗口，出栈

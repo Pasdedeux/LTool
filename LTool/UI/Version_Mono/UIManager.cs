@@ -254,19 +254,37 @@ namespace LitFramework.Mono
             if ( targetUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            switch ( targetUIType.uiShowMode )
+            //只针对pop up 类型窗口适用 uiShowMode 功能
+            if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
-                case UIShowModeEnum.Parallel:
-                    LoadParallelUI( uiName );
-                    break;
-                case UIShowModeEnum.Stack:
-                    LoadStackUI( uiName );
-                    break;
-                case UIShowModeEnum.Unique:
-                    LoadUniqueUI( uiName );
-                    break;
-                default:
-                    throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
+
+                switch ( targetUIType.uiShowMode )
+                {
+                    case UIShowModeEnum.Parallel:
+                        LoadParallelUI( uiName );
+                        break;
+                    case UIShowModeEnum.Stack:
+                        LoadStackUI( uiName );
+                        break;
+                    case UIShowModeEnum.Unique:
+                        LoadUniqueUI( uiName );
+                        break;
+                    default:
+                        throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
+                }
+
+            }
+            else
+            {
+                //获取当前UI，进行展示处理
+                _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+                if ( baseUI != null )
+                {
+                    if ( baseUI.IsShowing )
+                        baseUI.OnShow();
+                    else
+                        baseUI.Show();
+                }
             }
             return baseUI;
         }

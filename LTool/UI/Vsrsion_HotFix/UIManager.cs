@@ -91,7 +91,10 @@ namespace LitFramework.HotFix
         /// 全局UI节点
         /// </summary>
         public Transform TransGlobal { get; private set; }
-
+        /// <summary>
+        /// UI摄像机
+        /// </summary>
+        public Camera UICam { get; set; }
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
@@ -126,6 +129,7 @@ namespace LitFramework.HotFix
             else if( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
 
             AssemblyReflection();

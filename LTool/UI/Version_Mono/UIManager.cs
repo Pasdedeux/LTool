@@ -103,6 +103,10 @@ namespace LitFramework.Mono
         /// </summary>
         public Func<string, GameObject> LoadResourceFunc;
         /// <summary>
+        /// UI摄像机
+        /// </summary>
+        public Camera UICam { get; set; }
+        /// <summary>
         /// 全局渐变遮罩
         /// </summary>
         private Image _fadeImage;
@@ -133,6 +137,7 @@ namespace LitFramework.Mono
             else if ( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
         }
 

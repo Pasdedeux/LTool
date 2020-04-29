@@ -244,5 +244,63 @@ namespace LitFramework.EditorExtended
 #endif
             return "";
         }
+
+        [MenuItem( "Tools/Remove Missing Scripts", priority = 10 )]
+        public static void RemoveMissingScript()
+        {
+            var gos = GameObject.FindObjectsOfType<GameObject>();
+            foreach ( var item in gos )
+            {
+                Debug.Log( item.name );
+                SerializedObject so = new SerializedObject( item );
+                var soProperties = so.FindProperty( "m_Component" );
+                var components = item.GetComponents<Component>();
+                int propertyIndex = 0;
+                foreach ( var c in components )
+                {
+                    if ( c == null )
+                    {
+                        soProperties.DeleteArrayElementAtIndex( propertyIndex );
+                    }
+                    ++propertyIndex;
+                }
+                so.ApplyModifiedProperties();
+            }
+
+            AssetDatabase.Refresh();
+            Debug.Log( "清理完成!" );
+        }
+        [MenuItem( "Tools/Remove Selected Rigidbody", priority = 10 )]
+        public static void RemoveRig()
+        {
+            foreach ( var item in Selection.gameObjects )
+            {
+                Rigidbody rig = item.GetComponent<Rigidbody>();
+                if ( rig )
+                {
+                    DestroyImmediate( rig );
+                }
+                Animator ani = item.GetComponent<Animator>();
+                if ( ani )
+                {
+                    DestroyImmediate( ani );
+                }
+            }
+            EditorSceneManager.MarkSceneDirty( SceneManager.GetActiveScene() );
+        }
+
+        [MenuItem( "Tools/Open PersistentDataPath", priority = 10 )]
+        static void OpenPersistentDataPath()
+        {
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
+            p.Close();
+        }
+
+        [MenuItem( "Tools/Delete All Data", priority = 10 )]
+        public static void RemoveAllKey()
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
     }
 }

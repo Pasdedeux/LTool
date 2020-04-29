@@ -88,9 +88,6 @@
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>.\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>.\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -105,14 +102,15 @@
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
+    <Compile Include="Device\ShowFPS.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
+    <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />
-    <Compile Include="LitTool\GameViewResolution.cs" />
     <Compile Include="LitTool\LitJSON\IJsonWrapper.cs" />
     <Compile Include="LitTool\LitJSON\JsonData.cs" />
     <Compile Include="LitTool\LitJSON\JsonException.cs" />
@@ -126,12 +124,6 @@
     <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
-    <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
-    <Compile Include="ThirdParty\AD\IAd.cs" />
-    <Compile Include="ThirdParty\IAP\Purchaser.cs" />
-    <Compile Include="ThirdParty\IAP\StoreItem.cs" />
-    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
-    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />

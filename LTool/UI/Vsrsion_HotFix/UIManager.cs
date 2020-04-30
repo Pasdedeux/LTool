@@ -91,7 +91,10 @@ namespace LitFramework.HotFix
         /// 全局UI节点
         /// </summary>
         public Transform TransGlobal { get; private set; }
-
+        /// <summary>
+        /// UI摄像机
+        /// </summary>
+        public Camera UICam { get; set; }
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
@@ -126,6 +129,7 @@ namespace LitFramework.HotFix
             else if( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
 
             AssemblyReflection();
@@ -237,21 +241,38 @@ namespace LitFramework.HotFix
             if ( targetUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            switch( targetUIType.uiShowMode )
+            //只针对pop up 类型窗口适用 uiShowMode 功能
+            if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
-                case UIShowModeEnum.Parallel:
-                    LoadParallelUI( uiName );
-                    break;
-                case UIShowModeEnum.Stack:
-                    LoadStackUI( uiName );
-                    break; 
-                case UIShowModeEnum.Unique:
-                    LoadUniqueUI( uiName );
-                    break;
-                default:
-                    throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
-            }
 
+                switch ( targetUIType.uiShowMode )
+                {
+                    case UIShowModeEnum.Parallel:
+                        LoadParallelUI( uiName );
+                        break;
+                    case UIShowModeEnum.Stack:
+                        LoadStackUI( uiName );
+                        break;
+                    case UIShowModeEnum.Unique:
+                        LoadUniqueUI( uiName );
+                        break;
+                    default:
+                        throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
+                }
+
+            }
+            else
+            {
+                //获取当前UI，进行展示处理
+                _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+                if ( baseUI != null )
+                {
+                    if ( baseUI.IsShowing )
+                        baseUI.OnShow();
+                    else
+                        baseUI.Show();
+                }
+            }
             return baseUI;
         }
 
@@ -578,13 +599,30 @@ namespace LitFramework.HotFix
                 else
                     baseUI.Show();
 
-                if( !_stackCurrentUI.Contains( baseUI ) )
+                if ( !_stackCurrentUI.Contains( baseUI ) )
                     //该弹出UI入栈
                     _stackCurrentUI.Push( baseUI );
+                else
+                //对于栈内存在，则将其提升至栈顶
+                {
+                    while ( _stackCurrentUI.Count > 0 )
+                    {
+                        var ui = _stackCurrentUI.Pop();
+                        if ( ui != baseUI ) _backStack.Push( ui );
+                    }
+
+                    while ( _backStack.Count > 0 )
+                    {
+                        _stackCurrentUI.Push( _backStack.Pop() );
+                    }
+
+                    _stackCurrentUI.Push( baseUI );
+                }
             }
             else
                 throw new Exception( "UIManager catch an error" );
         }
+        private Stack<BaseUI> _backStack = new Stack<BaseUI>();
 
         /// <summary>
         /// 弹出窗口，出栈

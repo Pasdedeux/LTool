@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LitFramework</RootNamespace>
     <AssemblyName>LitFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\LitFramework.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE;IAP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -50,6 +52,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>
     </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
@@ -88,9 +91,6 @@
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>.\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>.\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -124,12 +124,6 @@
     <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
-    <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
-    <Compile Include="ThirdParty\AD\IAd.cs" />
-    <Compile Include="ThirdParty\IAP\Purchaser.cs" />
-    <Compile Include="ThirdParty\IAP\StoreItem.cs" />
-    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
-    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />

@@ -138,5 +138,14 @@ namespace LitFramework.LitTool
             //return corners;
         }
         #endregion
+
+        #region Unity
+        public static void IdentityTransform(this Transform trans)
+        {
+            trans.localScale = Vector3.one;
+            trans.localPosition = Vector3.zero;
+            trans.localRotation = Quaternion.identity;
+        }
+        #endregion
     }
 }

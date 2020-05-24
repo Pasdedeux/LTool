@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace LitFramework.LitTool
 {
@@ -94,6 +95,7 @@ namespace LitFramework.LitTool
         /// <param name="targetList">目标字典</param>
         /// <param name="dataPath">存入的目标文件</param>
         /// <param name="append">追加的信息，会被添加到第一行</param>
+        /// <param name="identifier">目标字典值的连接符</param>
         public static void SaveText( Dictionary<string , List<string>> targetList , string dataPath , string append = null , string identifier = "=" )
         {
             FileInfo fi = new FileInfo( dataPath );
@@ -110,7 +112,6 @@ namespace LitFramework.LitTool
 
             WriteFile( sb , dataPath );
         }
-
 
         /// <summary>
         /// 写入文件到目标地址
@@ -130,7 +131,6 @@ namespace LitFramework.LitTool
             }
         }
 
-
         /// <summary>
         /// 读取目标地址文件
         /// </summary>
@@ -141,7 +141,7 @@ namespace LitFramework.LitTool
             FileInfo t = new FileInfo( targetPath );
             if( !t.Exists )
             {
-                UnityEngine.Debug.Log( "文件不存在:" + targetPath );
+                Debug.Log( "文件不存在:" + targetPath );
                 return string.Empty;
             }
             //使用流的形式读取
@@ -202,6 +202,97 @@ namespace LitFramework.LitTool
             return str;
         }
 
+        /// <summary>
+        /// 保存www资源到本地
+        /// </summary>
+        /// <param name="dataPath">完整目标地址</param>
+        /// 
+        /// 例如  SaveAsset2LocalFile( path , w.bytes , w.bytes.Length );
+        /// <param name="info"></param>
+        /// <param name="length"></param>
+        public static void SaveAsset2LocalFile( string dataPath, byte[] info, int length )
+        {
+            Stream sw = null;
+
+            FileInfo fileInfo = new FileInfo( dataPath );
+            if ( !fileInfo.Directory.Exists ) fileInfo.Directory.Create();
+            if ( fileInfo.Exists ) fileInfo.Delete();
+
+            //如果此文件不存在则创建  
+            sw = fileInfo.Create();
+            //写入  
+            sw.Write( info, 0, length );
+            //写入并清除字节流
+            sw.Flush();
+            //关闭流  
+            sw.Close();
+            //销毁流  
+            sw.Dispose();
+            //关闭文件
+            fileInfo = null;
+        }
+
+        public static bool IsExists( string fileFullPath )
+        {
+            FileInfo fileInfo = new FileInfo( fileFullPath );
+            return fileInfo.Exists;
+        }
+
+        #region UnityWebRequest
+
+        public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack )
+        {
+            Uri uri = new Uri( path );
+            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
+            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            {
+                uwr.timeout = 5;
+                uwr.disposeUploadHandlerOnDispose = true;
+                uwr.disposeDownloadHandlerOnDispose = true;
+                uwr.disposeCertificateHandlerOnDispose = true;
+
+                yield return uwr.SendWebRequest();
+
+                if ( uwr.isNetworkError || uwr.isHttpError )
+                {
+                    LDebug.LogError( "  >Error: " + uwr.error );
+                }
+                else
+                {
+                    callBack?.Invoke( uwr );
+                    LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                }
+            }
+        }
+
+        public static IEnumerator ILoadAsset( string path, Action<string> callBack )
+        {
+            Uri uri = new Uri( path );
+            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
+            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            {
+                uwr.timeout = 5;
+                uwr.disposeUploadHandlerOnDispose = true;
+                uwr.disposeDownloadHandlerOnDispose = true;
+                uwr.disposeCertificateHandlerOnDispose = true;
+
+                yield return uwr.SendWebRequest();
+
+                if ( uwr.isNetworkError || uwr.isHttpError )
+                {
+                    LDebug.LogError( "  >Error: " + uwr.error );
+                }
+                else
+                {
+                    callBack?.Invoke( uwr.downloadHandler.text );
+                    LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                }
+            }
+        }
+        
+        #endregion
+
+        #region WWW加载
 
         /// <summary>
         /// www加载，Unity版本
@@ -232,65 +323,42 @@ namespace LitFramework.LitTool
         }
 
 
-        ///// <summary>
-        ///// www加载
-        ///// </summary>
-        ///// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
-        ///// <param name="callBack">加载完成后的回调</param>
-        ///// <returns></returns>
-        //void WWWLoadingWithWaiting( string wwwFilePath , Action<WWW> callBack = null )
-        //{
-        //    WWW www = new WWW( wwwFilePath );
-        //    while( !www.isDone ) { }
-
-        //    if( www.error != null )
-        //    {
-        //        if( Application.platform == RuntimePlatform.WindowsEditor )
-        //            throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}  " , www.error , wwwFilePath ) );
-        //        else
-        //            Debug.LogError( "WWW Error: " + www.error );
-        //    }
-
-        //    if( www.isDone )
-        //    {
-        //        if( callBack != null )
-        //            callBack.Invoke( www );
-        //    }
-
-        //    www.Dispose();
-        //    www = null;
-        //}
-
-
         /// <summary>
-        /// 保存www资源到本地
+        /// www加载
         /// </summary>
-        /// <param name="dataPath">完整目标地址</param>
-        /// 
-        /// 例如  SaveAsset2LocalFile( path , w.bytes , w.bytes.Length );
-        /// <param name="info"></param>
-        /// <param name="length"></param>
-        public void SaveAsset2LocalFile( string dataPath , byte[] info , int length )
+        /// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+        /// <param name="callBack">加载完成后的回调</param>
+        /// <returns></returns>
+        public static string WWWLoadingWithWaiting( string wwwFilePath, Action<WWW> callBack = null )
         {
-            Stream sw = null;
-            FileInfo fileInfo = new FileInfo( dataPath );
-            if( fileInfo.Exists )
+            LDebug.Log( wwwFilePath );
+            string resutl = null;
+            WWW www = new WWW( wwwFilePath );
+            while ( !www.isDone ) { }
+
+            if ( www.error != null )
             {
-                fileInfo.Delete();
+                if ( Application.platform == RuntimePlatform.WindowsEditor )
+                    throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}  ", www.error, wwwFilePath ) );
+                else
+                    Debug.LogError( "WWW Error: " + www.error );
             }
-            //如果此文件不存在则创建  
-            sw = fileInfo.Create();
-            //写入  
-            sw.Write( info , 0 , length );
-            //写入并清除字节流
-            sw.Flush();
-            //关闭流  
-            sw.Close();
-            //销毁流  
-            sw.Dispose();
-            //关闭文件
-            fileInfo = null;
-            Debug.Log( "<color=yellow>" + fileInfo.Name + "下载成功并保存到本地~" + "</color>" );
+
+            if ( www.isDone )
+            {
+                if ( callBack != null )
+                    callBack.Invoke( www );
+            }
+
+            resutl = www.text;
+            www.Dispose();
+            www = null;
+
+            return resutl;
         }
+
+        #endregion
+
+
     }
 }

@@ -66,24 +66,30 @@ namespace LitFramework.LitTool
         /// <param name="spriteName"></param>
         /// <param name="atlasPath"></param>
         /// <returns></returns>
-        public Sprite LoadSpriteAtlas( string spriteName, string atlasPath = null )
+        public Sprite LoadSpriteAtlas(string spriteName, string atlasPath = null)
         {
             //常驻内存
-            Sprite sprite = Resources.Load<Sprite>( spriteName );
-            if ( sprite == null && !string.IsNullOrEmpty( atlasPath ) )
-            {
-                if ( !_atlasDict.ContainsKey( atlasPath ) )
-                {
-                    Sprite[] atlasSprites = Resources.LoadAll<Sprite>( atlasPath );
-                    _atlasDict.Add( atlasPath, atlasSprites );
-                }
+            Sprite sprite = Resources.Load<Sprite>(spriteName);
 
-                var sprites = _atlasDict[ atlasPath ];
-                var length = _atlasDict[ atlasPath ].Length;
-                for ( int i = 0; i < length; i++ )
-                {
-                    if ( sprites[ i ].name.Equals( string.Concat( new string[] { atlasPath, "_", spriteName } ) ) ) return sprite = sprites[ i ];
-                }
+            
+
+            if (sprite != null || string.IsNullOrEmpty(atlasPath))
+            {
+                return sprite;
+            }
+            if (!_atlasDict.ContainsKey(atlasPath))
+            {
+                Sprite[] atlasSprites = Resources.LoadAll<Sprite>(atlasPath);
+                _atlasDict.Add(atlasPath, atlasSprites);
+            }
+
+            var sprites = _atlasDict[atlasPath];
+            var length = _atlasDict[atlasPath].Length;
+            for (int i = 0; i < length; i++)
+            {
+                if (sprites[i].name.Equals(string.Concat(new string[] { atlasPath, "_", spriteName })))
+
+                    return sprite = sprites[i];
             }
             return sprite;
         }

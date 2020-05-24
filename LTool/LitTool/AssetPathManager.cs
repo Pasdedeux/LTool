@@ -33,45 +33,17 @@ namespace LitFramework.LitTool
 {
     public class AssetPathManager: Singleton<AssetPathManager>
     {
-        private StringBuilder _sBuilder;
-
-        public AssetPathManager()
-        {
-            _sBuilder = new StringBuilder();
-        }
+        public AssetPathManager() { }
 
         /// <summary>
         ///  获取外部persistant路径+"//"
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
-        /// <param name="useWWW">是否采用www加载</param>
-        /// <param name="useFile">是否采用FileInfo类加载</param>
         /// <returns></returns>
-        public string GetPersistentDataPath( string filePath , bool useWWW = false, bool useFile = false )
+        public string GetPersistentDataPath( string filePath, bool useUri = true )
         {
-            _sBuilder.Length = 0;
-
-            if( useWWW )
-            {
-                if( Application.platform == RuntimePlatform.Android )
-                    _sBuilder.Append( "file:" );
-                else if( Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor )
-                    _sBuilder.Append( "file:///" );
-                else
-                    _sBuilder.Append( "file:/" );
-                _sBuilder.Append( Application.persistentDataPath );
-                _sBuilder.Append( "/" );
-            }
-            else
-            {
-                _sBuilder.Append( Application.persistentDataPath );
-                if( useFile && ( Application.platform != RuntimePlatform.IPhonePlayer && Application.platform != RuntimePlatform.OSXEditor ) )
-                    _sBuilder.Append( "//" );
-                else
-                    _sBuilder.Append( "/" );
-            }
-            _sBuilder.Append( filePath );
-            return _sBuilder.ToString();
+            Uri uri = new Uri( Application.persistentDataPath +"/"+ filePath );
+            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
         }
 
 
@@ -81,16 +53,10 @@ namespace LitFramework.LitTool
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useWWW">是否用于FileInfo FileStream</param>
         /// <returns></returns>
-        public string GetStreamAssetDataPath(string filePath, bool useWWW = false)
+        public string GetStreamAssetDataPath(string filePath, bool useUri = true )
         {
-            _sBuilder.Length = 0;
-            if (useWWW && (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor))
-                _sBuilder.Append("file:///");
-            _sBuilder.Append(Application.streamingAssetsPath);
-
-            _sBuilder.Append("/");
-            _sBuilder.Append(filePath);
-            return _sBuilder.ToString();
+            Uri uri = new Uri( Application.streamingAssetsPath +"/"+ filePath );
+            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
         }
 
 
@@ -99,21 +65,10 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
         /// <returns></returns>
-        public string GetTemporaryCachePath( string filePath )
+        public string GetTemporaryCachePath( string filePath, bool useUri = true )
         {
-            _sBuilder.Length = 0;
-
-            //if ( Application.platform == RuntimePlatform.Android )
-            //    _sBuilder.Append( "file:" );
-            //else if ( Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.OSXEditor )
-            //    _sBuilder.Append( "file:///" );
-            //else
-            //    _sBuilder.Append( "file:/" );
-
-            _sBuilder.Append( Application.temporaryCachePath );
-            _sBuilder.Append( "/" );
-            _sBuilder.Append( filePath );
-            return _sBuilder.ToString();
+            Uri uri = new Uri( Application.temporaryCachePath + "/" + filePath );
+            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
         }
     }
 }

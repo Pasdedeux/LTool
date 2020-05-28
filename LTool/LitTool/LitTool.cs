@@ -164,6 +164,24 @@ namespace LitFramework.LitTool
         #endregion
 
         #region UI格式扩展
+        /// <summary>
+        /// 世界坐标转UI坐标
+        /// </summary>
+        /// <param name="targetWorldPos">对象世界坐标</param>
+        /// <param name="mainCam">主摄像机</param>
+        /// <param name="uiCam">UI相机</param>
+        /// <param name="uiCanvas">被放置的UICANVAS节点</param>
+        /// <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+        public static Vector3 World2UIPos( Vector3 targetWorldPos, Camera mainCam, Camera uiCam, RectTransform uiCanvas )
+        {
+            Vector3 result = Vector3.zero;
+            //屏幕转UI  ui(当前的canvas)  _camera_UiCamera(UI的摄像机)
+            var vec3 = mainCam.WorldToScreenPoint( targetWorldPos );
+            RectTransformUtility.ScreenPointToWorldPointInRectangle( uiCanvas, vec3, uiCam, out result );
+            return result;
+        }
+
+
         private static List<Component> _textComponets = new List<Component>( 8 );
         public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false /*, bool removeAllComponents = true*/ )
         {

@@ -84,6 +84,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _maskImage.enabled = true;
                 _color.a = 255F / 255F;
                 _maskImage.color = _color;
+                _maskImage.raycastTarget = true;
                 break;
             //半透明
             case UITransparentEnum.NoPenetratingMiddle:
@@ -91,6 +92,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _maskImage.enabled = true;
                 _color.a = 175F / 255F;
                 _maskImage.color = _color;
+                _maskImage.raycastTarget = true;
                 break;
             //完全透明
             case UITransparentEnum.NoPenetratingTotal:
@@ -98,10 +100,12 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _maskImage.enabled = true;
                 _color.a = 0F / 255F;
                 _maskImage.color = _color;
+                _maskImage.raycastTarget = true;
                 break;
             //可以穿透
             case UITransparentEnum.Penetrating:
                 if ( _maskImage.enabled/*_maskPanel.activeInHierarchy*/ ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
+                _maskImage.raycastTarget = false;
                 break;
         }
     }
@@ -139,6 +143,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         //    _maskPanel.SetActive( false );
         if ( _maskImage.enabled )
             _maskImage.enabled = false;
+        _maskImage.raycastTarget = false;
         MaskEnableEventHandler?.Invoke( _maskImage.enabled );
         //恢复UI相机层深
         if ( _uiCamera != null )

@@ -40,7 +40,7 @@ public enum LogColor
 
 public static class LDebug
 {
-    public static bool Enable { get; set; }
+    public static bool Enable { get; set; } = true;
 
     public static void Log( string content, LogColor color = LogColor.green )
     {

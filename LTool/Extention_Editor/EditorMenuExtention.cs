@@ -28,7 +28,9 @@ namespace LitFramework.EditorExtended
     using UnityEditor;
     using System.IO;
     using System.Data;
+#if UNITY_EDITOR
     using ExcelDataReader;
+#endif
     using System.Reflection;
 
     public class EditorMenuExtention
@@ -142,39 +144,6 @@ namespace LitFramework.EditorExtended
             }
         }
 
-#if UNITY_EDITOR
-        [MenuItem( "Tools/拷贝到Unity工程" )]
-#endif
-        public static void CopyToUnity()
-        {
-            string uPath = Application.dataPath + "/Scripts/DllFramework/";
-            string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework/";
-
-            FolderCopy.CopyTo( hPath, uPath );
-            Debug.Log( "所有文件拷贝完毕" );
-        }
-
-#if UNITY_EDITOR
-        [MenuItem( "Tools/拷贝到热更新工程" )]
-        public static void CopyToHotFix()
-        {
-            if ( EditorUtility.DisplayDialog( "提示", "是否拷贝到热更新工程", "确认", "取消" ) )
-            {
-                string uPath = Application.dataPath + "/Scripts/DllFramework";
-                string hPath = Application.dataPath + "/../../HoxLogic/HoxLogic/DllFramework";
-
-                FolderCopy.CopyTo( uPath, hPath );
-            }
-            else
-            {
-                Debug.Log( "Cancel" );
-            }
-        }
-#endif
-
-
-
-
         /// <summary>
         /// 创建CS文件
         /// </summary>
@@ -240,59 +209,23 @@ namespace LitFramework.EditorExtended
                 }
                 return writer.ToString();
             }
-
+            
 #endif
             return "";
         }
 
-        [MenuItem( "Tools/Remove Missing Scripts", priority = 10 )]
-        public static void RemoveMissingScript()
-        {
-            var gos = GameObject.FindObjectsOfType<GameObject>();
-            foreach ( var item in gos )
-            {
-                Debug.Log( item.name );
-                SerializedObject so = new SerializedObject( item );
-                var soProperties = so.FindProperty( "m_Component" );
-                var components = item.GetComponents<Component>();
-                int propertyIndex = 0;
-                foreach ( var c in components )
-                {
-                    if ( c == null )
-                    {
-                        soProperties.DeleteArrayElementAtIndex( propertyIndex );
-                    }
-                    ++propertyIndex;
-                }
-                so.ApplyModifiedProperties();
-            }
-
-            AssetDatabase.Refresh();
-            Debug.Log( "清理完成!" );
-        }
-        [MenuItem( "Tools/Remove Selected Rigidbody", priority = 10 )]
-        public static void RemoveRig()
-        {
-            foreach ( var item in Selection.gameObjects )
-            {
-                Rigidbody rig = item.GetComponent<Rigidbody>();
-                if ( rig )
-                {
-                    DestroyImmediate( rig );
-                }
-                Animator ani = item.GetComponent<Animator>();
-                if ( ani )
-                {
-                    DestroyImmediate( ani );
-                }
-            }
-            EditorSceneManager.MarkSceneDirty( SceneManager.GetActiveScene() );
-        }
-
+#if UNITY_EDITOR
         [MenuItem( "Tools/Open PersistentDataPath", priority = 10 )]
         static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
+            p.Close();
+        }
+
+        [MenuItem( "Tools/Open TemporaryCachePath", priority = 10 )]
+        static void OpenTemporaryCachePath()
+        {
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
@@ -301,6 +234,6 @@ namespace LitFramework.EditorExtended
         {
             PlayerPrefs.DeleteAll();
         }
-
+#endif
     }
 }

@@ -239,7 +239,12 @@ namespace LitFramework.LitTool
         }
 
         #region UnityWebRequest
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+        /// <param name="callBack"></param>
+        /// <returns></returns>
         public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack )
         {
             Uri uri = new Uri( path );
@@ -265,6 +270,12 @@ namespace LitFramework.LitTool
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+        /// <param name="callBack"></param>
+        /// <returns></returns>
         public static IEnumerator ILoadAsset( string path, Action<string> callBack )
         {
             Uri uri = new Uri( path );

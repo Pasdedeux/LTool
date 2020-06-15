@@ -45,8 +45,8 @@ public static class BuildSceneSettingEditor
         int index = 0;
         foreach ( string scensName in sceneNames )
         {
-            string name = scensName.Split( '/' ).Last().Split( '.' )[ 0 ];
-            AppConfig.BuildSceneIndexDict.Add( name, index );
+            //string name = scensName.Split( '/' ).Last().Split( '.' )[ 0 ];
+            //AppConfig.BuildSceneIndexDict.Add( name, index );
             scenes.Add( new EditorBuildSettingsScene( scensName, true ) );
             index++;
         }

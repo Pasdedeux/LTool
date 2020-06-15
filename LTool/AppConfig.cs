@@ -29,6 +29,6 @@ namespace LitFramework
     /// </summary>
     public class AppConfig
     {
-        
+        public static Dictionary<string, int> BuildSceneIndexDict = new Dictionary<string, int>();
     }
 }

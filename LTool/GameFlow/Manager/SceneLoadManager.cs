@@ -50,6 +50,18 @@ namespace LitFramework.GameFlow.Manager
         }
 
         /// <summary>
+        /// 异步加载场景
+        /// </summary>
+        /// <param name="sceneID"></param>
+        /// <param name="isAdditive"></param>
+        /// <returns></returns>
+        public AsyncOperation LoadSceneAsync( string sceneName, bool isAdditive )
+        {
+            _asyncLoadTask = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync( sceneName, !isAdditive ? UnityEngine.SceneManagement.LoadSceneMode.Single : UnityEngine.SceneManagement.LoadSceneMode.Additive );
+            return _asyncLoadTask;
+        }
+
+        /// <summary>
         /// 同步加载场景
         /// </summary>
         /// <param name="sceneID"></param>
@@ -58,10 +70,24 @@ namespace LitFramework.GameFlow.Manager
             UnityEngine.SceneManagement.SceneManager.LoadScene( sceneID , !isAdditive ? UnityEngine.SceneManagement.LoadSceneMode.Single : UnityEngine.SceneManagement.LoadSceneMode.Additive );
         }
 
+        /// <summary>
+        /// 同步加载场景
+        /// </summary>
+        /// <param name="sceneID"></param>
+        public void LoadScene( string sceneName, bool isAdditive )
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene( sceneName, !isAdditive ? UnityEngine.SceneManagement.LoadSceneMode.Single : UnityEngine.SceneManagement.LoadSceneMode.Additive );
+        }
+
 
         public void UnLoadScene( int sceneID )
         {
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync( sceneID );
+        }
+
+        public void UnLoadScene( string sceneName )
+        {
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync( sceneName );
         }
 
 

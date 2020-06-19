@@ -176,10 +176,142 @@ namespace LitFramework.GameFlow
             }
         }
 
+        /// <summary>
+        /// 加载场景，这里使用的async加载方式
+        /// </summary>
+        /// <param name="sceneID"></param>
+        /// <param name="callBackBeforeChanging"></param>
+        /// <param name="callBackAfterChanging"></param>
+        /// <param name="loadingUIPath"></param>
+        /// <param name="needFading"></param>
+        /// <param name="fadingTime"></param>
+        /// <param name="isHot"></param>
+        /// <param name="isAdditive"></param>
+        public void ChangeScene( string sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isHot = false, bool isAdditive = false )
+        {
+            _iUIManger = Mono.UIManager.Instance;
+            _iUIManger.UseFading = needFading;
+
+            //No UIloading && No Fading
+            if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )
+            {
+                callBackBeforeChanging?.Invoke();
+
+                _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                _asyncOperation.allowSceneActivation = false;
+                while ( _asyncOperation.progress < 0.9f ) { }
+                _asyncOperation.allowSceneActivation = true;
+
+                LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
+            }
+
+            //No UIloading && Fading
+            else if ( string.IsNullOrEmpty( loadingUIPath ) && needFading )
+            {
+                _iUIManger.ShowFade( fadingTime, () =>
+                {
+                    callBackBeforeChanging?.Invoke();
+
+                    _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                    _asyncOperation.allowSceneActivation = false;
+                    while ( _asyncOperation.progress < 0.9f ) { }
+                    _asyncOperation.allowSceneActivation = true;
+
+                    LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
+
+                    _iUIManger.HideFade( fadingTime );
+                } );
+            }
+
+            //UIloading && No Fading
+            else if ( !string.IsNullOrEmpty( loadingUIPath ) && !needFading )
+            {
+                // 默认占用0帧
+                LoadingTaskModel.Instance.AddTask( 0, () =>
+                {
+                    callBackBeforeChanging?.Invoke();
+
+                    _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                    _asyncOperation.allowSceneActivation = false;
+                    return true;
+                }, true );
+
+                // 默认占用1帧 牺牲了场景加载的进度性
+                LoadingTaskModel.Instance.AddTask( 1, () =>
+                {
+                    bool over = _asyncOperation.progress >= 0.9f;
+                    return over;
+                }, true );
+
+                //场景加载完成后的回调
+                LoadingTaskModel.Instance.AddTask( 100, () =>
+                {
+                    LoadingTaskModel.Instance.ClearTask();
+                    _asyncOperation.allowSceneActivation = true;
+                    callBackAfterChanging?.Invoke();
+
+                    _iUIManger.Close( loadingUIPath );
+                    return true;
+                }, true );
+
+                _iUIManger.Show( loadingUIPath );
+            }
+
+            //UIloading && Fading
+            else
+            {
+                _iUIManger.ShowFade( fadingTime, () =>
+                {
+                    //显示UILoading
+                    _iUIManger.HideFade( fadingTime, () =>
+                    {
+                        _iUIManger.Show( loadingUIPath );
+                    } );
+
+                    // 默认占用0帧
+                    LoadingTaskModel.Instance.AddTask( 0, () =>
+                    {
+                        callBackBeforeChanging?.Invoke();
+
+                        _asyncOperation = SceneLoadManager.Instance.LoadSceneAsync( sceneID, isAdditive );
+                        _asyncOperation.allowSceneActivation = false;
+                        return true;
+                    }, true );
+
+                    // 默认占用1帧 牺牲了场景加载的进度性
+                    LoadingTaskModel.Instance.AddTask( 1, () =>
+                    {
+                        bool over = _asyncOperation.progress >= 0.9f;
+                        return over;
+                    }, true );
+
+                    //场景加载完成后的回调
+                    LoadingTaskModel.Instance.AddTask( 100, () =>
+                    {
+                        _iUIManger.ShowFade( fadingTime, () =>
+                        {
+                            LoadingTaskModel.Instance.ClearTask();
+                            _asyncOperation.allowSceneActivation = true;
+                            callBackAfterChanging?.Invoke();
+
+                            _iUIManger.Close( loadingUIPath );
+                            _iUIManger.HideFade( fadingTime );
+                        } );
+                        return true;
+                    }, true );
+                } );
+            }
+        }
+
 
         public void UnLoadScene( int sceneID  )
         {
             _sceneLoadMng.UnLoadScene( sceneID );
+        }
+
+        public void UnLoadScene( string sceneName )
+        {
+            _sceneLoadMng.UnLoadScene( sceneName );
         }
 
         public override void DoDestroy()

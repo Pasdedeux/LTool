@@ -217,7 +217,7 @@ namespace LitFramework.LitTool
             FileInfo fileInfo = new FileInfo( dataPath );
             if ( !fileInfo.Directory.Exists ) fileInfo.Directory.Create();
             if ( fileInfo.Exists ) fileInfo.Delete();
-
+            
             //如果此文件不存在则创建  
             sw = fileInfo.Create();
             //写入  

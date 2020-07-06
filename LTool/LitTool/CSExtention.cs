@@ -147,5 +147,18 @@ namespace LitFramework.LitTool
             trans.localRotation = Quaternion.identity;
         }
         #endregion
+
+        #region
+        public static List<T> RandomSortList<T>( this List<T> list )
+        {
+            System.Random random = new System.Random();
+            List<T> newList = new List<T>();
+            foreach ( T item in list )
+            {
+                newList.Insert( random.Next( newList.Count + 1 ), item );
+            }
+            return newList;
+        }
+        #endregion
     }
 }

@@ -323,7 +323,7 @@ namespace LitFramework.EditorExtended
                     break;
                 default:
                     //result = "(" + type + ")int.Parse(" + attribute + ")";
-                    result = "(" + type + ")" + attribute;
+                    result = "(" + type + ")Enum.Parse(typeof(" + type + ")," + attribute + ")";
                     break;
             }
             return result;

@@ -322,7 +322,8 @@ namespace LitFramework.EditorExtended
                     result = "ParseVector3(" + attribute + ")";
                     break;
                 default:
-                    result = "(" + type + ")int.Parse(" + attribute + ")";
+                    //result = "(" + type + ")int.Parse(" + attribute + ")";
+                    result = "(" + type + ")" + attribute;
                     break;
             }
             return result;

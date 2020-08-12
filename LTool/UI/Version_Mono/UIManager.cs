@@ -47,7 +47,7 @@ namespace LitFramework.Mono
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>,IManager,IUIManager
+    public class UIManager : Singleton<UIManager>, IManager, IUIManager
     {
         public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
 
@@ -191,9 +191,9 @@ namespace LitFramework.Mono
             }
             _fadeImage.raycastTarget = true;
 
-            if( FadeStartAction != null ) { FadeStartAction( time, callBack );return; }
+            if ( FadeStartAction != null ) { FadeStartAction( time, callBack ); return; }
 
-            _fadeImage.CrossFadeAlpha( 1, time, false );
+            _fadeImage.CrossFadeAlpha( 1, time, true );
             if ( callBack != null )
                 LitTool.LitTool.DelayPlayFunction( time, callBack );
         }
@@ -215,19 +215,16 @@ namespace LitFramework.Mono
 
             if ( FadeHideAction == null )
             {
-                _fadeImage.CrossFadeAlpha( 0, time, false );
-                LitTool.LitTool.DelayPlayFunction( time, () => { _fadeImage.raycastTarget = false; } );
-                if ( callBack != null ) DelHideCallBack += callBack;
+                _fadeImage.CrossFadeAlpha( 0, time, true );
+                if ( callBack != null )
+                    DelHideCallBack += callBack;
             }
             else
             {
-                DelHideCallBack += () =>
-                {
-                    _fadeImage.raycastTarget = false;
-                    FadeHideAction?.Invoke( time, callBack );
-                };
+                DelHideCallBack += () => FadeHideAction?.Invoke( time, callBack );
             }
-            DelHideCallBack += () => { DelHideCallBack = null; };
+            DelHideCallBack += () => _fadeImage.raycastTarget = false;
+            DelHideCallBack += () => DelHideCallBack = null;
 
             LitTool.LitTool.DelayPlayFunction( time, DelHideCallBack );
         }

@@ -100,33 +100,33 @@ namespace LitJson
     public class JsonMapper
     {
         #region Fields
-        private static int max_nesting_depth;
+        private static readonly int max_nesting_depth;
 
-        private static IFormatProvider datetime_format;
+        private static readonly IFormatProvider datetime_format;
 
-        private static IDictionary<Type, ExporterFunc> base_exporters_table;
-        private static IDictionary<Type, ExporterFunc> custom_exporters_table;
+        private static readonly IDictionary<Type, ExporterFunc> base_exporters_table;
+        private static readonly IDictionary<Type, ExporterFunc> custom_exporters_table;
 
-        private static IDictionary<Type,
+        private static readonly IDictionary<Type,
                 IDictionary<Type, ImporterFunc>> base_importers_table;
-        private static IDictionary<Type,
+        private static readonly IDictionary<Type,
                 IDictionary<Type, ImporterFunc>> custom_importers_table;
 
-        private static IDictionary<Type, ArrayMetadata> array_metadata;
+        private static readonly IDictionary<Type, ArrayMetadata> array_metadata;
         private static readonly object array_metadata_lock = new Object ();
 
-        private static IDictionary<Type,
+        private static readonly IDictionary<Type,
                 IDictionary<Type, MethodInfo>> conv_ops;
         private static readonly object conv_ops_lock = new Object ();
 
-        private static IDictionary<Type, ObjectMetadata> object_metadata;
+        private static readonly IDictionary<Type, ObjectMetadata> object_metadata;
         private static readonly object object_metadata_lock = new Object ();
 
-        private static IDictionary<Type,
+        private static readonly IDictionary<Type,
                 IList<PropertyMetadata>> type_properties;
         private static readonly object type_properties_lock = new Object ();
 
-        private static JsonWriter      static_writer;
+        private static readonly JsonWriter      static_writer;
         private static readonly object static_writer_lock = new Object ();
         #endregion
 
@@ -310,14 +310,23 @@ namespace LitJson
             if (reader.Token == JsonToken.ArrayEnd)
                 return null;
 
-            if (reader.Token == JsonToken.Null) {
+            Type underlying_type = Nullable.GetUnderlyingType(inst_type);
+            Type value_type = underlying_type ?? inst_type;
 
-                if (! inst_type.IsClass)
-                    throw new JsonException (String.Format (
+            if (reader.Token == JsonToken.Null) {
+                #if NETSTANDARD1_5
+                if (inst_type.IsClass() || underlying_type != null) {
+                    return null;
+                }
+                #else
+                if (inst_type.IsClass || underlying_type != null) {
+                    return null;
+                }
+                #endif
+
+                throw new JsonException (String.Format (
                             "Can't assign null to an instance of type {0}",
                             inst_type));
-
-                return null;
             }
 
             if (reader.Token == JsonToken.Double ||
@@ -328,16 +337,16 @@ namespace LitJson
 
                 Type json_type = reader.Value.GetType ();
 
-                if (inst_type.IsAssignableFrom (json_type))
+                if (value_type.IsAssignableFrom (json_type))
                     return reader.Value;
 
                 // If there's a custom importer that fits, use it
                 if (custom_importers_table.ContainsKey (json_type) &&
                     custom_importers_table[json_type].ContainsKey (
-                        inst_type)) {
+                        value_type)) {
 
                     ImporterFunc importer =
-                        custom_importers_table[json_type][inst_type];
+                        custom_importers_table[json_type][value_type];
 
                     return importer (reader.Value);
                 }
@@ -345,20 +354,24 @@ namespace LitJson
                 // Maybe there's a base importer that works
                 if (base_importers_table.ContainsKey (json_type) &&
                     base_importers_table[json_type].ContainsKey (
-                        inst_type)) {
+                        value_type)) {
 
                     ImporterFunc importer =
-                        base_importers_table[json_type][inst_type];
+                        base_importers_table[json_type][value_type];
 
                     return importer (reader.Value);
                 }
 
                 // Maybe it's an enum
-                if (inst_type.IsEnum)
-                    return Enum.ToObject (inst_type, reader.Value);
-
+                #if NETSTANDARD1_5
+                if (value_type.IsEnum())
+                    return Enum.ToObject (value_type, reader.Value);
+                #else
+                if (value_type.IsEnum)
+                    return Enum.ToObject (value_type, reader.Value);
+                #endif
                 // Try using an implicit conversion operator
-                MethodInfo conv_op = GetConvOp (inst_type, json_type);
+                MethodInfo conv_op = GetConvOp (value_type, json_type);
 
                 if (conv_op != null)
                     return conv_op.Invoke (null,
@@ -392,6 +405,8 @@ namespace LitJson
                     list = new ArrayList ();
                     elem_type = inst_type.GetElementType ();
                 }
+                
+                list.Clear();
 
                 while (true) {
                     object item = ReadValue (elem_type, reader);
@@ -411,11 +426,10 @@ namespace LitJson
                     instance = list;
 
             } else if (reader.Token == JsonToken.ObjectStart) {
+                AddObjectMetadata (value_type);
+                ObjectMetadata t_data = object_metadata[value_type];
 
-                AddObjectMetadata (inst_type);
-                ObjectMetadata t_data = object_metadata[inst_type];
-
-                instance = Activator.CreateInstance (inst_type);
+                instance = Activator.CreateInstance (value_type);
 
                 while (true) {
                     reader.Read ();
@@ -591,6 +605,11 @@ namespace LitJson
                 delegate (object obj, JsonWriter writer) {
                     writer.Write ((ulong) obj);
                 };
+
+            base_exporters_table[typeof(DateTimeOffset)] =
+                delegate (object obj, JsonWriter writer) {
+                    writer.Write(((DateTimeOffset)obj).ToString("yyyy-MM-ddTHH:mm:ss.fffffffzzz", datetime_format));
+                };
         }
 
         private static void RegisterBaseImporters ()
@@ -608,6 +627,12 @@ namespace LitJson
             };
             RegisterImporter (base_importers_table, typeof (int),
                               typeof (ulong), importer);
+
+            importer = delegate (object input) {
+                return Convert.ToInt64((int)input);
+            };
+            RegisterImporter(base_importers_table, typeof(int),
+                              typeof(long), importer);
 
             importer = delegate (object input) {
                 return Convert.ToSByte ((int) input);
@@ -651,6 +676,11 @@ namespace LitJson
             RegisterImporter (base_importers_table, typeof (double),
                               typeof (decimal), importer);
 
+            importer = delegate (object input) {
+                return Convert.ToSingle((double)input);
+            };
+            RegisterImporter(base_importers_table, typeof(double),
+                typeof(float), importer);
 
             importer = delegate (object input) {
                 return Convert.ToUInt32 ((long) input);
@@ -669,6 +699,12 @@ namespace LitJson
             };
             RegisterImporter (base_importers_table, typeof (string),
                               typeof (DateTime), importer);
+
+            importer = delegate (object input) {
+                return DateTimeOffset.Parse((string)input, datetime_format);
+            };
+            RegisterImporter(base_importers_table, typeof(string),
+                typeof(DateTimeOffset), importer);
         }
 
         private static void RegisterImporter (
@@ -715,6 +751,12 @@ namespace LitJson
                 return;
             }
 
+            if (obj is Single)
+            {
+                writer.Write((float)obj);
+                return;
+            }
+
             if (obj is Int32) {
                 writer.Write ((int) obj);
                 return;
@@ -750,10 +792,13 @@ namespace LitJson
                 return;
             }
 
-            if (obj is IDictionary) {
+            if (obj is IDictionary dictionary) {
                 writer.WriteObjectStart ();
-                foreach (DictionaryEntry entry in (IDictionary) obj) {
-                    writer.WritePropertyName ((string) entry.Key);
+                foreach (DictionaryEntry entry in dictionary) {
+                    var propertyName = entry.Key is string key ?
+                        key
+                        : Convert.ToString(entry.Key, CultureInfo.InvariantCulture);
+                    writer.WritePropertyName (propertyName);
                     WriteValue (entry.Value, writer, writer_is_private,
                                 depth + 1);
                 }
@@ -874,6 +919,13 @@ namespace LitJson
             JsonReader reader = new JsonReader (json);
 
             return (T) ReadValue (typeof (T), reader);
+        }
+        
+        public static object ToObject(string json, Type ConvertType )
+        {
+            JsonReader reader = new JsonReader(json);
+
+            return ReadValue(ConvertType, reader);
         }
 
         public static IJsonWrapper ToWrapper (WrapperFactory factory,

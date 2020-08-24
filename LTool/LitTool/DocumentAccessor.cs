@@ -46,10 +46,10 @@ namespace LitFramework.LitTool
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
         /// <param name="identifier">默认分隔符为=</param>
         /// <returns></returns>
-        public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , string identifier = "=" )
+        public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , Char[] identifier = null )
         {
             Dictionary<string , List<string>> content = new Dictionary<string , List<string>>();
-            Char chars = identifier.ToCharArray()[ 0 ];
+            Char[] chars = identifier;
 
             if( !isContent )
             {
@@ -113,6 +113,35 @@ namespace LitFramework.LitTool
             WriteFile( sb , dataPath );
         }
 
+
+        /// <summary>
+        /// 本地创建指定内容文件
+        /// </summary>
+        /// <param name="fileFullPath"></param>
+        /// <param name="content"></param>
+        public static void CreateFile( string fileFullPath, string content )
+        {
+            //文件流信息  
+            StreamWriter sw;
+            FileInfo t = new FileInfo( fileFullPath );
+            if ( !t.Exists )
+            {
+                //如果此文件不存在则创建  
+                sw = t.CreateText();
+            }
+            else
+            {
+                //如果此文件存在则打开  
+                sw = t.AppendText();
+            }
+            //以行的形式写入信息  
+            sw.WriteLine( content );
+            //关闭流  
+            sw.Close();
+            //销毁流  
+            sw.Dispose();
+        }
+
         /// <summary>
         /// 写入文件到目标地址
         /// </summary>
@@ -144,6 +173,7 @@ namespace LitFramework.LitTool
                 Debug.Log( "文件不存在:" + targetPath );
                 return string.Empty;
             }
+            
             //使用流的形式读取
             string str = null;
             if( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor )

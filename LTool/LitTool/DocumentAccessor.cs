@@ -160,6 +160,7 @@ namespace LitFramework.LitTool
             }
         }
 
+
         /// <summary>
         /// 读取目标地址文件
         /// </summary>
@@ -232,8 +233,14 @@ namespace LitFramework.LitTool
             return str;
         }
 
+
+
+
+
+
+
         /// <summary>
-        /// 保存www资源到本地
+        /// 保存资源到本地
         /// </summary>
         /// <param name="dataPath">完整目标地址</param>
         /// 

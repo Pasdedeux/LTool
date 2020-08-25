@@ -113,6 +113,7 @@
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
+    <Compile Include="LitTool\CurrencyModel.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />
     <Compile Include="LitTool\LitJSON\IJsonWrapper.cs" />
     <Compile Include="LitTool\LitJSON\JsonData.cs" />

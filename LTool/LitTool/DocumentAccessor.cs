@@ -46,10 +46,9 @@ namespace LitFramework.LitTool
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
         /// <param name="identifier">默认分隔符为=</param>
         /// <returns></returns>
-        public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , string identifier = "=" )
+        public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , Char[] chars = null )
         {
             Dictionary<string , List<string>> content = new Dictionary<string , List<string>>();
-            Char chars = identifier.ToCharArray()[ 0 ];
 
             if( !isContent )
             {
@@ -172,7 +171,7 @@ namespace LitFramework.LitTool
 
                     var fn = targetPath;
                     sr = File.OpenText( fn );
-
+                    
                     string line;
                     while( ( line = sr.ReadLine() ) != null )
                     {

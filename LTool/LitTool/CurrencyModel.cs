@@ -66,14 +66,14 @@ public static class CurrencyModel
         return GetToLargeNum( str );
     }
 
-    private static string GetToLargeNum( string str )
+    public static string GetToLargeNum( string str )
     {
         bool isNegative = str[ 0 ] == '-';
         if ( isNegative )
             str = str.Remove( 0, 1 );
         int count = str.Length - 4;
         string sign = TOLARGENUMSIGN[ Mathf.FloorToInt( count / 3f ) ];
-        int dotLeftCount = count % 3 + 1;
+        int dotLeftCount = str.Contains( '.' ) ? 0 : ( count % 3 + 1 );
 
         StringBuilder valueStr = new StringBuilder();
         if ( dotLeftCount == 1 )
@@ -99,6 +99,13 @@ public static class CurrencyModel
             valueStr.Append( '.' );
             valueStr.Append( str[ 3 ] );
             valueStr.Append( str[ 4 ] );
+        }
+        else
+        {
+            valueStr.Append( str[ 0 ] );
+            valueStr.Append( str[ 1 ] );
+            valueStr.Append( str[ 2 ] );
+            valueStr.Append( str[ 3 ] );
         }
         valueStr.Append( sign );
         if ( isNegative )

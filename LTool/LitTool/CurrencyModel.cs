@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -112,6 +113,156 @@ public static class CurrencyModel
             return '-' + valueStr.ToString();
         else
             return valueStr.ToString();
+    }
+
+    /// <summary>
+    /// 大数量级数字+运算
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    public static void Plus( this string ori, string variable )
+    {
+        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+        var gap = oriUnitIndex - targetUnitIndex;
+        //原来的值小于附加值两个单位以上--替换
+        if ( gap <= -2 )
+        {
+            ori = variable;
+            return;
+        }
+        //原来的值大于附加值两个单位以上--忽略
+        else if ( gap >= 2 )
+        {
+            return;
+        }
+        //降成同单位级的计算
+        string finalUnity = targetUnit;
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        if ( oriUnitIndex < targetUnitIndex )
+        {
+            targetNum *= 1000 * ( targetUnitIndex - oriUnitIndex );
+            finalUnity = targetUnit;
+        }
+        else if ( oriUnitIndex > targetUnitIndex )
+        {
+            oriNum *= 1000 * ( oriUnitIndex - targetUnitIndex );
+            finalUnity = oriUnit;
+        }
+        oriNum += targetNum;
+        ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( "G4" ), finalUnity );
+    }
+    /// <summary>
+    /// 大数量级数字-运算
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    public static void Minus( this string ori, string variable )
+    {
+        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+        var gap = oriUnitIndex - targetUnitIndex;
+        //原来的值小于附加值单位归0
+        if ( gap < 0 )
+        {
+            ori = "0";
+            return;
+        }
+        //原来的值大于附加值两个单位以上--忽略
+        else if ( gap >= 2 )
+        {
+            return;
+        }
+
+        //降成同单位级的计算
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        if ( oriUnitIndex > targetUnitIndex )
+        {
+            oriNum *= 1000 * ( oriUnitIndex - targetUnitIndex );
+            oriNum -= targetNum;
+            ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( "G4" ), targetUnit );
+        }
+        else
+        {
+            oriNum -= targetNum;
+            ori = string.Format( "{0}{1}", oriNum.ToString( "G4" ), targetUnit );
+        }
+    }
+    /// <summary>
+    /// 大数量级数字X运算
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    public static void Mul( this string ori, string variable )
+    {
+        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+
+        //数字部分
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+        //对于乘法单位级+1，用于级数运算
+        oriUnitIndex++;
+        targetUnitIndex++;
+
+        int mulResultUnitIndex = oriUnitIndex + targetUnitIndex;
+        float mulResultNumber = oriNum * targetNum;
+        if ( mulResultNumber >= 1000f )
+        {
+            mulResultUnitIndex++;
+            mulResultNumber *= 0.001f;
+        }
+        mulResultUnitIndex--;
+        ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), mulResultUnitIndex > -1 ? TOLARGENUMSIGN[ mulResultUnitIndex ] : "" );
+    }
+    /// <summary>
+    /// 大数量级数字÷运算
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    public static void Div( this string ori, string variable )
+    {
+        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+
+        //数字部分
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+        //对于除法单位级+1，用于级数运算
+        oriUnitIndex++;
+        targetUnitIndex++;
+
+        int mulResultUnitIndex = oriUnitIndex - targetUnitIndex;
+        float mulResultNumber = oriNum / targetNum;
+        if ( mulResultNumber < 1f && mulResultUnitIndex > 0 )
+        {
+            mulResultUnitIndex--;
+            mulResultNumber *= 1000f;
+        }
+        mulResultUnitIndex--;
+        ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), mulResultUnitIndex > -1 ? TOLARGENUMSIGN[ mulResultUnitIndex ] : "" );
     }
     #endregion
 }

@@ -264,5 +264,34 @@ public static class CurrencyModel
         mulResultUnitIndex--;
         ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), mulResultUnitIndex > -1 ? TOLARGENUMSIGN[ mulResultUnitIndex ] : "" );
     }
+    /// <summary>
+    /// 大数量级数字比较大小
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    /// <returns> 《0小于   =0等于  》0大于 </returns>
+    public static float Compare( this string ori, string variable )
+    {
+        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+
+        if( oriUnitIndex < targetUnitIndex )
+        {
+            return -1;
+        }
+        else if( oriUnitIndex > targetUnitIndex )
+        {
+            return 1;
+        }
+
+        //数字部分
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        return oriNum - targetNum;
+    }
     #endregion
 }

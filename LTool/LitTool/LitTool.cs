@@ -47,21 +47,38 @@ namespace LitFramework.LitTool
             }
             private set { _mono = value; }
         }
-        private static WaitForSeconds _waitSeconds;
-        private static WaitUntil _waitUntil;
 
+        private static WaitUntil _waitUntil;
+        private static WaitForSeconds _waitSeconds;
+        private static WaitForSecondsRealtime _waitRealSeconds;
 
         #region 延迟调用方法
-        public static void DelayPlayFunction( float time, System.Action func )
+        public static void DelayPlayFunction( float time, System.Action func , bool real = false )
         {
-            _waitSeconds = new WaitForSeconds( time );
-            monoBehaviour.StartCoroutine( DelayFunction( time, func ) );
+            if ( real )
+            {
+                _waitRealSeconds = new WaitForSecondsRealtime( time );
+                monoBehaviour.StartCoroutine( DelayFunctionReal( time, func ) );
+            }
+            else
+            {
+                _waitSeconds = new WaitForSeconds( time );
+                monoBehaviour.StartCoroutine( DelayFunction( time, func ) );
+            }
+            
         }
         static IEnumerator DelayFunction( float time, System.Action func )
         {
             yield return _waitSeconds;
             func?.Invoke();
         }
+
+        static IEnumerator DelayFunctionReal( float time, System.Action func )
+        {
+            yield return _waitRealSeconds;
+            func?.Invoke();
+        }
+
 
         public static void StopDelayPlayFunction()
         {

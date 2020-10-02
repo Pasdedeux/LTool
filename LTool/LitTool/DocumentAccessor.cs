@@ -264,7 +264,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke( uwr );
-                    LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -295,7 +295,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke( uwr.downloadHandler.text );
-                    LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }

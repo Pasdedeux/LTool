@@ -71,11 +71,9 @@ namespace LitFramework.LitTool
             //常驻内存
             Sprite sprite = Resources.Load<Sprite>(spriteName);
 
-            
-
             if (sprite != null || string.IsNullOrEmpty(atlasPath))
             {
-                return sprite;
+                return GameObject.Instantiate<Sprite>( sprite );
             }
             if (!_atlasDict.ContainsKey(atlasPath))
             {
@@ -91,7 +89,7 @@ namespace LitFramework.LitTool
 
                     return sprite = sprites[i];
             }
-            return sprite;
+            return GameObject.Instantiate<Sprite>( sprite );
         }
 
 
@@ -100,6 +98,7 @@ namespace LitFramework.LitTool
         /// 加载 .txt/ .dat/ .csv等文件
         /// </summary>
         /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+        /// <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
         /// <returns></returns>
         private IEnumerator DoLoadFile( string searchPath , bool useRawDataArray = false )
         {

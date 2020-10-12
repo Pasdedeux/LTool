@@ -33,6 +33,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -129,6 +131,8 @@
     <Compile Include="Base\IManager.cs" />
     <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="ThirdParty\AD\IAd.cs" />
+    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />
@@ -143,5 +147,6 @@
     <Compile Include="Unity\LMath.cs" />
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -148,7 +148,13 @@ namespace LitFramework.LitTool
         }
         #endregion
 
-        #region
+        #region 工具类
+        /// <summary>
+        /// 数组内随机排列
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static List<T> RandomSortList<T>( this List<T> list )
         {
             System.Random random = new System.Random();
@@ -160,5 +166,7 @@ namespace LitFramework.LitTool
             return newList;
         }
         #endregion
+
+
     }
 }

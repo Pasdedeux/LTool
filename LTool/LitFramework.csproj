@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Base\Cloneable.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Crypto\Crypto.cs" />

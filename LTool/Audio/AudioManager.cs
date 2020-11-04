@@ -390,7 +390,7 @@ namespace LitFramework
         {
             if ( !IsEnabled ) return;
 
-            if( _audioBGM.clip != null )
+            if( _audioBGM.clip != null && !_audioBGM.isPlaying )
                 _audioBGM.Play();
         }
 

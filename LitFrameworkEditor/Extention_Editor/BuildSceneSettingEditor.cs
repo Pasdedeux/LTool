@@ -25,6 +25,7 @@ using System.Linq;
 /// </summary>
 public static class BuildSceneSettingEditor
 {
+#if UNITY_EDITOR
     /// <summary>
     /// 构建场景设置为所有
     /// </summary>
@@ -62,4 +63,5 @@ public static class BuildSceneSettingEditor
         List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
         EditorBuildSettings.scenes = scenes.ToArray();
     }
+#endif
 }

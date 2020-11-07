@@ -22,13 +22,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorExtended
+namespace LitFrameworkEditor.EditorExtended
 {
     using UnityEngine;
-    using UnityEditor;
     using System.IO;
     using System.Data;
 #if UNITY_EDITOR
+    using UnityEditor;
     using ExcelDataReader;
 #endif
     using System.Reflection;
@@ -37,7 +37,7 @@ namespace LitFramework.EditorExtended
     {
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/配置文件->CSV" )]
+        [MenuItem( "LTools/配置文件->CSV",priority =20)]
 #endif
         public static void XlsxToCSV()
         {
@@ -82,11 +82,14 @@ namespace LitFramework.EditorExtended
                 listwriter.Close();
                 listwriter.Dispose();
                 fs.Dispose();
+#if UNITY_EDITOR
+                AssetDatabase.Refresh();
+#endif
             }
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/配置文件->CSV+代码" )]
+        [MenuItem( "LTools/配置文件->CSV+代码", priority = 21 )]
 #endif
         public static void CsvToCs()
         {
@@ -141,6 +144,9 @@ namespace LitFramework.EditorExtended
                 listwriter.Close();
                 listwriter.Dispose();
                 fs.Dispose();
+#if UNITY_EDITOR
+                AssetDatabase.Refresh();
+#endif
             }
         }
 
@@ -209,34 +215,41 @@ namespace LitFramework.EditorExtended
                 }
                 return writer.ToString();
             }
-            
-#endif
+#else
             return "";
+#endif
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/Open PersistentDataPath", priority = 10 )]
+        [MenuItem( "LTools/开启可同步目录", priority = 2 )]
         static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
             p.Close();
         }
 
-        [MenuItem( "Tools/Open TemporaryCachePath", priority = 10 )]
+        [MenuItem( "LTools/开启临时存储目录", priority = 3 )]
         static void OpenTemporaryCachePath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
-        [MenuItem( "Tools/Delete All Data", priority = 10 )]
+        [MenuItem( "LTools/开启项目内存储目录", priority = 1 )]
+        static void OpenSteamingAssetsPath()
+        {
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.streamingAssetsPath );
+            p.Close();
+        }
+
+        [MenuItem( "LTools/删除所有PlayerPrefs数据", priority = 90 )]
         public static void RemoveAllKey()
         {
             PlayerPrefs.DeleteAll();
         }
 
 
-        [MenuItem( "Tools/Remove Empty Directories")]
+        [MenuItem( "LTools/删除空白目录", priority = 91 )]
         public static void CleanEmptyDirectories()
         {
             var di = new DirectoryInfo( "Assets/" );

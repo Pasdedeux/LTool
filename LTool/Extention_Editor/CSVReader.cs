@@ -22,108 +22,105 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorExtended
+public class CSVReader
 {
-    public class CSVReader
+    List<List<string>> csvData = new List<List<string>>();
+
+    public CSVReader( string csv )
     {
-        List<List<string>> csvData = new List<List<string>>();
+        ParseCSV( csv );
+    }
+    public int Row
+    {
+        get { return csvData.Count; }
+    }
+    public int Colume
+    {
+        get
+        {
+            if ( csvData.Count == 0 )
+                return 0;
+            return csvData[ 0 ].Count;
+        }
+    }
+    /// <summary>
+    /// 解析csv数据
+    /// </summary>
+    /// <param name="csv"></param>
+    private void ParseCSV( string csv )
+    {
+        if ( csv == null && csv == "" )
+            return;
 
-        public CSVReader( string csv )
+        csvData.Clear();
+        //按行拆分
+        string strsp = "\r\n";
+        if ( !csv.Contains( "\r" ) )
         {
-            ParseCSV( csv );
+            strsp = "\n";
         }
-        public int Row
+        string[] rowstr = csv.Split( new string[] { strsp }, System.StringSplitOptions.RemoveEmptyEntries );
+        for ( int i = 0; i < rowstr.Length; ++i )
         {
-            get { return csvData.Count; }
-        }
-        public int Colume
-        {
-            get
+            List<string> row = new List<string>();
+            string cur = "";
+            string left = rowstr[ i ];
+            int spilt = -1;
+            //按照逗号拆分字符串
+            do
             {
-                if( csvData.Count == 0 )
-                    return 0;
-                return csvData[ 0 ].Count;
-            }
-        }
-        /// <summary>
-        /// 解析csv数据
-        /// </summary>
-        /// <param name="csv"></param>
-        private void ParseCSV( string csv )
-        {
-            if( csv == null && csv == "" )
-                return;
+                spilt = left.IndexOf( "," );
 
-            csvData.Clear();
-            //按行拆分
-            string strsp = "\r\n";
-            if( !csv.Contains( "\r" ) )
-            {
-                strsp = "\n";
-            }
-            string[] rowstr = csv.Split( new string[] { strsp } , System.StringSplitOptions.RemoveEmptyEntries );
-            for( int i = 0; i < rowstr.Length; ++i )
-            {
-                List<string> row = new List<string>();
-                string cur = "";
-                string left = rowstr[ i ];
-                int spilt = -1;
-                //按照逗号拆分字符串
-                do
+                if ( spilt == -1 )
+                    cur = left;
+                else
                 {
-                    spilt = left.IndexOf( "," );
+                    cur = left.Substring( 0, spilt );
+                    left = left.Substring( spilt + 1 );
 
-                    if( spilt == -1 )
-                        cur = left;
-                    else
+                    //第一个字符是"\""的情况
+                    if ( cur != "" && cur[ 0 ] == '\"' )
                     {
-                        cur = left.Substring( 0 , spilt );
-                        left = left.Substring( spilt + 1 );
-
-                        //第一个字符是"\""的情况
-                        if( cur != "" && cur[ 0 ] == '\"' )
+                        //拼接完整句子
+                        while ( cur.LastIndexOf( '"' ) != cur.Length - 1 )
                         {
-                            //拼接完整句子
-                            while( cur.LastIndexOf( '"' ) != cur.Length - 1 )
-                            {
-                                cur += ",";
-                                spilt = left.IndexOf( "," );
-                                if( spilt == -1 )
-                                    cur += left;
-                                else
-                                    cur += left.Substring( 0 , spilt );
-                                left = left.Substring( spilt + 1 );
-                            }
-                            //去掉多余的"\""号
-                            cur = cur.Substring( 1 , cur.Length - 2 );
-                            cur = cur.Replace( "\"\"" , "\"" );
+                            cur += ",";
+                            spilt = left.IndexOf( "," );
+                            if ( spilt == -1 )
+                                cur += left;
+                            else
+                                cur += left.Substring( 0, spilt );
+                            left = left.Substring( spilt + 1 );
                         }
+                        //去掉多余的"\""号
+                        cur = cur.Substring( 1, cur.Length - 2 );
+                        cur = cur.Replace( "\"\"", "\"" );
                     }
-                    row.Add( cur );
                 }
-                while( spilt != -1 );
-
-                csvData.Add( row );
+                row.Add( cur );
             }
+            while ( spilt != -1 );
 
-        }
-        /// <summary>
-        /// 获取数据
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        private string GetData( int x , int y )
-        {
-            if( y >= csvData.Count && x >= csvData[ y ].Count )
-                return "";
-            return csvData[ y ][ x ];
-        }
-
-        public string[] GetRow( int index )
-        {
-            return csvData[ index ].ToArray();
+            csvData.Add( row );
         }
 
     }
+    /// <summary>
+    /// 获取数据
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns></returns>
+    public string GetData( int x, int y )
+    {
+        if ( y >= csvData.Count && x >= csvData[ y ].Count )
+            return "";
+        return csvData[ y ][ x ];
+    }
+
+    public string[] GetRow( int index )
+    {
+        return csvData[ index ].ToArray();
+    }
+
 }

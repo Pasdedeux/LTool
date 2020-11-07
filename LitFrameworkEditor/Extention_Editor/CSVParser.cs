@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LitFramework.EditorExtended
+namespace LitFrameworkEditor.EditorExtended
 {
     /// <summary>
     /// 表头为3行制
@@ -62,24 +62,22 @@ namespace LitFramework.EditorExtended
 
             return result;
         }
-
-        //检查csv格式正确性
-        void CheckCsv()
-        {
-
-        }
-
+        
         void AddHead()
         {
             CSString.Add( "using UnityEngine;" );
-            CSString.Add( "using LitFramework.EditorExtended;" );
             CSString.Add( "using System;" );
             CSString.Add( "using System.Collections.Generic;" );
+            CSString.Add( "using " + spaceName + ";" );
+            //CSString.Add( "#if UNITY_EDITOR" );
+            //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
+            //CSString.Add( "#endif" );
             CSString.Add( "/// <summary>" );
+            CSString.Add( "/// Author : Derek Liu" );
             CSString.Add( "/// 创建时间:" + DateTime.Now.ToString() );
             CSString.Add( "/// </summary>" );
-            CSString.Add( "namespace " + spaceName );
-            CSString.Add( "{" );
+            //CSString.Add( "namespace " + spaceName );
+            //CSString.Add( "{" );
             CSString.Add( "public class " + ClassName );
             CSString.Add( "{" );
         }
@@ -87,7 +85,7 @@ namespace LitFramework.EditorExtended
         {
             CSString.Add( "" );
             CSString.Add( "}" );
-            CSString.Add( "}" );
+            //CSString.Add( "}" );
         }
 
         string DicConvert( string type )

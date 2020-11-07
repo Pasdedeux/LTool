@@ -1,0 +1,1018 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LitFramework</name>
+    </assembly>
+    <members>
+        <member name="T:LitFramework.AppConfig">
+            <summary>
+             Respect
+            </summary>
+        </member>
+        <member name="T:LitFramework.AudioManager">
+            <summary>
+            音频组建更新
+            
+            创建时需要外传加载方法
+            </summary>
+        </member>
+        <member name="P:LitFramework.AudioManager.VolumeSE">
+            <summary>
+            音效音量
+            </summary>
+        </member>
+        <member name="P:LitFramework.AudioManager.VolumeBGM">
+            <summary>
+            音乐音量
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.Install">
+            <summary>
+            启动音频模块
+            </summary>
+            <param name="loadFunction">提供音频加载方法</param>
+        </member>
+        <member name="M:LitFramework.AudioManager.Uninstall">
+            <summary>
+            卸载模块
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.GetBGM(System.String)">
+            <summary>
+            获取音乐
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.AudioManager.GetSE(System.String)">
+            <summary>
+            获取音效
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlaySE(System.String,System.Boolean,System.Boolean,System.Single)">
+            <summary>
+            播放音效
+            修改：
+            用栈管理多个音效组件，处理同时存在的多个持续存在的声音效果
+            </summary>
+            <param name="name">名称</param>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopSE(System.String)">
+            <summary>
+            停止持续播放的音效
+            只针对loop声效有效
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopAllSE">
+            <summary>
+            关闭全部音效
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlayBGM(System.String,System.Boolean)">
+            <summary>
+            播放音乐
+            </summary>
+            <param name="name"></param>
+            <param name="loop"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.PauseBGM">
+            <summary>
+            暂停音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopBGM">
+            <summary>
+            停止音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.ResumeBGM">
+            <summary>
+            继续播放音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.OnBGMValumeChange(System.Single)">
+            <summary>
+            侦听音量改变
+            </summary>
+            <param name="vol"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.OnSEValumeChange(System.Single)">
+            <summary>
+            侦听音乐改变
+            </summary>
+            <param name="vol"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlaySoloSE(System.String)">
+            <summary>
+            播放独立音效，单次且不可覆盖播放
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:LitFramework.Singleton`1">
+            <summary>
+            非组件单例基类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:LitFramework.Singleton`1._instance">
+            <summary>
+            volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。
+            </summary>
+        </member>
+        <member name="M:LitFramework.Singleton`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="T:LitFramework.SingletonMono`1">
+            <summary>
+            组件单例基类
+            </summary>
+            <typeparam name="T">继承子类类名</typeparam>
+            
+        </member>
+        <member name="M:LitFramework.SingletonMono`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="M:LitFramework.SingletonMono`1.OnApplicationQuit">
+            <summary>
+            应用程序退出
+            </summary>
+        </member>
+        <member name="T:LitFramework.GameFlow.GameFlowController">
+            <summary>
+            游戏主流程控制器，用于场景加载、跳转等命令合集
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.String,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.Int32,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.String,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="T:LitFramework.GameFlow.LoadingTaskModel">
+            <summary>
+            Loading 加载任务数据类，用于承接Loading进度条的中间加载任务
+            执行时机由UI界面驱动
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.AddTask(System.Int32,System.Func{System.Boolean},System.Boolean)">
+            <summary>
+             在指定加载进度位置执行代码 
+             
+            【不要手动添加0-5/100的回调函数，0-5默认为场景加载，100默认为加载进度条结束时的回调】
+            </summary>
+            <param name="framePercent">指定的百分比</param>
+            <param name="funcCallBack">需要执行的回调函数</param>
+            <param name="forceReplace">忽略限制，按参数信息赋值</param>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.TryGetTask(System.Int32)">
+            <summary>
+            尝试查询并取出任务
+            </summary>
+            <param name="framePercent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.ClearTask">
+            <summary>
+            清楚本次UI登记的任务
+            </summary>
+        </member>
+        <member name="E:LitFramework.Input.InputControlManager.EscapeCallBack">
+            <summary>
+            点击返回键
+            </summary>
+        </member>
+        <member name="F:LitFramework.Input.InputControlManager.IsTouchedContinuePressCallBack">
+            <summary>
+            是否持续点击触发
+            </summary>
+        </member>
+        <member name="F:LitFramework.Input.InputControlManager.IsTouchedOnUICallBack">
+            <summary>
+            是否点击到UI反馈
+            </summary>
+        </member>
+        <member name="P:LitFramework.Input.InputControlManager.CurrentIsOnUI">
+            <summary>
+            当前是否在点击UI
+            </summary>
+        </member>
+        <member name="P:LitFramework.Input.InputControlManager.IsEnable">
+            <summary>
+            鼠标点击操作功能是否开启
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
+            <summary>
+            按住屏幕开始计时
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
+            <summary>
+            离开屏幕计时
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.EscapeBtnClick">
+            <summary>
+            默认-按顺序关闭UI
+            </summary>
+            <param name="extendedFunc">采用自定义函数执行返回键功能</param>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.SetRotateClockwise(System.Single)">
+            <summary>
+            设置触控方向的【顺时针】旋转角度
+            </summary>
+            <param name="degree"></param>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.GetTouchMoveDirection(LitFramework.Input.TouchDirection)">
+            <summary>
+            获取一次滑动行为
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
+            <summary>
+             获取外部persistant路径+"//"
+            </summary>
+            <param name="filePath">要加载的文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="filePath">要加载的文件名</param>
+            <param name="useWWW">是否用于FileInfo FileStream</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="filePath">要加载的文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.saveCapture">
+            <summary> 保存截图 </summary>
+            <param name="camera">目标摄像机</param>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.capture(UnityEngine.Camera)">
+            <summary> 相机截图 </summary>
+            <param name="camera">目标相机</param>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.capture(UnityEngine.Camera,System.Int32,System.Int32)">
+            <summary> 相机截图 </summary>
+            <param name="camera">目标相机</param>
+            <param name="width">宽度</param>
+            <param name="height">高度</param>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.saveTexture(System.String,UnityEngine.Texture2D)">
+            <summary> 保存贴图 </summary>
+            <param name="path">保存路径</param>
+            <param name="texture">Texture2D</param>
+        </member>
+        <member name="T:LitFramework.LitTool.CSExtention">
+            <summary>
+            方法扩展类
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.FormatWith(System.String,System.Object[])">
+            <summary>
+            单字符串
+            </summary>
+            <param name="format"></param>
+            <param name="args">需要替换成的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.StopCoroutineWith(UnityEngine.MonoBehaviour,UnityEngine.Coroutine@)">
+            <summary>
+            停止制定协程，并自动释放
+            </summary>
+            <param name="mono"></param>
+            <param name="func"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,System.Single,UnityEngine.Vector3[]@)">
+            <summary>
+            获取【透视相机】指定距离下相机视口四个角的坐标
+            </summary>
+            <param name="cam"></param>
+            <param name="distance">相对于相机的距离</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,UnityEngine.Vector3[]@)">
+            <summary>
+            获取【正交相机】视口四个角的坐标
+            </summary>
+            <param name="cam"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.RandomSortList``1(System.Collections.Generic.List{``0})">
+            <summary>
+            数组内随机排列
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
+            <summary>
+            参数1-解析出的一条完整信息
+            参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.OpenText(System.String,System.Boolean,System.Char[])">
+            <summary>
+            解析txt 或者 远端txt内容
+            </summary>
+            <param name="path">地址或者内容文本</param>
+            <param name="isContent">path字符串如果是地址，为false，反之为true</param>
+            <param name="identifier">默认分隔符为=</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveText(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.String,System.String)">
+            <summary>
+            将本地版本字典保存到文件，如txt
+            </summary>
+            <param name="targetList">目标字典</param>
+            <param name="dataPath">存入的目标文件</param>
+            <param name="append">追加的信息，会被添加到第一行</param>
+            <param name="identifier">目标字典值的连接符</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WriteFile(System.Text.StringBuilder,System.String)">
+            <summary>
+            写入文件到目标地址
+            </summary>
+            <param name="sb"></param>
+            <param name="targetPath"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ReadFile(System.String)">
+            <summary>
+            读取目标地址文件
+            </summary>
+            <param name="sb"></param>
+            <param name="targetPath">完整地址+名称</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFile(System.String,System.Byte[],System.Int32)">
+            <summary>
+            保存www资源到本地
+            </summary>
+            <param name="dataPath">完整目标地址</param>
+            
+            例如  SaveAsset2LocalFile( path , w.bytes , w.bytes.Length );
+            <param name="info"></param>
+            <param name="length"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+            <summary>
+            
+            </summary>
+            <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <param name="callBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <param name="callBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
+            <summary>
+            www加载，Unity版本
+            </summary>
+            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+            <param name="callBack">加载完成后的回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoadingWithWaiting(System.String,System.Action{UnityEngine.WWW})">
+            <summary>
+            www加载
+            </summary>
+            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+            <param name="callBack">加载完成后的回调</param>
+            <returns></returns>
+        </member>
+        <member name="T:LitFramework.LitTool.LitTool">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取指定显示显示格式的时间跨度表达
+            </summary>
+            <param name="startTime"></param>
+            <param name="endTime"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.TimeSpan,System.String)">
+            <summary>
+            获取指定显示显示格式的时间跨度表达
+            </summary>
+            <param name="span"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp(System.DateTime)">
+            <summary>
+            获取时间戳Timestamp  
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetDateTime(System.Int32,System.Boolean)">
+            <summary>
+            时间戳Timestamp转换成日期
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.World2UIPos(UnityEngine.Vector3,UnityEngine.Camera,UnityEngine.Camera,UnityEngine.RectTransform)">
+            <summary>
+            世界坐标转UI坐标
+            </summary>
+            <param name="targetWorldPos">对象世界坐标</param>
+            <param name="mainCam">主摄像机</param>
+            <param name="uiCam">UI相机</param>
+            <param name="uiCanvas">被放置的UICANVAS节点</param>
+            <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
+            <summary>
+            加载图集中的子对象
+            </summary>
+            <param name="spriteName"></param>
+            <param name="atlasPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadFile(System.String,System.Boolean)">
+            <summary>
+            加载 .txt/ .dat/ .csv等文件
+            </summary>
+            <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadTexture(System.String)">
+            <summary>
+            加载png 等图像格式
+            </summary>
+            <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadAssetBundle(System.String)">
+            <summary>
+            加载AssetBundle
+            </summary>
+            /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            <returns></returns>
+        </member>
+        <member name="T:LitFramework.UI.Base.UIModelBehavior">
+            <summary>
+            提供一个表进行动态修改UI状态
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.BaseUI.IsShowing">
+            <summary>
+            该窗口是否开启中
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.BaseUI._uiType">
+            <summary>
+            当前窗口类型
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.BaseUI.IsStarted">
+            <summary>
+            是否执行过Start
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.BaseUI.AssetsName">
+            <summary>
+            资源名
+            </summary>
+        </member>
+        <member name="M:LitFramework.Mono.BaseUI.Show(System.Boolean)">
+            <summary>
+            显示窗体
+            </summary>
+            <param name="replay">会传bool到 OnEnable/OnDisable</param>
+        </member>
+        <member name="M:LitFramework.Mono.BaseUI.Close(System.Boolean,System.Boolean)">
+            <summary>
+            隐藏窗口
+            </summary>
+            <param name="isDestroy">是否摧毁并彻底释放</param>
+            <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
+        </member>
+        <member name="M:LitFramework.Mono.BaseUI.OnShow">
+            <inheritdoc/>
+             <remarks>
+             刷新窗体
+             </remarks>
+        </member>
+        <member name="M:LitFramework.Mono.BaseUI.OnBackPushed">
+            <summary>
+            点击返回事件
+            </summary>
+        </member>
+        <member name="T:LitFramework.Mono.UIManager">
+            <summary>
+            以下UI类，需配合UImanager.unitypackage使用。
+            
+            主要包含Cavas_Root及相关Tag等
+            
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._allRegisterUIList">
+            <summary>
+            所有的预制件名称列表
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._stackCurrentUI">
+            <summary>
+            //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._dictLoadedAllUIs">
+            <summary>
+            缓存已经开启过的所有窗体
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._dictCurrentShowUIs">
+            <summary>
+            当前显示的非弹出类UI窗体
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.TransRoot">
+            <summary>
+            UI根节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.TransNormal">
+            <summary>
+            普通窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.TransFixed">
+            <summary>
+            固定UI节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.TransPopUp">
+            <summary>
+            弹出窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.TransGlobal">
+            <summary>
+            全局UI节点
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager.LoadResourceFunc">
+            <summary>
+            外部传入UI的加载方法。Resource.Load || AssetBundle.Load
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.UICam">
+            <summary>
+            UI摄像机
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._fadeImage">
+            <summary>
+            全局渐变遮罩
+            </summary>
+        </member>
+        <member name="E:LitFramework.Mono.UIManager.DelHideCallBack">
+            <summary>
+             遮罩结束时回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.ShowFade(System.Single,System.Action)">
+            <summary>
+            隐退开始
+            </summary>
+            <param name="time"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.HideFade(System.Single,System.Action)">
+            <summary>
+            隐退结束
+            </summary>
+            <param name="time"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.Show(System.String)">
+            <summary>
+            显示（打开）UI窗口
+            功能：
+            1、根据UI窗体的名称，加载到UI窗口缓存列表
+            2、根据不同UI显示模式，做不同的加载处理
+            </summary>
+            <param name="uiName">UI窗体预制件名称</param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.Close(System.String,System.Boolean)">
+            <summary>
+            关闭指定UI
+            </summary>
+            <param name="uiName"></param>
+            <param name="isDestroy">是否直接释放所有资源，销毁</param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.ClearPopUpStackArray">
+            <summary>
+            清空弹出窗口栈
+            </summary>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.LoadUIToAndFromAllList(System.String)">
+            <summary>
+            根据UI预制件名称加载到UI缓存列表（按需），同时获取实例
+            </summary>
+            <param name="uiName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.LoadUI(System.String)">
+            <summary>
+            加载指定名称UI
+            功能：
+            1、根据名称加载预制体
+            2、根据UI类型加载到不同节点下
+            3、隐藏创建的UI克隆体
+            4、把克隆体加入到所有窗体列表
+            </summary>
+            <param name="uiName">窗体名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.LoadParallelUI(System.String)">
+            <summary>
+            加载当前窗体到当前窗体集合
+            </summary>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.UnLoadParallelUI(System.String,System.Boolean)">
+            <summary>
+            从当前UI列表缓存中卸载UI窗体
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.LoadUniqueUI(System.String)">
+            <summary>
+            加载独占UI窗体
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.UnLoadUniqueUI(System.String,System.Boolean)">
+            <summary>
+            卸载当前UI，并将原先被隐藏的UI重新显示
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.LoadStackUI(System.String)">
+            <summary>
+            弹出窗口，入栈
+            先冻结栈中窗口，再将此窗口入栈
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.UnLoadStackUI(System.String,System.Boolean)">
+            <summary>
+            弹出窗口，出栈
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.GetUIByName(System.String)">
+            <summary>
+            从现有缓存中查找目标UI，未加载则返回null
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.Mono.UIManager.OnEscapeCallback">
+            <summary>
+            返回键执行关闭窗口操作
+            </summary>
+        </member>
+        <member name="M:Cloneable`1.Clone">
+            <summary>
+            基础覆写方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSVReader.ParseCSV(System.String)">
+            <summary>
+            解析csv数据
+            </summary>
+            <param name="csv"></param>
+        </member>
+        <member name="M:CSVReader.GetData(System.Int32,System.Int32)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitJson.JsonData.ContainsKey(System.String)">
+            <summary>
+            Determines whether the json contains an element that has the specified key.
+            </summary>
+            <param name="key">The key to locate in the json.</param>
+            <returns>true if the json contains an element that has the specified key; otherwise, false.</returns>
+        </member>
+        <member name="F:UIType.isClearPopUp">
+            <summary>
+            是否需要清空弹出窗口栈
+            </summary>
+        </member>
+        <member name="F:UIType.uiNodeType">
+            <summary>
+            UI窗体挂载的节点类型
+            </summary>
+        </member>
+        <member name="F:UIType.uiShowMode">
+            <summary>
+            UI窗体显示方式
+            Normal - 示窗体与其他窗体可以同时显示
+            PopUp - 多层弹窗，同时需要维护多个弹出窗口并依次恢复显示的情况
+            Unique - 独占窗口，显示时其他界面隐藏
+            </summary>
+        </member>
+        <member name="F:UIType.uiTransparent">
+            <summary>
+            UI窗体透明度类型(PopUp 类型时生效)
+            </summary>
+        </member>
+        <member name="M:UIMaskManager.SetMaskWindow(UnityEngine.GameObject,UITransparentEnum)">
+            <summary>
+            设置遮罩状态
+            </summary>
+        </member>
+        <member name="M:UIMaskManager.CancelMaskWindow">
+            <summary>
+            取消遮罩
+            </summary>
+        </member>
+        <member name="T:UINodeTypeEnum">
+            <summary>
+            引导挂载到不同节点
+            </summary>
+        </member>
+        <member name="F:UINodeTypeEnum.Normal">
+            <summary>
+            节点 - 普通窗体
+            <para>一般性可拖动</para>
+            </summary>
+        </member>
+        <member name="F:UINodeTypeEnum.Fixed">
+            <summary>
+            节点 - 固定窗体
+            <para>用于最底层的全屏界面UI   </para>
+            </summary>
+        </member>
+        <member name="F:UINodeTypeEnum.PopUp">
+            <summary>
+            节点 - 弹出窗体，可使用黑色遮罩
+            </summary>
+        </member>
+        <member name="T:UIShowModeEnum">
+            <summary>
+            窗体显示方式
+            </summary>
+        </member>
+        <member name="F:UIShowModeEnum.Parallel">
+            <summary>
+            展示窗体与其他窗体可以同时显示
+            </summary>
+        </member>
+        <member name="F:UIShowModeEnum.Stack">
+            <summary>
+            多层弹窗，同时需要维护多个弹出窗口并依次恢复显示的情况
+            </summary>
+        </member>
+        <member name="F:UIShowModeEnum.Unique">
+            <summary>
+            独占窗口，显示时其他界面隐藏
+            </summary>
+        </member>
+        <member name="T:UITransparentEnum">
+            <summary>
+            定义模态窗体的透明度
+            </summary>
+        </member>
+        <member name="F:UITransparentEnum.NoPenetratingLow">
+            <summary>
+            低透明，不可穿透
+            </summary>
+        </member>
+        <member name="F:UITransparentEnum.NoPenetratingMiddle">
+            <summary>
+            半透明，不可穿透
+            </summary>
+        </member>
+        <member name="F:UITransparentEnum.NoPenetratingTotal">
+            <summary>
+            透明，不可穿透
+            </summary>
+        </member>
+        <member name="F:UITransparentEnum.Penetrating">
+            <summary>
+            可穿透
+            </summary>
+        </member>
+        <member name="M:UnityHelper.FindTheChildNode(UnityEngine.Transform,System.String)">
+            <summary>
+            查找子节点对象
+            内部使用递归算法
+            </summary>
+            <param name="goParent">父对象</param>
+            <param name="chiildName">查找的子对象名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityHelper.GetTheChildNodeComponetScripts``1(UnityEngine.Transform,System.String)">
+            <summary>
+            获取子节点（对象）脚本
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="goParent">父对象</param>
+            <param name="childName">子对象名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityHelper.AddChildNodeCompnent``1(UnityEngine.Transform,System.String)">
+            <summary>
+            给子节点添加脚本
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="goParent">父对象</param>
+            <param name="childName">子对象名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityHelper.AddChildNodeToParentNode(UnityEngine.Transform,UnityEngine.Transform)">
+            <summary>
+            给子节点添加父对象
+            </summary>
+            <param name="parents">父对象的方位</param>
+            <param name="child">子对象的方法</param>
+        </member>
+        <member name="M:UnityEngine.LMath.VectorAngle(UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean)">
+            <summary>
+            返回 -180°~180°/ 0°~180° 向量夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="fromZero">是否最小值为0°。默认为 False</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform)">
+            <summary>
+            屏幕坐标转3D坐标系的本地坐标
+            </summary>
+            <param name="screenPos"></param>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.RandomIndex(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            得到权重的随机数
+            </summary>
+            <param name="prob"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.Snapshoot(UnityEngine.Camera,System.Int32,System.Int32)">
+            <summary>
+            截图
+            </summary>
+            <param name="camera"></param>
+            <param name="w"></param>
+            <param name="h"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.BezierCurve(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            二次贝塞尔曲线：3点确定一条贝塞尔
+            </summary>
+            <param name="P0"></param>
+            <param name="P1"></param>
+            <param name="P2"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.ClosestPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single@)">
+            <summary>
+            点到线段最近的一个点位置和距离
+            </summary>
+            <param name="linePt1"> 线段起始点</param>
+            <param name="linePt2"> 线段终点</param>
+            <param name="point">任意一点</param>
+            <param name="retPoint">out 相交点</param>
+            <param name="d">out 点到线段的最近距离</param>
+            <returns>是否有垂线与线段相交</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsPointInPoly(UnityEngine.Vector2,UnityEngine.Vector2[])">
+            <summary>
+            2D坐标下某点是否存在于多边形内
+            </summary>
+            <param name="testPoint"></param>
+            <param name="poly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            判断点是否在直线上
+            </summary>
+            <param name="point">任意点</param>
+            <param name="start">直线起点</param>
+            <param name="end">直线终点</param>
+            <returns>返回值越接近0就是表示点越靠近反之越远。当为0时，点完全在线上</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcLineIntersection(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            判断两个直线的交点
+            </summary>
+            <param name="p1">第一根直线</param>
+            <param name="p2">第一根直线</param>
+            <param name="p3">第二根直线</param>
+            <param name="p4">第二根直线</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcIncludedAngle(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            计算两个3D向量的夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns> -180 ---- 180</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcIncludedAngle(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            计算两个2D向量的夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns> -180 ---- 180</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcGamaObjectBoundsInWorld(UnityEngine.GameObject)">
+            <summary>
+            获取GameObjectb包围盒
+            </summary>
+            <param name="go"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

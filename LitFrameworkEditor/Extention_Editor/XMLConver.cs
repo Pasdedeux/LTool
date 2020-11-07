@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 
-namespace LitFramework.EditorExtended
+namespace LitFrameworkEditor.EditorExtended
 {
     class XMLConver
     {
@@ -65,8 +65,9 @@ namespace LitFramework.EditorExtended
                 }
 
                 return writer.ToString();
-#endif
+#else
             return "";
+#endif
         }
     }
 }

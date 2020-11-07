@@ -221,21 +221,21 @@ namespace LitFrameworkEditor.EditorExtended
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "LTools/开启可同步目录", priority = 2 )]
+        [MenuItem( "LTools/开启可同步目录PersistentDataPath", priority = 2 )]
         static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
             p.Close();
         }
 
-        [MenuItem( "LTools/开启临时存储目录", priority = 3 )]
+        [MenuItem( "LTools/开启临时存储目录temporaryCachePath", priority = 3 )]
         static void OpenTemporaryCachePath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
-        [MenuItem( "LTools/开启项目内存储目录", priority = 1 )]
+        [MenuItem( "LTools/开启项目内存储目录streamingAssetsPath", priority = 1 )]
         static void OpenSteamingAssetsPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.streamingAssetsPath );

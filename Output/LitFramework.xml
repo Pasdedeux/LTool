@@ -306,21 +306,41 @@
             <param name="filePath">要加载的文件名</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.saveCapture">
-            <summary> 保存截图 </summary>
-            <param name="camera">目标摄像机</param>
+        <member name="T:LitFramework.LitTool.CameraCapture">
+            <summary>
+            截屏功能
+            </summary>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.capture(UnityEngine.Camera)">
+        <member name="T:LitFramework.LitTool.CameraCapture.CaptureSize">
+            <summary>
+            截图尺寸
+            </summary>
+        </member>
+        <member name="F:LitFramework.LitTool.CameraCapture.pixelSize">
+            <summary>
+            像素尺寸
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.SaveCapture(UnityEngine.Camera,LitFramework.LitTool.CameraCapture.CaptureSize,System.String,System.String)">
+            <summary>
+            保存截图
+            </summary>
+            <param name="targetCamera">目标摄像机</param>
+            <param name="captureSize">截图尺寸</param>
+            <param name="outPutName">文件名称</param>
+            <param name="outPut">存储路径 - 外部输入格式: AssetPathManager.Instance.GetTemporaryCachePath( outPutName , false )</param>
+        </member>
+        <member name="M:LitFramework.LitTool.CameraCapture.Capture(UnityEngine.Camera)">
             <summary> 相机截图 </summary>
             <param name="camera">目标相机</param>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.capture(UnityEngine.Camera,System.Int32,System.Int32)">
+        <member name="M:LitFramework.LitTool.CameraCapture.Capture(UnityEngine.Camera,System.Int32,System.Int32)">
             <summary> 相机截图 </summary>
             <param name="camera">目标相机</param>
             <param name="width">宽度</param>
             <param name="height">高度</param>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.saveTexture(System.String,UnityEngine.Texture2D)">
+        <member name="M:LitFramework.LitTool.CameraCapture.SaveTexture(System.String,UnityEngine.Texture2D)">
             <summary> 保存贴图 </summary>
             <param name="path">保存路径</param>
             <param name="texture">Texture2D</param>
@@ -380,7 +400,7 @@
             </summary>
             <param name="path">地址或者内容文本</param>
             <param name="isContent">path字符串如果是地址，为false，反之为true</param>
-            <param name="identifier">默认分隔符为=</param>
+            <param name="chars">分隔符为列表</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.SaveText(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.String,System.String)">
@@ -403,18 +423,28 @@
             <summary>
             读取目标地址文件
             </summary>
-            <param name="sb"></param>
             <param name="targetPath">完整地址+名称</param>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFile(System.String,System.Byte[],System.Int32)">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFile(System.String,System.Byte[])">
             <summary>
-            保存www资源到本地
+            保存二进制文件资源到本地  例如  SaveAsset2LocalFile( path , w.bytes );
             </summary>
-            <param name="dataPath">完整目标地址</param>
-            
-            例如  SaveAsset2LocalFile( path , w.bytes , w.bytes.Length );
-            <param name="info"></param>
-            <param name="length"></param>
+            <param name="dataPath">完整目标地址，例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false ) </param>
+            <param name="info">bytes数组</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFileByJson(System.Object,System.String)">
+            <summary>
+            存储JSON数据到本地文件
+            </summary>
+            <param name="jsonData">需要被JSON化的类实例</param>
+            <param name="dataPath">完整地址。例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false )</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.IsExists(System.String)">
+            <summary>
+            判定特定路径下指定文件是否存在
+            </summary>
+            <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
+            <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>

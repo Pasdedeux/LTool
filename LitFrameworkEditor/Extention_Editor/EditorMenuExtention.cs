@@ -49,7 +49,7 @@ namespace LitFrameworkEditor.EditorExtended
     {
 
 #if UNITY_EDITOR
-        [MenuItem( "LTools/配置文件->CSV",priority =20)]
+        [MenuItem( "Tools/配置文件->CSV",priority =20)]
 #endif
         public static void XlsxToCSV()
         {
@@ -101,7 +101,7 @@ namespace LitFrameworkEditor.EditorExtended
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "LTools/配置文件->CSV+代码", priority = 21 )]
+        [MenuItem( "Tools/配置文件->CSV+代码", priority = 21 )]
 #endif
         public static void CsvToCs()
         {
@@ -233,35 +233,35 @@ namespace LitFrameworkEditor.EditorExtended
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "LTools/开启可同步目录PersistentDataPath", priority = 2 )]
+        [MenuItem( "Tools/开启可同步目录PersistentDataPath", priority = 2 )]
         static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
             p.Close();
         }
 
-        [MenuItem( "LTools/开启临时存储目录temporaryCachePath", priority = 3 )]
+        [MenuItem( "Tools/开启临时存储目录temporaryCachePath", priority = 3 )]
         static void OpenTemporaryCachePath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
-        [MenuItem( "LTools/开启项目内存储目录streamingAssetsPath", priority = 1 )]
+        [MenuItem( "Tools/开启项目内存储目录streamingAssetsPath", priority = 1 )]
         static void OpenSteamingAssetsPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.streamingAssetsPath );
             p.Close();
         }
 
-        [MenuItem( "LTools/删除所有PlayerPrefs数据", priority = 90 )]
+        [MenuItem( "Tools/删除所有PlayerPrefs数据", priority = 90 )]
         public static void RemoveAllKey()
         {
             PlayerPrefs.DeleteAll();
         }
 
 
-        [MenuItem( "LTools/删除空白目录", priority = 91 )]
+        [MenuItem( "Tools/删除空白目录", priority = 91 )]
         public static void CleanEmptyDirectories()
         {
             var di = new DirectoryInfo( "Assets/" );
@@ -321,7 +321,7 @@ namespace LitFrameworkEditor.EditorExtended
             return hasDirOrFile;
         }
 
-        [MenuItem( "LTools/隐藏选中的物体 &q", priority = 101 )]
+        [MenuItem( "Tools/隐藏选中的物体 &q", priority = 101 )]
         public static void HideChoosedObject()
         {
             var choosed = Selection.gameObjects;

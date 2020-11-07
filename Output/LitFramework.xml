@@ -429,7 +429,7 @@
             图片置灰
             </summary>
         </member>
-        <member name="M:LitFramework.LitTool.CSExtention.Recovery(UnityEngine.UI.Image)">
+        <member name="M:LitFramework.LitTool.CSExtention.SetUIGrayRecover(UnityEngine.UI.Image)">
             <summary>
             图片回复
             </summary>

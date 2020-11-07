@@ -306,44 +306,66 @@
             <param name="filePath">要加载的文件名</param>
             <returns></returns>
         </member>
-        <member name="T:LitFramework.LitTool.CameraCapture">
+        <member name="T:LitFramework.LitTool.TextureCapture">
             <summary>
             截屏功能
             </summary>
         </member>
-        <member name="T:LitFramework.LitTool.CameraCapture.CaptureSize">
+        <member name="T:LitFramework.LitTool.TextureCapture.CaptureSize">
             <summary>
             截图尺寸
             </summary>
         </member>
-        <member name="F:LitFramework.LitTool.CameraCapture.pixelSize">
+        <member name="M:LitFramework.LitTool.TextureCapture.SaveCapture(UnityEngine.Camera,LitFramework.LitTool.TextureCapture.CaptureSize,System.String,System.String,System.Single,System.Single)">
             <summary>
-            像素尺寸
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.SaveCapture(UnityEngine.Camera,LitFramework.LitTool.CameraCapture.CaptureSize,System.String,System.String)">
-            <summary>
-            保存截图
+            保存截图 ，默认存储于TempPath
             </summary>
             <param name="targetCamera">目标摄像机</param>
             <param name="captureSize">截图尺寸</param>
             <param name="outPutName">文件名称</param>
             <param name="outPut">存储路径 - 外部输入格式: AssetPathManager.Instance.GetTemporaryCachePath( outPutName , false )</param>
+            <param name="fixedSizeX">指定截图尺寸下的纵横像素值X</param>
+            <param name="fixedSizeY">指定截图尺寸下的纵横像素值Y</param>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.Capture(UnityEngine.Camera)">
+        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera)">
             <summary> 相机截图 </summary>
             <param name="camera">目标相机</param>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.Capture(UnityEngine.Camera,System.Int32,System.Int32)">
+        <member name="M:LitFramework.LitTool.TextureCapture.GetTexture2d(UnityEngine.RenderTexture)">
+            <summary>
+            从RenderTexture处获取Texture2D
+            </summary>
+            <param name="renderT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera,System.Int32,System.Int32)">
             <summary> 相机截图 </summary>
             <param name="camera">目标相机</param>
             <param name="width">宽度</param>
             <param name="height">高度</param>
         </member>
-        <member name="M:LitFramework.LitTool.CameraCapture.SaveTexture(System.String,UnityEngine.Texture2D)">
+        <member name="M:LitFramework.LitTool.TextureCapture.SaveTexture(System.String,UnityEngine.Texture2D)">
             <summary> 保存贴图 </summary>
             <param name="path">保存路径</param>
             <param name="texture">Texture2D</param>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToRendertexture(UnityEngine.Texture2D,System.Int32,System.Int32)">
+            <summary>
+            Texture2D 转换为 RenderTexture
+            </summary>
+            <param name="targetT">需要转换的Texture2D</param>
+            <param name="imgWidth">目标RenderTexture像素宽度</param>
+            <param name="imgHeiht">目标RenderTexture像素高度</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToSprite(UnityEngine.Texture2D,System.Int32,System.Int32)">
+            <summary>
+            Texture2D 转换为 Sprite
+            </summary>
+            <param name="targetT">需要转换的Texture2D</param>
+            <param name="ImageWidth">目标RenderTexture像素宽度</param>
+            <param name="imageHeight">目标RenderTexture像素高度</param>
+            <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.CSExtention">
             <summary>
@@ -358,7 +380,7 @@
             <param name="args">需要替换成的字符串</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.CSExtention.StopCoroutineWith(UnityEngine.MonoBehaviour,UnityEngine.Coroutine@)">
+        <member name="M:LitFramework.LitTool.CSExtention.StopCoroutineWithFunc(UnityEngine.MonoBehaviour,UnityEngine.Coroutine@)">
             <summary>
             停止制定协程，并自动释放
             </summary>
@@ -371,6 +393,7 @@
             </summary>
             <param name="cam"></param>
             <param name="distance">相对于相机的距离</param>
+            <param name="corners"></param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,UnityEngine.Vector3[]@)">
@@ -378,7 +401,14 @@
             获取【正交相机】视口四个角的坐标
             </summary>
             <param name="cam"></param>
+            <param name="corners"></param>
             <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.IdentityTransform(UnityEngine.Transform)">
+            <summary>
+            localscale=0，localPosition=0，localRotation=identity
+            </summary>
+            <param name="trans"></param>
         </member>
         <member name="M:LitFramework.LitTool.CSExtention.RandomSortList``1(System.Collections.Generic.List{``0})">
             <summary>
@@ -387,6 +417,22 @@
             <typeparam name="T"></typeparam>
             <param name="list"></param>
             <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.GetGrayMat">
+            <summary>
+            创建置灰材质球
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.SetUIGray(UnityEngine.UI.Image)">
+            <summary>
+            图片置灰
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.CSExtention.Recovery(UnityEngine.UI.Image)">
+            <summary>
+            图片回复
+            </summary>
         </member>
         <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
             <summary>

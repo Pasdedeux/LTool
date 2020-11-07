@@ -33,6 +33,18 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
     using System.Reflection;
 
+    //% - CTRL on Windows / CMD on OSX
+    //# - Shift
+    //& -Alt
+    //LEFT/RIGHT/UP/DOWN - Arrow keys
+    //F1 … F2 - F keys
+    //HOME,END,PGUP,PGDN
+    //字母键 - _ + 字母（如:_g代表按键）
+    //[MenuItem("Tools/New Option %#a"]//CTRL-SHIFT-A
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class EditorMenuExtention
     {
 
@@ -283,7 +295,7 @@ namespace LitFrameworkEditor.EditorExtended
             }
         }
 
-        public static bool DoRemoveEmptyDirectory( DirectoryInfo target, List<DirectoryInfo> dis )
+        private static bool DoRemoveEmptyDirectory( DirectoryInfo target, List<DirectoryInfo> dis )
         {
             bool hasDirOrFile = false;
             foreach ( var di in target.GetDirectories() )
@@ -307,6 +319,16 @@ namespace LitFrameworkEditor.EditorExtended
             }
 
             return hasDirOrFile;
+        }
+
+        [MenuItem( "LTools/隐藏选中的物体 &q", priority = 101 )]
+        public static void HideChoosedObject()
+        {
+            var choosed = Selection.gameObjects;
+            foreach ( var item in choosed )
+            {
+                item.SetActive( !item.activeSelf );
+            }
         }
 #endif
     }

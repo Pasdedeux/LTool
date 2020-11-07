@@ -44,6 +44,11 @@
             <param name="y"></param>
             <returns></returns>
         </member>
+        <member name="T:LitFrameworkEditor.EditorExtended.EditorMenuExtention">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.CreateCSFile(System.String,System.String,System.String)">
             <summary>
             创建CS文件

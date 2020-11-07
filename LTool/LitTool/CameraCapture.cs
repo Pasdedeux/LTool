@@ -168,8 +168,8 @@ namespace LitFramework.LitTool
         /// Texture2D 转换为 Sprite
         /// </summary>
         /// <param name="targetT">需要转换的Texture2D</param>
-        /// <param name="imgWidth">目标RenderTexture像素宽度</param>
-        /// <param name="imgHeiht">目标RenderTexture像素高度</param>
+        /// <param name="ImageWidth">目标RenderTexture像素宽度</param>
+        /// <param name="imageHeight">目标RenderTexture像素高度</param>
         /// <returns></returns>
         public static Sprite Texture2DToSprite( Texture2D targetT, int ImageWidth, int imageHeight )
         {

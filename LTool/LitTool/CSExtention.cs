@@ -22,15 +22,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LitFramework.LitTool
 {
     /// <summary>
     /// 方法扩展类
     /// </summary>
-    public static class CSExtention
+    public static partial class CSExtention
     {
-        #region 字符串
+        #region string
 
         /// <summary>
         /// 单字符串
@@ -57,19 +58,20 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="mono"></param>
         /// <param name="func"></param>
-        public static void StopCoroutineWith(this MonoBehaviour mono, ref Coroutine func )
+        public static void StopCoroutineWithFunc(this MonoBehaviour mono, ref Coroutine func )
         {
             mono.StopCoroutine( func );
             func = null;
         }
         #endregion
 
-        #region 相机相关
+        #region Camera
         /// <summary>
         /// 获取【透视相机】指定距离下相机视口四个角的坐标
         /// </summary>
         /// <param name="cam"></param>
         /// <param name="distance">相对于相机的距离</param>
+        /// <param name="corners"></param>
         /// <returns></returns>
         public static void GetCameraBounds( this Camera cam, float distance , ref Vector3[] corners )
         {
@@ -110,6 +112,7 @@ namespace LitFramework.LitTool
         /// 获取【正交相机】视口四个角的坐标
         /// </summary>
         /// <param name="cam"></param>
+        /// <param name="corners"></param>
         /// <returns></returns>
         public static void GetCameraBounds( this Camera cam , ref Vector3[] corners )
         {
@@ -139,7 +142,11 @@ namespace LitFramework.LitTool
         }
         #endregion
 
-        #region Unity
+        #region Transform
+        /// <summary>
+        /// localscale=0，localPosition=0，localRotation=identity
+        /// </summary>
+        /// <param name="trans"></param>
         public static void IdentityTransform(this Transform trans)
         {
             trans.localScale = Vector3.one;
@@ -148,7 +155,7 @@ namespace LitFramework.LitTool
         }
         #endregion
 
-        #region 工具类
+        #region IList
         /// <summary>
         /// 数组内随机排列
         /// </summary>
@@ -164,6 +171,48 @@ namespace LitFramework.LitTool
                 newList.Insert( random.Next( newList.Count + 1 ), item );
             }
             return newList;
+        }
+        #endregion
+
+        #region UI
+        private static Material grayMat;
+
+        /// <summary>
+        /// 创建置灰材质球
+        /// </summary>
+        /// <returns></returns>
+        private static Material GetGrayMat()
+        {
+            if ( grayMat == null )
+            {
+                Shader shader = Shader.Find( "Custom/UI-Gray" );
+                if ( shader == null )
+                {
+                    LDebug.LogWarning( "未发现Shader Custom/UI-Gray" );
+                    return null;
+                }
+                Material mat = new Material( shader );
+                grayMat = mat;
+            }
+
+            return grayMat;
+        }
+
+        /// <summary>
+        /// 图片置灰
+        /// </summary>
+        public static void SetUIGray( this Image img )
+        {
+            img.material = GetGrayMat();
+            img.SetMaterialDirty();
+        }
+
+        /// <summary>
+        /// 图片回复
+        /// </summary>
+        public static void SetUIGrayRecover( this Image img )
+        {
+            img.material = null;
         }
         #endregion
 

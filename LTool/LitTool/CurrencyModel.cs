@@ -72,47 +72,84 @@ public static class CurrencyModel
         bool isNegative = str[ 0 ] == '-';
         if ( isNegative )
             str = str.Remove( 0, 1 );
-        int count = str.Length - 4;
-        string sign = TOLARGENUMSIGN[ Mathf.FloorToInt( count / 3f ) ];
-        int dotLeftCount = str.Contains( '.' ) ? 0 : ( count % 3 + 1 );
-
         StringBuilder valueStr = new StringBuilder();
-        if ( dotLeftCount == 1 )
+        //是否是小数
+        if ( str.Contains( '.' ) )
         {
-            valueStr.Append( str[ 0 ] );
-            valueStr.Append( '.' );
-            valueStr.Append( str[ 1 ] );
-            valueStr.Append( str[ 2 ] );
-        }
-        else if ( dotLeftCount == 2 )
-        {
-            valueStr.Append( str[ 0 ] );
-            valueStr.Append( str[ 1 ] );
-            valueStr.Append( '.' );
-            valueStr.Append( str[ 2 ] );
-            valueStr.Append( str[ 3 ] );
-        }
-        else if ( dotLeftCount == 3 )
-        {
-            valueStr.Append( str[ 0 ] );
-            valueStr.Append( str[ 1 ] );
-            valueStr.Append( str[ 2 ] );
-            valueStr.Append( '.' );
-            valueStr.Append( str[ 3 ] );
-            valueStr.Append( str[ 4 ] );
+            string[] nums = str.Split( '.' );
+            int left = nums[ 0 ].Length;
+            int right = nums[ 1 ].Length;
+            if ( left > 3 ) //小数点左边大于3位数
+            {
+                int tolargenmsignIndex = left / 3 - 1;
+                string sign = TOLARGENUMSIGN[ tolargenmsignIndex ];
+                int ynum = left % 3;
+                if ( left > 5 )
+                {
+                    ynum += 1;
+                }
+
+                for ( int i = 0; i < ynum; i++ )
+                {
+                    valueStr.Append( nums[ 0 ][ i ] );
+                }
+                valueStr.Append( "." );
+                int lastNum = 4 - ynum;
+                for ( int i = 0; i < lastNum; i++ )
+                {
+                    valueStr.Append( nums[ 0 ][ ynum + i ] );
+                }
+
+                valueStr.Append( sign );
+            }
+            else //小数点左边不足
+            {
+
+                for ( int i = 0; i < left; i++ )
+                {
+                    valueStr.Append( nums[ 0 ][ i ] );
+                }
+                int lastNum = 5 - left;
+                valueStr.Append( "." );
+                lastNum = right > lastNum ? lastNum : right;
+                for ( int i = 0; i < lastNum; i++ )
+                {
+                    valueStr.Append( nums[ 1 ][ i ] );
+                }
+            }
         }
         else
         {
-            valueStr.Append( str[ 0 ] );
-            valueStr.Append( str[ 1 ] );
-            valueStr.Append( str[ 2 ] );
-            valueStr.Append( str[ 3 ] );
+            if ( str.Length > 3 )
+            {
+                int tolargenmsignIndex = str.Length / 3 - 1;
+                string sign = TOLARGENUMSIGN[ tolargenmsignIndex ];
+                int ynum = str.Length % 3;
+                if ( str.Length > 5 )
+                {
+                    ynum += 1;
+                }
+
+                for ( int i = 0; i < ynum; i++ )
+                {
+                    valueStr.Append( str[ i ] );
+                }
+                valueStr.Append( "." );
+                int lastNum = 4 - ynum;
+                for ( int i = 0; i < lastNum; i++ )
+                {
+                    valueStr.Append( str[ ynum + i ] );
+                }
+                valueStr.Append( sign );
+            }
+            else
+            {
+                valueStr.Append( str );
+            }
+
         }
-        valueStr.Append( sign );
-        if ( isNegative )
-            return '-' + valueStr.ToString();
-        else
-            return valueStr.ToString();
+
+        return valueStr.ToString();
     }
 
     /// <summary>
@@ -120,95 +157,124 @@ public static class CurrencyModel
     /// </summary>
     /// <param name="ori"></param>
     /// <param name="variable"></param>
-    public static void Plus( this string ori, string variable )
+    public static string Plus( this string ori, string variable )
     {
-        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
-        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
 
         //原本单位级
         var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
         //附加单位级
         var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
         var gap = oriUnitIndex - targetUnitIndex;
-        //原来的值小于附加值两个单位以上--替换
-        if ( gap <= -2 )
+        //原来的值小于附加值1个单位以上--替换
+        if ( gap < -1 )
         {
             ori = variable;
-            return;
+            return ori;
         }
-        //原来的值大于附加值两个单位以上--忽略
-        else if ( gap >= 2 )
+        //原来的值大于附加值1个单位以上--忽略
+        else if ( gap > 1 )
         {
-            return;
+            return ori;
         }
         //降成同单位级的计算
-        string finalUnity = targetUnit;
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
         if ( oriUnitIndex < targetUnitIndex )
         {
             targetNum *= 1000 * ( targetUnitIndex - oriUnitIndex );
-            finalUnity = targetUnit;
+            oriNum += targetNum;
+            ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( targetUnit == "" ? "F0" : "G4" ), targetUnit );
         }
         else if ( oriUnitIndex > targetUnitIndex )
         {
             oriNum *= 1000 * ( oriUnitIndex - targetUnitIndex );
-            finalUnity = oriUnit;
+            oriNum += targetNum;
+            ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( oriUnit == "" ? "F0" : "G4" ), oriUnit );
         }
-        oriNum += targetNum;
-        ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( "G4" ), finalUnity );
+        else
+        {
+            oriNum += targetNum;
+            if ( oriNum >= 1000 )
+                ori = oriNum.ToLargeNum();
+            else
+                ori = string.Format( "{0}{1}", ( oriNum ).ToString( oriUnit == "" ? "F0" : "G4" ), oriUnit );
+        }
+        return ori;
     }
     /// <summary>
     /// 大数量级数字-运算
     /// </summary>
     /// <param name="ori"></param>
     /// <param name="variable"></param>
-    public static void Minus( this string ori, string variable )
+    public static string Minus( this string ori, string variable )
     {
-        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
-        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
 
         //原本单位级
         var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
         //附加单位级
         var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
         var gap = oriUnitIndex - targetUnitIndex;
-        //原来的值小于附加值单位归0
+        //被减数单位量级小于减数单位量级
         if ( gap < 0 )
         {
             ori = "0";
-            return;
+            return ori;
         }
-        //原来的值大于附加值两个单位以上--忽略
-        else if ( gap >= 2 )
+        //原来的值大于附加值1个单位以上--忽略
+        else if ( gap > 1 )
         {
-            return;
+            return ori;
         }
 
         //降成同单位级的计算
+        string finalUnity = targetUnit;
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        //被减数单位量级大于减数单位量级
         if ( oriUnitIndex > targetUnitIndex )
         {
             oriNum *= 1000 * ( oriUnitIndex - targetUnitIndex );
             oriNum -= targetNum;
-            ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( "G4" ), targetUnit );
+            if ( oriNum > 1000 )
+            {
+                finalUnity = oriUnit;
+                ori = string.Format( "{0}{1}", ( oriNum * 0.001f ).ToString( finalUnity == "" ? "F0" : "G4" ), finalUnity );
+            }
+            else if ( oriNum > 1 ) ori = string.Format( "{0}{1}", oriNum.ToString( finalUnity == "" ? "F0" : "G4" ), finalUnity );
+            //exm:1.996b-1b=0.996b=>996a
+            else if ( targetUnitIndex > 0 ) ori = string.Format( "{0}{1}", ( oriNum * 1000f ).ToString( finalUnity == "" ? "F0" : "G4" ), TOLARGENUMSIGN[ targetUnitIndex - 1 ] );
+            //exm:1.996a-1a=0.996=>996
+            else if ( targetUnitIndex == 0 ) ori = string.Format( "{0}{1}", ( oriNum * 1000f ).ToString( "F0" ), "" );
+            //exm:1.996-1=0.996=>0
+            else ori = "0";
         }
+        //被减数单位量级等于减数单位量级
         else
         {
             oriNum -= targetNum;
-            ori = string.Format( "{0}{1}", oriNum.ToString( "G4" ), targetUnit );
+            if ( oriNum > 1 ) ori = string.Format( "{0}{1}", oriNum.ToString( finalUnity == "" ? "F0" : "G4" ), finalUnity );
+            //exm:1.996b-1b=0.996b=>996a
+            else if ( targetUnitIndex > 0 ) ori = string.Format( "{0}{1}", ( oriNum * 1000f ).ToString( finalUnity == "" ? "F0" : "G4" ), TOLARGENUMSIGN[ targetUnitIndex - 1 ] );
+            //exm:1.996a-1a=0.996=>996
+            else if ( targetUnitIndex == 0 ) ori = string.Format( "{0}{1}", ( oriNum * 1000f ).ToString( "F0" ), "" );
+            //exm:1.996-1=0.996=>0
+            else ori = "0";
         }
+        return ori;
     }
     /// <summary>
     /// 大数量级数字X运算
     /// </summary>
     /// <param name="ori"></param>
     /// <param name="variable"></param>
-    public static void Mul( this string ori, string variable )
+    public static string Mul( this string ori, string variable )
     {
-        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
-        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
 
         //数字部分
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
@@ -230,17 +296,21 @@ public static class CurrencyModel
             mulResultNumber *= 0.001f;
         }
         mulResultUnitIndex--;
-        ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), mulResultUnitIndex > -1 ? TOLARGENUMSIGN[ mulResultUnitIndex ] : "" );
+        if ( mulResultUnitIndex > -1 )
+            ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), TOLARGENUMSIGN[ mulResultUnitIndex ] );
+        else
+            ori = string.Format( "{0}{1}", mulResultNumber.ToString( "F0" ), "" );
+        return ori;
     }
     /// <summary>
     /// 大数量级数字÷运算
     /// </summary>
     /// <param name="ori"></param>
     /// <param name="variable"></param>
-    public static void Div( this string ori, string variable )
+    public static string Div( this string ori, string variable )
     {
-        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
-        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
 
         //数字部分
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
@@ -262,7 +332,11 @@ public static class CurrencyModel
             mulResultNumber *= 1000f;
         }
         mulResultUnitIndex--;
-        ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), mulResultUnitIndex > -1 ? TOLARGENUMSIGN[ mulResultUnitIndex ] : "" );
+        if ( mulResultUnitIndex > -1 )
+            ori = string.Format( "{0}{1}", mulResultNumber.ToString( "G4" ), TOLARGENUMSIGN[ mulResultUnitIndex ] );
+        else
+            ori = string.Format( "{0}{1}", mulResultNumber.ToString( "F0" ), "" );
+        return ori;
     }
     /// <summary>
     /// 大数量级数字比较大小
@@ -270,20 +344,20 @@ public static class CurrencyModel
     /// <param name="ori"></param>
     /// <param name="variable"></param>
     /// <returns> 《0小于   =0等于  》0大于 </returns>
-    public static float Compare( this string ori, string variable )
+    public static float CompareValue( this string ori, string variable )
     {
-        var oriUnit = Regex.Replace( ori, "[0-9].", "", RegexOptions.IgnoreCase );
-        var targetUnit = Regex.Replace( variable, "[0-9].", "", RegexOptions.IgnoreCase );
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
         //原本单位级
         var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
         //附加单位级
         var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
 
-        if( oriUnitIndex < targetUnitIndex )
+        if ( oriUnitIndex < targetUnitIndex )
         {
             return -1;
         }
-        else if( oriUnitIndex > targetUnitIndex )
+        else if ( oriUnitIndex > targetUnitIndex )
         {
             return 1;
         }
@@ -292,6 +366,49 @@ public static class CurrencyModel
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
         return oriNum - targetNum;
+    }
+    /// <summary>
+    /// 计算1个大数据相互比例（分母）
+    /// </summary>
+    /// <param name="ori"></param>
+    /// <param name="variable"></param>
+    /// <returns></returns>
+    public static float CalculateRatio( this string ori, string variable )
+    {
+        //降成同单位级的计算
+        var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+
+        if ( targetNum == 0 ) return 0f;
+
+        var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+        var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
+
+        //原本单位级
+        var oriUnitIndex = Array.IndexOf( TOLARGENUMSIGN, oriUnit );
+        //附加单位级
+        var targetUnitIndex = Array.IndexOf( TOLARGENUMSIGN, targetUnit );
+        var gap = oriUnitIndex - targetUnitIndex;
+        //原来的值小于附加值1个单位以上
+        if ( gap < -1 )
+        {
+            return 0f;
+        }
+        //原来的值大于附加值1个单位以上
+        else if ( gap > 1 )
+        {
+            return 1f;
+        }
+
+        if ( oriUnitIndex < targetUnitIndex )
+        {
+            targetNum *= 1000 * ( targetUnitIndex - oriUnitIndex );
+        }
+        else if ( oriUnitIndex > targetUnitIndex )
+        {
+            oriNum *= 1000 * ( oriUnitIndex - targetUnitIndex );
+        }
+        return oriNum / targetNum;
     }
     #endregion
 }

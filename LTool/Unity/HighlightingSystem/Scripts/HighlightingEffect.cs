@@ -15,10 +15,9 @@ public class HighlightingEffect : MonoBehaviour
 	
 	// Stencil (highlighting) buffer size downsample factor
 	public int _downsampleFactor = 4;
-    public float downsampleFactor { get { return _downsampleFactor; } set { _downsampleFactor = value; } }
-
-    // Blur iterations
-    public int iterations = 2;
+	
+	// Blur iterations
+	public int iterations = 2;
 	
 	// Blur minimal spread
 	public float blurMinSpread = 0.65f;
@@ -28,8 +27,6 @@ public class HighlightingEffect : MonoBehaviour
 	
 	// Blurring intensity for the blur material
 	public float _blurIntensity = 0.3f;
-
-    public float blurIntensity { get { return _blurIntensity; }set { _blurIntensity = value; } }
 	
 	// These properties available only in Editor - we don't need them in standalone build
 	#if UNITY_EDITOR
@@ -362,7 +359,7 @@ public class HighlightingEffect : MonoBehaviour
 		shaderCamera.cullingMask = layerMask;
 		shaderCamera.rect = new Rect(0f, 0f, 1f, 1f);
 		shaderCamera.renderingPath = RenderingPath.VertexLit;
-		shaderCamera.hdr = false;
+		shaderCamera.allowHDR = false;
 		shaderCamera.useOcclusionCulling = false;
 		shaderCamera.backgroundColor = new Color(0f, 0f, 0f, 0f);
 		shaderCamera.clearFlags = CameraClearFlags.SolidColor;

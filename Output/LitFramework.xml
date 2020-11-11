@@ -284,34 +284,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:LitFramework.LitPool.SpawnManager">
-            <summary>
-            对外控制用脚本
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Install">
-            <summary>
-            初始化并获取对象池
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
-            <summary>
-            卸载模块
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
-            <summary>
-            从对象池中获取一个对象
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
-            <summary>
-            回收入对象池
-            </summary>
-            <param name="item"></param>
-        </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
             <summary>
              获取外部persistant路径+"//"
@@ -1692,6 +1664,50 @@
             </summary>
             <param name="key"></param>
             <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CurrencyModel.Plus(System.String,System.String)">
+            <summary>
+            大数量级数字+运算
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
+        </member>
+        <member name="M:CurrencyModel.Minus(System.String,System.String)">
+            <summary>
+            大数量级数字-运算
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
+        </member>
+        <member name="M:CurrencyModel.Mul(System.String,System.String)">
+            <summary>
+            大数量级数字X运算
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
+        </member>
+        <member name="M:CurrencyModel.Div(System.String,System.String)">
+            <summary>
+            大数量级数字÷运算
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
+        </member>
+        <member name="M:CurrencyModel.CompareValue(System.String,System.String)">
+            <summary>
+            大数量级数字比较大小
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
+            <returns> 《0小于   =0等于  》0大于 </returns>
+        </member>
+        <member name="M:CurrencyModel.CalculateRatio(System.String,System.String)">
+            <summary>
+            计算1个大数据相互比例（分母）
+            </summary>
+            <param name="ori"></param>
+            <param name="variable"></param>
             <returns></returns>
         </member>
         <member name="M:LitJson.JsonData.ContainsKey(System.String)">

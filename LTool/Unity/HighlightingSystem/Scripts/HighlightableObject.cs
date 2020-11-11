@@ -606,10 +606,10 @@ public class HighlightableObject : MonoBehaviour
 		SkinnedMeshRenderer[] smr = GetComponentsInChildren<SkinnedMeshRenderer>();
 		CacheRenderers(smr);
 		
-		//#if !UNITY_FLASH
-		//ClothRenderer[] cr = GetComponentsInChildren<ClothRenderer>();
-		//CacheRenderers(cr);
-		//#endif
+		#if UNITY_FLASH
+		ClothRenderer[] cr = GetComponentsInChildren<ClothRenderer>();
+		CacheRenderers(cr);
+		#endif
 		
 		currentState = false;
 		materialsIsDirty = false;

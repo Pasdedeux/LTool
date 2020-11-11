@@ -110,7 +110,6 @@
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\PrefabPool.cs" />
     <Compile Include="LitPool\PrefabsDict.cs" />
-    <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
@@ -149,11 +148,6 @@
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LitPool\PoolManager.cs.meta" />
-    <None Include="LitPool\PrefabPool.cs.meta" />
-    <None Include="LitPool\PrefabsDict.cs.meta" />
-    <None Include="LitPool\SpawnManager.cs.meta" />
-    <None Include="LitPool\SpawnPool.cs.meta" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

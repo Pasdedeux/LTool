@@ -40,7 +40,16 @@ public enum LogColor
 
 public static class LDebug
 {
-    public static bool Enable { get; set; } = true;
+    private static bool _enabeld = true;
+    public static bool Enable
+    {
+        get { return _enabeld; }
+        set
+        {
+            _enabeld = value;
+            UnityEngine.Debug.unityLogger.logEnabled = value;
+        }
+    }
 
     public static void Log( string content, LogColor color = LogColor.green )
     {

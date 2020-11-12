@@ -83,10 +83,9 @@ namespace UnityEngine
             for ( int i = 0; i < prob.Count; i++ )
             {
                 sum += prob[ i ];
-
             }
-            int n = sum * 1000;           //计算概率总和，放大1000倍
-            int x = Random.Range( 0, n );       //随机生成0~概率总和的数字
+            int n = sum * 1000;                     //计算概率总和，放大1000倍
+            int x = Random.Range( 0, n );     //随机生成0~概率总和的数字
 
             int pre = 0;  //区间下界
             int next = 0;//区间上界
@@ -138,7 +137,7 @@ namespace UnityEngine
         
         #region  数学
         /// <summary>
-        /// 二次贝塞尔曲线
+        /// 二次贝塞尔曲线：3点确定一条贝塞尔
         /// </summary>
         /// <param name="P0"></param>
         /// <param name="P1"></param>
@@ -194,6 +193,12 @@ namespace UnityEngine
             return ret;
         }
 
+        /// <summary>
+        /// 2D坐标下某点是否存在于多边形内
+        /// </summary>
+        /// <param name="testPoint"></param>
+        /// <param name="poly"></param>
+        /// <returns></returns>
         public static bool IsPointInPoly( Vector2 testPoint, Vector2[] poly )
         {
             bool ret = false;
@@ -220,6 +225,14 @@ namespace UnityEngine
             return ( start.x - p.x ) * ( end.y - p.y ) - ( end.x - p.x ) * ( start.y - p.y );
         }
 
+        /// <summary>
+        /// 判断两个直线的交点
+        /// </summary>
+        /// <param name="p1">第一根直线</param>
+        /// <param name="p2">第一根直线</param>
+        /// <param name="p3">第二根直线</param>
+        /// <param name="p4">第二根直线</param>
+        /// <returns></returns>
         public static Vector2 CalcLineIntersection( Vector2 p1, Vector2 p2, //第一根直线
                                                    Vector2 p3, Vector2 p4 ) //第二根直线
         {
@@ -235,62 +248,13 @@ namespace UnityEngine
             result.y = right / left;
             return result;
         }
-
-        protected class Vector2Node
-        {
-            public Vector2 point = Vector2.zero;
-            public Vector2Node next = null;
-        }
-
-        public static void OptimizePolygon( Vector2[] inpoints, out Vector2[] outpoints, float optimization = 1.0f )
-        {
-            Vector2Node head, now;
-
-            now = new Vector2Node();
-            now.point = inpoints[ 0 ];
-            head = now;
-
-            for ( int i = 1; i < inpoints.Length; ++i )
-            {
-                now.next = new Vector2Node();
-                now = now.next;
-                now.point = inpoints[ i ];
-            }
-
-            now.next = head;
-
-            now = head;
-            do
-            {
-                if ( Mathf.Abs( IsPointOnLine( now.next.point, now.point, now.next.next.point ) ) < optimization )
-                {
-                    if ( now.next == head )
-                    {
-                        now.next = now.next.next;
-                        break;
-                    }
-                    now.next = now.next.next;
-                }
-                else
-                {
-                    now = now.next;
-                }
-
-            } while ( head != now );
-
-            List<Vector2> plist;
-            plist = new List<Vector2>( 8 );
-            head = now;
-            do
-            {
-                plist.Add( now.point );
-                now = now.next;
-            } while ( head != now );
-
-            outpoints = ( plist.Count > 0 ) ? plist.ToArray() : null;
-        }
-
-        // -180 ---- 180.
+        
+        /// <summary>
+        /// 计算两个3D向量的夹角
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns> -180 ---- 180</returns>
         public static float CalcIncludedAngle( Vector3 from, Vector3 to )
         {
             Vector2 v1, v2;
@@ -302,7 +266,12 @@ namespace UnityEngine
 
             return CalcIncludedAngle( v1, v2 );
         }
-
+        /// <summary>
+        /// 计算两个2D向量的夹角
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns> -180 ---- 180</returns>
         public static float CalcIncludedAngle( Vector2 from, Vector2 to )
         {
             Vector3 v3;
@@ -310,6 +279,11 @@ namespace UnityEngine
             return v3.z > 0 ? Vector2.Angle( from, to ) : -Vector2.Angle( from, to );
         }
 
+        /// <summary>
+        /// 获取GameObjectb包围盒
+        /// </summary>
+        /// <param name="go"></param>
+        /// <returns></returns>
         public static Bounds CalcGamaObjectBoundsInWorld( GameObject go )
         {
             Bounds bounds;
@@ -375,32 +349,7 @@ namespace UnityEngine
             return bounds;
         }
 
-        public static float Clamp( float value, float min, float max, float bufferFactor, float damping = 2.0f )
-        {
-            float result = 0.0f;
-            result = Mathf.Clamp( value, min, max );
-            if ( Mathf.Abs( value - result ) > 0.001f )
-            {
-                float overDistance;
-                float distance;
-                float ratio;
-
-                overDistance = Mathf.Abs( value - result );
-                distance = Mathf.Abs( max - min );
-
-                ratio = overDistance / distance;
-                ratio = Mathf.Min( 1.0f, ratio / damping );
-                ratio = Mathf.Sin( ratio * Mathf.PI / 2.0f );
-
-                float buffer;
-                buffer = Mathf.Abs( bufferFactor ) * Mathf.Abs( max - min );
-                buffer *= ratio;
-
-                result += ( value - result > 0 ) ? buffer : -buffer;
-            }
-            return result;
-        }
-
+        
         #endregion
 
 

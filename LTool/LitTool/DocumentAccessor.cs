@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">地址或者内容文本</param>
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
-        /// <param name="identifier">默认分隔符为=</param>
+        /// <param name="chars">分隔符为列表</param>
         /// <returns></returns>
         public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , Char[] chars = null )
         {
@@ -97,9 +98,9 @@ namespace LitFramework.LitTool
         /// <param name="identifier">目标字典值的连接符</param>
         public static void SaveText( Dictionary<string , List<string>> targetList , string dataPath , string append = null , string identifier = "=" )
         {
-            FileInfo fi = new FileInfo( dataPath );
-            if( fi.Exists )
-                fi.Delete();
+            //FileInfo fi = new FileInfo( dataPath );
+            //if( fi.Exists )
+            //    fi.Delete();
 
             StringBuilder sb = new StringBuilder();
             if( append != null )
@@ -133,16 +134,15 @@ namespace LitFramework.LitTool
         /// <summary>
         /// 读取目标地址文件
         /// </summary>
-        /// <param name="sb"></param>
         /// <param name="targetPath">完整地址+名称</param>
         public static string ReadFile( string targetPath )
         {
-            FileInfo t = new FileInfo( targetPath );
-            if( !t.Exists )
+            if( !IsExists( targetPath ) )
             {
                 Debug.Log( "文件不存在:" + targetPath );
                 return string.Empty;
             }
+
             //使用流的形式读取
             string str = null;
             if( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor )
@@ -202,35 +202,51 @@ namespace LitFramework.LitTool
         }
 
         /// <summary>
-        /// 保存www资源到本地
+        /// 保存二进制文件资源到本地  例如  SaveAsset2LocalFile( path , w.bytes );
         /// </summary>
-        /// <param name="dataPath">完整目标地址</param>
-        /// 
-        /// 例如  SaveAsset2LocalFile( path , w.bytes , w.bytes.Length );
-        /// <param name="info"></param>
-        /// <param name="length"></param>
-        public static void SaveAsset2LocalFile( string dataPath, byte[] info, int length )
+        /// <param name="dataPath">完整目标地址，例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false ) </param>
+        /// <param name="info">bytes数组</param>
+        public static void SaveAsset2LocalFile( string dataPath, byte[] info )
         {
-            Stream sw = null;
-
             FileInfo fileInfo = new FileInfo( dataPath );
             if ( !fileInfo.Directory.Exists ) fileInfo.Directory.Create();
             if ( fileInfo.Exists ) fileInfo.Delete();
-            
-            //如果此文件不存在则创建  
-            sw = fileInfo.Create();
-            //写入  
-            sw.Write( info, 0, length );
-            //写入并清除字节流
-            sw.Flush();
-            //关闭流  
-            sw.Close();
-            //销毁流  
-            sw.Dispose();
-            //关闭文件
-            fileInfo = null;
+
+            using ( Stream sw = fileInfo.Create() )
+            {
+                //写入  
+                sw.Write( info, 0, info.Length );
+                //写入并清除字节流
+                sw.Flush();
+                //关闭流  
+                sw.Close();
+                //销毁流  
+                sw.Dispose();
+            }
         }
 
+
+        /// <summary>
+        /// 存储JSON数据到本地文件
+        /// </summary>
+        /// <param name="jsonData">需要被JSON化的类实例</param>
+        /// <param name="dataPath">完整地址。例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false )</param>
+        public static void SaveAsset2LocalFileByJson( object jsonData, string dataPath )
+        {
+            FileInfo fileInfo = new FileInfo( dataPath );
+            using ( StreamWriter sw = fileInfo.CreateText() )
+            {
+                var result = JsonMapper.ToJson( jsonData );
+                sw.Write( result );
+                sw.Flush();
+            }
+        }
+
+        /// <summary>
+        /// 判定特定路径下指定文件是否存在
+        /// </summary>
+        /// <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
+        /// <returns></returns>
         public static bool IsExists( string fileFullPath )
         {
             FileInfo fileInfo = new FileInfo( fileFullPath );

@@ -27,15 +27,15 @@ namespace LitFramework.LitTool
     /// </summary>
     public class GameViewResolution : MonoBehaviour
     {
-        void Awake()
-        {
-            var uiRoot = GameObject.Find( "Canvas_Root" );
-            if ( uiRoot != null )
-            {
-                var canvasScaler = uiRoot.transform.GetComponent<CanvasScaler>();
-                canvasScaler.referenceResolution = new Vector2( Screen.width, Screen.height );
-            }
-        }
+        //void Awake()
+        //{
+        //    var uiRoot = GameObject.Find( "Canvas_Root" );
+        //    if ( uiRoot != null )
+        //    {
+        //        var canvasScaler = uiRoot.transform.GetComponent<CanvasScaler>();
+        //        canvasScaler.referenceResolution = new Vector2( Screen.width, Screen.height );
+        //    }
+        //}
 
         #region 待验证版本
 
@@ -67,11 +67,11 @@ namespace LitFramework.LitTool
 #if UNITY_EDITOR
         void Update()
         {
-            Debug.Log( "[INFO] Resolusion: " + GetScreenPixelDimensions( this ) );
+            Debug.Log( "[INFO] Resolusion: " + GetScreenPixelDimensions() );
         }
 #endif
         // 获得分辨率，当选择 Free Aspect 直接返回相机的像素宽和高
-        Vector2 GetScreenPixelDimensions( GameViewResolution settings )
+        Vector2 GetScreenPixelDimensions()
         {
             Vector2 dimensions = new Vector2( ScreenCamera.pixelWidth, ScreenCamera.pixelHeight );
             if ( Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor )

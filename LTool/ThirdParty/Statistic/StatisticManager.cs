@@ -49,6 +49,7 @@ namespace Assets.Scripts
         {
             StatisticianList = new List<BaseStatistician>();
             InstallEventHandler?.Invoke( this );
+            InstallEventHandler = null;
         }
 
         public void Uninstall()

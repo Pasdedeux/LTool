@@ -52,6 +52,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas.transform, "Panel_Mask" ).gameObject;
         _maskPanel.SetActive( true );
         _maskImage = _maskPanel.GetComponent<Image>();
+        _maskImage.enabled = false;
         //_maskBtn = _maskPanel.GetComponent<Button>();
         //_maskBtn.enabled = false;
         //获得摄像机层深

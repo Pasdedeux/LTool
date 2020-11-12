@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,18 +31,19 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;IAP;UNITY_EDITOR</DefineConstants>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>TRACE;IAP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\LitFramework.xml</DocumentationFile>
+    <DocumentationFile>..\Output\LitFramework.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>LToolSign.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Output|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -55,7 +59,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apple">
@@ -63,15 +67,6 @@
     </Reference>
     <Reference Include="ChannelPurchase">
       <HintPath>.\ChannelPurchase.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>.\EPPlus.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>.\ExcelDataReader.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>.\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
     <Reference Include="Purchasing.Common">
       <HintPath>.\Purchasing.Common.dll</HintPath>
@@ -101,18 +96,25 @@
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
     <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Base\Cloneable.cs" />
     <Compile Include="Base\Singleton.cs" />
     <Compile Include="Base\SingletonMono.cs" />
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
+    <Compile Include="Extention_Editor\CSVReader.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
+    <Compile Include="LitPool\PoolManager.cs" />
+    <Compile Include="LitPool\PrefabPool.cs" />
+    <Compile Include="LitPool\PrefabsDict.cs" />
+    <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
+    <Compile Include="LitTool\CurrencyModel.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />
     <Compile Include="LitTool\LitJSON\IJsonWrapper.cs" />
     <Compile Include="LitTool\LitJSON\JsonData.cs" />
@@ -129,6 +131,8 @@
     <Compile Include="Base\IManager.cs" />
     <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="ThirdParty\AD\IAd.cs" />
+    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
     <Compile Include="UI\Base\BindingProperty.cs" />
     <Compile Include="UI\Base\IUIManager.cs" />
     <Compile Include="UI\Base\IViewModel.cs" />
@@ -144,7 +148,13 @@
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LToolSign.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILMerge.3.0.41\build\ILMerge.props'))" />
+  </Target>
 </Project>

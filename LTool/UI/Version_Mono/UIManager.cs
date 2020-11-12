@@ -114,7 +114,7 @@ namespace LitFramework.Mono
         ///  遮罩结束时回调
         /// </summary>
         /// <returns></returns>
-        private Action DelHideCallBack = null;
+        public event Action DelHideCallBack = null;
         public Image FadeImage { get { return _fadeImage; } }
         public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
 
@@ -136,6 +136,8 @@ namespace LitFramework.Mono
                 Debug.LogWarning( "Image_fadeBG 未定义" );
             else if ( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
+
+            var ss = UIMaskManager.Instance;
 
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );

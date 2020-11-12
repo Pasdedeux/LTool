@@ -5,6 +5,16 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitFramework", "LTool\LitFramework.csproj", "{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitFrameworkEditor", "LitFrameworkEditor\LitFrameworkEditor.csproj", "{27B31A0C-86CC-4064-AD4E-8431178DFA00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{28AB6F38-F98D-434C-9F39-18D69F1C0CCD}"
+	ProjectSection(SolutionItems) = preProject
+		References\EPPlus.dll = References\EPPlus.dll
+		References\Excel.dll = References\Excel.dll
+		References\ExcelDataReader.DataSet.dll = References\ExcelDataReader.DataSet.dll
+		References\ExcelDataReader.dll = References\ExcelDataReader.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +28,12 @@ Global
 		{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}.Output|Any CPU.Build.0 = Output|Any CPU
 		{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Output|Any CPU.ActiveCfg = Release|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Output|Any CPU.Build.0 = Release|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27B31A0C-86CC-4064-AD4E-8431178DFA00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

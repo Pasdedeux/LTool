@@ -31,7 +31,7 @@ public static class BuildSceneSettingEditor
     /// <summary>
     /// 构建场景设置为所有
     /// </summary>
-    [MenuItem( "Tools/BuildSettings/同步所有场景到SceneSetting" )]
+    [MenuItem( "Tools/BuildSettings/同步Scenes场景到SceneSetting" )]
     public static void AddAllScenesToBuildSettings()
     {
         HashSet<string> sceneNames = new HashSet<string>();

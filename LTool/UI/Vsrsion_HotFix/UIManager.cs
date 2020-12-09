@@ -268,6 +268,7 @@ namespace LitFramework.HotFix
                         throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
                 }
 
+                UIMaskManager.Instance.SetMaskWindow( baseUI.GameObjectInstance, targetUIType.uiTransparent );
             }
             else
             {

@@ -233,36 +233,36 @@ namespace LitFrameworkEditor.EditorExtended
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/开启可同步目录PersistentDataPath", priority = 2 )]
-        static void OpenPersistentDataPath()
+        [MenuItem( "Tools/开启PersistentDataPath(可同步目录)", priority = 2 )]
+        private static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
             p.Close();
         }
 
-        [MenuItem( "Tools/开启临时存储目录temporaryCachePath", priority = 3 )]
-        static void OpenTemporaryCachePath()
+        [MenuItem( "Tools/开启TemporaryCachePath(临时存储目录)", priority = 3 )]
+        private static void OpenTemporaryCachePath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
-        [MenuItem( "Tools/开启项目内存储目录streamingAssetsPath", priority = 1 )]
-        static void OpenSteamingAssetsPath()
+        [MenuItem( "Tools/开启StreamingAssetsPath(项目内存储目录)", priority = 1 )]
+        private static void OpenSteamingAssetsPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.streamingAssetsPath );
             p.Close();
         }
 
-        [MenuItem( "Tools/删除所有PlayerPrefs数据", priority = 90 )]
-        public static void RemoveAllKey()
+        [MenuItem( "Tools/清档(PlayerPrefs)", priority = 90 )]
+        private static void RemoveAllKey()
         {
             PlayerPrefs.DeleteAll();
         }
 
 
         [MenuItem( "Tools/删除空白目录", priority = 91 )]
-        public static void CleanEmptyDirectories()
+        private static void CleanEmptyDirectories()
         {
             var di = new DirectoryInfo( "Assets/" );
             var dis = new List<DirectoryInfo>();

@@ -137,6 +137,7 @@ namespace LitFramework.Mono
             else if ( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
 
+            //Mask蒙版初始化
             var ss = UIMaskManager.Instance;
 
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
@@ -477,11 +478,7 @@ namespace LitFramework.Mono
             _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
             if ( baseUI == null )
             {
-                if ( !isDestroy )
-                    return;
-                else
-                    _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
-
+                _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
                 if ( baseUI == null )
                     return;
             }
@@ -495,16 +492,19 @@ namespace LitFramework.Mono
             if ( baseUI.CurrentUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            //判断栈里是否有窗口，有则冻结响应
-            if ( _stackCurrentUI.Count > 0 )
+            if ( baseUI.CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
-                BaseUI topUI = _stackCurrentUI.Peek();
-                if ( !topUI.AssetsName.Equals( uiName ) )
+                //正在显示的窗口和栈缓存的窗口再次进行显示处理
+                //判断栈里是否有窗口，有则冻结响应
+                if ( _stackCurrentUI.Count > 0 )
                 {
-                    topUI.OnEnabled( true );
-                    topUI.OnShow();
-                    topUI.CheckMask();
+                    BaseUI topUI = _stackCurrentUI.Peek();
+                    if ( !topUI.AssetsName.Equals( uiName ) )
+                    {
+                        topUI.OnEnabled( true );
+                        topUI.OnShow();
+                        topUI.CheckMask();
+                    }
                 }
             }
         }

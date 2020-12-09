@@ -31,6 +31,11 @@ namespace LitFramework.UI.Base
     {
         private Dictionary<string, UIType> _monoUIBehaviorDict = new Dictionary<string, UIType>();
        
+        /// <summary>
+        /// 动态修改UICurrentUIType属性
+        /// </summary>
+        /// <param name="uiName"></param>
+        /// <param name="currentUIType"></param>
         public void SetUIBehavior( string uiName, UIType currentUIType )
         {
             if ( !_monoUIBehaviorDict.ContainsKey( uiName ) )
@@ -38,12 +43,19 @@ namespace LitFramework.UI.Base
             else
                 _monoUIBehaviorDict[ uiName ] = currentUIType;
         }
-
+        /// <summary>
+        /// 移除临时修改得UI CurrentUIType属性
+        /// </summary>
+        /// <param name="uiName"></param>
         public void RemoveUIBehavior( string uiName )
         {
             if ( _monoUIBehaviorDict.ContainsKey( uiName ) ) _monoUIBehaviorDict.Remove( uiName );
         }
-
+        /// <summary>
+        /// 获取UI CurrentUIType属性，如果并未对特定UI设定属性，则为空
+        /// </summary>
+        /// <param name="uiName"></param>
+        /// <returns></returns>
         public UIType GetBehavior( string uiName )
         {
             return _monoUIBehaviorDict.ContainsKey( uiName ) ? _monoUIBehaviorDict[ uiName ] : null;

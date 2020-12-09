@@ -26,13 +26,16 @@
 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitFramework;
+using System.Reflection;
 using System.Linq;
-using LitFramework.UI.Base;
+using LitFramework.Base;
 using UnityEngine.UI;
 using LitFramework.LitTool;
-using LitFramework.Base;
+using LitFramework.UI.Base;
 
 namespace LitFramework.HotFix
 {
@@ -108,7 +111,9 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <returns></returns>
         private Action DelHideCallBack = null;
+
         public Image FadeImage { get { return _fadeImage; } }
+        public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
 
         public void Install()
         {
@@ -128,6 +133,9 @@ namespace LitFramework.HotFix
                 Debug.LogWarning( "Image_fadeBG 未定义" );
             else if( !_fadeImage.gameObject.activeInHierarchy )
                 Debug.LogWarning( "Image_fadeBG 未启用" );
+
+            //Mask蒙版初始化
+            var ss = UIMaskManager.Instance;
 
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
@@ -460,15 +468,11 @@ namespace LitFramework.HotFix
             BaseUI baseUI;
 
             //当前UI显示列表中没有记录或者总表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI == null )
             {
-                if( !isDestroy )
-                    return;
-                else
-                    _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-
-                if( baseUI == null )
+                _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+                if ( baseUI == null )
                     return;
             }
             else
@@ -481,16 +485,19 @@ namespace LitFramework.HotFix
             if ( baseUI.CurrentUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            //判断栈里是否有窗口，有则冻结响应
-            if ( _stackCurrentUI.Count > 0 )
+            if ( baseUI.CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
-                BaseUI topUI = _stackCurrentUI.Peek();
-                if ( !topUI.AssetsName.Equals( uiName ) )
+                //正在显示的窗口和栈缓存的窗口再次进行显示处理
+                //判断栈里是否有窗口，有则冻结响应
+                if ( _stackCurrentUI.Count > 0 )
                 {
-                    topUI.OnEnabled( true );
-                    topUI.OnShow();
-                    topUI.CheckMask();
+                    BaseUI topUI = _stackCurrentUI.Peek();
+                    if ( !topUI.AssetsName.Equals( uiName ) )
+                    {
+                        topUI.OnEnabled( true );
+                        topUI.OnShow();
+                        topUI.CheckMask();
+                    }
                 }
             }
         }

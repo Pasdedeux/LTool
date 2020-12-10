@@ -452,7 +452,10 @@ namespace LitFramework.Mono
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
 
                 return;
             }
@@ -524,7 +527,10 @@ namespace LitFramework.Mono
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
                 return;
             }
 
@@ -612,7 +618,10 @@ namespace LitFramework.Mono
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
 
                 if ( !_stackCurrentUI.Contains( baseUI ) )
                     //该弹出UI入栈

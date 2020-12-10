@@ -444,10 +444,13 @@ namespace LitFramework.HotFix
             _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
             if( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
                 return;
             }
 
@@ -514,10 +517,13 @@ namespace LitFramework.HotFix
             _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
             if( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
                 return;
             }
 
@@ -602,10 +608,13 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
             if( baseUI != null )
             {
-                if( baseUI.IsShowing )
+                if ( baseUI.IsShowing )
                     baseUI.OnShow();
                 else
+                {
+                    baseUI.OnEnabled( false );
                     baseUI.Show();
+                }
 
                 if ( !_stackCurrentUI.Contains( baseUI ) )
                     //该弹出UI入栈

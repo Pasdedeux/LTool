@@ -396,6 +396,7 @@ namespace LitFramework.HotFix
                     baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ] , true , true ) ) as BaseUI;
                     baseUI.GameObjectInstance = prefClone;
                     baseUI.AssetsName = uiName;
+                    baseUI.IsInitOver = true;
                 }
 
                 switch( baseUI.CurrentUIType.uiNodeType )
@@ -448,7 +449,8 @@ namespace LitFramework.HotFix
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
                 return;
@@ -499,7 +501,8 @@ namespace LitFramework.HotFix
                     if ( !topUI.AssetsName.Equals( uiName ) )
                     {
                         topUI.OnEnabled( true );
-                        topUI.OnShow();
+                        if ( !topUI.IsShowing )
+                            topUI.OnShow();
                         topUI.CheckMask();
                     }
                 }
@@ -521,7 +524,8 @@ namespace LitFramework.HotFix
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
                 return;
@@ -612,7 +616,8 @@ namespace LitFramework.HotFix
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
 

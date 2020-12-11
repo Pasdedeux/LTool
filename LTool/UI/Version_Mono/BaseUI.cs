@@ -12,6 +12,7 @@
  * Copyright @ Derek 2018 All rights reserved 
 *****************************************************************/
 
+using LitFramework.UI.Base;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -41,6 +42,10 @@ namespace LitFramework.Mono
         /// 资源名
         /// </summary>
         public string AssetsName { get; set; }
+        /// <summary>
+        /// 创建完毕标记
+        /// </summary>
+        internal bool IsInitOver = false;
 
         private Canvas _rootCanvas;
         private RectTransform _rootRectTransform;
@@ -72,7 +77,12 @@ namespace LitFramework.Mono
         {
             //设置模态窗体调用(弹出窗体)
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow( gameObject, CurrentUIType.uiTransparent );
+            {
+                var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
+                UIType targetUIType = modelType != null ? modelType : CurrentUIType;
+
+                UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
+            }
         }
 
         /// <summary>
@@ -140,6 +150,7 @@ namespace LitFramework.Mono
         {
             Dispose();
             IsStarted = false;
+            IsInitOver = false;
             GameObject.Destroy( gameObject );
             Resources.UnloadUnusedAssets();
         }
@@ -165,12 +176,14 @@ namespace LitFramework.Mono
 
         private void OnEnable()
         {
-            OnEnabled( false );
+            if ( IsInitOver )
+                OnEnabled( false );
         }
 
         private void OnDisable()
         {
-            OnDisabled( false );
+            if ( IsInitOver )
+                OnDisabled( false );
         }
 
         private void Update()

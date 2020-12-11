@@ -277,8 +277,6 @@ namespace LitFramework.Mono
                     default:
                         throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
                 }
-
-                UIMaskManager.Instance.SetMaskWindow( baseUI.gameObject, targetUIType.uiTransparent );
             }
             else
             {
@@ -403,6 +401,7 @@ namespace LitFramework.Mono
                 if ( prefClone == null )
                     throw new Exception( string.Format( "UI预制件 {0} 未挂载方法 {1} ", prefClone.name, uiName ) );
                 baseUI.AssetsName = uiName;
+                baseUI.IsInitOver = true;
 
                 if ( baseUI == null )
                 { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
@@ -453,7 +452,8 @@ namespace LitFramework.Mono
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
 
@@ -506,7 +506,8 @@ namespace LitFramework.Mono
                     if ( !topUI.AssetsName.Equals( uiName ) )
                     {
                         topUI.OnEnabled( true );
-                        topUI.OnShow();
+                        if ( !topUI.IsShowing )
+                            topUI.OnShow();
                         topUI.CheckMask();
                     }
                 }
@@ -528,7 +529,8 @@ namespace LitFramework.Mono
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
                 return;
@@ -619,7 +621,8 @@ namespace LitFramework.Mono
                     baseUI.OnShow();
                 else
                 {
-                    baseUI.OnEnabled( false );
+                    if ( baseUI.IsInitOver )
+                        baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
 

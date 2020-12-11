@@ -1,4 +1,5 @@
 ﻿using System;
+using LitFramework.UI.Base;
 using System.Collections;
 using UnityEngine;
 
@@ -21,7 +22,10 @@ namespace LitFramework.HotFix
         private UIType _uiType = new UIType();
         public UIType CurrentUIType
         { get { return _uiType; } set { _uiType = value; } }
-
+        /// <summary>
+        /// 创建完毕标记
+        /// </summary>
+        internal bool IsInitOver = false;
 
         private Canvas _rootCanvas;
         /// <summary>
@@ -58,7 +62,12 @@ namespace LitFramework.HotFix
         {
             //设置模态窗体调用(弹出窗体)
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
-                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance, CurrentUIType.uiTransparent );
+            {
+                var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
+                UIType targetUIType = modelType != null ? modelType : CurrentUIType;
+
+                UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
+            }
         }
 
         /// <summary>
@@ -146,6 +155,7 @@ namespace LitFramework.HotFix
         {
             Dispose();
             IsStarted = false;
+            IsInitOver = false;
             GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
         }

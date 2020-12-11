@@ -25,7 +25,7 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 创建完毕标记
         /// </summary>
-        internal bool IsInitOver = false;
+        public bool IsInitOver = false;
 
         private Canvas _rootCanvas;
         /// <summary>

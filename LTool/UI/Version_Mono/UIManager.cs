@@ -465,6 +465,8 @@ namespace LitFramework.Mono
             if ( baseUI != null )
             {
                 _dictCurrentShowUIs.Add( uiName, baseUI );
+                if ( baseUI.IsInitOver )
+                    baseUI.OnEnabled( false );
                 baseUI.Show();
 
             }
@@ -551,6 +553,8 @@ namespace LitFramework.Mono
             if ( baseUI != null )
             {
                 _dictCurrentShowUIs.Add( uiName, baseUI );
+                if ( baseUI.IsInitOver )
+                    baseUI.OnEnabled( false );
                 baseUI.Show();
             }
 

@@ -461,6 +461,8 @@ namespace LitFramework.HotFix
             if( baseUI != null )
             {
                 _dictCurrentShowUIs.Add( uiName , baseUI );
+                if ( baseUI.IsInitOver )
+                    baseUI.OnEnabled( false );
                 baseUI.Show();
             }
         }
@@ -546,6 +548,8 @@ namespace LitFramework.HotFix
             if ( baseUI != null )
             {
                 _dictCurrentShowUIs.Add( uiName, baseUI );
+                if ( baseUI.IsInitOver )
+                    baseUI.OnEnabled( false );
                 baseUI.Show();
             }
 

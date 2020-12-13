@@ -43,9 +43,13 @@ namespace LitFramework.Mono
         /// </summary>
         public string AssetsName { get; set; }
         /// <summary>
-        /// 创建完毕标记
+        /// 创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
         /// </summary>
         internal bool IsInitOver = false;
+        /// <summary>
+        /// 这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
+        /// </summary>
+        private bool _hasEnabled = false;
 
         private Canvas _rootCanvas;
         private RectTransform _rootRectTransform;
@@ -58,9 +62,10 @@ namespace LitFramework.Mono
             IsShowing = true;
 
             CheckMask();
-            
+
             if ( !replay )
-                gameObject.SetActive( IsShowing );
+                //gameObject.SetActive( IsShowing );
+                _rootCanvas.enabled = IsShowing;
             else
                 OnEnabled( replay );
 
@@ -96,7 +101,7 @@ namespace LitFramework.Mono
             if ( !freeze )
             {
                 _rootCanvas.enabled = false;
-                gameObject.SetActive( false );
+                //gameObject.SetActive( false );
 
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
@@ -105,8 +110,8 @@ namespace LitFramework.Mono
             {
                 _rootCanvas.enabled = false;
                 //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                OnDisabled( freeze );
             }
+            OnDisabled( freeze );
 
             IsShowing = false;
 

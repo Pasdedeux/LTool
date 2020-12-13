@@ -279,7 +279,11 @@ namespace LitFramework.HotFix
                     if ( baseUI.IsShowing )
                         baseUI.OnShow();
                     else
+                    {
+                        if ( baseUI.IsInitOver )
+                            baseUI.OnEnabled( false );
                         baseUI.Show();
+                    }
                 }
             }
             return baseUI;
@@ -321,13 +325,10 @@ namespace LitFramework.HotFix
                     throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
             }
 
+
             //销毁
-            if( isDestroy )
+            if ( isDestroy )
             {
-                BaseUI ui = null;
-                _dictLoadedAllUIs.TryGetValue( uiName , out ui );
-                if( ui != null )
-                    ui.Close( true );
                 _dictLoadedAllUIs.Remove( uiName );
             }
         }

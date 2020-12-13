@@ -287,7 +287,12 @@ namespace LitFramework.Mono
                     if ( baseUI.IsShowing )
                         baseUI.OnShow();
                     else
+                    {
+                        if ( baseUI.IsInitOver )
+                            baseUI.OnEnabled( false );
                         baseUI.Show();
+
+                    }
                 }
             }
             return baseUI;
@@ -330,10 +335,6 @@ namespace LitFramework.Mono
             //销毁
             if ( isDestroy )
             {
-                BaseUI ui = null;
-                _dictLoadedAllUIs.TryGetValue( uiName, out ui );
-                if ( ui != null )
-                    ui.Close( true );
                 _dictLoadedAllUIs.Remove( uiName );
             }
         }

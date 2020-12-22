@@ -30,19 +30,18 @@ using Assets.Scripts;
 using LitFramework;
 using LitFramework.Mono;
 using UnityEngine;
+
+#if IAP
 using UnityEngine.Purchasing;
+#endif
+
 
 public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
 {
-    public const string NOADS_ITEM_ID ="";
-
+    public const string NOADS_ITEM_ID = "";
     public Dictionary<string, StoreItem> ProductsDict;
-    private Dictionary<string, string> _dicountItem = new Dictionary<string, string>()
-    {
-        //{ DISCOUNT_ID,"com.aha.mahjonganimaltour11" }
-    };
 
-
+    private Purchaser _purchase;
     public PurchaserDataModel()
     {
 #if IAP
@@ -75,39 +74,20 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
     public void LoadShop()
     {
         ProductsDict = new Dictionary<string, StoreItem>();
-        var products = Purchaser.Instance.products;
-        var fakePrices = Purchaser.Instance.fakePrice;
-        var fakeNames = Purchaser.Instance.fakeName;
-        var fakeDesc = Purchaser.Instance.fakeDesc;
-        var rewards = Purchaser.Instance.Rewards;
 
+        var products = PurchaserConfig.Instance.products;
         for ( int i = 0; i < products.Count; i++ )
         {
             StoreItem si = new StoreItem( products[ i ] );
             si.AddStoreItemEventHandler += AddShopItem;
-            si.Description = fakeDesc[ i ];
-            si.Name = fakeNames[ i ];
-            si.Price = fakePrices[ i ];
-            if ( Purchaser.Instance.Icons.Count > i )
-                si.Icon = Purchaser.Instance.Icons[ i ];
 
-            var reward = rewards[ i ];
-            if ( !string.IsNullOrEmpty( reward ) )
-                reward.Split( '|' ).ToList().ForEach( e => { var result = e.Split( '-' ); si.Rewards.Add( short.Parse( result[ 0 ] ), ushort.Parse( result[ 1 ] ) ); } );
-
-            if ( !ProductsDict.ContainsKey( products[ i ] ) )
-                ProductsDict.Add( products[ i ], si );
+            if ( !ProductsDict.ContainsKey( si.BuyID ) )
+                ProductsDict.Add( si.BuyID, si );
             else
-                ProductsDict[ products[ i ] ] = si;
-
-            //指定的打折商品处理
-            if ( _dicountItem.ContainsKey( products[ i ] ) )
-            {
-                ProductsDict[ _dicountItem[ products[ i ] ] ].AlternativeBuyID = products[ i ];
-                ProductsDict[ _dicountItem[ products[ i ] ] ].AlternativePrice = fakePrices[ i ];
-                continue;
-            }
+                ProductsDict[ si.BuyID ] = si;
         }
+
+        Purchaser.Instance.Initialize();
     }
 
     public void Dispose()
@@ -121,6 +101,11 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
     }
 
 #if IAP
+    public void BuyProductID( string productID )
+    {
+        Purchaser.Instance.BuyProductID( productID );
+    }
+
     private void Initialized( ProductCollection productCollection )
     {
         LDebug.Log( "IAP total count ==>" + productCollection.all.Length );
@@ -132,16 +117,10 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
             LDebug.Log( "IAP product storeSpecificId ==>" + product.definition.storeSpecificId );
             LDebug.Log( "IAP availableToPurchase ==>" + product.availableToPurchase );
 
-            //指定的打折商品处理，打折商品肯定要放到列表最后
-            if ( _dicountItem.ContainsKey( product.definition.storeSpecificId ) )
-            {
-                ProductsDict[ _dicountItem[ product.definition.storeSpecificId ] ].AlternativeBuyID = product.definition.storeSpecificId;
-                ProductsDict[ _dicountItem[ product.definition.storeSpecificId ] ].AlternativePrice = product.metadata.localizedPriceString;
-                continue;
-            }
-
+            //包含在ProductsDict中的都是正是商品，打折商品ID不会出现在ProductDict中
             if ( ProductsDict.ContainsKey( product.definition.storeSpecificId ) )
             {
+                //真正后台配置商品
                 if ( !product.definition.storeSpecificId.StartsWith( "buy" ) )
                 {
                     ProductsDict[ product.definition.storeSpecificId ].Name = product.metadata.localizedTitle;
@@ -152,14 +131,25 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
             }
             else
             {
-                ProductsDict.Add( product.definition.storeSpecificId, new StoreItem( product.definition.storeSpecificId )
+                var alternativeItem = ProductsDict.Where( e => e.Value.AlternativeBuyID == product.definition.storeSpecificId );
+                //如果该ID被设置为一个打折商品ID
+                if ( alternativeItem.Count() > 0 ) 
                 {
-                    Name = product.metadata.localizedTitle,
-                    Price = product.metadata.localizedPriceString,
-                    Description = product.metadata.localizedDescription,
-                    ProductType = product.definition.type,
-                } );
+                    var target = alternativeItem.First();
+                    target.Value.AlternativePrice = product.metadata.localizedPriceString;
+                }
+                else
+                {
+                    ProductsDict.Add( product.definition.storeSpecificId, new StoreItem( product.definition.storeSpecificId )
+                    {
+                        Name = product.metadata.localizedTitle,
+                        Price = product.metadata.localizedPriceString,
+                        Description = product.metadata.localizedDescription,
+                        ProductType = product.definition.type,
+                    } );
+                }
             }
+            
             LDebug.Log( "IAP localizedTitle ==>" + product.metadata.localizedTitle );
             LDebug.Log( "IAP storeSpecificId ==>" + product.definition.storeSpecificId );
         }
@@ -171,8 +161,15 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
         //商品购买成功逻辑
         if ( ProductsDict.ContainsKey( productID ) )
             ProductsDict[ productID ].IsBought = true;
-        else if ( _dicountItem.ContainsKey( productID ) )
-            ProductsDict[ _dicountItem[ productID ] ].IsBought = true;
+        else
+        {
+            var targets = ProductsDict.Where( e => e.Value.AlternativeBuyID == productID );
+            if ( targets.Count() > 0 )
+            {
+                var target = targets.First();
+                ProductsDict[ productID ].IsBought = true;
+            }
+        }
 
         AddShopItem( productID );
 
@@ -207,20 +204,29 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
 
         //移除广告商品
         if ( productID == NOADS_ITEM_ID ) AdManager.Instance.RemoveAds();
-       //TODO 这里添加根据不同商品增加特别处理规则
+        //TODO 这里添加根据不同商品增加特别处理规则
         else
         {
             StoreItem result = null;
+
+            //商品购买成功逻辑
             if ( ProductsDict.ContainsKey( productID ) )
                 result = ProductsDict[ productID ];
-            else if ( _dicountItem.ContainsKey( productID ) )
-                result = ProductsDict[ _dicountItem[ productID ] ];
+            else
+            {
+                var targets = ProductsDict.Where( e => e.Value.AlternativeBuyID == productID );
+                if ( targets.Count() > 0 )
+                {
+                    var target = targets.First();
+                    result = target.Value;
+                }
+            }
 
             if ( result != null )
             {
                 DataModel.Instance.ResolveRewards( result.Rewards );
-                //打折商品处理
-                CheckDiscount( result, productID );
+                ////打折商品处理
+                //CheckDiscount( result, productID );
             }
 
             //TODO 这里添加根据不同商品增加特别处理规则
@@ -237,21 +243,21 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
         UIManager.Instance.Show( DataModel.UI.UI_BUYOK );
     }
 
-    private void CheckDiscount( StoreItem result, string productID )
-    {
-        if ( result.BuyID != productID && result.AlternativeBuyID == productID )
-        {
-            //TODO 这里添加根据不同商品增加特别处理规则
-            //switch ( productID )
-            //{
-            //    case DISCOUNT_ID:
-            //        //DataModel2.Instance.UseDiscountSilverPack = true;
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-    }
+    //private void CheckDiscount( StoreItem result, string productID )
+    //{
+    //    if ( result.BuyID != productID && result.AlternativeBuyID == productID )
+    //    {
+    //        //TODO 这里添加根据不同商品增加特别处理规则
+    //        //switch ( productID )
+    //        //{
+    //        //    case DISCOUNT_ID:
+    //        //        //DataModel2.Instance.UseDiscountSilverPack = true;
+    //        //        break;
+    //        //    default:
+    //        //        break;
+    //        //}
+    //    }
+    //}
 
 
     public void UpdateShopStatus( bool needScale = true )
@@ -283,5 +289,329 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
     {
         return LanguageModel.Instance.GetString( ProductsDict[ id ].Description );
     }
+}
+
+// Placing the Purchaser class in the CompleteProject namespace allows it to interact with ScoreManager
+// Deriving the Purchaser class from IStoreListener enables it to receive messages from Unity Purchasing.
+public class Purchaser : Singleton<Purchaser>
+#if IAP
+    , IStoreListener
+#endif
+{
+#if IAP
+    public event Action<ushort> ProcessPurchaseFailEventHandler;
+    public event Action<string> ProcessPurchaseEventHandler;
+    public event Action<ProductCollection> InitializedEventHandler;
+    public event Action<string, string, int, Receipt> ProcessPurchaseReceiptEventHandler;
+
+    private static IStoreController m_StoreController;          // The Unity Purchasing system.
+    private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
+
+    public static string kProductIDConsumable = "consumable";
+    public static string kProductIDNonConsumable = "nonconsumable";
+    public static string kProductIDSubscription = "subscription";
+
+    // Apple App Store-specific product identifier for the subscription product.
+    private static string kProductNameAppleSubscription = "";//"com.unity3d.subscription.new";
+    // Google Play Store-specific product identifier subscription product.
+    private static string kProductNameGooglePlaySubscription = "";//"com.unity3d.subscription.original";
+
+    public void Initialize()
+    {
+        // If we haven't set up the Unity Purchasing reference
+        if ( m_StoreController == null )
+        {
+            // Begin to configure our connection to Purchasing
+            InitializePurchasing();
+        }
+    }
+    public void InitializePurchasing()
+    {
+        // If we have already connected to Purchasing ...
+        LDebug.Log( "====> If we have already connected to Purchasing ..." );
+        if ( IsInitialized() )
+        {
+            // ... we are done here.
+            LDebug.Log( "====> ....we are done here." );
+            return;
+        }
+
+        var productDict = PurchaserDataModel.Instance.ProductsDict;
+        // Create a builder, first passing in a suite of Unity provided stores.
+        var builder = ConfigurationBuilder.Instance( StandardPurchasingModule.Instance() );
+
+        if ( Application.platform == RuntimePlatform.IPhonePlayer ||
+           Application.platform == RuntimePlatform.OSXPlayer )
+        {
+            foreach ( var product in productDict )
+            {
+                builder.AddProduct( product.Value.BuyID, ProductType.Consumable, new IDs
+                {
+                    {product.Value.BuyID, AppleAppStore.Name }
+                } );
+
+                //Discount Item
+                if ( !string.IsNullOrEmpty( product.Value.AlternativeBuyID ) )
+                {
+                    builder.AddProduct( product.Value.AlternativeBuyID, ProductType.Consumable, new IDs
+                {
+                    {product.Value.AlternativeBuyID, AppleAppStore.Name }
+                } );
+                }
+            }
+        }
+        //Android && PC 
+        else
+        {
+            foreach ( var product in productDict )
+            {
+                builder.AddProduct( product.Value.BuyID, ProductType.Consumable, new IDs
+                {
+                    {product.Value.BuyID, GooglePlay.Name }
+                } );
+
+                //Discount Item
+                if ( !string.IsNullOrEmpty( product.Value.AlternativeBuyID ) )
+                {
+                    builder.AddProduct( product.Value.AlternativeBuyID, ProductType.Consumable, new IDs
+                {
+                    {product.Value.AlternativeBuyID, GooglePlay.Name }
+                } );
+                }
+            }
+        }
+
+        // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
+        // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
+        UnityPurchasing.Initialize( this, builder );
+    }
+    private bool IsInitialized()
+    {
+        // Only say we are initialized if both the Purchasing references are set.
+        return m_StoreController != null && m_StoreExtensionProvider != null;
+    }
+    //public void BuyConsumable()
+    //{
+    //    // Buy the consumable product using its general identifier. Expect a response either 
+    //    // through ProcessPurchase or OnPurchaseFailed asynchronously.
+    //    BuyProductID( kProductIDConsumable );
+    //}
+    //public void BuyNonConsumable()
+    //{
+    //    // Buy the non-consumable product using its general identifier. Expect a response either 
+    //    // through ProcessPurchase or OnPurchaseFailed asynchronously.
+    //    BuyProductID( kProductIDNonConsumable );
+    //}
+    //public void BuySubscription()
+    //{
+    //    // Buy the subscription product using its the general identifier. Expect a response either 
+    //    // through ProcessPurchase or OnPurchaseFailed asynchronously.
+    //    // Notice how we use the general product identifier in spite of this ID being mapped to
+    //    // custom store-specific identifiers above.
+    //    BuyProductID( kProductIDSubscription );
+    //}
+
+
+    public void BuyProductID( string productId )
+    {
+        // If Purchasing has been initialized ...
+        if ( IsInitialized() )
+        {
+            // ... look up the Product reference with the general product identifier and the Purchasing 
+            // system's products collection.
+            Product product = m_StoreController.products.WithID( productId );
+
+            // If the look up found a product for this device's store and that product is ready to be sold ... 
+            if ( product != null && product.availableToPurchase )
+            {
+                LDebug.Log( string.Format( "Purchasing product asychronously: '{0}'", product.definition.storeSpecificId ) );
+                // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed 
+                // asynchronously.
+                m_StoreController.InitiatePurchase( product );
+            }
+            // Otherwise ...
+            else
+            {
+                ProcessPurchaseFailEventHandler?.Invoke( 1 );
+                // ... report the product look-up failure situation  
+                LDebug.Log( "BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase" );
+            }
+        }
+        // Otherwise ...
+        else
+        {
+            ProcessPurchaseFailEventHandler?.Invoke( 0 );
+            // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
+            // retrying initiailization.
+            LDebug.Log( "BuyProductID FAIL. Not initialized." );
+        }
+    }
+
+
+    // Restore purchases previously made by this customer. Some platforms automatically restore purchases, like Google. 
+    // Apple currently requires explicit purchase restoration for IAP, conditionally displaying a password prompt.
+    public void RestorePurchases()
+    {
+        // If Purchasing has not yet been set up ...
+        if ( !IsInitialized() )
+        {
+            // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
+            LDebug.Log( "RestorePurchases FAIL. Not initialized." );
+            return;
+        }
+
+        // If we are running on an Apple device ... 
+        if ( Application.platform == RuntimePlatform.IPhonePlayer ||
+            Application.platform == RuntimePlatform.OSXPlayer )
+        {
+            // ... begin restoring purchases
+            LDebug.Log( "RestorePurchases started ..." );
+
+            // Fetch the Apple store-specific subsystem.
+            var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
+            // Begin the asynchronous process of restoring purchases. Expect a confirmation response in 
+            // the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
+            apple.RestoreTransactions( ( result ) =>
+             {
+                // The first phase of restoration. If no more responses are received on ProcessPurchase then 
+                // no purchases are available to be restored.
+                LDebug.Log( "RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore." );
+             } );
+        }
+        // Otherwise ...
+        else
+        {
+            // We are not running on an Apple device. No work is necessary to restore purchases.
+            LDebug.Log( "RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform );
+        }
+    }
+
+
+
+
+    #region 回调
+    //  
+    // --- IStoreListener
+    //
+    public void OnInitialized( IStoreController controller, IExtensionProvider extensions )
+    {
+        // Purchasing has succeeded initializing. Collect our Purchasing references.
+        LDebug.Log( "OnInitialized: PASS" );
+
+        // Overall Purchasing system, configured with products for this application.
+        m_StoreController = controller;
+        // Store specific subsystem, for accessing device-specific store features.
+        m_StoreExtensionProvider = extensions;
+
+        if ( InitializedEventHandler != null ) InitializedEventHandler( m_StoreController.products );
+    }
+
+
+    public void OnInitializeFailed( InitializationFailureReason error )
+    {
+        // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
+        LDebug.Log( "OnInitializeFailed InitializationFailureReason:" + error );
+    }
+
+    //购买不同商品结束后的处理方法 对应定义的商品
+    public PurchaseProcessingResult ProcessPurchase( PurchaseEventArgs args )
+    {
+        foreach ( var prod in PurchaserDataModel.Instance.ProductsDict )
+        {
+            // A consumable product has been purchased by this user.
+            if ( String.Equals( args.purchasedProduct.definition.id, prod.Value.BuyID, StringComparison.Ordinal ) )
+            {
+                LDebug.Log( string.Format( "ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id ) );
+
+                ProcessPurchaseEventHandler?.Invoke( prod.Value.BuyID );
+
+                var product = m_StoreController.products.WithID( prod.Value.BuyID );
+                string receipt = product.receipt;
+                string currency = product.metadata.isoCurrencyCode;
+                int amount = decimal.ToInt32( product.metadata.localizedPrice * 100 );
+                Receipt receiptClass = JsonUtility.FromJson<Receipt>( receipt );
+                ProcessPurchaseReceiptEventHandler?.Invoke( currency, prod.Value.BuyID, amount, receiptClass );
+
+                // Return a flag indicating whether this product has completely been received, or if the application needs 
+                // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
+                // saving purchased products to the cloud, and when that save is delayed. 
+                return PurchaseProcessingResult.Complete;
+            }
+            else if ( !string.IsNullOrEmpty( prod.Value.AlternativeBuyID ) && String.Equals( args.purchasedProduct.definition.id, prod.Value.AlternativeBuyID, StringComparison.Ordinal ) )
+            {
+                LDebug.Log( string.Format( "ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id ) );
+
+                ProcessPurchaseEventHandler?.Invoke( prod.Value.AlternativeBuyID );
+
+                var product = m_StoreController.products.WithID( prod.Value.AlternativeBuyID );
+                string receipt = product.receipt;
+                string currency = product.metadata.isoCurrencyCode;
+                int amount = decimal.ToInt32( product.metadata.localizedPrice * 100 );
+                Receipt receiptClass = JsonUtility.FromJson<Receipt>( receipt );
+                ProcessPurchaseReceiptEventHandler?.Invoke( currency, prod.Value.AlternativeBuyID, amount, receiptClass );
+
+                // Return a flag indicating whether this product has completely been received, or if the application needs 
+                // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
+                // saving purchased products to the cloud, and when that save is delayed. 
+                return PurchaseProcessingResult.Complete;
+            }
+        }
+        
+        LDebug.Log( string.Format( "ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id ) );
+
+        // Return a flag indicating whether this product has completely been received, or if the application needs 
+        // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
+        // saving purchased products to the cloud, and when that save is delayed. 
+        return PurchaseProcessingResult.Pending;
+    }
+
+    public void OnPurchaseFailed( Product product, PurchaseFailureReason failureReason )
+    {
+        // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
+        // this reason with the user to guide their troubleshooting actions.
+        LDebug.Log( string.Format( "OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason ) );
+    }
+
+    #endregion
+#endif
+}
+
+//..
+public class Receipt
+{
+
+    public string Store;
+    public string TransactionID;
+    public string Payload;
+
+    public Receipt()
+    {
+        Store = TransactionID = Payload = "";
+    }
+
+    public Receipt( string store, string transactionID, string payload )
+    {
+        Store = store;
+        TransactionID = transactionID;
+        Payload = payload;
+    }
+}
+
+public class PayloadAndroid
+{
+    public string json;
+    public string signature;
+
+    public PayloadAndroid()
+    {
+        json = signature = "";
+    }
+
+    public PayloadAndroid( string _json, string _signature )
+    {
+        json = _json;
+        signature = _signature;
+    }
+
 }
 

@@ -31,7 +31,7 @@ using UnityEngine;
 
 namespace LitFramework
 {
-
+    [Serializable]
     public class StoreItem : IDisposable
     {
         public Sprite Icon;

@@ -185,7 +185,7 @@ namespace LitFramework.LitTool
         {
             if ( grayMat == null )
             {
-                Shader shader = Shader.Find( "Custom/UI-Gray" );
+                Shader shader = Resources.Load<Shader>( "Shader/UI/UIGrey" );
                 if ( shader == null )
                 {
                     LDebug.LogWarning( "未发现Shader Custom/UI-Gray" );

@@ -146,7 +146,6 @@ public static class CurrencyModel
             {
                 valueStr.Append( str );
             }
-
         }
 
         return valueStr.ToString();
@@ -180,7 +179,17 @@ public static class CurrencyModel
         }
         //降成同单位级的计算
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
-        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        float targetNum = 0f;
+        try
+        {
+            targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        }
+        catch ( Exception )
+        {
+            LDebug.Log( "======================>>>" + variable );
+            throw;
+        }
+        //var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
         if ( oriUnitIndex < targetUnitIndex )
         {
             targetNum *= 1000 * ( targetUnitIndex - oriUnitIndex );
@@ -197,7 +206,11 @@ public static class CurrencyModel
         {
             oriNum += targetNum;
             if ( oriNum >= 1000 )
-                ori = oriNum.ToLargeNum();
+            {
+                if ( oriUnitIndex == TOLARGENUMSIGN.Length - 1 ) return ori + "NB";
+                ori = oriNum * 1f / 1000 + TOLARGENUMSIGN[ oriUnitIndex + 1 ];
+                //ori = oriNum.ToLargeNum();
+            }
             else
                 ori = string.Format( "{0}{1}", ( oriNum ).ToString( oriUnit == "" ? "F0" : "G4" ), oriUnit );
         }
@@ -346,6 +359,12 @@ public static class CurrencyModel
     /// <returns> 《0小于   =0等于  》0大于 </returns>
     public static float CompareValue( this string ori, string variable )
     {
+        //UnityEngine.Profiling.Profiler.BeginSample("MaxNumber<=====================");
+        if ( ori.StartsWith( "-" ) )
+            ori = "0";
+        if ( variable.StartsWith( "-" ) )
+            variable = "0";
+
         var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
         var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
         //原本单位级
@@ -365,6 +384,7 @@ public static class CurrencyModel
         //数字部分
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        //UnityEngine.Profiling.Profiler.EndSample();
         return oriNum - targetNum;
     }
     /// <summary>
@@ -375,6 +395,11 @@ public static class CurrencyModel
     /// <returns></returns>
     public static float CalculateRatio( this string ori, string variable )
     {
+        if ( ori.StartsWith( "-" ) )
+            ori = "0";
+        if ( variable.StartsWith( "-" ) )
+            variable = "0";
+
         //降成同单位级的计算
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );

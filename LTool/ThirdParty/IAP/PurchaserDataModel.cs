@@ -117,17 +117,16 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
             LDebug.Log( "IAP product storeSpecificId ==>" + product.definition.storeSpecificId );
             LDebug.Log( "IAP availableToPurchase ==>" + product.availableToPurchase );
 
+            if ( product.definition.storeSpecificId.StartsWith( "buy" ) ) continue;
+
             //包含在ProductsDict中的都是正是商品，打折商品ID不会出现在ProductDict中
             if ( ProductsDict.ContainsKey( product.definition.storeSpecificId ) )
             {
                 //真正后台配置商品
-                if ( !product.definition.storeSpecificId.StartsWith( "buy" ) )
-                {
-                    ProductsDict[ product.definition.storeSpecificId ].Name = product.metadata.localizedTitle;
-                    ProductsDict[ product.definition.storeSpecificId ].Price = product.metadata.localizedPriceString;
-                    ProductsDict[ product.definition.storeSpecificId ].Description = product.metadata.localizedDescription;
-                    ProductsDict[ product.definition.storeSpecificId ].ProductType = product.definition.type;
-                }
+                ProductsDict[ product.definition.storeSpecificId ].Name = product.metadata.localizedTitle;
+                ProductsDict[ product.definition.storeSpecificId ].Price = product.metadata.localizedPriceString;
+                ProductsDict[ product.definition.storeSpecificId ].Description = product.metadata.localizedDescription;
+                ProductsDict[ product.definition.storeSpecificId ].ProductType = product.definition.type;
             }
             else
             {

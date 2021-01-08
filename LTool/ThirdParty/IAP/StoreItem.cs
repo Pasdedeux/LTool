@@ -35,13 +35,18 @@ namespace LitFramework
     public class StoreItem : IDisposable
     {
         public Sprite Icon;
+        [HideInInspector]
         public Transform UI;
         public string Name;
         public string BuyID;
         public string Price;
         public string Description;
+        //通常是打折后新商品价格
         public string AlternativePrice;
+        //通常是打折后新商品ID
         public string AlternativeBuyID;
+        //配置表：多个商品字符串格式
+        public string RewardsStringFormat;
 #if IAP
         //商店SDK类型接口
         public UnityEngine.Purchasing.ProductType ProductType;
@@ -61,6 +66,22 @@ namespace LitFramework
             if ( IsBought ) AddStoreItemEventHandler?.Invoke( buyID, true );
         }
 
+        public StoreItem( StoreItem si )
+        {
+            BuyID = si.BuyID;
+            Description = si.Description;
+            Name = si.Name;
+            Price = si.Price;
+            Icon = si.Icon;
+            AlternativeBuyID = si.AlternativeBuyID;
+            AlternativePrice = si.AlternativePrice;
+
+            if ( !string.IsNullOrEmpty( si.RewardsStringFormat ) )
+                si.RewardsStringFormat.Split( '|' ).ToList().ForEach( e => { var result = e.Split( '-' ); Rewards.Add( short.Parse( result[ 0 ] ), ushort.Parse( result[ 1 ] ) ); } );
+
+            if ( IsBought ) AddStoreItemEventHandler?.Invoke( BuyID, true );
+        }
+
         public void Dispose()
         {
             UI = null;
@@ -73,6 +94,6 @@ namespace LitFramework
             AlternativeBuyID = null;
             AddStoreItemEventHandler = null;
         }
-}
+    }
 
 }

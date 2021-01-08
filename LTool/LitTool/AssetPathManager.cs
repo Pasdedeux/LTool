@@ -35,6 +35,7 @@ namespace LitFramework.LitTool
     {
         public AssetPathManager() { }
 
+        private string _tmpPath;
         /// <summary>
         ///  获取外部persistant路径+"//"
         /// </summary>
@@ -43,7 +44,8 @@ namespace LitFramework.LitTool
         public string GetPersistentDataPath( string filePath, bool useUri = true )
         {
             Uri uri = new Uri( Application.persistentDataPath +"/"+ filePath );
-            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            return _tmpPath.Replace( "%20", " " );
         }
 
 
@@ -56,7 +58,8 @@ namespace LitFramework.LitTool
         public string GetStreamAssetDataPath(string filePath, bool useUri = true )
         {
             Uri uri = new Uri( Application.streamingAssetsPath +"/"+ filePath );
-            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            return _tmpPath.Replace( "%20", " " );
         }
 
 
@@ -68,7 +71,8 @@ namespace LitFramework.LitTool
         public string GetTemporaryCachePath( string filePath, bool useUri = true )
         {
             Uri uri = new Uri( Application.temporaryCachePath + "/" + filePath );
-            return useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
+            return _tmpPath.Replace( "%20", " " );
         }
     }
 }

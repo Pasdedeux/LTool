@@ -199,6 +199,20 @@ namespace LitFramework.LitTool
         }
 
 
+        /// <summary>
+        /// 世界坐标向Root画布坐标转换
+        /// </summary>
+        /// <param name="canvas">画布</param>
+        /// <param name="world">世界坐标</param>
+        /// <param name="uiCam">UICam</param>
+        /// <returns>返回画布上的二维坐标</returns>
+        public static Vector2 WorldToCanvasPos( Canvas canvas, Vector3 world , Camera uiCam )
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle( canvas.transform as RectTransform,
+                world, uiCam, out Vector2 position );
+            return position;
+        }
+
         private static List<Component> _textComponets = new List<Component>( 8 );
         public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false /*, bool removeAllComponents = true*/ )
         {

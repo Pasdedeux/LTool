@@ -68,6 +68,15 @@
     <Reference Include="ChannelPurchase">
       <HintPath>.\ChannelPurchase.dll</HintPath>
     </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>.\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>.\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>.\DOTweenPro.dll</HintPath>
+    </Reference>
     <Reference Include="Purchasing.Common">
       <HintPath>.\Purchasing.Common.dll</HintPath>
     </Reference>
@@ -106,16 +115,22 @@
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
+    <Compile Include="Guide\Control\GuideShaderController.cs" />
+    <Compile Include="Guide\GuideConfig.cs" />
+    <Compile Include="Guide\Model\EventPenetrate.cs" />
+    <Compile Include="Guide\Model\GuideDataModel.cs" />
     <Compile Include="Input\InputControlManager.cs" />
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\PrefabPool.cs" />
     <Compile Include="LitPool\PrefabsDict.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
+    <Compile Include="LitTool\Bezier.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
     <Compile Include="LitTool\CurrencyModel.cs" />
     <Compile Include="LitTool\DocumentAccessor.cs" />
+    <Compile Include="LitTool\LDebug.cs" />
     <Compile Include="LitTool\LitJSON\IJsonWrapper.cs" />
     <Compile Include="LitTool\LitJSON\JsonData.cs" />
     <Compile Include="LitTool\LitJSON\JsonException.cs" />
@@ -126,6 +141,7 @@
     <Compile Include="LitTool\LitJSON\Lexer.cs" />
     <Compile Include="LitTool\LitJSON\ParserToken.cs" />
     <Compile Include="LitTool\LitTool.cs" />
+    <Compile Include="LitTool\LMath.cs" />
     <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\IManager.cs" />
@@ -143,8 +159,6 @@
     <Compile Include="UI\UnityHelper.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />
-    <Compile Include="Unity\LDebug.cs" />
-    <Compile Include="Unity\LMath.cs" />
     <Compile Include="Unity\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -63,20 +63,7 @@ namespace LitFramework
                 _instance = null;
             }
         }
-
-        /// <summary>
-        /// 应用程序退出
-        /// </summary>
-        public virtual void OnApplicationQuit()
-        {
-            if ( _instance != null )
-            {
-                Destroy( _instance );
-                _instance = null;
-            }
-        }
-
-
+        
     }
 }
 

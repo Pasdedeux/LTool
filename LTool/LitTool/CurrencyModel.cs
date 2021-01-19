@@ -179,17 +179,7 @@ public static class CurrencyModel
         }
         //降成同单位级的计算
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
-        float targetNum = 0f;
-        try
-        {
-            targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
-        }
-        catch ( Exception )
-        {
-            LDebug.Log( "======================>>>" + variable );
-            throw;
-        }
-        //var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
+        var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
         if ( oriUnitIndex < targetUnitIndex )
         {
             targetNum *= 1000 * ( targetUnitIndex - oriUnitIndex );
@@ -275,7 +265,8 @@ public static class CurrencyModel
             //exm:1.996a-1a=0.996=>996
             else if ( targetUnitIndex == 0 ) ori = string.Format( "{0}{1}", ( oriNum * 1000f ).ToString( "F0" ), "" );
             //exm:1.996-1=0.996=>0
-            else ori = "0";
+            else if ( oriNum < 1 ) ori = "0";
+            else ori = string.Format( "{0}", oriNum.ToString( "F0" ), "" );
         }
         return ori;
     }

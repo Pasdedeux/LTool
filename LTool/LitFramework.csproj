@@ -123,6 +123,7 @@
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\PrefabPool.cs" />
     <Compile Include="LitPool\PrefabsDict.cs" />
+    <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\Bezier.cs" />

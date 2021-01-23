@@ -37,7 +37,7 @@ namespace LitFramework.LitPool
     /// <summary>
     /// 对外控制用脚本
     /// </summary>
-    public class SpawnManager : Singleton<SpawnManager>,IManager
+    public class SpawnManager : Singleton<SpawnManager>, IManager
     {
         public SpawnPool Pool { get; private set; }
 
@@ -85,7 +85,7 @@ namespace LitFramework.LitPool
         /// <param name="item"></param>
         public void DespawnObject( Transform item )
         {
-            Pool.Despawn( item , Pool.transform );
+            Pool.Despawn( item, Pool.transform );
         }
     }
 }

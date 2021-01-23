@@ -25,10 +25,7 @@ public partial class GuideConfig:SingletonMono<GuideConfig>
 {
     [Header( "高亮区域缩放的动画时间" )]
     public float shrinkTime = 0.2f;
-
-    [Header( "聚焦过程中当前值和目标值最小差值" )]
-    public float threshold = 0.2f;
-
+    
     [Header( "手形图片对目标按钮的位置偏移" )]
     public Vector3 handImageOffset = new Vector3( 0.5f, 0f, 0 );
 

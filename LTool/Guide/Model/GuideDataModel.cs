@@ -29,7 +29,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GuideDataModel : Singleton<GuideDataModel>
+/// <summary>
+/// 分部类。可以在业务逻辑上继续扩展
+/// </summary>
+public partial class GuideDataModel : Singleton<GuideDataModel>
 {
     /// <summary>
     /// 圆形/矩形聚焦完毕回调

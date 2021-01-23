@@ -215,7 +215,7 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     int stb = type[ i ].IndexOf( '<' );
                     int ste = type[ i ].IndexOf( '>' );
-                    string[] subtype = type[ i ].Substring( stb + 1 , ste - stb - 1 ).Split( '|' );
+                    string[] subtype = type[ i ].Substring( stb + 1 , ste - stb - 1 ).Split( ',' );
                     CSString.Add( string.Format( "item.{0} = new Dictionary<{1}, {2}>();" , attribute[ i ] , subtype[ 0 ] , subtype[ 1 ] ) );
                     string substrName = string.Format( "{0}_Array" , attribute[ i ] );
 

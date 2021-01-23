@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 /// <summary>
 /// ICloneable基类，扩展与该接口
 /// </summary>
-public abstract class Cloneable<T> where T : class, ICloneable
+public abstract class Cloneable<T>  where T : class, ICloneable
 {
     /// <summary>
     /// 基础覆写方法

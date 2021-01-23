@@ -49,7 +49,7 @@ namespace LitFrameworkEditor.EditorExtended
     {
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/配置文件->CSV",priority =20)]
+        [MenuItem( "Tools/配置文件->CSV", priority = 20 )]
 #endif
         public static void XlsxToCSV()
         {
@@ -201,7 +201,7 @@ namespace LitFrameworkEditor.EditorExtended
                 DataSet result = excelReader.AsDataSet();
                 CSVWriter writer = new CSVWriter();
                 int rows = result.Tables[ 0 ].Rows.Count;
-                
+
                 //通常情况下，获取第一行的列数即可
                 int rowlen = 0;
                 for ( int j = 0; j < result.Tables[ 0 ].Rows[ 0 ].ItemArray.Length; j++ )
@@ -233,21 +233,21 @@ namespace LitFrameworkEditor.EditorExtended
         }
 
 #if UNITY_EDITOR
-        [MenuItem( "Tools/开启PersistentDataPath(可同步目录)", priority = 2 )]
+        [MenuItem( "Tools/开启PersistentData文件夹", priority = 2 )]
         private static void OpenPersistentDataPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.persistentDataPath );
             p.Close();
         }
 
-        [MenuItem( "Tools/开启TemporaryCachePath(临时存储目录)", priority = 3 )]
+        [MenuItem( "Tools/开启TemporaryCache文件夹", priority = 3 )]
         private static void OpenTemporaryCachePath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.temporaryCachePath );
             p.Close();
         }
 
-        [MenuItem( "Tools/开启StreamingAssetsPath(项目内存储目录)", priority = 1 )]
+        [MenuItem( "Tools/开启StreamingAssets文件夹", priority = 1 )]
         private static void OpenSteamingAssetsPath()
         {
             System.Diagnostics.Process p = System.Diagnostics.Process.Start( Application.streamingAssetsPath );
@@ -339,38 +339,38 @@ namespace LitFrameworkEditor.EditorExtended
     /// </summary>
     public class SearchRefrenceEditorWindow : EditorWindow
     {
-        /// <summary>
-        /// 查找引用
-        /// </summary>
-        [MenuItem( "Tools/查找引用的预制件" )]
+        [MenuItem( "Tools/查找引用的预制件or材质球 #w" )]
         static void SearchRefrence()
         {
             SearchRefrenceEditorWindow window = ( SearchRefrenceEditorWindow )EditorWindow.GetWindow( typeof( SearchRefrenceEditorWindow ), false, "Searching", true );
             window.Show();
         }
 
+        private Vector2 _vevPos = Vector2.zero;
         private static Object _searchObject;
         private List<Object> _result = new List<Object>();
         private void OnGUI()
         {
             EditorGUILayout.BeginHorizontal();
             _searchObject = EditorGUILayout.ObjectField( _searchObject, typeof( Object ), true, GUILayout.Width( 200 ) );
-            if ( GUILayout.Button( "查找", GUILayout.Width( 100 ) ) )
+            if ( GUILayout.Button( "查找预制件", GUILayout.Width( 100 ) ) )
             {
                 _result.Clear();
+                _vevPos = Vector2.zero;
 
                 if ( _searchObject == null )
                     return;
 
                 string assetPath = AssetDatabase.GetAssetPath( _searchObject );
                 string assetGuid = AssetDatabase.AssetPathToGUID( assetPath );
-                //只检查prefab
+                //检查prefab
                 string[] guids = AssetDatabase.FindAssets( "t:Prefab", new[] { "Assets" } );
 
-                int length = guids.Length;
+                var result = guids;
+                int length = result.Length;
                 for ( int i = 0; i < length; i++ )
                 {
-                    string filePath = AssetDatabase.GUIDToAssetPath( guids[ i ] );
+                    string filePath = AssetDatabase.GUIDToAssetPath( result[ i ] );
                     EditorUtility.DisplayCancelableProgressBar( "Checking", filePath, i / length * 1.0f );
 
                     //检查是否包含guid
@@ -381,17 +381,49 @@ namespace LitFrameworkEditor.EditorExtended
                         _result.Add( fileObject );
                     }
                 }
+
+                EditorUtility.ClearProgressBar();
+            }
+            if ( GUILayout.Button( "查找材质球", GUILayout.Width( 100 ) ) )
+            {
+                _result.Clear();
+                _vevPos = Vector2.zero;
+
+                if ( _searchObject == null )
+                    return;
+
+                string assetPath = AssetDatabase.GetAssetPath( _searchObject );
+                string assetGuid = AssetDatabase.AssetPathToGUID( assetPath );
+                //检查Mat
+                string[] guidsMat = AssetDatabase.FindAssets( "t:Material", new[] { "Assets" } );
+
+                var result = guidsMat;
+                int length = result.Length;
+                for ( int i = 0; i < length; i++ )
+                {
+                    string filePath = AssetDatabase.GUIDToAssetPath( result[ i ] );
+                    EditorUtility.DisplayCancelableProgressBar( "Checking", filePath, i / length * 1.0f );
+
+                    //检查是否包含guid
+                    string content = File.ReadAllText( filePath );
+                    if ( content.Contains( assetGuid ) )
+                    {
+                        Object fileObject = AssetDatabase.LoadAssetAtPath( filePath, typeof( Object ) );
+                        _result.Add( fileObject );
+                    }
+                }
+
                 EditorUtility.ClearProgressBar();
             }
             EditorGUILayout.EndHorizontal();
 
             //显示结果
-            EditorGUILayout.BeginVertical();
+            _vevPos = EditorGUILayout.BeginScrollView( _vevPos );
             for ( int i = 0; i < _result.Count; i++ )
             {
-                EditorGUILayout.ObjectField( _result[ i ], typeof( Object ), true, GUILayout.Width( 300 ) );
+                EditorGUILayout.ObjectField( _result[ i ], typeof( Object ), true, GUILayout.Width( 400 ) );
             }
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndScrollView();
         }
 
     }

@@ -64,3 +64,4 @@ namespace LitFramework.LitTool
             Resize();
         }
     }
+}

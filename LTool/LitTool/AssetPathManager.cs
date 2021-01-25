@@ -40,6 +40,7 @@ namespace LitFramework.LitTool
         ///  获取外部persistant路径+"//"
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
+        /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// <returns></returns>
         public string GetPersistentDataPath( string filePath, bool useUri = true )
         {
@@ -53,7 +54,7 @@ namespace LitFramework.LitTool
         /// 
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
-        /// <param name="useWWW">是否用于FileInfo FileStream</param>
+        /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// <returns></returns>
         public string GetStreamAssetDataPath(string filePath, bool useUri = true )
         {
@@ -67,6 +68,7 @@ namespace LitFramework.LitTool
         /// 
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
+        /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// <returns></returns>
         public string GetTemporaryCachePath( string filePath, bool useUri = true )
         {

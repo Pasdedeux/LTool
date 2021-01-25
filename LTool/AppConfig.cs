@@ -12,7 +12,7 @@
 * 更新时间 ：2018/5/26 16:29:30
 * 版 本 号 ：v1.0.0.0
 *******************************************************************
-* Copyright @ Liu Hanwen 2018. All rights reserved.
+* Copyright @ Derek Liu 2018. All rights reserved.
 *******************************************************************
 //----------------------------------------------------------------*/
 #endregion
@@ -25,10 +25,10 @@ using System.Text;
 namespace LitFramework
 {
     /// <summary>
-    ///  Respect
+    /// 框架控制参数
     /// </summary>
     public class AppConfig
     {
-        public static Dictionary<string, int> BuildSceneIndexDict = new Dictionary<string, int>();
+        
     }
 }

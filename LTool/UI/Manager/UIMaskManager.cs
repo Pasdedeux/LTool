@@ -9,7 +9,7 @@
  * 修改历史： 
  * 
 ***************************************************************** 
- * Copyright @ Derek 2018 All rights reserved 
+ * Copyright @ Derek Liu 2018 All rights reserved 
 *****************************************************************/
 
 using LitFramework;

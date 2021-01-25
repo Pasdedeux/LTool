@@ -22,9 +22,17 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// 大数值模块
+/// 
+/// >1000 从a\b\c开始计数单位。以1000为单位更换
+/// </summary>
 public static class CurrencyModel
 {
     #region 转换大数值
+    /// <summary>
+    /// a,b,c,d,......aa,ab,ac
+    /// </summary>
     public static readonly string[] TOLARGENUMSIGN = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
             , "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az"
             , "ba", "bb", "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl", "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv", "bw", "bx", "by", "bz"

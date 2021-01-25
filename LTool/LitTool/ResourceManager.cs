@@ -11,7 +11,7 @@
 * 更新时间 ：2019/7/5 11:33:15
 * 版 本 号 ：v1.0.0.0
 *******************************************************************
-* Copyright @ Inplayable 2019. All rights reserved.
+* Copyright @ Derek Liu 2019. All rights reserved.
 *******************************************************************
 
 -------------------------------------------------------------------
@@ -93,16 +93,15 @@ namespace LitFramework.LitTool
         }
 
 
-        #region UnityWebRequest  尚未完成
+        #region UnityWebRequest
         /// <summary>
         /// 加载 .txt/ .dat/ .csv等文件
         /// </summary>
-        /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+        /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
         /// <returns></returns>
         private IEnumerator DoLoadFile( string searchPath , bool useRawDataArray = false )
         {
-            //todo 尚未完成整合
             using ( UnityWebRequest request = UnityWebRequest.Get( searchPath ) ) 
             {
                 yield return request.SendWebRequest();
@@ -124,7 +123,7 @@ namespace LitFramework.LitTool
         /// <summary>
         /// 加载png 等图像格式
         /// </summary>
-        /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+        /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <returns></returns>
         private IEnumerator DoLoadTexture( string searchPath )
         {
@@ -147,7 +146,7 @@ namespace LitFramework.LitTool
         /// <summary>
         /// 加载AssetBundle
         /// </summary>
-        /// /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+        /// /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <returns></returns>
         private IEnumerator DoLoadAssetBundle( string searchPath )
         {

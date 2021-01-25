@@ -34,12 +34,13 @@ namespace LitFramework.LitTool
         #region string
 
         /// <summary>
-        /// 单字符串
+        /// TODO 这个方法通用性优先，需要再思考下用处
+        /// 对字符串内容进行批量替换
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args">需要替换成的字符串</param>
         /// <returns></returns>
-        public static string FormatWith( this string format, params object[] args )
+        static string FormatWith( this string format, params object[] args )
         {
             if ( format == null || args == null )
                 throw new ArgumentNullException( ( format == null ) ? "format" : "args" );
@@ -51,20 +52,7 @@ namespace LitFramework.LitTool
         }
 
         #endregion
-
-        #region 协程
-        /// <summary>
-        /// 停止制定协程，并自动释放
-        /// </summary>
-        /// <param name="mono"></param>
-        /// <param name="func"></param>
-        public static void StopCoroutineWithFunc(this MonoBehaviour mono, ref Coroutine func )
-        {
-            mono.StopCoroutine( func );
-            func = null;
-        }
-        #endregion
-
+        
         #region Camera
         /// <summary>
         /// 获取【透视相机】指定距离下相机视口四个角的坐标
@@ -165,11 +153,11 @@ namespace LitFramework.LitTool
         public static List<T> RandomSortList<T>( this List<T> list )
         {
             System.Random random = new System.Random();
+            
             List<T> newList = new List<T>();
             foreach ( T item in list )
-            {
                 newList.Insert( random.Next( newList.Count + 1 ), item );
-            }
+
             return newList;
         }
         #endregion

@@ -11,7 +11,7 @@
 * 更新时间 ：2018/5/9 14:22:01
 * 版 本 号 ：v1.0.0.0
 *******************************************************************
-* Copyright @ ShengYanTech 2018. All rights reserved.
+* Copyright @ Derek Liu 2018. All rights reserved.
 *******************************************************************
 
 -------------------------------------------------------------------
@@ -82,7 +82,7 @@ namespace LitFramework.LitTool
         }
 
         /// <summary> 相机截图 </summary>
-        /// <param name="camera">目标相机</param>
+        /// <param name="camera">目标相机,设备屏幕宽高</param>
         public static Texture2D Capture( Camera camera )
         {
             return Capture( camera, Screen.width, Screen.height );

@@ -9,7 +9,7 @@
  * 修改历史：
  *
 *****************************************************************
- * Copyright @ Derek 2018 All rights reserved
+ * Copyright @ Derek Liu 2018 All rights reserved
 *****************************************************************/
 
 using System;
@@ -47,35 +47,11 @@ namespace UnityEngine
 
 
         /// <summary>
-        /// 屏幕坐标转3D坐标系的本地坐标
-        /// </summary>
-        /// <param name="screenPos"></param>
-        /// <param name="parent"></param>
-        /// <returns></returns>
-        public static Vector3 ScreenToLocalPos( Vector3 screenPos, Transform parent )
-        {
-            Vector3 point = new Vector3( screenPos.x, screenPos.y, -Camera.main.transform.position.z );
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint( point );
-            return parent.worldToLocalMatrix.MultiplyPoint( worldPos );
-        }
-
-        public static T Find<T>( Transform parent, string namePath ) where T : Component
-        {
-            Transform trans = parent.Find( namePath );
-            if ( trans != null )
-            {
-                return trans.GetComponent<T>();
-            }
-            return null;
-        }
-
-
-        /// <summary>
         /// 得到权重的随机数
         /// </summary>
-        /// <param name="prob"></param>
+        /// <param name="prob">权重值列表</param>
         /// <returns></returns>
-        public static int RandomIndex( List<int> prob )
+        public static int RandomWeightIndex( List<int> prob )
         {
             int result = 0;
 
@@ -104,46 +80,20 @@ namespace UnityEngine
             return result;
         }
 
-        /// <summary>
-        /// 截图
-        /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="w"></param>
-        /// <param name="h"></param>
-        /// <returns></returns>
-        public static Texture2D Snapshoot( Camera camera, int w, int h )
-        {
-            RenderTexture temp = RenderTexture.GetTemporary( w, h, 24 );
-            RenderTexture lastTargetTexture = null;
-            Texture2D texture2D = new Texture2D( w, h, TextureFormat.ARGB32, false );
-
-            lastTargetTexture = camera.targetTexture;
-            camera.targetTexture = temp;
-            camera.Render();
-            camera.targetTexture = lastTargetTexture;
-
-
-            lastTargetTexture = RenderTexture.active;
-            RenderTexture.active = temp;
-            texture2D.ReadPixels( new Rect( 0, 0, w, h ), 0, 0 );
-            texture2D.Apply();
-            RenderTexture.active = lastTargetTexture;
-
-            RenderTexture.ReleaseTemporary( temp );
-
-            return texture2D;
-        }
-
-        
         #region  数学
+
+        #region 贝塞尔
+
         /// <summary>
-        /// 二次贝塞尔曲线：3点确定一条贝塞尔
+        /// 根据T值，计算贝塞尔曲线给定三点下相对应的点
+        /// 
+        /// 二阶公式：result = (1-t)srq2p0 + 2t(1-t)p1 + tsqr2p2
         /// </summary>
-        /// <param name="P0"></param>
-        /// <param name="P1"></param>
-        /// <param name="P2"></param>
-        /// <param name="t"></param>
-        /// <returns></returns>
+        /// <param name="t"></param>T值
+        /// <param name="P0"></param>起始点
+        /// <param name="P1"></param>控制点
+        /// <param name="P2"></param>目标点
+        /// <returns>根据T值计算出来的贝赛尔曲线点</returns>
         public static Vector3 BezierCurve( Vector3 P0, Vector3 P1, Vector3 P2, float t )
         {
             Vector3 B = Vector3.zero;
@@ -153,6 +103,30 @@ namespace UnityEngine
             B = P0 * t1 + 2 * t2 * P1 + t3 * P2;
             return B;
         }
+
+        /// <summary>
+        /// 获取存储贝塞尔曲线点的数组
+        /// </summary>
+        /// <param name="startPoint"></param>起始点
+        /// <param name="controlPoint"></param>控制点
+        /// <param name="endPoint"></param>目标点
+        /// <param name="segmentNum"></param>采样点的数量
+        /// <returns></returns>存储贝塞尔曲线点的数组
+        public static Vector3[] GetBeizerList( Vector3 startPoint, Vector3 controlPoint, Vector3 endPoint, int segmentNum )
+        {
+            Vector3[] path = new Vector3[ segmentNum ];
+            for ( int i = 1; i <= segmentNum; i++ )
+            {
+                float t = i / ( float )segmentNum;
+                Vector3 pixel = BezierCurve( startPoint,
+                    controlPoint, endPoint, t );
+                path[ i - 1 ] = pixel;
+            }
+            return path;
+        }
+
+        #endregion
+
         /// <summary>
         /// 点到线段最近的一个点位置和距离
         /// </summary>
@@ -168,7 +142,7 @@ namespace UnityEngine
             Matrix4x4 mat_inv;
             Vector2 p2;
             mat = Matrix4x4.TRS( linePt1,
-                                     Quaternion.Euler( 0, 0, CalcIncludedAngle( Vector2.right, linePt2 - linePt1 ) ),
+                                     Quaternion.Euler( 0, 0, CalcIncludedAngle2D( Vector2.right, linePt2 - linePt1 ) ),
                                      Vector3.one );
             mat_inv = mat.inverse;
             point = mat_inv.MultiplyPoint( point );
@@ -220,23 +194,55 @@ namespace UnityEngine
         /// <param name="start">直线起点</param>
         /// <param name="end">直线终点</param>
         /// <returns>返回值越接近0就是表示点越靠近反之越远。当为0时，点完全在线上</returns>
-        public static float IsPointOnLine( Vector2 p, Vector2 start, Vector2 end )
+        public static float IsPointOnLine( Vector2 point, Vector2 start, Vector2 end )
         {
-            return ( start.x - p.x ) * ( end.y - p.y ) - ( end.x - p.x ) * ( start.y - p.y );
+            return ( start.x - point.x ) * ( end.y - point.y ) - ( end.x - point.x ) * ( start.y - point.y );
         }
 
+
         /// <summary>
-        /// 判断两个直线的交点
+        /// 判断两个向量是否平行
+        /// </summary>
+        /// <param name="line1"></param>
+        /// <param name="line2"></param>
+        /// <returns></returns>
+        public static bool IsParallel( Vector3 line1, Vector3 line2 )
+        {
+            return Mathf.Abs( Vector3.Dot( line1.normalized, line2.normalized ) ) == 1;
+        }
+
+
+        /// <summary>
+        /// 判断两个向量是否平行
+        /// </summary>
+        /// <param name="line1"></param>
+        /// <param name="line2"></param>
+        /// <returns></returns>
+        public static bool IsVertical( Vector3 line1, Vector3 line2 )
+        {
+            return Vector3.Dot( line1.normalized, line2.normalized ) == 0;
+        }
+
+
+        /// <summary>
+        /// 判断两个直线的交点。如果不相交将会抛出警告并返回Vector.Zero
         /// </summary>
         /// <param name="p1">第一根直线</param>
         /// <param name="p2">第一根直线</param>
         /// <param name="p3">第二根直线</param>
         /// <param name="p4">第二根直线</param>
-        /// <returns></returns>
-        public static Vector2 CalcLineIntersection( Vector2 p1, Vector2 p2, //第一根直线
-                                                   Vector2 p3, Vector2 p4 ) //第二根直线
+        /// <param name="result">返回相交点</param>
+        /// <returns>如果平行则返回false， 否则为true</returns>
+        public static bool CalcLineIntersection( Vector2 p1, Vector2 p2, //第一根直线
+                                                   Vector2 p3, Vector2 p4 , out Vector2 result ) //第二根直线
         {
-            Vector2 result = new Vector2();
+            if ( IsParallel( p2-p1,p4-p3 ))
+            {
+                result = Vector2.zero;
+                Debug.LogWarning( new Exception( "CalcLineIntersection 两条直线平行，无交点" ) );
+                return false;
+            }
+
             float left, right;
 
             left = ( p2.y - p1.y ) * ( p4.x - p3.x ) - ( p4.y - p3.y ) * ( p2.x - p1.x );
@@ -246,7 +252,8 @@ namespace UnityEngine
             left = ( p2.x - p1.x ) * ( p4.y - p3.y ) - ( p4.x - p3.x ) * ( p2.y - p1.y );
             right = ( p3.x - p1.x ) * ( p2.y - p1.y ) * ( p4.y - p3.y ) + p1.y * ( p2.x - p1.x ) * ( p4.y - p3.y ) - p3.y * ( p4.x - p3.x ) * ( p2.y - p1.y );
             result.y = right / left;
-            return result;
+
+            return true;
         }
         
         /// <summary>
@@ -255,7 +262,7 @@ namespace UnityEngine
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns> -180 ---- 180</returns>
-        public static float CalcIncludedAngle( Vector3 from, Vector3 to )
+        public static float CalcIncludedAngle3D( Vector3 from, Vector3 to )
         {
             Vector2 v1, v2;
             from.y = from.z;
@@ -264,15 +271,16 @@ namespace UnityEngine
             v1 = from;
             v2 = to;
 
-            return CalcIncludedAngle( v1, v2 );
+            return CalcIncludedAngle2D( v1, v2 );
         }
+
         /// <summary>
         /// 计算两个2D向量的夹角
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns> -180 ---- 180</returns>
-        public static float CalcIncludedAngle( Vector2 from, Vector2 to )
+        public static float CalcIncludedAngle2D( Vector2 from, Vector2 to )
         {
             Vector3 v3;
             v3 = Vector3.Cross( from, to );
@@ -280,7 +288,7 @@ namespace UnityEngine
         }
 
         /// <summary>
-        /// 获取GameObjectb包围盒
+        /// 获取GameObject包围盒
         /// </summary>
         /// <param name="go"></param>
         /// <returns></returns>

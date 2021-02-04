@@ -321,7 +321,7 @@ namespace LitFrameworkEditor.EditorExtended
             return hasDirOrFile;
         }
 
-        [MenuItem( "Tools/隐藏选中的物体 &q", priority = 101 )]
+        [MenuItem( "Tools/快捷操作/显隐选中的物体 &q", priority = 100 )]
         public static void HideChoosedObject()
         {
             var choosed = Selection.gameObjects;
@@ -329,6 +329,12 @@ namespace LitFrameworkEditor.EditorExtended
             {
                 item.SetActive( !item.activeSelf );
             }
+        }
+        [MenuItem( "Tools/快捷操作/锁定面板 &w" )]
+        public static void LockedChoosedComponet()
+        {
+            ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;
+            ActiveEditorTracker.sharedTracker.ForceRebuild();
         }
 #endif
     }

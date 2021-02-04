@@ -15,7 +15,7 @@ public class UnityHelper : MonoBehaviour
     public static Transform FindTheChildNode( Transform goParent , string chiildName )
     {
         Transform searchTrans = null;                   //查找结果
-
+        
         searchTrans = goParent.Find( chiildName );
         if ( searchTrans == null )
         {

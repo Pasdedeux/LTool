@@ -192,7 +192,6 @@ namespace PathologicalGames
             // Only used on items defined in the Inspector
             for ( int i = 0; i < this.perPrefabPoolOptions.Count; i++ )
             {
-
                 //if (this.perPrefabPoolOptions[i].prefab == null)
                 //{
                 //    Debug.LogWarning(string.Format("Initialization Warning: Pool '{0}' " +
@@ -216,8 +215,17 @@ namespace PathologicalGames
                 List<PrefabPool> sorts = this.perPrefabPoolOptions[ i ].Pools;
                 for ( int j = 0; j < sorts.Count; j++ )
                 {
-                    sorts[ j ].inspectorInstanceConstructor();
-                    this.CreatePrefabPool( sorts[ j ] );
+                    try
+                    {
+                        sorts[ j ].inspectorInstanceConstructor();
+                        this.CreatePrefabPool( sorts[ j ] );
+                    }
+                    catch ( System.Exception )
+                    {
+                        LDebug.LogError( string.Format( "==>对象池预制件丢失!  池类型：{0}  Index: {1}", this.perPrefabPoolOptions[ i ].SortSpawnName, i ) );
+                        throw;
+                    }
+                   
                 }
 
             }

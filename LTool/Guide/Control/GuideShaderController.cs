@@ -48,7 +48,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
     private GuideConfig _guideConfig;
     private GuideDataModel _guideDataModel;
 
-    private bool _isShowHand = false;
+    private bool _isShowHand = true;
     private bool _isFocusing = false;
     private bool _isInit = false;
     private float _targetThreshold;
@@ -223,10 +223,12 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( _ev == null )
             _ev = _parentBG.gameObject.AddComponent<EventPenetrate>();
         _targetThreshold = _initType == ShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
-        _uiCam = null;// UIManager.Instance.UICam;
+        _uiCam = UIManager.Instance.UICam;
         _rootCanv = UIManager.Instance.TransRoot.GetComponent<Canvas>();
+        _parentBG.enabled = false;
 
         ResetGuide();
+        HideHand();
         GC.Collect();
     }
 

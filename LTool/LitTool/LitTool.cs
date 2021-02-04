@@ -103,6 +103,7 @@ namespace LitFramework.LitTool
         #region 时间转换工具
 
         private static DateTime _dateStartUTC = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc );
+        private static DateTime _dateStart = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Local );
         private static TimeSpan _timtSpan = new TimeSpan();
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
@@ -172,6 +173,32 @@ namespace LitFramework.LitTool
             long lTime = timeStamp * 10000000;
             TimeSpan toNow = new TimeSpan( lTime );
             DateTime targetDt = _dateStartUTC.Add( toNow );
+            return targetDt;
+        }
+
+
+        /// <summary>
+        /// 获取时间戳Timestamp
+        /// </summary>
+        /// <param name="dt">日期</param>
+        /// <returns></returns>
+        public static long GetTimeStamp( DateTime dt )
+        {
+            long timeStamp = Convert.ToInt64( ( dt - _dateStart ).TotalSeconds );
+            return timeStamp;
+        }
+
+
+        /// <summary>
+        /// 时间戳Timestamp转换成日期
+        /// </summary>
+        /// <param name="timeStamp">需要转换的时间戳秒</param>
+        /// <returns>返回的日期</returns>
+        public static DateTime GetDateTime( long timeStamp )
+        {
+            long lTime = timeStamp * 10000000;
+            TimeSpan toNow = new TimeSpan( lTime );
+            DateTime targetDt = _dateStart.Add( toNow );
             return targetDt;
         }
 

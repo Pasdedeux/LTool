@@ -54,6 +54,11 @@
             创建CS文件
             </summary>
         </member>
+        <member name="T:LitFrameworkEditor.EditorExtended.SearchRefrenceEditorWindow">
+            <summary>
+            查找引用预制件窗口
+            </summary>
+        </member>
         <member name="T:LitFrameworkEditor.Properties.Resources">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。
@@ -74,15 +79,15 @@
             <summary>
             拷贝文件夹
             </summary>
-            <param name="oripath">源目录</param>
-            <param name="despath">目标目录</param>
+            <param name="oripath">源目录  Application.dataPath + "/Resources"</param>
+            <param name="despath">目标目录  Application.dataPath + "/Resources1"</param>
         </member>
         <member name="M:FolderCopy.MoveTo(System.String,System.String)">
             <summary>
             移动文件夹
             </summary>
-            <param name="oripath">源目录</param>
-            <param name="despath">目标目录</param>
+            <param name="oripath">源目录  Application.dataPath + "/Resources"</param>
+            <param name="despath">目标目录  Application.dataPath + "/Resources1"</param>
         </member>
     </members>
 </doc>

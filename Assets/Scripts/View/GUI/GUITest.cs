@@ -8,6 +8,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitFramework.LitTool;
 using LitFramework.Input;
+using System.IO;
+using UnityEditor;
+using System.Text;
+using Excel;
+using System.Data;
+using LitFrameworkEditor.EditorExtended;
 
 public class GUITest : MonoBehaviour
 {
@@ -20,36 +26,13 @@ public class GUITest : MonoBehaviour
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮1" ) )
         {
-            UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
-            UIManager.Instance.Install();
-
-            InputControlManager.Instance.Install();
-            InputControlManager.Instance.TouchEndCallback += OnTouchEnd;
-            UpdateEventHandler += InputControlManager.Instance.InputUpdateHandler;
-
-            GuideShaderController.Instance.Install();
+            
         }
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮2" ) ) 
         {
-            GuideShaderController.Instance.ChangeTarget( GameObject.Find( "TestImg" ).GetComponent<Image>() );
+            
         }
-
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮3" ) )
-        {
-            GuideShaderController.Instance.SType = GuideShaderController.Instance.SType == ShaderType.Circle ? ShaderType.Rect : ShaderType.Circle;
-            GuideShaderController.Instance.ChangeTarget( GameObject.Find( "TestImg" ).GetComponent<Image>() );
-        }
-    }
-
-    private void OnTouchEnd( Vector2 obj )
-    {
-        LDebug.Log( "OnTouchEnd" );
-    }
-
-    private void Update()
-    {
-        UpdateEventHandler?.Invoke();
     }
 #endif
 }

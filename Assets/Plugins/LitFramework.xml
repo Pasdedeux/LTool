@@ -6,7 +6,7 @@
     <members>
         <member name="T:LitFramework.AppConfig">
             <summary>
-             Respect
+            框架控制参数
             </summary>
         </member>
         <member name="T:LitFramework.AudioManager">
@@ -139,10 +139,12 @@
             移除
             </summary>
         </member>
-        <member name="M:LitFramework.SingletonMono`1.OnApplicationQuit">
+        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
             <summary>
-            应用程序退出
+            延迟毫秒,震动时间,延迟毫秒,震动时间
             </summary>
+            <param name="pattern">延迟毫秒,震动时间,延迟毫秒,震动时间</param>
+            <param name="repeat">-1不循环2=无限循环</param>
         </member>
         <member name="T:LitFramework.GameFlow.GameFlowController">
             <summary>
@@ -284,11 +286,40 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:LitFramework.LitPool.SpawnManager">
+            <summary>
+            对外控制用脚本
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Install">
+            <summary>
+            初始化并获取对象池
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
+            <summary>
+            卸载模块
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
+            <summary>
+            从对象池中获取一个对象
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
+            <summary>
+            回收入对象池
+            </summary>
+            <param name="item"></param>
+        </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
             <summary>
              获取外部persistant路径+"//"
             </summary>
             <param name="filePath">要加载的文件名</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
@@ -296,7 +327,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="useWWW">是否用于FileInfo FileStream</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
@@ -304,6 +335,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.TextureCapture">
@@ -329,7 +361,7 @@
         </member>
         <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera)">
             <summary> 相机截图 </summary>
-            <param name="camera">目标相机</param>
+            <param name="camera">目标相机,设备屏幕宽高</param>
         </member>
         <member name="M:LitFramework.LitTool.TextureCapture.GetTexture2d(UnityEngine.RenderTexture)">
             <summary>
@@ -374,18 +406,12 @@
         </member>
         <member name="M:LitFramework.LitTool.CSExtention.FormatWith(System.String,System.Object[])">
             <summary>
-            单字符串
+            TODO 这个方法通用性优先，需要再思考下用处
+            对字符串内容进行批量替换
             </summary>
             <param name="format"></param>
             <param name="args">需要替换成的字符串</param>
             <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.StopCoroutineWithFunc(UnityEngine.MonoBehaviour,UnityEngine.Coroutine@)">
-            <summary>
-            停止制定协程，并自动释放
-            </summary>
-            <param name="mono"></param>
-            <param name="func"></param>
         </member>
         <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,System.Single,UnityEngine.Vector3[]@)">
             <summary>
@@ -529,13 +555,31 @@
             工具类
             </summary>
         </member>
+        <member name="M:LitFramework.LitTool.LitTool.DelayPlayFunction(System.Single,System.Action,System.Boolean)">
+            <summary>
+            延迟调用方法（协程方案）
+            </summary>
+            <param name="time">等待时间，秒</param>
+            <param name="func">时间到了回调函数</param>
+            <param name="real">是否是真实时间（忽略TimeScale）</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.WaitUntilFunction(System.Func{System.Boolean},System.Action)">
+            <summary>
+            自定义WaitUtil方法
+            </summary>
+            <param name="conditionFunc">通过需要的判定条件</param>
+            <param name="func">通过达成后的回调函数</param>
+        </member>
         <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.DateTime,System.DateTime,System.String)">
             <summary>
             获取指定显示显示格式的时间跨度表达
+            
+            {0:00}:{1:00} 分/秒   累加到分钟数
+            {0:00}:{1:00}:{2:00} 时/分/秒   累加到小时数
             </summary>
-            <param name="startTime"></param>
-            <param name="endTime"></param>
-            <param name="format"></param>
+            <param name="startTime">起点日期</param>
+            <param name="endTime">结束日期</param>
+            <param name="format">返回的日期格式</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.TimeSpan,System.String)">
@@ -546,19 +590,33 @@
             <param name="format"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp(System.DateTime)">
+        <member name="M:LitFramework.LitTool.LitTool.GetUTCTimeStamp(System.DateTime)">
             <summary>
-            获取时间戳Timestamp  
+            获取UTC时间戳Timestamp
             </summary>
-            <param name="dt"></param>
+            <param name="dt">UTC日期</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetDateTime(System.Int32,System.Boolean)">
+        <member name="M:LitFramework.LitTool.LitTool.GetUTCDateTime(System.Int64)">
+            <summary>
+            UTC 时间戳Timestamp转换成UTC日期
+            </summary>
+            <param name="timeStamp">需要转换的时间戳秒</param>
+            <returns>返回的UTC日期</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp(System.DateTime)">
+            <summary>
+            获取时间戳Timestamp
+            </summary>
+            <param name="dt">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetDateTime(System.Int64)">
             <summary>
             时间戳Timestamp转换成日期
             </summary>
-            <param name="timeStamp"></param>
-            <returns></returns>
+            <param name="timeStamp">需要转换的时间戳秒</param>
+            <returns>返回的日期</returns>
         </member>
         <member name="M:LitFramework.LitTool.LitTool.World2UIPos(UnityEngine.Vector3,UnityEngine.Camera,UnityEngine.Camera,UnityEngine.RectTransform)">
             <summary>
@@ -569,6 +627,34 @@
             <param name="uiCam">UI相机</param>
             <param name="uiCanvas">被放置的UICANVAS节点</param>
             <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform,UnityEngine.Camera)">
+            <summary>
+            屏幕坐标转3D坐标系的本地坐标
+            </summary>
+            <param name="screenPos">屏幕坐标</param>
+            <param name="parent">3D位置在世界中的父对象</param>
+            <param name="mainCam">所参照的世界主相机</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.WorldToCanvasPos(UnityEngine.Canvas,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary>
+            世界坐标向Root画布坐标转换
+            </summary>
+            <param name="canvas">画布</param>
+            <param name="world">世界坐标</param>
+            <param name="uiCam">UICam</param>
+            <returns>返回画布上的二维坐标</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.CreateLinkStyle(UnityEngine.UI.Text,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            动态对文本创建下划线。Text组件
+            </summary>
+            <param name="target">Text组件</param>
+            <param name="contents">显示文本内容</param>
+            <param name="style">下滑线类型，默认为'_'</param>
+            <param name="alignByGeometry">是否使用几何对齐</param>
+            <param name="richText">是否支持富文本</param>
         </member>
         <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
             <summary>
@@ -582,7 +668,7 @@
             <summary>
             加载 .txt/ .dat/ .csv等文件
             </summary>
-            <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
             <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
             <returns></returns>
         </member>
@@ -590,15 +676,20 @@
             <summary>
             加载png 等图像格式
             </summary>
-            <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.ResourceManager.DoLoadAssetBundle(System.String)">
             <summary>
             加载AssetBundle
             </summary>
-            /// <param name="searchPath">要加载文件的【带后缀】完整路径</param>
+            /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
             <returns></returns>
+        </member>
+        <member name="T:LitFramework.LitTool.SpriteAdapter">
+            <summary>
+            对SpriteRender纹理进行UI摄像机正交边界尺寸的调整
+            </summary>
         </member>
         <member name="T:LitFramework.UI.Base.UIModelBehavior">
             <summary>
@@ -861,6 +952,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:CSVReader">
+            <summary>
+            编辑器部分的同步文件，如果有改动需要在两边共同修改
+            </summary>
+        </member>
         <member name="M:CSVReader.ParseCSV(System.String)">
             <summary>
             解析csv数据
@@ -874,6 +970,84 @@
             <param name="x"></param>
             <param name="y"></param>
             <returns></returns>
+        </member>
+        <member name="F:GuideShaderController._target">
+            <summary>
+            要高亮显示的目标
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._corners">
+            <summary>
+            区域范围缓存
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._center">
+            <summary>
+            镂空区域圆心
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._radius">
+            <summary>
+            镂空区域半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._material">
+            <summary>
+            遮罩材质
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._currentRadius">
+            <summary>
+            当前高亮区域的半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._shrinkVelocity">
+            <summary>
+            收缩速度
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
+            <summary>
+            聚焦到引导目标
+            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
+            </summary>
+            <param name="operateImage">目标点击区域Button Image</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:GuideShaderController.CurrentGuideOver">
+            <summary>
+            引导完成后UI重置
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ResetGuide">
+            <summary>
+            重置引导画面-去除镂空区域
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
+            <summary>
+            新手引导UI点击回调
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
+            <summary>
+            3D物体触碰回调
+            </summary>
+        </member>
+        <member name="T:GuideDataModel">
+            <summary>
+            分部类。可以在业务逻辑上继续扩展
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.FocusTargetDoneEvent">
+            <summary>
+            圆形/矩形聚焦完毕回调
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.GuideDoneEvent">
+            <summary>
+            点击目标位置完成本轮
+            </summary>
         </member>
         <member name="T:PathologicalGames.PoolManager">
             <description>
@@ -1696,49 +1870,10 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:CurrencyModel.Plus(System.String,System.String)">
+        <member name="T:BezierViewTest">
             <summary>
-            大数量级数字+运算
+            贝塞尔曲线测试类，用于演示
             </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-        </member>
-        <member name="M:CurrencyModel.Minus(System.String,System.String)">
-            <summary>
-            大数量级数字-运算
-            </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-        </member>
-        <member name="M:CurrencyModel.Mul(System.String,System.String)">
-            <summary>
-            大数量级数字X运算
-            </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-        </member>
-        <member name="M:CurrencyModel.Div(System.String,System.String)">
-            <summary>
-            大数量级数字÷运算
-            </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-        </member>
-        <member name="M:CurrencyModel.CompareValue(System.String,System.String)">
-            <summary>
-            大数量级数字比较大小
-            </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-            <returns> 《0小于   =0等于  》0大于 </returns>
-        </member>
-        <member name="M:CurrencyModel.CalculateRatio(System.String,System.String)">
-            <summary>
-            计算1个大数据相互比例（分母）
-            </summary>
-            <param name="ori"></param>
-            <param name="variable"></param>
-            <returns></returns>
         </member>
         <member name="M:LitJson.JsonData.ContainsKey(System.String)">
             <summary>
@@ -1746,6 +1881,122 @@
             </summary>
             <param name="key">The key to locate in the json.</param>
             <returns>true if the json contains an element that has the specified key; otherwise, false.</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.VectorAngle(UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean)">
+            <summary>
+            返回 -180°~180°/ 0°~180° 向量夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="fromZero">是否最小值为0°。默认为 False</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.RandomWeightIndex(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            得到权重的随机数
+            </summary>
+            <param name="prob">权重值列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.BezierCurve(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            根据T值，计算贝塞尔曲线给定三点下相对应的点
+            
+            二阶公式：result = (1-t)srq2p0 + 2t(1-t)p1 + tsqr2p2
+            </summary>
+            <param name="t"></param>T值
+            <param name="P0"></param>起始点
+            <param name="P1"></param>控制点
+            <param name="P2"></param>目标点
+            <returns>根据T值计算出来的贝赛尔曲线点</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.GetBeizerList(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Int32)">
+            <summary>
+            获取存储贝塞尔曲线点的数组
+            </summary>
+            <param name="startPoint"></param>起始点
+            <param name="controlPoint"></param>控制点
+            <param name="endPoint"></param>目标点
+            <param name="segmentNum"></param>采样点的数量
+            <returns></returns>存储贝塞尔曲线点的数组
+        </member>
+        <member name="M:UnityEngine.LMath.ClosestPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single@)">
+            <summary>
+            点到线段最近的一个点位置和距离
+            </summary>
+            <param name="linePt1"> 线段起始点</param>
+            <param name="linePt2"> 线段终点</param>
+            <param name="point">任意一点</param>
+            <param name="retPoint">out 相交点</param>
+            <param name="d">out 点到线段的最近距离</param>
+            <returns>是否有垂线与线段相交</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsPointInPoly(UnityEngine.Vector2,UnityEngine.Vector2[])">
+            <summary>
+            2D坐标下某点是否存在于多边形内
+            </summary>
+            <param name="testPoint"></param>
+            <param name="poly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            判断点是否在直线上
+            </summary>
+            <param name="point">任意点</param>
+            <param name="start">直线起点</param>
+            <param name="end">直线终点</param>
+            <returns>返回值越接近0就是表示点越靠近反之越远。当为0时，点完全在线上</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsParallel(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            判断两个向量是否平行
+            </summary>
+            <param name="line1"></param>
+            <param name="line2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.IsVertical(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            判断两个向量是否平行
+            </summary>
+            <param name="line1"></param>
+            <param name="line2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcLineIntersection(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@)">
+            <summary>
+            判断两个直线的交点。如果不相交将会抛出警告并返回Vector.Zero
+            </summary>
+            <param name="p1">第一根直线</param>
+            <param name="p2">第一根直线</param>
+            <param name="p3">第二根直线</param>
+            <param name="p4">第二根直线</param>
+            <param name="result">返回相交点</param>
+            <returns>如果平行则返回false， 否则为true</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcIncludedAngle3D(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            计算两个3D向量的夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns> -180 ---- 180</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcIncludedAngle2D(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            计算两个2D向量的夹角
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns> -180 ---- 180</returns>
+        </member>
+        <member name="M:UnityEngine.LMath.CalcGamaObjectBoundsInWorld(UnityEngine.GameObject)">
+            <summary>
+            获取GameObject包围盒
+            </summary>
+            <param name="go"></param>
+            <returns></returns>
         </member>
         <member name="F:UIType.isClearPopUp">
             <summary>
@@ -1880,110 +2131,6 @@
             </summary>
             <param name="parents">父对象的方位</param>
             <param name="child">子对象的方法</param>
-        </member>
-        <member name="M:UnityEngine.LMath.VectorAngle(UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean)">
-            <summary>
-            返回 -180°~180°/ 0°~180° 向量夹角
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <param name="fromZero">是否最小值为0°。默认为 False</param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform)">
-            <summary>
-            屏幕坐标转3D坐标系的本地坐标
-            </summary>
-            <param name="screenPos"></param>
-            <param name="parent"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.RandomIndex(System.Collections.Generic.List{System.Int32})">
-            <summary>
-            得到权重的随机数
-            </summary>
-            <param name="prob"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.Snapshoot(UnityEngine.Camera,System.Int32,System.Int32)">
-            <summary>
-            截图
-            </summary>
-            <param name="camera"></param>
-            <param name="w"></param>
-            <param name="h"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.BezierCurve(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
-            <summary>
-            二次贝塞尔曲线：3点确定一条贝塞尔
-            </summary>
-            <param name="P0"></param>
-            <param name="P1"></param>
-            <param name="P2"></param>
-            <param name="t"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.ClosestPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,System.Single@)">
-            <summary>
-            点到线段最近的一个点位置和距离
-            </summary>
-            <param name="linePt1"> 线段起始点</param>
-            <param name="linePt2"> 线段终点</param>
-            <param name="point">任意一点</param>
-            <param name="retPoint">out 相交点</param>
-            <param name="d">out 点到线段的最近距离</param>
-            <returns>是否有垂线与线段相交</returns>
-        </member>
-        <member name="M:UnityEngine.LMath.IsPointInPoly(UnityEngine.Vector2,UnityEngine.Vector2[])">
-            <summary>
-            2D坐标下某点是否存在于多边形内
-            </summary>
-            <param name="testPoint"></param>
-            <param name="poly"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.IsPointOnLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
-            <summary>
-            判断点是否在直线上
-            </summary>
-            <param name="point">任意点</param>
-            <param name="start">直线起点</param>
-            <param name="end">直线终点</param>
-            <returns>返回值越接近0就是表示点越靠近反之越远。当为0时，点完全在线上</returns>
-        </member>
-        <member name="M:UnityEngine.LMath.CalcLineIntersection(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2)">
-            <summary>
-            判断两个直线的交点
-            </summary>
-            <param name="p1">第一根直线</param>
-            <param name="p2">第一根直线</param>
-            <param name="p3">第二根直线</param>
-            <param name="p4">第二根直线</param>
-            <returns></returns>
-        </member>
-        <member name="M:UnityEngine.LMath.CalcIncludedAngle(UnityEngine.Vector3,UnityEngine.Vector3)">
-            <summary>
-            计算两个3D向量的夹角
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns> -180 ---- 180</returns>
-        </member>
-        <member name="M:UnityEngine.LMath.CalcIncludedAngle(UnityEngine.Vector2,UnityEngine.Vector2)">
-            <summary>
-            计算两个2D向量的夹角
-            </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <returns> -180 ---- 180</returns>
-        </member>
-        <member name="M:UnityEngine.LMath.CalcGamaObjectBoundsInWorld(UnityEngine.GameObject)">
-            <summary>
-            获取GameObjectb包围盒
-            </summary>
-            <param name="go"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

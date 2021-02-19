@@ -1870,7 +1870,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="F:ADManager.UseBackgroundAD">
+        <member name="P:ADManager.UseBackgroundAD">
             <summary>
             是否开启切回前台插页广告
             </summary>

@@ -24,7 +24,8 @@ namespace Assets.Scripts.Statistic
 {
     public class AdapterChuanShanjia : BaseAdAdapter
     {
-        public AdapterChuanShanjia() : base() { }
+        //public AdapterChuanShanjia() : base() { }
+        public AdapterChuanShanjia( ADManager mng ) : base( mng ) { }
 #if CSJ
         private ChuanShanjia _adapter;
 #endif

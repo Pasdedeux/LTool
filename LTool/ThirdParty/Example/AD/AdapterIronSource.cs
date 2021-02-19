@@ -30,7 +30,7 @@ using System.Text;
 
 public class AdapterIronSource : BaseAdAdapter
 {
-    public AdapterIronSource() : base() { }
+    public AdapterIronSource( ADManager mng ) : base( mng ) { }
 
     private readonly string appKey = "d5cd57f5";
 

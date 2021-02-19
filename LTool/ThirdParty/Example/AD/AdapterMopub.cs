@@ -48,7 +48,7 @@ public class AdapterMopub : BaseAdAdapter
 #endif
 
     private bool _bannerRequest = false;
-    public AdapterMopub() : base() { }
+    public AdapterMopub( ADManager mng ) : base( mng ) { }
 
     public override void CreateBanner()
     {
@@ -109,8 +109,9 @@ public class AdapterMopub : BaseAdAdapter
         //this.CreateBanner();
         this.CreateInterstitial();
         this.CreateRewarded();
-
+#if MOPUB
         MoPubManager.OnSdkInitializedEvent -= OnSdkInitializedEventHandler;
+#endif
     }
 
     public override bool IsIntersititialReady()
@@ -274,6 +275,12 @@ public class AdapterMopub : BaseAdAdapter
 
         MoPub.LoadRewardedVideoPluginsForAdUnits(_rewardedVideoAdUnits);
 #endif
+    }
+
+    public override bool IsSdkInitialized()
+    {
+        //TODO 接的时候再重新弄
+        return true;
     }
 
 

@@ -53,7 +53,11 @@ public class ADManager : Singleton<ADManager>, IManager
     /// <summary>
     /// 是否开启切回前台插页广告
     /// </summary>
-    public bool UseBackgroundAD = false;
+    public bool UseBackgroundAD
+    {
+        get { return PlayerPrefs.GetInt( "UseBackgroundAD", 1 ) == 1; }
+        set { PlayerPrefs.SetInt( "UseBackgroundAD", value ? 1 : 0 ); }
+    }
     /// <summary>
     /// 是否需要播放插页广告回调
     /// </summary>
@@ -78,13 +82,7 @@ public class ADManager : Singleton<ADManager>, IManager
         get { return PlayerPrefs.GetInt( "UseAds", 1 ) == 1; }
         set { PlayerPrefs.SetInt( "UseAds", value ? 1 : 0 ); }
     }
-
-    public bool UseApplicationPauseAds { get; private set; }
-
-    public float LastShowInitTimeStamp { get; private set; }
-
-    public int InterstitialLoadTimes { get; set; }
-
+    
     public bool IsAppLeave { get; private set; }
 
     private bool _isPlayReward;
@@ -93,7 +91,6 @@ public class ADManager : Singleton<ADManager>, IManager
     public void Install()
     {
         _isPlayReward = false;
-        UseApplicationPauseAds = true;
 
         InstallEventHandler?.Invoke( this );
         InstallEventHandler = null;

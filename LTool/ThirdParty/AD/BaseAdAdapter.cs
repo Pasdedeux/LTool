@@ -30,10 +30,11 @@ public abstract class BaseAdAdapter : IAdPlatform
     public Action<bool> InterstitialShowEventHandler, InterstitialLoadEventHandler;
     public Action<bool> RewardShowEventHandler, RewardCloseEventHandler;
 
-    public BaseAdAdapter()
+    public BaseAdAdapter( ADManager mng )
     {
-        Init();
+        mng.Adapter = this;
 
+        Init();
         InitBannerCallBack();
         InitInterstitialCallBack();
         InitRewardedCallBack();
@@ -87,6 +88,8 @@ public abstract class BaseAdAdapter : IAdPlatform
 
 public class BlankAdapter : BaseAdAdapter
 {
+    public BlankAdapter( ADManager mng ) : base( mng ) { }
+
     public override void CreateBanner() { }
 
     public override void CreateInterstitial() { }

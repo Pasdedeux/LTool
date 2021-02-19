@@ -111,6 +111,7 @@
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
+    <Compile Include="Device\VibrateManager.cs" />
     <Compile Include="Extention_Editor\CSVReader.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
+    <Compile Include="ThirdParty\AD\ADManager.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
@@ -166,6 +168,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ThirdParty\Example\AD\" />
     <Folder Include="UI\Vsrsion_HotFix\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

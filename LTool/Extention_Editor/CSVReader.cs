@@ -22,6 +22,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// 编辑器部分的同步文件，如果有改动需要在两边共同修改
+/// </summary>
 public class CSVReader
 {
     List<List<string>> csvData = new List<List<string>>();

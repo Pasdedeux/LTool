@@ -1870,6 +1870,31 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="F:ADManager.UseBackgroundAD">
+            <summary>
+            是否开启切回前台插页广告
+            </summary>
+        </member>
+        <member name="F:ADManager.CanShowInitialEvent">
+            <summary>
+            是否需要播放插页广告回调
+            </summary>
+        </member>
+        <member name="P:ADManager.Adapter">
+            <summary>
+            当前使用中的广告适配器
+            </summary>
+        </member>
+        <member name="P:ADManager.UseAds">
+            <summary>
+            是否启用广告
+            </summary>
+        </member>
+        <member name="M:ADManager.ShowFullScreen">
+            <summary>
+            满足 CanShowInitialEvent 回调判定条件，或者直接返回播放插页
+            </summary>
+        </member>
         <member name="T:BezierViewTest">
             <summary>
             贝塞尔曲线测试类，用于演示

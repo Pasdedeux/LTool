@@ -68,6 +68,10 @@
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>..\LTool\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LTool\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extention_Editor\BuildSceneSettingEditor.cs" />
@@ -76,6 +80,7 @@
     <Compile Include="Extention_Editor\CSVWriter.cs" />
     <Compile Include="Extention_Editor\EditorMenuExtention.cs" />
     <Compile Include="Extention_Editor\FolderCopy.cs" />
+    <Compile Include="Extention_Editor\UICreateWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -101,6 +106,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ExcelDataReader.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LTool\LitFramework.csproj">
+      <Project>{ca4fbedf-beae-4fcd-b0d3-ceb94d3c595d}</Project>
+      <Name>LitFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -165,7 +165,7 @@ namespace LitFrameworkEditor.EditorExtended
         /// <summary>
         /// 创建CS文件
         /// </summary>
-        static void CreateCSFile( string path, string className, string cs )
+        public static void CreateCSFile( string path, string className, string cs )
         {
             if ( !Directory.Exists( path ) )
             {

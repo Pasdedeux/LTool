@@ -35,7 +35,7 @@ public class EditorUse
             animTarget.endValueFloat = 0f;
             animTarget.optionalBool0 = true;
         };
-
+        
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
 

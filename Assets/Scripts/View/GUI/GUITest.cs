@@ -1,19 +1,5 @@
-﻿using LitFramework.Base;
-using LitFramework.LitTool;
-using LitFramework.Mono;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-using LitFramework.LitTool;
-using LitFramework.Input;
-using System.IO;
-using UnityEditor;
-using System.Text;
-using Excel;
-using System.Data;
-using LitFrameworkEditor.EditorExtended;
 
 public class GUITest : MonoBehaviour
 {

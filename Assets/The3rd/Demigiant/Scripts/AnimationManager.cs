@@ -25,9 +25,6 @@
 
 using DG.Tweening;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 public static class AnimationManager
@@ -56,6 +53,15 @@ public static class AnimationManager
     {
         for ( int i = 0; i < animArray.Length; i++ )
             animArray[ i ].DORestartById( id );
+    }
+
+    public static void Restart( this DOTweenAnimation[] animArray, string id, Action callBack = null )
+    {
+        for ( int i = 0; i < animArray.Length; i++ )
+            animArray[ i ].DORestartById( id );
+
+        if ( callBack != null )
+            LitFramework.LitTool.LitTool.DelayPlayFunction( 0.4f, () => { callBack.Invoke(); } );
     }
 
     public static void Pause( this DOTweenAnimation[] animArray, string id , Action callBack = null )

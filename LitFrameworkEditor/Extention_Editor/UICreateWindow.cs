@@ -35,14 +35,15 @@ public class UICreateWindow : EditorWindow
     public UIShowModeEnum uiShowMode = UIShowModeEnum.Stack;
     public UITransparentEnum uiTransparent = UITransparentEnum.NoPenetratingMiddle;
 
-    public bool useAnimRoot = true,
-        useOnEnable_OnDisable = true,
-        useDefaultExitBtn = true;
+    public bool useAnimRoot = true, useOnEnable_OnDisable = true, useDefaultExitBtn = true;
 
     public string animStartID = "10001";
     public string animCloseID = "10002";
 
-    [MenuItem( "Tools/UI/Create" )]
+    public bool isDirty = false;
+    public Canvas newCanvas;
+
+    [ MenuItem( "Tools/UI/Create" )]
     private static void CreateUIWindow()
     {
         ExpandEdiorUseEvent?.Invoke();
@@ -75,6 +76,10 @@ public class UICreateWindow : EditorWindow
         EditorGUILayout.Space();
         if ( GUILayout.Button( "创建脚本+UI预制件+绑定" ) )
         {
+            isDirty = true;
+
+            EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
+
             //CS 脚本
             UICreateParse cs = new UICreateParse();
             string csOutPath = Application.dataPath + "/Scripts/UI";
@@ -82,7 +87,7 @@ public class UICreateWindow : EditorWindow
             AssetDatabase.Refresh();
 
             //预制件
-            var newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
+            newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
             newCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
             var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
@@ -113,17 +118,7 @@ public class UICreateWindow : EditorWindow
                 btnExit.transform.localScale = Vector3.one;
             }
 
-            //反射生成脚本组件
-            var asmb = System.Reflection.Assembly.Load( "Assembly-CSharp" );
-            var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
-            if ( null != t ) newCanvas.gameObject.AddComponent( t );
-            else LDebug.LogError( "UI脚本无法挂载到预制件上" );
-
             AssetDatabase.Refresh();
-            string localPath = "Assets/Resources/" + newCanvas.gameObject.name + ".prefab";
-            //预防重名
-            localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
-            PrefabUtility.SaveAsPrefabAssetAndConnect( newCanvas.gameObject, localPath, InteractionMode.UserAction );
         }
 
         EditorGUILayout.Space();
@@ -136,7 +131,29 @@ public class UICreateWindow : EditorWindow
             EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
             AssetDatabase.Refresh();
         }
+
+        //汇总编译
+        while ( isDirty && !EditorApplication.isCompiling )
+        {
+            EditorUtility.ClearProgressBar();
+            LDebug.Log( " 成功生成UI预制件! " );
+
+            isDirty = false;
+            //反射生成脚本组件
+            var asmb = System.Reflection.Assembly.Load( "Assembly-CSharp" );
+            var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
+            if ( null != t ) newCanvas.gameObject.AddComponent( t );
+            else LDebug.LogError( "UI脚本绑定失败" );
+
+            string localPath = "Assets/Resources/" + newCanvas.gameObject.name + ".prefab";
+            //预防重名
+            localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
+            PrefabUtility.SaveAsPrefabAssetAndConnect( newCanvas.gameObject, localPath, InteractionMode.UserAction );
+
+            AssetDatabase.Refresh();
+        }
     }
+    
 }
 
 namespace LitFrameworkEditor.EditorExtended

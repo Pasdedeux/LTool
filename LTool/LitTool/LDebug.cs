@@ -51,6 +51,24 @@ public static class LDebug
         }
     }
 
+    public static void Log(object content)
+    {
+        if ( content is string ) Log( ( string )content );
+        else UnityEngine.Debug.Log( content );
+    }
+
+    public static void LogWarning( object content )
+    {
+        if ( content is string ) LogWarning( ( string )content );
+        else UnityEngine.Debug.LogWarning( content );
+    }
+
+    public static void LogError( object content )
+    {
+        if ( content is string ) LogError( ( string )content );
+        else UnityEngine.Debug.LogError( content );
+    }
+
     public static void Log( string content, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;

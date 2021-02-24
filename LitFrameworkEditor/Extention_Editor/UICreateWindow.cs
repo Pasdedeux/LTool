@@ -27,7 +27,7 @@ using UnityEngine.UI;
 public class UICreateWindow : EditorWindow
 {
     public static Action ExpandEdiorUseEvent;
-    public static Action<GameObject, string,string> CreateAnimationComponentEvent;
+    public static Action<GameObject, string, string> CreateAnimationComponentEvent;
 
     public string uiScriptsName = "";
 
@@ -43,7 +43,7 @@ public class UICreateWindow : EditorWindow
     public bool isDirty = false;
     public Canvas newCanvas;
 
-    [ MenuItem( "Tools/UI/Create" )]
+    [MenuItem( "Tools/UI/Create" )]
     private static void CreateUIWindow()
     {
         ExpandEdiorUseEvent?.Invoke();
@@ -76,60 +76,76 @@ public class UICreateWindow : EditorWindow
         EditorGUILayout.Space();
         if ( GUILayout.Button( "创建脚本+UI预制件+绑定" ) )
         {
-            isDirty = true;
-
-            EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
-
-            //CS 脚本
-            UICreateParse cs = new UICreateParse();
-            string csOutPath = Application.dataPath + "/Scripts/UI";
-            EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
-            AssetDatabase.Refresh();
-
-            //预制件
-            newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
-            newCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-            var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
-            canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-
-            var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-            graphics.ignoreReversedGraphics = true;
-            graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
-
-            GameObject animTrans = new GameObject( "Container_Anim", typeof( RectTransform ) );
-            animTrans.transform.SetParent( newCanvas.transform );
-            animTrans.transform.localPosition = Vector3.zero;
-            animTrans.transform.localScale = Vector3.one;
-
-            if ( useAnimRoot )
+            if ( CheckClassNameValid() )
             {
-                CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
-            }
 
-            if ( useDefaultExitBtn )
-            {
-                GameObject btnExit = new GameObject( "Btn_Exit", typeof( RectTransform ) );
-                btnExit.AddComponent<CanvasRenderer>();
-                btnExit.AddComponent<Image>().maskable = false;
-                btnExit.AddComponent<Button>();
-                btnExit.transform.SetParent( animTrans.transform );
-                btnExit.transform.localPosition = Vector3.zero;
-                btnExit.transform.localScale = Vector3.one;
-            }
+                isDirty = true;
 
-            AssetDatabase.Refresh();
+                EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
+
+                //CS 脚本
+                UICreateParse cs = new UICreateParse();
+                string csOutPath = Application.dataPath + "/Scripts/UI";
+                EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
+                AssetDatabase.Refresh();
+
+                //预制件
+                newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
+                newCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+                var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
+                canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+
+                var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+                graphics.ignoreReversedGraphics = true;
+                graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+
+                GameObject animTrans = new GameObject( "Container_Anim", typeof( RectTransform ) );
+                animTrans.transform.SetParent( newCanvas.transform );
+                animTrans.transform.localPosition = Vector3.zero;
+                animTrans.transform.localScale = Vector3.one;
+
+                if ( useAnimRoot )
+                {
+                    CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
+                }
+
+                if ( useDefaultExitBtn )
+                {
+                    GameObject btnExit = new GameObject( "Btn_Exit", typeof( RectTransform ) );
+                    btnExit.AddComponent<CanvasRenderer>();
+                    btnExit.AddComponent<Image>().maskable = false;
+                    btnExit.AddComponent<Button>();
+                    btnExit.transform.SetParent( animTrans.transform );
+                    btnExit.transform.localPosition = Vector3.zero;
+                    btnExit.transform.localScale = Vector3.one;
+                }
+
+                AssetDatabase.Refresh();
+
+            }
+            else
+                EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
         }
 
         EditorGUILayout.Space();
 
         if ( GUILayout.Button( "创建脚本" ) )
         {
-            //CS 脚本
-            UICreateParse cs = new UICreateParse();
-            string csOutPath = Application.dataPath + "/Scripts/UI";
-            EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
-            AssetDatabase.Refresh();
+            if ( CheckClassNameValid() )
+            {
+
+                //CS 脚本
+                UICreateParse cs = new UICreateParse();
+                string csOutPath = Application.dataPath + "/Scripts/UI";
+                EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
+                AssetDatabase.Refresh();
+
+            }
+            else
+            {
+                EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
+            }
         }
 
         //汇总编译
@@ -153,7 +169,11 @@ public class UICreateWindow : EditorWindow
             AssetDatabase.Refresh();
         }
     }
-    
+
+    private bool CheckClassNameValid()
+    {
+        return !string.IsNullOrEmpty( uiScriptsName ) && !string.IsNullOrWhiteSpace( uiScriptsName ) && uiScriptsName.Substring( 0, 2 ).Equals( "UI" );
+    }
 }
 
 namespace LitFrameworkEditor.EditorExtended

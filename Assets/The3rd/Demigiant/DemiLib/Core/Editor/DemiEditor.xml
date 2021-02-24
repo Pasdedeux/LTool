@@ -109,6 +109,12 @@
             <param name="s">string to replace</param>
             <param name="minLength">Minimum length for considering the string valid</param>
         </member>
+        <member name="M:DG.DemiEditor.DeEditorFileUtils.FilePathIsWithinUnityProjectAssets(System.String)">
+            <summary>
+            Returns TRUE if the given filepath is within this Unity project Assets folder
+            </summary>
+            <param name="fullFilePath">Full file path</param>
+        </member>
         <member name="M:DG.DemiEditor.DeEditorFileUtils.ConvertToValidFilename(System.String,System.Char)">
             <summary>
             Returns the given string stripped of any invalid filename characters.<para/>
@@ -172,6 +178,34 @@
             Precisely returns the last controlId assigned to a GUI element
             </summary>
         </member>
+        <member name="T:DG.DemiEditor.DeEditorPackageManager">
+            <summary>
+            Utils to manage UnityPackages import/export and file mirroring
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorPackageManager.WriteFileListTo(System.String,System.String)">
+            <summary>
+            Stores all file paths (excluding metas) found in the given AssetDatabase directory and subdirectory
+            into the given AssetDatabase file (which will be created if missing),
+            writing them as relative to the given directory.<para/>
+            EXAMPLE:<para/>
+            <code>adbReadFromDirPath = "Plugins/DOTween"<para/>
+            file "Assets/Plugins/DOTween/aScript.cs" stored as "aScript.cs"<para/>
+            file "Assets/Plugins/DOTween/Subdir/aScript.cs" stored as "Subdir/aScript.cs"<para/>
+            </code>
+            </summary>
+            <param name="adbWriteToFilePath">AssetDatabase path ("Assets/...") where the list should be written</param>
+            <param name="adbReadFromDirPath">AssetDatabase path ("Assets/...") from which the list of files should be retrieved, without final slash</param>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorPackageManager.ParseListAndRemoveExtraFiles(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Parses a file list created via <see cref="M:DG.DemiEditor.DeEditorPackageManager.WriteFileListTo(System.String,System.String)"/> and removes any files not present in the list from the given directory
+            </summary>
+            <param name="label">Label to use when logging the result</param>
+            <param name="adbListFilePath">AssetDatabase path ("Assets/...") to the file containing the list</param>
+            <param name="adbParseDirPath">AssetDatabase path ("Assets/...") to the directory to parse for extra files to remove</param>
+            <param name="simulate">If TRUE only returns a report log and doesn't actually delete the files</param>
+        </member>
         <member name="T:DG.DemiEditor.DeEditorPanelUtils">
             <summary>
             Utilities for Editor Panels.
@@ -211,6 +245,11 @@
             <param name="editor">Reference to the editor panel whose icon to set</param>
             <param name="icon">Icon to apply</param>
             <param name="title">Title. If NULL doesn't change it</param>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorPanelUtils.RepaintCurrentEditor">
+            <summary>
+            Repaints the currently focues editor
+            </summary>
         </member>
         <member name="T:DG.DemiEditor.DeEditorPrefabUtils">
             <summary>
@@ -252,6 +291,13 @@
         <member name="M:DG.DemiEditor.DeEditorUtils.GetGameViewSize">
             <summary>
             Return the size of the editor game view, eventual extra bars excluded (meaning the true size of the game area)
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorUtils.GetEditorUIScaling">
+            <summary>
+            Returns a value from 1 to N (2 for 200% scaling) indicating the UI Scaling of Unity's editor.
+            The first time this is called it will store the scaling and keep it without refreshing,
+            since you need to restart Unity in order to apply a scaling change
             </summary>
         </member>
         <member name="M:DG.DemiEditor.DeEditorUtils.ClearConsole">
@@ -766,6 +812,26 @@
             Returns the given <see cref="T:UnityEngine.KeyCode"/> as an int, or -1 if it's not a number
             </summary>
         </member>
+        <member name="T:DG.DemiEditor.DeEditorReflectionUtils">
+            <summary>
+            Used code from Celtc on StackOverflow: https://stackoverflow.com/a/54044197/10151925
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorReflectionUtils.GetAllFields(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            Gets all fields from an object and its hierarchy inheritance
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorReflectionUtils.DeepCopy``1(``0)">
+            <summary>
+            Perform a deep copy of the class
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeEditorReflectionUtils.DoCopy(System.Object)">
+            <summary>
+            Does the copy
+            </summary>
+        </member>
         <member name="T:DG.DemiEditor.DeScrollView">
             <summary>
             Returns by <see cref="M:DG.DemiEditor.DeGUI.BeginScrollView(UnityEngine.Rect,DG.DemiEditor.DeScrollView,System.Boolean)"/>.
@@ -939,6 +1005,11 @@
             Sets the background of the style
             </summary>
         </member>
+        <member name="M:DG.DemiEditor.GUIStyleExtensions.Background(UnityEngine.GUIStyle,UnityEngine.Texture2D,UnityEngine.Texture2D,UnityEngine.Texture2D)">
+            <summary>
+            Sets the background of the style
+            </summary>
+        </member>
         <member name="M:DG.DemiEditor.GUIStyleExtensions.ContentOffset(UnityEngine.GUIStyle,UnityEngine.Vector2)">
             <summary>
             Sets the contentOffset of the style
@@ -1096,6 +1167,7 @@
             <summary>
             Called automatically by <code>DeGUI.BeginGUI</code>.
             Override when adding new style subclasses.
+            Returns TRUE if the styles were initialized or re-initialized
             </summary>
         </member>
         <member name="T:DG.DemiEditor.DeStyleSubPalette">
@@ -1107,6 +1179,39 @@
             <summary>
             GUILayout methods
             </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.ActiveButton(UnityEngine.GUIContent,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you set a background to the button's GUIStyle).<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.ActiveButton(UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you set a background to the button's GUIStyle)
+            and also assigns different GUI colors based on the button's state and the given one.<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+            <param name="content">Content</param>
+            <param name="onNormal">Default color</param>
+            <param name="guiStyle">Style</param>
+            <param name="options">GUILayout options</param>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.ActiveButton(UnityEngine.GUIContent,UnityEngine.Color,System.Nullable{UnityEngine.Color},System.Nullable{UnityEngine.Color},UnityEngine.GUIStyle,UnityEngine.GUILayoutOption[])">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you set a background to the button's GUIStyle)
+            and also assigns different GUI colors based on the button's state with options to eventually auto-generate them.<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+            <param name="content">Content</param>
+            <param name="onNormal">Default color</param>
+            <param name="onHover">Hover color (if NULL auto-generates it from the given one by making it brighter</param>
+            <param name="onPressed">Pressed color (if NULL auto-generates it from the given one by making it even brighter</param>
+            <param name="guiStyle">Style</param>
+            <param name="options">GUILayout options</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUILayout.ShadedButton(UnityEngine.Color,System.String,UnityEngine.GUILayoutOption[])">
             <summary>Shaded button</summary>
@@ -1217,6 +1322,9 @@
         <member name="M:DG.DemiEditor.DeGUILayout.MultiEnumPopup``1(UnityEngine.GUIContent,System.String,System.Collections.IList,UnityEngine.GUILayoutOption[])">
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.MultiEnumPopup(UnityEngine.GUIContent,System.Type,System.String,System.Collections.IList,UnityEngine.GUILayoutOption[])">
+            <summary>Returns TRUE if there's mixed values</summary>
+        </member>
         <member name="M:DG.DemiEditor.DeGUILayout.MultiFloatField(UnityEngine.GUIContent,System.String,System.Collections.IList,System.Nullable{System.Single},System.Nullable{System.Single},UnityEngine.GUILayoutOption[])">
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
@@ -1227,7 +1335,10 @@
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUILayout.MultiObjectField(UnityEngine.GUIContent,System.String,System.Collections.IList,System.Boolean,UnityEngine.GUILayoutOption[])">
-            <summary>Returns TRUE if there's mixed values</summary>
+            <summary>Returns TRUE if there's mixed values. Auto-determines object type from the field's type</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUILayout.MultiObjectField(UnityEngine.GUIContent,System.String,System.Collections.IList,System.Type,System.Boolean,UnityEngine.GUILayoutOption[])">
+            <summary>Returns TRUE if there's mixed values. Forces field to accept only objects of the given type</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUILayout.MultiRectField(UnityEngine.GUIContent,System.String,System.Collections.IList,UnityEngine.GUILayoutOption[])">
             <summary>Returns TRUE if there's mixed values</summary>
@@ -1357,7 +1468,8 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUI.BeginGUI(DG.DemiLib.DeColorPalette,DG.DemiEditor.DeStylePalette)">
             <summary>
-            Call this at the beginning of GUI methods
+            Call this at the beginning of GUI methods.
+            Returns TRUE if the styles were initialized or re-initialized
             </summary>
             <param name="guiColorPalette">Eventual <see cref="T:DG.DemiLib.DeColorPalette"/> to use</param>
             <param name="guiStylePalette">Eventual <see cref="T:DG.DemiEditor.DeStylePalette"/> to use</param>
@@ -1386,7 +1498,8 @@
         <member name="M:DG.DemiEditor.DeGUI.ChangePalette(DG.DemiLib.DeColorPalette,DG.DemiEditor.DeStylePalette)">
             <summary>
             Changes the active palettes to the given ones
-            (or resets them to the default ones if NULL)
+            (or resets them to the default ones if NULL).
+            Returns TRUE if the styles were initialized or re-initialized
             </summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.ResetGUIColors(System.Boolean,System.Boolean,System.Boolean)">
@@ -1421,10 +1534,45 @@
             Note that you must set the <see cref="F:DG.DemiEditor.DeGUI.MultiPropertyScope.value"/> property within the wrapper so that it's assigned correctly when closing the scope.
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.DeGUI.MultiPropertyScope.#ctor(System.String,System.Collections.IList,System.Collections.Generic.List{UnityEditor.SerializedProperty})">
+        <member name="M:DG.DemiEditor.DeGUI.MultiPropertyScope.#ctor(System.String,System.Collections.IList,System.Collections.Generic.List{UnityEditor.SerializedProperty},System.Boolean)">
             <summary>Multi property scope</summary>
             <param name="fieldName">Name of the field so it can be found and set/get via Reflection</param>
             <param name="sources">List of the sources containing the given field</param>
+            <param name="requiresSpecialEndChangeCheck">If TRUE validates EditorGUI.EndChangeCheck before calling it
+            (fixes an issue which happens with advanced Undo usage in DOTween Timeline and ColorFields)</param>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ActiveButton(UnityEngine.Rect,UnityEngine.GUIContent,UnityEngine.GUIStyle)">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you apply a background to the button's GUIStyle).<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ActiveButton(UnityEngine.Rect,UnityEngine.GUIContent,UnityEngine.Color,UnityEngine.GUIStyle)">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you apply a background to the button's GUIStyle)
+            and also assigns different GUI colors based on the button's state and the given one.<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+            <param name="rect">Rect</param>
+            <param name="content">Content</param>
+            <param name="onNormal">Default color</param>
+            <param name="guiStyle">Style</param>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.ActiveButton(UnityEngine.Rect,UnityEngine.GUIContent,UnityEngine.Color,System.Nullable{UnityEngine.Color},System.Nullable{UnityEngine.Color},UnityEngine.GUIStyle)">
+            <summary>
+            A button that triggers an immediate repaint when hovered/pressed/unhovered
+            (which otherwise doesn't happen if you apply a background to the button's GUIStyle)
+            and also assigns different GUI colors based on the button's state with options to eventually auto-generate them.<para/>
+            Requires <see cref="P:UnityEditor.EditorWindow.wantsMouseMove"/> to be activated.
+            </summary>
+            <param name="rect">Rect</param>
+            <param name="content">Content</param>
+            <param name="onNormal">Default color</param>
+            <param name="onHover">Hover color (if NULL auto-generates it from the given one by making it brighter</param>
+            <param name="onPressed">Pressed color (if NULL auto-generates it from the given one by making it even brighter</param>
+            <param name="guiStyle">Style</param>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.ShadedButton(UnityEngine.Rect,UnityEngine.Color,System.String)">
             <summary>Shaded button</summary>
@@ -1452,6 +1600,9 @@
         </member>
         <member name="M:DG.DemiEditor.DeGUI.FoldoutButton(UnityEngine.Rect,System.Boolean,System.String,System.Boolean,System.Boolean)">
             <summary>Toolbar foldout button which allows clicking even on its label</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.FoldoutLabel(UnityEngine.Rect,System.Boolean,UnityEngine.GUIContent)">
+            <summary>Foldout button + label (not intended to be used in toolbar) which allows click-to-foldout/foldin</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.PressButton(UnityEngine.Rect,System.String,UnityEngine.GUIStyle)">
             <summary>
@@ -1628,6 +1779,9 @@
         <member name="M:DG.DemiEditor.DeGUI.MultiEnumPopup``1(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList)">
             <summary>Returns TRUE if there's mixed values. Supports using an int as an enum</summary>
         </member>
+        <member name="M:DG.DemiEditor.DeGUI.MultiEnumPopup(UnityEngine.Rect,UnityEngine.GUIContent,System.Type,System.String,System.Collections.IList)">
+            <summary>Returns TRUE if there's mixed values. Supports using an int as an enum</summary>
+        </member>
         <member name="M:DG.DemiEditor.DeGUI.MultiFloatField(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList,System.Nullable{System.Single},System.Nullable{System.Single})">
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
@@ -1638,7 +1792,10 @@
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.MultiObjectField(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList,System.Boolean)">
-            <summary>Returns TRUE if there's mixed values</summary>
+            <summary>Returns TRUE if there's mixed values. Auto-determines object type from the field's type</summary>
+        </member>
+        <member name="M:DG.DemiEditor.DeGUI.MultiObjectField(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList,System.Type,System.Boolean)">
+            <summary>Returns TRUE if there's mixed values. Forces field to accept only objects of the given type</summary>
         </member>
         <member name="M:DG.DemiEditor.DeGUI.MultiRectField(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList)">
             <summary>Returns TRUE if there's mixed values</summary>
@@ -1682,34 +1839,98 @@
         <member name="M:DG.DemiEditor.DeGUI.MultiVector4FieldAdvanced(UnityEngine.Rect,UnityEngine.GUIContent,System.String,System.Collections.IList,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>Returns TRUE if there's mixed values</summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.ColorExtensions.SetAlpha(UnityEngine.Color,System.Single)">
+        <member name="M:DG.DemiEditor.ColorExtensions.CloneAndChangeBrightness(UnityEngine.Color,System.Single,System.Nullable{System.Single})">
+            <summary>
+            Returns a new color equal to the given one with changed brightness
+            </summary>
+            <param name="color">Color to evaluate</param>
+            <param name="brightnessFactor">Brightness factor (multiplied by current brightness)</param>
+            <param name="alpha">If set applies this alpha value</param>
+        </member>
+        <member name="M:DG.DemiEditor.ColorExtensions.CloneAndChangeSaturation(UnityEngine.Color,System.Single,System.Nullable{System.Single})">
+            <summary>
+            Returns a new color equal to the given one with changed saturation
+            </summary>
+            <param name="color">Color to evaluate</param>
+            <param name="saturationFactor">Saturation factor (multiplied by current brightness)</param>
+            <param name="alpha">If set applies this alpha value</param>
+        </member>
+        <member name="M:DG.DemiEditor.ColorExtensions.SetAlpha(UnityEngine.Color,System.Single)">
             <summary>
             Changes the alpha of this color and returns it
             </summary>
         </member>
-        <member name="T:DG.DemiEditor.Internal.RectExtensions">
+        <member name="M:DG.DemiEditor.ColorExtensions.CloneAndSetAlpha(UnityEngine.Color,System.Single)">
+            <summary>
+            Returns a new color equal to the given one with changed alpha
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.ColorExtensions.ToHex(UnityEngine.Color32,System.Boolean)">
+            <summary>
+            Returns a HEX version of the given Unity Color, without the initial #
+            </summary>
+            <param name="includeAlpha">If TRUE, also converts the alpha value and returns a hex of 8 characters,
+            otherwise doesn't and returns a hex of 6 characters</param>
+        </member>
+        <member name="M:DG.DemiEditor.ColorExtensions.ToHex(UnityEngine.Color,System.Boolean)">
+            <summary>
+            Returns a HEX version of the given Unity Color, without the initial #
+            </summary>
+            <param name="includeAlpha">If TRUE, also converts the alpha value and returns a hex of 8 characters,
+            otherwise doesn't and returns a hex of 6 characters</param>
+        </member>
+        <member name="T:DG.DemiEditor.ListExtensions">
+            <summary>
+            Replicates parts of DeExtensions.ListExtensions for internal usage
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.ListExtensions.Shift``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
+            <summary>
+            Shifts an item from an index to another, without modifying the list except than by moving elements around
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.ListExtensions.Shuffle``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Shuffles the list
+            </summary>
+        </member>
+        <member name="T:DG.DemiEditor.RectExtensions">
             <summary>
             Replicates DeExtensions.RectExtensions for internal usage
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Add(UnityEngine.Rect,UnityEngine.Rect)">
+        <member name="M:DG.DemiEditor.RectExtensions.Add(UnityEngine.Rect,UnityEngine.Rect)">
             <summary>
             Adds one rect into another, and returns the resulting a
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Expand(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.Expand(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy or the Rect expanded around its center by the given amount
             </summary>
             <param name="amount">Indicates how much to expand the rect on each size</param>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Contract(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.Expand(UnityEngine.Rect,System.Single,System.Single)">
+            <summary>
+            Returns a copy or the Rect expanded around its center by the given amount
+            </summary>
+            <param name="amountX">Indicates how much to expand the rect on each horizontal side</param>
+            <param name="amountY">Indicates how much to expand the rect on each vertical side</param>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.Contract(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy or the Rect contracted around its center by the given amount
             </summary>
             <param name="amount">Indicates how much to contract the rect on each size</param>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Fit(UnityEngine.Rect,System.Single,System.Single,System.Boolean)">
+        <member name="M:DG.DemiEditor.RectExtensions.Contract(UnityEngine.Rect,System.Single,System.Single)">
+            <summary>
+            Returns a copy or the Rect contracted around its center by the given amount
+            </summary>
+            <param name="amountX">Indicates how much to contract the rect on each horizontal side</param>
+            <param name="amountY">Indicates how much to contract the rect on each vertical side</param>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.Fit(UnityEngine.Rect,System.Single,System.Single,System.Boolean)">
             <summary>
             Returns a copy of the Rect resized so it fits proportionally within the given size limits
             </summary>
@@ -1718,41 +1939,78 @@
             <param name="shrinkOnly">If TRUE (default) only shrinks the rect if needed, if FALSE also enlarges it to fit</param>
             <returns></returns>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Includes(UnityEngine.Rect,UnityEngine.Rect,System.Boolean)">
+        <member name="M:DG.DemiEditor.RectExtensions.Includes(UnityEngine.Rect,UnityEngine.Rect,System.Boolean)">
             <summary>
             Returns TRUE if the first rect includes the second one
             </summary>
             <param name="full">If TRUE, returns TRUE only if the second rect is fully included,
             otherwise just if some part of it is included</param>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.ResetXY(UnityEngine.Rect)">
+        <member name="M:DG.DemiEditor.RectExtensions.ResetXY(UnityEngine.Rect)">
             <summary>
             Returns a copy of the Rect with its X/Y coordinates set to 0
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.Shift(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.Shift(UnityEngine.Rect,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Returns a copy of the Rect with its values shifted according the the given parameters
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.SetX(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.ShiftX(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its X value shifted by the given value
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.ShiftY(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its Y value shifted by the given value
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.ShiftXAndResize(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its x shifted by the given value and its width shrinked/expanded accordingly
+            (so that the xMax value will stay the same as before)
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.ShiftYAndResize(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its y shifted by the given value and its height shrinked/expanded accordingly
+            (so that the yMax value will stay the same as before)
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.SetX(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy of the Rect with its X property set to the given value
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.SetY(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.SetY(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy of the Rect with its Y property set to the given value
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.SetHeight(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.SetHeight(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy of the Rect with its height property set to the given value
             </summary>
         </member>
-        <member name="M:DG.DemiEditor.Internal.RectExtensions.SetWidth(UnityEngine.Rect,System.Single)">
+        <member name="M:DG.DemiEditor.RectExtensions.SetWidth(UnityEngine.Rect,System.Single)">
             <summary>
             Returns a copy of the Rect with its width property set to the given value
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.SetCenter(UnityEngine.Rect,System.Single,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its X,Y properties set so the rect center corresponds to the given values
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.SetCenterX(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its X property set so the rect X center corresponds to the given value
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.RectExtensions.SetCenterY(UnityEngine.Rect,System.Single)">
+            <summary>
+            Returns a copy of the Rect with its Y property set so the rect Y center corresponds to the given value
             </summary>
         </member>
         <member name="M:DG.DemiEditor.SerializedPropertyExtensions.CastTo``1(UnityEditor.SerializedProperty)">
@@ -1793,6 +2051,29 @@
             String extensions
             </summary>
         </member>
+        <member name="M:DG.DemiEditor.StringExtensions.IsNullOrEmpty(System.String,System.Boolean)">
+            <summary>
+            Returns TRUE if the string is null or empty
+            </summary>
+            <param name="trimSpaces">If TRUE (default) and the string contains only spaces, considers it empty</param>
+        </member>
+        <member name="M:DG.DemiEditor.StringExtensions.VersionIsMinorThan(System.String,System.String)">
+            <summary>
+            Compares a version string (in format #.#.###) with another of the same format,
+            and return TRUE if this one is minor. Boths trings must have the same number of dot separators.
+            </summary>
+        </member>
+        <member name="M:DG.DemiEditor.StringExtensions.HexToColor(System.String)">
+            <summary>
+            Converts a HEX color to a Unity Color and returns it
+            </summary>
+            <param name="hex">The HEX color, either with or without the initial # (accepts both regular and short format)</param>
+        </member>
+        <member name="M:DG.DemiEditor.StringExtensions.Nicify(System.String)">
+            <summary>
+            Nicifies a string, replacing underscores with spaces, and adding a space before Uppercase letters (except the first character)
+            </summary>
+        </member>
         <member name="M:DG.DemiEditor.StringExtensions.Parent(System.String)">
             <summary>
             If the given string is a directory path, returns its parent
@@ -1817,19 +2098,19 @@
             Texture extensions
             </summary>
         </member>
+        <member name="M:DG.DemiEditor.TextureExtensions.GetRect(UnityEngine.Texture2D,System.Single,System.Single,System.Single)">
+            <summary>
+            Returns the full Rect of this texture, with options for position and scale
+            </summary>
+        </member>
         <member name="M:DG.DemiEditor.TextureExtensions.SetGUIFormat(UnityEngine.Texture2D,UnityEngine.FilterMode,System.Int32,UnityEngine.TextureWrapMode,System.Int32)">
             <summary>
             Checks that the texture uses the correct import settings, and applies them if they're incorrect.
             </summary>
         </member>
-        <member name="T:DG.DeExtensions.ListExtensions">
+        <member name="M:DG.DemiEditor.UnityEventExtensions.Clone(UnityEngine.Events.UnityEvent)">
             <summary>
-            Replicates parts of DeExtensions.ListExtensions for internal usage
-            </summary>
-        </member>
-        <member name="M:DG.DeExtensions.ListExtensions.Shift``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32)">
-            <summary>
-            Shifts an item from an index to another, without modifying the list except than by moving elements around
+            Returns a clone of the event
             </summary>
         </member>
     </members>

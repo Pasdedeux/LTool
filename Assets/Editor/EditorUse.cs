@@ -17,7 +17,7 @@ public class EditorUse
             DOTweenAnimation animTarget;
             //进场UI动画
             animTarget = e.AddComponent<DOTweenAnimation>();
-            animTarget.animationType = DG.Tweening.Core.DOTweenAnimationType.Scale;
+            animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
             animTarget.easeType = Ease.OutBack;
             animTarget.duration = 0.4f;
             animTarget.id = f;
@@ -27,7 +27,7 @@ public class EditorUse
 
             //出场UI动画
             animTarget = e.AddComponent<DOTweenAnimation>();
-            animTarget.animationType = DG.Tweening.Core.DOTweenAnimationType.Scale;
+            animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
             animTarget.easeType = Ease.InBack;
             animTarget.duration = 0.4f;
             animTarget.id = g;

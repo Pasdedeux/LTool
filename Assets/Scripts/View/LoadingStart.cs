@@ -19,7 +19,7 @@ public class LoadingStart : MonoBehaviour
         UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
         UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );
         UIManager.Instance.Install();
-
+        
         //Audio System
         AudioManager.Instance.IsEnabled = true;
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };

@@ -59,11 +59,21 @@
             查找引用预制件窗口
             </summary>
         </member>
+        <member name="T:LitFrameworkEditor.EditorExtended.UICreateParse">
+            <summary>
+            UI脚本生成器
+            </summary>
+        </member>
         <member name="M:LitFrameworkEditor.EditorExtended.UICreateParse.GetFomatedCS">
             <summary>
             最终整合
             </summary>
             <returns>原代码文件</returns>
+        </member>
+        <member name="T:LitFrameworkEditor.EditorExtended.ResPathParse">
+            <summary>
+            UI/Sound路径注册类
+            </summary>
         </member>
         <member name="T:LitFrameworkEditor.Properties.Resources">
             <summary>
@@ -94,6 +104,18 @@
             </summary>
             <param name="oripath">源目录  Application.dataPath + "/Resources"</param>
             <param name="despath">目标目录  Application.dataPath + "/Resources1"</param>
+        </member>
+        <member name="M:UICreateWindow.RigisterUIPath(System.String)">
+            <summary>
+            这里将类名注册为地址类中的字典键值对，将预制件地址存储为值
+            JSON将需要保存已经注册过的UI、音频文件
+            JSON保存地址为StreamingAssets   configs.dat
+            </summary>
+        </member>
+        <member name="T:ResPathTemplate">
+            <summary>
+            路径存放模板
+            </summary>
         </member>
     </members>
 </doc>

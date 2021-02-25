@@ -17,8 +17,12 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.LitTool;
 using LitFrameworkEditor.EditorExtended;
+using LitJson;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,6 +46,8 @@ public class UICreateWindow : EditorWindow
 
     public bool isDirty = false;
     public Canvas newCanvas;
+
+    private const string UI_PREFAB_PATH = "Assets/Resources/Prefabs/UI/";
 
     [MenuItem( "Tools/UI/Create" )]
     private static void CreateUIWindow()
@@ -78,7 +84,6 @@ public class UICreateWindow : EditorWindow
         {
             if ( CheckClassNameValid() )
             {
-
                 isDirty = true;
 
                 EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
@@ -107,6 +112,7 @@ public class UICreateWindow : EditorWindow
 
                 if ( useAnimRoot )
                 {
+                    //DOTEEN插件未集成在编辑器库中，引出到库外部使用
                     CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
                 }
 
@@ -121,6 +127,9 @@ public class UICreateWindow : EditorWindow
                     btnExit.transform.localScale = Vector3.one;
                 }
 
+                //预制件自注册
+                RigisterUIPath( uiScriptsName );
+
                 AssetDatabase.Refresh();
 
             }
@@ -134,13 +143,11 @@ public class UICreateWindow : EditorWindow
         {
             if ( CheckClassNameValid() )
             {
-
                 //CS 脚本
                 UICreateParse cs = new UICreateParse();
                 string csOutPath = Application.dataPath + "/Scripts/UI";
                 EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
                 AssetDatabase.Refresh();
-
             }
             else
             {
@@ -151,17 +158,18 @@ public class UICreateWindow : EditorWindow
         //汇总编译
         while ( isDirty && !EditorApplication.isCompiling )
         {
+            isDirty = false;
+
             EditorUtility.ClearProgressBar();
             LDebug.Log( " 成功生成UI预制件! " );
 
-            isDirty = false;
             //反射生成脚本组件
             var asmb = System.Reflection.Assembly.Load( "Assembly-CSharp" );
             var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
             if ( null != t ) newCanvas.gameObject.AddComponent( t );
             else LDebug.LogError( "UI脚本绑定失败" );
-
-            string localPath = "Assets/Resources/" + newCanvas.gameObject.name + ".prefab";
+            
+            string localPath = UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";
             //预防重名
             localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
             PrefabUtility.SaveAsPrefabAssetAndConnect( newCanvas.gameObject, localPath, InteractionMode.UserAction );
@@ -169,18 +177,76 @@ public class UICreateWindow : EditorWindow
             AssetDatabase.Refresh();
         }
     }
-
     private bool CheckClassNameValid()
     {
         return !string.IsNullOrEmpty( uiScriptsName ) && !string.IsNullOrWhiteSpace( uiScriptsName ) && uiScriptsName.Substring( 0, 2 ).Equals( "UI" );
     }
+
+    #region 注册UI路径
+
+    private const string JSON_FILE_NAME = "configs.dat";
+    private const string OUTPUT_FILENAME = "ResPath.cs";
+    //private static readonly string CSFILE_PATH = Application.dataPath + "/Scripts";
+
+    private static FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) );
+    /// <summary>
+    /// 这里将类名注册为地址类中的字典键值对，将预制件地址存储为值
+    /// JSON将需要保存已经注册过的UI、音频文件
+    /// JSON保存地址为StreamingAssets   configs.dat
+    /// </summary>
+    private void RigisterUIPath( string uiScriptsName )
+    {
+        string localPath = UI_PREFAB_PATH + "Canvas_" + uiScriptsName.Substring( 2 );
+
+        //预防重名
+        localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
+        localPath = localPath.Substring( 17 );
+        localPath = localPath.Split( '.' )[ 0 ];
+
+        ResPathTemplate rpt = null;
+        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+        if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) ) )
+        {
+            var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) );
+
+            rpt = JsonMapper.ToObject<ResPathTemplate>( content );
+            if ( !rpt.UI.ContainsKey( uiScriptsName ) )
+                rpt.UI.Add( uiScriptsName, localPath );
+        }
+        //如果文件不存在，则新建存储类，并保存相关的数据，然后写入JSON并保存
+        else
+        {
+            rpt = new ResPathTemplate();
+            rpt.UI.Add( uiScriptsName, localPath );
+        }
+
+        //读取已经注册的UI
+        using ( StreamWriter sw = _saveLocalFileInfo.CreateText() )
+        {
+            var result = JsonMapper.ToJson( rpt );
+            sw.Write( result );
+        }
+
+        //更新并保存CS
+        ResPathParse rpp = new ResPathParse();
+        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
+        AssetDatabase.Refresh();
+    }
+
+    #endregion
 }
+
+#region UI 脚本CS生成器
 
 namespace LitFrameworkEditor.EditorExtended
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
+
+    /// <summary>
+    /// UI脚本生成器
+    /// </summary>
     class UICreateParse
     {
         private const string SPACENAME = "LitFramework";
@@ -241,6 +307,12 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "private void Init()" );
             CSString.Add( "{" );
             CSString.Add( "_root = transform;" );
+
+            if ( _uiWindowInfo.useDefaultExitBtn )
+            {
+                CSString.Add( "btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"btnExit\" );" );
+            }
+
             CSString.Add( "" );
             CSString.Add( "//TODO 初始化该UI信息" );
             CSString.Add( "//.." );
@@ -336,7 +408,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "///*----------------------------------------------------------------" );
             CSString.Add( "// Author : Derek Liu" );
             CSString.Add( "// 创建时间:" + DateTime.Now.ToString() );
-            CSString.Add( "// 备注：由模板工具自动生成" );
+            CSString.Add( "// 该类由模板工具自动生成" );
             CSString.Add( "///----------------------------------------------------------------*/" );
             CSString.Add( "#endregion" );
 
@@ -394,5 +466,106 @@ namespace LitFrameworkEditor.EditorExtended
             return result.ToString();
         }
     }
+    /// <summary>
+    /// UI/Sound路径注册类
+    /// </summary>
+    class ResPathParse
+    {
+        List<string> CSString = new List<string>();
+
+        public string CreateCS( ResPathTemplate rpt )
+        {
+            AddHead();
+            AddBody( rpt );
+            AddTail();
+            string result = GetFomatedCS();
+
+            return result;
+        }
+
+        private void AddHead()
+        {
+            CSString.Add( "#region << 版 本 注 释 >>" );
+            CSString.Add( "///*----------------------------------------------------------------" );
+            CSString.Add( "// Author : Derek Liu" );
+            CSString.Add( "// 创建时间:" + DateTime.Now.ToString() );
+            CSString.Add( "// 备注：由模板工具自动生成" );
+            CSString.Add( "///----------------------------------------------------------------*/" );
+            CSString.Add( "#endregion" );
+            CSString.Add( "" );
+            CSString.Add( "//*******************************************************************" );
+            CSString.Add( "//**                  该类由工具自动生成，请勿手动修改                   **" );
+            CSString.Add( "//*******************************************************************" );
+            CSString.Add( "" );
+            CSString.Add( "using LitFramework;" );
+            CSString.Add( "public class ResPath:Singleton<ResPath>" );
+            CSString.Add( "{" );
+        }
+        private void AddTail()
+        {
+            CSString.Add( "}" );
+        }
+        private void AddBody( ResPathTemplate rpt )
+        {
+            //Sound
+            CSString.Add( "public class Sound" );
+            CSString.Add( "{" );
+            foreach ( var item in rpt.Sound )
+            {
+                CSString.Add( string.Format( "public const string {0} = \"{1}\";", item.Key.ToUpper(), item.Value ) );
+            }
+            CSString.Add( "}" );
+
+            //UI
+            CSString.Add( "public class UI" );
+            CSString.Add( "{" );
+            foreach ( var item in rpt.UI )
+            {
+                string[] nameAndComment = item.Value.Split( '|' );
+                CSString.Add( "/// <summary>" );
+                CSString.Add( string.Format( "/// {0}", nameAndComment.Length > 1 ? nameAndComment[ 1 ] : "" ) );
+                CSString.Add( "/// </summary>" );
+                CSString.Add( string.Format( "public const string {0} = \"{1}\";", item.Key.ToUpper(), nameAndComment[ 0 ] ) );
+            }
+            CSString.Add( "}" );
+        }
+        string GetFomatedCS()
+        {
+            StringBuilder result = new StringBuilder();
+            int tablevel = 0;
+            for ( int i = 0; i < CSString.Count; i++ )
+            {
+                string tab = "";
+
+                for ( int j = 0; j < tablevel; ++j )
+                    tab += "\t";
+
+                if ( CSString[ i ].Contains( "{" ) )
+                    tablevel++;
+                if ( CSString[ i ].Contains( "}" ) )
+                {
+                    tablevel--;
+                    tab = "";
+                    for ( int j = 0; j < tablevel; ++j )
+                        tab += "\t";
+                }
+
+                result.Append( tab + CSString[ i ] + "\n" );
+            }
+            return result.ToString();
+        }
+    }
 }
 
+#endregion
+
+#region 模板类
+/// <summary>
+/// 路径存放模板
+/// </summary>
+class ResPathTemplate
+{
+    public Dictionary<string, string> UI = new Dictionary<string, string>() { };
+    public Dictionary<string, string> Sound = new Dictionary<string, string>() { };
+}
+#endregion

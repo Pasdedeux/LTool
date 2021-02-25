@@ -49,7 +49,7 @@ public class UICreateWindow : EditorWindow
 
     private const string UI_PREFAB_PATH = "Assets/Resources/Prefabs/UI/";
 
-    [MenuItem( "Tools/UI/Create" )]
+    [MenuItem( "Tools/UI/Create &r" )]
     private static void CreateUIWindow()
     {
         ExpandEdiorUseEvent?.Invoke();

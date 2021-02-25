@@ -31,6 +31,8 @@ MonoBehaviour:
   defaultEasePeriod: 0
   defaultAutoKill: 1
   defaultLoopType: 0
+  debugMode: 0
+  debugStoreTargetId: 0
   showPreviewPanel: 1
   storeSettingsLocation: 2
   modules:
@@ -40,7 +42,9 @@ MonoBehaviour:
     physics2DEnabled: 1
     spriteEnabled: 1
     uiEnabled: 1
-    textMeshProEnabled: 1
+    textMeshProEnabled: 0
     tk2DEnabled: 0
+    deAudioEnabled: 0
+    deUnityExtendedEnabled: 0
   showPlayingTweens: 0
   showPausedTweens: 0

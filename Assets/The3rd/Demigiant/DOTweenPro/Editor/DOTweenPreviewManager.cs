@@ -52,7 +52,7 @@ namespace DG.DOTweenEditor
             // Preview - Play
             GUILayout.BeginHorizontal();
             EditorGUI.BeginDisabledGroup(
-                isPreviewingThis || src.animationType == DOTweenAnimationType.None
+                isPreviewingThis || src.animationType == DOTweenAnimation.AnimationType.None
                 || !src.isActive || _previewOnlyIfSetToAutoPlay && !src.autoPlay
             );
             if (GUILayout.Button("► Play", Styles.btPreview)) {

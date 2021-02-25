@@ -59,6 +59,12 @@
             查找引用预制件窗口
             </summary>
         </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.UICreateParse.GetFomatedCS">
+            <summary>
+            最终整合
+            </summary>
+            <returns>原代码文件</returns>
+        </member>
         <member name="T:LitFrameworkEditor.Properties.Resources">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。

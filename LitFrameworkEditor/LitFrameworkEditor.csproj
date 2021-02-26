@@ -80,7 +80,9 @@
     <Compile Include="Extention_Editor\CSVWriter.cs" />
     <Compile Include="Extention_Editor\EditorMenuExtention.cs" />
     <Compile Include="Extention_Editor\FolderCopy.cs" />
-    <Compile Include="Extention_Editor\UICreateWindow.cs" />
+    <Compile Include="Extention_Editor\RegisterAudio.cs" />
+    <Compile Include="Extention_Editor\RegisterUIWindow.cs" />
+    <Compile Include="GlobalEditorSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

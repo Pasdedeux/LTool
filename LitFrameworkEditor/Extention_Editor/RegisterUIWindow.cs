@@ -28,8 +28,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
-public class UICreateWindow : EditorWindow
+public class RegisterUIWindow : EditorWindow
 {
+    [MenuItem( "Tools/Build/Build UI &u" )]
+    private static void CreateUIWindow()
+    {
+        ExpandEdiorUseEvent?.Invoke();
+        GetWindow<RegisterUIWindow>();
+    }
+
+    #region UI模板生成
+
+    #region 窗口使用的变量
     public static Action ExpandEdiorUseEvent;
     public static Action<GameObject, string, string> CreateAnimationComponentEvent;
 
@@ -48,13 +58,9 @@ public class UICreateWindow : EditorWindow
     public Canvas newCanvas;
 
     private const string UI_PREFAB_PATH = "Assets/Resources/Prefabs/UI/";
+    #endregion
 
-    [MenuItem( "Tools/UI/Create &r" )]
-    private static void CreateUIWindow()
-    {
-        ExpandEdiorUseEvent?.Invoke();
-        GetWindow<UICreateWindow>();
-    }
+    #region 窗口绘制
 
     void OnGUI()
     {
@@ -80,6 +86,7 @@ public class UICreateWindow : EditorWindow
         }
 
         EditorGUILayout.Space();
+
         if ( GUILayout.Button( "创建脚本+UI预制件+绑定" ) )
         {
             if ( CheckClassNameValid() )
@@ -168,7 +175,7 @@ public class UICreateWindow : EditorWindow
             var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
             if ( null != t ) newCanvas.gameObject.AddComponent( t );
             else LDebug.LogError( "UI脚本绑定失败" );
-            
+
             string localPath = UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";
             //预防重名
             localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
@@ -177,18 +184,14 @@ public class UICreateWindow : EditorWindow
             AssetDatabase.Refresh();
         }
     }
-    private bool CheckClassNameValid()
-    {
-        return !string.IsNullOrEmpty( uiScriptsName ) && !string.IsNullOrWhiteSpace( uiScriptsName ) && uiScriptsName.Substring( 0, 2 ).Equals( "UI" );
-    }
 
-    #region 注册UI路径
+    #endregion
 
-    private const string JSON_FILE_NAME = "configs.dat";
-    private const string OUTPUT_FILENAME = "ResPath.cs";
+    #region 制作UI及注册路径
+
     //private static readonly string CSFILE_PATH = Application.dataPath + "/Scripts";
 
-    private static FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) );
+    private static FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
     /// <summary>
     /// 这里将类名注册为地址类中的字典键值对，将预制件地址存储为值
     /// JSON将需要保存已经注册过的UI、音频文件
@@ -205,9 +208,9 @@ public class UICreateWindow : EditorWindow
 
         ResPathTemplate rpt = null;
         //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
-        if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) ) )
+        if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) ) )
         {
-            var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( JSON_FILE_NAME, false ) );
+            var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
 
             rpt = JsonMapper.ToObject<ResPathTemplate>( content );
             if ( !rpt.UI.ContainsKey( uiScriptsName ) )
@@ -220,7 +223,7 @@ public class UICreateWindow : EditorWindow
             rpt.UI.Add( uiScriptsName, localPath );
         }
 
-        //读取已经注册的UI
+        //写入已经注册的UI
         using ( StreamWriter sw = _saveLocalFileInfo.CreateText() )
         {
             var result = JsonMapper.ToJson( rpt );
@@ -229,8 +232,15 @@ public class UICreateWindow : EditorWindow
 
         //更新并保存CS
         ResPathParse rpp = new ResPathParse();
-        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
+        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
         AssetDatabase.Refresh();
+    }
+
+    #endregion
+
+    private bool CheckClassNameValid()
+    {
+        return !string.IsNullOrEmpty( uiScriptsName ) && !string.IsNullOrWhiteSpace( uiScriptsName ) && uiScriptsName.Substring( 0, 2 ).Equals( "UI" );
     }
 
     #endregion
@@ -257,9 +267,9 @@ namespace LitFrameworkEditor.EditorExtended
         _useDefaultExitBtn = true;
 
         List<string> CSString = new List<string>();
-        UICreateWindow _uiWindowInfo;
+        RegisterUIWindow _uiWindowInfo;
 
-        public string CreateCS( UICreateWindow uiWindowInfo )
+        public string CreateCS( RegisterUIWindow uiWindowInfo )
         {
             _uiWindowInfo = uiWindowInfo;
             _className = uiWindowInfo.uiScriptsName;
@@ -559,13 +569,3 @@ namespace LitFrameworkEditor.EditorExtended
 
 #endregion
 
-#region 模板类
-/// <summary>
-/// 路径存放模板
-/// </summary>
-class ResPathTemplate
-{
-    public Dictionary<string, string> UI = new Dictionary<string, string>() { };
-    public Dictionary<string, string> Sound = new Dictionary<string, string>() { };
-}
-#endregion

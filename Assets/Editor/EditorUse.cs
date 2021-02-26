@@ -18,7 +18,7 @@ public class EditorUse
     static EditorUse()
     {
         //UI创建窗口初始化
-        UICreateWindow.CreateAnimationComponentEvent = ( e, f, g ) =>
+        RegisterUIWindow.CreateAnimationComponentEvent = ( e, f, g ) =>
         {
             DOTweenAnimation animTarget;
             //进场UI动画

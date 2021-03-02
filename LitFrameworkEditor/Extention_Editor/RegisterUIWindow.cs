@@ -91,7 +91,7 @@ public class RegisterUIWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "创建脚本+UI预制件+绑定" ) )
+        if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 20 ) ) ) 
         {
             if ( CheckClassNameValid() )
             {
@@ -150,7 +150,7 @@ public class RegisterUIWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "创建脚本" ) )
+        if ( GUILayout.Button( "创建脚本", GUILayout.Height( 20 ) ) )
         {
             if ( CheckClassNameValid() )
             {
@@ -168,7 +168,7 @@ public class RegisterUIWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "更新UI配置" ) )
+        if ( GUILayout.Button( "更新UI配置", GUILayout.Height( 40 ) ) )
         {
             FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
 

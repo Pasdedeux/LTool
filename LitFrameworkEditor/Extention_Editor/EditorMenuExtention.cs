@@ -32,6 +32,7 @@ namespace LitFrameworkEditor.EditorExtended
     using ExcelDataReader;
 #endif
     using System.Reflection;
+    using UnityEditor;
 
     //% - CTRL on Windows / CMD on OSX
     //# - Shift

@@ -91,7 +91,7 @@ public class RegisterUIWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 20 ) ) ) 
+        if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 20 ) ) )
         {
             if ( CheckClassNameValid() )
             {

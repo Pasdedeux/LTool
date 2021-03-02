@@ -30,9 +30,6 @@ namespace LitFrameworkEditor.Extention_Editor
 {
     class RegisterAudio
     {
-        //音频存放路径
-        private const string AUDIO_PATH = "Audios";//Resources
-
         [ExecuteInEditMode]
 #if UNITY_EDITOR
         [MenuItem( "Tools/Build/Build Audio &s" )]
@@ -61,7 +58,7 @@ namespace LitFrameworkEditor.Extention_Editor
             rpt.Sound.Clear();
 
             //============存入音频配置============//
-            DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/Audios" );
+            DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/"+ GlobalEditorSetting.AUDIO_PATH );
 
             foreach ( FileInfo file in folder.GetFiles() )
             {
@@ -71,7 +68,7 @@ namespace LitFrameworkEditor.Extention_Editor
                     var result = file.FullName.Substring( file.FullName.LastIndexOf( '\\' ) + 1 );
                     result = result.Split( '.' )[ 0 ];
 
-                    rpt.Sound.Add( result.ToUpper(), result );
+                    rpt.Sound.Add( result.ToUpper(), GlobalEditorSetting.AUDIO_PATH + "/" + result );
                 }
             }
             //=================================//

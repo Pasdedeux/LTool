@@ -57,7 +57,6 @@ public class RegisterUIWindow : EditorWindow
     public bool isDirty = false;
     public Canvas newCanvas;
 
-    private const string UI_PREFAB_PATH = "Assets/Resources/Prefabs/UI/";
     #endregion
 
     #region 窗口绘制
@@ -162,6 +161,60 @@ public class RegisterUIWindow : EditorWindow
             }
         }
 
+        EditorGUILayout.Space();
+
+        if ( GUILayout.Button( "更新UI配置" ) )
+        {
+            FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+
+            //============JSON文件取出============//
+            ResPathTemplate rpt = null;
+            //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) ) )
+            {
+                var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+
+                rpt = JsonMapper.ToObject<ResPathTemplate>( content );
+            }
+            //如果文件不存在，则新建存储类，并保存相关的数据，然后写入JSON并保存
+            else
+            {
+                rpt = new ResPathTemplate();
+            }
+            //=================================//
+
+            //每次都重新写入
+            rpt.UI.Clear();
+
+            //============存入UI配置============//
+            DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH );
+            List<string> resPathList = new List<string>();
+            foreach ( FileInfo file in folder.GetFiles() )
+            {
+                string ss = file.Extension.ToUpper();
+                if ( ss.Contains( ".PREFAB" ) && file.FullName.Contains( "Canvas" ) )
+                {
+                    var result = file.Name.Split('.')[0];
+                    rpt.UI.Add( "UI"+result.Split('_')[1].ToUpper(), GlobalEditorSetting.UI_PREFAB_PATH + result );
+                }
+            }
+            //=================================//
+
+            //============JSON文件存入============//
+            using ( StreamWriter sw = _saveLocalFileInfo.CreateText() )
+            {
+                var result = JsonMapper.ToJson( rpt );
+                sw.Write( result );
+            }
+            //=================================//
+
+            //============更新并保存CS============//
+            //更新并保存CS
+            ResPathParse rpp = new ResPathParse();
+            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
+            AssetDatabase.Refresh();
+        }
+
         //汇总编译
         while ( isDirty && !EditorApplication.isCompiling )
         {
@@ -176,7 +229,7 @@ public class RegisterUIWindow : EditorWindow
             if ( null != t ) newCanvas.gameObject.AddComponent( t );
             else LDebug.LogError( "UI脚本绑定失败" );
 
-            string localPath = UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";
+            string localPath = "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";
             //预防重名
             localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
             PrefabUtility.SaveAsPrefabAssetAndConnect( newCanvas.gameObject, localPath, InteractionMode.UserAction );
@@ -199,7 +252,7 @@ public class RegisterUIWindow : EditorWindow
     /// </summary>
     private void RigisterUIPath( string uiScriptsName )
     {
-        string localPath = UI_PREFAB_PATH + "Canvas_" + uiScriptsName.Substring( 2 );
+        string localPath = "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH + "Canvas_" + uiScriptsName.Substring( 2 );
 
         //预防重名
         localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );

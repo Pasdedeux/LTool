@@ -20,18 +20,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-    /// <summary>
-    /// 编辑器用全局配置
-    /// </summary>
-    public class GlobalEditorSetting
-    {
-        //音频存放路径
-        public const string AUDIO_PATH = "Audios";//Resources
+/// <summary>
+/// 编辑器用全局配置
+/// </summary>
+public class GlobalEditorSetting
+{
+    //音频存放路径
+    public const string AUDIO_PATH = "Sounds";//Resources
 
-        //UI创建路径配置
-        public const string JSON_FILE_NAME = "configs.dat";
-        public const string OUTPUT_FILENAME = "ResPath.cs";
-    }
+    //UI创建路径配置
+    public const string UI_PREFAB_PATH = "Prefabs/UI/";
+    public const string JSON_FILE_NAME = "configs.dat";
+    public const string OUTPUT_FILENAME = "ResPath.cs";
+}
 
 
 

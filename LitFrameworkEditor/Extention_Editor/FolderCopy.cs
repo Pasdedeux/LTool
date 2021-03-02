@@ -4,6 +4,10 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+#region 拷贝+移动文件夹
+/// <summary>
+/// 文件拷贝
+/// </summary>
 public class FolderCopy
 {
     /// <summary>
@@ -68,5 +72,6 @@ public class FolderCopy
             MoveTo( ori, des );
         }
     }
-
 }
+
+#endregion

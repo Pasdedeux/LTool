@@ -91,6 +91,11 @@
               重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
+        <member name="T:FolderCopy">
+            <summary>
+            文件拷贝
+            </summary>
+        </member>
         <member name="M:FolderCopy.CopyTo(System.String,System.String)">
             <summary>
             拷贝文件夹

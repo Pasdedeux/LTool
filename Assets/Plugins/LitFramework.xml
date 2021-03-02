@@ -399,67 +399,6 @@
             <param name="imageHeight">目标RenderTexture像素高度</param>
             <returns></returns>
         </member>
-        <member name="T:LitFramework.LitTool.CSExtention">
-            <summary>
-            方法扩展类
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.FormatWith(System.String,System.Object[])">
-            <summary>
-            TODO 这个方法通用性优先，需要再思考下用处
-            对字符串内容进行批量替换
-            </summary>
-            <param name="format"></param>
-            <param name="args">需要替换成的字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,System.Single,UnityEngine.Vector3[]@)">
-            <summary>
-            获取【透视相机】指定距离下相机视口四个角的坐标
-            </summary>
-            <param name="cam"></param>
-            <param name="distance">相对于相机的距离</param>
-            <param name="corners"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.GetCameraBounds(UnityEngine.Camera,UnityEngine.Vector3[]@)">
-            <summary>
-            获取【正交相机】视口四个角的坐标
-            </summary>
-            <param name="cam"></param>
-            <param name="corners"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.IdentityTransform(UnityEngine.Transform)">
-            <summary>
-            localscale=0，localPosition=0，localRotation=identity
-            </summary>
-            <param name="trans"></param>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.RandomSortList``1(System.Collections.Generic.List{``0})">
-            <summary>
-            数组内随机排列
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="list"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.GetGrayMat">
-            <summary>
-            创建置灰材质球
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.SetUIGray(UnityEngine.UI.Image)">
-            <summary>
-            图片置灰
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.CSExtention.SetUIGrayRecover(UnityEngine.UI.Image)">
-            <summary>
-            图片回复
-            </summary>
-        </member>
         <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
             <summary>
             参数1-解析出的一条完整信息
@@ -1898,6 +1837,58 @@
         <member name="T:BezierViewTest">
             <summary>
             贝塞尔曲线测试类，用于演示
+            </summary>
+        </member>
+        <member name="T:CSExtention">
+            <summary>
+            方法扩展类
+            </summary>
+        </member>
+        <member name="M:CSExtention.GetCameraBounds(UnityEngine.Camera,System.Single,UnityEngine.Vector3[]@)">
+            <summary>
+            获取【透视相机】指定距离下相机视口四个角的坐标
+            </summary>
+            <param name="cam"></param>
+            <param name="distance">相对于相机的距离</param>
+            <param name="corners"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSExtention.GetCameraBounds(UnityEngine.Camera,UnityEngine.Vector3[]@)">
+            <summary>
+            获取【正交相机】视口四个角的坐标
+            </summary>
+            <param name="cam"></param>
+            <param name="corners"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSExtention.IdentityTransform(UnityEngine.Transform)">
+            <summary>
+            localscale=0，localPosition=0，localRotation=identity
+            </summary>
+            <param name="trans"></param>
+        </member>
+        <member name="M:CSExtention.RandomSortList``1(System.Collections.Generic.List{``0})">
+            <summary>
+            数组内随机排列
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSExtention.GetGrayMat">
+            <summary>
+            创建置灰材质球
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSExtention.SetUIGray(UnityEngine.UI.Image)">
+            <summary>
+            图片置灰
+            </summary>
+        </member>
+        <member name="M:CSExtention.SetUIGrayRecover(UnityEngine.UI.Image)">
+            <summary>
+            图片回复
             </summary>
         </member>
         <member name="M:LitJson.JsonData.ContainsKey(System.String)">

@@ -43,7 +43,7 @@ public class RegisterUIWindow : EditorWindow
     public static Action ExpandEdiorUseEvent;
     public static Action<GameObject, string, string> CreateAnimationComponentEvent;
 
-    public string uiScriptsName = "";
+    public string uiScriptsName = "", uiSummary = "";
 
     public UINodeTypeEnum uiNodeType = UINodeTypeEnum.PopUp;
     public UIShowModeEnum uiShowMode = UIShowModeEnum.Stack;
@@ -63,15 +63,20 @@ public class RegisterUIWindow : EditorWindow
 
     void OnGUI()
     {
-        //必选项
+        //必选项：类名
         GUILayout.Label( "脚本类名(UI+类名) 例如：UIMain" );
         uiScriptsName = EditorGUILayout.TextField( uiScriptsName );
+
+        //选填
+        GUILayout.Label( "类说明，建议写UI界面类型，例如：主界面" );
+        uiSummary = EditorGUILayout.TextField( uiSummary );
 
         uiNodeType = ( UINodeTypeEnum )EditorGUILayout.EnumPopup( "挂载节点", uiNodeType );
         uiShowMode = ( UIShowModeEnum )EditorGUILayout.EnumPopup( "窗体显示方式", uiShowMode );
         uiTransparent = ( UITransparentEnum )EditorGUILayout.EnumPopup( "窗体背后的遮罩透明度", uiTransparent );
 
         EditorGUILayout.Space();
+
         //勾选项
         useOnEnable_OnDisable = EditorGUILayout.Toggle( "OnEnable/OnDisable", useOnEnable_OnDisable );
         useDefaultExitBtn = EditorGUILayout.Toggle( "退出按钮", useDefaultExitBtn );
@@ -184,18 +189,28 @@ public class RegisterUIWindow : EditorWindow
             //=================================//
 
             //每次都重新写入
+            Dictionary<string, string> resPathSumList = new Dictionary<string, string>();
+            foreach ( var item in rpt.UI )
+            {
+                var sum = item.Value.Split( '|' );
+                if ( sum.Length > 1 && !string.IsNullOrEmpty( sum[ 1 ] ) )
+                    resPathSumList.Add( item.Key.ToUpper(), sum[ 1 ] );
+            }
             rpt.UI.Clear();
 
             //============存入UI配置============//
             DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH );
-            List<string> resPathList = new List<string>();
             foreach ( FileInfo file in folder.GetFiles() )
             {
                 string ss = file.Extension.ToUpper();
                 if ( ss.Contains( ".PREFAB" ) && file.FullName.Contains( "Canvas" ) )
                 {
-                    var result = file.Name.Split('.')[0];
-                    rpt.UI.Add( "UI"+result.Split('_')[1].ToUpper(), GlobalEditorSetting.UI_PREFAB_PATH + result );
+                    var result = file.Name.Split( '.' )[ 0 ];
+                    var key = "UI" + result.Split( '_' )[ 1 ].ToUpper();
+                    rpt.UI.Add( key, GlobalEditorSetting.UI_PREFAB_PATH + result );
+
+                    if ( resPathSumList.ContainsKey( key ) )
+                        rpt.UI[ key ] += "|" + resPathSumList[ key ];
                 }
             }
             //=================================//
@@ -241,9 +256,6 @@ public class RegisterUIWindow : EditorWindow
     #endregion
 
     #region 制作UI及注册路径
-
-    //private static readonly string CSFILE_PATH = Application.dataPath + "/Scripts";
-
     private static FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
     /// <summary>
     /// 这里将类名注册为地址类中的字典键值对，将预制件地址存储为值
@@ -258,6 +270,7 @@ public class RegisterUIWindow : EditorWindow
         localPath = AssetDatabase.GenerateUniqueAssetPath( localPath );
         localPath = localPath.Substring( 17 );
         localPath = localPath.Split( '.' )[ 0 ];
+        localPath = localPath + "|" + uiSummary;
 
         ResPathTemplate rpt = null;
         //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
@@ -476,7 +489,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "#endregion" );
 
             CSString.Add( "using UnityEngine;" );
-            CSString.Add( " using UnityEngine.UI;" );
+            CSString.Add( "using UnityEngine.UI;" );
             CSString.Add( "using System;" );
             CSString.Add( "using LitFramework;" );
             CSString.Add( "using LitFramework.Mono;" );
@@ -488,7 +501,9 @@ namespace LitFrameworkEditor.EditorExtended
 
             CSString.Add( "namespace Assets.Scripts.UI" );
             CSString.Add( "{" );
-
+            CSString.Add( string.Format( "/// <summary>" ) );
+            CSString.Add( string.Format( "/// {0}", _uiWindowInfo.uiSummary ) );
+            CSString.Add( string.Format( "/// </summary>" ) );
             CSString.Add( string.Format( "public class {0} : BaseUI", _className ) );
             CSString.Add( "{" );
         }

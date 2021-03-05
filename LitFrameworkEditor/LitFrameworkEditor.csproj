@@ -75,14 +75,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extention_Editor\BuildSceneSettingEditor.cs" />
-    <Compile Include="Extention_Editor\CSVParser.cs" />
-    <Compile Include="Extention_Editor\CSVReader.cs" />
-    <Compile Include="Extention_Editor\CSVWriter.cs" />
-    <Compile Include="Extention_Editor\EditorMenuExtention.cs" />
-    <Compile Include="Extention_Editor\FolderCopy.cs" />
-    <Compile Include="Extention_Editor\RegisterAudio.cs" />
-    <Compile Include="Extention_Editor\RegisterUIWindow.cs" />
+    <Compile Include="Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
+    <Compile Include="Extention_Editor\CSVTool\CSVParser.cs" />
+    <Compile Include="Extention_Editor\CSVTool\CSVReader.cs" />
+    <Compile Include="Extention_Editor\CSVTool\CSVWriter.cs" />
+    <Compile Include="Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
+    <Compile Include="Extention_Editor\BaseTool\FolderCopy.cs" />
+    <Compile Include="Extention_Editor\MenuExtention\RegisterAudio.cs" />
+    <Compile Include="Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
     <Compile Include="GlobalEditorSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

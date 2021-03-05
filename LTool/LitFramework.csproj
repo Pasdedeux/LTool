@@ -104,10 +104,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
-    <Compile Include="Audio\AudioManager.cs" />
-    <Compile Include="Base\Cloneable.cs" />
-    <Compile Include="Base\Singleton.cs" />
-    <Compile Include="Base\SingletonMono.cs" />
+    <Compile Include="LitTool\AudioManager.cs" />
+    <Compile Include="BaseModel\Cloneable.cs" />
+    <Compile Include="BaseModel\Singleton.cs" />
+    <Compile Include="BaseModel\SingletonMono.cs" />
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
@@ -120,7 +120,7 @@
     <Compile Include="Guide\GuideConfig.cs" />
     <Compile Include="Guide\Model\EventPenetrate.cs" />
     <Compile Include="Guide\Model\GuideDataModel.cs" />
-    <Compile Include="Input\InputControlManager.cs" />
+    <Compile Include="InputSystem\InputControlManager.cs" />
     <Compile Include="LitPool\PoolManager.cs" />
     <Compile Include="LitPool\PrefabPool.cs" />
     <Compile Include="LitPool\PrefabsDict.cs" />
@@ -147,7 +147,7 @@
     <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="LitTool\SpriteAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Base\IManager.cs" />
+    <Compile Include="BaseModel\IManager.cs" />
     <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="ThirdParty\AD\IAd.cs" />
     <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
@@ -162,7 +162,7 @@
     <Compile Include="UI\UnityHelper.cs" />
     <Compile Include="UI\Version_Mono\BaseUI.cs" />
     <Compile Include="UI\Version_Mono\UIManager.cs" />
-    <Compile Include="Unity\Optimization.cs" />
+    <Compile Include="UnityPackage\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

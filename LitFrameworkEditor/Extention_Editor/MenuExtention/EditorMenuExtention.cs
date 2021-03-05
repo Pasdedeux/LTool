@@ -322,7 +322,7 @@ namespace LitFrameworkEditor.EditorExtended
             return hasDirOrFile;
         }
 
-        [MenuItem( "Tools/快捷操作/显隐选中的物体 &q", priority = 100 )]
+        [MenuItem( "Tools/快捷操作/显隐选中的物体 &q" )]
         public static void HideChoosedObject()
         {
             var choosed = Selection.gameObjects;
@@ -330,6 +330,7 @@ namespace LitFrameworkEditor.EditorExtended
             {
                 item.SetActive( !item.activeSelf );
             }
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty( UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene() );
         }
         [MenuItem( "Tools/快捷操作/锁定面板 &w" )]
         public static void LockedChoosedComponet()

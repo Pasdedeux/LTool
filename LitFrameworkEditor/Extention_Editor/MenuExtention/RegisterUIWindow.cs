@@ -138,6 +138,9 @@ public class RegisterUIWindow : EditorWindow
                     btnExit.transform.localScale = Vector3.one;
                 }
 
+                //Layer设定
+                ChangeLayer( newCanvas.transform, "UI" );
+
                 //预制件自注册
                 RigisterUIPath( uiScriptsName );
 
@@ -250,6 +253,24 @@ public class RegisterUIWindow : EditorWindow
             PrefabUtility.SaveAsPrefabAssetAndConnect( newCanvas.gameObject, localPath, InteractionMode.UserAction );
 
             AssetDatabase.Refresh();
+        }
+    }
+
+    private void ChangeLayer( Transform trans, string targetLayer )
+    {
+        if ( LayerMask.NameToLayer( targetLayer ) == -1 )
+        {
+            Debug.Log( "Layer中不存在,请手动添加LayerName" );
+
+            return;
+        }
+
+        //遍历更改所有子物体layer
+        trans.gameObject.layer = LayerMask.NameToLayer( targetLayer );
+        foreach ( Transform child in trans )
+        {
+            ChangeLayer( child, targetLayer );
+            Debug.Log( child.name + "子对象Layer更改成功！" );
         }
     }
 

@@ -118,6 +118,11 @@ public class RegisterUIWindow : EditorWindow
 
                 GameObject animTrans = new GameObject( "Container_Anim", typeof( RectTransform ) );
                 animTrans.transform.SetParent( newCanvas.transform );
+                var recTrans = animTrans.GetComponent<RectTransform>();
+                recTrans.sizeDelta = Vector2.zero;
+                recTrans.anchorMin = Vector2.zero;
+                recTrans.anchorMax = Vector2.one;
+                recTrans.anchoredPosition = Vector2.zero;
                 animTrans.transform.localPosition = Vector3.zero;
                 animTrans.transform.localScale = Vector3.one;
 

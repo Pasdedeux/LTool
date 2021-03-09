@@ -783,6 +783,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:LitFramework.Mono.UIManager.FadeImage">
+            <summary>
+            Image_fadeBG控制类，一般用于全局黑屏转场。
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.MaskImage">
+            <summary>
+            PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
+            </summary>
+        </member>
         <member name="M:LitFramework.Mono.UIManager.ShowFade(System.Single,System.Action)">
             <summary>
             隐退开始
@@ -2037,15 +2047,45 @@
             UI窗体透明度类型(PopUp 类型时生效)
             </summary>
         </member>
+        <member name="T:UIMaskManager">
+            <summary>
+            遮罩控制器。用于控制Image_Mask显示行为
+            </summary>
+        </member>
+        <member name="P:UIMaskManager.Mask">
+            <summary>
+            当前Image_Maskm蒙版的Image对象
+            </summary>
+        </member>
+        <member name="F:UIMaskManager.MaskEnableEventHandler">
+            <summary>
+            背景遮罩启用/关闭事件。接收参数bool表明是否启用。
+            目前发生时机，是开关PopUp弹窗时，各会触发一次
+            </summary>
+        </member>
+        <member name="M:UIMaskManager.SetMaskEnable(UITransparentEnum)">
+            <summary>
+            根据传入枚举类型，激活蒙版并完成对应显示状态
+            </summary>
+            <param name="transparent">透明度级别</param>
+        </member>
         <member name="M:UIMaskManager.SetMaskWindow(UnityEngine.GameObject,UITransparentEnum)">
             <summary>
-            设置遮罩状态
+            设置指定UI的遮罩状态
             </summary>
+            <param name="displayUIForms">需要为其服务的UIGameObject，比如UIMain所挂载的对象</param>
+            <param name="transparent">透明度级别</param>
         </member>
         <member name="M:UIMaskManager.CancelMaskWindow">
             <summary>
             取消遮罩
             </summary>
+        </member>
+        <member name="M:UIMaskManager.SetMaskColor(UnityEngine.Color)">
+            <summary>
+            设置Mask Image蒙版的颜色。不会影响Alpha值
+            </summary>
+            <param name="color">对应颜色。可通过ColorUtility.TryParseHtmlString转码获得 </param>
         </member>
         <member name="T:UINodeTypeEnum">
             <summary>

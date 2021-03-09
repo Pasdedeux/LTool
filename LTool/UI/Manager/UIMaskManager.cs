@@ -17,9 +17,16 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMaskManager : SingletonMono<UIMaskManager> 
+public class UIMaskManager : SingletonMono<UIMaskManager>
 {
-    public Image Mask { get { return _maskImage;  } }
+    /// <summary>
+    /// 当前Image_Maskm蒙版的Image对象
+    /// </summary>
+    public Image Mask { get { return _maskImage; } }
+    /// <summary>
+    /// 背景遮罩启用/关闭事件。接收参数bool表明是否启用。
+    /// 目前发生时机，是开关PopUp弹窗时，各会触发一次
+    /// </summary>
     public Action<bool> MaskEnableEventHandler;
     //UI脚本节点对象
     private Transform _transScriptNode = null;
@@ -39,14 +46,14 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     private Button _maskBtn;
     private static Color _color = new Color( 0 / 255F, 0 / 255F, 0 / 255F, 0 / 255F );
 
-    private void Awake( )
+    private void Awake()
     {
         //得到UI根节点对象
         _rootCanvas = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS );
-        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas.transform , UISysDefine.SYS_TAG_GLOBALCANVAS );
+        _transScriptNode = UnityHelper.FindTheChildNode( _rootCanvas.transform, UISysDefine.SYS_TAG_GLOBALCANVAS );
         //将本脚本实例作为脚本节点对象子节点
         transform.SetParent( _transScriptNode );
-        UnityHelper.AddChildNodeToParentNode( _transScriptNode , transform );
+        UnityHelper.AddChildNodeToParentNode( _transScriptNode, transform );
         //顶层面板、遮罩面板
         _topPanel = _rootCanvas;
         _maskPanel = UnityHelper.FindTheChildNode( _rootCanvas.transform, "Panel_Mask" ).gameObject;
@@ -60,22 +67,10 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         if ( _uiCamera != null ) _oriUICameraDepth = _uiCamera.depth;
     }
 
-
-    //public void AddEventListener( Action callBack )
-    //{
-    //    if ( callBack!=null )
-    //    {
-    //        _maskBtn.enabled = true;
-    //        _maskBtn.onClick.AddListener( ()=> { callBack(); } );
-    //    }
-    //}
-
-    //public void RemoveEventListener()
-    //{
-    //    _maskBtn.enabled = false;
-    //    _maskBtn.onClick.RemoveAllListeners();
-    //}
-
+    /// <summary>
+    /// 根据传入枚举类型，激活蒙版并完成对应显示状态
+    /// </summary>
+    /// <param name="transparent">透明度级别</param>
     public void SetMaskEnable( UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
     {
         switch ( transparent )
@@ -112,8 +107,10 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     }
 
     /// <summary>
-    /// 设置遮罩状态
+    /// 设置指定UI的遮罩状态
     /// </summary>
+    /// <param name="displayUIForms">需要为其服务的UIGameObject，比如UIMain所挂载的对象</param>
+    /// <param name="transparent">透明度级别</param>
     public void SetMaskWindow( GameObject displayUIForms, UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
     {
         //顶层窗体下移
@@ -151,8 +148,11 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
             _uiCamera.depth = _oriUICameraDepth;
     }
 
-
-    public static void SetMaskColor(Color color)
+    /// <summary>
+    /// 设置Mask Image蒙版的颜色。不会影响Alpha值
+    /// </summary>
+    /// <param name="color">对应颜色。可通过ColorUtility.TryParseHtmlString转码获得 </param>
+    public void SetMaskColor( Color color )
     {
         _color.r = color.r;
         _color.g = color.g;

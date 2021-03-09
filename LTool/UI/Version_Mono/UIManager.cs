@@ -116,6 +116,9 @@ namespace LitFramework.Mono
         /// <returns></returns>
         public event Action DelHideCallBack = null;
         public Image FadeImage { get { return _fadeImage; } }
+        /// <summary>
+        /// PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
+        /// </summary>
         public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
 
         public void Install()

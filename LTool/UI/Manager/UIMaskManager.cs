@@ -17,6 +17,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 遮罩控制器。用于控制Image_Mask显示行为
+/// </summary>
 public class UIMaskManager : SingletonMono<UIMaskManager>
 {
     /// <summary>

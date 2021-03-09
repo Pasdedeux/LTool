@@ -115,6 +115,9 @@ namespace LitFramework.Mono
         /// </summary>
         /// <returns></returns>
         public event Action DelHideCallBack = null;
+        /// <summary>
+        /// Image_fadeBG控制类，一般用于全局黑屏转场。
+        /// </summary>
         public Image FadeImage { get { return _fadeImage; } }
         /// <summary>
         /// PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色

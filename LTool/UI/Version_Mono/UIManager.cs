@@ -140,6 +140,7 @@ namespace LitFramework.Mono
             //Mask蒙版初始化
             var ss = UIMaskManager.Instance;
 
+            GuideShaderController.Instance.Install();
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
         }

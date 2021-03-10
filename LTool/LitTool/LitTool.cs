@@ -30,17 +30,20 @@ namespace LitFramework.LitTool
     /// <summary>
     /// 工具类
     /// </summary>
-    public class LitTool:SingletonMono<LitTool>
+    public class LitTool : SingletonMono<LitTool>
     {
         private static MonoBehaviour _mono;
-        public static MonoBehaviour monoBehaviour
+        /// <summary>
+        /// 协程全局使用mono
+        /// </summary>
+        public static MonoBehaviour MonoBehaviour
         {
             get
             {
                 if ( _mono == null )
                 {
                     GameObject go = new GameObject( "Monobehavior" );
-                    monoBehaviour = go.AddComponent<MonoForCorouting>();
+                    MonoBehaviour = go.AddComponent<MonoForCorouting>();
                     go.hideFlags = HideFlags.HideAndDontSave; //可见性，以及不可消除性
                 }
                 return _mono;
@@ -48,56 +51,138 @@ namespace LitFramework.LitTool
             private set { _mono = value; }
         }
 
-        private static WaitUntil _waitUntil;
-      
-        #region 延迟调用方法
+        #region 延迟调用
+        private static float _delayFuncTimeCouting = 0f;  //延迟方法当前计时
+        private static float _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
+        private static bool _usePreciseMode = AppConfig.Instance.UseDelayFuncPreciseDetect;
+
+        /// <summary>
+        /// 延迟是否使用精准计时。True - update每帧执行。False - 每间隔_delayFuncWaitTimeInterval时间执行一次延迟方法遍历
+        /// </summary>
+        public static bool UsePreciseModeForDelayFunc
+        {
+            get { return _usePreciseMode; }
+            set
+            {
+                _usePreciseMode = value;
+                if ( !value )
+                {
+                    _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
+                    _delayFuncTimeCouting = 0f;
+                }
+            }
+        }
+
+        //受限时影响的委托
+        private static event Action<float> delayFuncRealEvent; //忽略TimeScale方式
+        private static event Action<float> delayFuncEvent;       //受TimeScale影响方式
+
+        /// <summary>
+        /// LToolUpdate
+        /// </summary>
+        public static void BindingUpdate()
+        {
+            if ( !UsePreciseModeForDelayFunc )
+            {
+                //每X秒触发一次分发
+                _delayFuncTimeCouting += Time.unscaledDeltaTime;
+                if( _delayFuncTimeCouting >= _delayFuncWaitTimeMax )
+                {
+                    _delayFuncTimeCouting = 0f;
+                    LDebug.Log( delayFuncRealEvent?.GetInvocationList().Length );
+
+                    delayFuncEvent?.Invoke( Time.time );
+                    delayFuncRealEvent?.Invoke( Time.unscaledTime );
+                }
+            }
+            //逐帧遍历
+            else
+            {
+                delayFuncEvent?.Invoke( Time.time );
+                delayFuncRealEvent?.Invoke( Time.unscaledTime );
+            }
+        }
+        
+        /// <summary>
+        /// 延迟调用方法
+        /// </summary>
+        /// <param name="time">延迟时间</param>
+        /// <param name="func">延迟时间结束后回调函数。暂不支持主动取消，使用过程中需要注意</param>
+        /// <param name="useIgnoreTimeScale">是否忽略TimeScale，默认为true</param>
+        /// <param name="useUpdate">使用update方式或者协程方式，默认是update方式</param>
+        public static void DelayPlayFunction( float time, Action func, bool useIgnoreTimeScale = true, bool useUpdate = true )
+        {
+            if ( useUpdate ) DelayPlayFuncUpdate( time, func, useIgnoreTimeScale );
+            else DelayPlayFuncMono( time, func, useIgnoreTimeScale );
+        }
+
+        #region 协程方案
+
         /// <summary>
         /// 延迟调用方法（协程方案）
         /// </summary>
         /// <param name="time">等待时间，秒</param>
         /// <param name="func">时间到了回调函数</param>
-        /// <param name="real">是否是真实时间（忽略TimeScale）</param>
-        public static void DelayPlayFunction( float time, System.Action func , bool real = false )
+        /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
+        static void DelayPlayFuncMono( float time, Action func, bool realTime )
         {
-            if ( real )
+            LDebug.Log( "Mono Start" );
+            if ( realTime )
             {
-                monoBehaviour.StartCoroutine( DelayFunctionReal( time, func ) );
+                MonoBehaviour.StartCoroutine( DelayFunctionReal( time, func ) );
             }
             else
             {
-                monoBehaviour.StartCoroutine( DelayFunction( time, func ) );
+                MonoBehaviour.StartCoroutine( DelayFunction( time, func ) );
             }
-            
+
         }
-        static IEnumerator DelayFunction( float time, System.Action func )
+        static IEnumerator DelayFunction( float time, Action func )
         {
             yield return new WaitForSeconds( time );
             func?.Invoke();
         }
-
-        static IEnumerator DelayFunctionReal( float time, System.Action func )
+        static IEnumerator DelayFunctionReal( float time, Action func )
         {
             yield return new WaitForSecondsRealtime( time );
             func?.Invoke();
         }
-        
 
         /// <summary>
-        /// 自定义WaitUtil方法
+        /// WaitUtil方法
         /// </summary>
         /// <param name="conditionFunc">通过需要的判定条件</param>
         /// <param name="func">通过达成后的回调函数</param>
-        public static void WaitUntilFunction( Func<bool> conditionFunc, System.Action func )
+        public static void WaitUntilFunction( Func<bool> conditionFunc, Action func )
         {
-            _waitUntil = new WaitUntil( conditionFunc );
-            monoBehaviour.StartCoroutine( WaitUntilFunction( func ) );
+            MonoBehaviour.StartCoroutine( IWaitUntilFunction( conditionFunc, func ) );
         }
-
-        static IEnumerator WaitUntilFunction( Action func )
+        static IEnumerator IWaitUntilFunction( Func<bool> conditionFunc, Action func )
         {
-            yield return _waitUntil;
+            yield return new WaitUntil( conditionFunc );
             func?.Invoke();
         }
+
+        #endregion
+
+        #region Update方案
+
+        /// <summary>
+        /// 延迟调用方法（Update计时方案）
+        /// </summary>
+        /// <param name="time">等待时间，秒</param>
+        /// <param name="func">时间到了回调函数</param>
+        /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
+        static void DelayPlayFuncUpdate( float time, Action func, bool realTime )
+        {
+            LDebug.Log( "Update Start" );
+            var handler = realTime ? delayFuncRealEvent : delayFuncEvent;
+            var decrate = new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, ref handler );
+            LDebug.Log( handler.GetInvocationList().Length );
+        }
+        
+        #endregion
+
         #endregion
 
         #region 时间转换工具
@@ -115,15 +200,15 @@ namespace LitFramework.LitTool
         /// <param name="endTime">结束日期</param>
         /// <param name="format">返回的日期格式</param>
         /// <returns></returns>
-        public static string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
+        public static string GetTimeSpanWithFormat( DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}" )
         {
             _timtSpan = endTime - startTime;
             //todo 尚待扩展
             if ( format.Equals( "{0:00}:{1:00}" ) )
             {
-                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes + (  _timtSpan.Days * 24 * 60  ) , _timtSpan.Seconds );
+                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes + ( _timtSpan.Days * 24 * 60 ), _timtSpan.Seconds );
             }
-            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) ) 
+            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) )
             {
                 return string.Format( "{0:00}:{1:00}:{2:00}", ( _timtSpan.Hours + ( _timtSpan.Days * 24 ) ), _timtSpan.Minutes, _timtSpan.Seconds );
             }
@@ -136,20 +221,30 @@ namespace LitFramework.LitTool
         /// <param name="span"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        public static string GetTimeSpanWithFormat(TimeSpan span, string format = "{0:00}:{1:00}" )
+        public static string GetTimeSpanWithFormat( TimeSpan span, string format = "{0:00}:{1:00}" )
         {
             //todo 尚待扩展
             if ( format.Equals( "{0:00}:{1:00}" ) )
             {
-                return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours*60, span.Seconds );
+                return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
             }
             else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) )
             {
-                return string.Format( "{0:00}:{1:00}:{2:00}",  span.Hours + span.Days * 24 , span.Minutes, span.Seconds );
+                return string.Format( "{0:00}:{1:00}:{2:00}", span.Hours + span.Days * 24, span.Minutes, span.Seconds );
             }
-            return string.Format( "{0:00}:{1:00}", span.Minutes+ span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
+            return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
         }
 
+
+        /// <summary>
+        /// 获取当前UTC时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        public static long GetUTCTimeStamp()
+        {
+            long timeStamp = Convert.ToInt64( ( DateTime.UtcNow - _dateStartUTC ).TotalSeconds );
+            return timeStamp;
+        }
 
         /// <summary>
         /// 获取UTC时间戳Timestamp
@@ -161,7 +256,6 @@ namespace LitFramework.LitTool
             long timeStamp = Convert.ToInt64( ( dt - _dateStartUTC ).TotalSeconds );
             return timeStamp;
         }
-
 
         /// <summary>
         /// UTC 时间戳Timestamp转换成UTC日期
@@ -178,6 +272,16 @@ namespace LitFramework.LitTool
 
 
         /// <summary>
+        /// 获取当前时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        public static long GetTimeStamp()
+        {
+            long timeStamp = Convert.ToInt64( ( DateTime.Now - _dateStart ).TotalSeconds );
+            return timeStamp;
+        }
+
+        /// <summary>
         /// 获取时间戳Timestamp
         /// </summary>
         /// <param name="dt">日期</param>
@@ -187,7 +291,6 @@ namespace LitFramework.LitTool
             long timeStamp = Convert.ToInt64( ( dt - _dateStart ).TotalSeconds );
             return timeStamp;
         }
-
 
         /// <summary>
         /// 时间戳Timestamp转换成日期
@@ -244,7 +347,7 @@ namespace LitFramework.LitTool
         /// <param name="world">世界坐标</param>
         /// <param name="uiCam">UICam</param>
         /// <returns>返回画布上的二维坐标</returns>
-        public static Vector2 WorldToCanvasPos( Canvas canvas, Vector3 world , Camera uiCam )
+        public static Vector2 WorldToCanvasPos( Canvas canvas, Vector3 world, Camera uiCam )
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle( canvas.transform as RectTransform,
                 world, uiCam, out Vector2 position );
@@ -259,13 +362,13 @@ namespace LitFramework.LitTool
         /// <param name="style">下滑线类型，默认为'_'</param>
         /// <param name="alignByGeometry">是否使用几何对齐</param>
         /// <param name="richText">是否支持富文本</param>
-        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false , bool richText = false )
+        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false, bool richText = false )
         {
             if ( target == null )
                 return;
             //克隆Text，获得相同的属性  
             Text underline = Instantiate( target ) as Text;
-            
+
             underline.name = "lhw";
             underline.transform.SetParent( target.transform );
             underline.alignByGeometry = alignByGeometry;
@@ -295,12 +398,58 @@ namespace LitFramework.LitTool
         #endregion
     }
 
-
+    /// <summary>
+    /// 全局使用的monobehaivor
+    /// </summary>
     public class MonoForCorouting : MonoBehaviour
     {
         public void Awake()
         {
             DontDestroyOnLoad( this );
+        }
+    }
+
+    /// <summary>
+    /// 延迟调用函数包装类
+    /// </summary>
+    class DelayFuncDecoration:IDisposable
+    {
+        private Action<float> _binder;
+        private Action _callBackFunc;
+        private float _targetTime;
+
+        public DelayFuncDecoration( float targetTime, Action func , ref Action<float> binder )
+        {
+            _targetTime = targetTime;
+            _callBackFunc = func;
+            _binder = binder;
+            LDebug.Log( "===>DelayFuncDecoration Create "+ _binder?.GetInvocationList().Length );
+            binder += DelayFuncEventHandler;
+            LDebug.Log( "===>DelayFuncDecoration Create 2 " + _binder?.GetInvocationList().Length );
+        }
+
+
+        /// <summary>
+        /// 时间判定回调
+        /// </summary>
+        /// <param name="nowTime"></param>
+        private void DelayFuncEventHandler( float nowTime )
+        {
+            LDebug.Log( "===>DelayFuncEventHandler "+ nowTime+"  "+ _targetTime );
+            if ( nowTime >= _targetTime )
+            {
+                _callBackFunc?.Invoke();
+                _binder -= DelayFuncEventHandler;
+
+                Dispose();
+            }
+        }
+
+
+        public void Dispose()
+        {
+            _callBackFunc = null;
+            _binder = null;
         }
     }
 }

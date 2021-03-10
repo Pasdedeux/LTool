@@ -27,8 +27,15 @@ namespace LitFramework
     /// <summary>
     /// 框架控制参数
     /// </summary>
-    public class AppConfig
+    public partial class AppConfig:SingletonMono<AppConfig>
     {
-        
+        /// <summary>
+        /// 延迟调用函数计时检测间隔
+        /// </summary>
+        public float DelayFuncDetectInterver = 0.1f;
+        /// <summary>
+        /// 开启使用逐帧遍历延迟函数调用。默认为false
+        /// </summary>
+        public bool UseDelayFuncPreciseDetect = false;
     }
 }

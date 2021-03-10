@@ -127,6 +127,7 @@
     <Compile Include="LitPool\SpawnManager.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
+    <Compile Include="LitTool\LitTool.cs" />
     <Compile Include="ThirdParty\AD\ADManager.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
@@ -142,7 +143,6 @@
     <Compile Include="LitTool\LitJSON\JsonWriter.cs" />
     <Compile Include="LitTool\LitJSON\Lexer.cs" />
     <Compile Include="LitTool\LitJSON\ParserToken.cs" />
-    <Compile Include="LitTool\LitTool.cs" />
     <Compile Include="LitTool\LMath.cs" />
     <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="LitTool\SpriteAdapter.cs" />

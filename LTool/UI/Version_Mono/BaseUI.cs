@@ -27,10 +27,10 @@ namespace LitFramework.Mono
         /// 该窗口是否开启中
         /// </summary>
         public bool IsShowing { get; set; }
+        private UIType _uiType = new UIType();
         /// <summary>
         /// 当前窗口类型
         /// </summary>
-        private UIType _uiType = new UIType();
         public UIType CurrentUIType
         { get { return _uiType; } set { _uiType = value; } }
         /// <summary>
@@ -78,6 +78,9 @@ namespace LitFramework.Mono
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
         }
 
+        /// <summary>
+        /// 检测并显示模态窗体背景
+        /// </summary>
         public void CheckMask()
         {
             //设置模态窗体调用(弹出窗体)

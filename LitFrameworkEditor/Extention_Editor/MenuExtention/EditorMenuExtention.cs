@@ -19,7 +19,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace LitFrameworkEditor.EditorExtended
@@ -30,9 +29,9 @@ namespace LitFrameworkEditor.EditorExtended
 #if UNITY_EDITOR
     using UnityEditor;
     using ExcelDataReader;
+    using UnityEditor.Experimental.SceneManagement;
+    using UnityEditor.SceneManagement;
 #endif
-    using System.Reflection;
-    using UnityEditor;
 
     //% - CTRL on Windows / CMD on OSX
     //# - Shift
@@ -44,11 +43,13 @@ namespace LitFrameworkEditor.EditorExtended
     //[MenuItem("Tools/New Option %#a"]//CTRL-SHIFT-A
 
     /// <summary>
-    /// 
+    /// 包含Tools菜单下一系列工具包文件
     /// </summary>
     public class EditorMenuExtention
     {
-
+        /// <summary>
+        /// 将XLSX文件夹的excel文档转换为csv文件
+        /// </summary>
 #if UNITY_EDITOR
         [MenuItem( "Tools/配置文件->CSV", priority = 20 )]
 #endif
@@ -101,6 +102,9 @@ namespace LitFrameworkEditor.EditorExtended
             }
         }
 
+        /// <summary>
+        /// 将SA文件夹下CSV配置文件由csv格式转换为CS代码文件
+        /// </summary>
 #if UNITY_EDITOR
         [MenuItem( "Tools/配置文件->CSV+代码", priority = 21 )]
 #endif
@@ -261,7 +265,9 @@ namespace LitFrameworkEditor.EditorExtended
             PlayerPrefs.DeleteAll();
         }
 
-
+        /// <summary>
+        /// 删除Assets空白目录下文件
+        /// </summary>
         [MenuItem( "Tools/删除空白目录", priority = 91 )]
         private static void CleanEmptyDirectories()
         {
@@ -296,6 +302,12 @@ namespace LitFrameworkEditor.EditorExtended
             }
         }
 
+        /// <summary>
+        /// 移除目录下空白文件夹
+        /// </summary>
+        /// <param name="target">指定检测目录</param>
+        /// <param name="dis">传入用于存储已删除目录记录的列表</param>
+        /// <returns></returns>
         private static bool DoRemoveEmptyDirectory( DirectoryInfo target, List<DirectoryInfo> dis )
         {
             bool hasDirOrFile = false;
@@ -322,6 +334,9 @@ namespace LitFrameworkEditor.EditorExtended
             return hasDirOrFile;
         }
 
+        /// <summary>
+        /// 隐藏/显示当前选中的物体，同时将当前场景和预制件设为Dirty
+        /// </summary>
         [MenuItem( "Tools/快捷操作/显隐选中的物体 &q" )]
         public static void HideChoosedObject()
         {
@@ -330,8 +345,19 @@ namespace LitFrameworkEditor.EditorExtended
             {
                 item.SetActive( !item.activeSelf );
             }
+            //预模式下保存制件
+            var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+            if ( prefabStage != null )
+            {
+                EditorSceneManager.MarkSceneDirty( prefabStage.scene );
+            }
+            //场景保存
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty( UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene() );
         }
+
+        /// <summary>
+        /// 锁定当前开启的Inspector窗口面板
+        /// </summary>
         [MenuItem( "Tools/快捷操作/锁定面板 &w" )]
         public static void LockedChoosedComponet()
         {

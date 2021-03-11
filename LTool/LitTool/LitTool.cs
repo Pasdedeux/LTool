@@ -55,7 +55,6 @@ namespace LitFramework.LitTool
         private static float _delayFuncTimeCouting = 0f;  //延迟方法当前计时
         private static float _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
         private static bool _usePreciseMode = AppConfig.Instance.UseDelayFuncPreciseDetect;
-
         /// <summary>
         /// 延迟是否使用精准计时。True - update每帧执行。False - 每间隔_delayFuncWaitTimeInterval时间执行一次延迟方法遍历
         /// </summary>
@@ -74,8 +73,8 @@ namespace LitFramework.LitTool
         }
 
         //受限时影响的委托
-        private static event Action<float> delayFuncRealEvent; //忽略TimeScale方式
-        private static event Action<float> delayFuncEvent;       //受TimeScale影响方式
+        public static event Action<float> DelayFuncRealEvent; //忽略TimeScale方式
+        public static event Action<float> DelayFuncEvent;       //受TimeScale影响方式
 
         /// <summary>
         /// LToolUpdate
@@ -89,17 +88,17 @@ namespace LitFramework.LitTool
                 if( _delayFuncTimeCouting >= _delayFuncWaitTimeMax )
                 {
                     _delayFuncTimeCouting = 0f;
-                    LDebug.Log( delayFuncRealEvent?.GetInvocationList().Length );
+                    //LDebug.Log( DelayFuncRealEvent?.GetInvocationList().Length );
 
-                    delayFuncEvent?.Invoke( Time.time );
-                    delayFuncRealEvent?.Invoke( Time.unscaledTime );
+                    DelayFuncEvent?.Invoke( Time.time );
+                    DelayFuncRealEvent?.Invoke( Time.unscaledTime );
                 }
             }
             //逐帧遍历
             else
             {
-                delayFuncEvent?.Invoke( Time.time );
-                delayFuncRealEvent?.Invoke( Time.unscaledTime );
+                DelayFuncEvent?.Invoke( Time.time );
+                DelayFuncRealEvent?.Invoke( Time.unscaledTime );
             }
         }
         
@@ -176,9 +175,14 @@ namespace LitFramework.LitTool
         static void DelayPlayFuncUpdate( float time, Action func, bool realTime )
         {
             LDebug.Log( "Update Start" );
-            var handler = realTime ? delayFuncRealEvent : delayFuncEvent;
-            var decrate = new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, ref handler );
-            LDebug.Log( handler.GetInvocationList().Length );
+            if ( realTime )
+            {
+                new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
+            }
+            else
+            {
+                new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
+            }
         }
         
         #endregion
@@ -414,18 +418,18 @@ namespace LitFramework.LitTool
     /// </summary>
     class DelayFuncDecoration:IDisposable
     {
-        private Action<float> _binder;
         private Action _callBackFunc;
         private float _targetTime;
+        private bool _isReal;
 
-        public DelayFuncDecoration( float targetTime, Action func , ref Action<float> binder )
+        public DelayFuncDecoration( float targetTime, Action func, bool useReal )
         {
             _targetTime = targetTime;
             _callBackFunc = func;
-            _binder = binder;
-            LDebug.Log( "===>DelayFuncDecoration Create "+ _binder?.GetInvocationList().Length );
-            binder += DelayFuncEventHandler;
-            LDebug.Log( "===>DelayFuncDecoration Create 2 " + _binder?.GetInvocationList().Length );
+            _isReal = useReal;
+            
+            if ( _isReal ) LitTool.DelayFuncRealEvent += DelayFuncEventHandler;
+            else LitTool.DelayFuncEvent += DelayFuncEventHandler;
         }
 
 
@@ -435,11 +439,12 @@ namespace LitFramework.LitTool
         /// <param name="nowTime"></param>
         private void DelayFuncEventHandler( float nowTime )
         {
-            LDebug.Log( "===>DelayFuncEventHandler "+ nowTime+"  "+ _targetTime );
             if ( nowTime >= _targetTime )
             {
                 _callBackFunc?.Invoke();
-                _binder -= DelayFuncEventHandler;
+
+                if ( _isReal ) LitTool.DelayFuncRealEvent -= DelayFuncEventHandler;
+                else LitTool.DelayFuncEvent -= DelayFuncEventHandler;
 
                 Dispose();
             }
@@ -449,7 +454,6 @@ namespace LitFramework.LitTool
         public void Dispose()
         {
             _callBackFunc = null;
-            _binder = null;
         }
     }
 }

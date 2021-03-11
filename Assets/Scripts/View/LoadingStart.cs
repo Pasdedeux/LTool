@@ -1,5 +1,6 @@
 ﻿using LitFramework;
 using LitFramework.GameFlow;
+using LitFramework.Input;
 using LitFramework.LitTool;
 using LitFramework.Mono;
 using UnityEngine;
@@ -24,6 +25,9 @@ public class LoadingStart : MonoBehaviour
         AudioManager.Instance.IsEnabled = true;
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };
         AudioManager.Instance.Install();
+
+        //操作控制注册
+        InputControlManager.Instance.Install();
         
         //LoadingTaskModel.Instance.AddTask( 6, () =>
         //{

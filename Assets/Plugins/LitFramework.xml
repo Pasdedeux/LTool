@@ -9,6 +9,16 @@
             框架控制参数
             </summary>
         </member>
+        <member name="F:LitFramework.AppConfig.DelayFuncDetectInterver">
+            <summary>
+            延迟调用函数计时检测间隔
+            </summary>
+        </member>
+        <member name="F:LitFramework.AppConfig.UseDelayFuncPreciseDetect">
+            <summary>
+            开启使用逐帧遍历延迟函数调用。默认为false
+            </summary>
+        </member>
         <member name="T:LitFramework.AudioManager">
             <summary>
             音频组建更新
@@ -338,6 +348,172 @@
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
+        <member name="T:LitFramework.LitTool.LitTool">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="P:LitFramework.LitTool.LitTool.MonoBehaviour">
+            <summary>
+            协程全局使用mono
+            </summary>
+        </member>
+        <member name="P:LitFramework.LitTool.LitTool.UsePreciseModeForDelayFunc">
+            <summary>
+            延迟是否使用精准计时。True - update每帧执行。False - 每间隔_delayFuncWaitTimeInterval时间执行一次延迟方法遍历
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.BindingUpdate">
+            <summary>
+            LToolUpdate
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.DelayPlayFunction(System.Single,System.Action,System.Boolean,System.Boolean)">
+            <summary>
+            延迟调用方法
+            </summary>
+            <param name="time">延迟时间</param>
+            <param name="func">延迟时间结束后回调函数。暂不支持主动取消，使用过程中需要注意</param>
+            <param name="useIgnoreTimeScale">是否忽略TimeScale，默认为true</param>
+            <param name="useUpdate">使用update方式或者协程方式，默认是update方式</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.DelayPlayFuncMono(System.Single,System.Action,System.Boolean)">
+            <summary>
+            延迟调用方法（协程方案）
+            </summary>
+            <param name="time">等待时间，秒</param>
+            <param name="func">时间到了回调函数</param>
+            <param name="realTime">是否是真实时间（忽略TimeScale）</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.WaitUntilFunction(System.Func{System.Boolean},System.Action)">
+            <summary>
+            WaitUtil方法
+            </summary>
+            <param name="conditionFunc">通过需要的判定条件</param>
+            <param name="func">通过达成后的回调函数</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.DelayPlayFuncUpdate(System.Single,System.Action,System.Boolean)">
+            <summary>
+            延迟调用方法（Update计时方案）
+            </summary>
+            <param name="time">等待时间，秒</param>
+            <param name="func">时间到了回调函数</param>
+            <param name="realTime">是否是真实时间（忽略TimeScale）</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取指定显示显示格式的时间跨度表达
+            
+            {0:00}:{1:00} 分/秒   累加到分钟数
+            {0:00}:{1:00}:{2:00} 时/分/秒   累加到小时数
+            </summary>
+            <param name="startTime">起点日期</param>
+            <param name="endTime">结束日期</param>
+            <param name="format">返回的日期格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.TimeSpan,System.String)">
+            <summary>
+            获取指定显示显示格式的时间跨度表达
+            </summary>
+            <param name="span"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetUTCTimeStamp">
+            <summary>
+            获取当前UTC时间戳Timestamp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetUTCTimeStamp(System.DateTime)">
+            <summary>
+            获取UTC时间戳Timestamp
+            </summary>
+            <param name="dt">UTC日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetUTCDateTime(System.Int64)">
+            <summary>
+            UTC 时间戳Timestamp转换成UTC日期
+            </summary>
+            <param name="timeStamp">需要转换的时间戳秒</param>
+            <returns>返回的UTC日期</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp">
+            <summary>
+            获取当前时间戳Timestamp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp(System.DateTime)">
+            <summary>
+            获取时间戳Timestamp
+            </summary>
+            <param name="dt">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.GetDateTime(System.Int64)">
+            <summary>
+            时间戳Timestamp转换成日期
+            </summary>
+            <param name="timeStamp">需要转换的时间戳秒</param>
+            <returns>返回的日期</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.World2UIPos(UnityEngine.Vector3,UnityEngine.Camera,UnityEngine.Camera,UnityEngine.RectTransform)">
+            <summary>
+            世界坐标转UI坐标
+            </summary>
+            <param name="targetWorldPos">对象世界坐标</param>
+            <param name="mainCam">主摄像机</param>
+            <param name="uiCam">UI相机</param>
+            <param name="uiCanvas">被放置的UICANVAS节点</param>
+            <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform,UnityEngine.Camera)">
+            <summary>
+            屏幕坐标转3D坐标系的本地坐标
+            </summary>
+            <param name="screenPos">屏幕坐标</param>
+            <param name="parent">3D位置在世界中的父对象</param>
+            <param name="mainCam">所参照的世界主相机</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.WorldToCanvasPos(UnityEngine.Canvas,UnityEngine.Vector3,UnityEngine.Camera)">
+            <summary>
+            世界坐标向Root画布坐标转换
+            </summary>
+            <param name="canvas">画布</param>
+            <param name="world">世界坐标</param>
+            <param name="uiCam">UICam</param>
+            <returns>返回画布上的二维坐标</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.CreateLinkStyle(UnityEngine.UI.Text,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            动态对文本创建下划线。Text组件
+            </summary>
+            <param name="target">Text组件</param>
+            <param name="contents">显示文本内容</param>
+            <param name="style">下滑线类型，默认为'_'</param>
+            <param name="alignByGeometry">是否使用几何对齐</param>
+            <param name="richText">是否支持富文本</param>
+        </member>
+        <member name="T:LitFramework.LitTool.MonoForCorouting">
+            <summary>
+            全局使用的monobehaivor
+            </summary>
+        </member>
+        <member name="T:LitFramework.LitTool.DelayFuncDecoration">
+            <summary>
+            延迟调用函数包装类
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.DelayFuncDecoration.DelayFuncEventHandler(System.Single)">
+            <summary>
+            时间判定回调
+            </summary>
+            <param name="nowTime"></param>
+        </member>
         <member name="T:LitFramework.LitTool.TextureCapture">
             <summary>
             截屏功能
@@ -489,112 +665,6 @@
             <param name="callBack">加载完成后的回调</param>
             <returns></returns>
         </member>
-        <member name="T:LitFramework.LitTool.LitTool">
-            <summary>
-            工具类
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.DelayPlayFunction(System.Single,System.Action,System.Boolean)">
-            <summary>
-            延迟调用方法（协程方案）
-            </summary>
-            <param name="time">等待时间，秒</param>
-            <param name="func">时间到了回调函数</param>
-            <param name="real">是否是真实时间（忽略TimeScale）</param>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.WaitUntilFunction(System.Func{System.Boolean},System.Action)">
-            <summary>
-            自定义WaitUtil方法
-            </summary>
-            <param name="conditionFunc">通过需要的判定条件</param>
-            <param name="func">通过达成后的回调函数</param>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.DateTime,System.DateTime,System.String)">
-            <summary>
-            获取指定显示显示格式的时间跨度表达
-            
-            {0:00}:{1:00} 分/秒   累加到分钟数
-            {0:00}:{1:00}:{2:00} 时/分/秒   累加到小时数
-            </summary>
-            <param name="startTime">起点日期</param>
-            <param name="endTime">结束日期</param>
-            <param name="format">返回的日期格式</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetTimeSpanWithFormat(System.TimeSpan,System.String)">
-            <summary>
-            获取指定显示显示格式的时间跨度表达
-            </summary>
-            <param name="span"></param>
-            <param name="format"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetUTCTimeStamp(System.DateTime)">
-            <summary>
-            获取UTC时间戳Timestamp
-            </summary>
-            <param name="dt">UTC日期</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetUTCDateTime(System.Int64)">
-            <summary>
-            UTC 时间戳Timestamp转换成UTC日期
-            </summary>
-            <param name="timeStamp">需要转换的时间戳秒</param>
-            <returns>返回的UTC日期</returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetTimeStamp(System.DateTime)">
-            <summary>
-            获取时间戳Timestamp
-            </summary>
-            <param name="dt">日期</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.GetDateTime(System.Int64)">
-            <summary>
-            时间戳Timestamp转换成日期
-            </summary>
-            <param name="timeStamp">需要转换的时间戳秒</param>
-            <returns>返回的日期</returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.World2UIPos(UnityEngine.Vector3,UnityEngine.Camera,UnityEngine.Camera,UnityEngine.RectTransform)">
-            <summary>
-            世界坐标转UI坐标
-            </summary>
-            <param name="targetWorldPos">对象世界坐标</param>
-            <param name="mainCam">主摄像机</param>
-            <param name="uiCam">UI相机</param>
-            <param name="uiCanvas">被放置的UICANVAS节点</param>
-            <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform,UnityEngine.Camera)">
-            <summary>
-            屏幕坐标转3D坐标系的本地坐标
-            </summary>
-            <param name="screenPos">屏幕坐标</param>
-            <param name="parent">3D位置在世界中的父对象</param>
-            <param name="mainCam">所参照的世界主相机</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.WorldToCanvasPos(UnityEngine.Canvas,UnityEngine.Vector3,UnityEngine.Camera)">
-            <summary>
-            世界坐标向Root画布坐标转换
-            </summary>
-            <param name="canvas">画布</param>
-            <param name="world">世界坐标</param>
-            <param name="uiCam">UICam</param>
-            <returns>返回画布上的二维坐标</returns>
-        </member>
-        <member name="M:LitFramework.LitTool.LitTool.CreateLinkStyle(UnityEngine.UI.Text,System.String,System.String,System.Boolean,System.Boolean)">
-            <summary>
-            动态对文本创建下划线。Text组件
-            </summary>
-            <param name="target">Text组件</param>
-            <param name="contents">显示文本内容</param>
-            <param name="style">下滑线类型，默认为'_'</param>
-            <param name="alignByGeometry">是否使用几何对齐</param>
-            <param name="richText">是否支持富文本</param>
-        </member>
         <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
             <summary>
             加载图集中的子对象
@@ -660,7 +730,7 @@
             该窗口是否开启中
             </summary>
         </member>
-        <member name="F:LitFramework.Mono.BaseUI._uiType">
+        <member name="P:LitFramework.Mono.BaseUI.CurrentUIType">
             <summary>
             当前窗口类型
             </summary>
@@ -690,6 +760,11 @@
             显示窗体
             </summary>
             <param name="replay">会传bool到 OnEnable/OnDisable</param>
+        </member>
+        <member name="M:LitFramework.Mono.BaseUI.CheckMask">
+            <summary>
+            检测并显示模态窗体背景
+            </summary>
         </member>
         <member name="M:LitFramework.Mono.BaseUI.Close(System.Boolean,System.Boolean)">
             <summary>
@@ -893,6 +968,11 @@
         <member name="M:LitFramework.Mono.UIManager.OnEscapeCallback">
             <summary>
             返回键执行关闭窗口操作
+            </summary>
+        </member>
+        <member name="T:GameDriver">
+            <summary>
+            框架驱动器。提供Update FixedUpdate LateUpdate驱动
             </summary>
         </member>
         <member name="M:Cloneable`1.Clone">

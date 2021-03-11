@@ -46,12 +46,45 @@
         </member>
         <member name="T:LitFrameworkEditor.EditorExtended.EditorMenuExtention">
             <summary>
-            
+            包含Tools菜单下一系列工具包文件
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.XlsxToCSV">
+            <summary>
+            将XLSX文件夹的excel文档转换为csv文件
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.CsvToCs">
+            <summary>
+            将SA文件夹下CSV配置文件由csv格式转换为CS代码文件
             </summary>
         </member>
         <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.CreateCSFile(System.String,System.String,System.String)">
             <summary>
             创建CS文件
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.CleanEmptyDirectories">
+            <summary>
+            删除Assets空白目录下文件
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.DoRemoveEmptyDirectory(System.IO.DirectoryInfo,System.Collections.Generic.List{System.IO.DirectoryInfo})">
+            <summary>
+            移除目录下空白文件夹
+            </summary>
+            <param name="target">指定检测目录</param>
+            <param name="dis">传入用于存储已删除目录记录的列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.HideChoosedObject">
+            <summary>
+            隐藏/显示当前选中的物体，同时将当前场景和预制件设为Dirty
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.LockedChoosedComponet">
+            <summary>
+            锁定当前开启的Inspector窗口面板
             </summary>
         </member>
         <member name="T:LitFrameworkEditor.EditorExtended.SearchRefrenceEditorWindow">

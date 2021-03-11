@@ -135,6 +135,8 @@ namespace LitFramework.Input
             //给内部方法绑定一个计算当前是否是持续性按压状态
             TouchEndCallback += CalculateTimeByPressOver;
             TouchStationaryCallback += CalculateTimeByPressStart;
+
+            GameDriver.Instance.UpdateEventHandler += InputUpdateHandler;
         }
 
         public void Uninstall()
@@ -155,7 +157,7 @@ namespace LitFramework.Input
         }
 
 
-        public void InputUpdateHandler()
+        private void InputUpdateHandler()
         {
             //点击返回
             if ( Input.GetKeyDown( KeyCode.Escape ) )

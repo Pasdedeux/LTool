@@ -32,6 +32,9 @@ namespace LitFramework.LitTool
     /// </summary>
     public class LitTool : SingletonMono<LitTool>
     {
+        //驱动器
+        private static GameDriver _driver;
+
         private static MonoBehaviour _mono;
         /// <summary>
         /// 协程全局使用mono
@@ -50,7 +53,7 @@ namespace LitFramework.LitTool
             }
             private set { _mono = value; }
         }
-
+        
         #region 延迟调用
         private static float _delayFuncTimeCouting = 0f;  //延迟方法当前计时
         private static float _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
@@ -73,13 +76,13 @@ namespace LitFramework.LitTool
         }
 
         //受限时影响的委托
-        public static event Action<float> DelayFuncRealEvent; //忽略TimeScale方式
-        public static event Action<float> DelayFuncEvent;       //受TimeScale影响方式
+        internal static event Action<float> DelayFuncRealEvent; //忽略TimeScale方式
+        internal static event Action<float> DelayFuncEvent;       //受TimeScale影响方式
 
         /// <summary>
         /// LToolUpdate
         /// </summary>
-        public static void BindingUpdate()
+        private static void BindingUpdate()
         {
             if ( !UsePreciseModeForDelayFunc )
             {
@@ -111,6 +114,8 @@ namespace LitFramework.LitTool
         /// <param name="useUpdate">使用update方式或者协程方式，默认是update方式</param>
         public static void DelayPlayFunction( float time, Action func, bool useIgnoreTimeScale = true, bool useUpdate = true )
         {
+            if ( _driver == null ) { _driver = GameDriver.Instance; _driver.UpdateEventHandler += BindingUpdate; }
+
             if ( useUpdate ) DelayPlayFuncUpdate( time, func, useIgnoreTimeScale );
             else DelayPlayFuncMono( time, func, useIgnoreTimeScale );
         }
@@ -125,7 +130,6 @@ namespace LitFramework.LitTool
         /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
         static void DelayPlayFuncMono( float time, Action func, bool realTime )
         {
-            LDebug.Log( "Mono Start" );
             if ( realTime )
             {
                 MonoBehaviour.StartCoroutine( DelayFunctionReal( time, func ) );
@@ -174,7 +178,6 @@ namespace LitFramework.LitTool
         /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
         static void DelayPlayFuncUpdate( float time, Action func, bool realTime )
         {
-            LDebug.Log( "Update Start" );
             if ( realTime )
             {
                 new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );

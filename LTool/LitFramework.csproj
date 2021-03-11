@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
+    <Compile Include="GameFlow\Controller\GameDriver.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />
     <Compile Include="BaseModel\Singleton.cs" />

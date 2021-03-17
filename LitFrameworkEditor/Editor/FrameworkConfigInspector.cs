@@ -35,14 +35,16 @@ public class FrameworkConfigInspector : Editor
         //设置整个界面是以垂直方向来布局
         EditorGUILayout.BeginVertical();
 
-        _foldOut = EditorGUILayout.Foldout( _foldOut, "基于Update的延迟函数参数设置" );
+        _foldOut = EditorGUILayout.Foldout( _foldOut, "基于Update的[延迟函数]参数设置" );
         if ( _foldOut )
         {
-            EditorGUILayout.LabelField( "延迟调用函数计时检测间隔" );
-            _config.DelayFuncDetectInterver = EditorGUILayout.FloatField( "DelayFuncDetectInterver", _config.DelayFuncDetectInterver );
+            if ( !_config.UseDelayFuncPreciseDetect )
+                _config.DelayFuncDetectInterver = EditorGUILayout.FloatField( "计时间隔(值↑ 性能↑)", _config.DelayFuncDetectInterver );
+
+            _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "高计时精确度", _config.UseDelayFuncPreciseDetect );
+            
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField( "开启使用逐帧遍历延迟函数调用。默认为false" );
-            _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "UseDelayFuncPreciseDetect", _config.UseDelayFuncPreciseDetect );
+            
         }
         
         

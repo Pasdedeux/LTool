@@ -56,8 +56,8 @@ namespace LitFramework.LitTool
         
         #region 延迟调用
         private static float _delayFuncTimeCouting = 0f;  //延迟方法当前计时
-        private static float _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
-        private static bool _usePreciseMode = AppConfig.Instance.UseDelayFuncPreciseDetect;
+        private static float _delayFuncWaitTimeMax = FrameworkConfig.Instance.DelayFuncDetectInterver;
+        private static bool _usePreciseMode = FrameworkConfig.Instance.UseDelayFuncPreciseDetect;
         /// <summary>
         /// 延迟是否使用精准计时。True - update每帧执行。False - 每间隔_delayFuncWaitTimeInterval时间执行一次延迟方法遍历
         /// </summary>
@@ -69,7 +69,7 @@ namespace LitFramework.LitTool
                 _usePreciseMode = value;
                 if ( !value )
                 {
-                    _delayFuncWaitTimeMax = AppConfig.Instance.DelayFuncDetectInterver;
+                    _delayFuncWaitTimeMax = FrameworkConfig.Instance.DelayFuncDetectInterver;
                     _delayFuncTimeCouting = 0f;
                 }
             }

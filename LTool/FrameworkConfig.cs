@@ -21,21 +21,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace LitFramework
 {
     /// <summary>
     /// 框架控制参数
     /// </summary>
-    public partial class AppConfig:SingletonMono<AppConfig>
+    public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
         /// <summary>
         /// 延迟调用函数计时检测间隔
         /// </summary>
+        [Header( "延迟调用函数计时检测间隔" )]
         public float DelayFuncDetectInterver = 0.1f;
         /// <summary>
         /// 开启使用逐帧遍历延迟函数调用。默认为false
         /// </summary>
+        [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
         public bool UseDelayFuncPreciseDetect = false;
+
+        
     }
 }

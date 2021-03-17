@@ -21,6 +21,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// 引导动画配置
+/// </summary>
 public partial class GuideConfig:SingletonMono<GuideConfig>
 {
     [Header( "高亮区域缩放的动画时间" )]

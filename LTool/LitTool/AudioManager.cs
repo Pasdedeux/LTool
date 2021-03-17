@@ -196,7 +196,10 @@ namespace LitFramework
         /// 修改：
         /// 用栈管理多个音效组件，处理同时存在的多个持续存在的声音效果
         /// </summary>
-        /// <param name="name">名称</param>
+        /// <param name="name">音频文件显示名称</param>
+        /// <param name="loop">是否循环播放</param>
+        /// <param name="isParallel">是否与其它音效并行播放</param>
+        /// <param name="volumeRate">此音频播放音量，0-1</param>
         public void PlaySE( string name , bool loop = false , bool isParallel = true , float volumeRate = 1f )
         {
             if ( string.IsNullOrEmpty( name ) || !IsEnabled ) 
@@ -343,7 +346,10 @@ namespace LitFramework
         }
 
 
-        public string currentMusicName = "";
+        /// <summary>
+        /// 当前播放的音乐名称
+        /// </summary>
+        public string CurrentMusicName { get; set; } = "";
         /// <summary>
         /// 播放音乐
         /// </summary>
@@ -351,10 +357,10 @@ namespace LitFramework
         /// <param name="loop"></param>
         public void PlayBGM( string name , bool loop = true )
         {
-            if( string.IsNullOrEmpty( name ) || currentMusicName == name || !IsEnabled )
+            if( string.IsNullOrEmpty( name ) || CurrentMusicName == name || !IsEnabled )
                 return;
 
-            currentMusicName = name;
+            CurrentMusicName = name;
             _audioBGM.clip = GetBGM( name );
             _audioBGM.Play();
             _audioBGM.volume = VolumeBGM;

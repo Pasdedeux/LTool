@@ -39,8 +39,6 @@ namespace LitFramework.Device
 
         void Start()
         {
-            Application.targetFrameRate = 60;
-
             timePassed = 0.0f;
         }
 

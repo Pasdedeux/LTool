@@ -35,6 +35,9 @@ public class FrameworkConfigInspector : Editor
         //设置整个界面是以垂直方向来布局
         EditorGUILayout.BeginVertical();
 
+        _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
+        _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
+
         _foldOut = EditorGUILayout.Foldout( _foldOut, "基于Update的[延迟函数]参数设置" );
         if ( _foldOut )
         {
@@ -44,9 +47,7 @@ public class FrameworkConfigInspector : Editor
             _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "高计时精确度", _config.UseDelayFuncPreciseDetect );
             
             EditorGUILayout.Space();
-            
         }
-        
         
         EditorGUILayout.EndVertical();
     }

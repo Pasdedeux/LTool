@@ -337,7 +337,7 @@ namespace LitFrameworkEditor.EditorExtended
         /// <summary>
         /// 隐藏/显示当前选中的物体，同时将当前场景和预制件设为Dirty
         /// </summary>
-        [MenuItem( "Tools/快捷操作/显隐选中的物体 &q" )]
+        [MenuItem( "Tools/Shotcut/显隐选中的物体 &q" )]
         public static void HideChoosedObject()
         {
             var choosed = Selection.gameObjects;
@@ -358,7 +358,7 @@ namespace LitFrameworkEditor.EditorExtended
         /// <summary>
         /// 锁定当前开启的Inspector窗口面板
         /// </summary>
-        [MenuItem( "Tools/快捷操作/锁定面板 &w" )]
+        [MenuItem( "Tools/Shotcut/锁定面板 &w" )]
         public static void LockedChoosedComponet()
         {
             ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;

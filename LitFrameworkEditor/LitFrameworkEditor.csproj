@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editor\BitmapFontExporter.cs" />
     <Compile Include="Editor\FrameworkConfigInspector.cs" />
     <Compile Include="Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
     <Compile Include="Extention_Editor\CSVTool\CSVParser.cs" />

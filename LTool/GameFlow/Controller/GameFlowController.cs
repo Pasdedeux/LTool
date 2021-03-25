@@ -163,12 +163,11 @@ namespace LitFramework.GameFlow
                     {
                         _iUIManger.ShowFade( fadingTime, () =>
                         {
-                            LoadingTaskModel.Instance.ClearTask();
                             _asyncOperation.allowSceneActivation = true;
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );
-                            _iUIManger.HideFade( fadingTime );
+                            _iUIManger.HideFade( fadingTime, () => { LoadingTaskModel.Instance.ClearTask(); } );
                         } );
                         return true;
                     }, true );
@@ -290,12 +289,11 @@ namespace LitFramework.GameFlow
                     {
                         _iUIManger.ShowFade( fadingTime, () =>
                         {
-                            LoadingTaskModel.Instance.ClearTask();
                             _asyncOperation.allowSceneActivation = true;
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );
-                            _iUIManger.HideFade( fadingTime );
+                            _iUIManger.HideFade( fadingTime ,()=> { LoadingTaskModel.Instance.ClearTask(); } );
                         } );
                         return true;
                     }, true );

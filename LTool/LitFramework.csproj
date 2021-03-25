@@ -108,6 +108,7 @@
   <ItemGroup>
     <Compile Include="FrameworkConfig.cs" />
     <Compile Include="GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />

@@ -37,6 +37,9 @@ using UnityEngine.Networking;
 
 namespace LitFramework.LitTool
 {
+    /// <summary>
+    /// 待完善-基于resource.load的图集加载、assetbundle、文件加载等
+    /// </summary>
     public class ResourceManager : Singleton<ResourceManager>, IManager
     {
         public event Action<string> LoadErrorEventHandler;

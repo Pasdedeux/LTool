@@ -1019,6 +1019,19 @@
             框架驱动器。提供Update FixedUpdate LateUpdate驱动
             </summary>
         </member>
+        <member name="T:LitFrameworkFacade">
+            <summary>
+            总启动器。
+            包含各个模块的初始化统一初始化
+            </summary>
+        </member>
+        <member name="M:LitFrameworkFacade.StartUp(System.Action,System.Boolean)">
+            <summary>
+            框架启动
+            </summary>
+            <param name="startUpExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
+            <param name="debugEnable">框架启动时是否开启日志</param>
+        </member>
         <member name="M:Cloneable`1.Clone">
             <summary>
             基础覆写方法

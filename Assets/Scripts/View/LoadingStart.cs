@@ -62,4 +62,6 @@ public class LoadingStart : MonoBehaviour
 
         //UIManager.Instance.Show( DataModel.UI.UI_LOADING );
     }
+
+    
 }

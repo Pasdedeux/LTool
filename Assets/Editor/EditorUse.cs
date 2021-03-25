@@ -17,6 +17,9 @@ public class EditorUse
     //初始化类时,注册事件处理函数
     static EditorUse()
     {
+        #region Build/Build UI功能
+        //放到这里是因为Dotween效果无法包含在库中
+
         //UI创建窗口初始化
         RegisterUIWindow.CreateAnimationComponentEvent = ( e, f, g ) =>
         {
@@ -41,7 +44,8 @@ public class EditorUse
             animTarget.endValueFloat = 0f;
             animTarget.optionalBool0 = true;
         };
-        
+        #endregion
+
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
 
@@ -50,12 +54,12 @@ public class EditorUse
         LDebug.LogWarning( string.Format( "state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying ) );
     }
 
-    // Creates a new menu item 'Examples > Create Prefab' in the main menu.
-    [MenuItem( "Tools/原型测试按钮" )]
-    static void CreatePrefab()
-    {
+    //// Creates a new menu item 'Examples > Create Prefab' in the main menu.
+    //[MenuItem( "Tools/原型测试按钮" )]
+    //static void CreatePrefab()
+    //{
         
-    }
+    //}
 
     //// Disable the menu item if no selection is in place.
     //[MenuItem( "Examples/Create Prefab", true )]

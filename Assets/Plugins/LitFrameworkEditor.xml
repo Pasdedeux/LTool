@@ -4,6 +4,21 @@
         <name>LitFrameworkEditor</name>
     </assembly>
     <members>
+        <member name="F:BitmapFontExporter.fontFile">
+            <summary>
+            BMFont字体文件
+            </summary>
+        </member>
+        <member name="F:BitmapFontExporter.textureFile">
+            <summary>
+            BMFont字体贴图
+            </summary>
+        </member>
+        <member name="T:FrameworkConfigInspector">
+            <summary>
+            FrameworkConfig
+            </summary>
+        </member>
         <member name="T:BuildSceneSettingEditor">
             <summary>
             构建场景编辑器

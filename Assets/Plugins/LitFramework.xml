@@ -4,325 +4,51 @@
         <name>LitFramework</name>
     </assembly>
     <members>
-        <member name="T:LitFramework.AppConfig">
+        <member name="T:LitFramework.FrameworkConfig">
             <summary>
             框架控制参数
             </summary>
         </member>
-        <member name="F:LitFramework.AppConfig.DelayFuncDetectInterver">
+        <member name="F:LitFramework.FrameworkConfig.TargetFrameRate">
+            <summary>
+            设置目标帧率
+            </summary>
+        </member>
+        <member name="F:LitFramework.FrameworkConfig.vSyncCount">
+            <summary>
+            开启垂直同步。默认为0-不开启，1-Every VBlank（每个VBlank计算一帧）,2-Every Second VBlank（每两个VBlank计算一帧）
+            </summary>
+        </member>
+        <member name="F:LitFramework.FrameworkConfig.DelayFuncDetectInterver">
             <summary>
             延迟调用函数计时检测间隔
             </summary>
         </member>
-        <member name="F:LitFramework.AppConfig.UseDelayFuncPreciseDetect">
+        <member name="F:LitFramework.FrameworkConfig.UseDelayFuncPreciseDetect">
             <summary>
             开启使用逐帧遍历延迟函数调用。默认为false
             </summary>
         </member>
-        <member name="T:LitFramework.AudioManager">
+        <member name="T:LitFramework.LitTool.AnimBundle">
             <summary>
-            音频组建更新
-            
-            创建时需要外传加载方法
+            UI/场景动画包
             </summary>
         </member>
-        <member name="P:LitFramework.AudioManager.VolumeSE">
+        <member name="M:LitFramework.LitTool.AnimBundle.IGenerateTargetUI(UnityEngine.Vector3,UnityEngine.Vector3,System.Int32,System.Single,System.Single,System.Single,System.String,UnityEngine.Transform,System.Action,System.Single)">
             <summary>
-            音效音量
+            在目标位置炸开多个UI元素，等待固定时间后，飞向指定区域
             </summary>
-        </member>
-        <member name="P:LitFramework.AudioManager.VolumeBGM">
-            <summary>
-            音乐音量
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.Install">
-            <summary>
-            启动音频模块
-            </summary>
-            <param name="loadFunction">提供音频加载方法</param>
-        </member>
-        <member name="M:LitFramework.AudioManager.Uninstall">
-            <summary>
-            卸载模块
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.GetBGM(System.String)">
-            <summary>
-            获取音乐
-            </summary>
-            <param name="name"></param>
+            <param name="from">起点</param>
+            <param name="to">终点</param>
+            <param name="num">数量</param>
+            <param name="range">范围</param>
+            <param name="explodeTime">炸开时间</param>
+            <param name="flyTime">飞到终点所需时间</param>
+            <param name="spwanObjName">预制名称</param>
+            <param name="parnet">设置的父节点</param>
+            <param name="oneNumFun">每一颗飞到终点时执行的事情</param>
+            <param name="secondsTime">炸开后等多久开始飞</param>
             <returns></returns>
-        </member>
-        <member name="M:LitFramework.AudioManager.GetSE(System.String)">
-            <summary>
-            获取音效
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.AudioManager.PlaySE(System.String,System.Boolean,System.Boolean,System.Single)">
-            <summary>
-            播放音效
-            修改：
-            用栈管理多个音效组件，处理同时存在的多个持续存在的声音效果
-            </summary>
-            <param name="name">名称</param>
-        </member>
-        <member name="M:LitFramework.AudioManager.StopSE(System.String)">
-            <summary>
-            停止持续播放的音效
-            只针对loop声效有效
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="M:LitFramework.AudioManager.StopAllSE">
-            <summary>
-            关闭全部音效
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.PlayBGM(System.String,System.Boolean)">
-            <summary>
-            播放音乐
-            </summary>
-            <param name="name"></param>
-            <param name="loop"></param>
-        </member>
-        <member name="M:LitFramework.AudioManager.PauseBGM">
-            <summary>
-            暂停音乐
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.StopBGM">
-            <summary>
-            停止音乐
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.ResumeBGM">
-            <summary>
-            继续播放音乐
-            </summary>
-        </member>
-        <member name="M:LitFramework.AudioManager.OnBGMValumeChange(System.Single)">
-            <summary>
-            侦听音量改变
-            </summary>
-            <param name="vol"></param>
-        </member>
-        <member name="M:LitFramework.AudioManager.OnSEValumeChange(System.Single)">
-            <summary>
-            侦听音乐改变
-            </summary>
-            <param name="vol"></param>
-        </member>
-        <member name="M:LitFramework.AudioManager.PlaySoloSE(System.String)">
-            <summary>
-            播放独立音效，单次且不可覆盖播放
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="T:LitFramework.Singleton`1">
-            <summary>
-            非组件单例基类
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="F:LitFramework.Singleton`1._instance">
-            <summary>
-            volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。
-            </summary>
-        </member>
-        <member name="M:LitFramework.Singleton`1.DoDestroy">
-            <summary>
-            移除
-            </summary>
-        </member>
-        <member name="T:LitFramework.SingletonMono`1">
-            <summary>
-            组件单例基类
-            </summary>
-            <typeparam name="T">继承子类类名</typeparam>
-            
-        </member>
-        <member name="M:LitFramework.SingletonMono`1.DoDestroy">
-            <summary>
-            移除
-            </summary>
-        </member>
-        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
-            <summary>
-            延迟毫秒,震动时间,延迟毫秒,震动时间
-            </summary>
-            <param name="pattern">延迟毫秒,震动时间,延迟毫秒,震动时间</param>
-            <param name="repeat">-1不循环2=无限循环</param>
-        </member>
-        <member name="T:LitFramework.GameFlow.GameFlowController">
-            <summary>
-            游戏主流程控制器，用于场景加载、跳转等命令合集
-            </summary>
-        </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            加载场景，这里使用的async加载方式
-            </summary>
-            <param name="sceneID"></param>
-            <param name="callBackBeforeChanging"></param>
-            <param name="callBackAfterChanging"></param>
-            <param name="loadingUIPath"></param>
-            <param name="needFading"></param>
-            <param name="fadingTime"></param>
-            <param name="isHot"></param>
-            <param name="isAdditive"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            加载场景，这里使用的async加载方式
-            </summary>
-            <param name="sceneID"></param>
-            <param name="callBackBeforeChanging"></param>
-            <param name="callBackAfterChanging"></param>
-            <param name="loadingUIPath"></param>
-            <param name="needFading"></param>
-            <param name="fadingTime"></param>
-            <param name="isHot"></param>
-            <param name="isAdditive"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
-            <summary>
-            异步加载场景
-            </summary>
-            <param name="sceneID"></param>
-            <param name="isAdditive"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.String,System.Boolean)">
-            <summary>
-            异步加载场景
-            </summary>
-            <param name="sceneID"></param>
-            <param name="isAdditive"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.Int32,System.Boolean)">
-            <summary>
-            同步加载场景
-            </summary>
-            <param name="sceneID"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.String,System.Boolean)">
-            <summary>
-            同步加载场景
-            </summary>
-            <param name="sceneID"></param>
-        </member>
-        <member name="T:LitFramework.GameFlow.LoadingTaskModel">
-            <summary>
-            Loading 加载任务数据类，用于承接Loading进度条的中间加载任务
-            执行时机由UI界面驱动
-            </summary>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.AddTask(System.Int32,System.Func{System.Boolean},System.Boolean)">
-            <summary>
-             在指定加载进度位置执行代码 
-             
-            【不要手动添加0-5/100的回调函数，0-5默认为场景加载，100默认为加载进度条结束时的回调】
-            </summary>
-            <param name="framePercent">指定的百分比</param>
-            <param name="funcCallBack">需要执行的回调函数</param>
-            <param name="forceReplace">忽略限制，按参数信息赋值</param>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.TryGetTask(System.Int32)">
-            <summary>
-            尝试查询并取出任务
-            </summary>
-            <param name="framePercent"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.ClearTask">
-            <summary>
-            清楚本次UI登记的任务
-            </summary>
-        </member>
-        <member name="E:LitFramework.Input.InputControlManager.EscapeCallBack">
-            <summary>
-            点击返回键
-            </summary>
-        </member>
-        <member name="F:LitFramework.Input.InputControlManager.IsTouchedContinuePressCallBack">
-            <summary>
-            是否持续点击触发
-            </summary>
-        </member>
-        <member name="F:LitFramework.Input.InputControlManager.IsTouchedOnUICallBack">
-            <summary>
-            是否点击到UI反馈
-            </summary>
-        </member>
-        <member name="P:LitFramework.Input.InputControlManager.CurrentIsOnUI">
-            <summary>
-            当前是否在点击UI
-            </summary>
-        </member>
-        <member name="P:LitFramework.Input.InputControlManager.IsEnable">
-            <summary>
-            鼠标点击操作功能是否开启
-            </summary>
-        </member>
-        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
-            <summary>
-            按住屏幕开始计时
-            </summary>
-        </member>
-        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
-            <summary>
-            离开屏幕计时
-            </summary>
-        </member>
-        <member name="M:LitFramework.Input.InputControlManager.EscapeBtnClick">
-            <summary>
-            默认-按顺序关闭UI
-            </summary>
-            <param name="extendedFunc">采用自定义函数执行返回键功能</param>
-        </member>
-        <member name="M:LitFramework.Input.InputControlManager.SetRotateClockwise(System.Single)">
-            <summary>
-            设置触控方向的【顺时针】旋转角度
-            </summary>
-            <param name="degree"></param>
-        </member>
-        <member name="M:LitFramework.Input.InputControlManager.GetTouchMoveDirection(LitFramework.Input.TouchDirection)">
-            <summary>
-            获取一次滑动行为
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:LitFramework.LitPool.SpawnManager">
-            <summary>
-            对外控制用脚本
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Install">
-            <summary>
-            初始化并获取对象池
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
-            <summary>
-            卸载模块
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
-            <summary>
-            从对象池中获取一个对象
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
-            <summary>
-            回收入对象池
-            </summary>
-            <param name="item"></param>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
             <summary>
@@ -665,6 +391,11 @@
             <param name="callBack">加载完成后的回调</param>
             <returns></returns>
         </member>
+        <member name="T:LitFramework.LitTool.ResourceManager">
+            <summary>
+            待完善-基于resource.load的图集加载、assetbundle、文件加载等
+            </summary>
+        </member>
         <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
             <summary>
             加载图集中的子对象
@@ -699,6 +430,319 @@
             <summary>
             对SpriteRender纹理进行UI摄像机正交边界尺寸的调整
             </summary>
+        </member>
+        <member name="T:LitFramework.AudioManager">
+            <summary>
+            音频组建更新
+            
+            创建时需要外传加载方法
+            </summary>
+        </member>
+        <member name="P:LitFramework.AudioManager.VolumeSE">
+            <summary>
+            音效音量
+            </summary>
+        </member>
+        <member name="P:LitFramework.AudioManager.VolumeBGM">
+            <summary>
+            音乐音量
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.Install">
+            <summary>
+            启动音频模块
+            </summary>
+            <param name="loadFunction">提供音频加载方法</param>
+        </member>
+        <member name="M:LitFramework.AudioManager.Uninstall">
+            <summary>
+            卸载模块
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.GetBGM(System.String)">
+            <summary>
+            获取音乐
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.AudioManager.GetSE(System.String)">
+            <summary>
+            获取音效
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlaySE(System.String,System.Boolean,System.Boolean,System.Single)">
+            <summary>
+            播放音效
+            修改：
+            用栈管理多个音效组件，处理同时存在的多个持续存在的声音效果
+            </summary>
+            <param name="name">音频文件显示名称</param>
+            <param name="loop">是否循环播放</param>
+            <param name="isParallel">是否与其它音效并行播放</param>
+            <param name="volumeRate">此音频播放音量，0-1</param>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopSE(System.String)">
+            <summary>
+            停止持续播放的音效
+            只针对loop声效有效
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopAllSE">
+            <summary>
+            关闭全部音效
+            </summary>
+        </member>
+        <member name="P:LitFramework.AudioManager.CurrentMusicName">
+            <summary>
+            当前播放的音乐名称
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlayBGM(System.String,System.Boolean)">
+            <summary>
+            播放音乐
+            </summary>
+            <param name="name"></param>
+            <param name="loop"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.PauseBGM">
+            <summary>
+            暂停音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.StopBGM">
+            <summary>
+            停止音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.ResumeBGM">
+            <summary>
+            继续播放音乐
+            </summary>
+        </member>
+        <member name="M:LitFramework.AudioManager.OnBGMValumeChange(System.Single)">
+            <summary>
+            侦听音量改变
+            </summary>
+            <param name="vol"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.OnSEValumeChange(System.Single)">
+            <summary>
+            侦听音乐改变
+            </summary>
+            <param name="vol"></param>
+        </member>
+        <member name="M:LitFramework.AudioManager.PlaySoloSE(System.String)">
+            <summary>
+            播放独立音效，单次且不可覆盖播放
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:LitFramework.Singleton`1">
+            <summary>
+            非组件单例基类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:LitFramework.Singleton`1._instance">
+            <summary>
+            volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。
+            </summary>
+        </member>
+        <member name="M:LitFramework.Singleton`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="T:LitFramework.SingletonMono`1">
+            <summary>
+            组件单例基类
+            </summary>
+            <typeparam name="T">继承子类类名</typeparam>
+            
+        </member>
+        <member name="M:LitFramework.SingletonMono`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
+            <summary>
+            延迟毫秒,震动时间,延迟毫秒,震动时间
+            </summary>
+            <param name="pattern">延迟毫秒,震动时间,延迟毫秒,震动时间</param>
+            <param name="repeat">-1不循环2=无限循环</param>
+        </member>
+        <member name="T:LitFramework.GameFlow.GameFlowController">
+            <summary>
+            游戏主流程控制器，用于场景加载、跳转等命令合集
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.String,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.Int32,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.String,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="T:LitFramework.GameFlow.LoadingTaskModel">
+            <summary>
+            Loading 加载任务数据类，用于承接Loading进度条的中间加载任务
+            执行时机由UI界面驱动
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.AddTask(System.Int32,System.Func{System.Boolean},System.Boolean)">
+            <summary>
+             在指定加载进度位置执行代码 
+             
+            【不要手动添加0-5/100的回调函数，0-5默认为场景加载，100默认为加载进度条结束时的回调】
+            </summary>
+            <param name="framePercent">指定的百分比</param>
+            <param name="funcCallBack">需要执行的回调函数</param>
+            <param name="forceReplace">忽略限制，按参数信息赋值</param>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.TryGetTask(System.Int32)">
+            <summary>
+            尝试查询并取出任务
+            </summary>
+            <param name="framePercent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.ClearTask">
+            <summary>
+            清楚本次UI登记的任务
+            </summary>
+        </member>
+        <member name="E:LitFramework.Input.InputControlManager.EscapeCallBack">
+            <summary>
+            点击返回键
+            </summary>
+        </member>
+        <member name="F:LitFramework.Input.InputControlManager.IsTouchedContinuePressCallBack">
+            <summary>
+            是否持续点击触发
+            </summary>
+        </member>
+        <member name="F:LitFramework.Input.InputControlManager.IsTouchedOnUICallBack">
+            <summary>
+            是否点击到UI反馈
+            </summary>
+        </member>
+        <member name="P:LitFramework.Input.InputControlManager.CurrentIsOnUI">
+            <summary>
+            当前是否在点击UI
+            </summary>
+        </member>
+        <member name="P:LitFramework.Input.InputControlManager.IsEnable">
+            <summary>
+            鼠标点击操作功能是否开启
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
+            <summary>
+            按住屏幕开始计时
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
+            <summary>
+            离开屏幕计时
+            </summary>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.EscapeBtnClick">
+            <summary>
+            默认-按顺序关闭UI
+            </summary>
+            <param name="extendedFunc">采用自定义函数执行返回键功能</param>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.SetRotateClockwise(System.Single)">
+            <summary>
+            设置触控方向的【顺时针】旋转角度
+            </summary>
+            <param name="degree"></param>
+        </member>
+        <member name="M:LitFramework.Input.InputControlManager.GetTouchMoveDirection(LitFramework.Input.TouchDirection)">
+            <summary>
+            获取一次滑动行为
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LitFramework.LitPool.SpawnManager">
+            <summary>
+            对外控制用脚本
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Install">
+            <summary>
+            初始化并获取对象池
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
+            <summary>
+            卸载模块
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
+            <summary>
+            从对象池中获取一个对象
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
+            <summary>
+            回收入对象池
+            </summary>
+            <param name="item"></param>
         </member>
         <member name="T:LitFramework.UI.Base.UIModelBehavior">
             <summary>
@@ -1061,6 +1105,11 @@
         <member name="M:GuideShaderController.OnTouchTargetGuideDone">
             <summary>
             3D物体触碰回调
+            </summary>
+        </member>
+        <member name="T:GuideConfig">
+            <summary>
+            引导动画配置
             </summary>
         </member>
         <member name="T:GuideDataModel">
@@ -1898,6 +1947,63 @@
             <param name="key"></param>
             <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:MsgManager">
+            <summary>
+            事件管理器
+            
+            id内部采用ushort类型，参数采用枚举类型
+            </summary>
+        </member>
+        <member name="M:MsgManager.Register``1(``0,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em> </typeparam>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister``1(``0,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast``1(``0,MsgArgs)">
+            <summary>
+            广播事件
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="M:MsgManager.Register(System.UInt16,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister(System.UInt16,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast(System.UInt16,MsgArgs)">
+            <summary>
+            广播事件
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="T:MsgArgs">
+            <summary>
+            消息参数体。
+            </summary>
         </member>
         <member name="P:ADManager.UseBackgroundAD">
             <summary>

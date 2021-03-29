@@ -136,6 +136,7 @@
     <Compile Include="LitTool\LitTool.cs" />
     <Compile Include="MsgSystem\MsgManager.cs" />
     <Compile Include="ThirdParty\AD\ADManager.cs" />
+    <Compile Include="TimeRecord\ZeroTimeRecord.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />

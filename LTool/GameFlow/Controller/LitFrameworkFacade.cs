@@ -23,6 +23,7 @@ using LitFramework.Input;
 using LitFramework.LitPool;
 using LitFramework.LitTool;
 using LitFramework.Mono;
+using LitFramework.TimeRecord;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,9 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
 
         //操作控制器，默认Enbale=true
         InputControlManager.Instance.Install();
+
+        //零点计时器初始化
+        ZeroTimeRecord.Instance.Install();
 
         //对象池开启
         SpawnManager.Instance.Install();

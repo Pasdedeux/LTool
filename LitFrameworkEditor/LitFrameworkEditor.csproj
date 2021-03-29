@@ -88,6 +88,7 @@
     <Compile Include="Extention_Editor\BaseTool\FolderCopy.cs" />
     <Compile Include="Extention_Editor\MenuExtention\RegisterAudio.cs" />
     <Compile Include="Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
+    <Compile Include="Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
     <Compile Include="GlobalEditorSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

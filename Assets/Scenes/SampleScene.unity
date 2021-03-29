@@ -369,6 +369,7 @@ MonoBehaviour:
   vSyncCount: 0
   DelayFuncDetectInterver: 0.1
   UseDelayFuncPreciseDetect: 0
+  UGUIOpt: 0
 --- !u!1 &697112009
 GameObject:
   m_ObjectHideFlags: 0

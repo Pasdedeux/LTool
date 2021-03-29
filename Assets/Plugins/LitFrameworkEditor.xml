@@ -19,20 +19,67 @@
             FrameworkConfig
             </summary>
         </member>
-        <member name="T:BuildSceneSettingEditor">
+        <member name="T:LitFrameworkEditor.Editor.CustomComponentOptimizing">
             <summary>
-            构建场景编辑器
+            UGUI 具体修改策略
             </summary>
         </member>
-        <member name="M:BuildSceneSettingEditor.AddAllScenesToBuildSettings">
+        <member name="F:LitFrameworkEditor.Editor.CustomComponentOptimizing.imageModFunc">
             <summary>
-            构建场景设置为所有
+            <para>Image 对象创建时回调处理委托，可扩展或重写</para>
+            <para>默认修改属性为：image.raycastTarget = false</para>
+            <para>扩展方式为：CustomComponentOptimizing.imageModFunc += ( e ) => { ( e as Image ).raycastTarget = true; };</para>
             </summary>
         </member>
-        <member name="M:BuildSceneSettingEditor.DeleteScenesFormBuildSettings">
+        <member name="F:LitFrameworkEditor.Editor.CustomComponentOptimizing.txtModFunc">
             <summary>
-            删除所有的构建场景
+            <para>Text 对象创建时回调处理委托，可扩展或重写</para>
+            <para>默认修改属性为： 
+            Text.supportRichText = false;
+            Text.raycastTarget = false;</para>
+            <para>扩展方式为：CustomComponentOptimizing.txtModFunc += ( e ) => { ( e as Text ).supportRichText = true; };</para>
             </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.CustomComponentOptimizing.ModifyImage(UnityEngine.UI.Image)">
+            <summary>
+            修改UGUI Image组件设置
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.CustomComponentOptimizing.ModifyText(UnityEngine.UI.Text)">
+            <summary>
+            修改UGUI Text组件设置
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:LitFrameworkEditor.Editor.UGUIOptimize">
+            <summary>
+            UGUI 指定修改UGUI路径
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimize.CreatText(UnityEditor.MenuCommand)">
+            <summary>
+            UGUI-Text
+            </summary>
+            <param name="menuCommand"></param>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimize.CreatImage(UnityEditor.MenuCommand)">
+            <summary>
+            UGUI-Image
+            </summary>
+            <param name="menuCommand"></param>
+        </member>
+        <member name="T:LitFrameworkEditor.Editor.UGUIOptTool">
+            <summary>
+            UGUI工具基本工具库
+            </summary>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptTool.CreatCustomUGUI``1">
+            <summary>
+            自定义生成对应组件
+            </summary>
+            <typeparam name="T">Image/Text等组件</typeparam>
+            <returns></returns>
         </member>
         <member name="T:LitFrameworkEditor.EditorExtended.CSVParser">
             <summary>
@@ -123,6 +170,11 @@
             UI/Sound路径注册类
             </summary>
         </member>
+        <member name="T:LitFrameworkEditor.Extention_Editor.MenuExtention.UGUIRaycastCheck">
+            <summary>
+            RayCast线框显示
+            </summary>
+        </member>
         <member name="T:LitFrameworkEditor.Properties.Resources">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。
@@ -137,6 +189,21 @@
             <summary>
               重写当前线程的 CurrentUICulture 属性
               重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="T:BuildSceneSettingEditor">
+            <summary>
+            构建场景编辑器
+            </summary>
+        </member>
+        <member name="M:BuildSceneSettingEditor.AddAllScenesToBuildSettings">
+            <summary>
+            构建场景设置为所有
+            </summary>
+        </member>
+        <member name="M:BuildSceneSettingEditor.DeleteScenesFormBuildSettings">
+            <summary>
+            删除所有的构建场景
             </summary>
         </member>
         <member name="T:FolderCopy">

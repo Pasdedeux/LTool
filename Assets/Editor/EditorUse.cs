@@ -1,13 +1,10 @@
 ﻿using DG.Tweening;
-using LitFramework.LitTool;
-using LitFrameworkEditor.EditorExtended;
-using LitJson;
+using LitFrameworkEditor.Editor;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 [InitializeOnLoadAttribute]
@@ -54,12 +51,25 @@ public class EditorUse
         LDebug.LogWarning( string.Format( "state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying ) );
     }
 
-    //// Creates a new menu item 'Examples > Create Prefab' in the main menu.
-    //[MenuItem( "Tools/原型测试按钮" )]
-    //static void CreatePrefab()
-    //{
-        
-    //}
+
+    /// <summary>
+    /// UGUI 指定修改UGUI路径
+    /// </summary>
+    [ExecuteInEditMode]
+    public static class UGUICustom
+    {
+        [MenuItem( "GameObject/UI/Text" )]
+        private static void CreatText( MenuCommand menuCommand )
+        {
+            UGUIOptimize.CreatText( menuCommand );
+        }
+
+        [MenuItem( "GameObject/UI/Image" )]
+        private static void CreatImage( MenuCommand menuCommand )
+        {
+            UGUIOptimize.CreatImage( menuCommand );
+        }
+    }
 
     //// Disable the menu item if no selection is in place.
     //[MenuItem( "Examples/Create Prefab", true )]
@@ -67,6 +77,7 @@ public class EditorUse
     //{
     //    return Selection.activeGameObject != null && !EditorUtility.IsPersistent( Selection.activeGameObject );
     //}
+
 }
 
 public class AssetsInEditorManager : AssetPostprocessor
@@ -78,7 +89,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <param name="deletedAssets"></param>
     /// <param name="movedAssets"></param>
     /// <param name="movedFromAssetPaths"></param>
-    public static void OnPostprocessAllAssets( 
+    public static void OnPostprocessAllAssets(
         string[] importedAssets,
         string[] deletedAssets,
         string[] movedAssets,
@@ -113,7 +124,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     {
         LDebug.Log( "====>OnPostprocessModel<====" );
     }
-    
+
     /// <summary>
     /// 将此函数添加到一个子类中，以在导入模型（.fbx、.mb 文件等）中的动画之前获取通知。
     /// </summary>
@@ -149,15 +160,30 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 当自定义属性的动画曲线已完成导入时调用此函数。
     /// </summary>
-    public void OnPostprocessGameObjectWithAnimatedUserProperties()
+    public void OnPostprocessGameObjectWithAnimatedUserProperties( GameObject go, EditorCurveBinding[] bindings )
     {
+        //// add a particle emitter to every game object that has a custom property called "particleAmount"
+        //// then map the animation to the emission rate
+        //for ( int i = 0; i < bindings.Length; i++ )
+        //{
+        //    if ( bindings[ i ].propertyName == "particlesAmount" )
+        //    {
+        //        ParticleSystem emitter = go.AddComponent<ParticleSystem>();
+        //        var emission = emitter.emission;
+        //        emission.rateOverTimeMultiplier = 0;
+
+        //        bindings[ i ].propertyName = "EmissionModule.rateOverTime.scalar";
+        //        bindings[ i ].path = AnimationUtility.CalculateTransformPath( go.transform, go.transform.root );
+        //        bindings[ i ].type = typeof( ParticleSystem );
+        //    }
+        //}
         LDebug.Log( "====>OnPostprocessGameObjectWithAnimatedUserProperties<====" );
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在材质资源完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessMaterial()
+    public void OnPostprocessMaterial( Material material )
     {
         LDebug.Log( "====>OnPostprocessMaterial<====" );
     }
@@ -165,23 +191,51 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在精灵的纹理完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessSprites()
+    void OnPostprocessSprites( Texture2D texture, Sprite[] sprites )
     {
-        LDebug.Log( "====>OnPostprocessSprites<====" );
+        LDebug.Log( "====>Sprites: " + sprites.Length + "<====" );
     }
-    
+
+
     /// <summary>
     /// 将此函数添加到一个子类中，以在纹理导入器运行之前获取通知。
     /// </summary>
     public void OnPreprocessTexture()
     {
-        LDebug.Log( "====>OnPreprocessTexture<====" );
+        TextureImporter textureImporter = ( TextureImporter )assetImporter;
+        Assert.IsNotNull( textureImporter, "未检测到有效Texture资源" );
+
+        switch ( textureImporter.textureType )
+        {
+            case TextureImporterType.Default:
+                textureImporter.mipmapEnabled = false;
+                break;
+            case TextureImporterType.NormalMap:
+                break;
+            case TextureImporterType.GUI:
+                break;
+            case TextureImporterType.Sprite:
+                //textureImporter.SetTextureSettings( new TextureImporterSettings() { spriteGenerateFallbackPhysicsShape = false } );
+                break;
+            case TextureImporterType.Cursor:
+                break;
+            case TextureImporterType.Cookie:
+                break;
+            case TextureImporterType.Lightmap:
+                break;
+            case TextureImporterType.SingleChannel:
+                break;
+            default:
+                break;
+        }
+
+        LDebug.Log( "====>OnPreprocessTexture<====" + textureImporter.name );
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在纹理刚完成导入之前获取通知。
     /// </summary>
-    public void OnPostprocessTexture()
+    public void OnPostprocessTexture( Texture2D texture )
     {
         LDebug.Log( "====>OnPostprocessTexture<====" );
     }
@@ -197,9 +251,59 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在音频剪辑完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessAudio()
+    public void OnPostprocessAudio( AudioClip audio )
     {
         LDebug.Log( "====>OnPostprocessAudio<====" );
     }
-    
+
+}
+
+#region 待完善，针对AddComponent组件执行
+
+[ExecuteInEditMode]
+public class ComponentExpand : MonoBehaviour
+{
+    Type window = GetType( "AddComponentWindow" );
+
+    private void Awake()
+    {
+        Debug.Log( "EditorAwake" );
+    }
+
+    /// <summary>
+    /// 获取类型
+    /// </summary>
+    /// <param name="typeName"></param>
+    /// <returns></returns>
+    public static Type GetType( string typeName )
+    {
+        Type type = null;
+        Assembly[] assemblyArray = AppDomain.CurrentDomain.GetAssemblies();
+        int assemblyArrayLength = assemblyArray.Length;
+        for ( int i = 0; i < assemblyArrayLength; ++i )
+        {
+            type = assemblyArray[ i ].GetType( typeName );
+            if ( type != null )
+            {
+                return type;
+            }
+        }
+
+        for ( int i = 0; ( i < assemblyArrayLength ); ++i )
+        {
+            Type[] typeArray = assemblyArray[ i ].GetTypes();
+            int typeArrayLength = typeArray.Length;
+            for ( int j = 0; j < typeArrayLength; ++j )
+            {
+                if ( typeArray[ j ].Name.Equals( typeName ) )
+                {
+                    return typeArray[ j ];
+                }
+            }
+        }
+        return type;
+    }
+
+    #endregion
+
 }

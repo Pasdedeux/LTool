@@ -29,6 +29,11 @@
             开启使用逐帧遍历延迟函数调用。默认为false
             </summary>
         </member>
+        <member name="F:LitFramework.FrameworkConfig.UGUIOpt">
+            <summary>
+            开启UGUI组件优化（仅对象创建时）
+            </summary>
+        </member>
         <member name="T:LitFramework.LitTool.AnimBundle">
             <summary>
             UI/场景动画包

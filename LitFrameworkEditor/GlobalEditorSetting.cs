@@ -25,6 +25,16 @@ using System.Threading.Tasks;
 /// </summary>
 public class GlobalEditorSetting
 {
+    //% - CTRL on Windows / CMD on OSX
+    //# - Shift
+    //& -Alt
+    //LEFT/RIGHT/UP/DOWN - Arrow keys
+    //F1 … F2 - F keys
+    //HOME,END,PGUP,PGDN
+    //字母键 - _ + 字母（如:_g代表按键）
+    //[MenuItem("Tools/New Option %#a"]//CTRL-SHIFT-A
+
+
     //音频存放路径
     public const string AUDIO_PATH = "Sounds";//Resources
 

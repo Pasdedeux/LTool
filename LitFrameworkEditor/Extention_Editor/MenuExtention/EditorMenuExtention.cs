@@ -33,15 +33,6 @@ namespace LitFrameworkEditor.EditorExtended
     using UnityEditor.SceneManagement;
 #endif
 
-    //% - CTRL on Windows / CMD on OSX
-    //# - Shift
-    //& -Alt
-    //LEFT/RIGHT/UP/DOWN - Arrow keys
-    //F1 … F2 - F keys
-    //HOME,END,PGUP,PGDN
-    //字母键 - _ + 字母（如:_g代表按键）
-    //[MenuItem("Tools/New Option %#a"]//CTRL-SHIFT-A
-
     /// <summary>
     /// 包含Tools菜单下一系列工具包文件
     /// </summary>

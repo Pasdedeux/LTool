@@ -36,18 +36,9 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
         [MenuItem( "Tools/RaycastTarget检测器" )]
         private static void Open()
         {
+            //持有自身窗口引用
             _selfTarget = _selfTarget ?? EditorWindow.GetWindow<UGUIRaycastCheck>( "RaycastTarget检测器" );
             _selfTarget.Show();
-        }
-
-        void OnEnable()
-        {
-            _selfTarget = this;
-        }
-
-        void OnDisable()
-        {
-            _selfTarget = null;
         }
 
         void OnGUI()

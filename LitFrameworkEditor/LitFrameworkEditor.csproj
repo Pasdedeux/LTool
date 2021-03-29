@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editor\ArrayObject3D.cs" />
     <Compile Include="Editor\BitmapFontExporter.cs" />
     <Compile Include="Editor\FrameworkConfigInspector.cs" />
     <Compile Include="Editor\UGUIOptimize.cs" />

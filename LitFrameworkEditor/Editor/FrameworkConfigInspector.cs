@@ -29,7 +29,7 @@ public class FrameworkConfigInspector : Editor
         _config = ( FrameworkConfig )target;
     }
 
-    private bool _foldOut = true;
+    private bool _foldOut = true, _folaOutEditor = true;
     public override void OnInspectorGUI()
     {
         //设置整个界面是以垂直方向来布局
@@ -48,7 +48,13 @@ public class FrameworkConfigInspector : Editor
             
             EditorGUILayout.Space();
         }
-        
+
+        _folaOutEditor = EditorGUILayout.Foldout( _folaOutEditor, "编辑器设定" );
+        if ( _folaOutEditor )
+        {
+            _config.UGUIOpt = EditorGUILayout.Toggle( "开启UGUI组件优化(对象创建)", _config.UGUIOpt );
+        }
+
         EditorGUILayout.EndVertical();
     }
 }

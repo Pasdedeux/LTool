@@ -52,6 +52,11 @@ namespace LitFramework
         [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
         public bool UseDelayFuncPreciseDetect = false;
 
+        /// <summary>
+        /// 开启UGUI组件优化（仅对象创建时）
+        /// </summary>
+        [Header("开启UGUI组件优化（对象创建）")]
+        public bool UGUIOpt = true;
 
 
         #region Func

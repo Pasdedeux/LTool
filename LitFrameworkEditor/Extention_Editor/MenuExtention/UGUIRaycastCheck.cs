@@ -25,9 +25,9 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
     /// </summary>
     public class UGUIRaycastCheck: EditorWindow
     {
-        private bool showBorders = true;
-        private bool hideUnchecked = false;
         private MaskableGraphic[] graphics;
+        private bool hideUnchecked = false;
+        private bool showBorders = true;
         private Color borderColor = Color.blue;
         private Vector2 scrollPosition = Vector2.zero;
 
@@ -36,9 +36,18 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
         [MenuItem( "Tools/RaycastTarget检测器" )]
         private static void Open()
         {
-            //持有自身窗口引用
             _selfTarget = _selfTarget ?? EditorWindow.GetWindow<UGUIRaycastCheck>( "RaycastTarget检测器" );
             _selfTarget.Show();
+        }
+
+        void OnEnable()
+        {
+            _selfTarget = this;
+        }
+
+        void OnDisable()
+        {
+            _selfTarget = null;
         }
 
         void OnGUI()
@@ -92,7 +101,7 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
         }
 
         [DrawGizmo( GizmoType.Selected | GizmoType.NonSelected )]
-        private static void DrawGizmos( MaskableGraphic source )
+        private static void DrawGizmos( MaskableGraphic source, GizmoType gizmoType )
         {
             if ( _selfTarget != null && _selfTarget.showBorders == true && source.raycastTarget == true )
             {

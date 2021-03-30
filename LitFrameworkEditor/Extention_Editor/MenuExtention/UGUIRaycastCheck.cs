@@ -33,7 +33,7 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
 
         private static UGUIRaycastCheck _selfTarget = null;
 
-        [MenuItem( "Tools/RaycastTarget检测器" )]
+        [MenuItem( "Tools/RaycastTarget检测器 &1" )]
         private static void Open()
         {
             _selfTarget = _selfTarget ?? EditorWindow.GetWindow<UGUIRaycastCheck>( "RaycastTarget检测器" );
@@ -59,6 +59,7 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
             }
             hideUnchecked = EditorGUILayout.Toggle( "隐藏未勾选对象", hideUnchecked );
 
+            //------------分割线-----------//
             GUILayout.Space( 12.0f );
             Rect rect = GUILayoutUtility.GetLastRect();
             GUI.color = new Color( 0.0f, 0.0f, 0.0f, 0.25f );
@@ -67,8 +68,8 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
             GUI.DrawTexture( new Rect( 0.0f, rect.yMin + 9.0f, Screen.width, 1.0f ), EditorGUIUtility.whiteTexture );
             GUI.color = Color.white;
 
+            //获取所有拥有MaskableGraphic的对象
             graphics = GameObject.FindObjectsOfType<MaskableGraphic>();
-
             using ( GUILayout.ScrollViewScope scrollViewScope = new GUILayout.ScrollViewScope( scrollPosition ) )
             {
                 scrollPosition = scrollViewScope.scrollPosition;
@@ -81,25 +82,31 @@ namespace LitFrameworkEditor.Extention_Editor.MenuExtention
                     }
                 }
             }
-            foreach ( var item in graphics )
-            {
-                EditorUtility.SetDirty( item );
-            }
+            //foreach ( var item in graphics )
+            //{
+            //    EditorUtility.SetDirty( item );
+            //}
             Repaint();
         }
-
+        /// <summary>
+        /// 绘制拥有MaskableGraphic的对象项
+        /// </summary>
+        /// <param name="graphic"></param>
         private void DrawElement( MaskableGraphic graphic )
         {
             using ( EditorGUILayout.HorizontalScope horizontalScope = new EditorGUILayout.HorizontalScope() )
             {
-                Undo.RecordObject( graphic, "Modify RaycastTarget" );
                 graphic.raycastTarget = EditorGUILayout.Toggle( graphic.raycastTarget, GUILayout.Width( 20 ) );
                 EditorGUI.BeginDisabledGroup( true );
                 EditorGUILayout.ObjectField( graphic, typeof( MaskableGraphic ), true );
                 EditorGUI.EndDisabledGroup();
             }
         }
-
+        /// <summary>
+        /// 根据选中与否，绘制交叉选中框
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="gizmoType"></param>
         [DrawGizmo( GizmoType.Selected | GizmoType.NonSelected )]
         private static void DrawGizmos( MaskableGraphic source, GizmoType gizmoType )
         {

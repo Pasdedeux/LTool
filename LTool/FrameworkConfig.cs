@@ -30,6 +30,8 @@ namespace LitFramework
     /// </summary>
     public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
+        #region 全局设置
+
         /// <summary>
         /// 设置目标帧率
         /// </summary>
@@ -52,12 +54,21 @@ namespace LitFramework
         [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
         public bool UseDelayFuncPreciseDetect = false;
 
+        #endregion
+
+        #region UI设置
+        
+        #endregion
+
+        #region 编辑器设置
+
         /// <summary>
         /// 开启UGUI组件优化（仅对象创建时）
         /// </summary>
         [Header("开启UGUI组件优化（对象创建）")]
         public bool UGUIOpt = true;
 
+        #endregion
 
         #region Func
         void Awake()

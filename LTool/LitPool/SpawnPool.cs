@@ -141,7 +141,7 @@ namespace PathologicalGames
         public Dictionary<object, bool> _editorListItemStates = new Dictionary<object, bool>();
 
         /// <summary>
-        /// Readonly access to prefab pools via a dictionary<string, PrefabPool>.
+        /// Readonly access to prefab pools via a dictionary<string.PrefabPool>.
         /// </summary>
         public Dictionary<string, PrefabPool> prefabPools
         {

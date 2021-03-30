@@ -237,6 +237,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6427628302803539244, guid: aad45bf110d52bd4ea7fa6807c76f5ab,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427628302803539244, guid: aad45bf110d52bd4ea7fa6807c76f5ab,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427628302803539244, guid: aad45bf110d52bd4ea7fa6807c76f5ab,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427628302803539244, guid: aad45bf110d52bd4ea7fa6807c76f5ab,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
 --- !u!1 &534669902

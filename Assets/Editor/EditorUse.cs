@@ -7,10 +7,15 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
+/// <summary>
+/// 编辑器扩展，以及框架库的外展方法(Editor类型)覆写
+/// </summary>
 [InitializeOnLoadAttribute]
 [ExecuteInEditMode]
 public class EditorUse
 {
+    #region 编辑器及框架扩展功能
+
     //初始化类时,注册事件处理函数
     static EditorUse()
     {
@@ -45,16 +50,15 @@ public class EditorUse
 
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
-
     private static void OnPlayerModeStateChanged( PlayModeStateChange playModeState )
     {
         LDebug.LogWarning( string.Format( "state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying ) );
     }
 
+    #endregion
 
-    /// <summary>
-    /// UGUI 指定修改UGUI路径
-    /// </summary>
+    #region UGUI 自定义菜单
+
     [ExecuteInEditMode]
     public static class UGUICustom
     {
@@ -71,6 +75,8 @@ public class EditorUse
         }
     }
 
+    #endregion
+
     //// Disable the menu item if no selection is in place.
     //[MenuItem( "Examples/Create Prefab", true )]
     //static bool ValidateCreatePrefab()
@@ -79,6 +85,8 @@ public class EditorUse
     //}
 
 }
+
+#region 导入文件自动化处理
 
 public class AssetsInEditorManager : AssetPostprocessor
 {
@@ -95,7 +103,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         string[] movedAssets,
         string[] movedFromAssetPaths )
     {
-        LDebug.Log( "====>importedAssets<====" );
+        //LDebug.Log( "====>importedAssets<====" );
     }
 
     /// <summary>
@@ -103,26 +111,28 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAsset()
     {
-        LDebug.Log( "====>OnPreprocessAsset<====" );
+        //LDebug.Log( "====>OnPreprocessAsset<====" );
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在导入模型（.fbx、.mb 文件等）之前获取通知。
     /// </summary>
-    public void OnPreprocessModel( GameObject go )
+    public void OnPreprocessModel()
     {
-        LDebug.Log( "====>OnPreprocessModel<====" );
-        //ModelImporter fbx = assetImporter as ModelImporter;
-        //fbx.importAnimation = false;
-        //fbx.importCameras = false;
+        ModelImporter fbx = assetImporter as ModelImporter;
+        fbx.importCameras = false;
+        fbx.importLights = false;
+        fbx.isReadable = false;
+
+        LDebug.Log( "====>OnPreprocessModel<====" + fbx.name );
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在模型完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessModel()
+    public void OnPostprocessModel( GameObject go )
     {
-        LDebug.Log( "====>OnPostprocessModel<====" );
+        //LDebug.Log( "====>OnPostprocessModel<====" );
     }
 
     /// <summary>
@@ -130,31 +140,31 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAnimation()
     {
-        LDebug.Log( "====>OnPreprocessAnimation<====" );
+        //LDebug.Log( "====>OnPreprocessAnimation<====" );
     }
 
     /// <summary>
     /// 当 AnimationClip 已完成导入时调用此函数。
     /// </summary>
-    public void OnPostprocessAnimation()
+    public void OnPostprocessAnimation( GameObject go, AnimationClip ac )
     {
-        LDebug.Log( "====>OnPostprocessAnimation<====" );
+        //LDebug.Log( "====>OnPostprocessAnimation<====" );
     }
 
     /// <summary>
     /// 将资源分配给其他资源捆绑包时调用的处理程序。
     /// </summary>
-    public void OnPostprocessAssetbundleNameChanged()
+    public void OnPostprocessAssetbundleNameChanged( string s1, string s2, string s3 )
     {
-        LDebug.Log( "====>OnPostprocessAssetbundleNameChanged<====" );
+        //LDebug.Log( "====>OnPostprocessAssetbundleNameChanged<====" );
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在立方体贴图纹理完成导入之前获取通知。
     /// </summary>
-    public void OnPostprocessCubemap()
+    public void OnPostprocessCubemap( Cubemap cm )
     {
-        LDebug.Log( "====>OnPostprocessCubemap<====" );
+        //LDebug.Log( "====>OnPostprocessCubemap<====" );
     }
 
     /// <summary>
@@ -177,7 +187,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         //        bindings[ i ].type = typeof( ParticleSystem );
         //    }
         //}
-        LDebug.Log( "====>OnPostprocessGameObjectWithAnimatedUserProperties<====" );
+        //LDebug.Log( "====>OnPostprocessGameObjectWithAnimatedUserProperties<====" );
     }
 
     /// <summary>
@@ -185,7 +195,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessMaterial( Material material )
     {
-        LDebug.Log( "====>OnPostprocessMaterial<====" );
+        //LDebug.Log( "====>OnPostprocessMaterial<====" );
     }
 
     /// <summary>
@@ -193,9 +203,8 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     void OnPostprocessSprites( Texture2D texture, Sprite[] sprites )
     {
-        LDebug.Log( "====>Sprites: " + sprites.Length + "<====" );
+        //LDebug.Log( "====>Sprites: " + sprites.Length + "<====" );
     }
-
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在纹理导入器运行之前获取通知。
@@ -237,7 +246,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessTexture( Texture2D texture )
     {
-        LDebug.Log( "====>OnPostprocessTexture<====" );
+        //LDebug.Log( "====>OnPostprocessTexture<====" );
     }
 
     /// <summary>
@@ -245,7 +254,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAudio()
     {
-        LDebug.Log( "====>OnPreprocessAudio<====" );
+        //LDebug.Log( "====>OnPreprocessAudio<====" );
     }
 
     /// <summary>
@@ -253,12 +262,12 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessAudio( AudioClip audio )
     {
-        LDebug.Log( "====>OnPostprocessAudio<====" );
+        //LDebug.Log( "====>OnPostprocessAudio<====" );
     }
 
 }
 
-#region 待完善，针对AddComponent组件执行
+#region 待完善，针对UGUI IMAGE TEXT AddComponent组件检测执行执行
 
 [ExecuteInEditMode]
 public class ComponentExpand : MonoBehaviour
@@ -303,7 +312,8 @@ public class ComponentExpand : MonoBehaviour
         }
         return type;
     }
-
-    #endregion
-
 }
+
+#endregion
+
+#endregion

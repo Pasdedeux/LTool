@@ -749,6 +749,12 @@
             </summary>
             <param name="item"></param>
         </member>
+        <member name="T:LitFramework.TimeRecord.ZeroTimeRecord">
+            <summary>
+            零点访问器。用于单机版本记录零点刷新
+            单机做零点刷新，一般就以本地时间即可
+            </summary>
+        </member>
         <member name="T:LitFramework.UI.Base.UIModelBehavior">
             <summary>
             提供一个表进行动态修改UI状态
@@ -1022,6 +1028,11 @@
         <member name="T:GameDriver">
             <summary>
             框架驱动器。提供Update FixedUpdate LateUpdate驱动
+            </summary>
+        </member>
+        <member name="E:GameDriver.DelZeroTime">
+            <summary>
+            零点刷新回调
             </summary>
         </member>
         <member name="T:LitFrameworkFacade">

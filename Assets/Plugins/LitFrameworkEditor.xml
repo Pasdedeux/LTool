@@ -4,20 +4,22 @@
         <name>LitFrameworkEditor</name>
     </assembly>
     <members>
-        <member name="F:BitmapFontExporter.fontFile">
+        <member name="T:LitFrameworkEditor.Editor.ArrayObject3D">
             <summary>
-            BMFont字体文件
+            编辑器模式下，对所选择的3D物体阵列分布
             </summary>
         </member>
-        <member name="F:BitmapFontExporter.textureFile">
+        <member name="T:LitFrameworkEditor.Editor.SceneViewExtention">
             <summary>
-            BMFont字体贴图
+            强化Scene窗口显示
             </summary>
         </member>
-        <member name="T:FrameworkConfigInspector">
+        <member name="M:LitFrameworkEditor.Editor.SceneViewExtention.DrawGameObjectName(UnityEngine.Transform,UnityEditor.GizmoType)">
             <summary>
-            FrameworkConfig
+            显示选中物体名称
             </summary>
+            <param name="transform"></param>
+            <param name="gizmoType"></param>
         </member>
         <member name="T:LitFrameworkEditor.Editor.CustomComponentOptimizing">
             <summary>
@@ -175,6 +177,19 @@
             RayCast线框显示
             </summary>
         </member>
+        <member name="M:LitFrameworkEditor.Extention_Editor.MenuExtention.UGUIRaycastCheck.DrawElement(UnityEngine.UI.MaskableGraphic)">
+            <summary>
+            绘制拥有MaskableGraphic的对象项
+            </summary>
+            <param name="graphic"></param>
+        </member>
+        <member name="M:LitFrameworkEditor.Extention_Editor.MenuExtention.UGUIRaycastCheck.DrawGizmos(UnityEngine.UI.MaskableGraphic,UnityEditor.GizmoType)">
+            <summary>
+            根据选中与否，绘制交叉选中框
+            </summary>
+            <param name="source"></param>
+            <param name="gizmoType"></param>
+        </member>
         <member name="T:LitFrameworkEditor.Properties.Resources">
             <summary>
               一个强类型的资源类，用于查找本地化的字符串等。
@@ -189,6 +204,21 @@
             <summary>
               重写当前线程的 CurrentUICulture 属性
               重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="F:BitmapFontExporter.fontFile">
+            <summary>
+            BMFont字体文件
+            </summary>
+        </member>
+        <member name="F:BitmapFontExporter.textureFile">
+            <summary>
+            BMFont字体贴图
+            </summary>
+        </member>
+        <member name="T:FrameworkConfigInspector">
+            <summary>
+            FrameworkConfig
             </summary>
         </member>
         <member name="T:BuildSceneSettingEditor">

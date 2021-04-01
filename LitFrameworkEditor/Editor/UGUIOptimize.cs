@@ -27,7 +27,7 @@ using UnityEngine.UI;
 namespace LitFrameworkEditor.Editor
 {
     /// <summary>
-    /// UGUI 具体修改策略
+    /// UGUI 具体修改策略，通过委托扩展和修改
     /// </summary>
     public static class CustomComponentOptimizing
     {
@@ -70,7 +70,7 @@ namespace LitFrameworkEditor.Editor
     }
 
     /// <summary>
-    /// UGUI 指定修改UGUI路径
+    /// UGUI 外部调用指定修改UGUI路径
     /// </summary>
     public static class UGUIOptimize
     {
@@ -97,7 +97,7 @@ namespace LitFrameworkEditor.Editor
     }
 
     /// <summary>
-    /// UGUI工具基本工具库
+    /// UGUI工具基本工具库，创建对象
     /// </summary>
     internal static class UGUIOptTool
     {

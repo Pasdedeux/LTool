@@ -27,20 +27,25 @@ using System.Threading.Tasks;
 /// </summary>
 public class MsgManager : Singleton<MsgManager>
 {
+    //主要事件记录器
     private Dictionary<ushort, Action<MsgArgs>> _internalMsgDict;
+    //临时事件记录器（用于局部临时回调）
+    private Dictionary<string, Action<MsgArgs>> _internalMsgTempleDict;
 
     public MsgManager()
     {
         _internalMsgDict = new Dictionary<ushort, Action<MsgArgs>>();
+        _internalMsgTempleDict = new Dictionary<string, Action<MsgArgs>>();
     }
 
     #region 枚举方案
 
     //：有些许GC
+    //通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B
     /// <summary>
     /// 注册事件关注
     /// </summary>
-    /// <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em> </typeparam>
+    /// <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。</typeparam>
     /// <param name="id">Event ID</param>
     /// <param name="callBack">事件回调</param>
     public void Register<T>( T id, Action<MsgArgs> callBack ) where T : Enum, IComparable, IConvertible, IFormattable
@@ -118,6 +123,45 @@ public class MsgManager : Singleton<MsgManager>
     {
         if ( !_internalMsgDict.ContainsKey( id ) ) throw new Exception( "事件未注册：" + id.ToString() );
         _internalMsgDict[ id ].Invoke( msg );
+    }
+    #endregion
+
+    #region string Temple事件方案
+    /// <summary>
+    /// 注册事件关注。推荐用于临时事件注册
+    /// </summary>
+    /// <param name="id">Event ID</param>
+    /// <param name="callBack">事件回调</param>
+    public void Register( string id, Action<MsgArgs> callBack )
+    {
+        if ( !_internalMsgTempleDict.ContainsKey( id ) )
+            _internalMsgTempleDict.Add( id, null );
+        _internalMsgTempleDict[ id ] += callBack;
+    }
+
+    /// <summary>
+    /// 取消事件关注。推荐用于临时事件注册
+    /// </summary>
+    /// <param name="id">Event ID</param>
+    /// <param name="callBack">事件回调</param>
+    public void UnRegister( string id, Action<MsgArgs> callBack )
+    {
+        if ( _internalMsgTempleDict.ContainsKey( id ) )
+        {
+            _internalMsgTempleDict[ id ] -= callBack;
+            if ( _internalMsgTempleDict[ id ] == null ) _internalMsgTempleDict.Remove( id );
+        }
+    }
+
+    /// <summary>
+    /// 广播事件。推荐用于临时事件注册
+    /// </summary>
+    /// <param name="id">Event ID</param>
+    /// <param name="msg">事件参数</param>
+    public void Broadcast( string id, MsgArgs msg = null )
+    {
+        if ( !_internalMsgTempleDict.ContainsKey( id ) ) throw new Exception( "事件未注册：" + id.ToString() );
+        _internalMsgTempleDict[ id ].Invoke( msg );
     }
     #endregion
 }

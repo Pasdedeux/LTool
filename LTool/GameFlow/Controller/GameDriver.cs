@@ -1,5 +1,5 @@
 ﻿using LitFramework;
-using LitFramework.Input;
+using LitFramework.InputSystem;
 using LitFramework.LitTool;
 using LitFramework.TimeRecord;
 using System;

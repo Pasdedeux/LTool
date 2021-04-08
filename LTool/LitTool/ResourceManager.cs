@@ -103,7 +103,7 @@ namespace LitFramework.LitTool
         /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
         /// <returns></returns>
-        private IEnumerator DoLoadFile( string searchPath , bool useRawDataArray = false )
+        private IEnumerator IDoLoadFileUWR( string searchPath , bool useRawDataArray = false )
         {
             using ( UnityWebRequest request = UnityWebRequest.Get( searchPath ) ) 
             {
@@ -111,7 +111,7 @@ namespace LitFramework.LitTool
                 if ( request.isHttpError || request.isNetworkError )
                 {
                     LoadErrorEventHandler?.Invoke( request.error );
-                    Debug.LogError( request.error );
+                    LDebug.LogError( request.error );
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <returns></returns>
-        private IEnumerator DoLoadTexture( string searchPath )
+        private IEnumerator IDoLoadTextureUWR( string searchPath )
         {
             using ( UnityWebRequest request = UnityWebRequestTexture.GetTexture( searchPath ) )
             {
@@ -136,7 +136,7 @@ namespace LitFramework.LitTool
                 if ( request.isHttpError || request.isNetworkError )
                 {
                     LoadErrorEventHandler?.Invoke( request.error );
-                    Debug.LogError( request.error );
+                    LDebug.LogError( request.error );
                 }
                 else
                 {
@@ -151,7 +151,7 @@ namespace LitFramework.LitTool
         /// </summary>
         /// /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
         /// <returns></returns>
-        private IEnumerator DoLoadAssetBundle( string searchPath )
+        private IEnumerator IDoLoadAssetBundleUWR( string searchPath )
         {
             using ( UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle( searchPath ) )
             {
@@ -159,7 +159,7 @@ namespace LitFramework.LitTool
                 if ( request.isHttpError || request.isNetworkError )
                 {
                     LoadErrorEventHandler?.Invoke( request.error );
-                    Debug.LogError( request.error );
+                    LDebug.LogError( request.error );
                 }
                 else
                 {

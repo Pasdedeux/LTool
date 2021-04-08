@@ -25,7 +25,7 @@
 *
 ======================================*/
 
-namespace LitFramework.Input
+namespace LitFramework.InputSystem
 {
     using UnityEngine;
     using UnityEngine.UI;

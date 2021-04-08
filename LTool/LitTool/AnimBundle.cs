@@ -25,7 +25,7 @@ using UnityEngine;
 namespace LitFramework.LitTool
 {
     /// <summary>
-    /// UI/场景动画包
+    /// UI/场景动画包。存放一些预设的动画
     /// </summary>
     public class AnimBundle : SingletonMono<AnimBundle>
     {
@@ -43,7 +43,7 @@ namespace LitFramework.LitTool
         /// <param name="oneNumFun">每一颗飞到终点时执行的事情</param>
         /// <param name="secondsTime">炸开后等多久开始飞</param>
         /// <returns></returns>
-        private IEnumerator IGenerateTargetUI
+        public static IEnumerator IGenerateTargetUI
             ( Vector3 from, Vector3 to, int num, float range, float explodeTime, float flyTime, string spwanObjName, Transform parnet, Action oneNumFun, float secondsTime = 0.75f )
         {
             var explodeYield = new WaitForEndOfFrame();

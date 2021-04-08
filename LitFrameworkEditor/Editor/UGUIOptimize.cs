@@ -27,9 +27,9 @@ using UnityEngine.UI;
 namespace LitFrameworkEditor.Editor
 {
     /// <summary>
-    /// UGUI 具体修改策略，通过委托扩展和修改
+    /// UGUI 具体修改策略，可通过委托扩展和修改
     /// </summary>
-    public static class CustomComponentOptimizing
+    public static class UGUIOptimizeStrategy
     {
         /// <summary>
         /// <para>Image 对象创建时回调处理委托，可扩展或重写</para>
@@ -44,11 +44,7 @@ namespace LitFrameworkEditor.Editor
         /// Text.raycastTarget = false;</para>
         /// <para>扩展方式为：CustomComponentOptimizing.txtModFunc += ( e ) => { ( e as Text ).supportRichText = true; };</para>
         /// </summary>
-        public static Action<Text> txtModFunc = ( e ) =>
-        {
-            e.supportRichText = false;
-            e.raycastTarget = false;
-        };
+        public static Action<Text> txtModFunc = ( e ) => { e.supportRichText = false; e.raycastTarget = false; };
 
         /// <summary>
         /// 修改UGUI Image组件设置
@@ -72,7 +68,7 @@ namespace LitFrameworkEditor.Editor
     /// <summary>
     /// UGUI 外部调用指定修改UGUI路径
     /// </summary>
-    public static class UGUIOptimize
+    public static class UGUIOptimizeCommand
     {
         /// <summary>
         /// UGUI-Text
@@ -82,7 +78,7 @@ namespace LitFrameworkEditor.Editor
         {
             var text = UGUIOptTool.CreatCustomUGUI<Text>();
             if ( LitFramework.FrameworkConfig.Instance.UGUIOpt )
-                CustomComponentOptimizing.ModifyText( text );
+                UGUIOptimizeStrategy.ModifyText( text );
         }
         /// <summary>
         /// UGUI-Image
@@ -92,7 +88,7 @@ namespace LitFrameworkEditor.Editor
         {
             var image = UGUIOptTool.CreatCustomUGUI<Image>();
             if ( LitFramework.FrameworkConfig.Instance.UGUIOpt )
-                CustomComponentOptimizing.ModifyImage( image );
+                UGUIOptimizeStrategy.ModifyImage( image );
         }
     }
 

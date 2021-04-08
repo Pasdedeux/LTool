@@ -30,10 +30,11 @@ using UnityEngine.UI;
 public static partial class CSExtention
 {
     #region Array
-    public static Array CopyArray( this Array sourceArr )
-    {
-        return null;
-    }
+    //[Obsolete("勿使用此方法，尚未完成")]
+    //public static Array CopyArray( this Array sourceArr )
+    //{
+    //    return null;
+    //}
     #endregion
 
     #region Camera
@@ -42,7 +43,7 @@ public static partial class CSExtention
     /// </summary>
     /// <param name="cam"></param>
     /// <param name="distance">相对于相机的距离</param>
-    /// <param name="corners"></param>
+    /// <param name="corners">lenth==4</param>
     /// <returns></returns>
     public static void GetCameraBounds( this Camera cam, float distance, ref Vector3[] corners )
     {

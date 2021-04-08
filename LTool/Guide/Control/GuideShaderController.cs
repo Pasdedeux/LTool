@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using LitFramework;
 using LitFramework.Base;
-using LitFramework.Input;
+using LitFramework.InputSystem;
 using LitFramework.LitTool;
 using LitFramework.Mono;
 using System;

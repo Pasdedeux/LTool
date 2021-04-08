@@ -42,7 +42,7 @@
 using Assets.Scripts;
 using LitFramework;
 using LitFramework.Base;
-using LitFramework.Input;
+using LitFramework.InputSystem;
 using System;
 using UnityEngine;
 

@@ -23,27 +23,58 @@ using UnityEngine.UI;
 namespace LitFramework.LitTool
 {
     /// <summary>
-    /// 对SpriteRender纹理进行UI摄像机正交边界尺寸的调整
+    /// 对SpriteRender纹理进行Camera.main【正交】摄像机边界尺寸的调整
     /// </summary>
     public class SpriteAdapter : MonoBehaviour
     {
+        private bool _isOrthographic = true;
+        [SerializeField]
+        public bool IsOrthographic
+        {
+            get { return _isOrthographic; }
+            set
+            {
+                //if ( _isOrthographic != value )
+                //{
+                _isOrthographic = value;
+                if ( _isOrthographic )
+                { ResiezeEventHandler = ResizeOrt; _baseCamSize = new Vector2( _cam.aspect, 1f ); }
+                else
+                { ResiezeEventHandler = ResiezeProj; }
+                //}
+            }
+        }
         private Camera _cam;
         private SpriteRenderer _spriteRenderer;
 
         private Vector2 _oneVec = Vector2.one;
         private Vector2 _baseCamSize;
+        //正交下缩放比例
         private Vector2 _baseScale;
+        //透视视角指定距离下的四个边角世界坐标
+        private Vector3[] _corners = new Vector3[ 4 ];
+
+        //每帧Late执行回调
+        private Action ResiezeEventHandler = null;
 
         void Awake()
         {
             _cam = Camera.main;
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _baseCamSize = new Vector2( _cam.aspect, 1f );
 
-            Resize();
+            IsOrthographic = _cam.orthographic;
         }
 
-        private void Resize()
+        
+        private void LateUpdate()
+        {
+            ResiezeEventHandler?.Invoke();
+        }
+
+        /// <summary>
+        /// 正交适配
+        /// </summary>
+        private void ResizeOrt()
         {
             Vector2 cameraSize = _baseCamSize * _cam.orthographicSize * 2;
 
@@ -59,9 +90,20 @@ namespace LitFramework.LitTool
             transform.localScale = _baseScale;
         }
 
-        private void LateUpdate()
+        /// <summary>
+        /// 透视适配
+        /// </summary>
+        private void ResiezeProj()
         {
-            Resize();
+            ////Press the Space key to increase the size of the sprite
+            //if ( Input.GetKey( KeyCode.Space ) )
+            //{
+            //    Vector3 min = _spriteRenderer.bounds.min;
+            //    Vector3 max = _spriteRenderer.bounds.max;
+
+            //    _spriteRenderer.bounds.SetMinMax( min - new Vector3( 0.1f, 0.1f, 0.1f ), max - new Vector3( 0.1f, 0.1f, 0.1f ) );
+            //}
         }
+
     }
 }

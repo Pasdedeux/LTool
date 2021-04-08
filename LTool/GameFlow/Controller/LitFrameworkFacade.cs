@@ -19,7 +19,7 @@
 
 using LitFramework;
 using LitFramework.Base;
-using LitFramework.Input;
+using LitFramework.InputSystem;
 using LitFramework.LitPool;
 using LitFramework.LitTool;
 using LitFramework.Mono;

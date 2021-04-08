@@ -35,7 +35,7 @@ namespace LitFramework
     /// <summary>
     /// 音频组建更新
     /// 
-    /// 创建时需要外传加载方法
+    /// 创建时需要外传加载方法。相关配置采用的是PlayerPrefs方式保存
     /// </summary>
     public class AudioManager : SingletonMono<AudioManager>,IManager
     {

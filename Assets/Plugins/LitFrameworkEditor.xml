@@ -21,19 +21,19 @@
             <param name="transform"></param>
             <param name="gizmoType"></param>
         </member>
-        <member name="T:LitFrameworkEditor.Editor.CustomComponentOptimizing">
+        <member name="T:LitFrameworkEditor.Editor.UGUIOptimizeStrategy">
             <summary>
-            UGUI 具体修改策略
+            UGUI 具体修改策略，可通过委托扩展和修改
             </summary>
         </member>
-        <member name="F:LitFrameworkEditor.Editor.CustomComponentOptimizing.imageModFunc">
+        <member name="F:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.imageModFunc">
             <summary>
             <para>Image 对象创建时回调处理委托，可扩展或重写</para>
             <para>默认修改属性为：image.raycastTarget = false</para>
             <para>扩展方式为：CustomComponentOptimizing.imageModFunc += ( e ) => { ( e as Image ).raycastTarget = true; };</para>
             </summary>
         </member>
-        <member name="F:LitFrameworkEditor.Editor.CustomComponentOptimizing.txtModFunc">
+        <member name="F:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.txtModFunc">
             <summary>
             <para>Text 对象创建时回调处理委托，可扩展或重写</para>
             <para>默认修改属性为： 
@@ -42,30 +42,30 @@
             <para>扩展方式为：CustomComponentOptimizing.txtModFunc += ( e ) => { ( e as Text ).supportRichText = true; };</para>
             </summary>
         </member>
-        <member name="M:LitFrameworkEditor.Editor.CustomComponentOptimizing.ModifyImage(UnityEngine.UI.Image)">
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.ModifyImage(UnityEngine.UI.Image)">
             <summary>
             修改UGUI Image组件设置
             </summary>
             <param name="image"></param>
         </member>
-        <member name="M:LitFrameworkEditor.Editor.CustomComponentOptimizing.ModifyText(UnityEngine.UI.Text)">
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.ModifyText(UnityEngine.UI.Text)">
             <summary>
             修改UGUI Text组件设置
             </summary>
             <param name="text"></param>
         </member>
-        <member name="T:LitFrameworkEditor.Editor.UGUIOptimize">
+        <member name="T:LitFrameworkEditor.Editor.UGUIOptimizeCommand">
             <summary>
-            UGUI 指定修改UGUI路径
+            UGUI 外部调用指定修改UGUI路径
             </summary>
         </member>
-        <member name="M:LitFrameworkEditor.Editor.UGUIOptimize.CreatText(UnityEditor.MenuCommand)">
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeCommand.CreatText(UnityEditor.MenuCommand)">
             <summary>
             UGUI-Text
             </summary>
             <param name="menuCommand"></param>
         </member>
-        <member name="M:LitFrameworkEditor.Editor.UGUIOptimize.CreatImage(UnityEditor.MenuCommand)">
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeCommand.CreatImage(UnityEditor.MenuCommand)">
             <summary>
             UGUI-Image
             </summary>
@@ -73,7 +73,7 @@
         </member>
         <member name="T:LitFrameworkEditor.Editor.UGUIOptTool">
             <summary>
-            UGUI工具基本工具库
+            UGUI工具基本工具库，创建对象
             </summary>
         </member>
         <member name="M:LitFrameworkEditor.Editor.UGUIOptTool.CreatCustomUGUI``1">

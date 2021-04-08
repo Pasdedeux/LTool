@@ -1,6 +1,6 @@
 ﻿using LitFramework;
 using LitFramework.GameFlow;
-using LitFramework.Input;
+using LitFramework.InputSystem;
 using LitFramework.LitTool;
 using LitFramework.Mono;
 using UnityEngine;

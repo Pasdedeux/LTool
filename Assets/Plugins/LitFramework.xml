@@ -36,7 +36,7 @@
         </member>
         <member name="T:LitFramework.LitTool.AnimBundle">
             <summary>
-            UI/场景动画包
+            UI/场景动画包。存放一些预设的动画
             </summary>
         </member>
         <member name="M:LitFramework.LitTool.AnimBundle.IGenerateTargetUI(UnityEngine.Vector3,UnityEngine.Vector3,System.Int32,System.Single,System.Single,System.Single,System.String,UnityEngine.Transform,System.Action,System.Single)">
@@ -409,7 +409,7 @@
             <param name="atlasPath"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadFile(System.String,System.Boolean)">
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadFileUWR(System.String,System.Boolean)">
             <summary>
             加载 .txt/ .dat/ .csv等文件
             </summary>
@@ -417,14 +417,14 @@
             <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadTexture(System.String)">
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadTextureUWR(System.String)">
             <summary>
             加载png 等图像格式
             </summary>
             <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.DoLoadAssetBundle(System.String)">
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadAssetBundleUWR(System.String)">
             <summary>
             加载AssetBundle
             </summary>
@@ -433,14 +433,24 @@
         </member>
         <member name="T:LitFramework.LitTool.SpriteAdapter">
             <summary>
-            对SpriteRender纹理进行UI摄像机正交边界尺寸的调整
+            对SpriteRender纹理进行Camera.main【正交】摄像机边界尺寸的调整
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.SpriteAdapter.ResizeOrt">
+            <summary>
+            正交适配
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.SpriteAdapter.ResiezeProj">
+            <summary>
+            透视适配
             </summary>
         </member>
         <member name="T:LitFramework.AudioManager">
             <summary>
             音频组建更新
             
-            创建时需要外传加载方法
+            创建时需要外传加载方法。相关配置采用的是PlayerPrefs方式保存
             </summary>
         </member>
         <member name="P:LitFramework.AudioManager.VolumeSE">
@@ -668,54 +678,54 @@
             清楚本次UI登记的任务
             </summary>
         </member>
-        <member name="E:LitFramework.Input.InputControlManager.EscapeCallBack">
+        <member name="E:LitFramework.InputSystem.InputControlManager.EscapeCallBack">
             <summary>
             点击返回键
             </summary>
         </member>
-        <member name="F:LitFramework.Input.InputControlManager.IsTouchedContinuePressCallBack">
+        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedContinuePressCallBack">
             <summary>
             是否持续点击触发
             </summary>
         </member>
-        <member name="F:LitFramework.Input.InputControlManager.IsTouchedOnUICallBack">
+        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedOnUICallBack">
             <summary>
             是否点击到UI反馈
             </summary>
         </member>
-        <member name="P:LitFramework.Input.InputControlManager.CurrentIsOnUI">
+        <member name="P:LitFramework.InputSystem.InputControlManager.CurrentIsOnUI">
             <summary>
             当前是否在点击UI
             </summary>
         </member>
-        <member name="P:LitFramework.Input.InputControlManager.IsEnable">
+        <member name="P:LitFramework.InputSystem.InputControlManager.IsEnable">
             <summary>
             鼠标点击操作功能是否开启
             </summary>
         </member>
-        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
+        <member name="M:LitFramework.InputSystem.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
             <summary>
             按住屏幕开始计时
             </summary>
         </member>
-        <member name="M:LitFramework.Input.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
+        <member name="M:LitFramework.InputSystem.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
             <summary>
             离开屏幕计时
             </summary>
         </member>
-        <member name="M:LitFramework.Input.InputControlManager.EscapeBtnClick">
+        <member name="M:LitFramework.InputSystem.InputControlManager.EscapeBtnClick">
             <summary>
             默认-按顺序关闭UI
             </summary>
             <param name="extendedFunc">采用自定义函数执行返回键功能</param>
         </member>
-        <member name="M:LitFramework.Input.InputControlManager.SetRotateClockwise(System.Single)">
+        <member name="M:LitFramework.InputSystem.InputControlManager.SetRotateClockwise(System.Single)">
             <summary>
             设置触控方向的【顺时针】旋转角度
             </summary>
             <param name="degree"></param>
         </member>
-        <member name="M:LitFramework.Input.InputControlManager.GetTouchMoveDirection(LitFramework.Input.TouchDirection)">
+        <member name="M:LitFramework.InputSystem.InputControlManager.GetTouchMoveDirection(LitFramework.InputSystem.TouchDirection)">
             <summary>
             获取一次滑动行为
             </summary>
@@ -1988,7 +1998,7 @@
             <summary>
             注册事件关注
             </summary>
-            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em> </typeparam>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。</typeparam>
             <param name="id">Event ID</param>
             <param name="callBack">事件回调</param>
         </member>
@@ -2025,6 +2035,27 @@
         <member name="M:MsgManager.Broadcast(System.UInt16,MsgArgs)">
             <summary>
             广播事件
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="M:MsgManager.Register(System.String,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注。推荐用于临时事件注册
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister(System.String,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注。推荐用于临时事件注册
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast(System.String,MsgArgs)">
+            <summary>
+            广播事件。推荐用于临时事件注册
             </summary>
             <param name="id">Event ID</param>
             <param name="msg">事件参数</param>
@@ -2075,7 +2106,7 @@
             </summary>
             <param name="cam"></param>
             <param name="distance">相对于相机的距离</param>
-            <param name="corners"></param>
+            <param name="corners">lenth==4</param>
             <returns></returns>
         </member>
         <member name="M:CSExtention.GetCameraBounds(UnityEngine.Camera,UnityEngine.Vector3[]@)">

@@ -65,13 +65,13 @@ public class EditorUse
         [MenuItem( "GameObject/UI/Text" )]
         private static void CreatText( MenuCommand menuCommand )
         {
-            UGUIOptimize.CreatText( menuCommand );
+            UGUIOptimizeCommand.CreatText( menuCommand );
         }
 
         [MenuItem( "GameObject/UI/Image" )]
         private static void CreatImage( MenuCommand menuCommand )
         {
-            UGUIOptimize.CreatImage( menuCommand );
+            UGUIOptimizeCommand.CreatImage( menuCommand );
         }
     }
 

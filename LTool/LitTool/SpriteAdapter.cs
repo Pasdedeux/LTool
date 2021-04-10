@@ -27,30 +27,35 @@ namespace LitFramework.LitTool
     /// </summary>
     public class SpriteAdapter : MonoBehaviour
     {
+        private Transform _selfTrans;
+
         private bool _isOrthographic = true;
-        [SerializeField]
         public bool IsOrthographic
         {
             get { return _isOrthographic; }
             set
             {
-                //if ( _isOrthographic != value )
-                //{
                 _isOrthographic = value;
                 if ( _isOrthographic )
                 { ResiezeEventHandler = ResizeOrt; _baseCamSize = new Vector2( _cam.aspect, 1f ); }
                 else
                 { ResiezeEventHandler = ResiezeProj; }
-                //}
             }
         }
         private Camera _cam;
         private SpriteRenderer _spriteRenderer;
+        //当前物体转换后的屏幕坐标
+        private Vector3 _localScreenPos;
 
-        private Vector2 _oneVec = Vector2.one;
+        //当前物体距离摄像机距离
+        private float _distance;
+        //当前对象自身缩放比例
+        private Vector3 _localScale;
         private Vector2 _baseCamSize;
+        private Vector2 _oneVec = Vector2.one;
         //正交下缩放比例
         private Vector2 _baseScale;
+        private Vector2 _cameraSize;
         //透视视角指定距离下的四个边角世界坐标
         private Vector3[] _corners = new Vector3[ 4 ];
 
@@ -60,7 +65,11 @@ namespace LitFramework.LitTool
         void Awake()
         {
             _cam = Camera.main;
+            _selfTrans = transform;
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _distance = Vector3.Distance( _selfTrans.position, _cam.transform.position );
+            _localScale = _selfTrans.localScale;
+            _localScreenPos = _cam.WorldToScreenPoint( _selfTrans.position );
 
             IsOrthographic = _cam.orthographic;
         }
@@ -76,18 +85,18 @@ namespace LitFramework.LitTool
         /// </summary>
         private void ResizeOrt()
         {
-            Vector2 cameraSize = _baseCamSize * _cam.orthographicSize * 2;
+            _cameraSize = _baseCamSize * _cam.orthographicSize * 2;
 
-            if ( cameraSize.x >= cameraSize.y )
+            if ( _cameraSize.x >= _cameraSize.y )
             { // Landscape (or equal)
-                _baseScale = _oneVec * cameraSize.x / _spriteRenderer.sprite.bounds.size.x;
+                _baseScale = _oneVec * _cameraSize.x / _spriteRenderer.sprite.bounds.size.x;
             }
             else
             { // Portrait
-                _baseScale = _oneVec * cameraSize.y / _spriteRenderer.sprite.bounds.size.y;
+                _baseScale = _oneVec * _cameraSize.y / _spriteRenderer.sprite.bounds.size.y;
             }
 
-            transform.localScale = _baseScale;
+            _selfTrans.localScale = _baseScale;
         }
 
         /// <summary>
@@ -95,14 +104,9 @@ namespace LitFramework.LitTool
         /// </summary>
         private void ResiezeProj()
         {
-            ////Press the Space key to increase the size of the sprite
-            //if ( Input.GetKey( KeyCode.Space ) )
-            //{
-            //    Vector3 min = _spriteRenderer.bounds.min;
-            //    Vector3 max = _spriteRenderer.bounds.max;
-
-            //    _spriteRenderer.bounds.SetMinMax( min - new Vector3( 0.1f, 0.1f, 0.1f ), max - new Vector3( 0.1f, 0.1f, 0.1f ) );
-            //}
+            _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
+            float frustumHeight = 2.0f * _distance * Mathf.Tan( _cam.fieldOfView * 0.5f * Mathf.Deg2Rad );
+            _selfTrans.localScale = _localScale * frustumHeight;
         }
 
     }

@@ -8,8 +8,6 @@ using UnityEngine.Profiling;
 
 public class GUITest : MonoBehaviour
 {
-    private Action UpdateEventHandler;
-
 #if UNITY_EDITOR
     private void OnGUI()
     {
@@ -17,7 +15,9 @@ public class GUITest : MonoBehaviour
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "注册事件" ) )
         {
-            
+            LDebug.Log( Camera.main.aspect );
+            LDebug.Log( Camera.main.pixelWidth );
+            LDebug.Log( Camera.main.pixelHeight );
         }
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "去注册事件" ) )
@@ -31,11 +31,5 @@ public class GUITest : MonoBehaviour
         }
         
     }
-
-    private void CallBack( MsgArgs obj )
-    {
-        LDebug.Log( "====>MsgArgs" );
-    }
-    
 #endif
 }

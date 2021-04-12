@@ -83,6 +83,16 @@
             <typeparam name="T">Image/Text等组件</typeparam>
             <returns></returns>
         </member>
+        <member name="T:LitFrameworkEditor.LitAttributes.SetPropertyAttribute">
+            <summary>
+            自定义私有化属性，在可序列之后于inspector上进行变量操作时，可以在修改自身时触发其封装器的Set属性
+            </summary>
+        </member>
+        <member name="T:LitFrameworkEditor.LitAttributes.SetPropertyDrawer">
+            <summary>
+            编辑器扩展属性
+            </summary>
+        </member>
         <member name="T:LitFrameworkEditor.EditorExtended.CSVParser">
             <summary>
             表头为3行制

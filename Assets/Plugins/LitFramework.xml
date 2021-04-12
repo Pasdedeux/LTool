@@ -433,7 +433,7 @@
         </member>
         <member name="T:LitFramework.LitTool.SpriteAdapter">
             <summary>
-            对SpriteRender纹理进行Camera.main【正交】摄像机边界尺寸的调整
+            对SpriteRender纹理进行Camera.main摄像机边界尺寸的调整
             </summary>
         </member>
         <member name="M:LitFramework.LitTool.SpriteAdapter.ResizeOrt">

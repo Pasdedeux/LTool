@@ -23,7 +23,7 @@ using UnityEngine.UI;
 namespace LitFramework.LitTool
 {
     /// <summary>
-    /// 对SpriteRender纹理进行Camera.main【正交】摄像机边界尺寸的调整
+    /// 对SpriteRender纹理进行Camera.main摄像机边界尺寸的调整
     /// </summary>
     public class SpriteAdapter : MonoBehaviour
     {
@@ -88,15 +88,17 @@ namespace LitFramework.LitTool
             _cameraSize = _baseCamSize * _cam.orthographicSize * 2;
 
             if ( _cameraSize.x >= _cameraSize.y )
-            { // Landscape (or equal)
+            { //横屏
                 _baseScale = _oneVec * _cameraSize.x / _spriteRenderer.sprite.bounds.size.x;
             }
             else
-            { // Portrait
+            { //竖屏
                 _baseScale = _oneVec * _cameraSize.y / _spriteRenderer.sprite.bounds.size.y;
             }
 
             _selfTrans.localScale = _baseScale;
+            //保持图片自身的初始位置不会因为FOV变化而产生位移
+            _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
         }
 
         /// <summary>
@@ -104,7 +106,9 @@ namespace LitFramework.LitTool
         /// </summary>
         private void ResiezeProj()
         {
+            //保持图片自身的初始位置不会因为FOV变化而产生位移
             _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
+            //在给定距离的视锥体高度（两者的单位都为世界单位）
             float frustumHeight = 2.0f * _distance * Mathf.Tan( _cam.fieldOfView * 0.5f * Mathf.Deg2Rad );
             _selfTrans.localScale = _localScale * frustumHeight;
         }

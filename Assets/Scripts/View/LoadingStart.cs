@@ -5,7 +5,7 @@ using LitFramework.LitTool;
 using LitFramework.Mono;
 using UnityEngine;
 
-public class LoadingStartDemo : MonoBehaviour
+public class LoadingStart : MonoBehaviour
 {
     private AsyncOperation _asyncOperation;
 

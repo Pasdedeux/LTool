@@ -88,15 +88,17 @@ namespace LitFramework.LitTool
             _cameraSize = _baseCamSize * _cam.orthographicSize * 2;
 
             if ( _cameraSize.x >= _cameraSize.y )
-            { // Landscape (or equal)
+            { //横屏
                 _baseScale = _oneVec * _cameraSize.x / _spriteRenderer.sprite.bounds.size.x;
             }
             else
-            { // Portrait
+            { //竖屏
                 _baseScale = _oneVec * _cameraSize.y / _spriteRenderer.sprite.bounds.size.y;
             }
 
             _selfTrans.localScale = _baseScale;
+            //保持图片自身的初始位置不会因为FOV变化而产生位移
+            _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
         }
 
         /// <summary>

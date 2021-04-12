@@ -80,6 +80,9 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
 
         //新手引导模块
         GuideShaderController.Instance.Install();
+
+        //最后启动自定义模块
+        startUpExecuteFunc?.Invoke();
     }
     
 }

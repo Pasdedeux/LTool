@@ -56,6 +56,8 @@ public class UnityHelper : MonoBehaviour
 
     /// <summary>
     /// 给子节点添加脚本
+    /// 
+    /// <para>如果已经有相同的脚本了，则先删除</para>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="goParent">父对象</param>
@@ -90,6 +92,7 @@ public class UnityHelper : MonoBehaviour
 
     /// <summary>
     /// 给子节点添加父对象
+    /// <para>添加完成后本地坐标、尺寸、旋转角度归零</para>
     /// </summary>
     /// <param name="parents">父对象的方位</param>
     /// <param name="child">子对象的方法</param>

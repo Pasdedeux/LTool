@@ -56,6 +56,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //UI模块
         UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
         UIManager.Instance.Install();
+
         //UI扩展面板变化示例
         //UIManager.Instance.UseFading = true;
         //UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );

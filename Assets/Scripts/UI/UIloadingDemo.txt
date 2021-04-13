@@ -1,21 +1,10 @@
-/*======================================
-* 项目名称 ：Assets.Scripts.UI
-* 项目描述 ：
-* 类 名 称 ：UILoading
-* 类 描 述 ：
-* 命名空间 ：Assets.Scripts.UI
-* 机器名称 ：DEREK-SURFACEPR 
-* CLR 版本 ：4.0.30319.42000
-* 作    者 ：Derek Liu
-* 创建时间 ：2019/8/6 9:48:13
-* 更新时间 ：2019/8/6 9:48:13
-* 版 本 号 ：v1.0.0.0
-*******************************************************************
-* Copyright @ Derek Liu 2019. All rights reserved.
-*******************************************************************
-
-======================================*/
-
+#region << 版 本 注 释 >>
+///*----------------------------------------------------------------
+// Author : Derek Liu
+// 创建时间:2021/4/13 11:23:33
+// 该类由模板工具自动生成
+///----------------------------------------------------------------*/
+#endregion
 using System;
 using System.Collections;
 using System.Linq;
@@ -25,6 +14,7 @@ using UnityEngine;
 using LitFramework.Mono;
 using UnityEngine.UI;
 using LitFramework.GameFlow;
+using LitFramework.LitTool;
 
 namespace Assets.Scripts.UI
 {
@@ -39,6 +29,7 @@ namespace Assets.Scripts.UI
         private WaitForEndOfFrame _waitEndFrame;
         private WaitForSeconds _waitSeconds;
         private AsyncOperation _asyncOperation;
+        private Coroutine _coroutine;
 
         public override void OnAwake()
         {
@@ -53,7 +44,7 @@ namespace Assets.Scripts.UI
         public override void OnStart()
         {
             Canvas canvas = GetComponent<Canvas>();
-            StartCoroutine( OneFrame( () => { canvas.overrideSorting = true; } ) );
+            LitTool.MonoBehaviour.StartCoroutine( OneFrame( () => { canvas.overrideSorting = true; } ) );
         }
 
         private IEnumerator OneFrame( Action callback )
@@ -65,9 +56,10 @@ namespace Assets.Scripts.UI
         public override void OnShow()
         {
             _progress = 0;
+            _coroutine = LitFramework.LitTool.LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );
+
             sliderSlider.fillAmount = _progress / 100f;
             //progressText.text = string.Format( "{0}%", _progress );
-            LitFramework.LitTool.LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );
         }
 
         IEnumerator IStartLoading()
@@ -95,7 +87,8 @@ namespace Assets.Scripts.UI
 
         public override void OnClose()
         {
-            LitFramework.LitTool.LitTool.MonoBehaviour.StopCoroutine( IStartLoading() );
+            LitFramework.LitTool.LitTool.MonoBehaviour.StopCoroutine( _coroutine );
+            _coroutine = null;
         }
     }
 }

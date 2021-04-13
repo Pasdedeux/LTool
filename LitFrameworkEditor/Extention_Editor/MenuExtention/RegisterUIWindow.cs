@@ -412,7 +412,7 @@ namespace LitFrameworkEditor.EditorExtended
 
             if ( _uiWindowInfo.useDefaultExitBtn )
             {
-                CSString.Add( "btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"btnExit\" );" );
+                CSString.Add( "btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"Btn_Exit\" );" );
             }
 
             CSString.Add( "" );

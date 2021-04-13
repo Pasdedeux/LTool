@@ -115,12 +115,19 @@ namespace LitFramework.GameFlow
                     bool over = _asyncOperation.progress >= 0.9f;
                     return over;
                 }, true );
-
+                //场景加载完成后的回调
+                LoadingTaskModel.Instance.AddTask( 90, () =>
+                {
+                    _iUIManger.ShowFade( fadingTime, () =>
+                    {
+                        _asyncOperation.allowSceneActivation = true;
+                    } );
+                    return true;
+                }, true );
                 //场景加载完成后的回调
                 LoadingTaskModel.Instance.AddTask( 100, () =>
                 {
                     LoadingTaskModel.Instance.ClearTask();
-                    _asyncOperation.allowSceneActivation = true;
                     callBackAfterChanging?.Invoke();
 
                     _iUIManger.Close( loadingUIPath );
@@ -159,11 +166,20 @@ namespace LitFramework.GameFlow
                     }, true );
 
                     //场景加载完成后的回调
-                    LoadingTaskModel.Instance.AddTask( 100, () =>
+                    LoadingTaskModel.Instance.AddTask( 90, () =>
                     {
                         _iUIManger.ShowFade( fadingTime, () =>
                         {
                             _asyncOperation.allowSceneActivation = true;
+                        } );
+                        return true;
+                    }, true );
+
+                    //场景加载完成后的回调
+                    LoadingTaskModel.Instance.AddTask( 100, () =>
+                    {
+                        _iUIManger.ShowFade( fadingTime, () =>
+                        {
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );

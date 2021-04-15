@@ -54,6 +54,8 @@ namespace LitFramework.LitPool
                 Pool = pool.gameObject.AddComponent<SpawnPool>();
             }
             if ( Pool == null ) throw new Exception( "对象池初始化需要预先建立对象 PoolManager 并挂载配置 SpawnPool" );
+
+            GameObject.DontDestroyOnLoad( Pool.gameObject );
         }
 
 

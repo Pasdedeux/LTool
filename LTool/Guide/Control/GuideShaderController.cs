@@ -12,7 +12,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-public enum ShaderType
+public enum LitShaderType
 {
     Circle,
     Rect
@@ -22,15 +22,15 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
 {
     [Header( "初始的引导形状" )]
     [SerializeField]
-    private ShaderType _initType = ShaderType.Circle;
-    public ShaderType SType
+    private LitShaderType _initType = LitShaderType.Circle;
+    public LitShaderType SType
     {
         get { return _initType; }
         set
         {
             _initType = value;
-            _parentBG.material = _initType == ShaderType.Circle ? _circleMat : _rectMat;
-            _targetThreshold = _initType == ShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
+            _parentBG.material = _initType == LitShaderType.Circle ? _circleMat : _rectMat;
+            _targetThreshold = _initType == LitShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
             _material = _parentBG.material;
         }
     }
@@ -167,7 +167,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
 
         //计算当前高亮显示区域的半径
         RectTransform canRectTransform = _rootCanv.transform as RectTransform;
-        if ( SType == ShaderType.Circle )
+        if ( SType == LitShaderType.Circle )
         {
             //计算最终高亮显示区域的半径
             _radius = Vector2.Distance( LitTool.WorldToCanvasPos( _rootCanv, _corners[ 0 ], _uiCam ),
@@ -184,7 +184,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
                 }
             }
         }
-        else if ( SType == ShaderType.Rect )
+        else if ( SType == LitShaderType.Rect )
         {
             //计算最终高亮显示区域的半径
             _radius = 1f;
@@ -213,7 +213,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         Assert.IsNotNull( _hand, "GuideShaderController hand 未加载成功" );
 
         _parentBG.enabled = true;
-        _parentBG.material = _initType == ShaderType.Circle ? _circleMat : _rectMat;
+        _parentBG.material = _initType == LitShaderType.Circle ? _circleMat : _rectMat;
 
         _isFocusing = false;
         _material = _parentBG.material;
@@ -222,7 +222,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         _ev = _parentBG.GetComponent<EventPenetrate>();
         if ( _ev == null )
             _ev = _parentBG.gameObject.AddComponent<EventPenetrate>();
-        _targetThreshold = _initType == ShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
+        _targetThreshold = _initType == LitShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
         _uiCam = UIManager.Instance.UICam;
         _rootCanv = UIManager.Instance.TransRoot.GetComponent<Canvas>();
         _parentBG.enabled = false;

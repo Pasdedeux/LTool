@@ -73,7 +73,7 @@ public class MsgManager : Singleton<MsgManager>
     }
 
     /// <summary>
-    /// 广播事件
+    /// 广播事件。统用枚举类
     /// </summary>
     /// <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
     /// <param name="id">Event ID</param>
@@ -188,3 +188,37 @@ public class MsgArgs
         return ( T )args[ nIndex ];
     }
 }
+
+///// <summary>
+///// 消息参数体T。
+///// </summary>
+//public class MsgArgs<T> : IMsgArgs<T>
+//{
+//    //考虑导复合类型的参数传递，这里牺牲了一定了性能
+//    public List<T> args;
+
+//    public MsgArgs( params T[] rArgs )
+//    {
+//        args = new List<T>( rArgs );
+//    }
+
+//    public T Get( int nIndex )
+//    {
+//        if ( args == null ) return default;
+//        if ( nIndex < 0 || nIndex >= args.Count ) return default;
+
+//        return args[ nIndex ];
+//    }
+
+//    public T Get<T1>( int nIndex )
+//    {
+//        return Get( nIndex );
+//    }
+//}
+
+
+public interface IMsgArgs<T>
+{
+    T Get<T>( int nIndex );
+}
+

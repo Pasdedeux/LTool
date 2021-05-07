@@ -87,7 +87,7 @@ namespace LitFramework.Mono
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
                 var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
-                UIType targetUIType = modelType != null ? modelType : CurrentUIType;
+                UIType targetUIType = modelType ?? CurrentUIType;
 
                 UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
             }

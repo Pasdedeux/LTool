@@ -29,7 +29,7 @@ public class FrameworkConfigInspector : Editor
         _config = ( FrameworkConfig )target;
     }
 
-    private bool _foldOut = true, _folaOutEditor = true;
+    private bool _foldOut = true, _folaOutEditor = true, _folaOutUI = true;
     public override void OnInspectorGUI()
     {
         //设置整个界面是以垂直方向来布局
@@ -37,6 +37,8 @@ public class FrameworkConfigInspector : Editor
 
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
         _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
+
+        EditorGUILayout.Space();
 
         _foldOut = EditorGUILayout.Foldout( _foldOut, "基于Update的[延迟函数]参数设置" );
         if ( _foldOut )
@@ -53,6 +55,13 @@ public class FrameworkConfigInspector : Editor
         if ( _folaOutEditor )
         {
             _config.UGUIOpt = EditorGUILayout.Toggle( "开启UGUI组件优化(对象创建)", _config.UGUIOpt );
+        }
+
+        EditorGUILayout.Space();
+        _folaOutUI = EditorGUILayout.Foldout( _folaOutUI, "UI设定" );
+        if ( _folaOutUI )
+        {
+            _config.TouchDetectUI= EditorGUILayout.Toggle( "开启UGUI触屏检测", _config.TouchDetectUI );
         }
 
         EditorGUILayout.EndVertical();

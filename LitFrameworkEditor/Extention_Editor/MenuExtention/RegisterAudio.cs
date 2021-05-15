@@ -83,7 +83,7 @@ namespace LitFrameworkEditor.Extention_Editor
 
             //============更新并保存CS============//
             ResPathParse rpp = new ResPathParse();
-            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
+            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
             AssetDatabase.Refresh();
         }
     }

@@ -30,11 +30,14 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class RegisterUIWindow : EditorWindow
 {
+    //Resources 目录
+    private static string UIPrefabBaseDirectoryName = "Resources";
+
     [MenuItem( "Tools/Build/Build UI &u" )]
     private static void CreateUIWindow()
     {
         ExpandEdiorUseEvent?.Invoke();
-        GetWindow<RegisterUIWindow>();
+        GetWindow<RegisterUIWindow>( "UI创建", true );
     }
 
     #region UI模板生成
@@ -91,151 +94,177 @@ public class RegisterUIWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 60 ) ) )
+        using ( new BackgroundColorScope( Color.green ) )
         {
-            if ( CheckClassNameValid() )
+            if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 40 ) ) )
             {
-                isDirty = true;
+                _saveLocalFileInfo = new FileInfo( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
-                EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
-
-                //CS 脚本
-                UICreateParse cs = new UICreateParse();
-                string csOutPath = Application.dataPath + "/Scripts/UI";
-                EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
-                AssetDatabase.Refresh();
-
-                //预制件
-                newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
-                newCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-                var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
-                canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-
-                var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-                graphics.ignoreReversedGraphics = true;
-                graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
-
-                GameObject animTrans = new GameObject( "Container_Anim", typeof( RectTransform ) );
-                animTrans.transform.SetParent( newCanvas.transform );
-                var recTrans = animTrans.GetComponent<RectTransform>();
-                recTrans.sizeDelta = Vector2.zero;
-                recTrans.anchorMin = Vector2.zero;
-                recTrans.anchorMax = Vector2.one;
-                recTrans.anchoredPosition = Vector2.zero;
-                animTrans.transform.localPosition = Vector3.zero;
-                animTrans.transform.localScale = Vector3.one;
-
-                if ( useAnimRoot )
+                if ( CheckClassNameValid() )
                 {
-                    //DOTEEN插件未集成在编辑器库中，引出到库外部使用
-                    CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
+                    isDirty = true;
+
+                    EditorUtility.DisplayProgressBar( "生成UI模块", "", 1f );
+
+                    //CS 脚本
+                    UICreateParse cs = new UICreateParse();
+                    string csOutPath = Application.dataPath + "/Scripts/UI";
+                    EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
+                    AssetDatabase.Refresh();
+
+                    //预制件
+                    newCanvas = new GameObject( "Canvas_" + uiScriptsName.Substring( 2 ), typeof( Canvas ) ).GetComponent<Canvas>();
+                    newCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+                    var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
+                    canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+
+                    var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+                    graphics.ignoreReversedGraphics = true;
+                    graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+
+                    GameObject animTrans = new GameObject( "Container_Anim", typeof( RectTransform ) );
+                    animTrans.transform.SetParent( newCanvas.transform );
+                    var recTrans = animTrans.GetComponent<RectTransform>();
+                    recTrans.sizeDelta = Vector2.zero;
+                    recTrans.anchorMin = Vector2.zero;
+                    recTrans.anchorMax = Vector2.one;
+                    recTrans.anchoredPosition = Vector2.zero;
+                    animTrans.transform.localPosition = Vector3.zero;
+                    animTrans.transform.localScale = Vector3.one;
+
+                    if ( useAnimRoot )
+                    {
+                        //DOTEEN插件未集成在编辑器库中，引出到库外部使用
+                        CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
+                    }
+
+                    if ( useDefaultExitBtn )
+                    {
+                        GameObject btnExit = new GameObject( "Btn_Exit", typeof( RectTransform ) );
+                        btnExit.AddComponent<CanvasRenderer>();
+                        btnExit.AddComponent<Image>().maskable = false;
+                        btnExit.AddComponent<Button>();
+                        btnExit.transform.SetParent( animTrans.transform );
+                        btnExit.transform.localPosition = Vector3.zero;
+                        btnExit.transform.localScale = Vector3.one;
+                    }
+
+                    //Layer设定
+                    ChangeUILayer( newCanvas.transform, "UI" );
+
+                    //预制件自注册
+                    RigisterUIPath( uiScriptsName );
+
+                    AssetDatabase.Refresh();
+
                 }
-
-                if ( useDefaultExitBtn )
-                {
-                    GameObject btnExit = new GameObject( "Btn_Exit", typeof( RectTransform ) );
-                    btnExit.AddComponent<CanvasRenderer>();
-                    btnExit.AddComponent<Image>().maskable = false;
-                    btnExit.AddComponent<Button>();
-                    btnExit.transform.SetParent( animTrans.transform );
-                    btnExit.transform.localPosition = Vector3.zero;
-                    btnExit.transform.localScale = Vector3.one;
-                }
-
-                //Layer设定
-                ChangeLayer( newCanvas.transform, "UI" );
-
-                //预制件自注册
-                RigisterUIPath( uiScriptsName );
-
-                AssetDatabase.Refresh();
-
-            }
-            else
-                EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
-        }
-
-        EditorGUILayout.Space();
-
-        if ( GUILayout.Button( "创建脚本", GUILayout.Height( 20 ) ) )
-        {
-            if ( CheckClassNameValid() )
-            {
-                //CS 脚本
-                UICreateParse cs = new UICreateParse();
-                string csOutPath = Application.dataPath + "/Scripts/UI";
-                EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
-                AssetDatabase.Refresh();
-            }
-            else
-            {
-                EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
+                else
+                    EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
             }
         }
 
         EditorGUILayout.Space();
 
-        if ( GUILayout.Button( "更新UI配置", GUILayout.Height( 20 ) ) )
+        using ( new BackgroundColorScope( Color.green ) )
         {
-            FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
-
-            //============JSON文件取出============//
-            ResPathTemplate rpt = null;
-            //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
-            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) ) )
+            if ( GUILayout.Button( "仅创建脚本", GUILayout.Height( 40 ) ) )
             {
-                var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+                _saveLocalFileInfo = new FileInfo( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
-                rpt = JsonMapper.ToObject<ResPathTemplate>( content );
-            }
-            //如果文件不存在，则新建存储类，并保存相关的数据，然后写入JSON并保存
-            else
-            {
-                rpt = new ResPathTemplate();
-            }
-            //=================================//
-
-            //每次都重新写入
-            Dictionary<string, string> resPathSumList = new Dictionary<string, string>();
-            foreach ( var item in rpt.UI )
-            {
-                var sum = item.Value.Split( '|' );
-                if ( sum.Length > 1 && !string.IsNullOrEmpty( sum[ 1 ] ) )
-                    resPathSumList.Add( item.Key.ToUpper(), sum[ 1 ] );
-            }
-            rpt.UI.Clear();
-
-            //============存入UI配置============//
-            DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH );
-            foreach ( FileInfo file in folder.GetFiles() )
-            {
-                string ss = file.Extension.ToUpper();
-                if ( ss.Contains( ".PREFAB" ) && file.FullName.Contains( "Canvas" ) )
+                if ( CheckClassNameValid() )
                 {
-                    var result = file.Name.Split( '.' )[ 0 ];
-                    var key = "UI" + result.Split( '_' )[ 1 ].ToUpper();
-                    rpt.UI.Add( key, GlobalEditorSetting.UI_PREFAB_PATH + result );
+                    //CS 脚本
+                    UICreateParse cs = new UICreateParse();
+                    string csOutPath = Application.dataPath + "/Scripts/UI";
 
-                    if ( resPathSumList.ContainsKey( key ) )
-                        rpt.UI[ key ] += "|" + resPathSumList[ key ];
+                    EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
+                    AssetDatabase.Refresh();
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog( "类名错误", "类名应该不为空、空格，并且以UI开头", "哦" );
                 }
             }
-            //=================================//
+        }
 
-            //============JSON文件存入============//
-            using ( StreamWriter sw = _saveLocalFileInfo.CreateText() )
+        EditorGUILayout.Space();
+
+        using ( new BackgroundColorScope( Color.yellow ) )
+        {
+
+            if ( GUILayout.Button( "更新UI配置", GUILayout.Height( 40 ) ) )
             {
-                var result = JsonMapper.ToJson( rpt );
-                sw.Write( result );
-            }
-            //=================================//
+                _saveLocalFileInfo = new FileInfo( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
-            //============更新并保存CS============//
-            //更新并保存CS
-            ResPathParse rpp = new ResPathParse();
-            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
-            AssetDatabase.Refresh();
+                //============JSON文件取出============//
+                ResPathTemplate rpt = null;
+                //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+                if ( DocumentAccessor.IsExists( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME ) )
+                {
+                    var content = DocumentAccessor.ReadFile( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
+
+                    rpt = JsonMapper.ToObject<ResPathTemplate>( content );
+                }
+                //如果文件不存在，则新建存储类，并保存相关的数据，然后写入JSON并保存
+                else
+                {
+                    rpt = new ResPathTemplate();
+                }
+                //=================================//
+
+                //每次都重新写入ResPath
+                Dictionary<string, string> resPathSumList = new Dictionary<string, string>();
+                foreach ( var item in rpt.UI )
+                {
+                    var sum = item.Value.Split( '|' );
+                    if ( sum.Length > 1 && !string.IsNullOrEmpty( sum[ 1 ] ) )
+                        resPathSumList.Add( item.Key.ToUpper(), sum[ 1 ] );
+                }
+                rpt.UI.Clear();
+
+                //============存入UI配置============//
+
+                List<string> allResourcesPath = new List<string>();
+                RecursionAction( "Assets", allResourcesPath );
+
+                foreach ( var childPath in allResourcesPath )
+                {
+                    DirectoryInfo folder = new DirectoryInfo( "Assets" + childPath + "/" + GlobalEditorSetting.UI_PREFAB_PATH );
+
+                    if ( !folder.Exists ) continue;
+
+                    foreach ( FileInfo file in folder.GetFiles() )
+                    {
+                        string ss = file.Extension.ToUpper();
+                        if ( ss.Contains( ".PREFAB" ) && file.FullName.Contains( "Canvas" ) )
+                        {
+                            var result = file.Name.Split( '.' )[ 0 ];
+                            var key = "UI" + result.Split( '_' )[ 1 ].ToUpper();
+                            rpt.UI.Add( key, GlobalEditorSetting.UI_PREFAB_PATH + result );
+
+                            if ( resPathSumList.ContainsKey( key ) )
+                                rpt.UI[ key ] += "|" + resPathSumList[ key ];
+                        }
+                    }
+                }
+
+                //=================================//
+
+                //============JSON文件存入============//
+                using ( StreamWriter sw = _saveLocalFileInfo.CreateText() )
+                {
+                    var result = JsonMapper.ToJson( rpt );
+                    sw.Write( result );
+                }
+                //=================================//
+
+                //============更新并保存CS============//
+                //更新并保存CS
+                ResPathParse rpp = new ResPathParse();
+                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+                AssetDatabase.Refresh();
+            }
         }
 
         //汇总编译
@@ -261,7 +290,7 @@ public class RegisterUIWindow : EditorWindow
         }
     }
 
-    private void ChangeLayer( Transform trans, string targetLayer )
+    private void ChangeUILayer( Transform trans, string targetLayer )
     {
         if ( LayerMask.NameToLayer( targetLayer ) == -1 )
         {
@@ -274,15 +303,47 @@ public class RegisterUIWindow : EditorWindow
         trans.gameObject.layer = LayerMask.NameToLayer( targetLayer );
         foreach ( Transform child in trans )
         {
-            ChangeLayer( child, targetLayer );
+            ChangeUILayer( child, targetLayer );
             Debug.Log( child.name + "子对象Layer更改成功！" );
         }
     }
 
+    /// <summary>
+    /// 递归方法，用于查找所有文件夹
+    /// </summary>
+    /// <param name="dirName"></param>
+    private void RecursionAction( string dirName, List<string> pathList )
+    {
+        if ( dirName.Contains( UIPrefabBaseDirectoryName ) )
+        {
+            DirectoryInfo di = new DirectoryInfo( dirName );
+            if ( di.Name == UIPrefabBaseDirectoryName )
+            {
+                var liss = di.FullName.Split( new string[] { "Assets" }, StringSplitOptions.RemoveEmptyEntries );
+                //TDOO 这里需要检查下MAC环境下的下划线
+                liss[ 1 ] = liss[ 1 ].Replace( "\\", "/" );
+                pathList.Add( liss[ 1 ] );
+            }
+        }
+
+        if ( dirName.Contains( "The3rd" )
+            || dirName.Contains( "Plugins" )
+            || dirName.Contains( "Scripts" )
+            || dirName.Contains( "XLSX" ) ) return;
+
+        string[] dir = Directory.GetDirectories( dirName );
+        if ( dir.Length > 0 )
+        {
+            foreach ( string di in dir )
+                RecursionAction( di, pathList );
+        }
+    }
+
+
     #endregion
 
     #region 制作UI及注册路径
-    private static FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+    private static FileInfo _saveLocalFileInfo;
     /// <summary>
     /// 这里将类名注册为地址类中的字典键值对，将预制件地址存储为值
     /// JSON将需要保存已经注册过的UI、音频文件
@@ -300,9 +361,9 @@ public class RegisterUIWindow : EditorWindow
 
         ResPathTemplate rpt = null;
         //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
-        if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) ) )
+        if ( DocumentAccessor.IsExists( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME ) )
         {
-            var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+            var content = DocumentAccessor.ReadFile( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
             rpt = JsonMapper.ToObject<ResPathTemplate>( content );
             if ( !rpt.UI.ContainsKey( uiScriptsName ) )
@@ -324,7 +385,7 @@ public class RegisterUIWindow : EditorWindow
 
         //更新并保存CS
         ResPathParse rpp = new ResPathParse();
-        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_FILENAME, rpp.CreateCS( rpt ) );
+        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
         AssetDatabase.Refresh();
     }
 
@@ -663,3 +724,20 @@ namespace LitFrameworkEditor.EditorExtended
 
 #endregion
 
+
+
+public class BackgroundColorScope : GUI.Scope
+{
+    private readonly Color color;
+    public BackgroundColorScope( Color color )
+    {
+        this.color = GUI.backgroundColor;
+        GUI.backgroundColor = color;
+    }
+
+
+    protected override void CloseScope()
+    {
+        GUI.backgroundColor = Color.cyan;
+    }
+}

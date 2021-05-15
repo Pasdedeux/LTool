@@ -41,7 +41,7 @@ public class GlobalEditorSetting
     //UI创建路径配置
     public const string UI_PREFAB_PATH = "Prefabs/UI/";
     public const string JSON_FILE_NAME = "configs.dat";
-    public const string OUTPUT_FILENAME = "ResPath.cs";
+    public const string OUTPUT_RESPATH = "ResPath.cs";
 }
 
 

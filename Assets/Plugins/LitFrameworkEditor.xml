@@ -265,6 +265,12 @@
             <param name="oripath">源目录  Application.dataPath + "/Resources"</param>
             <param name="despath">目标目录  Application.dataPath + "/Resources1"</param>
         </member>
+        <member name="M:RegisterUIWindow.RecursionAction(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            递归方法，用于查找所有文件夹
+            </summary>
+            <param name="dirName"></param>
+        </member>
         <member name="M:RegisterUIWindow.RigisterUIPath(System.String)">
             <summary>
             这里将类名注册为地址类中的字典键值对，将预制件地址存储为值

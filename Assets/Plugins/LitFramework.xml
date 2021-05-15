@@ -204,7 +204,14 @@
             <param name="mainCam">主摄像机</param>
             <param name="uiCam">UI相机</param>
             <param name="uiCanvas">被放置的UICANVAS节点</param>
-            <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+            <returns>被放置的UI世界坐标，设置其 transform.position即可。（没有返回UI坐标的Vector2是为了避免容器父节点坐标影响)</returns>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.UI2WorldPos(UnityEngine.RectTransform)">
+            <summary>
+            UI坐标转世界坐标
+            </summary>
+            <param name="uiTarget">目标UI对象</param>
+            <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.LitTool.ScreenToLocalPos(UnityEngine.Vector3,UnityEngine.Transform,UnityEngine.Camera)">
             <summary>
@@ -215,12 +222,12 @@
             <param name="mainCam">所参照的世界主相机</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.LitTool.WorldToCanvasPos(UnityEngine.Canvas,UnityEngine.Vector3,UnityEngine.Camera)">
+        <member name="M:LitFramework.LitTool.LitTool.ScreenToCanvasPos(UnityEngine.Canvas,UnityEngine.Vector3,UnityEngine.Camera)">
             <summary>
-            世界坐标向Root画布坐标转换
+            世界坐标向特定画布坐标转换
             </summary>
             <param name="canvas">画布</param>
-            <param name="world">世界坐标</param>
+            <param name="screen">屏幕坐标</param>
             <param name="uiCam">UICam</param>
             <returns>返回画布上的二维坐标</returns>
         </member>
@@ -862,26 +869,6 @@
             
             </summary>
         </member>
-        <member name="F:LitFramework.Mono.UIManager._allRegisterUIList">
-            <summary>
-            所有的预制件名称列表
-            </summary>
-        </member>
-        <member name="F:LitFramework.Mono.UIManager._stackCurrentUI">
-            <summary>
-            //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
-            </summary>
-        </member>
-        <member name="F:LitFramework.Mono.UIManager._dictLoadedAllUIs">
-            <summary>
-            缓存已经开启过的所有窗体
-            </summary>
-        </member>
-        <member name="F:LitFramework.Mono.UIManager._dictCurrentShowUIs">
-            <summary>
-            当前显示的非弹出类UI窗体
-            </summary>
-        </member>
         <member name="P:LitFramework.Mono.UIManager.TransRoot">
             <summary>
             UI根节点
@@ -898,6 +885,26 @@
             </summary>
         </member>
         <member name="P:LitFramework.Mono.UIManager.TransPopUp">
+            <summary>
+            弹出窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.RectransRoot">
+            <summary>
+            UI根节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.RectransNormal">
+            <summary>
+            普通窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.RectransFixed">
+            <summary>
+            固定UI节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.RectransPopUp">
             <summary>
             弹出窗口节点
             </summary>
@@ -936,6 +943,31 @@
         <member name="P:LitFramework.Mono.UIManager.MaskImage">
             <summary>
             PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
+            </summary>
+        </member>
+        <member name="P:LitFramework.Mono.UIManager.CanvasScaler">
+            <summary>
+            UI适配策略
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._allRegisterUIList">
+            <summary>
+            所有的预制件名称列表
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._stackCurrentUI">
+            <summary>
+            //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._dictLoadedAllUIs">
+            <summary>
+            缓存已经开启过的所有窗体
+            </summary>
+        </member>
+        <member name="F:LitFramework.Mono.UIManager._dictCurrentShowUIs">
+            <summary>
+            当前显示的非弹出类UI窗体
             </summary>
         </member>
         <member name="M:LitFramework.Mono.UIManager.ShowFade(System.Single,System.Action)">
@@ -1060,7 +1092,7 @@
             <summary>
             框架启动
             </summary>
-            <param name="startUpExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
+            <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
         </member>
         <member name="M:Cloneable`1.Clone">

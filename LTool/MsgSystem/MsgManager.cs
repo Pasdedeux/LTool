@@ -173,17 +173,17 @@ public class MsgManager : Singleton<MsgManager>
 public class MsgArgs
 {
     //考虑导复合类型的参数传递，这里牺牲了一定了性能
-    public List<object> args;
+    public object[] args;
 
     public MsgArgs( params object[] rArgs )
     {
-        args = new List<object>( rArgs );
+        args = rArgs;
     }
 
     public T Get<T>( int nIndex )
     {
         if ( args == null ) return default;
-        if ( nIndex < 0 || nIndex >= this.args.Count ) return default;
+        if ( nIndex < 0 || nIndex >= this.args.Length ) return default;
 
         return ( T )args[ nIndex ];
     }

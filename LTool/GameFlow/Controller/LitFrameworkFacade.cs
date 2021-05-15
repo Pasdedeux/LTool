@@ -40,9 +40,9 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     /// <summary>
     /// 框架启动
     /// </summary>
-    /// <param name="startUpExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
+    /// <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
     /// <param name="debugEnable">框架启动时是否开启日志</param>
-    public void StartUp( Action startUpExecuteFunc, bool debugEnable = true )
+    public void StartUp( Action afterExecuteFunc = null, bool debugEnable = true )
     {
         DontDestroyOnLoad( GameObject.Find( "Canvas_Root" ) );
         LDebug.Enable = debugEnable;
@@ -83,7 +83,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         GuideShaderController.Instance.Install();
 
         //最后启动自定义模块
-        startUpExecuteFunc?.Invoke();
+        afterExecuteFunc?.Invoke();
     }
     
 }

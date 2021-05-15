@@ -118,10 +118,13 @@ namespace LitFramework.InputSystem
         //输出的滑动结果
         private TouchDirection _touchResult = TouchDirection.None;
 
+        private FrameworkConfig _config;
+
         public void Install()
         {
             _isInit = true;
             _isEnable = true;
+            _config = FrameworkConfig.Instance;
 
             var eventsys = GameObject.Find( "EventSystem" );
             if ( eventsys == null )
@@ -171,8 +174,6 @@ namespace LitFramework.InputSystem
                     if ( Input.touchCount > 0 )
                     {
                         _touchResult = GetTouchMoveDirection( _touchResult );
-                        if ( CurrentIsOnUI )
-                            IsTouchedOnUICallBack?.Invoke( true );
                     }
                     else _touchResult = TouchDirection.None;
                 }
@@ -182,12 +183,11 @@ namespace LitFramework.InputSystem
                     {
                         //点击UI检测
                         if ( EventSystem.current.IsPointerOverGameObject() )
-                        {
                             _touchResult |= TouchDirection.OnUI;
-                            IsTouchedOnUICallBack?.Invoke( true );
-                        }
-                        else
-                            IsTouchedOnUICallBack?.Invoke( false );
+                        IsTouchedOnUICallBack?.Invoke( CurrentIsOnUI );
+
+                        if ( _config.TouchDetectUI && CurrentIsOnUI ) return;
+
                         //按压计时
                         CalculateTimeByPressStart( Input.mousePosition );
                         //输出开始点击事件
@@ -196,11 +196,13 @@ namespace LitFramework.InputSystem
 
                     if ( Input.GetButton( "Fire1" ) )
                     {
+                        if ( _config.TouchDetectUI && CurrentIsOnUI ) return;
                         TouchMoveCallback?.Invoke( Input.mousePosition );
                     }
 
                     if ( Input.GetMouseButtonUp( 0 ) )
                     {
+                        if ( _config.TouchDetectUI && CurrentIsOnUI ) { _touchResult = TouchDirection.None; return; }
                         TouchEndCallback?.Invoke( Input.mousePosition );
                         CalculateTimeByPressOver( Input.mousePosition );
 
@@ -256,9 +258,14 @@ namespace LitFramework.InputSystem
         {
             if ( Input.touchCount > 0 )
             {
+
                 //实时检测触碰到UI
                 if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
+                {
                     dirResult |= TouchDirection.OnUI;
+
+                    IsTouchedOnUICallBack?.Invoke( CurrentIsOnUI );
+                }
 
                 if ( Input.touches[ 0 ].phase != TouchPhase.Canceled )
                 {
@@ -266,11 +273,15 @@ namespace LitFramework.InputSystem
                     switch ( Input.touches[ 0 ].phase )
                     {
                         case TouchPhase.Began:
+                            if ( _config.TouchDetectUI && CurrentIsOnUI ) return dirResult;
+
                             _touchBeginPos = inputPos;
                             TouchBeganCallback?.Invoke( inputPos );
                             break;
                         case TouchPhase.Ended:
                             _touchEndPos = inputPos;
+                            if ( _config.TouchDetectUI && CurrentIsOnUI ) return dirResult = TouchDirection.None;
+
                             TouchEndCallback?.Invoke( inputPos );
                             if ( Vector2.Distance( _touchBeginPos, _touchEndPos ) < MOVE_MIX_DISTANCE )
                                 return dirResult;
@@ -293,18 +304,22 @@ namespace LitFramework.InputSystem
                                 dirResult |= TouchDirection.Down;
                             break;
                         case TouchPhase.Moved:
+                            if ( _config.TouchDetectUI && CurrentIsOnUI ) return dirResult;
                             TouchMoveCallback?.Invoke( inputPos );
                             break;
                         case TouchPhase.Stationary:
+                            if ( _config.TouchDetectUI && CurrentIsOnUI ) return dirResult;
                             TouchStationaryCallback?.Invoke( inputPos );
                             break;
                     }
                 }
+                else
+                    dirResult = TouchDirection.None;
                 return dirResult;
             }
+
             else
                 return dirResult = TouchDirection.None;
         }
-
     }
 }

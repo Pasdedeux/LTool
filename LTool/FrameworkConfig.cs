@@ -57,7 +57,13 @@ namespace LitFramework
         #endregion
 
         #region UI设置
-        
+
+        /// <summary>
+        /// 触碰/点击忽略UI。默认为true
+        /// </summary>
+        [Header( "触碰/点击忽略UI。true" )]
+        public bool TouchDetectUI = true;
+
         #endregion
 
         #region 编辑器设置

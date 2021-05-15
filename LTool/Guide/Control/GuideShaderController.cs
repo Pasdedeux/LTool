@@ -156,7 +156,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         float x = _corners[ 0 ].x + ( ( _corners[ 3 ].x - _corners[ 0 ].x ) / 2f );
         float y = _corners[ 0 ].y + ( ( _corners[ 1 ].y - _corners[ 0 ].y ) / 2f );
         Vector3 centerWorld = new Vector3( x, y, 0 );
-        Vector2 center = LitTool.WorldToCanvasPos( _rootCanv, centerWorld, _uiCam );
+        Vector2 center = LitTool.ScreenToCanvasPos( _rootCanv, centerWorld, _uiCam );
 
         //设置遮罩材料中的变量
         Vector4 centerMat = new Vector4( center.x, center.y, 0, 0 );
@@ -170,8 +170,8 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( SType == LitShaderType.Circle )
         {
             //计算最终高亮显示区域的半径
-            _radius = Vector2.Distance( LitTool.WorldToCanvasPos( _rootCanv, _corners[ 0 ], _uiCam ),
-                          LitTool.WorldToCanvasPos( _rootCanv, _corners[ 2 ], _uiCam ) ) / 2f;
+            _radius = Vector2.Distance( LitTool.ScreenToCanvasPos( _rootCanv, _corners[ 0 ], _uiCam ),
+                          LitTool.ScreenToCanvasPos( _rootCanv, _corners[ 2 ], _uiCam ) ) / 2f;
             if ( canRectTransform != null )
             {
                 //获取画布区域的四个顶点
@@ -179,7 +179,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
                 //将画布顶点距离高亮区域中心最远的距离作为当前高亮区域半径的初始值
                 foreach ( Vector3 corner in _corners )
                 {
-                    _currentRadius = Mathf.Max( Vector3.Distance( LitTool.WorldToCanvasPos( _rootCanv, corner, _uiCam ), center ),
+                    _currentRadius = Mathf.Max( Vector3.Distance( LitTool.ScreenToCanvasPos( _rootCanv, corner, _uiCam ), center ),
                         _currentRadius );
                 }
             }

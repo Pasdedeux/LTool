@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Mono;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace LitFramework.LitTool
             }
             private set { _mono = value; }
         }
-        
+
         #region 延迟调用
         private static float _delayFuncTimeCouting = 0f;  //延迟方法当前计时
         private static float _delayFuncWaitTimeMax = FrameworkConfig.Instance.DelayFuncDetectInterver;
@@ -88,7 +89,7 @@ namespace LitFramework.LitTool
             {
                 //每X秒触发一次分发
                 _delayFuncTimeCouting += Time.unscaledDeltaTime;
-                if( _delayFuncTimeCouting >= _delayFuncWaitTimeMax )
+                if ( _delayFuncTimeCouting >= _delayFuncWaitTimeMax )
                 {
                     _delayFuncTimeCouting = 0f;
                     //LDebug.Log( DelayFuncRealEvent?.GetInvocationList().Length );
@@ -104,7 +105,7 @@ namespace LitFramework.LitTool
                 DelayFuncRealEvent?.Invoke( Time.unscaledTime );
             }
         }
-        
+
         /// <summary>
         /// 延迟调用方法
         /// </summary>
@@ -187,7 +188,7 @@ namespace LitFramework.LitTool
                 new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
             }
         }
-        
+
         #endregion
 
         #endregion
@@ -323,7 +324,7 @@ namespace LitFramework.LitTool
         /// <param name="mainCam">主摄像机</param>
         /// <param name="uiCam">UI相机</param>
         /// <param name="uiCanvas">被放置的UICANVAS节点</param>
-        /// <returns>被放置的UI世界坐标，设置其 transform.position即可</returns>
+        /// <returns>被放置的UI世界坐标，设置其 transform.position即可。（没有返回UI坐标的Vector2是为了避免容器父节点坐标影响)</returns>
         public static Vector3 World2UIPos( Vector3 targetWorldPos, Camera mainCam, Camera uiCam, RectTransform uiCanvas )
         {
             Vector3 result = Vector3.zero;
@@ -331,6 +332,40 @@ namespace LitFramework.LitTool
             var vec3 = mainCam.WorldToScreenPoint( targetWorldPos );
             RectTransformUtility.ScreenPointToWorldPointInRectangle( uiCanvas, vec3, uiCam, out result );
             return result;
+        }
+
+        /// <summary>
+        /// UI坐标转世界坐标
+        /// </summary>
+        /// <param name="uiTarget">目标UI对象</param>
+        /// <returns></returns>
+        public static Vector3 UI2WorldPos( RectTransform uiTarget )
+        {
+            var canvasScaler = UIManager.Instance.CanvasScaler;
+            var reference = canvasScaler.referenceResolution;
+
+            Vector2 targetAnchored = uiTarget.anchoredPosition;
+            Vector2 screenPos;
+            switch ( canvasScaler.screenMatchMode )
+            {
+                case CanvasScaler.ScreenMatchMode.MatchWidthOrHeight:
+                    var scale = canvasScaler.matchWidthOrHeight == 0 ? Screen.width / reference.x : Screen.height / reference.y;
+                    targetAnchored *= scale;
+                    break;
+                case CanvasScaler.ScreenMatchMode.Expand:
+                case CanvasScaler.ScreenMatchMode.Shrink:
+                    var scaleX = Screen.width / reference.x;
+                    var scaleY = Screen.height / reference.y;
+                    targetAnchored.y *= scaleY;
+                    targetAnchored.x *= scaleX;
+                    break;
+            }
+            screenPos = targetAnchored + 0.5f * new Vector2( Screen.width, Screen.height );
+
+            var worldPos = new Vector3();
+            var uiManager = UIManager.Instance;
+            RectTransformUtility.ScreenPointToWorldPointInRectangle( uiManager.RectransRoot, screenPos, uiManager.UICam, out worldPos );
+            return worldPos;
         }
 
         /// <summary>
@@ -348,16 +383,16 @@ namespace LitFramework.LitTool
         }
 
         /// <summary>
-        /// 世界坐标向Root画布坐标转换
+        /// 世界坐标向特定画布坐标转换
         /// </summary>
         /// <param name="canvas">画布</param>
-        /// <param name="world">世界坐标</param>
+        /// <param name="screen">屏幕坐标</param>
         /// <param name="uiCam">UICam</param>
         /// <returns>返回画布上的二维坐标</returns>
-        public static Vector2 WorldToCanvasPos( Canvas canvas, Vector3 world, Camera uiCam )
+        public static Vector2 ScreenToCanvasPos( Canvas canvas, Vector3 screen, Camera uiCam )
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle( canvas.transform as RectTransform,
-                world, uiCam, out Vector2 position );
+                screen, uiCam, out Vector2 position );
             return position;
         }
 
@@ -419,7 +454,7 @@ namespace LitFramework.LitTool
     /// <summary>
     /// 延迟调用函数包装类
     /// </summary>
-    class DelayFuncDecoration:IDisposable
+    class DelayFuncDecoration : IDisposable
     {
         private Action _callBackFunc;
         private float _targetTime;
@@ -430,7 +465,7 @@ namespace LitFramework.LitTool
             _targetTime = targetTime;
             _callBackFunc = func;
             _isReal = useReal;
-            
+
             if ( _isReal ) LitTool.DelayFuncRealEvent += DelayFuncEventHandler;
             else LitTool.DelayFuncEvent += DelayFuncEventHandler;
         }

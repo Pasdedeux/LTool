@@ -63,22 +63,6 @@ namespace LitFramework.Mono
         }
 
         /// <summary>
-        /// 所有的预制件名称列表
-        /// </summary>
-        private List<string> _allRegisterUIList;
-        /// <summary>
-        /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
-        /// </summary>
-        private Stack<BaseUI> _stackCurrentUI;
-        /// <summary>
-        /// 缓存已经开启过的所有窗体
-        /// </summary>
-        private Dictionary<string, BaseUI> _dictLoadedAllUIs;
-        /// <summary>
-        /// 当前显示的非弹出类UI窗体
-        /// </summary>
-        private Dictionary<string, BaseUI> _dictCurrentShowUIs;
-        /// <summary>
         /// UI根节点
         /// </summary>
         public Transform TransRoot { get; private set; }
@@ -94,6 +78,24 @@ namespace LitFramework.Mono
         /// 弹出窗口节点
         /// </summary>
         public Transform TransPopUp { get; private set; }
+
+        /// <summary>
+        /// UI根节点
+        /// </summary>
+        public RectTransform RectransRoot { get; private set; }
+        /// <summary>
+        /// 普通窗口节点
+        /// </summary>
+        public RectTransform RectransNormal { get; private set; }
+        /// <summary>
+        /// 固定UI节点
+        /// </summary>
+        public RectTransform RectransFixed { get; private set; }
+        /// <summary>
+        /// 弹出窗口节点
+        /// </summary>
+        public RectTransform RectransPopUp { get; private set; }
+
         /// <summary>
         /// 全局UI节点
         /// </summary>
@@ -123,6 +125,27 @@ namespace LitFramework.Mono
         /// PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
         /// </summary>
         public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
+        /// <summary>
+        /// UI适配策略
+        /// </summary>
+        public CanvasScaler CanvasScaler { get; set; }
+
+        /// <summary>
+        /// 所有的预制件名称列表
+        /// </summary>
+        private List<string> _allRegisterUIList;
+        /// <summary>
+        /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
+        /// </summary>
+        private Stack<BaseUI> _stackCurrentUI;
+        /// <summary>
+        /// 缓存已经开启过的所有窗体
+        /// </summary>
+        private Dictionary<string, BaseUI> _dictLoadedAllUIs;
+        /// <summary>
+        /// 当前显示的非弹出类UI窗体
+        /// </summary>
+        private Dictionary<string, BaseUI> _dictCurrentShowUIs;
 
         public void Install()
         {
@@ -135,6 +158,12 @@ namespace LitFramework.Mono
             TransNormal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_NORMALCANVAS );
             TransFixed = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_FIXEDCANVAS );
             TransPopUp = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_POPUPCANVAS );
+
+            RectransRoot = TransRoot.GetComponent<RectTransform>();
+            RectransNormal = TransNormal.GetComponent<RectTransform>();
+            RectransFixed = TransFixed.GetComponent<RectTransform>();
+            RectransPopUp = TransPopUp.GetComponent<RectTransform>();
+
             TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
             _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
 
@@ -148,6 +177,7 @@ namespace LitFramework.Mono
 
             GuideShaderController.Instance.Install();
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
+            CanvasScaler = TransRoot.GetComponent<CanvasScaler>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
         }
 

@@ -20,7 +20,6 @@ namespace Assets.Scripts.UI
 	/// </summary>
 	public class UILoading : BaseUI
 	{
-		public Button btnExit;
 		private bool _isFreeze;
 		private Transform _root;
 		private DOTweenAnimation[] _anims;
@@ -40,7 +39,6 @@ namespace Assets.Scripts.UI
 		private void Init()
 		{
 			_root = transform;
-			btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, "Btn_Exit" );
 			
 			//TODO 初始化该UI信息
 			//..
@@ -56,7 +54,6 @@ namespace Assets.Scripts.UI
 		
 		public override void OnEnabled( bool freeze )
 		{
-			btnExit.onClick.AddListener( OnClickExit );
 			//TODO 注册事件
 			//..
 			
@@ -65,7 +62,6 @@ namespace Assets.Scripts.UI
 		
 		public override void OnDisabled( bool freeze )
 		{
-			btnExit.onClick.RemoveAllListeners();
 			//TODO 取消注册事件
 			//..
 			

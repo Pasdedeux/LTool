@@ -36,14 +36,14 @@ namespace LitFrameworkEditor.Extention_Editor
 #endif
         public static void RegisterAudios()
         {
-            FileInfo _saveLocalFileInfo = new FileInfo( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+            FileInfo _saveLocalFileInfo = new FileInfo( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
             //============JSON文件取出============//
             ResPathTemplate rpt = null;
             //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
-            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) ) )
+            if ( DocumentAccessor.IsExists( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME ) )
             {
-                var content = DocumentAccessor.ReadFile( AssetPathManager.Instance.GetStreamAssetDataPath( GlobalEditorSetting.JSON_FILE_NAME, false ) );
+                var content = DocumentAccessor.ReadFile( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
                 rpt = JsonMapper.ToObject<ResPathTemplate>( content );
             }

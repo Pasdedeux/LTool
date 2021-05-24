@@ -84,7 +84,7 @@ public static partial class CSExtention
     /// 获取【正交相机】视口四个角的坐标
     /// </summary>
     /// <param name="cam"></param>
-    /// <param name="corners"></param>
+    /// <param name="corners">lenth==4</param>
     /// <returns></returns>
     public static void GetCameraBounds( this Camera cam, ref Vector3[] corners )
     {
@@ -157,7 +157,7 @@ public static partial class CSExtention
     {
         if ( grayMat == null )
         {
-            Shader shader = Resources.Load<Shader>( "Shader/UI/UIGrey" );
+            Shader shader = Resources.Load<Shader>( "Shaders/UI/UIGrey" );
             if ( shader == null )
             {
                 LDebug.LogWarning( "未发现Shader Custom/UI-Gray" );

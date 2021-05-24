@@ -22,19 +22,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
-/// <summary>
-/// 大数值模块
-/// 
-/// >1000 从a\b\c开始计数单位。以1000为单位更换
-/// </summary>
 public static class CurrencyModel
 {
     #region 转换大数值
-    /// <summary>
-    /// a,b,c,d,......aa,ab,ac
-    /// </summary>
-    public static readonly string[] TOLARGENUMSIGN = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            , "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az"
+    public static readonly string[] TOLARGENUMSIGN = new string[] { "k", "m", "b", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al", "am", "an", "ao", "ap", "aq", "ar", "as", "at", "au", "av", "aw", "ax", "ay", "az"
             , "ba", "bb", "bc", "bd", "be", "bf", "bg", "bh", "bi", "bj", "bk", "bl", "bm", "bn", "bo", "bp", "bq", "br", "bs", "bt", "bu", "bv", "bw", "bx", "by", "bz"
         };
 
@@ -154,6 +145,7 @@ public static class CurrencyModel
             {
                 valueStr.Append( str );
             }
+
         }
 
         return valueStr.ToString();
@@ -358,12 +350,6 @@ public static class CurrencyModel
     /// <returns> 《0小于   =0等于  》0大于 </returns>
     public static float CompareValue( this string ori, string variable )
     {
-        //UnityEngine.Profiling.Profiler.BeginSample("MaxNumber<=====================");
-        if ( ori.StartsWith( "-" ) )
-            ori = "0";
-        if ( variable.StartsWith( "-" ) )
-            variable = "0";
-
         var oriUnit = Regex.Replace( ori, "[\\d\\.]", "", RegexOptions.IgnoreCase );
         var targetUnit = Regex.Replace( variable, "[\\d\\.]", "", RegexOptions.IgnoreCase );
         //原本单位级
@@ -383,7 +369,6 @@ public static class CurrencyModel
         //数字部分
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );
-        //UnityEngine.Profiling.Profiler.EndSample();
         return oriNum - targetNum;
     }
     /// <summary>
@@ -394,11 +379,6 @@ public static class CurrencyModel
     /// <returns></returns>
     public static float CalculateRatio( this string ori, string variable )
     {
-        if ( ori.StartsWith( "-" ) )
-            ori = "0";
-        if ( variable.StartsWith( "-" ) )
-            variable = "0";
-
         //降成同单位级的计算
         var oriNum = float.Parse( Regex.Replace( ori, "[a-z]", "", RegexOptions.IgnoreCase ) );
         var targetNum = float.Parse( Regex.Replace( variable, "[a-z]", "", RegexOptions.IgnoreCase ) );

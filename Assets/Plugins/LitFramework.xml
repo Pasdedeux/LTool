@@ -2151,7 +2151,7 @@
             获取【正交相机】视口四个角的坐标
             </summary>
             <param name="cam"></param>
-            <param name="corners"></param>
+            <param name="corners">lenth==4</param>
             <returns></returns>
         </member>
         <member name="M:CSExtention.IdentityTransform(UnityEngine.Transform)">

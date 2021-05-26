@@ -127,9 +127,9 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
         _maskPanel.transform.SetAsLastSibling();
         //显示窗体的下移
         displayUIForms.transform.SetAsLastSibling();
-        //增加当前UI摄像机的层深，保证当前摄像机为最前显示
-        if ( _uiCamera != null )
-            _uiCamera.depth += 100;
+        ////增加当前UI摄像机的层深，保证当前摄像机为最前显示
+        //if ( _uiCamera != null )
+        //    _uiCamera.depth += 100;
     }
 
     /// <summary>
@@ -146,9 +146,9 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
             _maskImage.enabled = false;
         _maskImage.raycastTarget = false;
         MaskEnableEventHandler?.Invoke( _maskImage.enabled );
-        //恢复UI相机层深
-        if ( _uiCamera != null )
-            _uiCamera.depth = _oriUICameraDepth;
+        ////恢复UI相机层深
+        //if ( _uiCamera != null )
+        //    _uiCamera.depth = _oriUICameraDepth;
     }
 
     /// <summary>

@@ -63,7 +63,6 @@ namespace LitFramework.GameFlow
         public void ChangeScene( int sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isHot = false, bool isAdditive = false )
         {
             _iUIManger = Mono.UIManager.Instance;
-            _iUIManger.UseFading = needFading;
 
             //No UIloading && No Fading
             if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )
@@ -205,7 +204,6 @@ namespace LitFramework.GameFlow
         public void ChangeScene( string sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isHot = false, bool isAdditive = false )
         {
             _iUIManger = Mono.UIManager.Instance;
-            _iUIManger.UseFading = needFading;
 
             //No UIloading && No Fading
             if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )

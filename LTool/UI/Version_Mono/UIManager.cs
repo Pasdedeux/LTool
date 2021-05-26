@@ -50,18 +50,7 @@ namespace LitFramework.Mono
     public class UIManager : Singleton<UIManager>, IManager, IUIManager
     {
         public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
-
-        private bool _useFading = true;
-        public bool UseFading
-        {
-            get { return _useFading; }
-            set
-            {
-                if ( _fadeImage != null ) _fadeImage.gameObject.SetActive( value );
-                _useFading = value;
-            }
-        }
-
+        
         /// <summary>
         /// UI根节点
         /// </summary>
@@ -166,6 +155,7 @@ namespace LitFramework.Mono
 
             TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
             _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
+            _fadeImage.raycastTarget = false;
 
             if ( _fadeImage == null )
                 Debug.LogWarning( "Image_fadeBG 未定义" );
@@ -223,7 +213,7 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public virtual void ShowFade( float time, Action callBack = null )
         {
-            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();
@@ -246,7 +236,7 @@ namespace LitFramework.Mono
         /// <param name="callBack"></param>
         public virtual void HideFade( float time, Action callBack = null )
         {
-            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();

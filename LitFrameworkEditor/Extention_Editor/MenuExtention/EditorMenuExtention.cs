@@ -355,6 +355,13 @@ namespace LitFrameworkEditor.EditorExtended
             ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;
             ActiveEditorTracker.sharedTracker.ForceRebuild();
         }
+
+        [MenuItem( "Tools/Clear Shader Cache" )]
+        static public void ClearShaderCache_Command()
+        {
+            var shaderCachePath = Path.Combine( Application.dataPath, "../Library/ShaderCache" );
+            Directory.Delete( shaderCachePath, true );
+        }
 #endif
     }
 

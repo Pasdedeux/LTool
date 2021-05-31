@@ -53,18 +53,21 @@ public static class LDebug
 
     public static void Log(object content)
     {
+        if ( !Enable ) return;
         if ( content is string ) Log( ( string )content );
         else UnityEngine.Debug.Log( content );
     }
 
     public static void LogWarning( object content )
     {
+        if ( !Enable ) return;
         if ( content is string ) LogWarning( ( string )content );
         else UnityEngine.Debug.LogWarning( content );
     }
 
     public static void LogError( object content )
     {
+        if ( !Enable ) return;
         if ( content is string ) LogError( ( string )content );
         else UnityEngine.Debug.LogError( content );
     }

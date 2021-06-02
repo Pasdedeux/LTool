@@ -45,7 +45,7 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">地址或者内容文本</param>
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
-        /// <param name="chars">分隔符为列表</param>
+        /// <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
         /// <returns></returns>
         public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , Char[] chars = null )
         {
@@ -74,7 +74,7 @@ namespace LitFramework.LitTool
             }
             else
             {
-                path.Replace( "\r\n" , "\n" );
+                //path.Replace( "\r\n" , "\n" );
                 string[] res = path.Split( new string[] { "\r\n" } , StringSplitOptions.None );
                 for( int i = 0; i < res.Length; i++ )
                 {

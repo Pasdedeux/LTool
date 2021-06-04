@@ -155,12 +155,21 @@ namespace LitFramework.Mono
 
             TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
             _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
-            _fadeImage.raycastTarget = false;
 
-            if ( _fadeImage == null )
-                Debug.LogWarning( "Image_fadeBG 未定义" );
-            else if ( !_fadeImage.gameObject.activeInHierarchy )
-                Debug.LogWarning( "Image_fadeBG 未启用" );
+            try
+            {
+                if ( _fadeImage == null )
+                    LDebug.LogWarning( "Image_fadeBG 未定义" );
+                else if ( !_fadeImage.gameObject.activeInHierarchy )
+                    LDebug.LogWarning( "Image_fadeBG 未启用" );
+
+                _fadeImage.raycastTarget = false;
+                _fadeImage.gameObject.SetActive( true );
+            }
+            catch ( Exception e )
+            {
+                LDebug.LogError( "Image_fadeBG 错误" );
+            }
 
             //Mask蒙版初始化
             var ss = UIMaskManager.Instance;
@@ -211,7 +220,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public virtual void ShowFade( float time, Action callBack = null )
+        public virtual void ShowFade( Action callBack = null , float time = 0.4f )
         {
             if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -234,7 +243,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public virtual void HideFade( float time, Action callBack = null )
+        public virtual void HideFade(  Action callBack = null , float time = 0.4f )
         {
             if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {

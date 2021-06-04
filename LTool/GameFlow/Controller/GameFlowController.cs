@@ -80,7 +80,7 @@ namespace LitFramework.GameFlow
             //No UIloading && Fading
             else if ( string.IsNullOrEmpty( loadingUIPath ) && needFading )
             {
-                _iUIManger.ShowFade( fadingTime, () =>
+                _iUIManger.ShowFade( () =>
                 {
                     callBackBeforeChanging?.Invoke();
 
@@ -91,8 +91,8 @@ namespace LitFramework.GameFlow
 
                     LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
 
-                    _iUIManger.HideFade( fadingTime );
-                } );
+                    _iUIManger.HideFade( time: fadingTime );
+                }, fadingTime );
             }
 
             //UIloading && No Fading
@@ -117,10 +117,10 @@ namespace LitFramework.GameFlow
                 //场景加载完成后的回调
                 LoadingTaskModel.Instance.AddTask( 90, () =>
                 {
-                    _iUIManger.ShowFade( fadingTime, () =>
+                    _iUIManger.ShowFade( () =>
                     {
                         _asyncOperation.allowSceneActivation = true;
-                    } );
+                    }, fadingTime );
                     return true;
                 }, true );
                 //场景加载完成后的回调
@@ -139,13 +139,13 @@ namespace LitFramework.GameFlow
             //UIloading && Fading
             else
             {
-                _iUIManger.ShowFade( fadingTime, () =>
+                _iUIManger.ShowFade( () =>
                 {
                     //显示UILoading
-                    _iUIManger.HideFade( fadingTime, () =>
+                    _iUIManger.HideFade( () =>
                     {
                         _iUIManger.Show( loadingUIPath );
-                    } );
+                    }, fadingTime );
 
                     // 默认占用0帧
                     LoadingTaskModel.Instance.AddTask( 0, () =>
@@ -167,26 +167,26 @@ namespace LitFramework.GameFlow
                     //场景加载完成后的回调
                     LoadingTaskModel.Instance.AddTask( 90, () =>
                     {
-                        _iUIManger.ShowFade( fadingTime, () =>
+                        _iUIManger.ShowFade( () =>
                         {
                             _asyncOperation.allowSceneActivation = true;
-                        } );
+                        }, fadingTime );
                         return true;
                     }, true );
 
                     //场景加载完成后的回调
                     LoadingTaskModel.Instance.AddTask( 100, () =>
                     {
-                        _iUIManger.ShowFade( fadingTime, () =>
+                        _iUIManger.ShowFade( () =>
                         {
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );
-                            _iUIManger.HideFade( fadingTime, () => { LoadingTaskModel.Instance.ClearTask(); } );
-                        } );
+                            _iUIManger.HideFade( () => { LoadingTaskModel.Instance.ClearTask(); }, fadingTime );
+                        }, fadingTime );
                         return true;
                     }, true );
-                } );
+                }, fadingTime );
             }
         }
 
@@ -221,7 +221,7 @@ namespace LitFramework.GameFlow
             //No UIloading && Fading
             else if ( string.IsNullOrEmpty( loadingUIPath ) && needFading )
             {
-                _iUIManger.ShowFade( fadingTime, () =>
+                _iUIManger.ShowFade( () =>
                 {
                     callBackBeforeChanging?.Invoke();
 
@@ -232,8 +232,8 @@ namespace LitFramework.GameFlow
 
                     LitTool.LitTool.WaitUntilFunction( () => { return _asyncOperation.isDone; }, () => { callBackAfterChanging?.Invoke(); } );
 
-                    _iUIManger.HideFade( fadingTime );
-                } );
+                    _iUIManger.HideFade( time: fadingTime );
+                }, fadingTime );
             }
 
             //UIloading && No Fading
@@ -273,13 +273,13 @@ namespace LitFramework.GameFlow
             //UIloading && Fading
             else
             {
-                _iUIManger.ShowFade( fadingTime, () =>
+                _iUIManger.ShowFade( () =>
                 {
                     //显示UILoading
-                    _iUIManger.HideFade( fadingTime, () =>
+                    _iUIManger.HideFade( () =>
                     {
                         _iUIManger.Show( loadingUIPath );
-                    } );
+                    }, fadingTime );
 
                     // 默认占用0帧
                     LoadingTaskModel.Instance.AddTask( 0, () =>
@@ -301,22 +301,22 @@ namespace LitFramework.GameFlow
                     //场景加载完成后的回调
                     LoadingTaskModel.Instance.AddTask( 100, () =>
                     {
-                        _iUIManger.ShowFade( fadingTime, () =>
+                        _iUIManger.ShowFade( () =>
                         {
                             _asyncOperation.allowSceneActivation = true;
                             callBackAfterChanging?.Invoke();
 
                             _iUIManger.Close( loadingUIPath );
-                            _iUIManger.HideFade( fadingTime ,()=> { LoadingTaskModel.Instance.ClearTask(); } );
-                        } );
+                            _iUIManger.HideFade( () => { LoadingTaskModel.Instance.ClearTask(); }, fadingTime );
+                        }, fadingTime );
                         return true;
                     }, true );
-                } );
+                }, fadingTime );
             }
         }
 
 
-        public void UnLoadScene( int sceneID  )
+        public void UnLoadScene( int sceneID )
         {
             _sceneLoadMng.UnLoadScene( sceneID );
         }

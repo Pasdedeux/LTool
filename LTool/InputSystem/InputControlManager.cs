@@ -70,11 +70,37 @@ namespace LitFramework.InputSystem
         private const float MOVE_MIX_DISTANCE = 1f; //滑动距离限制，超过这个距离视为滑动有效
         #endregion
 
+        #region 单指 || PC操作
+
         //触碰阶段外发函数
-        public event Action<Vector2> TouchBeganCallback, TouchEndCallback, TouchStationaryCallback, TouchMoveCallback;
+        public event Action<Vector2>
+            TouchBeganCallback,
+            TouchEndCallback,
+            TouchStationaryCallback,
+            TouchMoveCallback;
 
         private Vector2 _touchBeginPos;
         private Vector2 _touchEndPos;
+
+        #endregion
+
+        #region 双指 ||  滚轮事件
+
+        /// <summary>
+        /// 双指|鼠标滚轮放大程度
+        /// </summary>
+        public event Action<float> FingerZoomCallback;
+        /// <summary>
+        /// 双指滑动相对上次记录偏移角度。顺时针计算
+        /// </summary>
+        public event Action<float> FingerRotateCallBack;
+
+        private Vector2 _oldPosition1;
+        private Vector2 _oldPosition2;
+
+        #endregion
+
+
         private EventSystem _currentEventSys;
         private float _clockWiseDegree = 0;
 
@@ -114,6 +140,11 @@ namespace LitFramework.InputSystem
         //是否模块已安装
         private bool _isInit = false;
         private bool _isEnable = false;
+
+        //PC模式下记录的点击坐标
+        private Vector3 _recordedPCPos;
+        //PC模式下记录静态按压时间
+        private float _pressTimeCount = 0f;
 
         //输出的滑动结果
         private TouchDirection _touchResult = TouchDirection.None;
@@ -159,6 +190,7 @@ namespace LitFramework.InputSystem
             DoDestroy();
         }
 
+        public int TouchCount { get { return Input.touchCount; } }
 
         private void InputUpdateHandler()
         {
@@ -171,7 +203,7 @@ namespace LitFramework.InputSystem
                 if ( _currentPlatform == PLATFORM_ANDROID || _currentPlatform == PLATFORM_IOS )
                 {
                     //是否点击到UI界面
-                    if ( Input.touchCount > 0 )
+                    if ( TouchCount > 0 )
                     {
                         _touchResult = GetTouchMoveDirection( _touchResult );
                     }
@@ -179,6 +211,9 @@ namespace LitFramework.InputSystem
                 }
                 else if ( _currentPlatform == PLATFORM_WINDOWEDITOR || _currentPlatform == PLATFORM_IOSEDITOR )
                 {
+                    var wheel = Input.GetAxis( "Mouse ScrollWheel" );
+                    FingerZoomCallback?.Invoke( wheel );
+
                     if ( Input.GetMouseButtonDown( 0 ) )
                     {
                         //点击UI检测
@@ -198,10 +233,32 @@ namespace LitFramework.InputSystem
                     {
                         if ( _config.TouchDetectUI && CurrentIsOnUI ) return;
                         TouchMoveCallback?.Invoke( Input.mousePosition );
+
+                        if ( _recordedPCPos == Vector3.zero )
+                        {
+                            _pressTimeCount = 0f;
+                            _recordedPCPos = Input.mousePosition;
+                            return;
+                        }
+                        if ( _recordedPCPos != Input.mousePosition )
+                        {
+                            _pressTimeCount = 0f;
+                            _recordedPCPos = Input.mousePosition;
+                            
+                            TouchMoveCallback?.Invoke( Input.mousePosition );
+                        }
+                        else
+                        {
+                            _pressTimeCount += Time.deltaTime;
+                            if ( _pressTimeCount >= PRESS_DOWN_SENSITIVITY )
+                                TouchStationaryCallback?.Invoke( Input.mousePosition );
+                        }
                     }
 
                     if ( Input.GetMouseButtonUp( 0 ) )
                     {
+                        _recordedPCPos = Vector2.zero;
+
                         if ( _config.TouchDetectUI && CurrentIsOnUI ) { _touchResult = TouchDirection.None; return; }
                         TouchEndCallback?.Invoke( Input.mousePosition );
                         CalculateTimeByPressOver( Input.mousePosition );
@@ -212,18 +269,16 @@ namespace LitFramework.InputSystem
             }
         }
 
-        /// <summary>
-        /// 按住屏幕开始计时
-        /// </summary>
+        //按住屏幕开始计时
         private void CalculateTimeByPressStart( Vector2 touchPos )
         {
             _curPressTime += Time.deltaTime;
             if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY + Time.deltaTime )
+            {
                 IsTouchedContinuePressCallBack?.Invoke( true );
+            }
         }
-        /// <summary>
-        /// 离开屏幕计时
-        /// </summary>
+        //离开屏幕计时
         private void CalculateTimeByPressOver( Vector2 inputPos )
         {
             if ( _curPressTime > 0 )
@@ -231,34 +286,23 @@ namespace LitFramework.InputSystem
             _curPressTime = 0;
         }
 
-        /// <summary>
-        /// 默认-按顺序关闭UI
-        /// </summary>
-        /// <param name="extendedFunc">采用自定义函数执行返回键功能</param>
+        //默认-按顺序关闭UI
         private void EscapeBtnClick()
         {
             EscapeCallBack?.Invoke();
         }
 
-        /// <summary>
-        /// 设置触控方向的【顺时针】旋转角度
-        /// </summary>
-        /// <param name="degree"></param>
+        //设置触控方向的【顺时针】旋转角度
         public void SetRotateClockwise( float degree )
         {
             _clockWiseDegree = degree;
         }
 
-
-        /// <summary>
-        /// 获取一次滑动行为
-        /// </summary>
-        /// <returns></returns>
+        //获取一次滑动行为
         public TouchDirection GetTouchMoveDirection( TouchDirection dirResult )
         {
-            if ( Input.touchCount > 0 )
+            if ( TouchCount == 1 )
             {
-
                 //实时检测触碰到UI
                 if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
                 {
@@ -317,9 +361,31 @@ namespace LitFramework.InputSystem
                     dirResult = TouchDirection.None;
                 return dirResult;
             }
+            else if( TouchCount > 1 )
+            {
+                _oldPosition1 = Input.GetTouch( 0 ).position;
+                _oldPosition2 = Input.GetTouch( 1 ).position;
 
-            else
-                return dirResult = TouchDirection.None;
+                if ( Input.GetTouch( 0 ).phase == TouchPhase.Moved || Input.GetTouch( 1 ).phase == TouchPhase.Moved )
+                {
+                    //计算出当前两点触摸点的位置
+                    var tempPosition1 = Input.GetTouch( 0 ).position;
+                    var tempPosition2 = Input.GetTouch( 1 ).position;
+
+                    FingerRotateCallBack?.Invoke( LMath.CalcIncludedAngle2D( _oldPosition2 - _oldPosition1, tempPosition2 - tempPosition1 ) );
+
+                    //缩放数据
+                    float currentTouchDistance = Vector3.Distance( tempPosition1, tempPosition2 );
+                    float lastTouchDistance = Vector3.Distance( _oldPosition1, _oldPosition2 );
+
+                    FingerZoomCallback?.Invoke( ( currentTouchDistance - lastTouchDistance ) * Time.deltaTime );
+
+                    //备份上一次触摸点的位置，用于对比
+                    _oldPosition1 = tempPosition1;
+                    _oldPosition2 = tempPosition2;
+                }
+            }
+            return dirResult = TouchDirection.None;
         }
     }
 }

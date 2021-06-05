@@ -629,11 +629,13 @@ namespace LitFramework.Mono
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
             foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
-                baseui.Show( true );
+                if( !baseui.IsShowing )
+                    baseui.Show( true );
             }
             foreach ( BaseUI baseui in _stackCurrentUI )
             {
-                baseui.Show( true );
+                if ( !baseui.IsShowing )
+                    baseui.Show( true );
             }
         }
 

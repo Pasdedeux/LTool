@@ -135,7 +135,7 @@ namespace LitFramework.InputSystem
         private RuntimePlatform _currentPlatform = Application.platform;
         //持续点击灵敏度-持续指定时间视为按压
         private float _curPressTime = 0;
-        private float PRESS_DOWN_SENSITIVITY = 0.5f;
+        //private float PRESS_DOWN_SENSITIVITY = 0.5f;
 
         //是否模块已安装
         private bool _isInit = false;
@@ -232,7 +232,6 @@ namespace LitFramework.InputSystem
                     if ( Input.GetButton( "Fire1" ) )
                     {
                         if ( _config.TouchDetectUI && CurrentIsOnUI ) return;
-                        TouchMoveCallback?.Invoke( Input.mousePosition );
 
                         if ( _recordedPCPos == Vector3.zero )
                         {
@@ -250,7 +249,7 @@ namespace LitFramework.InputSystem
                         else
                         {
                             _pressTimeCount += Time.deltaTime;
-                            if ( _pressTimeCount >= PRESS_DOWN_SENSITIVITY )
+                            if ( _pressTimeCount >= _config.TouchStationaryTime )
                                 TouchStationaryCallback?.Invoke( Input.mousePosition );
                         }
                     }
@@ -273,7 +272,7 @@ namespace LitFramework.InputSystem
         private void CalculateTimeByPressStart( Vector2 touchPos )
         {
             _curPressTime += Time.deltaTime;
-            if ( _curPressTime > PRESS_DOWN_SENSITIVITY && _curPressTime < PRESS_DOWN_SENSITIVITY + Time.deltaTime )
+            if ( _curPressTime > _config.TouchStationaryTime && _curPressTime < _config.TouchStationaryTime + Time.deltaTime )
             {
                 IsTouchedContinuePressCallBack?.Invoke( true );
             }

@@ -30,6 +30,9 @@ namespace LitFrameworkEditor.Extention_Editor
 {
     class RegisterAudio
     {
+        //Resources 目录
+        private static string UIPrefabBaseDirectoryName = "Resources";
+
         [ExecuteInEditMode]
 #if UNITY_EDITOR
         [MenuItem( "Tools/Build/Build Audio &s" )]
@@ -58,19 +61,29 @@ namespace LitFrameworkEditor.Extention_Editor
             rpt.Sound.Clear();
 
             //============存入音频配置============//
-            DirectoryInfo folder = new DirectoryInfo( "Assets/Resources/"+ GlobalEditorSetting.AUDIO_PATH );
 
-            foreach ( FileInfo file in folder.GetFiles() )
+            List<string> allResourcesPath = new List<string>();
+            RecursionAction( "Assets", allResourcesPath );
+
+            foreach ( var childPath in allResourcesPath )
             {
-                string ss = file.Extension.ToUpper();
-                if ( ss.Contains( ".AIFF" ) || ss.Contains( ".WAV" ) || ss.Contains( ".MP3" ) || ss.Contains( ".OGG" ) )
-                {
-                    var result = file.FullName.Substring( file.FullName.LastIndexOf( '\\' ) + 1 );
-                    result = result.Split( '.' )[ 0 ];
+                DirectoryInfo folder = new DirectoryInfo( "Assets" + childPath + "/" + GlobalEditorSetting.AUDIO_PATH );
 
-                    rpt.Sound.Add( result.ToUpper(), GlobalEditorSetting.AUDIO_PATH + "/" + result );
+                if ( !folder.Exists ) continue;
+
+                foreach ( FileInfo file in folder.GetFiles() )
+                {
+                    string ss = file.Extension.ToUpper();
+                    if ( ss.Contains( ".AIFF" ) || ss.Contains( ".WAV" ) || ss.Contains( ".MP3" ) || ss.Contains( ".OGG" ) )
+                    {
+                        var result = file.FullName.Substring( file.FullName.LastIndexOf( '\\' ) + 1 );
+                        result = result.Split( '.' )[ 0 ];
+
+                        rpt.Sound.Add( result.ToUpper(), GlobalEditorSetting.AUDIO_PATH + "/" + result );
+                    }
                 }
             }
+
             //=================================//
 
             //============JSON文件存入============//
@@ -85,6 +98,38 @@ namespace LitFrameworkEditor.Extention_Editor
             ResPathParse rpp = new ResPathParse();
             EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
             AssetDatabase.Refresh();
+        }
+
+
+        /// <summary>
+        /// 递归方法，用于查找所有文件夹
+        /// </summary>
+        /// <param name="dirName"></param>
+        private static void RecursionAction( string dirName, List<string> pathList )
+        {
+            if ( dirName.Contains( UIPrefabBaseDirectoryName ) )
+            {
+                DirectoryInfo di = new DirectoryInfo( dirName );
+                if ( di.Name == UIPrefabBaseDirectoryName )
+                {
+                    var liss = di.FullName.Split( new string[] { "Assets" }, StringSplitOptions.RemoveEmptyEntries );
+                    //TDOO 这里需要检查下MAC环境下的下划线
+                    liss[ 1 ] = liss[ 1 ].Replace( "\\", "/" );
+                    pathList.Add( liss[ 1 ] );
+                }
+            }
+
+            if ( dirName.Contains( "The3rd" )
+                || dirName.Contains( "Plugins" )
+                || dirName.Contains( "Scripts" )
+                || dirName.Contains( "XLSX" ) ) return;
+
+            string[] dir = Directory.GetDirectories( dirName );
+            if ( dir.Length > 0 )
+            {
+                foreach ( string di in dir )
+                    RecursionAction( di, pathList );
+            }
         }
     }
 }

@@ -74,6 +74,9 @@ namespace LitFramework
         [Header("开启UGUI组件优化（对象创建）")]
         public bool UGUIOpt = true;
 
+        [Header("静止按压判定时间")]
+        public float TouchStationaryTime = 0.5f;
+
         #endregion
 
         #region Func

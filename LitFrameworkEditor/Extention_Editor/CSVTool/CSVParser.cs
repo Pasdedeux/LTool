@@ -179,10 +179,12 @@ namespace LitFrameworkEditor.EditorExtended
                     int ste = _type[ i ].Count() - 1;
                     string subtype = _type[ i ].Substring( stb + 1 , ste - stb - 1 );
                     string substrName = string.Format( "{0}_Array" , _attribute[ i ] );
-                    CSString.Add( string.Format( "string[] {0} = {1}.Split(';');" , substrName , string.Format( "reader.GetData({0}, i)" , i ) ) );
 
                     CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , subtype ) );
 
+                    CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))", string.Format("reader.GetData({0}, i)", i)));
+                    CSString.Add("{");
+                    CSString.Add(string.Format("string[] {0} = {1}.Split(';');", substrName, string.Format("reader.GetData({0}, i)", i)));
                     CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
                     CSString.Add( "{" );
                     if( subtype.Contains( "List<" ) )
@@ -193,6 +195,8 @@ namespace LitFrameworkEditor.EditorExtended
                         string usubstrName = string.Format( "{0}_Array2" , _attribute[ i ] );//一级数组
                         string usublstname = string.Format( "{0}_List" , _attribute[ i ] );//一级list名
                         CSString.Add( string.Format( "List<{0}> {1} = new List<{0}>();" , usubtype , usublstname ) );
+                        CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))", string.Format("reader.GetData({0}, i)", i)));
+                        CSString.Add("{");
                         CSString.Add( string.Format( "string[] {0} = {1}[j].Split('|');" , usubstrName , substrName ) );
 
                         CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , usubtype ) );
@@ -200,7 +204,8 @@ namespace LitFrameworkEditor.EditorExtended
                         CSString.Add( string.Format( "for (int k = 0; k < {0}.Length; k++)" , usubstrName ) );
                         CSString.Add( "{" );
                         CSString.Add( string.Format( "{0}.Add({1});" , usublstname , ParseBaseType( usubtype , string.Format( "{0}[k]" , usubstrName ) ) ) );
-                        CSString.Add( "}" );
+                        CSString.Add( "}" ); 
+                        CSString.Add("}");
                         CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , usublstname ) );
                     }
                     else
@@ -209,6 +214,7 @@ namespace LitFrameworkEditor.EditorExtended
 
                     }
                     CSString.Add( "}" );
+                    CSString.Add("}");
 
                 }
                 else if( _type[ i ].Contains( "Dictionary<" ) )
@@ -218,13 +224,15 @@ namespace LitFrameworkEditor.EditorExtended
                     string[] subtype = _type[ i ].Substring( stb + 1 , ste - stb - 1 ).Split( ',' );
                     CSString.Add( string.Format( "item.{0} = new Dictionary<{1}, {2}>();" , _attribute[ i ] , subtype[ 0 ] , subtype[ 1 ] ) );
                     string substrName = string.Format( "{0}_Array" , _attribute[ i ] );
-
+                    CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))",  string.Format("reader.GetData({0}, i)", i)));
+                    CSString.Add("{");
                     CSString.Add( string.Format( "string[] {0} = {1}.Split(';');" , substrName , string.Format( "reader.GetData({0}, i)" , i ) ) );
                     CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
                     CSString.Add( "{" );
                     CSString.Add( string.Format( "string[] subArray = {0}[j].Split('|');" , substrName ) );
                     CSString.Add( string.Format( "item.{0}.Add({1}, {2});" , _attribute[ i ] , ParseBaseType( subtype[ 0 ] , "subArray[0]" ) , ParseBaseType( subtype[ 1 ] , "subArray[1]" ) ) );
                     CSString.Add( "}" );
+                    CSString.Add("}");
                 }
                 else
                     CSString.Add( string.Format( "item.{0} = {1};" , _attribute[ i ] , ParseBaseType( _type[ i ] , string.Format( "reader.GetData({0}, i)" , i ) ) ) );
@@ -245,7 +253,7 @@ namespace LitFrameworkEditor.EditorExtended
                 return "string";
             if( type.Contains( "Dic" ) )
                 return type.Replace( "Dic" , "Dictionary" );
-            if( type.Contains( "\"" ) )
+           if( type.Contains( "\"" ) )
                 return type.Replace( "\"" , "" );
             if( type.Contains( " " ) )
                 return type.Replace( " " , "" );
@@ -300,25 +308,25 @@ namespace LitFrameworkEditor.EditorExtended
                     result = "DateTime.Parse(" + attribute + ")";
                     break;
                 case "short":
-                    result = "short.Parse(" + attribute + ")";
+                    result = "short.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
                     break;
                 case "int":
-                    result = "int.Parse(" + attribute + ")";
+                    result = "int.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
                     break;
                 case "long":
-                    result = "long.Parse(" + attribute + ")";
+                    result = "long.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
                     break;
                 case "float":
-                    result = "float.Parse(" + attribute + ")";
+                    result = "float.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
                     break;
                 case "double":
-                    result = "double.Parse(" + attribute + ")";
+                    result = "double.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
                     break;
                 case "bool":
-                    result = "bool.Parse(" + attribute + ")";
+                    result = "bool.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "False" : attribute ) + ")";
                     break;
                 case "Vector3":
-                    result = "ParseVector3(" + attribute + ")";
+                    result = "ParseVector3(" + ( string.IsNullOrEmpty( attribute ) ? "(0,0,0)" : attribute ) + ")";
                     break;
                 default:
                     //result =( Hebdomad )Enum.Parse( typeof( Hebdomad ), testText )

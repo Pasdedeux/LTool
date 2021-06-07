@@ -308,25 +308,25 @@ namespace LitFrameworkEditor.EditorExtended
                     result = "DateTime.Parse(" + attribute + ")";
                     break;
                 case "short":
-                    result = "short.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
+                    result = "short.Parse(" + attribute + ")";
                     break;
                 case "int":
-                    result = "int.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
+                    result = "int.Parse(" + attribute + ")";
                     break;
                 case "long":
-                    result = "long.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
+                    result = "long.Parse(" + attribute + ")";
                     break;
                 case "float":
-                    result = "float.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
+                    result = "float.Parse(" + attribute + ")";
                     break;
                 case "double":
-                    result = "double.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "0" : attribute ) + ")";
+                    result = "double.Parse(" + attribute + ")";
                     break;
                 case "bool":
-                    result = "bool.Parse(" + ( string.IsNullOrEmpty( attribute ) ? "False" : attribute ) + ")";
+                    result = "bool.Parse(" + attribute + ")";
                     break;
                 case "Vector3":
-                    result = "ParseVector3(" + ( string.IsNullOrEmpty( attribute ) ? "(0,0,0)" : attribute ) + ")";
+                    result = "ParseVector3(" + attribute + ")";
                     break;
                 default:
                     //result =( Hebdomad )Enum.Parse( typeof( Hebdomad ), testText )

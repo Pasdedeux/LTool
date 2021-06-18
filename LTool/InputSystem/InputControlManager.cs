@@ -362,8 +362,8 @@ namespace LitFramework.InputSystem
             }
             else if( TouchCount > 1 )
             {
-                _oldPosition1 = Input.GetTouch( 0 ).position;
-                _oldPosition2 = Input.GetTouch( 1 ).position;
+                if ( Input.GetTouch( 0 ).phase == TouchPhase.Began ) _oldPosition1 = Input.GetTouch( 0 ).position;
+                if ( Input.GetTouch( 1 ).phase == TouchPhase.Began ) _oldPosition2 = Input.GetTouch( 1 ).position;
 
                 if ( Input.GetTouch( 0 ).phase == TouchPhase.Moved || Input.GetTouch( 1 ).phase == TouchPhase.Moved )
                 {
@@ -377,7 +377,7 @@ namespace LitFramework.InputSystem
                     float currentTouchDistance = Vector3.Distance( tempPosition1, tempPosition2 );
                     float lastTouchDistance = Vector3.Distance( _oldPosition1, _oldPosition2 );
 
-                    FingerZoomCallback?.Invoke( ( currentTouchDistance - lastTouchDistance ) * Time.deltaTime );
+                    FingerZoomCallback?.Invoke( ( lastTouchDistance - currentTouchDistance ) * Time.deltaTime );
 
                     //备份上一次触摸点的位置，用于对比
                     _oldPosition1 = tempPosition1;

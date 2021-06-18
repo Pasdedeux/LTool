@@ -29,18 +29,18 @@ namespace UnityEngine
         /// <param name="to"></param>
         /// <param name="fromZero">是否最小值为0°。默认为 False</param>
         /// <returns></returns>
-        public static float VectorAngle( Vector2 from , Vector2 to , bool fromZero = false )
+        public static float VectorAngle( Vector2 from, Vector2 to, bool fromZero = false )
         {
             float angle;
             if ( !fromZero )
             {
-                Vector3 cross = Vector3.Cross( from , to );
-                angle = Vector2.Angle( from , to );
+                Vector3 cross = Vector3.Cross( from, to );
+                angle = Vector2.Angle( from, to );
                 return cross.z > 0 ? -angle : angle;
             }
             else
             {
-                angle = Vector2.Angle( from , to );
+                angle = Vector2.Angle( from, to );
                 return angle;
             }
         }
@@ -234,9 +234,9 @@ namespace UnityEngine
         /// <param name="result">返回相交点</param>
         /// <returns>如果平行则返回false， 否则为true</returns>
         public static bool CalcLineIntersection( Vector2 p1, Vector2 p2, //第一根直线
-                                                   Vector2 p3, Vector2 p4 , out Vector2 result ) //第二根直线
+                                                   Vector2 p3, Vector2 p4, out Vector2 result ) //第二根直线
         {
-            if ( IsParallel( p2-p1,p4-p3 ))
+            if ( IsParallel( p2 - p1, p4 - p3 ) )
             {
                 result = Vector2.zero;
                 Debug.LogWarning( new Exception( "CalcLineIntersection 两条直线平行，无交点" ) );
@@ -255,7 +255,7 @@ namespace UnityEngine
 
             return true;
         }
-        
+
         /// <summary>
         /// 计算两个3D向量的夹角
         /// </summary>
@@ -357,7 +357,7 @@ namespace UnityEngine
             return bounds;
         }
 
-        
+
         #endregion
 
 

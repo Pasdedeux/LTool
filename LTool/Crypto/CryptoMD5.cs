@@ -32,28 +32,28 @@ using System.Text;
 
 namespace LitFramework.Crypto
 {
-    internal class CryptoMD5
+    public class CryptoMD5 : ICrypto
     {
-        internal string GetMD5Hash( string content )
+        public string GetHash( string content )
         {
-            string hashKey = "As#@$%$^_kL+{";
+            string hashKey = "As#@$%$^_kLLHW+{";
             using ( MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider() )
             {
-                string hashCode = BitConverter.ToString( md5.ComputeHash( UTF8Encoding.Default.GetBytes( hashKey ) ) ).Replace( "-", "" ) + BitConverter.ToString( md5.ComputeHash( UTF8Encoding.Default.GetBytes( content ) ) ).Replace( "-", "" );
-                return BitConverter.ToString( md5.ComputeHash( UTF8Encoding.Default.GetBytes( hashCode ) ) ).Replace( "-", "" );
+                string hashCode = BitConverter.ToString( md5.ComputeHash( Encoding.UTF8.GetBytes( hashKey ) ) ).Replace( "-", "" ) + BitConverter.ToString( md5.ComputeHash( Encoding.UTF8.GetBytes( content ) ) ).Replace( "-", "" );
+                return BitConverter.ToString( md5.ComputeHash( Encoding.UTF8.GetBytes( hashCode ) ) ).Replace( "-", "" );
             }
         }
 
 
-        internal bool VerifyMd5Hash( string content, string hash )
+        public bool VerifyHash( string content, string hash )
         {
-            string hashOfInput = GetMD5Hash( content );
+            string hashOfInput = GetHash( content );
             StringComparer stringCompare = StringComparer.OrdinalIgnoreCase;
             return stringCompare.Compare( hashOfInput, hash ) == 0 ? true : false;
         }
 
 
-        internal string GetFileHash(string filePath)
+        public string GetFileHash( string filePath )
         {
             using ( MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider() )
             using ( FileStream fs = new FileStream( filePath, FileMode.Open, FileAccess.Read, FileShare.Read ) )

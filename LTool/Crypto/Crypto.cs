@@ -32,7 +32,7 @@ namespace LitFramework.Crypto
 {
     public class Crypto
     {
-        internal readonly static CryptoMD5 md5 = new CryptoMD5();
-
+        public readonly static CryptoMD5 md5 = new CryptoMD5();
+        public readonly static CryptoSHA1 sha1 = new CryptoSHA1();
     }
 }

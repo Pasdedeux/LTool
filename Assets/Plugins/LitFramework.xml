@@ -330,7 +330,7 @@
             </summary>
             <param name="path">地址或者内容文本</param>
             <param name="isContent">path字符串如果是地址，为false，反之为true</param>
-            <param name="chars">分隔符为列表</param>
+            <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.SaveText(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.String,System.String)">
@@ -705,6 +705,16 @@
             是否点击到UI反馈
             </summary>
         </member>
+        <member name="E:LitFramework.InputSystem.InputControlManager.FingerZoomCallback">
+            <summary>
+            双指|鼠标滚轮放大程度
+            </summary>
+        </member>
+        <member name="E:LitFramework.InputSystem.InputControlManager.FingerRotateCallBack">
+            <summary>
+            双指滑动相对上次记录偏移角度。顺时针计算
+            </summary>
+        </member>
         <member name="P:LitFramework.InputSystem.InputControlManager.CurrentIsOnUI">
             <summary>
             当前是否在点击UI
@@ -714,34 +724,6 @@
             <summary>
             鼠标点击操作功能是否开启
             </summary>
-        </member>
-        <member name="M:LitFramework.InputSystem.InputControlManager.CalculateTimeByPressStart(UnityEngine.Vector2)">
-            <summary>
-            按住屏幕开始计时
-            </summary>
-        </member>
-        <member name="M:LitFramework.InputSystem.InputControlManager.CalculateTimeByPressOver(UnityEngine.Vector2)">
-            <summary>
-            离开屏幕计时
-            </summary>
-        </member>
-        <member name="M:LitFramework.InputSystem.InputControlManager.EscapeBtnClick">
-            <summary>
-            默认-按顺序关闭UI
-            </summary>
-            <param name="extendedFunc">采用自定义函数执行返回键功能</param>
-        </member>
-        <member name="M:LitFramework.InputSystem.InputControlManager.SetRotateClockwise(System.Single)">
-            <summary>
-            设置触控方向的【顺时针】旋转角度
-            </summary>
-            <param name="degree"></param>
-        </member>
-        <member name="M:LitFramework.InputSystem.InputControlManager.GetTouchMoveDirection(LitFramework.InputSystem.TouchDirection)">
-            <summary>
-            获取一次滑动行为
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:LitFramework.LitPool.SpawnManager">
             <summary>
@@ -970,14 +952,14 @@
             当前显示的非弹出类UI窗体
             </summary>
         </member>
-        <member name="M:LitFramework.Mono.UIManager.ShowFade(System.Single,System.Action)">
+        <member name="M:LitFramework.Mono.UIManager.ShowFade(System.Action,System.Single)">
             <summary>
             隐退开始
             </summary>
             <param name="time"></param>
             <param name="callBack"></param>
         </member>
-        <member name="M:LitFramework.Mono.UIManager.HideFade(System.Single,System.Action)">
+        <member name="M:LitFramework.Mono.UIManager.HideFade(System.Action,System.Single)">
             <summary>
             隐退结束
             </summary>
@@ -1399,7 +1381,7 @@
             Returns the prefab of the given name (dictionary key)
             </summary>
         </member>
-        <!-- 对于成员“P:PathologicalGames.SpawnPool.prefabPools”忽略有格式错误的 XML 注释 -->
+        <!-- Badly formed XML comment ignored for member "P:PathologicalGames.SpawnPool.prefabPools" -->
         <member name="M:PathologicalGames.SpawnPool.OnDestroy">
             <summary>
             Runs when this group GameObject is destroyed and executes clean-up

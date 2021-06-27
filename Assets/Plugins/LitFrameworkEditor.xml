@@ -182,6 +182,12 @@
             UI/Sound路径注册类
             </summary>
         </member>
+        <member name="M:LitFrameworkEditor.Extention_Editor.RegisterAudio.RecursionAction(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            递归方法，用于查找所有文件夹
+            </summary>
+            <param name="dirName"></param>
+        </member>
         <member name="T:LitFrameworkEditor.Extention_Editor.MenuExtention.UGUIRaycastCheck">
             <summary>
             RayCast线框显示

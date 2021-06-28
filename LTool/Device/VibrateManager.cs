@@ -28,9 +28,9 @@ namespace LitFramework
 
         /// <summary>
         /// 延迟毫秒,震动时间,延迟毫秒,震动时间
-        /// </summary>
-        /// <param name="pattern">延迟毫秒,震动时间,延迟毫秒,震动时间</param>
-        /// <param name="repeat">-1不循环2=无限循环</param>
+        /// </summary>0,100,100,100
+        /// <param name="pattern">延迟（毫秒）,震动时间（毫秒）,延迟（毫秒）,震动时间（毫秒）</param>
+        /// <param name="repeat">-1不循环 2=无限循环</param>
         public void Shake( long[] pattern, int repeat = -1 )
         {
 #if UNITY_ANDROID && !UNITY_EDITOR

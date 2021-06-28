@@ -46,6 +46,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     {
         DontDestroyOnLoad( GameObject.Find( "Canvas_Root" ) );
         LDebug.Enable = debugEnable;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         //TODO AB模块
         //AssetDriver.Instance.Install();

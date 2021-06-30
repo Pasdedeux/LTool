@@ -67,7 +67,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //Audio System
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };
         AudioManager.Instance.Install();
-
+        
         //震动
         VibrateManager.Instance.Install();
 

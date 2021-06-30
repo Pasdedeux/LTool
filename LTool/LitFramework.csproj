@@ -246,6 +246,7 @@
   <ItemGroup>
     <Compile Include="Crypto\CryptoSHA1.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
+    <Compile Include="Device\VibrateManager.cs" />
     <Compile Include="FrameworkConfig.cs" />
     <Compile Include="GameFlow\Controller\GameDriver.cs" />
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
@@ -257,7 +258,6 @@
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="Device\VibrateManager.cs" />
     <Compile Include="Extention_Editor\CSVReader.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />

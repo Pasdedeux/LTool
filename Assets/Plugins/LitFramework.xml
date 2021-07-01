@@ -4,6 +4,13 @@
         <name>LitFramework</name>
     </assembly>
     <members>
+        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
+            <summary>
+            延迟毫秒,震动时间,延迟毫秒,震动时间
+            </summary>0,100,100,100
+            <param name="pattern">延迟（毫秒）,震动时间（毫秒）,延迟（毫秒）,震动时间（毫秒）</param>
+            <param name="repeat">-1不循环 2=无限循环</param>
+        </member>
         <member name="T:LitFramework.FrameworkConfig">
             <summary>
             框架控制参数
@@ -595,13 +602,6 @@
             <summary>
             移除
             </summary>
-        </member>
-        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
-            <summary>
-            延迟毫秒,震动时间,延迟毫秒,震动时间
-            </summary>
-            <param name="pattern">延迟毫秒,震动时间,延迟毫秒,震动时间</param>
-            <param name="repeat">-1不循环2=无限循环</param>
         </member>
         <member name="T:LitFramework.GameFlow.GameFlowController">
             <summary>

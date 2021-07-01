@@ -15,21 +15,24 @@ public class GUITest : MonoBehaviour
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "注册事件" ) )
         {
-            LDebug.Log( Camera.main.aspect );
-            LDebug.Log( Camera.main.pixelWidth );
-            LDebug.Log( Camera.main.pixelHeight );
+            VibrateManager.Instance.Install();
         }
 
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "去注册事件" ) )
+        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "强烈震动" ) )
         {
-            
+            VibrateManager.Instance.Shake( VibrateState.Acute );
         }
 
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "广播事件" ) )
+        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "中等震动" ) )
         {
-            
+            VibrateManager.Instance.Shake( VibrateState.Interval );
         }
-        
+
+        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "弱震动" ) )
+        {
+            VibrateManager.Instance.Shake( VibrateState.Softly );
+        }
+
     }
 #endif
 }

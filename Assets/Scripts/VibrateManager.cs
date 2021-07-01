@@ -19,7 +19,7 @@ namespace LitFramework
         /// </summary>
         Softly,
         /// <summary>
-        /// 连续短促的小震  3
+        /// 连续短促的小震
         /// </summary>
         Interval,
         /// <summary>
@@ -30,7 +30,7 @@ namespace LitFramework
 
     public class VibrateManager : Singleton<VibrateManager>, IManager
     {
-#if UNITY_IOS
+#if UNITY_IOS && !UNITY_EDITOR
         [DllImport( "__Internal" )]
         private static extern void InstantiateFeedbackGenerators();
         [DllImport( "__Internal" )]
@@ -49,17 +49,17 @@ namespace LitFramework
         private static extern void MediumImpactHaptic();
         [DllImport( "__Internal" )]
         private static extern void HeavyImpactHaptic();
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID && !UNITY_EDITOR
         private AndroidJavaObject _javaObject;
         private long[] _softly = new long[] { 0, 50, 10, 50 }, _interval = new long[] { 0, 100 }, _acute = new long[] { 0, 300 };
 #endif
 
         public void Install()
         {
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             AndroidJavaClass jd = new AndroidJavaClass( "com.taotao.newshake.MainShake" );
             _javaObject = jd.CallStatic<AndroidJavaObject>( "GetInstans" );
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
             InstantiateFeedbackGenerators();
 #endif
         }
@@ -74,30 +74,30 @@ namespace LitFramework
             switch ( vibrateState )
             {
                 case VibrateState.Softly:
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
                     Shake( _softly );
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
                     SelectionHaptic();
 #endif
                     break;
                 case VibrateState.Interval:
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
                     Shake( _interval );
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
                     SuccessHaptic();
 #endif
                     break;
                 case VibrateState.Acute:
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
                     Shake( _acute );
-#elif UNITY_IOS
+#elif UNITY_IOS && !UNITY_EDITOR
                     FailureHaptic();
 #endif
                     break;
             }
         }
 
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         /// <summary>
         /// 延迟毫秒,震动时间,延迟毫秒,震动时间
         /// </summary>0,100,100,100

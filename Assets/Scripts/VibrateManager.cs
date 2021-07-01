@@ -97,6 +97,7 @@ namespace LitFramework
             }
         }
 
+#if UNITY_ANDROID || UNITY_EDITOR
         /// <summary>
         /// 延迟毫秒,震动时间,延迟毫秒,震动时间
         /// </summary>0,100,100,100
@@ -105,10 +106,10 @@ namespace LitFramework
         public void Shake( long[] pattern, int repeat = -1 )
         {
             LDebug.Log( "[设置]->震动 " );
-#if UNITY_ANDROID || UNITY_EDITOR
+
             _javaObject.Call( "UnityCallShake", pattern, repeat );
-#endif
         }
+#endif
     }
 
 }

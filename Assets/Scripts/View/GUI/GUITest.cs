@@ -8,7 +8,6 @@ using UnityEngine.Profiling;
 
 public class GUITest : MonoBehaviour
 {
-#if UNITY_EDITOR
     private void OnGUI()
     {
         int index = 0;
@@ -34,5 +33,4 @@ public class GUITest : MonoBehaviour
         }
 
     }
-#endif
 }

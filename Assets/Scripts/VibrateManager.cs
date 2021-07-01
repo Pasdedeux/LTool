@@ -30,6 +30,7 @@ namespace LitFramework
 
     public class VibrateManager : Singleton<VibrateManager>, IManager
     {
+#if UNITY_IOS
         [DllImport( "__Internal" )]
         private static extern void InstantiateFeedbackGenerators();
         [DllImport( "__Internal" )]
@@ -48,26 +49,19 @@ namespace LitFramework
         private static extern void MediumImpactHaptic();
         [DllImport( "__Internal" )]
         private static extern void HeavyImpactHaptic();
-
-
-        private RuntimePlatform _platForm;
+#elif UNITY_ANDROID
         private AndroidJavaObject _javaObject;
-        private long[] _softly = new long[] { 0, 50, 10, 50 }, _interval = new long[] { 0, 100, 100, 100 }, _acute = new long[] { 0, 300, 100, 300 };
-
+        private long[] _softly = new long[] { 0, 50, 10, 50 }, _interval = new long[] { 0, 100 }, _acute = new long[] { 0, 300 };
+#endif
 
         public void Install()
         {
-            _platForm = Application.platform;
-            if ( _platForm == RuntimePlatform.Android )
-            {
-                AndroidJavaClass jd = new AndroidJavaClass( "com.taotao.newshake.MainShake" );
-                _javaObject = jd.CallStatic<AndroidJavaObject>( "GetInstans" );
-            }
-            else if ( _platForm == RuntimePlatform.IPhonePlayer || UnityEngine.iOS.Device.generation.ToString().Contains( "iPad" ) )
-            {
-                InstantiateFeedbackGenerators();
-            }
-
+#if UNITY_ANDROID || UNITY_EDITOR
+            AndroidJavaClass jd = new AndroidJavaClass( "com.taotao.newshake.MainShake" );
+            _javaObject = jd.CallStatic<AndroidJavaObject>( "GetInstans" );
+#elif UNITY_IOS
+            InstantiateFeedbackGenerators();
+#endif
         }
 
         public void Uninstall() { }
@@ -76,42 +70,29 @@ namespace LitFramework
 
         public void Shake( VibrateState vibrateState )
         {
-            LDebug.Log( "[设置]->震动 " + _platForm );
+            LDebug.Log( "[设置]->震动 " );
             switch ( vibrateState )
             {
                 case VibrateState.Softly:
-                    if ( _platForm == RuntimePlatform.Android )
-                    {
-                        Shake( _softly );
-                    }
-                    else if ( _platForm == RuntimePlatform.IPhonePlayer || UnityEngine.iOS.Device.generation.ToString().Contains( "iPad" ) )
-                    {
-                        SelectionHaptic();
-                    }
-
+#if UNITY_ANDROID || UNITY_EDITOR
+                    Shake( _softly );
+#elif UNITY_IOS
+                    SelectionHaptic();
+#endif
                     break;
                 case VibrateState.Interval:
-                    if ( _platForm == RuntimePlatform.Android )
-                    {
-                        Shake( _interval );
-                    }
-                    else if ( _platForm == RuntimePlatform.IPhonePlayer || UnityEngine.iOS.Device.generation.ToString().Contains( "iPad" ) )
-                    {
-                        SuccessHaptic();
-                    }
-
+#if UNITY_ANDROID || UNITY_EDITOR
+                    Shake( _interval );
+#elif UNITY_IOS
+                    SuccessHaptic();
+#endif
                     break;
                 case VibrateState.Acute:
-                    if ( _platForm == RuntimePlatform.Android )
-                    {
-                        Shake( _acute );
-                    }
-                    else if ( _platForm == RuntimePlatform.IPhonePlayer || UnityEngine.iOS.Device.generation.ToString().Contains( "iPad" ) )
-                    {
-                        FailureHaptic();
-                    }
-                    break;
-                default:
+#if UNITY_ANDROID || UNITY_EDITOR
+                    Shake( _acute );
+#elif UNITY_IOS
+                    FailureHaptic();
+#endif
                     break;
             }
         }
@@ -123,9 +104,10 @@ namespace LitFramework
         /// <param name="repeat">-1不循环 2=无限循环</param>
         public void Shake( long[] pattern, int repeat = -1 )
         {
-            LDebug.Log( "[设置]->震动 " + _platForm );
-            if ( _platForm == RuntimePlatform.Android )
-                _javaObject.Call( "UnityCallShake", pattern, repeat );
+            LDebug.Log( "[设置]->震动 " );
+#if UNITY_ANDROID || UNITY_EDITOR
+            _javaObject.Call( "UnityCallShake", pattern, repeat );
+#endif
         }
     }
 

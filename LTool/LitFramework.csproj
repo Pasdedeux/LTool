@@ -246,10 +246,10 @@
   <ItemGroup>
     <Compile Include="Crypto\CryptoSHA1.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
-    <Compile Include="Device\VibrateManager.cs" />
     <Compile Include="FrameworkConfig.cs" />
     <Compile Include="GameFlow\Controller\GameDriver.cs" />
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="GameFlow\Model\Configs.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />
@@ -274,6 +274,7 @@
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\LitTool.cs" />
+    <Compile Include="MsgSystem\InternalMsgCode.cs" />
     <Compile Include="MsgSystem\MsgManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

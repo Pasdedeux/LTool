@@ -30,6 +30,10 @@ namespace LitFramework
     /// </summary>
     public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
+        #region 全局字段
+
+        #endregion
+
         #region 全局设置
 
         /// <summary>

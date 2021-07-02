@@ -328,7 +328,7 @@
             <summary>
             解析txt 或者 远端txt内容
             </summary>
-            <param name="path">地址或者内容文本</param>
+            <param name="path">地址或者内容文本。可以使用Path.Combine方法获取到正确地址</param>
             <param name="isContent">path字符串如果是地址，为false，反之为true</param>
             <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
             <returns></returns>
@@ -596,13 +596,6 @@
             移除
             </summary>
         </member>
-        <member name="M:LitFramework.VibrateManager.Shake(System.Int64[],System.Int32)">
-            <summary>
-            延迟毫秒,震动时间,延迟毫秒,震动时间
-            </summary>0,100,100,100
-            <param name="pattern">延迟（毫秒）,震动时间（毫秒）,延迟（毫秒）,震动时间（毫秒）</param>
-            <param name="repeat">-1不循环 2=无限循环</param>
-        </member>
         <member name="T:LitFramework.GameFlow.GameFlowController">
             <summary>
             游戏主流程控制器，用于场景加载、跳转等命令合集
@@ -752,6 +745,11 @@
             回收入对象池
             </summary>
             <param name="item"></param>
+        </member>
+        <member name="T:LitFramework.MsgSystem.InternalMsgCode">
+            <summary>
+            框架内通信事件，主要是必要组件初始化时序管控
+            </summary>
         </member>
         <member name="T:LitFramework.TimeRecord.ZeroTimeRecord">
             <summary>

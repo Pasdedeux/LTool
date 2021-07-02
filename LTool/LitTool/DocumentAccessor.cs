@@ -43,7 +43,7 @@ namespace LitFramework.LitTool
         /// <summary>
         /// 解析txt 或者 远端txt内容
         /// </summary>
-        /// <param name="path">地址或者内容文本</param>
+        /// <param name="path">地址或者内容文本。可以使用Path.Combine方法获取到正确地址</param>
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
         /// <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
         /// <returns></returns>

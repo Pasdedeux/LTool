@@ -123,6 +123,7 @@ namespace LitFrameworkEditor.EditorExtended
 
             try
             {
+                ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
                 //对文件进行遍历
                 foreach ( var NextFile in theXMLFolder.GetFiles() )
                 {
@@ -132,8 +133,11 @@ namespace LitFrameworkEditor.EditorExtended
                         CSVParser cp = new CSVParser();
                         CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
                         CreateCSVFile( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
-                        Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
+                        LDebug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
 
+                        //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
+                        CSVReader reader = new CSVReader( csvfile );
+                        cnt.configsNameList.Add( NextFile.Name.Split( '.' )[ 0 ], reader.GetData( 0, 2 ) );
                         listwriter.WriteLine( NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                     }
                     else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
@@ -145,8 +149,12 @@ namespace LitFrameworkEditor.EditorExtended
                         listwriter.WriteLine( NextFile.Name );
                     }
                 }
+
+                //============更新并保存CS============//
+                ConfigsParse rpp = new ConfigsParse();
+                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model", "Configs.cs", rpp.CreateCS( cnt ) );
             }
-            catch ( Exception e ) { Debug.LogError( e.Message ); }
+            catch ( Exception e ) { LDebug.LogError( e.Message ); }
             finally
             {
                 listwriter.Close();
@@ -457,6 +465,5 @@ namespace LitFrameworkEditor.EditorExtended
             }
             EditorGUILayout.EndScrollView();
         }
-
     }
 }

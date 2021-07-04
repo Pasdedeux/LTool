@@ -39,6 +39,93 @@
             开启UGUI组件优化（仅对象创建时）
             </summary>
         </member>
+        <member name="T:LitFramework.GameFlow.GameFlowController">
+            <summary>
+            游戏主流程控制器，用于场景加载、跳转等命令合集
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            加载场景，这里使用的async加载方式
+            </summary>
+            <param name="sceneID"></param>
+            <param name="callBackBeforeChanging"></param>
+            <param name="callBackAfterChanging"></param>
+            <param name="loadingUIPath"></param>
+            <param name="needFading"></param>
+            <param name="fadingTime"></param>
+            <param name="isHot"></param>
+            <param name="isAdditive"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.String,System.Boolean)">
+            <summary>
+            异步加载场景
+            </summary>
+            <param name="sceneID"></param>
+            <param name="isAdditive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.Int32,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.String,System.Boolean)">
+            <summary>
+            同步加载场景
+            </summary>
+            <param name="sceneID"></param>
+        </member>
+        <member name="T:LitFramework.GameFlow.LoadingTaskModel">
+            <summary>
+            Loading 加载任务数据类，用于承接Loading进度条的中间加载任务
+            执行时机由UI界面驱动
+            </summary>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.AddTask(System.Int32,System.Func{System.Boolean},System.Boolean)">
+            <summary>
+             在指定加载进度位置执行代码 
+             
+            【不要手动添加0-5/100的回调函数，0-5默认为场景加载，100默认为加载进度条结束时的回调】
+            </summary>
+            <param name="framePercent">指定的百分比</param>
+            <param name="funcCallBack">需要执行的回调函数</param>
+            <param name="forceReplace">忽略限制，按参数信息赋值</param>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.TryGetTask(System.Int32)">
+            <summary>
+            尝试查询并取出任务
+            </summary>
+            <param name="framePercent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.GameFlow.LoadingTaskModel.ClearTask">
+            <summary>
+            清楚本次UI登记的任务
+            </summary>
+        </member>
         <member name="T:LitFramework.LitTool.AnimBundle">
             <summary>
             UI/场景动画包。存放一些预设的动画
@@ -65,7 +152,7 @@
              获取外部persistant路径+"//"
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="isRemote">true-用于www/unitywebrequest远端加载路径,  false-用于本地文件读取（FileInfo FileStream）</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
@@ -73,7 +160,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="isRemote">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
@@ -81,7 +168,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="isRemote">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.LitTool">
@@ -594,93 +681,6 @@
         <member name="M:LitFramework.SingletonMono`1.DoDestroy">
             <summary>
             移除
-            </summary>
-        </member>
-        <member name="T:LitFramework.GameFlow.GameFlowController">
-            <summary>
-            游戏主流程控制器，用于场景加载、跳转等命令合集
-            </summary>
-        </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            加载场景，这里使用的async加载方式
-            </summary>
-            <param name="sceneID"></param>
-            <param name="callBackBeforeChanging"></param>
-            <param name="callBackAfterChanging"></param>
-            <param name="loadingUIPath"></param>
-            <param name="needFading"></param>
-            <param name="fadingTime"></param>
-            <param name="isHot"></param>
-            <param name="isAdditive"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            加载场景，这里使用的async加载方式
-            </summary>
-            <param name="sceneID"></param>
-            <param name="callBackBeforeChanging"></param>
-            <param name="callBackAfterChanging"></param>
-            <param name="loadingUIPath"></param>
-            <param name="needFading"></param>
-            <param name="fadingTime"></param>
-            <param name="isHot"></param>
-            <param name="isAdditive"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
-            <summary>
-            异步加载场景
-            </summary>
-            <param name="sceneID"></param>
-            <param name="isAdditive"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.String,System.Boolean)">
-            <summary>
-            异步加载场景
-            </summary>
-            <param name="sceneID"></param>
-            <param name="isAdditive"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.Int32,System.Boolean)">
-            <summary>
-            同步加载场景
-            </summary>
-            <param name="sceneID"></param>
-        </member>
-        <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadScene(System.String,System.Boolean)">
-            <summary>
-            同步加载场景
-            </summary>
-            <param name="sceneID"></param>
-        </member>
-        <member name="T:LitFramework.GameFlow.LoadingTaskModel">
-            <summary>
-            Loading 加载任务数据类，用于承接Loading进度条的中间加载任务
-            执行时机由UI界面驱动
-            </summary>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.AddTask(System.Int32,System.Func{System.Boolean},System.Boolean)">
-            <summary>
-             在指定加载进度位置执行代码 
-             
-            【不要手动添加0-5/100的回调函数，0-5默认为场景加载，100默认为加载进度条结束时的回调】
-            </summary>
-            <param name="framePercent">指定的百分比</param>
-            <param name="funcCallBack">需要执行的回调函数</param>
-            <param name="forceReplace">忽略限制，按参数信息赋值</param>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.TryGetTask(System.Int32)">
-            <summary>
-            尝试查询并取出任务
-            </summary>
-            <param name="framePercent"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.GameFlow.LoadingTaskModel.ClearTask">
-            <summary>
-            清楚本次UI登记的任务
             </summary>
         </member>
         <member name="E:LitFramework.InputSystem.InputControlManager.EscapeCallBack">

@@ -40,6 +40,7 @@ namespace LitFramework.LitTool
         public static Func<List<string> , Dictionary<string , List<string>> , bool> ReadTextAdditionalCondition =
             ( e , d ) => { return true; };
 
+        [Obsolete( "该方法在路径传入上有其它要求，建议使用LoadAsset/ILoadAsset读取text文件" )]
         /// <summary>
         /// 解析txt 或者 远端txt内容
         /// </summary>
@@ -53,7 +54,7 @@ namespace LitFramework.LitTool
 
             if( !isContent )
             {
-                StreamReader sr = new StreamReader( path , Encoding.UTF8 );
+                StreamReader sr = new StreamReader( path , new UTF8Encoding(false));
                 string line;
                 while( ( line = sr.ReadLine() ) != null )
                 {
@@ -74,7 +75,7 @@ namespace LitFramework.LitTool
             }
             else
             {
-                //path.Replace( "\r\n" , "\n" );
+                //path.Replace( "\r\n", "\n" );
                 string[] res = path.Split( new string[] { "\r\n" } , StringSplitOptions.None );
                 for( int i = 0; i < res.Length; i++ )
                 {
@@ -255,9 +256,9 @@ namespace LitFramework.LitTool
 
         #region UnityWebRequest
         /// <summary>
-        /// 
+        /// 协程加载
         /// </summary>
-        /// <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+        /// <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
         /// <returns></returns>
         public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack )
@@ -286,9 +287,9 @@ namespace LitFramework.LitTool
         }
 
         /// <summary>
-        /// 
+        /// 协程加载
         /// </summary>
-        /// <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+        /// <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
         /// <returns></returns>
         public static IEnumerator ILoadAsset( string path, Action<string> callBack )
@@ -315,7 +316,77 @@ namespace LitFramework.LitTool
                 }
             }
         }
-        
+
+        /// <summary>
+        /// 同步加载
+        /// </summary>
+        /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+        /// <param name="callBack"></param>
+        public static void LoadAsset( string path, Action<string> callBack )
+        {
+            Uri uri = new Uri( path );
+            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
+            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            {
+                uwr.timeout = 5;
+                uwr.disposeUploadHandlerOnDispose = true;
+                uwr.disposeDownloadHandlerOnDispose = true;
+                uwr.disposeCertificateHandlerOnDispose = true;
+
+                uwr.SendWebRequest();
+
+                while ( true )
+                {
+                    if ( uwr.isHttpError || uwr.isNetworkError )
+                    {
+                        LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
+                        return;
+                    }
+                    else if ( uwr.downloadProgress == 1 )
+                    {
+                        LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                        callBack?.Invoke( uwr.downloadHandler.text );
+                        return;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 同步加载
+        /// </summary>
+        /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+        /// <param name="callBack"></param>
+        public static void LoadAsset( string path, Action<UnityWebRequest> callBack )
+        {
+            Uri uri = new Uri( path );
+            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
+            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            {
+                uwr.timeout = 5;
+                uwr.disposeUploadHandlerOnDispose = true;
+                uwr.disposeDownloadHandlerOnDispose = true;
+                uwr.disposeCertificateHandlerOnDispose = true;
+
+                uwr.SendWebRequest();
+
+                while ( true )
+                {
+                    if ( uwr.isHttpError || uwr.isNetworkError )
+                    {
+                        LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
+                        return;
+                    }
+                    else if ( uwr.downloadProgress == 1 )
+                    {
+                        LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                        callBack?.Invoke( uwr );
+                        return;
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region WWW加载

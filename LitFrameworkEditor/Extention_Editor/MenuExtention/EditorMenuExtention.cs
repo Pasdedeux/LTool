@@ -51,7 +51,7 @@ namespace LitFrameworkEditor.EditorExtended
             //文件列表
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
             FileStream fs = new FileStream( listpath, FileMode.Create );
-            StreamWriter listwriter = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
             DirectoryInfo TheFolder = new DirectoryInfo( xlsxpath );
 
             if ( !Directory.Exists( csvpath ) )
@@ -110,7 +110,7 @@ namespace LitFrameworkEditor.EditorExtended
             //文件列表
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
             FileStream fs = new FileStream( listpath, FileMode.Create );
-            StreamWriter listwriter = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
 
             if ( !Directory.Exists( csvOutPath ) )
             {
@@ -180,7 +180,7 @@ namespace LitFrameworkEditor.EditorExtended
             path += className;
 
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
             sw.Write( cs );
             sw.Close();
             sw.Dispose();
@@ -190,7 +190,7 @@ namespace LitFrameworkEditor.EditorExtended
         static void CreateCSVFile( string path, string data )
         {
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
             sw.Write( data );
             sw.Close();
             sw.Dispose();

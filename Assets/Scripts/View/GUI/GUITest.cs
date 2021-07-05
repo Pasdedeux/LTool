@@ -31,6 +31,5 @@ public class GUITest : MonoBehaviour
         {
             VibrateManager.Instance.Shake( VibrateState.Softly );
         }
-
     }
 }

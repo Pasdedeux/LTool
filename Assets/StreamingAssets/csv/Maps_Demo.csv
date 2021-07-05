@@ -1,0 +1,4 @@
+ID,地图名称,地图场景,刷兵时间点-秒,刷兵ID  RolesID:代表波次  |代表同一时刻刷怪,刷兵等级,击杀金币,购买技能金币消耗,是否boss,首次通关奖励道具id,首次击杀掉落道具数量
+ID,SuperName,SceneName,Time,RolesID,RolesLevel,Gold,BuySkillCostGold,IsBoss,FirstPassGoods,FirstKillGoodsNum
+string,string,string,Vector3,string,string,string,int,bool,string,string
+1,场景1,TowerDefense_1_1,"(1,2,3.1)",101-1:101-1:101-1:101-1,1:1:1:1,3:3:3:3,4,False,,

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace LitFramework
 {
@@ -70,7 +71,7 @@ namespace LitFramework
 
         public void Shake( VibrateState vibrateState )
         {
-            LDebug.Log( "[设置]->震动 " );
+            LDebug.Log( "[设置]->震动 "+ vibrateState );
             switch ( vibrateState )
             {
                 case VibrateState.Softly:

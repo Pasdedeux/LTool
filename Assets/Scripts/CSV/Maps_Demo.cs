@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2021/1/23 15:43:39
+/// 创建时间:2021/7/5 13:57:30
 /// </summary>
-public class Maps
+public class Maps_Demo
 {
 	/// <summary>
 	/// ID
 	/// </summary>
-	public int ID { get; set; }
+	public string ID { get; set; }
 	/// <summary>
 	/// 地图名称
 	/// </summary>
@@ -53,19 +53,20 @@ public class Maps
 	/// </summary>
 	public string FirstKillGoodsNum { get; set; }
 	
+		[Obsolete]
 	/// <summary>
 	/// 读取配置文件
 	/// </summary>
 	/// <param name="config">配置文件数据</param>
 	/// <returns>数据列表</returns>
-	public static List<Maps> ReturnList(string csv)
+	public static List<Maps_Demo> ReturnList(string csv)
 	{
-		List<Maps> vec = new List<Maps>();
+		List<Maps_Demo> vec = new List<Maps_Demo>();
 		CSVReader reader = new CSVReader(csv);
 		for (int i = 3; i < reader.Row; i++)
 		{
-			Maps item = new Maps();
-			item.ID = int.Parse(reader.GetData(0, i));
+			Maps_Demo item = new Maps_Demo();
+			item.ID = reader.GetData(0, i);
 			item.SuperName = reader.GetData(1, i);
 			item.SceneName = reader.GetData(2, i);
 			item.Time = ParseVector3(reader.GetData(3, i));
@@ -81,19 +82,20 @@ public class Maps
 		return vec;
 	}
 	
+		[Obsolete]
 	/// <summary>
 	/// 读取配置文件
 	/// </summary>
 	/// <param name="config">配置文件数据</param>
 	/// <returns>数据列表</returns>
-	public static Dictionary<int, Maps> ReturnDictionary(string csv)
+	public static Dictionary<string, Maps_Demo> ReturnDictionary(string csv)
 	{
-		Dictionary<int, Maps> vec = new Dictionary<int, Maps>();
+		Dictionary<string, Maps_Demo> vec = new Dictionary<string, Maps_Demo>();
 		CSVReader reader = new CSVReader(csv);
 		for (int i = 3; i < reader.Row; i++)
 		{
-			Maps item = new Maps();
-			item.ID = int.Parse(reader.GetData(0, i));
+			Maps_Demo item = new Maps_Demo();
+			item.ID = reader.GetData(0, i);
 			item.SuperName = reader.GetData(1, i);
 			item.SceneName = reader.GetData(2, i);
 			item.Time = ParseVector3(reader.GetData(3, i));

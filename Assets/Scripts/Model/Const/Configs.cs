@@ -1,7 +1,7 @@
-﻿#region << 版 本 注 释 >>
+#region << 版 本 注 释 >>
 ///*----------------------------------------------------------------
 // Author : Derek Liu
-// 创建时间:2021/5/15 22:27:19
+// 创建时间:2021/7/5 13:57:30
 // 备注：由模板工具自动生成
 ///----------------------------------------------------------------*/
 #endregion
@@ -11,16 +11,8 @@
 //*******************************************************************
 
 using LitFramework;
-public class ResPath:Singleton<ResPath>
+using System.Collections.Generic;
+public static partial class Configs
 {
-	public class Sound
-	{
-	}
-	public class UI
-	{
-		/// <summary>
-		/// 
-		/// </summary>
-		public const string UILOADING = "Prefabs/UI/Canvas_Loading";
-	}
+	public static Dictionary<string, Maps_Demo> Maps_DemoDict;
 }

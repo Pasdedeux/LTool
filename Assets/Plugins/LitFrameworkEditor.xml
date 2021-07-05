@@ -294,5 +294,15 @@
             路径存放模板
             </summary>
         </member>
+        <member name="T:ConfigsParse">
+            <summary>
+            配置表路径注册类
+            </summary>
+        </member>
+        <member name="T:ConfigsNamesTemplate">
+            <summary>
+            配置表访问文件配置文件
+            </summary>
+        </member>
     </members>
 </doc>

@@ -14,6 +14,10 @@ public class LoadingStart : MonoBehaviour
 {
     void Start()
     {
+        //是否迁移到可读写目录
+        if ( FrameworkConfig.Instance.UsePersistantPath )
+            DocumentAccessor.MoveStreamPath2PersistantPath();
+
         //框架启动：直接启动，或者使用LoadingTaskModel登记启动时机
         LitFrameworkFacade.Instance.StartUp( beforeExecuteFunc: ()=> 
         {

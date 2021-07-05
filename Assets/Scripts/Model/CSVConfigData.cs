@@ -50,10 +50,13 @@ public class CSVConfigData : BaseLocalData
 
         foreach ( var item in csvKeys )
         {
-            localPath = FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath( "csv/" + item ) : AssetPathManager.Instance.GetStreamAssetDataPath( "csv/" + item );
+            if ( !item.EndsWith( ".csv" ) ) continue;
+
+            localPath = FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath( item ) : AssetPathManager.Instance.GetStreamAssetDataPath( item );
             DocumentAccessor.LoadAsset( localPath, ( string e ) =>
               {
-                  string className = item.Split( '.' )[ 0 ];
+                  var contens = item.Split( '/' );
+                  string className = ( contens.Length > 1 ? contens[ 1 ] : contens[ 0 ] ).Split( '.' )[ 0 ];
                   string strMethod = "ReturnDictionary";
                   Type t = Type.GetType( className );
                   MethodInfo method = t.GetMethod( strMethod );//通过string类型的strMethod获得同名的方法“method”

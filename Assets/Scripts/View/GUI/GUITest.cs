@@ -1,5 +1,6 @@
 ﻿using LitFramework;
 using LitFramework.LitTool;
+using LitFramework.Mono;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,24 +13,10 @@ public class GUITest : MonoBehaviour
     {
         int index = 0;
 
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "注册事件" ) )
+        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮1" ) )
         {
-            VibrateManager.Instance.Install();
+            
         }
 
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "强烈震动" ) )
-        {
-            VibrateManager.Instance.Shake( VibrateState.Acute );
-        }
-
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "中等震动" ) )
-        {
-            VibrateManager.Instance.Shake( VibrateState.Interval );
-        }
-
-        if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "弱震动" ) )
-        {
-            VibrateManager.Instance.Shake( VibrateState.Softly );
-        }
     }
 }

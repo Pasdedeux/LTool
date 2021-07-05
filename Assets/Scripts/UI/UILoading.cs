@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI
 		
 		public override void OnAwake()
 		{
-			CurrentUIType.uiNodeType = UINodeTypeEnum.PopUp;
+			CurrentUIType.uiNodeType = UINodeTypeEnum.Normal;
 			CurrentUIType.uiShowMode = UIShowModeEnum.Stack;
 			CurrentUIType.uiTransparent = UITransparentEnum.NoPenetratingMiddle;
 			

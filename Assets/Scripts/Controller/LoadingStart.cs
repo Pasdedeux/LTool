@@ -30,8 +30,12 @@ public class LoadingStart : MonoBehaviour
         },
         afterExecuteFunc: () =>
         {
+            //TODO 临时渐变
+            UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );
+            ColorUtility.TryParseHtmlString( "#0B477B", out Color color );
+            UIMaskManager.Instance.SetMaskColor( color );
             //TODO 项目当中需要切换场景时，可以使用这个方法，具体功能可以参考参数说明
-            GameFlowController.Instance.ChangeScene( 1, loadingUIPath: ResPath.UI.UILOADING, needFading: true );
+            //GameFlowController.Instance.ChangeScene( 1, loadingUIPath: ResPath.UI.UILOADING, needFading: true );
         }
         );
         LDebug.Log( ">>" );

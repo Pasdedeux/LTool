@@ -81,6 +81,17 @@ namespace LitFramework
 
         #endregion
 
+        #region 配置档设置
+
+        [Header("使用可读写目录")]
+        public bool UsePersistantPath = false;
+        [Header( "开启远程更新" )]
+        public bool UseRemotePersistantPath = false;
+        [Header("远程配置参数文件")]
+        public string RemoteUrlConfig = "";
+
+        #endregion
+
         #region Func
         void Awake()
         {

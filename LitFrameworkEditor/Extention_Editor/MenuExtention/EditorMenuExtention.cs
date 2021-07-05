@@ -152,7 +152,7 @@ namespace LitFrameworkEditor.EditorExtended
 
                 //============更新并保存CS============//
                 ConfigsParse rpp = new ConfigsParse();
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model", "Configs.cs", rpp.CreateCS( cnt ) );
+                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
             }
             catch ( Exception e ) { LDebug.LogError( e.Message ); }
             finally

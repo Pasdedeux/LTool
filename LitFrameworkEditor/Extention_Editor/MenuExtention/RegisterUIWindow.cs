@@ -663,7 +663,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "//*******************************************************************" );
             CSString.Add( "" );
             CSString.Add( "using LitFramework;" );
-            CSString.Add( "public class ResPath:Singleton<ResPath>" );
+            CSString.Add( "public partial class ResPath" );
             CSString.Add( "{" );
         }
         private void AddTail()
@@ -673,7 +673,7 @@ namespace LitFrameworkEditor.EditorExtended
         private void AddBody( ResPathTemplate rpt )
         {
             //Sound
-            CSString.Add( "public class Sound" );
+            CSString.Add( "public partial class Sound" );
             CSString.Add( "{" );
             foreach ( var item in rpt.Sound )
             {
@@ -682,7 +682,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "}" );
 
             //UI
-            CSString.Add( "public class UI" );
+            CSString.Add( "public partial class UI" );
             CSString.Add( "{" );
             foreach ( var item in rpt.UI )
             {

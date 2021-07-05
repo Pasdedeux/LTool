@@ -152,7 +152,7 @@
              获取外部persistant路径+"//"
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="isRemote">true-用于www/unitywebrequest远端加载路径,  false-用于本地文件读取（FileInfo FileStream）</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
@@ -160,7 +160,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="isRemote">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
@@ -168,7 +168,7 @@
             
             </summary>
             <param name="filePath">要加载的文件名</param>
-            <param name="isRemote">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.LitTool">
@@ -411,23 +411,12 @@
             参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
             </summary>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.OpenText(System.String,System.Boolean,System.Char[])">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.CheckRoute(System.String)">
             <summary>
-            解析txt 或者 远端txt内容
+            依次检查 PersistentDataPath、TemporaryCachePath、StreamAssetDataPath三个地址，如果都没有，则返回StreamAssetDataPath
             </summary>
-            <param name="path">地址或者内容文本。可以使用Path.Combine方法获取到正确地址</param>
-            <param name="isContent">path字符串如果是地址，为false，反之为true</param>
-            <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
+            <param name="fileName">以上三个地址下，子目录路径。例如：csv/csvList.txt</param>
             <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveText(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.String,System.String)">
-            <summary>
-            将本地版本字典保存到文件，如txt
-            </summary>
-            <param name="targetList">目标字典</param>
-            <param name="dataPath">存入的目标文件</param>
-            <param name="append">追加的信息，会被添加到第一行</param>
-            <param name="identifier">目标字典值的连接符</param>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.WriteFile(System.Text.StringBuilder,System.String)">
             <summary>
@@ -465,19 +454,33 @@
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
-            
+            协程加载
             </summary>
-            <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
             <summary>
-            
+            协程加载
             </summary>
-            <param name="path">例如：Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
             <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String})">
+            <summary>
+            同步加载
+            </summary>
+            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+            <summary>
+            同步加载
+            </summary>
+            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
             <summary>
@@ -494,6 +497,29 @@
             <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
             <param name="callBack">加载完成后的回调</param>
             <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.Collections.Generic.List{System.String},System.String,System.String)">
+            <summary>
+            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+            </summary>
+            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+            <param name="configsPathsList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+            <param name="name">FTP服务器登陆用户名</param>
+            <param name="password">FTP服务器登录密码</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.String,System.String,System.String)">
+            <summary>
+            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+            </summary>
+            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+            <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+            <param name="name">FTP服务器登陆用户名</param>
+            <param name="password">FTP服务器登录密码</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.MoveStreamPath2PersistantPath">
+            <summary>
+            迁移StreamingAsset文件到目录PersisitantPath
+            </summary>
         </member>
         <member name="T:LitFramework.LitTool.ResourceManager">
             <summary>
@@ -745,11 +771,6 @@
             回收入对象池
             </summary>
             <param name="item"></param>
-        </member>
-        <member name="T:LitFramework.MsgSystem.InternalMsgCode">
-            <summary>
-            框架内通信事件，主要是必要组件初始化时序管控
-            </summary>
         </member>
         <member name="T:LitFramework.TimeRecord.ZeroTimeRecord">
             <summary>
@@ -1068,11 +1089,12 @@
             包含各个模块的初始化统一初始化
             </summary>
         </member>
-        <member name="M:LitFrameworkFacade.StartUp(System.Action,System.Boolean)">
+        <member name="M:LitFrameworkFacade.StartUp(System.Action,System.Action,System.Boolean)">
             <summary>
             框架启动
             </summary>
             <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
+            <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
         </member>
         <member name="M:Cloneable`1.Clone">

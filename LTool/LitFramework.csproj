@@ -249,7 +249,8 @@
     <Compile Include="FrameworkConfig.cs" />
     <Compile Include="GameFlow\Controller\GameDriver.cs" />
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
-    <Compile Include="GameFlow\Model\DataLoadInterface\IConfigLoad.cs" />
+    <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
+    <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />
@@ -274,7 +275,6 @@
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
     <Compile Include="LitTool\LitTool.cs" />
-    <Compile Include="MsgSystem\InternalMsgCode.cs" />
     <Compile Include="MsgSystem\MsgManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

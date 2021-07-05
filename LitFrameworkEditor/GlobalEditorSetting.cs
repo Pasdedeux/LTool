@@ -41,7 +41,7 @@ public class GlobalEditorSetting
     //UI创建路径配置
     public const string UI_PREFAB_PATH = "Prefabs/UI/";
     public const string JSON_FILE_NAME = "configs.dat";
-    public const string OUTPUT_RESPATH = "ResPath.cs";
+    public const string OUTPUT_RESPATH = "Model/Const/ResPath.cs";
 }
 
 
@@ -90,7 +90,7 @@ class ConfigsParse
         CSString.Add( "" );
         CSString.Add( "using LitFramework;" );
         CSString.Add( "using System.Collections.Generic;" );
-        CSString.Add( "public static class Configs" );
+        CSString.Add( "public static partial class Configs" );
         CSString.Add( "{" );
     }
     private void AddTail()

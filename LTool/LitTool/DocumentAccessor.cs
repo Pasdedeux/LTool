@@ -23,6 +23,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -37,7 +38,7 @@ namespace LitFramework.LitTool
         /// 参数1-解析出的一条完整信息
         /// 参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
         /// </summary>
-        public static Func<List<string> , Dictionary<string , List<string>> , bool> ReadTextAdditionalCondition =
+        private static Func<List<string> , Dictionary<string , List<string>> , bool> ReadTextAdditionalCondition =
             ( e , d ) => { return true; };
 
         [Obsolete( "该方法在路径传入上有其它要求，建议使用LoadAsset/ILoadAsset读取text文件" )]
@@ -90,6 +91,31 @@ namespace LitFramework.LitTool
 
         }
 
+        /// <summary>
+        /// 依次检查 PersistentDataPath、TemporaryCachePath、StreamAssetDataPath三个地址，如果都没有，则返回StreamAssetDataPath
+        /// </summary>
+        /// <param name="fileName">以上三个地址下，子目录路径。例如：csv/csvList.txt</param>
+        /// <returns></returns>
+        public static string CheckRoute( string fileName )
+        {
+            string path = null;
+            if ( IsExists( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ) ) )
+            {
+                path = AssetPathManager.Instance.GetPersistentDataPath( fileName );
+            }
+            else if ( IsExists( AssetPathManager.Instance.GetTemporaryCachePath( fileName, false ) ) )
+            {
+                path = AssetPathManager.Instance.GetTemporaryCachePath( fileName );
+            }
+            else
+            {
+                path = AssetPathManager.Instance.GetStreamAssetDataPath( fileName );
+            }
+
+            return path;
+        }
+
+        [ Obsolete]
         /// <summary>
         /// 将本地版本字典保存到文件，如txt
         /// </summary>
@@ -456,6 +482,145 @@ namespace LitFramework.LitTool
 
         #endregion
 
+        #region FTP下载
 
+        //===============================FTP Func=======================================//
+        /// <summary>
+        /// FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+        /// </summary>
+        /// <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+        /// <param name="configsPathsList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+        /// <param name="name">FTP服务器登陆用户名</param>
+        /// <param name="password">FTP服务器登录密码</param>
+        public void DownLoadFromFTP( string ftpIP, List<string> configsPathsList, string name = null, string password = null )
+        {
+            for ( int i = 0; i < configsPathsList.Count; i++ )
+            {
+                var result = FTPDownload( ftpIP + configsPathsList[ i ], userName: name, password: password );
+                DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( configsPathsList[ i ], false ), result );
+                LDebug.Log( ">>>" + configsPathsList[ i ] + result.Count() );
+            }
+        }
+        /// <summary>
+        /// FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+        /// </summary>
+        /// <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+        /// <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+        /// <param name="name">FTP服务器登陆用户名</param>
+        /// <param name="password">FTP服务器登录密码</param>
+        public void DownLoadFromFTP( string ftpIP, string configsPath, string name = null, string password = null )
+        {
+            var result = FTPDownload( ftpIP + configsPath, userName: name, password: password );
+            DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( configsPath, false ), result );
+            LDebug.Log( ">>>" + configsPath + result.Count() );
+        }
+
+        private byte[] FTPDownload( string ftpUrl, string savePath = "", string userName = "", string password = "" )
+        {
+            FtpWebRequest request = ( FtpWebRequest )WebRequest.Create( new Uri( ftpUrl ) );
+
+            request.UsePassive = true;
+            request.UseBinary = true;
+            request.KeepAlive = true;
+
+            if ( !string.IsNullOrEmpty( userName ) && !string.IsNullOrEmpty( password ) )
+            {
+                request.Credentials = new NetworkCredential( userName, password );
+            }
+
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            WebResponse webResponse;
+            if ( !string.IsNullOrEmpty( savePath ) )
+            {
+                webResponse = request.GetResponse();
+                LDebug.Log( "FTP连接状态: " + webResponse );
+                DownloadAndSave( webResponse, savePath );
+                return null;
+            }
+            else
+            {
+                webResponse = request.GetResponse();
+                LDebug.Log( "FTP连接状态: " + webResponse );
+                return DownloadAsbyteArray( webResponse );
+            }
+        }
+
+        byte[] DownloadAsbyteArray( WebResponse request )
+        {
+            using ( Stream input = request.GetResponseStream() )
+            {
+                byte[] buffer = new byte[ 16 * 1024 ];
+                using ( MemoryStream ms = new MemoryStream() )
+                {
+                    int read;
+                    while ( input.CanRead && ( read = input.Read( buffer, 0, buffer.Length ) ) > 0 )
+                    {
+                        ms.Write( buffer, 0, read );
+                    }
+                    return ms.ToArray();
+                }
+            }
+        }
+
+        void DownloadAndSave( WebResponse request, string savePath )
+        {
+            Stream reader = request.GetResponseStream();
+
+            //Create Directory if it does not exist
+            if ( !Directory.Exists( Path.GetDirectoryName( savePath ) ) )
+            {
+                Directory.CreateDirectory( Path.GetDirectoryName( savePath ) );
+            }
+
+            using ( FileStream fileStream = new FileStream( savePath, FileMode.Create ) )
+            {
+                int bytesRead = 0;
+                byte[] buffer = new byte[ 2048 ];
+
+                while ( true )
+                {
+                    bytesRead = reader.Read( buffer, 0, buffer.Length );
+
+                    if ( bytesRead == 0 )
+                        break;
+
+                    fileStream.Write( buffer, 0, bytesRead );
+                }
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 迁移StreamingAsset文件到目录PersisitantPath
+        /// </summary>
+        public static void MoveStreamPath2PersistantPath()
+        {
+            if ( !FrameworkConfig.Instance.UsePersistantPath ) return;
+
+            //配置档总表
+            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ) ) )
+            {
+                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ), e.downloadHandler.data ) );
+            }
+
+            //顺次加载各类配置表
+            string[] csvKeys = null;
+            string localPath = AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt" );
+            LoadAsset( localPath, ( string e ) =>
+            csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
+
+            foreach ( var item in csvKeys )
+            {
+                if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "csv/" + item, false ) ) )
+                {
+                    LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csv/" + item ), ( UnityWebRequest e ) =>
+                    {
+                        SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csv/" + item, false ), e.downloadHandler.data );
+                    } );
+                }
+            }
+        }
     }
 }

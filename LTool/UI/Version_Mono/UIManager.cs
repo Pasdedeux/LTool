@@ -50,7 +50,7 @@ namespace LitFramework.Mono
     public class UIManager : Singleton<UIManager>, IManager, IUIManager
     {
         public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
-        
+
         /// <summary>
         /// UI根节点
         /// </summary>
@@ -67,6 +67,10 @@ namespace LitFramework.Mono
         /// 弹出窗口节点
         /// </summary>
         public Transform TransPopUp { get; private set; }
+        /// <summary>
+        /// 顶级窗口节点
+        /// </summary>
+        public Transform TransGlobal { get; private set; }
 
         /// <summary>
         /// UI根节点
@@ -84,11 +88,11 @@ namespace LitFramework.Mono
         /// 弹出窗口节点
         /// </summary>
         public RectTransform RectransPopUp { get; private set; }
-
         /// <summary>
-        /// 全局UI节点
+        /// 弹出窗口节点
         /// </summary>
-        public Transform TransGlobal { get; private set; }
+        public RectTransform RectransGlobal { get; private set; }
+
         /// <summary>
         /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
         /// </summary>
@@ -147,11 +151,13 @@ namespace LitFramework.Mono
             TransNormal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_NORMALCANVAS );
             TransFixed = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_FIXEDCANVAS );
             TransPopUp = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_POPUPCANVAS );
+            TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
 
             RectransRoot = TransRoot.GetComponent<RectTransform>();
             RectransNormal = TransNormal.GetComponent<RectTransform>();
             RectransFixed = TransFixed.GetComponent<RectTransform>();
             RectransPopUp = TransPopUp.GetComponent<RectTransform>();
+            RectransGlobal = TransGlobal.GetComponent<RectTransform>();
 
             TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
             _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
@@ -204,6 +210,13 @@ namespace LitFramework.Mono
             TransRoot = null;
             TransNormal = null;
             TransGlobal = null;
+
+            RectransGlobal = null;
+            RectransFixed = null;
+            RectransNormal = null;
+            RectransPopUp = null;
+            RectransRoot = null;
+
             _stackCurrentUI = null;
             _allRegisterUIList = null;
             _dictLoadedAllUIs = null;
@@ -220,7 +233,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public virtual void ShowFade( Action callBack = null , float time = 0.4f )
+        public virtual void ShowFade( Action callBack = null, float time = 0.4f )
         {
             if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -243,7 +256,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public virtual void HideFade(  Action callBack = null , float time = 0.4f )
+        public virtual void HideFade( Action callBack = null, float time = 0.4f )
         {
             if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
@@ -352,20 +365,31 @@ namespace LitFramework.Mono
                 return;
             }
 
-            //不同类型窗体执行各自关闭逻辑
-            switch ( baseUI.CurrentUIType.uiShowMode )
+            var modelType = UIModelBehavior.Instance.GetBehavior( uiName );
+            UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
+
+            //只针对pop up 类型窗口适用 uiShowMode 功能
+            if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
-                case UIShowModeEnum.Parallel:
-                    UnLoadParallelUI( uiName, isDestroy );
-                    break;
-                case UIShowModeEnum.Stack:
-                    UnLoadStackUI( uiName, isDestroy );
-                    break;
-                case UIShowModeEnum.Unique:
-                    UnLoadUniqueUI( uiName, isDestroy );
-                    break;
-                default:
-                    throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
+                //不同类型窗体执行各自关闭逻辑
+                switch ( baseUI.CurrentUIType.uiShowMode )
+                {
+                    case UIShowModeEnum.Parallel:
+                        UnLoadParallelUI( uiName, isDestroy );
+                        break;
+                    case UIShowModeEnum.Stack:
+                        UnLoadStackUI( uiName, isDestroy );
+                        break;
+                    case UIShowModeEnum.Unique:
+                        UnLoadUniqueUI( uiName, isDestroy );
+                        break;
+                    default:
+                        throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType );
+                }
+            }
+            else
+            {
+                baseUI.Close( isDestroy );
             }
 
             //销毁
@@ -453,6 +477,9 @@ namespace LitFramework.Mono
                         break;
                     case UINodeTypeEnum.PopUp:
                         prefClone.transform.SetParent( TransPopUp, false );
+                        break;
+                    case UINodeTypeEnum.Global:
+                        prefClone.transform.SetParent( TransGlobal, false );
                         break;
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
@@ -629,7 +656,7 @@ namespace LitFramework.Mono
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
             foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
-                if( !baseui.IsShowing )
+                if ( !baseui.IsShowing )
                     baseui.Show( true );
             }
             foreach ( BaseUI baseui in _stackCurrentUI )

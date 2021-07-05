@@ -890,6 +890,11 @@
             弹出窗口节点
             </summary>
         </member>
+        <member name="P:LitFramework.Mono.UIManager.TransGlobal">
+            <summary>
+            顶级窗口节点
+            </summary>
+        </member>
         <member name="P:LitFramework.Mono.UIManager.RectransRoot">
             <summary>
             UI根节点
@@ -910,9 +915,9 @@
             弹出窗口节点
             </summary>
         </member>
-        <member name="P:LitFramework.Mono.UIManager.TransGlobal">
+        <member name="P:LitFramework.Mono.UIManager.RectransGlobal">
             <summary>
-            全局UI节点
+            弹出窗口节点
             </summary>
         </member>
         <member name="F:LitFramework.Mono.UIManager.LoadResourceFunc">
@@ -2392,6 +2397,11 @@
         <member name="F:UINodeTypeEnum.PopUp">
             <summary>
             节点 - 弹出窗体，可使用黑色遮罩
+            </summary>
+        </member>
+        <member name="F:UINodeTypeEnum.Global">
+            <summary>
+            节点 - 顶级窗体，高于Mask背景遮罩
             </summary>
         </member>
         <member name="T:UIShowModeEnum">

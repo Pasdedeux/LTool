@@ -66,7 +66,6 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         UIManager.Instance.Install();
 
         //UI扩展面板变化示例
-        //UIManager.Instance.UseFading = true;
         //UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );
         //ColorUtility.TryParseHtmlString( "#0B477B", out Color color );
         //UIMaskManager.Instance.SetMaskColor( color );

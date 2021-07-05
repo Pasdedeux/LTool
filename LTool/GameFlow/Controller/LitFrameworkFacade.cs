@@ -50,9 +50,6 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         LDebug.Enable = debugEnable;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        if ( FrameworkConfig.Instance.UsePersistantPath )
-            DocumentAccessor.MoveStreamPath2PersistantPath();
-
         beforeExecuteFunc?.Invoke();
 
         //本地数据加载

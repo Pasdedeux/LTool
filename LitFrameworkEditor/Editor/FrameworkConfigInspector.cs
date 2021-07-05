@@ -65,6 +65,7 @@ public class FrameworkConfigInspector : Editor
         }
 
         EditorGUILayout.Space();
+        _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
         _config.UsePersistantPath = EditorGUILayout.Toggle( "使用读写目录", _config.UsePersistantPath );
         if ( _config.UsePersistantPath )
         {

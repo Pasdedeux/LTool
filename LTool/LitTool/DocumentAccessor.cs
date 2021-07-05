@@ -613,11 +613,11 @@ namespace LitFramework.LitTool
 
             foreach ( var item in csvKeys )
             {
-                if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "csv/" + item, false ) ) )
+                if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ) )
                 {
-                    LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csv/" + item ), ( UnityWebRequest e ) =>
+                    LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( item ), ( UnityWebRequest e ) =>
                     {
-                        SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csv/" + item, false ), e.downloadHandler.data );
+                        SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item, false ), e.downloadHandler.data );
                     } );
                 }
             }

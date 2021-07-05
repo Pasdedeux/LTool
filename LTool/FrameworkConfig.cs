@@ -83,7 +83,9 @@ namespace LitFramework
 
         #region 配置档设置
 
-        [Header("使用可读写目录")]
+        [Header( "额外登记的文件后缀" )]
+        public string configs_suffix = "json|dat|assetbundle";
+        [ Header("使用可读写目录")]
         public bool UsePersistantPath = false;
         [Header( "开启远程更新" )]
         public bool UseRemotePersistantPath = false;

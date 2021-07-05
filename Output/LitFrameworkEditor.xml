@@ -161,6 +161,14 @@
             锁定当前开启的Inspector窗口面板
             </summary>
         </member>
+        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.GetFiles(System.IO.DirectoryInfo,System.String,System.IO.StreamWriter)">
+            <summary>
+            查找指定文件夹下指定后缀名的文件
+            </summary>
+            <param name="directory">文件夹</param>
+            <param name="pattern">后缀名</param>
+            <returns>文件路径</returns>
+        </member>
         <member name="T:LitFrameworkEditor.EditorExtended.SearchRefrenceEditorWindow">
             <summary>
             查找引用预制件窗口

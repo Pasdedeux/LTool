@@ -16,12 +16,10 @@ using LitFramework.UI.Base;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace LitFramework.Mono
+namespace LitFramework.HotFix
 {
-
-    public abstract class BaseUI : MonoBehaviour, UI.Base.IBaseUI
+    public abstract class BaseUI : UI.Base.IBaseUI
     {
         /// <summary>
         /// 该窗口是否开启中
@@ -37,7 +35,6 @@ namespace LitFramework.Mono
         /// 是否执行过Start
         /// </summary>
         private bool IsStarted { get; set; }
-        private Coroutine _waitForStartFunc;
         /// <summary>
         /// 资源名
         /// </summary>
@@ -52,7 +49,11 @@ namespace LitFramework.Mono
         private bool _hasEnabled = false;
 
         private Canvas _rootCanvas;
-        private RectTransform _rootRectTransform;
+        /// <summary>
+        /// 关联的UI实例
+        /// </summary>
+        public GameObject GameObjectInstance { get; set; }
+
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -75,7 +76,8 @@ namespace LitFramework.Mono
                 _rootCanvas.enabled = true;
             }
             else
-                _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
+                DoStart();
+            
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace LitFramework.Mono
                 var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
                 UIType targetUIType = modelType ?? CurrentUIType;
 
-                UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
+                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance, targetUIType.uiTransparent );
             }
         }
 
@@ -100,7 +102,6 @@ namespace LitFramework.Mono
         /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
         public void Close( bool isDestroy = false, bool freeze = false )
         {
-            //默认执行OnDisable()
             if ( !freeze )
             {
                 _rootCanvas.enabled = false;
@@ -116,12 +117,6 @@ namespace LitFramework.Mono
             OnDisabled( freeze );
 
             IsShowing = false;
-
-            if ( _waitForStartFunc != null )
-            {
-                StopCoroutine( _waitForStartFunc );
-                _waitForStartFunc = null;
-            }
 
             OnClose();
 
@@ -139,7 +134,26 @@ namespace LitFramework.Mono
 
         public virtual void Dispose() { }
 
-        public virtual void OnAdapter() { }
+        public virtual void OnAdapter()
+        {
+            if(_rootRectTransform==null)
+                _rootRectTransform = GameObjectInstance.GetComponent<RectTransform>();
+            _rootRectTransform.anchorMax = Vector2.one;
+            _rootRectTransform.anchorMin = Vector2.zero;
+            _rootRectTransform.offsetMax = Vector2.zero;
+            _rootRectTransform.offsetMin = Vector2.zero;
+            _rootCanvas = GameObjectInstance.GetComponent<Canvas>();
+            _rootCanvas.enabled = false;
+        }
+
+        /// <summary>
+        /// 点击返回事件
+        /// </summary>
+        public virtual void OnBackPushed()
+        {
+            Debug.Log("关闭ui:" + AssetsName);
+            UIManager.Instance.Close( AssetsName );
+        }
 
         #region Alternative Function
 
@@ -153,66 +167,21 @@ namespace LitFramework.Mono
 
         public virtual void OnUpdate() { }
 
+        private void DoStart()
+        {
+            IsStarted = true;
+            OnStart();
+        }
+
         private void DoDestroy()
         {
             Dispose();
             IsStarted = false;
             IsInitOver = false;
-            GameObject.Destroy( gameObject );
+            GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
-        }
-
-        private void Awake()
-        {
-            _rootCanvas = gameObject.GetComponent<Canvas>();
-            _rootRectTransform = gameObject.GetComponent<RectTransform>();
-            _rootRectTransform.anchorMin = Vector2.zero;
-            _rootRectTransform.anchorMax = Vector2.one;
-            _rootRectTransform.offsetMax = Vector2.zero;
-            _rootRectTransform.offsetMin = Vector2.zero;
-            _rootCanvas.enabled = false;
-
-            OnAwake();
-        }
-
-        private void Start()
-        {
-            OnStart();
-            IsStarted = true;
-        }
-
-        private void OnEnable()
-        {
-            if ( IsInitOver )
-                OnEnabled( false );
-        }
-
-        private void OnDisable()
-        {
-            if ( IsInitOver )
-                OnDisabled( false );
-        }
-
-        private void Update()
-        {
-            OnUpdate();
         }
         #endregion
 
-        private IEnumerator IWaitToOnShow()
-        {
-            yield return new WaitUntil( () => { return IsStarted; } );
-            OnShow();
-            _rootCanvas.enabled = true;
-        }
-
-        /// <summary>
-        /// 点击返回事件
-        /// </summary>
-        public virtual void OnBackPushed()
-        {
-            Debug.Log( "关闭ui:" + AssetsName );
-            UIManager.Instance.Close( AssetsName );
-        }
     }
 }

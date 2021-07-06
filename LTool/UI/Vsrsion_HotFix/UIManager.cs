@@ -25,6 +25,7 @@
 ======================================*/
 
 
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,41 +40,17 @@ using LitFramework.UI.Base;
 
 namespace LitFramework.HotFix
 {
+
     /// <summary>
     /// 以下UI类，需配合UImanager.unitypackage使用。
     /// 
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>, IManager , IUIManager
+    public class UIManager : Singleton<UIManager>, IManager, IUIManager
     {
-        private bool _useFading = true;
-        public bool UseFading
-        {
-            get { return _useFading; }
-            set
-            {
-                if ( _fadeImage != null ) _fadeImage.gameObject.SetActive( value );
-                _useFading = value;
-            }
-        }
-        /// <summary>
-        /// 所有的预制件名称列表
-        /// </summary>
-        private Dictionary<string , string> _allRegisterUIDict;
-        /// <summary>
-        /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
-        /// </summary>
-        private Stack<BaseUI> _stackCurrentUI;
-        /// <summary>
-        /// 缓存已经开启过的所有窗体
-        /// </summary>
-        private Dictionary<string , BaseUI> _dictLoadedAllUIs;
-        /// <summary>
-        /// 当前显示的非弹出类UI窗体
-        /// </summary>
-        private Dictionary<string , BaseUI> _dictCurrentShowUIs;
-       
+        public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
+
         /// <summary>
         /// UI根节点
         /// </summary>
@@ -91,17 +68,39 @@ namespace LitFramework.HotFix
         /// </summary>
         public Transform TransPopUp { get; private set; }
         /// <summary>
-        /// 全局UI节点
+        /// 顶级窗口节点
         /// </summary>
         public Transform TransGlobal { get; private set; }
+
+        /// <summary>
+        /// UI根节点
+        /// </summary>
+        public RectTransform RectransRoot { get; private set; }
+        /// <summary>
+        /// 普通窗口节点
+        /// </summary>
+        public RectTransform RectransNormal { get; private set; }
+        /// <summary>
+        /// 固定UI节点
+        /// </summary>
+        public RectTransform RectransFixed { get; private set; }
+        /// <summary>
+        /// 弹出窗口节点
+        /// </summary>
+        public RectTransform RectransPopUp { get; private set; }
+        /// <summary>
+        /// 弹出窗口节点
+        /// </summary>
+        public RectTransform RectransGlobal { get; private set; }
+
+        /// <summary>
+        /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
+        /// </summary>
+        public Func<string, GameObject> LoadResourceFunc;
         /// <summary>
         /// UI摄像机
         /// </summary>
         public Camera UICam { get; set; }
-        /// <summary>
-        /// 外部传入UI的加载方法。Resource.Load || AssetBundle.Load
-        /// </summary>
-        public Func<string , GameObject> LoadResourceFunc;
         /// <summary>
         /// 全局渐变遮罩
         /// </summary>
@@ -110,34 +109,79 @@ namespace LitFramework.HotFix
         ///  遮罩结束时回调
         /// </summary>
         /// <returns></returns>
-        private Action DelHideCallBack = null;
-
+        public event Action DelHideCallBack = null;
+        /// <summary>
+        /// Image_fadeBG控制类，一般用于全局黑屏转场。
+        /// </summary>
         public Image FadeImage { get { return _fadeImage; } }
+        /// <summary>
+        /// PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
+        /// </summary>
         public Image MaskImage { get { return UIMaskManager.Instance.Mask; } }
+        /// <summary>
+        /// UI适配策略
+        /// </summary>
+        public CanvasScaler CanvasScaler { get; set; }
+
+        /// <summary>
+        /// 所有的预制件名称列表
+        /// </summary>
+        private Dictionary<string, string> _allRegisterUIDict;
+        /// <summary>
+        /// //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
+        /// </summary>
+        private Stack<BaseUI> _stackCurrentUI;
+        /// <summary>
+        /// 缓存已经开启过的所有窗体
+        /// </summary>
+        private Dictionary<string, BaseUI> _dictLoadedAllUIs;
+        /// <summary>
+        /// 当前显示的非弹出类UI窗体
+        /// </summary>
+        private Dictionary<string, BaseUI> _dictCurrentShowUIs;
 
         public void Install()
         {
-            _allRegisterUIDict = new Dictionary<string , string>();
+            _allRegisterUIDict = new Dictionary<string, string>();
             _stackCurrentUI = new Stack<BaseUI>();
-            _dictLoadedAllUIs = new Dictionary<string , BaseUI>();
-            _dictCurrentShowUIs = new Dictionary<string , BaseUI>();
+            _dictLoadedAllUIs = new Dictionary<string, BaseUI>();
+            _dictCurrentShowUIs = new Dictionary<string, BaseUI>();
 
             TransRoot = GameObject.FindGameObjectWithTag( UISysDefine.SYS_TAG_ROOTCANVAS ).transform;
             TransNormal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_NORMALCANVAS );
             TransFixed = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_FIXEDCANVAS );
             TransPopUp = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_POPUPCANVAS );
             TransGlobal = UnityHelper.FindTheChildNode( TransRoot, UISysDefine.SYS_TAG_GLOBALCANVAS );
+
+            RectransRoot = TransRoot.GetComponent<RectTransform>();
+            RectransNormal = TransNormal.GetComponent<RectTransform>();
+            RectransFixed = TransFixed.GetComponent<RectTransform>();
+            RectransPopUp = TransPopUp.GetComponent<RectTransform>();
+            RectransGlobal = TransGlobal.GetComponent<RectTransform>();
+
             _fadeImage = UnityHelper.FindTheChildNode( TransGlobal, "Image_fadeBG" ).GetComponent<Image>();
 
-            if ( _fadeImage == null )
-                Debug.LogWarning( "Image_fadeBG 未定义" );
-            else if( !_fadeImage.gameObject.activeInHierarchy )
-                Debug.LogWarning( "Image_fadeBG 未启用" );
+            try
+            {
+                if ( _fadeImage == null )
+                    LDebug.LogWarning( "Image_fadeBG 未定义" );
+                else if ( !_fadeImage.gameObject.activeInHierarchy )
+                    LDebug.LogWarning( "Image_fadeBG 未启用" );
+
+                _fadeImage.raycastTarget = false;
+                _fadeImage.gameObject.SetActive( true );
+            }
+            catch ( Exception e )
+            {
+                LDebug.LogError( "Image_fadeBG 错误" );
+            }
 
             //Mask蒙版初始化
             var ss = UIMaskManager.Instance;
 
+            GuideShaderController.Instance.Install();
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
+            CanvasScaler = TransRoot.GetComponent<CanvasScaler>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
 
             AssemblyReflection();
@@ -145,17 +189,17 @@ namespace LitFramework.HotFix
 
         public void Uninstall()
         {
-            while( _stackCurrentUI.Count > 0 )
+            while ( _stackCurrentUI.Count > 0 )
             {
                 BaseUI ui = _stackCurrentUI.Pop();
                 ui.Close( true );
             }
 
-            if( _dictLoadedAllUIs != null )
+            if ( _dictLoadedAllUIs != null )
             {
                 var list = _dictLoadedAllUIs.ToList();
-                for( int i = list.Count - 1; i >= 0; i-- )
-                    Close( list[ i ].Key , true );
+                for ( int i = list.Count - 1; i >= 0; i-- )
+                    Close( list[ i ].Key, true );
                 list = null;
             }
             _allRegisterUIDict.Clear();
@@ -167,6 +211,13 @@ namespace LitFramework.HotFix
             TransRoot = null;
             TransNormal = null;
             TransGlobal = null;
+
+            RectransGlobal = null;
+            RectransFixed = null;
+            RectransNormal = null;
+            RectransPopUp = null;
+            RectransRoot = null;
+
             _stackCurrentUI = null;
             _allRegisterUIDict = null;
             _dictLoadedAllUIs = null;
@@ -184,17 +235,19 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public void ShowFade( float time, Action callBack = null )
+        public virtual void ShowFade( Action callBack = null, float time = 0.4f )
         {
-            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();
                 return;
             }
-            
             _fadeImage.raycastTarget = true;
-            _fadeImage.CrossFadeAlpha( 1, time, false );
+
+            if ( FadeStartAction != null ) { FadeStartAction( time, callBack ); return; }
+
+            _fadeImage.CrossFadeAlpha( 1, time, true );
             if ( callBack != null )
                 LitTool.LitTool.DelayPlayFunction( time, callBack );
         }
@@ -205,20 +258,28 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="time"></param>
         /// <param name="callBack"></param>
-        public void HideFade( float time, Action callBack = null )
+        public virtual void HideFade( Action callBack = null, float time = 0.4f )
         {
-            if ( !UseFading || _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
+            if ( _fadeImage == null || !_fadeImage.gameObject.activeInHierarchy )
             {
                 if ( callBack != null )
                     callBack.Invoke();
                 return;
             }
 
-            _fadeImage.CrossFadeAlpha( 0, time, false );
+            if ( FadeHideAction == null )
+            {
+                _fadeImage.CrossFadeAlpha( 0, time, true );
+                if ( callBack != null )
+                    DelHideCallBack += callBack;
+            }
+            else
+            {
+                DelHideCallBack += () => FadeHideAction?.Invoke( time, callBack );
+            }
+            DelHideCallBack += () => _fadeImage.raycastTarget = false;
+            DelHideCallBack += () => DelHideCallBack = null;
 
-            if ( callBack != null ) DelHideCallBack += callBack;
-            DelHideCallBack += () => { _fadeImage.raycastTarget = false; };
-            DelHideCallBack += () => { DelHideCallBack = null; };
             LitTool.LitTool.DelayPlayFunction( time, DelHideCallBack );
         }
 
@@ -234,12 +295,12 @@ namespace LitFramework.HotFix
         {
             BaseUI baseUI = null;
 
-            if( string.IsNullOrEmpty( uiName ) )
+            if ( string.IsNullOrEmpty( uiName ) )
                 throw new Exception( "UI--uiName 为 Null" );
 
             //根据名称加载窗体到UI窗体缓存中
             baseUI = LoadUIToAndFromAllList( uiName );
-            if( baseUI == null )
+            if ( baseUI == null )
                 throw new Exception( "UI--baseUI 加载失败" );
 
             var modelType = UIModelBehavior.Instance.GetBehavior( uiName );
@@ -267,8 +328,6 @@ namespace LitFramework.HotFix
                     default:
                         throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
                 }
-
-                UIMaskManager.Instance.SetMaskWindow( baseUI.GameObjectInstance, targetUIType.uiTransparent );
             }
             else
             {
@@ -283,6 +342,7 @@ namespace LitFramework.HotFix
                         if ( baseUI.IsInitOver )
                             baseUI.OnEnabled( false );
                         baseUI.Show();
+
                     }
                 }
             }
@@ -294,37 +354,45 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
-        public void Close( string uiName , bool isDestroy = false )
+        public void Close( string uiName, bool isDestroy = false )
         {
-            if( string.IsNullOrEmpty( uiName ) )
+            if ( string.IsNullOrEmpty( uiName ) )
                 return;
-
-            BaseUI baseUI = null;
-
+            BaseUI baseUI;
             //所有窗体如果没有记录，直接返回
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI == null )
             {
                 _dictLoadedAllUIs.Remove( uiName );
                 return;
             }
 
-            //不同类型窗体执行各自关闭逻辑
-            switch( baseUI.CurrentUIType.uiShowMode )
-            {
-                case UIShowModeEnum.Parallel:
-                    UnLoadParallelUI( uiName , isDestroy );
-                    break;
-                case UIShowModeEnum.Stack:
-                    UnLoadStackUI( uiName , isDestroy );
-                    break;
-                case UIShowModeEnum.Unique:
-                    UnLoadUniqueUI( uiName , isDestroy );
-                    break;
-                default:
-                    throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
-            }
+            var modelType = UIModelBehavior.Instance.GetBehavior( uiName );
+            UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
 
+            //只针对pop up 类型窗口适用 uiShowMode 功能
+            if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
+            {
+                //不同类型窗体执行各自关闭逻辑
+                switch ( baseUI.CurrentUIType.uiShowMode )
+                {
+                    case UIShowModeEnum.Parallel:
+                        UnLoadParallelUI( uiName, isDestroy );
+                        break;
+                    case UIShowModeEnum.Stack:
+                        UnLoadStackUI( uiName, isDestroy );
+                        break;
+                    case UIShowModeEnum.Unique:
+                        UnLoadUniqueUI( uiName, isDestroy );
+                        break;
+                    default:
+                        throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType );
+                }
+            }
+            else
+            {
+                baseUI.Close( isDestroy );
+            }
 
             //销毁
             if ( isDestroy )
@@ -340,9 +408,9 @@ namespace LitFramework.HotFix
         /// </summary>
         public bool ClearPopUpStackArray()
         {
-            if( _stackCurrentUI != null && _stackCurrentUI.Count > 0 )
+            if ( _stackCurrentUI != null && _stackCurrentUI.Count > 0 )
             {
-                foreach( var stackUI in _stackCurrentUI )
+                foreach ( var stackUI in _stackCurrentUI )
                 {
                     stackUI.Close();
                 }
@@ -360,8 +428,8 @@ namespace LitFramework.HotFix
         private BaseUI LoadUIToAndFromAllList( string uiName )
         {
             BaseUI result = null;
-            _dictLoadedAllUIs.TryGetValue( uiName , out result );
-            if( result == null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out result );
+            if ( result == null )
                 result = LoadUI( uiName );
             return result;
         }
@@ -383,24 +451,27 @@ namespace LitFramework.HotFix
             GameObject prefClone = null;
 
             //加载预制体
-            if( !string.IsNullOrEmpty( uiName ) )
+            if ( !string.IsNullOrEmpty( uiName ) )
                 prefClone = LoadResourceFunc != null ? LoadResourceFunc( uiName ) : null;
-            if( prefClone == null )
+            if ( prefClone == null )
                 throw new Exception( "未指定UI预制件加载方法或UI预制件路径指定错误 ==>" + uiName );
             prefClone = GameObject.Instantiate( prefClone );
 
             //设置父节点
-            if( TransRoot != null && prefClone != null )
+            if ( TransRoot != null && prefClone != null )
             {
-                if( _allRegisterUIDict.ContainsKey( uiName ) )
+                if ( _allRegisterUIDict.ContainsKey( uiName ) )
                 {
-                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ] , true , true ) ) as BaseUI;
+                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ], true, true ) ) as BaseUI;
                     baseUI.GameObjectInstance = prefClone;
                     baseUI.AssetsName = uiName;
                     baseUI.IsInitOver = true;
                 }
 
-                switch( baseUI.CurrentUIType.uiNodeType )
+                if ( baseUI == null )
+                { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
+
+                switch ( baseUI.CurrentUIType.uiNodeType )
                 {
                     case UINodeTypeEnum.Normal:
                         prefClone.transform.SetParent( TransNormal, false );
@@ -411,6 +482,9 @@ namespace LitFramework.HotFix
                     case UINodeTypeEnum.PopUp:
                         prefClone.transform.SetParent( TransPopUp, false );
                         break;
+                    case UINodeTypeEnum.Global:
+                        prefClone.transform.SetParent( TransGlobal, false );
+                        break;
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
                 }
@@ -419,11 +493,9 @@ namespace LitFramework.HotFix
                 baseUI.OnAdapter();
 
                 //加入到所有窗体缓存中
-                _dictLoadedAllUIs.Add( uiName , baseUI );
+                _dictLoadedAllUIs.Add( uiName, baseUI );
                 return baseUI;
             }
-
-            Debug.Log( "窗体加载失败！" );
             return null;
         }
 
@@ -443,8 +515,8 @@ namespace LitFramework.HotFix
                     topUI.OnDisabled( true );
             }
 
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
@@ -454,17 +526,19 @@ namespace LitFramework.HotFix
                         baseUI.OnEnabled( false );
                     baseUI.Show();
                 }
+
                 return;
             }
 
             //加载当前窗体到当前显示集合
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
-                _dictCurrentShowUIs.Add( uiName , baseUI );
+                _dictCurrentShowUIs.Add( uiName, baseUI );
                 if ( baseUI.IsInitOver )
                     baseUI.OnEnabled( false );
                 baseUI.Show();
+
             }
         }
 
@@ -472,7 +546,7 @@ namespace LitFramework.HotFix
         /// 从当前UI列表缓存中卸载UI窗体
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadParallelUI( string uiName , bool isDestroy = false )
+        private void UnLoadParallelUI( string uiName, bool isDestroy = false )
         {
             BaseUI baseUI;
 
@@ -520,8 +594,8 @@ namespace LitFramework.HotFix
         {
             BaseUI baseUI;
             //当前UI显示列表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
@@ -560,19 +634,19 @@ namespace LitFramework.HotFix
         /// 卸载当前UI，并将原先被隐藏的UI重新显示
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadUniqueUI( string uiName , bool isDestroy = false )
+        private void UnLoadUniqueUI( string uiName, bool isDestroy = false )
         {
             BaseUI baseUI;
 
-            _dictCurrentShowUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI == null )
+            _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI == null )
             {
-                if( !isDestroy )
+                if ( !isDestroy )
                     return;
                 else
-                    _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
+                    _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
 
-                if( baseUI == null )
+                if ( baseUI == null )
                     return;
             }
             else
@@ -582,17 +656,19 @@ namespace LitFramework.HotFix
             baseUI.Close( isDestroy: isDestroy );
 
             //如果需要清空已有 popup 窗口
-            if( baseUI.CurrentUIType.isClearPopUp )
+            if ( baseUI.CurrentUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            foreach( BaseUI baseui in _dictCurrentShowUIs.Values )
+            foreach ( BaseUI baseui in _dictCurrentShowUIs.Values )
             {
-                baseui.Show( true );
+                if ( !baseui.IsShowing )
+                    baseui.Show( true );
             }
-            foreach( BaseUI baseui in _stackCurrentUI )
+            foreach ( BaseUI baseui in _stackCurrentUI )
             {
-                baseui.Show( true );
+                if ( !baseui.IsShowing )
+                    baseui.Show( true );
             }
         }
 
@@ -606,7 +682,7 @@ namespace LitFramework.HotFix
             BaseUI baseUI;
 
             //判断栈里是否有窗口，有则冻结响应
-            if( _stackCurrentUI.Count > 0 )
+            if ( _stackCurrentUI.Count > 0 )
             {
                 BaseUI topUI = _stackCurrentUI.Peek();
                 if ( !topUI.AssetsName.Equals( uiName ) )
@@ -614,8 +690,8 @@ namespace LitFramework.HotFix
             }
 
             //获取当前UI，进行展示处理
-            _dictLoadedAllUIs.TryGetValue( uiName , out baseUI );
-            if( baseUI != null )
+            _dictLoadedAllUIs.TryGetValue( uiName, out baseUI );
+            if ( baseUI != null )
             {
                 if ( baseUI.IsShowing )
                     baseUI.OnShow();
@@ -655,10 +731,10 @@ namespace LitFramework.HotFix
         /// 弹出窗口，出栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadStackUI( string uiName , bool isDestroy = false )
+        private void UnLoadStackUI( string uiName, bool isDestroy = false )
         {
             //有两个以上弹窗出现时
-            if( _stackCurrentUI.Count >= 2 )
+            if ( _stackCurrentUI.Count >= 2 )
             {
                 //第一个出栈
                 BaseUI topUI = _stackCurrentUI.Pop();
@@ -669,7 +745,7 @@ namespace LitFramework.HotFix
                 nextUI.Show( true );
             }
             //当前只有一个弹窗
-            else if( _stackCurrentUI.Count == 1 )
+            else if ( _stackCurrentUI.Count == 1 )
             {
                 //出栈的窗体进行隐藏
                 BaseUI topUI = _stackCurrentUI.Pop();
@@ -685,7 +761,7 @@ namespace LitFramework.HotFix
         public BaseUI GetUIByName( string name )
         {
             BaseUI baseUI;
-            _dictLoadedAllUIs.TryGetValue( name , out baseUI );
+            _dictLoadedAllUIs.TryGetValue( name, out baseUI );
             return baseUI;
         }
 
@@ -695,7 +771,7 @@ namespace LitFramework.HotFix
         /// </summary>
         public void OnEscapeCallback()
         {
-            if (_stackCurrentUI.Count>0)
+            if ( _stackCurrentUI.Count > 0 )
             {
                 var baseUi = _stackCurrentUI.Pop();
                 baseUi.Close();
@@ -710,10 +786,10 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="_assetsName"></param>
         /// <param name="_className"></param>
-        public void RegistFunctionCallFun( string uiPathName , string className )
+        public void RegistFunctionCallFun( string uiPathName, string className )
         {
-            if( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
-                _allRegisterUIDict.Add( uiPathName , className );
+            if ( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
+                _allRegisterUIDict.Add( uiPathName, className );
 
             Debug.Log( "LitFramework UI添加成功 " + uiPathName );
         }
@@ -724,17 +800,17 @@ namespace LitFramework.HotFix
 
             System.Type[] assemblyTypes = asb.GetTypes();
 
-            for( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
+            for ( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
             {
-                if( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
+                if ( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
                 {
                     //通过程序集获取到他的返回实例对象方法  并且初始化对象
                     System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
-                    if( mif != null )
+                    if ( mif != null )
                     {
                         //目前只认静态方法
-                        if( mif.IsStatic )
-                            mif.Invoke( null , new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
+                        if ( mif.IsStatic )
+                            mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
                         //else
                         //{
                         //    //TODO 需要实例化的带参数方法

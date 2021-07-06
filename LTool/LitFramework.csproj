@@ -328,7 +328,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ThirdParty\Example\" />
-    <Folder Include="UI\Vsrsion_HotFix\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

@@ -72,6 +72,24 @@ public static class LDebug
         else UnityEngine.Debug.LogError( content );
     }
 
+    public static void LogFormat( string content, params object[] args )
+    {
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogFormat( content, args );
+    }
+
+    public static void LogWarningFormat( string content, params object[] args )
+    {
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogWarningFormat( content, args );
+    }
+
+    public static void LogErrorFormat( string content, params object[] args )
+    {
+        if ( !Enable ) return;
+        UnityEngine.Debug.LogErrorFormat( content, args );
+    }
+
     public static void Log( string content, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;

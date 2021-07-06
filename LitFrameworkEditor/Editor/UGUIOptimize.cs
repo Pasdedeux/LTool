@@ -47,6 +47,11 @@ namespace LitFrameworkEditor.Editor
         public static Action<Text> txtModFunc = ( e ) => { e.supportRichText = false; e.raycastTarget = false; };
 
         /// <summary>
+        /// 创建相机时回调
+        /// </summary>
+        public static Action<Camera> camModeFunc = null;
+
+        /// <summary>
         /// 修改UGUI Image组件设置
         /// </summary>
         /// <param name="image"></param>
@@ -62,6 +67,15 @@ namespace LitFrameworkEditor.Editor
         internal static void ModifyText( Text text )
         {
             txtModFunc?.Invoke( text );
+        }
+
+        /// <summary>
+        /// 修改 Camera 组件
+        /// </summary>
+        /// <param name="cam"></param>
+        internal static void ModifyCame( Camera cam )
+        {
+            camModeFunc?.Invoke( cam );
         }
     }
 
@@ -89,6 +103,15 @@ namespace LitFrameworkEditor.Editor
             var image = UGUIOptTool.CreatCustomUGUI<Image>();
             if ( LitFramework.FrameworkConfig.Instance.UGUIOpt )
                 UGUIOptimizeStrategy.ModifyImage( image );
+        }
+        /// <summary>
+        /// 创建相机
+        /// </summary>
+        /// <param name="munuCommand"></param>
+        public static void CreateCamera( MenuCommand menuCommand )
+        {
+            var cam = UGUIOptTool.CreatCustomUGUI<Camera>();
+            UGUIOptimizeStrategy.ModifyCame( cam );
         }
     }
 

@@ -35,6 +35,7 @@ public class FrameworkConfigInspector : Editor
         //设置整个界面是以垂直方向来布局
         EditorGUILayout.BeginVertical();
 
+        _config.renderingType = ( LitRenderingType )EditorGUILayout.EnumPopup( "Rendering Type: ", _config.renderingType );
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
         _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
 

@@ -56,6 +56,12 @@ namespace LitFramework
         [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
         public bool UseDelayFuncPreciseDetect = false;
 
+        /// <summary>
+        /// 当前项目是否是URP
+        /// </summary>
+        [Header( "URP项目" )]
+        public LitRenderingType renderingType = LitRenderingType.Internal;
+
         #endregion
 
         #region UI设置
@@ -103,5 +109,14 @@ namespace LitFramework
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
         }
         #endregion
+    }
+
+
+    public enum LitRenderingType
+    {
+        Internal,
+        SRP,
+        URP,
+        HDRP
     }
 }

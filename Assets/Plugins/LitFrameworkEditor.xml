@@ -42,6 +42,11 @@
             <para>扩展方式为：CustomComponentOptimizing.txtModFunc += ( e ) => { ( e as Text ).supportRichText = true; };</para>
             </summary>
         </member>
+        <member name="F:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.camModeFunc">
+            <summary>
+            创建相机时回调
+            </summary>
+        </member>
         <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.ModifyImage(UnityEngine.UI.Image)">
             <summary>
             修改UGUI Image组件设置
@@ -53,6 +58,12 @@
             修改UGUI Text组件设置
             </summary>
             <param name="text"></param>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeStrategy.ModifyCame(UnityEngine.Camera)">
+            <summary>
+            修改 Camera 组件
+            </summary>
+            <param name="cam"></param>
         </member>
         <member name="T:LitFrameworkEditor.Editor.UGUIOptimizeCommand">
             <summary>
@@ -70,6 +81,12 @@
             UGUI-Image
             </summary>
             <param name="menuCommand"></param>
+        </member>
+        <member name="M:LitFrameworkEditor.Editor.UGUIOptimizeCommand.CreateCamera(UnityEditor.MenuCommand)">
+            <summary>
+            创建相机
+            </summary>
+            <param name="munuCommand"></param>
         </member>
         <member name="T:LitFrameworkEditor.Editor.UGUIOptTool">
             <summary>

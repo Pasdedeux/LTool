@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.Controller;
+using DG.Tweening;
+using LitFramework;
 using LitFrameworkEditor.Editor;
 using System;
 using System.Reflection;
@@ -46,6 +48,13 @@ public class EditorUse
             animTarget.endValueFloat = 0f;
             animTarget.optionalBool0 = true;
         };
+
+        //组件创建回调
+        UGUIOptimizeStrategy.camModeFunc = e => 
+        {
+            if ( FrameworkConfig.Instance.renderingType == LitRenderingType.URP )
+                e.gameObject.AddComponent<URPCam>();
+        };
         #endregion
 
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
@@ -73,6 +82,12 @@ public class EditorUse
         {
             UGUIOptimizeCommand.CreatImage( menuCommand );
         }
+
+        //[MenuItem( "GameObject/URP/Camera" )]
+        //private static void CreatCamera( MenuCommand menuCommand )
+        //{
+        //    UGUIOptimizeCommand.CreateCamera( menuCommand );
+        //}
     }
 
     #endregion
@@ -119,12 +134,12 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessModel()
     {
-        ModelImporter fbx = assetImporter as ModelImporter;
-        fbx.importCameras = false;
-        fbx.importLights = false;
-        fbx.isReadable = false;
+        //ModelImporter fbx = assetImporter as ModelImporter;
+        //fbx.importCameras = false;
+        //fbx.importLights = false;
+        //fbx.isReadable = false;
 
-        LDebug.Log( "====>OnPreprocessModel<====" + fbx.name );
+        //LDebug.Log( "====>OnPreprocessModel<====" + fbx.name );
     }
 
     /// <summary>
@@ -217,7 +232,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         switch ( textureImporter.textureType )
         {
             case TextureImporterType.Default:
-                textureImporter.mipmapEnabled = false;
+                //textureImporter.mipmapEnabled = false;
                 break;
             case TextureImporterType.NormalMap:
                 break;

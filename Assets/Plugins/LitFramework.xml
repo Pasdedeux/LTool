@@ -29,6 +29,11 @@
             开启使用逐帧遍历延迟函数调用。默认为false
             </summary>
         </member>
+        <member name="F:LitFramework.FrameworkConfig.renderingType">
+            <summary>
+            当前项目是否是URP
+            </summary>
+        </member>
         <member name="F:LitFramework.FrameworkConfig.TouchDetectUI">
             <summary>
             触碰/点击忽略UI。默认为true

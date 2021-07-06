@@ -36,6 +36,8 @@ public class LoadingStart : MonoBehaviour
             UIMaskManager.Instance.SetMaskColor( color );
             //TODO 项目当中需要切换场景时，可以使用这个方法，具体功能可以参考参数说明
             //GameFlowController.Instance.ChangeScene( 1, loadingUIPath: ResPath.UI.UILOADING, needFading: true );
+
+            UIManager.Instance.Show( ResPath.UI.UILOADING );
         }
         );
         LDebug.Log( ">>" );

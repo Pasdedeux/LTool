@@ -777,21 +777,6 @@
             </summary>
             <param name="item"></param>
         </member>
-        <member name="F:LitFramework.StoreItem.AlternativePrice">
-            <summary>
-            通常是打折后新商品价格
-            </summary>
-        </member>
-        <member name="F:LitFramework.StoreItem.AlternativeBuyID">
-            <summary>
-            通常是打折后新商品ID
-            </summary>
-        </member>
-        <member name="F:LitFramework.StoreItem.RewardsStringFormat">
-            <summary>
-            配置表：多个商品字符串格式 a-b|c-d|e-f
-            </summary>
-        </member>
         <member name="T:LitFramework.TimeRecord.ZeroTimeRecord">
             <summary>
             零点访问器。用于单机版本记录零点刷新
@@ -2153,31 +2138,6 @@
         <member name="M:ADManager.ShowFullScreen">
             <summary>
             满足 CanShowInitialEvent 回调判定条件，或者直接返回播放插页
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.NotInit">
-            <summary>
-            未初始化
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.ProductError">
-            <summary>
-            商品未找到或未初始化
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.Other">
-            <summary>
-            其它错误
-            </summary>
-        </member>
-        <member name="F:PurchaserDataModel.BuySuccessEvent">
-            <summary>
-            购买物品ID成功时回调
-            </summary>
-        </member>
-        <member name="F:PurchaserDataModel.BuyFailEvent">
-            <summary>
-            购买失败时回调
             </summary>
         </member>
         <member name="T:BezierViewTest">

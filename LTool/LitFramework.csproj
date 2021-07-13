@@ -131,9 +131,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Purchasing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Stores">
-      <HintPath>.\Stores.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
@@ -241,6 +238,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Purchasing.Stores">
+      <HintPath>..\References\UnityEngine.Purchasing.Stores.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>.\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -288,9 +288,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ThirdParty\AD\ADManager.cs" />
-    <Compile Include="ThirdParty\IAP\PurchaserConfig.cs" />
-    <Compile Include="ThirdParty\IAP\PurchaserDataModel.cs" />
-    <Compile Include="ThirdParty\IAP\StoreItem.cs" />
     <Compile Include="TimeRecord\ZeroTimeRecord.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
@@ -341,6 +338,9 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,19 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitFramework", "LTool\LitFramework.csproj", "{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitFrameworkEditor", "LitFrameworkEditor\LitFrameworkEditor.csproj", "{27B31A0C-86CC-4064-AD4E-8431178DFA00}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{28AB6F38-F98D-434C-9F39-18D69F1C0CCD}"
-	ProjectSection(SolutionItems) = preProject
-		References\EPPlus.dll = References\EPPlus.dll
-		References\Excel.dll = References\Excel.dll
-		References\ExcelDataReader.DataSet.dll = References\ExcelDataReader.DataSet.dll
-		References\ExcelDataReader.dll = References\ExcelDataReader.dll
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

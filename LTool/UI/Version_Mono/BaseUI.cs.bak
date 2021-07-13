@@ -104,7 +104,8 @@ namespace LitFramework.Mono
             if ( !freeze )
             {
                 _rootCanvas.enabled = false;
-                
+                //gameObject.SetActive( false );
+
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
             }

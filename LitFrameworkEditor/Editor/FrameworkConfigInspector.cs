@@ -35,6 +35,7 @@ public class FrameworkConfigInspector : Editor
         //设置整个界面是以垂直方向来布局
         EditorGUILayout.BeginVertical();
 
+        _config.renderingType = ( LitRenderingType )EditorGUILayout.EnumPopup( "Rendering Type: ", _config.renderingType );
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
         _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
 
@@ -47,7 +48,7 @@ public class FrameworkConfigInspector : Editor
                 _config.DelayFuncDetectInterver = EditorGUILayout.FloatField( "计时间隔(值↑ 性能↑)", _config.DelayFuncDetectInterver );
 
             _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "高计时精确度", _config.UseDelayFuncPreciseDetect );
-            
+
             EditorGUILayout.Space();
         }
 
@@ -61,7 +62,17 @@ public class FrameworkConfigInspector : Editor
         _folaOutUI = EditorGUILayout.Foldout( _folaOutUI, "UI设定" );
         if ( _folaOutUI )
         {
-            _config.TouchDetectUI= EditorGUILayout.Toggle( "开启UGUI触屏检测", _config.TouchDetectUI );
+            _config.TouchDetectUI = EditorGUILayout.Toggle( "开启UGUI触屏检测", _config.TouchDetectUI );
+        }
+
+        EditorGUILayout.Space();
+        _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
+        _config.UsePersistantPath = EditorGUILayout.Toggle( "使用读写目录", _config.UsePersistantPath );
+        if ( _config.UsePersistantPath )
+        {
+            _config.UseRemotePersistantPath = EditorGUILayout.Toggle( "使用远程更新", _config.UseRemotePersistantPath );
+            if ( _config.UseRemotePersistantPath )
+                _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置表名称", _config.RemoteUrlConfig );
         }
 
         EditorGUILayout.EndVertical();

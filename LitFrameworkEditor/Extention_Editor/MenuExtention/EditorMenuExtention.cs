@@ -31,6 +31,7 @@ namespace LitFrameworkEditor.EditorExtended
     using ExcelDataReader;
     using UnityEditor.Experimental.SceneManagement;
     using UnityEditor.SceneManagement;
+    using LitFramework;
 #endif
 
     /// <summary>
@@ -47,11 +48,12 @@ namespace LitFrameworkEditor.EditorExtended
         public static void XlsxToCSV()
         {
             string xlsxpath = Application.dataPath + "/XLSX";
+            string streampath = Application.dataPath + "/StreamingAssets";
             string csvpath = Application.dataPath + "/StreamingAssets/csv";
             //文件列表
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
             FileStream fs = new FileStream( listpath, FileMode.Create );
-            StreamWriter listwriter = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
             DirectoryInfo TheFolder = new DirectoryInfo( xlsxpath );
 
             if ( !Directory.Exists( csvpath ) )
@@ -69,7 +71,7 @@ namespace LitFrameworkEditor.EditorExtended
                         string csvfile = XLSXTOCSV( NextFile.OpenRead() );
                         CreateCSVFile( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
                         Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
-                        listwriter.WriteLine( NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
+                        listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                     }
                     else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
                     {
@@ -79,6 +81,15 @@ namespace LitFrameworkEditor.EditorExtended
                         NextFile.CopyTo( csvpath + "/" + NextFile.Name );
                         listwriter.WriteLine( NextFile.Name );
                     }
+                }
+
+                //遍历框架配置的额外后缀文件
+                string[] extralFile = FrameworkConfig.Instance.configs_suffix.Split( '|' );
+                foreach ( var item in extralFile )
+                {
+                    if ( item.Equals( "csv" ) ) continue;
+
+                    GetFiles( new DirectoryInfo( streampath ), item , listwriter );
                 }
             }
             catch ( Exception e ) { Debug.LogError( e.Message ); }
@@ -103,6 +114,7 @@ namespace LitFrameworkEditor.EditorExtended
         {
             Debug.Log( "配置文件转化为代码  开始!" );
             string xlsxpath = Application.dataPath + "/XLSX";
+            string streampath = Application.dataPath + "/StreamingAssets";
             string csvOutPath = Application.dataPath + "/StreamingAssets/csv";
             string csOutPath = Application.dataPath + "/Scripts/CSV";
             DirectoryInfo theXMLFolder = new DirectoryInfo( xlsxpath );
@@ -110,7 +122,7 @@ namespace LitFrameworkEditor.EditorExtended
             //文件列表
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
             FileStream fs = new FileStream( listpath, FileMode.Create );
-            StreamWriter listwriter = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
 
             if ( !Directory.Exists( csvOutPath ) )
             {
@@ -123,6 +135,7 @@ namespace LitFrameworkEditor.EditorExtended
 
             try
             {
+                ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
                 //对文件进行遍历
                 foreach ( var NextFile in theXMLFolder.GetFiles() )
                 {
@@ -132,9 +145,12 @@ namespace LitFrameworkEditor.EditorExtended
                         CSVParser cp = new CSVParser();
                         CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
                         CreateCSVFile( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
-                        Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
+                        LDebug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
 
-                        listwriter.WriteLine( NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
+                        //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
+                        CSVReader reader = new CSVReader( csvfile );
+                        cnt.configsNameList.Add( NextFile.Name.Split( '.' )[ 0 ], reader.GetData( 0, 2 ) );
+                        listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                     }
                     else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
                     {
@@ -145,8 +161,21 @@ namespace LitFrameworkEditor.EditorExtended
                         listwriter.WriteLine( NextFile.Name );
                     }
                 }
+
+                //遍历框架配置的额外后缀文件
+                string[] extralFile = FrameworkConfig.Instance.configs_suffix.Split( '|' );
+                foreach ( var item in extralFile )
+                {
+                    if ( item.Equals( "csv" ) ) continue;
+
+                    GetFiles( new DirectoryInfo( streampath ), item, listwriter );
+                }
+
+                //============更新并保存CS============//
+                ConfigsParse rpp = new ConfigsParse();
+                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
             }
-            catch ( Exception e ) { Debug.LogError( e.Message ); }
+            catch ( Exception e ) { LDebug.LogError( e.Message ); }
             finally
             {
                 listwriter.Close();
@@ -172,7 +201,7 @@ namespace LitFrameworkEditor.EditorExtended
             path += className;
 
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
             sw.Write( cs );
             sw.Close();
             sw.Dispose();
@@ -182,7 +211,7 @@ namespace LitFrameworkEditor.EditorExtended
         static void CreateCSVFile( string path, string data )
         {
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, Encoding.UTF8 );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
             sw.Write( data );
             sw.Close();
             sw.Dispose();
@@ -363,6 +392,36 @@ namespace LitFrameworkEditor.EditorExtended
             Directory.Delete( shaderCachePath, true );
         }
 #endif
+
+
+
+        /// <summary>
+        /// 查找指定文件夹下指定后缀名的文件
+        /// </summary>
+        /// <param name="directory">文件夹</param>
+        /// <param name="pattern">后缀名</param>
+        /// <returns>文件路径</returns>
+        private static void GetFiles( DirectoryInfo directory, string pattern, StreamWriter listwriter )
+        {
+            if ( directory.Exists || pattern.Trim() != string.Empty )
+            {
+                try
+                {
+                    foreach ( FileInfo info in directory.GetFiles( "*." + pattern ) )
+                    {
+                        listwriter.WriteLine( info.Name );
+                    }
+                }
+                catch ( Exception ex )
+                {
+                    Console.WriteLine( ex.ToString() );
+                }
+                foreach ( DirectoryInfo info in directory.GetDirectories() )//获取文件夹下的子文件夹
+                {
+                    GetFiles( info, pattern , listwriter );//递归调用该函数，获取子文件夹下的文件
+                }
+            }
+        }
     }
 
 
@@ -457,6 +516,5 @@ namespace LitFrameworkEditor.EditorExtended
             }
             EditorGUILayout.EndScrollView();
         }
-
     }
 }

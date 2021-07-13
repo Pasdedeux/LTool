@@ -19,6 +19,7 @@
 
 using LitFramework;
 using LitFramework.Base;
+using LitFramework.GameFlow.Model.DataLoadInterface;
 using LitFramework.InputSystem;
 using LitFramework.LitPool;
 using LitFramework.LitTool;
@@ -41,11 +42,18 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     /// 框架启动
     /// </summary>
     /// <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
+    /// <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
     /// <param name="debugEnable">框架启动时是否开启日志</param>
-    public void StartUp( Action afterExecuteFunc = null, bool debugEnable = true )
+    public void StartUp( Action afterExecuteFunc = null, Action beforeExecuteFunc = null, bool debugEnable = true )
     {
         DontDestroyOnLoad( GameObject.Find( "Canvas_Root" ) );
         LDebug.Enable = debugEnable;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        beforeExecuteFunc?.Invoke();
+
+        //本地数据加载
+        LocalDataManager.Instance.Install();
 
         //TODO AB模块
         //AssetDriver.Instance.Install();
@@ -58,7 +66,6 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         UIManager.Instance.Install();
 
         //UI扩展面板变化示例
-        //UIManager.Instance.UseFading = true;
         //UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );
         //ColorUtility.TryParseHtmlString( "#0B477B", out Color color );
         //UIMaskManager.Instance.SetMaskColor( color );
@@ -66,10 +73,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //Audio System
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };
         AudioManager.Instance.Install();
-
-        //震动
-        VibrateManager.Instance.Install();
-
+        
         //操作控制器，默认Enbale=true
         InputControlManager.Instance.Install();
 

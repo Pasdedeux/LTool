@@ -2,7 +2,7 @@
 * 项目名称 ：LitFramework.UI.Manager
 * 项目描述 ：
 * 类 名 称 ：UIManager
-* 类 描 述 ：非反射版本，不做热更新
+* 类 描 述 ：
 *                   
 * 命名空间 ：LitFramework.UI.Manager
 * 机器名称 ：SKY-20170413SEJ 
@@ -38,7 +38,7 @@ using UnityEngine.UI;
 using LitFramework.LitTool;
 using LitFramework.UI.Base;
 
-namespace LitFramework.Mono
+namespace LitFramework.HotFix
 {
 
     /// <summary>
@@ -181,8 +181,9 @@ namespace LitFramework.Mono
 
             GuideShaderController.Instance.Install();
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
-            CanvasScaler = TransRoot.GetComponent<CanvasScaler>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
+
+            AssemblyReflection();
         }
 
         public void Uninstall()
@@ -458,11 +459,13 @@ namespace LitFramework.Mono
             //设置父节点
             if ( TransRoot != null && prefClone != null )
             {
-                baseUI = prefClone.GetComponent<BaseUI>();
-                if ( prefClone == null )
-                    throw new Exception( string.Format( "UI预制件 {0} 未挂载方法 {1} ", prefClone.name, uiName ) );
-                baseUI.AssetsName = uiName;
-                baseUI.IsInitOver = true;
+                if ( _allRegisterUIDict.ContainsKey( uiName ) )
+                {
+                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ], true, true ) ) as BaseUI;
+                    baseUI.GameObjectInstance = prefClone;
+                    baseUI.AssetsName = uiName;
+                    baseUI.IsInitOver = true;
+                }
 
                 if ( baseUI == null )
                 { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
@@ -484,6 +487,9 @@ namespace LitFramework.Mono
                     default:
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
                 }
+
+                baseUI.OnAwake();
+                baseUI.OnAdapter();
 
                 //加入到所有窗体缓存中
                 _dictLoadedAllUIs.Add( uiName, baseUI );
@@ -771,5 +777,51 @@ namespace LitFramework.Mono
                 return;
             }
         }
+
+        #region 反射方法，用于热更时UI绑定
+
+        /// <summary>
+        /// 反射注册UI回调
+        /// </summary>
+        /// <param name="_assetsName"></param>
+        /// <param name="_className"></param>
+        public void RegistFunctionCallFun( string uiPathName, string className )
+        {
+            if ( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
+                _allRegisterUIDict.Add( uiPathName, className );
+
+            Debug.Log( "LitFramework UI添加成功 " + uiPathName );
+        }
+
+        private void AssemblyReflection()
+        {
+            System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
+
+            System.Type[] assemblyTypes = asb.GetTypes();
+
+            for ( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
+            {
+                if ( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
+                {
+                    //通过程序集获取到他的返回实例对象方法  并且初始化对象
+                    System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
+                    if ( mif != null )
+                    {
+                        //目前只认静态方法
+                        if ( mif.IsStatic )
+                            mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
+                        //else
+                        //{
+                        //    //TODO 需要实例化的带参数方法
+                        //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
+                        //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
+                        //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
+                        //}
+                    }
+                }
+            }
+        }
+        #endregion
+
     }
 }

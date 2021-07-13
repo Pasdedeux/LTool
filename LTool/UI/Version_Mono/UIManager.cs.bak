@@ -47,7 +47,7 @@ namespace LitFramework.Mono
     /// 主要包含Cavas_Root及相关Tag等
     /// 
     /// </summary>
-    public class UIManager : Singleton<UIManager>, IManager, IUIManager
+    public class UIManager : UI.Manager.Internal.BaseUIManager, IManager, IUIManager
     {
         public Action<float, Action> FadeStartAction = null, FadeHideAction = null;
 
@@ -183,6 +183,8 @@ namespace LitFramework.Mono
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             CanvasScaler = TransRoot.GetComponent<CanvasScaler>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
+			
+			InstallEventHandler();
         }
 
         public void Uninstall()
@@ -458,6 +460,8 @@ namespace LitFramework.Mono
             //设置父节点
             if ( TransRoot != null && prefClone != null )
             {
+            	CreateUIScripts();
+            	
                 baseUI = prefClone.GetComponent<BaseUI>();
                 if ( prefClone == null )
                     throw new Exception( string.Format( "UI预制件 {0} 未挂载方法 {1} ", prefClone.name, uiName ) );

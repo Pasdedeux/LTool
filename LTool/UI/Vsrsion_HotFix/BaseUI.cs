@@ -1,5 +1,19 @@
-﻿using System;
+﻿/**************************************************************** 
+ * 作    者：Derek Liu 
+ * CLR 版本：4.0.30319.42000 
+ * 创建时间：2018/1/31 15:48:18 
+ * 当前版本：1.0.0.1 
+ *  
+ * 描述说明： 
+ * 
+ * 修改历史： 
+ * 
+***************************************************************** 
+ * Copyright @ Derek Liu 2018 All rights reserved 
+*****************************************************************/
+
 using LitFramework.UI.Base;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,16 +26,20 @@ namespace LitFramework.HotFix
         /// 该窗口是否开启中
         /// </summary>
         public bool IsShowing { get; set; }
+        private UIType _uiType = new UIType();
+        /// <summary>
+        /// 当前窗口类型
+        /// </summary>
+        public UIType CurrentUIType
+        { get { return _uiType; } set { _uiType = value; } }
         /// <summary>
         /// 是否执行过Start
         /// </summary>
         private bool IsStarted { get; set; }
         /// <summary>
-        /// 当前窗口类型
+        /// 资源名
         /// </summary>
-        private UIType _uiType = new UIType();
-        public UIType CurrentUIType
-        { get { return _uiType; } set { _uiType = value; } }
+        public string AssetsName { get; set; }
         /// <summary>
         /// 创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
         /// </summary>
@@ -36,11 +54,6 @@ namespace LitFramework.HotFix
         /// 关联的UI实例
         /// </summary>
         public GameObject GameObjectInstance { get; set; }
-
-        /// <summary>
-        /// 资源名
-        /// </summary>
-        public string AssetsName { get; set; }
 
         /// <summary>
         /// 显示窗体
@@ -68,15 +81,18 @@ namespace LitFramework.HotFix
             
         }
 
+        /// <summary>
+        /// 检测并显示模态窗体背景
+        /// </summary>
         public void CheckMask()
         {
             //设置模态窗体调用(弹出窗体)
             if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
                 var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
-                UIType targetUIType = modelType != null ? modelType : CurrentUIType;
+                UIType targetUIType = modelType ?? CurrentUIType;
 
-                UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
+                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance, targetUIType.uiTransparent );
             }
         }
 
@@ -97,9 +113,10 @@ namespace LitFramework.HotFix
             else
             {
                 _rootCanvas.enabled = false;
-                
+                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
             }
             OnDisabled( freeze );
+
             IsShowing = false;
 
             OnClose();

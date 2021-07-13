@@ -30,6 +30,8 @@ namespace LitFramework
     /// </summary>
     public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
+        //replace('\uFEFF', '')
+
         #region 全局设置
 
         /// <summary>
@@ -53,6 +55,12 @@ namespace LitFramework
         /// </summary>
         [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
         public bool UseDelayFuncPreciseDetect = false;
+
+        /// <summary>
+        /// 当前项目是否是URP
+        /// </summary>
+        [Header( "URP项目" )]
+        public LitRenderingType renderingType = LitRenderingType.Internal;
 
         #endregion
 
@@ -79,6 +87,19 @@ namespace LitFramework
 
         #endregion
 
+        #region 配置档设置
+
+        [Header( "额外登记的文件后缀" )]
+        public string configs_suffix = "json|dat|assetbundle";
+        [ Header("使用可读写目录")]
+        public bool UsePersistantPath = false;
+        [Header( "开启远程更新" )]
+        public bool UseRemotePersistantPath = false;
+        [Header("远程配置参数文件")]
+        public string RemoteUrlConfig = "";
+
+        #endregion
+
         #region Func
         void Awake()
         {
@@ -88,5 +109,14 @@ namespace LitFramework
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
         }
         #endregion
+    }
+
+
+    public enum LitRenderingType
+    {
+        Internal,
+        SRP,
+        URP,
+        HDRP
     }
 }

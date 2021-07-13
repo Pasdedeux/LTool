@@ -21,6 +21,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor;
+using UnityEngine;
 
 namespace LitFrameworkEditor.EditorExtended
 {
@@ -62,8 +64,8 @@ namespace LitFrameworkEditor.EditorExtended
 
             return result;
         }
-        
-        void AddHead()
+
+        private void AddHead()
         {
             CSString.Add( "using UnityEngine;" );
             CSString.Add( "using System;" );
@@ -81,28 +83,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "public class " + _className );
             CSString.Add( "{" );
         }
-        void AddTail()
-        {
-            CSString.Add( "" );
-            CSString.Add( "}" );
-            //CSString.Add( "}" );
-        }
-
-        string DicConvert( string type )
-        {
-            return type.Replace( "|" , "," );
-        }
-
-        string CheckEn( string type )
-        {
-            if( type.Contains( "En_" ) )
-            {
-                return type.Substring( 3 );
-            }
-            return type;
-        }
-
-        void AddBody()
+        private void AddBody()
         {
             //添加属性
             for( int i = 0; i < _type.Length; i++ ) 
@@ -116,15 +97,21 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     subtype = subtype.Substring( 3 );
                 }
-                CSString.Add( string.Format( "public {0} {1} {{ get; set; }}" , DicConvert( subtype ) , _attribute[ i ] ) );
+                CSString.Add( string.Format( "public {0} {1} {{ get; set; }}" , CheckDictType( subtype ) , _attribute[ i ] ) );
             }
             //添加方法
             AddMethod( EnMethodType.List );
             AddMethod( EnMethodType.Dictionary );
             AddParseVector3();
         }
+        private void AddTail()
+        {
+            CSString.Add( "" );
+            CSString.Add( "}" );
+            //CSString.Add( "}" );
+        }
 
-        void AddParseVector3()
+        private void AddParseVector3()
         {
             CSString.Add( "" );
             CSString.Add( "/// <summary>" );
@@ -144,9 +131,24 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "}" );
         }
 
-        void AddMethod( EnMethodType mtype )
+        private string CheckDictType( string type )
+        {
+            return type.Replace( "|" , "," );
+        }
+
+        private string CheckEnType( string type )
+        {
+            if( type.Contains( "En_" ) )
+            {
+                return type.Substring( 3 );
+            }
+            return type;
+        }
+
+        private void AddMethod( EnMethodType mtype )
         {
             CSString.Add( "" );
+            CSString.Add( "	[Obsolete]" );
             CSString.Add( "/// <summary>" );
             CSString.Add( "/// 读取配置文件" );
             CSString.Add( "/// </summary>" );
@@ -155,12 +157,12 @@ namespace LitFrameworkEditor.EditorExtended
             if( mtype == EnMethodType.List )
                 CSString.Add( "public static List<" + _className + "> ReturnList(string csv)" );
             else
-                CSString.Add( string.Format( "public static Dictionary<{0}, {1}> ReturnDictionary(string csv)" , CheckEn( _type[ 0 ] ) , _className ) );
+                CSString.Add( string.Format( "public static Dictionary<{0}, {1}> ReturnDictionary(string csv)" , CheckEnType( _type[ 0 ] ) , _className ) );
             CSString.Add( "{" );
             if( mtype == EnMethodType.List )
                 CSString.Add( string.Format( "List<{0}> vec = new List<{0}>();" , _className ) );
             else
-                CSString.Add( string.Format( "Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();" , CheckEn( _type[ 0 ] ) , _className ) );
+                CSString.Add( string.Format( "Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();" , CheckEnType( _type[ 0 ] ) , _className ) );
             CSString.Add( "CSVReader reader = new CSVReader(csv);" );
             CSString.Add( "for (int i = 3; i < reader.Row; i++)" );
             CSString.Add( "{" );
@@ -247,7 +249,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "}" );
         }
 
-        string CheckStringType( string type )
+        private string CheckStringType( string type )
         {
             if( type.Length == 0 )
                 return "string";
@@ -265,7 +267,7 @@ namespace LitFrameworkEditor.EditorExtended
         /// 最终整合
         /// </summary>
         /// <returns>原代码文件</returns>
-        string GetFomatedCS()
+        private string GetFomatedCS()
         {
             StringBuilder result = new StringBuilder();
             int tablevel = 0;
@@ -291,7 +293,7 @@ namespace LitFrameworkEditor.EditorExtended
             return result.ToString();
         }
 
-        string ParseBaseType( string type , string attribute )
+        private string ParseBaseType( string type , string attribute )
         {
             if( type.Length == 0 )
                 return "";
@@ -337,3 +339,4 @@ namespace LitFrameworkEditor.EditorExtended
         }
     }
 }
+

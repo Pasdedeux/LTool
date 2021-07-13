@@ -41,7 +41,7 @@ public class GlobalEditorSetting
     //UI创建路径配置
     public const string UI_PREFAB_PATH = "Prefabs/UI/";
     public const string JSON_FILE_NAME = "configs.dat";
-    public const string OUTPUT_RESPATH = "ResPath.cs";
+    public const string OUTPUT_RESPATH = "Model/Const/ResPath.cs";
 }
 
 
@@ -54,5 +54,87 @@ class ResPathTemplate
 {
     public Dictionary<string, string> UI = new Dictionary<string, string>() { };
     public Dictionary<string, string> Sound = new Dictionary<string, string>() { };
+}
+
+
+/// <summary>
+/// 配置表路径注册类
+/// </summary>
+class ConfigsParse
+{
+    List<string> CSString = new List<string>();
+
+    public string CreateCS( ConfigsNamesTemplate rpt )
+    {
+        AddHead();
+        AddBody( rpt );
+        AddTail();
+        string result = GetFomatedCS();
+
+        return result;
+    }
+
+    private void AddHead()
+    {
+        CSString.Add( "#region << 版 本 注 释 >>" );
+        CSString.Add( "///*----------------------------------------------------------------" );
+        CSString.Add( "// Author : Derek Liu" );
+        CSString.Add( "// 创建时间:" + DateTime.Now.ToString() );
+        CSString.Add( "// 备注：由模板工具自动生成" );
+        CSString.Add( "///----------------------------------------------------------------*/" );
+        CSString.Add( "#endregion" );
+        CSString.Add( "" );
+        CSString.Add( "//*******************************************************************" );
+        CSString.Add( "//**                  该类由工具自动生成，请勿手动修改                   **" );
+        CSString.Add( "//*******************************************************************" );
+        CSString.Add( "" );
+        CSString.Add( "using LitFramework;" );
+        CSString.Add( "using System.Collections.Generic;" );
+        CSString.Add( "public static partial class Configs" );
+        CSString.Add( "{" );
+    }
+    private void AddTail()
+    {
+        CSString.Add( "}" );
+    }
+    private void AddBody( ConfigsNamesTemplate rpt )
+    {
+        foreach ( var item in rpt.configsNameList )
+        {
+            CSString.Add( string.Format( "public static Dictionary<{2}, {1}> {0};", item.Key + "Dict", item.Key, item.Value ) );
+        }
+    }
+    string GetFomatedCS()
+    {
+        StringBuilder result = new StringBuilder();
+        int tablevel = 0;
+        for ( int i = 0; i < CSString.Count; i++ )
+        {
+            string tab = "";
+
+            for ( int j = 0; j < tablevel; ++j )
+                tab += "\t";
+
+            if ( CSString[ i ].Contains( "{" ) )
+                tablevel++;
+            if ( CSString[ i ].Contains( "}" ) )
+            {
+                tablevel--;
+                tab = "";
+                for ( int j = 0; j < tablevel; ++j )
+                    tab += "\t";
+            }
+
+            result.Append( tab + CSString[ i ] + "\n" );
+        }
+        return result.ToString();
+    }
+}
+/// <summary>
+/// 配置表访问文件配置文件
+/// </summary>
+class ConfigsNamesTemplate
+{
+    public Dictionary<string, string> configsNameList = new Dictionary<string, string>();
 }
 #endregion

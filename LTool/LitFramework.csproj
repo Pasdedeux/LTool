@@ -63,7 +63,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Apple">
@@ -255,6 +255,8 @@
     <Compile Include="FrameworkConfig.cs" />
     <Compile Include="GameFlow\Controller\GameDriver.cs" />
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
+    <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />
@@ -263,7 +265,6 @@
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Crypto\CryptoMD5.cs" />
     <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="Device\VibrateManager.cs" />
     <Compile Include="Extention_Editor\CSVReader.cs" />
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
@@ -336,7 +337,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ThirdParty\Example\" />
-    <Folder Include="UI\Vsrsion_HotFix\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

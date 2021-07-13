@@ -47,6 +47,10 @@ public enum UINodeTypeEnum
     /// 节点 - 弹出窗体，可使用黑色遮罩
     /// </summary>
     PopUp,
+    /// <summary>
+    /// 节点 - 顶级窗体，高于Mask背景遮罩
+    /// </summary>
+    Global,
 }
 
 /// <summary>

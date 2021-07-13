@@ -41,11 +41,17 @@ namespace LitFramework
         public string BuyID;
         public string Price;
         public string Description;
-        //通常是打折后新商品价格
+        /// <summary>
+        /// 通常是打折后新商品价格
+        /// </summary>
         public string AlternativePrice;
-        //通常是打折后新商品ID
+        /// <summary>
+        /// 通常是打折后新商品ID
+        /// </summary>
         public string AlternativeBuyID;
-        //配置表：多个商品字符串格式
+        /// <summary>
+        /// 配置表：多个商品字符串格式 a-b|c-d|e-f
+        /// </summary>
         public string RewardsStringFormat;
 #if IAP
         //商店SDK类型接口

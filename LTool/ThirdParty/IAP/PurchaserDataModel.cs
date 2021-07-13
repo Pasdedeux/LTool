@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
 using LitFramework;
+using LitFramework.Base;
+using LitFramework.InputSystem;
 using LitFramework.Mono;
 using UnityEngine;
 
@@ -35,13 +37,35 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 #endif
 
-
-public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
+public enum BuyFailReason
 {
-    public const string NOADS_ITEM_ID = "";
+    /// <summary>
+    /// 未初始化
+    /// </summary>
+    NotInit,
+    /// <summary>
+    /// 商品未找到或未初始化
+    /// </summary>
+    ProductError,
+    /// <summary>
+    /// 其它错误
+    /// </summary>
+    Other
+}
+
+public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable,IManager
+{
     public Dictionary<string, StoreItem> ProductsDict;
 
-    private Purchaser _purchase;
+    /// <summary>
+    /// 购买物品ID成功时回调
+    /// </summary>
+    public Action<StoreItem> BuySuccessEvent;
+    /// <summary>
+    /// 购买失败时回调
+    /// </summary>
+    public Action<BuyFailReason> BuyFailEvent;
+
     public PurchaserDataModel()
     {
 #if IAP
@@ -52,27 +76,27 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
 #endif
     }
 
-    private void BuyFailEventHandler( ushort obj )
+    private void BuyFailEventHandler( BuyFailReason obj )
     {
         switch ( obj )
         {
-            //未初始化
-            case 0:
-                DataModel.Instance.buyOKContents = LanguageModel.Instance.GetString( "Purchase not initialized" );
+            case BuyFailReason.NotInit:
+                LDebug.LogError( "Purchase Fail->Purchase not initialized" );
                 break;
-            //商品未找到或未初始化
-            case 1:
-                DataModel.Instance.buyOKContents = LanguageModel.Instance.GetString( "Not purchasing product, not found or not available" );
+            case BuyFailReason.ProductError:
+                LDebug.LogError( "Purchase Fail->Not purchasing product, not found or not available" );
                 break;
-            default:
-                DataModel.Instance.buyOKContents = LanguageModel.Instance.GetString( "Not purchasing product, not found or not available" );
+            case BuyFailReason.Other:
+                LDebug.LogError( "Purchase Fail->Other" );
                 break;
         }
-        UIManager.Instance.Show( DataModel.UI.UI_BUYOK );
+        BuyFailEvent?.Invoke( obj );
     }
 
-    public void LoadShop()
+
+    public void Install()
     {
+#if IAP
         ProductsDict = new Dictionary<string, StoreItem>();
 
         var products = PurchaserConfig.Instance.products;
@@ -88,15 +112,18 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
         }
 
         Purchaser.Instance.Initialize();
+#endif
     }
 
-    public void Dispose()
+    public void Uninstall()
     {
 #if IAP
         Purchaser.Instance.InitializedEventHandler -= Initialized;
         Purchaser.Instance.ProcessPurchaseEventHandler -= ProcessPurchase;
         Purchaser.Instance.ProcessPurchaseFailEventHandler -= BuyFailEventHandler;
         Purchaser.Instance.ProcessPurchaseReceiptEventHandler -= ProcessPurchaseReceipt;
+
+        Dispose();
 #endif
     }
 
@@ -172,7 +199,7 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
 
         AddShopItem( productID );
 
-        LitFramework.Input.InputControlManager.Instance.IsEnable = true;
+        InputControlManager.Instance.IsEnable = true;
     }
 
 #if IAP
@@ -201,93 +228,44 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable
         LDebug.Log( "========>购买了商品 " + productID );
         //StatisticManager.Instance.DOT( "shop_buy_" + Purchaser.Instance.products.IndexOf( productID ) );
 
-        //移除广告商品
-        if ( productID == NOADS_ITEM_ID ) AdManager.Instance.RemoveAds();
-        //TODO 这里添加根据不同商品增加特别处理规则
+        StoreItem result = null;
+
+        //商品购买成功逻辑
+        if ( ProductsDict.ContainsKey( productID ) )
+            result = ProductsDict[ productID ];
         else
         {
-            StoreItem result = null;
-
-            //商品购买成功逻辑
-            if ( ProductsDict.ContainsKey( productID ) )
-                result = ProductsDict[ productID ];
-            else
+            var targets = ProductsDict.Where( e => e.Value.AlternativeBuyID == productID );
+            if ( targets.Count() > 0 )
             {
-                var targets = ProductsDict.Where( e => e.Value.AlternativeBuyID == productID );
-                if ( targets.Count() > 0 )
-                {
-                    var target = targets.First();
-                    result = target.Value;
-                }
+                var target = targets.First();
+                result = target.Value;
             }
-
-            if ( result != null )
-            {
-                DataModel.Instance.ResolveRewards( result.Rewards );
-                ////打折商品处理
-                //CheckDiscount( result, productID );
-            }
-
-            //TODO 这里添加根据不同商品增加特别处理规则
-            //if ( productID == GOLD_PACK )
-            //{
-            //    AdManager.Instance.RemoveAds();
-            //    DataModel2.Instance.UseGoldenEye = true;
-            //}
         }
-        UpdateShopStatus();
 
-        AudioManager.Instance.PlaySE( DataModel.Sound.Sound_ShopSucc );
-        DataModel.Instance.buyOKContents = DataModel.BUYOKCONTENTS;
-        UIManager.Instance.Show( DataModel.UI.UI_BUYOK );
-    }
+        if ( result != null )
+        {
+            BuySuccessEvent?.Invoke( result );
+        }
 
-    //private void CheckDiscount( StoreItem result, string productID )
-    //{
-    //    if ( result.BuyID != productID && result.AlternativeBuyID == productID )
-    //    {
-    //        //TODO 这里添加根据不同商品增加特别处理规则
-    //        //switch ( productID )
-    //        //{
-    //        //    case DISCOUNT_ID:
-    //        //        //DataModel2.Instance.UseDiscountSilverPack = true;
-    //        //        break;
-    //        //    default:
-    //        //        break;
-    //        //}
-    //    }
-    //}
-
-
-    public void UpdateShopStatus( bool needScale = true )
-    {
-        DelUpdateShopStatus?.Invoke();
-    }
-
-    /// <summary>
-    /// 获取去广告价格
-    /// 保持在商品列表中得最后一个
-    /// </summary>
-    /// <returns></returns>
-    public string GetRemoveAdsPrice()
-    {
-        return ProductsDict[ NOADS_ITEM_ID ].Price;
     }
 
     public string GetShopPrice( string id )
     {
-        return LanguageModel.Instance.GetString( ProductsDict[ id ].Price );
+        return ProductsDict[ id ].Price;
     }
 
     public string GetShopName( string id )
     {
-        return LanguageModel.Instance.GetString( ProductsDict[ id ].Name );
+        return ProductsDict[ id ].Name;
     }
 
     public string GetShopDes( string id )
     {
-        return LanguageModel.Instance.GetString( ProductsDict[ id ].Description );
+        return ProductsDict[ id ].Description;
     }
+
+    public void Dispose() { }
 }
 
 // Placing the Purchaser class in the CompleteProject namespace allows it to interact with ScoreManager
@@ -298,7 +276,7 @@ public class Purchaser : Singleton<Purchaser>
 #endif
 {
 #if IAP
-    public event Action<ushort> ProcessPurchaseFailEventHandler;
+    public event Action<BuyFailReason> ProcessPurchaseFailEventHandler;
     public event Action<string> ProcessPurchaseEventHandler;
     public event Action<ProductCollection> InitializedEventHandler;
     public event Action<string, string, int, Receipt> ProcessPurchaseReceiptEventHandler;
@@ -431,7 +409,7 @@ public class Purchaser : Singleton<Purchaser>
             // Otherwise ...
             else
             {
-                ProcessPurchaseFailEventHandler?.Invoke( 1 );
+                ProcessPurchaseFailEventHandler?.Invoke( BuyFailReason.ProductError );
                 // ... report the product look-up failure situation  
                 LDebug.Log( "BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase" );
             }
@@ -439,7 +417,7 @@ public class Purchaser : Singleton<Purchaser>
         // Otherwise ...
         else
         {
-            ProcessPurchaseFailEventHandler?.Invoke( 0 );
+            ProcessPurchaseFailEventHandler?.Invoke( BuyFailReason.NotInit );
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
             LDebug.Log( "BuyProductID FAIL. Not initialized." );
@@ -572,6 +550,7 @@ public class Purchaser : Singleton<Purchaser>
     }
 
     #endregion
+
 #endif
 }
 

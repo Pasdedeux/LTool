@@ -34,7 +34,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Output\</OutputPath>
-    <DefineConstants>TRACE;IAP</DefineConstants>
+    <DefineConstants>TRACE;IAP;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -127,8 +127,9 @@
     <Reference Include="Perfolizer, Version=0.2.1.0, Culture=neutral, PublicKeyToken=e864f2ec9c0b6d4c, processorArchitecture=MSIL">
       <HintPath>..\packages\Perfolizer.0.2.1\lib\netstandard2.0\Perfolizer.dll</HintPath>
     </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>.\Purchasing.Common.dll</HintPath>
+    <Reference Include="Purchasing.Common, Version=1.0.7016.24185, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Purchasing.Common.dll</HintPath>
     </Reference>
     <Reference Include="Stores">
       <HintPath>.\Stores.dll</HintPath>
@@ -236,11 +237,16 @@
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Purchasing, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>.\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityStore">
-      <HintPath>.\UnityStore.dll</HintPath>
+    <Reference Include="UnityStore, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityStore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +287,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ThirdParty\AD\ADManager.cs" />
+    <Compile Include="ThirdParty\IAP\PurchaserConfig.cs" />
+    <Compile Include="ThirdParty\IAP\PurchaserDataModel.cs" />
+    <Compile Include="ThirdParty\IAP\StoreItem.cs" />
     <Compile Include="TimeRecord\ZeroTimeRecord.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />

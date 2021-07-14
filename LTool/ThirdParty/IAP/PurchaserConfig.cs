@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 public class PurchaserConfig : SingletonMono<PurchaserConfig>
 {
-    public List<StoreItem> products;
+    public List<PurchaserStoreItem> products;
 
 }
 

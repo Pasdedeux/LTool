@@ -55,12 +55,12 @@ public enum BuyFailReason
 
 public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IManager
 {
-    public Dictionary<string, StoreItem> ProductsDict;
+    public Dictionary<string, PurchaserStoreItem> ProductsDict;
 
     /// <summary>
     /// 购买物品ID成功时回调
     /// </summary>
-    public Action<StoreItem> BuySuccessEvent;
+    public Action<PurchaserStoreItem> BuySuccessEvent;
     /// <summary>
     /// 购买失败时回调
     /// </summary>
@@ -94,12 +94,12 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
         Purchaser.Instance.ProcessPurchaseEventHandler += ProcessPurchase;
         Purchaser.Instance.ProcessPurchaseReceiptEventHandler += ProcessPurchaseReceipt;
 
-        ProductsDict = new Dictionary<string, StoreItem>();
+        ProductsDict = new Dictionary<string, PurchaserStoreItem>();
 
         var products = PurchaserConfig.Instance.products;
         for ( int i = 0; i < products.Count; i++ )
         {
-            StoreItem si = new StoreItem( products[ i ] );
+            PurchaserStoreItem si = new PurchaserStoreItem( products[ i ] );
             si.AddStoreItemEventHandler += AddShopItem;
 
             if ( !ProductsDict.ContainsKey( si.BuyID ) )
@@ -163,7 +163,7 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
                 }
                 else
                 {
-                    ProductsDict.Add( product.definition.storeSpecificId, new StoreItem( product.definition.storeSpecificId )
+                    ProductsDict.Add( product.definition.storeSpecificId, new PurchaserStoreItem( product.definition.storeSpecificId )
                     {
                         Name = product.metadata.localizedTitle,
                         Price = product.metadata.localizedPriceString,
@@ -225,7 +225,7 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
         LDebug.Log( "========>购买了商品 " + productID );
         //StatisticManager.Instance.DOT( "shop_buy_" + Purchaser.Instance.products.IndexOf( productID ) );
 
-        StoreItem result = null;
+        PurchaserStoreItem result = null;
 
         //商品购买成功逻辑
         if ( ProductsDict.ContainsKey( productID ) )

@@ -1,7 +1,7 @@
 ﻿/*======================================
 * 项目名称 ：LitFramework.ThirdParty.IAP
 * 项目描述 ：
-* 类 名 称 ：StoreItem
+* 类 名 称 ：PurchaserStoreItem
 * 类 描 述 ：
 * 命名空间 ：LitFramework.ThirdParty.IAP
 * 机器名称 ：DEREK-SURFACEPR 
@@ -32,7 +32,7 @@ using UnityEngine;
 namespace LitFramework
 {
     [Serializable]
-    public class StoreItem : IDisposable
+    public class PurchaserStoreItem : IDisposable
     {
         [Header( "商品图标" )]
         public Sprite Icon;
@@ -75,13 +75,13 @@ namespace LitFramework
             set { PlayerPrefs.SetInt( "ShopItem_" + BuyID, ( value ? 1 : 0 ) ); }
         }
 
-        public StoreItem( string buyID )
+        public PurchaserStoreItem( string buyID )
         {
             BuyID = buyID;
             if ( IsBought ) AddStoreItemEventHandler?.Invoke( buyID, true );
         }
 
-        public StoreItem( StoreItem si )
+        public PurchaserStoreItem( PurchaserStoreItem si )
         {
             BuyID = si.BuyID;
             Description = si.Description;

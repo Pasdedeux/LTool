@@ -34,21 +34,30 @@ namespace LitFramework
     [Serializable]
     public class StoreItem : IDisposable
     {
+        [Header( "商品图标" )]
         public Sprite Icon;
         [HideInInspector]
+        [Obsolete( "未来可能会移除" )]
         public Transform UI;
+        [Header( "商品默认名称" )]
         public string Name;
+        [Header( "商品ID" )]
         public string BuyID;
+        [Header( "商品默认价格，带单位" )]
         public string Price;
+        [Header( "商品默认描述" )]
         public string Description;
+        [Header( "通常是打折后新商品价格" )]
         /// <summary>
         /// 通常是打折后新商品价格
         /// </summary>
         public string AlternativePrice;
+        [Header( "通常是打折后新商品ID" )]
         /// <summary>
         /// 通常是打折后新商品ID
         /// </summary>
         public string AlternativeBuyID;
+        [Header( "配置表：多个商品字符串格式 a-b|c-d|e-f：可以是[奖励物品ID-奖励物品数量]" )]
         /// <summary>
         /// 配置表：多个商品字符串格式 a-b|c-d|e-f
         /// </summary>

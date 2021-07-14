@@ -53,7 +53,7 @@ public enum BuyFailReason
     Other
 }
 
-public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable,IManager
+public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IManager
 {
     public Dictionary<string, StoreItem> ProductsDict;
 
@@ -66,15 +66,7 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable,IMa
     /// </summary>
     public Action<BuyFailReason> BuyFailEvent;
 
-    public PurchaserDataModel()
-    {
-#if IAP
-        Purchaser.Instance.InitializedEventHandler += Initialized;
-        Purchaser.Instance.ProcessPurchaseFailEventHandler += BuyFailEventHandler;
-        Purchaser.Instance.ProcessPurchaseEventHandler += ProcessPurchase;
-        Purchaser.Instance.ProcessPurchaseReceiptEventHandler += ProcessPurchaseReceipt;
-#endif
-    }
+    public PurchaserDataModel() { }
 
     private void BuyFailEventHandler( BuyFailReason obj )
     {
@@ -97,6 +89,11 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable,IMa
     public void Install()
     {
 #if IAP
+        Purchaser.Instance.InitializedEventHandler += Initialized;
+        Purchaser.Instance.ProcessPurchaseFailEventHandler += BuyFailEventHandler;
+        Purchaser.Instance.ProcessPurchaseEventHandler += ProcessPurchase;
+        Purchaser.Instance.ProcessPurchaseReceiptEventHandler += ProcessPurchaseReceipt;
+
         ProductsDict = new Dictionary<string, StoreItem>();
 
         var products = PurchaserConfig.Instance.products;

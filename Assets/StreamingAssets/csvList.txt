@@ -1,2 +1,2 @@
 csv/Maps_Demo.csv
-elm.dat
+csv/SpawnConfig.csv

@@ -47,6 +47,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     public void StartUp( Action afterExecuteFunc = null, Action beforeExecuteFunc = null, bool debugEnable = true )
     {
         DontDestroyOnLoad( GameObject.Find( "Canvas_Root" ) );
+
         LDebug.Enable = debugEnable;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -55,20 +56,8 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //本地数据加载
         LocalDataManager.Instance.Install();
 
-        //TODO AB模块
-        //AssetDriver.Instance.Install();
-
         //资源加载模块
         ResourceManager.Instance.Install();
-
-        //UI模块
-        UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
-        UIManager.Instance.Install();
-
-        //UI扩展面板变化示例
-        //UIManager.Instance.FadeImage.CrossFadeAlpha( 0, 0.4f, false );
-        //ColorUtility.TryParseHtmlString( "#0B477B", out Color color );
-        //UIMaskManager.Instance.SetMaskColor( color );
 
         //Audio System
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };

@@ -193,7 +193,7 @@ public class PrefabPool
     ///	A pseudo constructor to init stuff not init by the serialized inspector-created
     ///	instance of this class.
     /// </description>
-    internal void inspectorInstanceConstructor()
+    public void inspectorInstanceConstructor()
     {
         this.prefabGO = this.prefab.gameObject;
         this._spawned = new List<Transform>();

@@ -602,7 +602,7 @@ namespace LitFramework.LitTool
             //配置档总表
             if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ) ) )
             {
-                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ), e.downloadHandler.data ) );
+                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" ), ( UnityWebRequest e ) => SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ), e.downloadHandler.data ) );
             }
 
             //顺次加载各类配置表
@@ -619,6 +619,31 @@ namespace LitFramework.LitTool
                     {
                         SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item, false ), e.downloadHandler.data );
                     } );
+                }
+            }
+
+            //AB档总表
+            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv", false ) ) )
+            {
+                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "ABVersion.csv" ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv", false ), e.downloadHandler.data ) );
+
+                csvKeys = null;
+                localPath = AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv" );
+                LoadAsset( localPath, ( string e ) =>
+                csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
+
+                int index = 0;
+                foreach ( var csvItem in csvKeys )
+                {
+                    if ( index == 0 ) { index++; continue; }
+                    string item = FrameworkConfig.Instance.ABFolderName + "/" + csvItem.Split( ',' )[ 0 ];
+                    if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ) )
+                    {
+                        LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( item ), ( UnityWebRequest e ) =>
+                        {
+                            SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item, false ), e.downloadHandler.data );
+                        } );
+                    }
                 }
             }
         }

@@ -7,9 +7,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PathologicalGames
 {
+    public enum LoadType
+    {
+        AB,
+        Resources
+    }
+
     [System.Serializable]
     public class SortSpawnPool
     {
@@ -49,7 +56,7 @@ namespace PathologicalGames
     ///		    This 
     /// </description>
     [AddComponentMenu( "Path-o-logical/PoolManager/SpawnPool" )]
-    public sealed class SpawnPool : MonoBehaviour, IList<Transform>
+    public abstract class SpawnPool : MonoBehaviour, IList<Transform>
     {
         #region Inspector Parameters
         /// <summary>
@@ -109,8 +116,6 @@ namespace PathologicalGames
 
         public List<SortSpawnPool> perPrefabPoolOptions = new List<SortSpawnPool>();
 
-        //public Dictionary<string, List<PrefabPool>> BBBB = new Dictionary<string, List<PrefabPool>>();
-
         /// <summary>
         /// Used by the inspector to store this instances foldout states.
         /// </summary>
@@ -140,19 +145,22 @@ namespace PathologicalGames
         // Keeps the state of each individual foldout item during the editor session
         public Dictionary<object, bool> _editorListItemStates = new Dictionary<object, bool>();
 
+        private Dictionary<string, PrefabPool> _prefabPoolDics;
+
         /// <summary>
-        /// Readonly access to prefab pools via a dictionary<string.PrefabPool>.
+        /// Readonly access to prefab pools via a dictionary<string, PrefabPool>.
         /// </summary>
         public Dictionary<string, PrefabPool> prefabPools
         {
             get
             {
-                var dict = new Dictionary<string, PrefabPool>();
+                if ( _prefabPoolDics != null ) { return _prefabPoolDics; }
+                _prefabPoolDics = new Dictionary<string, PrefabPool>();
 
-                for ( int i = 0; i < this._prefabPools.Count; i++ )
-                    dict[ this._prefabPools[ i ].prefabGO.name ] = this._prefabPools[ i ];
+                for ( int i = 0; i < _prefabPools.Count; i++ )
+                    _prefabPoolDics.Add( _prefabPools[ i ].prefabGO.name, _prefabPools[ i ] );
 
-                return dict;
+                return _prefabPoolDics;
             }
         }
         #endregion Public Code-only Parameters
@@ -164,7 +172,8 @@ namespace PathologicalGames
         internal List<Transform> _spawned = new List<Transform>();
         #endregion Private Properties
 
-
+        [Header( "资源加载方式" )]
+        public LoadType loadType;
 
         #region Constructor and Init
         private void Awake()
@@ -184,7 +193,6 @@ namespace PathologicalGames
                 this.poolName = this.group.name.Replace( "Pool", "" );
                 this.poolName = this.poolName.Replace( "(Clone)", "" );
             }
-
 
             if ( this.logMessages )
                 Debug.Log( string.Format( "SpawnPool {0}: Initializing..", this.poolName ) );
@@ -225,10 +233,11 @@ namespace PathologicalGames
                         LDebug.LogError( string.Format( "==>对象池预制件丢失!  池类型：{0}  Index: {1}", this.perPrefabPoolOptions[ i ].SortSpawnName, i ) );
                         throw;
                     }
-                   
+
                 }
 
             }
+
             //perPrefabPoolOptions.Clear();
             //perPrefabPoolOptions = null;
             // Add this SpawnPool to PoolManager for use. This is done last to lower the 
@@ -236,6 +245,7 @@ namespace PathologicalGames
             PoolManager.Pools.Add( this );
         }
 
+        public virtual void LoadSpawnConfig() { }
 
         /// <summary>
         /// Runs when this group GameObject is destroyed and executes clean-up
@@ -309,11 +319,17 @@ namespace PathologicalGames
             prefabPool.spawnPool = this;
             if ( !isAlreadyPool )
             {
-
                 this._prefabPools.Add( prefabPool );
 
                 // Add to the prefabs dict for convenience
-                this.prefabs._Add( prefabPool.prefab.name, prefabPool.prefab );
+                try
+                {
+                    this.prefabs._Add( prefabPool.prefab.name, prefabPool.prefab );
+                }
+                catch ( System.Exception )
+                {
+                    throw new System.Exception( string.Format( "对象池中已存在同名文件: {0} 。请检查配置表和对象池是否存在同名对象", prefabPool.prefab.name ) );
+                }
             }
 
             // Preloading (uses a singleton bool to be sure this is only done once)

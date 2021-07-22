@@ -279,7 +279,7 @@ namespace LitFrameworkEditor.EditorExtended
             p.Close();
         }
 
-        [MenuItem( "Tools/清档(PlayerPrefs)", priority = 90 )]
+        [MenuItem( "Tools/清档(PlayerPrefs)", priority = 40 )]
         private static void RemoveAllKey()
         {
             PlayerPrefs.DeleteAll();
@@ -288,7 +288,7 @@ namespace LitFrameworkEditor.EditorExtended
         /// <summary>
         /// 删除Assets空白目录下文件
         /// </summary>
-        [MenuItem( "Tools/删除空白目录", priority = 91 )]
+        [MenuItem( "Tools/删除空白目录", priority = 41 )]
         private static void CleanEmptyDirectories()
         {
             var di = new DirectoryInfo( "Assets/" );

@@ -257,7 +257,9 @@
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
+    <Compile Include="LitTool\AssetDriver.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
     <Compile Include="BaseModel\Cloneable.cs" />
     <Compile Include="BaseModel\Singleton.cs" />
@@ -278,8 +280,8 @@
     <Compile Include="LitPool\PrefabPool.cs" />
     <Compile Include="LitPool\PrefabsDict.cs" />
     <Compile Include="LitPool\SpawnManager.cs" />
-    <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AssetPathManager.cs" />
+    <Compile Include="LitTool\DocumentAccessor.cs" />
     <Compile Include="LitTool\LitTool.cs" />
     <Compile Include="MsgSystem\MsgManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -292,7 +294,6 @@
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />
-    <Compile Include="LitTool\DocumentAccessor.cs" />
     <Compile Include="LitTool\LDebug.cs" />
     <Compile Include="LitTool\LitJSON\IJsonWrapper.cs" />
     <Compile Include="LitTool\LitJSON\JsonData.cs" />

@@ -176,6 +176,122 @@
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
             <returns></returns>
         </member>
+        <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
+            <summary>
+            参数1-解析出的一条完整信息
+            参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.CheckRoute(System.String)">
+            <summary>
+            依次检查 PersistentDataPath、TemporaryCachePath、StreamAssetDataPath三个地址，如果都没有，则返回StreamAssetDataPath
+            </summary>
+            <param name="fileName">以上三个地址下，子目录路径。例如：csv/csvList.txt</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WriteFile(System.Text.StringBuilder,System.String)">
+            <summary>
+            写入文件到目标地址
+            </summary>
+            <param name="sb"></param>
+            <param name="targetPath"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ReadFile(System.String)">
+            <summary>
+            读取目标地址文件
+            </summary>
+            <param name="targetPath">完整地址+名称</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFile(System.String,System.Byte[])">
+            <summary>
+            保存二进制文件资源到本地  例如  SaveAsset2LocalFile( path , w.bytes );
+            </summary>
+            <param name="dataPath">完整目标地址，例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false ) </param>
+            <param name="info">bytes数组</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFileByJson(System.Object,System.String)">
+            <summary>
+            存储JSON数据到本地文件
+            </summary>
+            <param name="jsonData">需要被JSON化的类实例</param>
+            <param name="dataPath">完整地址。例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false )</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.IsExists(System.String)">
+            <summary>
+            判定特定路径下指定文件是否存在
+            </summary>
+            <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+            <summary>
+            协程加载
+            </summary>
+            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
+            <summary>
+            协程加载
+            </summary>
+            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String})">
+            <summary>
+            同步加载
+            </summary>
+            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+            <summary>
+            同步加载
+            </summary>
+            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
+            <summary>
+            www加载，Unity版本
+            </summary>
+            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+            <param name="callBack">加载完成后的回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoadingWithWaiting(System.String,System.Action{UnityEngine.WWW})">
+            <summary>
+            www加载
+            </summary>
+            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
+            <param name="callBack">加载完成后的回调</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.Collections.Generic.List{System.String},System.String,System.String)">
+            <summary>
+            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+            </summary>
+            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+            <param name="configsPathsList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+            <param name="name">FTP服务器登陆用户名</param>
+            <param name="password">FTP服务器登录密码</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.String,System.String,System.String)">
+            <summary>
+            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
+            </summary>
+            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
+            <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
+            <param name="name">FTP服务器登陆用户名</param>
+            <param name="password">FTP服务器登录密码</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.MoveStreamPath2PersistantPath">
+            <summary>
+            迁移StreamingAsset文件到目录PersisitantPath
+            </summary>
+        </member>
         <member name="T:LitFramework.LitTool.LitTool">
             <summary>
             工具类
@@ -409,122 +525,6 @@
             <param name="ImageWidth">目标RenderTexture像素宽度</param>
             <param name="imageHeight">目标RenderTexture像素高度</param>
             <returns></returns>
-        </member>
-        <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
-            <summary>
-            参数1-解析出的一条完整信息
-            参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.CheckRoute(System.String)">
-            <summary>
-            依次检查 PersistentDataPath、TemporaryCachePath、StreamAssetDataPath三个地址，如果都没有，则返回StreamAssetDataPath
-            </summary>
-            <param name="fileName">以上三个地址下，子目录路径。例如：csv/csvList.txt</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.WriteFile(System.Text.StringBuilder,System.String)">
-            <summary>
-            写入文件到目标地址
-            </summary>
-            <param name="sb"></param>
-            <param name="targetPath"></param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ReadFile(System.String)">
-            <summary>
-            读取目标地址文件
-            </summary>
-            <param name="targetPath">完整地址+名称</param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFile(System.String,System.Byte[])">
-            <summary>
-            保存二进制文件资源到本地  例如  SaveAsset2LocalFile( path , w.bytes );
-            </summary>
-            <param name="dataPath">完整目标地址，例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false ) </param>
-            <param name="info">bytes数组</param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.SaveAsset2LocalFileByJson(System.Object,System.String)">
-            <summary>
-            存储JSON数据到本地文件
-            </summary>
-            <param name="jsonData">需要被JSON化的类实例</param>
-            <param name="dataPath">完整地址。例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false )</param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.IsExists(System.String)">
-            <summary>
-            判定特定路径下指定文件是否存在
-            </summary>
-            <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
-            <summary>
-            协程加载
-            </summary>
-            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
-            <param name="callBack"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
-            <summary>
-            协程加载
-            </summary>
-            <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
-            <param name="callBack"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String})">
-            <summary>
-            同步加载
-            </summary>
-            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
-            <summary>
-            同步加载
-            </summary>
-            <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
-            <summary>
-            www加载，Unity版本
-            </summary>
-            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
-            <param name="callBack">加载完成后的回调</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoadingWithWaiting(System.String,System.Action{UnityEngine.WWW})">
-            <summary>
-            www加载
-            </summary>
-            <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
-            <param name="callBack">加载完成后的回调</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.Collections.Generic.List{System.String},System.String,System.String)">
-            <summary>
-            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
-            </summary>
-            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
-            <param name="configsPathsList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
-            <param name="name">FTP服务器登陆用户名</param>
-            <param name="password">FTP服务器登录密码</param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.DownLoadFromFTP(System.String,System.String,System.String,System.String)">
-            <summary>
-            FTP 下载器。同步方法会线程阻塞，用于加载少量文件
-            </summary>
-            <param name="ftpIP">FTP服务器IP地址+端口。最后需要带上"/"</param>
-            <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
-            <param name="name">FTP服务器登陆用户名</param>
-            <param name="password">FTP服务器登录密码</param>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.MoveStreamPath2PersistantPath">
-            <summary>
-            迁移StreamingAsset文件到目录PersisitantPath
-            </summary>
         </member>
         <member name="T:LitFramework.LitTool.ResourceManager">
             <summary>
@@ -1108,217 +1108,6 @@
             <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
         </member>
-        <member name="M:Cloneable`1.Clone">
-            <summary>
-            基础覆写方法
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:CSVReader">
-            <summary>
-            编辑器部分的同步文件，如果有改动需要在两边共同修改
-            </summary>
-        </member>
-        <member name="M:CSVReader.ParseCSV(System.String)">
-            <summary>
-            解析csv数据
-            </summary>
-            <param name="csv"></param>
-        </member>
-        <member name="M:CSVReader.GetData(System.Int32,System.Int32)">
-            <summary>
-            获取数据
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
-        </member>
-        <member name="F:GuideShaderController._target">
-            <summary>
-            要高亮显示的目标
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._corners">
-            <summary>
-            区域范围缓存
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._center">
-            <summary>
-            镂空区域圆心
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._radius">
-            <summary>
-            镂空区域半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._material">
-            <summary>
-            遮罩材质
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._currentRadius">
-            <summary>
-            当前高亮区域的半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._shrinkVelocity">
-            <summary>
-            收缩速度
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
-            <summary>
-            聚焦到引导目标
-            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
-            </summary>
-            <param name="operateImage">目标点击区域Button Image</param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:GuideShaderController.CurrentGuideOver">
-            <summary>
-            引导完成后UI重置
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ResetGuide">
-            <summary>
-            重置引导画面-去除镂空区域
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
-            <summary>
-            新手引导UI点击回调
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
-            <summary>
-            3D物体触碰回调
-            </summary>
-        </member>
-        <member name="T:GuideConfig">
-            <summary>
-            引导动画配置
-            </summary>
-        </member>
-        <member name="T:GuideDataModel">
-            <summary>
-            分部类。可以在业务逻辑上继续扩展
-            </summary>
-        </member>
-        <member name="F:GuideDataModel.FocusTargetDoneEvent">
-            <summary>
-            圆形/矩形聚焦完毕回调
-            </summary>
-        </member>
-        <member name="F:GuideDataModel.GuideDoneEvent">
-            <summary>
-            点击目标位置完成本轮
-            </summary>
-        </member>
-        <member name="T:PathologicalGames.PoolManager">
-            <description>
-            PoolManager v2.0
-             - PoolManager.Pools is not a complete implimentation of the IDictionary interface
-               Which enabled:
-                   * Much more acurate and clear error handling
-                   * Member access protection so you can't run anything you aren't supposed to.
-             - Moved all functions for working with Pools from PoolManager to PoolManager.Pools
-               which enabled shorter names to reduces the length of lines of code.
-            Online Docs: http://docs.poolmanager2.path-o-logical.com
-            </description>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String)">
-            <summary>
-            Creates a new GameObject with a SpawnPool Component which registers itself
-            with the PoolManager.Pools dictionary. The SpawnPool can then be accessed 
-            directly via the return value of this function or by via the PoolManager.Pools 
-            dictionary using a 'key' (string : the name of the pool, SpawnPool.poolName).
-            </summary>
-            <param name="poolName">
-            The name for the new SpawnPool. The GameObject will have the word "Pool"
-            Added at the end.
-            </param>
-            <returns>A reference to the new SpawnPool component</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String,UnityEngine.GameObject)">
-             <summary>
-            Creates a SpawnPool Component on an 'owner' GameObject which registers 
-             itself with the PoolManager.Pools dictionary. The SpawnPool can then be 
-             accessed directly via the return value of this function or via the
-             PoolManager.Pools dictionary.
-             </summary>
-             <param name="poolName">
-             The name for the new SpawnPool. The GameObject will have the word "Pool"
-             Added at the end.
-             </param>
-             <param name="owner">A GameObject to add the SpawnPool Component</param>
-             <returns>A reference to the new SpawnPool component</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.assertValidPoolName(System.String)">
-            <summary>
-            Used to ensure a name is valid before creating anything.
-            </summary>
-            <param name="poolName">The name to test</param>
-            <returns>True if sucessful, false if failed.</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.ToString">
-            <summary>
-            Returns a formatted string showing all the pool names
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Destroy(System.String)">
-            <summary>
-            Destroy an entire SpawnPool, including its GameObject and all children.
-            You can also just destroy the GameObject directly to achieve the same result.
-            This is really only here to make it easier when a reference isn't at hand.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.DestroyAll">
-            <summary>
-            Destroy ALL SpawnPools, including their GameObjects and all children.
-            You can also just destroy the GameObjects directly to achieve the same result.
-            This is really only here to make it easier when a reference isn't at hand.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Add(PathologicalGames.SpawnPool)">
-            <summary>
-            Used internally by SpawnPools to add themseleves on Awake().
-            Use PoolManager.CreatePool() to create an entirely new SpawnPool GameObject
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Remove(PathologicalGames.SpawnPool)">
-            <summary>
-            Used internally by SpawnPools to remove themseleves on Destroy().
-            Use PoolManager.Destroy() to destroy an entire SpawnPool GameObject.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="P:PathologicalGames.SpawnPoolsDict.Count">
-            <summary>
-            Get the number of SpawnPools in PoolManager
-            </summary>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.ContainsKey(System.String)">
-            <summary>
-            Returns true if a pool exists with the passed pool name.
-            </summary>
-            <param name="poolName">The name to look for</param>
-            <returns>True if the pool exists, otherwise, false.</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.TryGetValue(System.String,PathologicalGames.SpawnPool@)">
-            <summary>
-            Used to get a SpawnPool when the user is not sure if the pool name is used.
-            This is faster than checking IsPool(poolName) and then accessing Pools][poolName.]
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
         <member name="T:PathologicalGames.SpawnPool">
             <description>
             Online Docs: 
@@ -1747,6 +1536,286 @@
             Impliments the ability to use this list in a foreach loop
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:PathologicalGames.PoolManager">
+            <description>
+            PoolManager v2.0
+             - PoolManager.Pools is not a complete implimentation of the IDictionary interface
+               Which enabled:
+                   * Much more acurate and clear error handling
+                   * Member access protection so you can't run anything you aren't supposed to.
+             - Moved all functions for working with Pools from PoolManager to PoolManager.Pools
+               which enabled shorter names to reduces the length of lines of code.
+            Online Docs: http://docs.poolmanager2.path-o-logical.com
+            </description>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String)">
+            <summary>
+            Creates a new GameObject with a SpawnPool Component which registers itself
+            with the PoolManager.Pools dictionary. The SpawnPool can then be accessed 
+            directly via the return value of this function or by via the PoolManager.Pools 
+            dictionary using a 'key' (string : the name of the pool, SpawnPool.poolName).
+            </summary>
+            <param name="poolName">
+            The name for the new SpawnPool. The GameObject will have the word "Pool"
+            Added at the end.
+            </param>
+            <returns>A reference to the new SpawnPool component</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String,UnityEngine.GameObject)">
+             <summary>
+            Creates a SpawnPool Component on an 'owner' GameObject which registers 
+             itself with the PoolManager.Pools dictionary. The SpawnPool can then be 
+             accessed directly via the return value of this function or via the
+             PoolManager.Pools dictionary.
+             </summary>
+             <param name="poolName">
+             The name for the new SpawnPool. The GameObject will have the word "Pool"
+             Added at the end.
+             </param>
+             <param name="owner">A GameObject to add the SpawnPool Component</param>
+             <returns>A reference to the new SpawnPool component</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.assertValidPoolName(System.String)">
+            <summary>
+            Used to ensure a name is valid before creating anything.
+            </summary>
+            <param name="poolName">The name to test</param>
+            <returns>True if sucessful, false if failed.</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.ToString">
+            <summary>
+            Returns a formatted string showing all the pool names
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Destroy(System.String)">
+            <summary>
+            Destroy an entire SpawnPool, including its GameObject and all children.
+            You can also just destroy the GameObject directly to achieve the same result.
+            This is really only here to make it easier when a reference isn't at hand.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.DestroyAll">
+            <summary>
+            Destroy ALL SpawnPools, including their GameObjects and all children.
+            You can also just destroy the GameObjects directly to achieve the same result.
+            This is really only here to make it easier when a reference isn't at hand.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Add(PathologicalGames.SpawnPool)">
+            <summary>
+            Used internally by SpawnPools to add themseleves on Awake().
+            Use PoolManager.CreatePool() to create an entirely new SpawnPool GameObject
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Remove(PathologicalGames.SpawnPool)">
+            <summary>
+            Used internally by SpawnPools to remove themseleves on Destroy().
+            Use PoolManager.Destroy() to destroy an entire SpawnPool GameObject.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="P:PathologicalGames.SpawnPoolsDict.Count">
+            <summary>
+            Get the number of SpawnPools in PoolManager
+            </summary>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.ContainsKey(System.String)">
+            <summary>
+            Returns true if a pool exists with the passed pool name.
+            </summary>
+            <param name="poolName">The name to look for</param>
+            <returns>True if the pool exists, otherwise, false.</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.TryGetValue(System.String,PathologicalGames.SpawnPool@)">
+            <summary>
+            Used to get a SpawnPool when the user is not sure if the pool name is used.
+            This is faster than checking IsPool(poolName) and then accessing Pools][poolName.]
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ABVersion">
+            <summary>
+            csv资源文件内容
+            </summary>
+        </member>
+        <member name="M:AssetDriver.DownLoadABIE(System.String)">
+            <summary>
+            当所有资源下载完成或者更新完成,开始游戏
+            </summary>
+            <param name="abName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.ResponseExportCSV(System.Collections.Generic.List{ABVersion},System.String)">
+            <summary>
+            将ssv写入到指定目录
+            </summary>
+            <param name="abVersions"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:AssetDriver.DownLoadAB(System.String)">
+            <summary>
+            获取包依赖信息
+            </summary>
+            <param name="fileNames"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:AssetDriver.bundleDic" -->
+        <member name="P:AssetDriver.ABFilePath">
+            <summary>
+            AB包路径
+            </summary>
+        </member>
+        <member name="P:AssetDriver.MainABName">
+            <summary>
+            主包名字
+            </summary>
+        </member>
+        <member name="M:AssetDriver.LoadAB(System.String)">
+            <summary>
+            加载AB包
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.LoadFromAB``1(System.String)">
+            <summary>
+            从AB包中加载资源
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="abName"></param>
+            <param name="resName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.RemoveMenory">
+            <summary>
+            卸载没有被使用的资源
+            </summary>
+        </member>
+        <member name="M:AssetDriver.ClearOneAB(System.String)">
+            <summary>
+            卸载单个AB包
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:AssetDriver.ClearAll">
+            <summary>
+            卸载所有AB包
+            </summary>
+        </member>
+        <member name="M:Cloneable`1.Clone">
+            <summary>
+            基础覆写方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CSVReader">
+            <summary>
+            编辑器部分的同步文件，如果有改动需要在两边共同修改
+            </summary>
+        </member>
+        <member name="M:CSVReader.ParseCSV(System.String)">
+            <summary>
+            解析csv数据
+            </summary>
+            <param name="csv"></param>
+        </member>
+        <member name="M:CSVReader.GetData(System.Int32,System.Int32)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="F:GuideShaderController._target">
+            <summary>
+            要高亮显示的目标
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._corners">
+            <summary>
+            区域范围缓存
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._center">
+            <summary>
+            镂空区域圆心
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._radius">
+            <summary>
+            镂空区域半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._material">
+            <summary>
+            遮罩材质
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._currentRadius">
+            <summary>
+            当前高亮区域的半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._shrinkVelocity">
+            <summary>
+            收缩速度
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
+            <summary>
+            聚焦到引导目标
+            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
+            </summary>
+            <param name="operateImage">目标点击区域Button Image</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:GuideShaderController.CurrentGuideOver">
+            <summary>
+            引导完成后UI重置
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ResetGuide">
+            <summary>
+            重置引导画面-去除镂空区域
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
+            <summary>
+            新手引导UI点击回调
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
+            <summary>
+            3D物体触碰回调
+            </summary>
+        </member>
+        <member name="T:GuideConfig">
+            <summary>
+            引导动画配置
+            </summary>
+        </member>
+        <member name="T:GuideDataModel">
+            <summary>
+            分部类。可以在业务逻辑上继续扩展
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.FocusTargetDoneEvent">
+            <summary>
+            圆形/矩形聚焦完毕回调
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.GuideDoneEvent">
+            <summary>
+            点击目标位置完成本轮
+            </summary>
         </member>
         <member name="T:PrefabPool">
             <summary>

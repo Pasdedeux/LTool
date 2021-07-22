@@ -35,7 +35,7 @@ namespace LitFrameworkEditor.Extention_Editor
 
         [ExecuteInEditMode]
 #if UNITY_EDITOR
-        [MenuItem( "Tools/Build/Build Audio &s" )]
+        [MenuItem( "Tools/Build/Build Audio &s", priority = 51 )]
 #endif
         public static void RegisterAudios()
         {

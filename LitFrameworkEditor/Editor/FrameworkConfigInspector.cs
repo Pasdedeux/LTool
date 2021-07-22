@@ -29,7 +29,7 @@ public class FrameworkConfigInspector : Editor
         _config = ( FrameworkConfig )target;
     }
 
-    private bool _foldOut = true, _folaOutEditor = true, _folaOutUI = true;
+    private bool _foldOut = true, _folaOutEditor = true, _foldOutUI = true, _foldOutAB = true;
     public override void OnInspectorGUI()
     {
         //设置整个界面是以垂直方向来布局
@@ -59,10 +59,18 @@ public class FrameworkConfigInspector : Editor
         }
 
         EditorGUILayout.Space();
-        _folaOutUI = EditorGUILayout.Foldout( _folaOutUI, "UI设定" );
-        if ( _folaOutUI )
+        _foldOutUI = EditorGUILayout.Foldout( _foldOutUI, "UI设定" );
+        if ( _foldOutUI )
         {
             _config.TouchDetectUI = EditorGUILayout.Toggle( "开启UGUI触屏检测", _config.TouchDetectUI );
+        }
+
+        EditorGUILayout.Space();
+        _foldOutAB = EditorGUILayout.Foldout( _foldOutAB, "AB设定" );
+        if ( _foldOutAB )
+        {
+            _config.ABFolderName = EditorGUILayout.TextField( "AB包文件夹名称", _config.ABFolderName );
+            _config.ABTotalName = EditorGUILayout.TextField( "AB总包名称", _config.ABTotalName );
         }
 
         EditorGUILayout.Space();

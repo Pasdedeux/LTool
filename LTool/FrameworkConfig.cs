@@ -88,6 +88,10 @@ namespace LitFramework
         #endregion
 
         #region 配置档设置
+        [Header( "AB包文件夹名称" )]
+        public string ABFolderName = "ABPackages";
+        [Header( "AB总包名称" )]
+        public string ABTotalName = "ABPackage";
 
         [Header( "额外登记的文件后缀" )]
         public string configs_suffix = "json|dat|assetbundle";

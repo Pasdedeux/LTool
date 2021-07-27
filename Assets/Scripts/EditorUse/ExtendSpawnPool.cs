@@ -28,6 +28,8 @@ namespace Assets.Scripts
     {
         public override void LoadSpawnConfig()
         {
+            if ( loadType == LoadType.None ) return;
+
             Dictionary<string, SpawnConfig> spawnConfigs = Configs.SpawnConfigDict;
 
             foreach ( var item in spawnConfigs )

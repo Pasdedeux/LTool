@@ -26,9 +26,6 @@ public class LoadingStart : MonoBehaviour
         //TODO 指定地址下载指定文件，并规定解析及覆写规则
         //..
 
-        //启动Loading界面，准备进度条预读取事件
-        FrameworkController.Instance.InitLoadingLogo();
-
         //启动框架本身
         FrameworkController.Instance.InitFramework();
 

@@ -15,6 +15,7 @@
 ======================================*/
 
 using LitFramework;
+using LitFramework.GameFlow;
 using LitFramework.GameFlow.Model.DataLoadInterface;
 using LitFramework.Mono;
 using System;
@@ -38,16 +39,24 @@ namespace Assets.Scripts.Controller
             //框架启动：直接启动，或者使用LoadingTaskModel登记启动时机
             LitFrameworkFacade.Instance.StartUp( beforeExecuteFunc: () =>
             {
+                //配置档加载流程预绑定
                 LocalDataManager.Instance.InstallEventHandler += e =>
                 {
-                    //顺次加载本地配置表、存储的JSON数据
+                    //顺次加载本地配置表、JSON数据
                     new CSVConfigData( e );
                     new JsonConfigData( e );
                 };
             },
             afterExecuteFunc: () =>
             {
+                //框架基础启动完毕后，需要进行的自定义加载事件
+                //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗
+                //同时不排除业务场景中需要把这个等待过程单独表现在进度条上。
+                //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
+                LoadingTaskModel.Instance.AddTask( 5, () => { LocalDataManager.Instance.Install(); return true; } );
                 
+                //启动Loading界面，准备进度条预读取事件
+                InitLoadingLogo();
             }
             );
         }
@@ -57,9 +66,6 @@ namespace Assets.Scripts.Controller
         /// </summary>
         public void InitLoadingLogo()
         {
-            //UI模块
-            UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
-            UIManager.Instance.Install();
             //默认启动游戏先开始显示UI界面
             UIManager.Instance.Show( ResPath.UI.UILOADING );
 

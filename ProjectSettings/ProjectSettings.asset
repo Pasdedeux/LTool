@@ -256,15 +256,15 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: E:/MyGitHub/Unity/iFunTech/sign.keystore
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: "C:/Users/lc102/OneDrive/\u7535\u5B50\u90AE\u4EF6\u9644\u4EF6/\u6781\u5149\u732B\u79D1\u6280/\u672B\u65E5\u5C0F\u961F/\u56FD\u5185/mrxd.keystore"
+  AndroidKeyaliasName: mrxd
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180

@@ -14,6 +14,10 @@ using UnityEngine.Networking;
 
 public class LoadingStart : MonoBehaviour
 {
+    /// <summary>
+    /// 框架启动核心方法：FrameworkController.Instance.InitFramework()
+    /// 如果需要有其它启动流程，至少需要调用这个方法完成初始化
+    /// </summary>
     void Start()
     {
         //是否迁移到可读写目录

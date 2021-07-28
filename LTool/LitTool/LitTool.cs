@@ -179,14 +179,7 @@ namespace LitFramework.LitTool
         /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
         static void DelayPlayFuncUpdate( float time, Action func, bool realTime )
         {
-            if ( realTime )
-            {
-                new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
-            }
-            else
-            {
-                new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
-            }
+            new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
         }
 
         #endregion

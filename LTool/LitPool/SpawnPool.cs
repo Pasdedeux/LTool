@@ -13,6 +13,7 @@ namespace PathologicalGames
 {
     public enum LoadType
     {
+        None,
         AB,
         Resources
     }
@@ -172,8 +173,8 @@ namespace PathologicalGames
         internal List<Transform> _spawned = new List<Transform>();
         #endregion Private Properties
 
-        [Header( "资源加载方式" )]
-        public LoadType loadType;
+        [Header( "动态资源加载方式" )]
+        public LoadType loadType = LoadType.None;
 
         #region Constructor and Init
         private void Awake()

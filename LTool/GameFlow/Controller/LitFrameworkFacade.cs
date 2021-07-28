@@ -53,8 +53,9 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
 
         beforeExecuteFunc?.Invoke();
 
-        //本地数据加载
-        LocalDataManager.Instance.Install();
+        //UI模块
+        UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
+        UIManager.Instance.Install();
 
         //资源加载模块
         ResourceManager.Instance.Install();
@@ -71,7 +72,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
 
         //对象池开启
         SpawnManager.Instance.Install();
-
+        
         //新手引导模块
         GuideShaderController.Instance.Install();
 

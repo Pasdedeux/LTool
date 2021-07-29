@@ -286,14 +286,15 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
+        /// <param name="errorCallBack"></param>
         /// <returns></returns>
-        public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack )
+        public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null )
         {
             Uri uri = new Uri( path );
             LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
             using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
             {
-                uwr.timeout = 5;
+                uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
                 uwr.disposeDownloadHandlerOnDispose = true;
                 uwr.disposeCertificateHandlerOnDispose = true;
@@ -303,6 +304,7 @@ namespace LitFramework.LitTool
                 if ( uwr.isNetworkError || uwr.isHttpError )
                 {
                     LDebug.LogError( "  >Error: " + uwr.error );
+                    errorCallBack?.Invoke( uwr );
                 }
                 else
                 {
@@ -317,14 +319,15 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
+        /// <param name="errorCallBack"></param>
         /// <returns></returns>
-        public static IEnumerator ILoadAsset( string path, Action<string> callBack )
+        public static IEnumerator ILoadAsset( string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null )
         {
             Uri uri = new Uri( path );
             LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
             using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
             {
-                uwr.timeout = 5;
+                uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
                 uwr.disposeDownloadHandlerOnDispose = true;
                 uwr.disposeCertificateHandlerOnDispose = true;
@@ -334,6 +337,7 @@ namespace LitFramework.LitTool
                 if ( uwr.isNetworkError || uwr.isHttpError )
                 {
                     LDebug.LogError( "  >Error: " + uwr.error );
+                    errorCallBack?.Invoke( uwr );
                 }
                 else
                 {
@@ -348,13 +352,14 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
-        public static void LoadAsset( string path, Action<string> callBack )
+        /// <param name="errorCallBack"></param>
+        public static void LoadAsset( string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null )
         {
             Uri uri = new Uri( path );
             LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
             using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
             {
-                uwr.timeout = 5;
+                uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
                 uwr.disposeDownloadHandlerOnDispose = true;
                 uwr.disposeCertificateHandlerOnDispose = true;
@@ -366,6 +371,7 @@ namespace LitFramework.LitTool
                     if ( uwr.isHttpError || uwr.isNetworkError )
                     {
                         LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
+                        errorCallBack?.Invoke( uwr );
                         return;
                     }
                     else if ( uwr.downloadProgress == 1 )
@@ -383,13 +389,14 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
-        public static void LoadAsset( string path, Action<UnityWebRequest> callBack )
+        /// <param name="errorCallBack"></param>
+        public static void LoadAsset( string path, Action<UnityWebRequest> callBack , Action<UnityWebRequest> errorCallBack = null )
         {
             Uri uri = new Uri( path );
             LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
             using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
             {
-                uwr.timeout = 5;
+                uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
                 uwr.disposeDownloadHandlerOnDispose = true;
                 uwr.disposeCertificateHandlerOnDispose = true;
@@ -401,6 +408,7 @@ namespace LitFramework.LitTool
                     if ( uwr.isHttpError || uwr.isNetworkError )
                     {
                         LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
+                        errorCallBack?.Invoke( uwr );
                         return;
                     }
                     else if ( uwr.downloadProgress == 1 )
@@ -599,36 +607,56 @@ namespace LitFramework.LitTool
         {
             if ( !FrameworkConfig.Instance.UsePersistantPath ) return;
 
-            //配置档总表
-            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ) ) )
+            var fileList = FrameworkConfig.Instance.move2PersisFileList.Split( '|' );
+            for ( int i = 0; i < fileList.Length; i++ )
             {
-                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" ), ( UnityWebRequest e ) => SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", false ), e.downloadHandler.data ) );
+
             }
+            MoveCSVList();
+            MoveABVersion();
+        }
 
-            //顺次加载各类配置表
-            string[] csvKeys = null;
-            string localPath = AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt" );
-            LoadAsset( localPath, ( string e ) =>
-            csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
 
-            foreach ( var item in csvKeys )
+        private static void MoveCSVList()
+        {
+            string fileName = "csvList.txt";
+
+            //配置档总表
+            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ) ) )
             {
-                if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ) )
+                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( fileName ), ( UnityWebRequest e ) => SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ), e.downloadHandler.data ) );
+
+                //顺次加载各类配置表
+                string[] csvKeys = null;
+                string localPath = AssetPathManager.Instance.GetPersistentDataPath( fileName );
+                LoadAsset( localPath, ( string e ) =>
+                csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
+
+                foreach ( var item in csvKeys )
                 {
-                    LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( item ), ( UnityWebRequest e ) =>
+                    if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ) )
                     {
-                        SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item, false ), e.downloadHandler.data );
-                    } );
+                        LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( item ), ( UnityWebRequest e ) =>
+                        {
+                            SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item, false ), e.downloadHandler.data );
+                        } );
+                    }
                 }
             }
+        }
+
+
+        private static void MoveABVersion()
+        {
+            string fileName = "ABVersion.csv";
 
             //AB档总表
-            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv", false ) ) )
+            if ( !IsExists( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ) ) )
             {
-                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( "ABVersion.csv" ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv", false ), e.downloadHandler.data ) );
+                LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( fileName ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ), e.downloadHandler.data ) );
 
-                csvKeys = null;
-                localPath = AssetPathManager.Instance.GetPersistentDataPath( "ABVersion.csv" );
+                string[] csvKeys = null;
+                string localPath = AssetPathManager.Instance.GetPersistentDataPath( fileName );
                 LoadAsset( localPath, ( string e ) =>
                 csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
 

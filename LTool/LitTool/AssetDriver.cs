@@ -402,7 +402,7 @@ public class AssetDriver : Singleton<AssetDriver>
     private byte[] downloadWithFTP( string ftpUrl, string savePath = "", string userName = "", string password = "" )
     {
         FtpWebRequest request = ( FtpWebRequest )WebRequest.Create( new Uri( ftpUrl ) );
-        //request.Proxy = null;
+        //request.Proxy = null; 
         request.UsePassive = true;
         request.UseBinary = true;
         request.KeepAlive = true;

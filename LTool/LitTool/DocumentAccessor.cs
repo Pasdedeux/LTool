@@ -607,11 +607,6 @@ namespace LitFramework.LitTool
         {
             if ( !FrameworkConfig.Instance.UsePersistantPath ) return;
 
-            var fileList = FrameworkConfig.Instance.move2PersisFileList.Split( '|' );
-            for ( int i = 0; i < fileList.Length; i++ )
-            {
-
-            }
             MoveCSVList();
             MoveABVersion();
         }

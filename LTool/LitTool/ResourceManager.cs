@@ -48,31 +48,16 @@ namespace LitFramework.LitTool
         public event Action<Texture2D> LoadTextureEventHandler;
         public event Action<AssetBundle> LoadAssetBundleEventHandler;
 
-        private Dictionary<string, Sprite[]> _atlasDict;
-        public void Install()
-        {
-            _atlasDict = new Dictionary<string, Sprite[]>();
-        }
-
-        public void Uninstall()
-        {
-            _atlasDict.Clear();
-            _atlasDict = null;
-            Resources.UnloadUnusedAssets();
-        }
-
+        private Dictionary<string, Sprite[]> _atlasDict = new Dictionary<string, Sprite[]>();
+        
         //游戏配置档
         private const string CSV_CONFIG_LIST = "csvList.txt";
         //AB配置档
         private const string AB_CONFIG_LIST = "ABVersion.csv";
         //资源服地址
-        private readonly string REMOTE_IP = "http://192.168.1.102/";
+        private string REMOTE_IP = "http://192.168.1.102/";
         //需要下载更新的配置档文件
-        public List<string> toBeDownloadCsvList = new List<string>()
-    {
-        CSV_CONFIG_LIST,
-        AB_CONFIG_LIST,
-    };
+        private List<string> _toBeDownloadCsvList = new List<string>();
 
         #region AB Load
 
@@ -80,11 +65,18 @@ namespace LitFramework.LitTool
         private bool _isLoadAB;
         private int _loadAbNum = -1;
 
-        public void DownLoadCSVAB()
+        public void DownLoadCSVAB( string ip , string username = null, string password = null )
         {
             _isLoadAB = false;
+            //执行远程更新
             if ( FrameworkConfig.Instance.UseRemotePersistantPath )
+            {
+                LDebug.Log( "热更连接地址：" + ip );
+
+                REMOTE_IP = ip;
                 LitTool.MonoBehaviour.StartCoroutine( IDownLoadVersion() );
+            }
+            //选择不远程更新
             else
                 MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
         }
@@ -99,17 +91,20 @@ namespace LitFramework.LitTool
 
             yield return null;
 
+            var fileName = FrameworkConfig.Instance.RemoteCSVConfig.Split( '|' )[ 0 ];
+            var fileClassName = FrameworkConfig.Instance.RemoteABVersionConfig.Split( '|' )[ 1 ];
+
             //启动游戏检测
             //下载最新的资源配置信息
             //根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
             //有就根据版本更新,没有就去下载完整ab资源
             //更新完成或者下载完成,才开始进入游戏
 
-            for ( int i = 0; i < toBeDownloadCsvList.Count; i++ )
+            for ( int i = 0; i < _toBeDownloadCsvList.Count; i++ )
             {
                 bool canGoFurther = true;
                 string localContent = null;
-                string remoteFilePath = toBeDownloadCsvList[ i ];
+                string remoteFilePath = _toBeDownloadCsvList[ i ];
 
                 //发送下载XX文件事件
                 MsgManager.Instance.Broadcast( InternalEvent.HANDLING_REMOTE_RES, new MsgArgs( remoteFilePath, InternalEvent.RemoteStatus.Download ) );

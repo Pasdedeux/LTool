@@ -306,7 +306,6 @@
     <Compile Include="LitTool\LitJSON\Lexer.cs" />
     <Compile Include="LitTool\LitJSON\ParserToken.cs" />
     <Compile Include="LitTool\LMath.cs" />
-    <Compile Include="LitTool\ResourceManager.cs" />
     <Compile Include="LitTool\SpriteAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseModel\IManager.cs" />

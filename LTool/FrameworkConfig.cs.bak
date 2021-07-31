@@ -101,6 +101,8 @@ namespace LitFramework
         public bool UseRemotePersistantPath = false;
         [Header("远程配置参数文件")]
         public string RemoteUrlConfig = "http://192.168.1.102/";
+        public string RemoteCSVConfig = "csvList.txt|CsvResolve";
+        public string RemoteABVersionConfig = "ABVersion.txt|ABVersion";
 
         #endregion
 

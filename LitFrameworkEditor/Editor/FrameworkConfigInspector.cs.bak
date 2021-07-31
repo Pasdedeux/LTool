@@ -82,6 +82,9 @@ public class FrameworkConfigInspector : Editor
             if ( _config.UseRemotePersistantPath )
             {
                 _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
+
+                _config.RemoteCSVConfig = EditorGUILayout.TextField( "csv档及解析类", _config.RemoteCSVConfig );
+                _config.RemoteABVersionConfig = EditorGUILayout.TextField( "AB包档及解析类", _config.RemoteABVersionConfig );
             }
         }
 

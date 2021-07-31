@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace LitFramework.MsgSystem
 {
-    internal class InternalEvent
+    public sealed class InternalEvent
     {
         public enum RemoteStatus
         {

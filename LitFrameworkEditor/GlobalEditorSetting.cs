@@ -102,6 +102,7 @@ class ConfigsParse
         foreach ( var item in rpt.configsNameList )
         {
             CSString.Add( string.Format( "public static Dictionary<{2}, {1}> {0};", item.Key + "Dict", item.Key, item.Value ) );
+            CSString.Add( string.Format( "public static List<{1}> {0};", item.Key + "List", item.Value ) );
         }
     }
     string GetFomatedCS()

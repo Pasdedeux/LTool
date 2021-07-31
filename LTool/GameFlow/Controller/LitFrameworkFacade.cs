@@ -57,9 +57,6 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
         UIManager.Instance.Install();
 
-        //资源加载模块
-        ResourceManager.Instance.Install();
-
         //Audio System
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };
         AudioManager.Instance.Install();

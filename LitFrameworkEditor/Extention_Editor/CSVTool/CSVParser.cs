@@ -100,7 +100,7 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add( string.Format( "public {0} {1} {{ get; set; }}" , CheckDictType( subtype ) , _attribute[ i ] ) );
             }
             //添加方法
-            AddMethod( EnMethodType.List );
+            //AddMethod( EnMethodType.List );
             AddMethod( EnMethodType.Dictionary );
             AddParseVector3();
         }
@@ -147,8 +147,12 @@ namespace LitFrameworkEditor.EditorExtended
 
         private void AddMethod( EnMethodType mtype )
         {
+            //if ( mtype == EnMethodType.List )
+            //    CSString.Add( string.Format( "private static List<{0}> vec = new List<{0}>();", _className ) );
+            //else
+            //    CSString.Add( string.Format( "private static Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();", CheckEnType( _type[ 0 ] ), _className ) );
+
             CSString.Add( "" );
-            CSString.Add( "	[Obsolete]" );
             CSString.Add( "/// <summary>" );
             CSString.Add( "/// 读取配置文件" );
             CSString.Add( "/// </summary>" );

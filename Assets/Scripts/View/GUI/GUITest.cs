@@ -15,7 +15,8 @@ public class GUITest : MonoBehaviour
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮1" ) )
         {
-            
+            ResourceManager.Instance.DownLoadCSVAB( FrameworkConfig.Instance.RemoteUrlConfig );
+            LDebug.Log( ">>>走下一步" );
         }
 
     }

@@ -223,35 +223,39 @@
             <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest},System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             协程加载
             </summary>
             <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
+            <param name="errorCallBack"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String},System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             协程加载
             </summary>
             <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
+            <param name="errorCallBack"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String},System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             同步加载
             </summary>
             <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
+            <param name="errorCallBack"></param>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest},System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             同步加载
             </summary>
             <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
+            <param name="errorCallBack"></param>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
             <summary>
@@ -524,41 +528,6 @@
             <param name="targetT">需要转换的Texture2D</param>
             <param name="ImageWidth">目标RenderTexture像素宽度</param>
             <param name="imageHeight">目标RenderTexture像素高度</param>
-            <returns></returns>
-        </member>
-        <member name="T:LitFramework.LitTool.ResourceManager">
-            <summary>
-            待完善-基于resource.load的图集加载、assetbundle、文件加载等
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
-            <summary>
-            加载图集中的子对象
-            </summary>
-            <param name="spriteName"></param>
-            <param name="atlasPath"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadFileUWR(System.String,System.Boolean)">
-            <summary>
-            加载 .txt/ .dat/ .csv等文件
-            </summary>
-            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
-            <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadTextureUWR(System.String)">
-            <summary>
-            加载png 等图像格式
-            </summary>
-            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadAssetBundleUWR(System.String)">
-            <summary>
-            加载AssetBundle
-            </summary>
-            /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
             <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.SpriteAdapter">
@@ -1639,75 +1608,6 @@
             <param name="key"></param>
             <param name="value"></param>
             <returns></returns>
-        </member>
-        <member name="T:ABVersion">
-            <summary>
-            csv资源文件内容
-            </summary>
-        </member>
-        <member name="M:AssetDriver.DownLoadABIE(System.String)">
-            <summary>
-            当所有资源下载完成或者更新完成,开始游戏
-            </summary>
-            <param name="abName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AssetDriver.ResponseExportCSV(System.Collections.Generic.List{ABVersion},System.String)">
-            <summary>
-            将ssv写入到指定目录
-            </summary>
-            <param name="abVersions"></param>
-            <param name="fileName"></param>
-        </member>
-        <member name="M:AssetDriver.DownLoadAB(System.String)">
-            <summary>
-            获取包依赖信息
-            </summary>
-            <param name="fileNames"></param>
-            <returns></returns>
-        </member>
-        <!-- Badly formed XML comment ignored for member "F:AssetDriver.bundleDic" -->
-        <member name="P:AssetDriver.ABFilePath">
-            <summary>
-            AB包路径
-            </summary>
-        </member>
-        <member name="P:AssetDriver.MainABName">
-            <summary>
-            主包名字
-            </summary>
-        </member>
-        <member name="M:AssetDriver.LoadAB(System.String)">
-            <summary>
-            加载AB包
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AssetDriver.LoadFromAB``1(System.String)">
-            <summary>
-            从AB包中加载资源
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="abName"></param>
-            <param name="resName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:AssetDriver.RemoveMenory">
-            <summary>
-            卸载没有被使用的资源
-            </summary>
-        </member>
-        <member name="M:AssetDriver.ClearOneAB(System.String)">
-            <summary>
-            卸载单个AB包
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="M:AssetDriver.ClearAll">
-            <summary>
-            卸载所有AB包
-            </summary>
         </member>
         <member name="M:Cloneable`1.Clone">
             <summary>

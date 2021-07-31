@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 3290473270
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: font
+      Dependencies: {}
+    Info_1:
+      Name: material
+      Dependencies: {}

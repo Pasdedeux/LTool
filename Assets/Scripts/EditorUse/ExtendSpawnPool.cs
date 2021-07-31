@@ -14,6 +14,7 @@
 *******************************************************************
 ======================================*/
 
+using LitFramework.LitTool;
 using PathologicalGames;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace Assets.Scripts
                 switch ( loadType )
                 {
                     case LoadType.AB:
-                        instantiateObj = AssetDriver.Instance.LoadFromAB<GameObject>( spawnItem.ABName );
+                        instantiateObj = ResourceManager.Instance.LoadFromAB<GameObject>( spawnItem.ABName );
                         break;
                     case LoadType.Resources:
                         instantiateObj = Instantiate( Resources.Load<GameObject>( spawnItem.resPath ) ) as GameObject;

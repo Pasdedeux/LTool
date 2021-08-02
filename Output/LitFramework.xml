@@ -291,11 +291,6 @@
             <param name="name">FTP服务器登陆用户名</param>
             <param name="password">FTP服务器登录密码</param>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.MoveStreamPath2PersistantPath">
-            <summary>
-            迁移StreamingAsset文件到目录PersisitantPath
-            </summary>
-        </member>
         <member name="T:LitFramework.LitTool.LitTool">
             <summary>
             工具类
@@ -452,6 +447,14 @@
             <param name="style">下滑线类型，默认为'_'</param>
             <param name="alignByGeometry">是否使用几何对齐</param>
             <param name="richText">是否支持富文本</param>
+        </member>
+        <member name="M:LitFramework.LitTool.LitTool.LoadSpriteAtlas(System.String,System.String)">
+            <summary>
+            Resource - 加载图集中的子对象
+            </summary>
+            <param name="spriteName"></param>
+            <param name="atlasPath"></param>
+            <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.MonoForCorouting">
             <summary>
@@ -1076,6 +1079,25 @@
             <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
             <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
+        </member>
+        <member name="T:Assets.Scripts.Module.HotFix.HotFixController">
+            <summary>
+            热更模块
+            
+            完成美术资源、配置档及代码迁移+热更流程
+            
+            热更流程说明：<see href="https://www.processon.com/view/link/61013cd4637689719d2d8166">流程图</see>
+            </summary>
+        </member>
+        <member name="T:Assets.Scripts.Module.HotFix.ABVersion">
+            <summary>
+            csv资源文件内容
+            </summary>
+        </member>
+        <member name="T:Assets.Scripts.Module.HotFix.HotFixCSVList">
+            <summary>
+            配置档热更
+            </summary>
         </member>
         <member name="T:PathologicalGames.SpawnPool">
             <description>

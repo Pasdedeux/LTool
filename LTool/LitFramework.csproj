@@ -258,6 +258,10 @@
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="HotFix\HotFixController.cs" />
+    <Compile Include="HotFix\HotFixItem\HotFixAB.cs" />
+    <Compile Include="HotFix\HotFixItem\HotFixCSVList.cs" />
+    <Compile Include="HotFix\IHotFix.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />
     <Compile Include="LitTool\AudioManager.cs" />
@@ -327,6 +331,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="HotFix\HotFixController.cs.meta" />
+    <None Include="HotFix\HotFixItem.meta" />
+    <None Include="HotFix\HotFixItem\HotFixAB.cs.meta" />
+    <None Include="HotFix\HotFixItem\HotFixCSVList.cs.meta" />
+    <None Include="HotFix\IHotFix.cs.meta" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

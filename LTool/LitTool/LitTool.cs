@@ -191,6 +191,7 @@ namespace LitFramework.LitTool
         private static DateTime _dateStartUTC = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc );
         private static DateTime _dateStart = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Local );
         private static TimeSpan _timtSpan = new TimeSpan();
+
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
         /// 
@@ -429,6 +430,43 @@ namespace LitFramework.LitTool
             }
             underline.text += sb.ToString();
             underline.transform.localScale = Vector3.one;
+        }
+        #endregion
+
+        #region 图集加载
+
+        private Dictionary<string, Sprite[]> _atlasDict = new Dictionary<string, Sprite[]>();
+
+        /// <summary>
+        /// Resource - 加载图集中的子对象
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="atlasPath"></param>
+        /// <returns></returns>
+        public Sprite LoadSpriteAtlas( string spriteName, string atlasPath = null )
+        {
+            //常驻内存
+            Sprite sprite = Resources.Load<Sprite>( spriteName );
+
+            if ( sprite != null || string.IsNullOrEmpty( atlasPath ) )
+            {
+                return GameObject.Instantiate<Sprite>( sprite );
+            }
+            if ( !_atlasDict.ContainsKey( atlasPath ) )
+            {
+                Sprite[] atlasSprites = Resources.LoadAll<Sprite>( atlasPath );
+                _atlasDict.Add( atlasPath, atlasSprites );
+            }
+
+            var sprites = _atlasDict[ atlasPath ];
+            var length = _atlasDict[ atlasPath ].Length;
+            for ( int i = 0; i < length; i++ )
+            {
+                if ( sprites[ i ].name.Equals( string.Concat( new string[] { atlasPath, "_", spriteName } ) ) )
+
+                    return sprite = sprites[ i ];
+            }
+            return GameObject.Instantiate<Sprite>( sprite );
         }
         #endregion
     }

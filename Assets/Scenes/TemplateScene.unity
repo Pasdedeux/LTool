@@ -296,7 +296,7 @@ MonoBehaviour:
   ABFolderName: ABPackages
   ABTotalName: ABPackage
   configs_suffix: json|dat|assetbundle
-  UsePersistantPath: 1
+  UsePersistantPath: 0
   UseRemotePersistantPath: 1
   RemoteUrlConfig: http://192.168.1.102/
 --- !u!1 &697112009

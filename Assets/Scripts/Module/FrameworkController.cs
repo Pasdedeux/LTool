@@ -58,10 +58,7 @@ namespace Assets.Scripts.Controller
                 //若未开启对应功能，则直接继续后续步骤
                 MsgManager.Instance.Register( InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs );
 
-                //指定地址下载指定文件，并规定解析及覆写规则
-                HotFixController.Instance.StartMoveFile( _hotFixFileQueue );
-
-                //配置档加载流程预绑定
+                //配置档加载流程预绑定，如果有其它自定文件类处理扩展
                 LocalDataManager.Instance.InstallEventHandler += e =>
                 {
                     //顺次加载本地配置表、JSON数据
@@ -75,12 +72,12 @@ namespace Assets.Scripts.Controller
                 //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗
                 //同时不排除业务场景中需要把这个等待过程单独表现在进度条上。
                 //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
-                //如果不需要执行Loading，则将 LocalDataManager.Instance.Install() 直接取出执行即可
-                LoadingTaskModel.Instance.AddTask( 5, () => 
-                {
-                    //指定地址下载指定文件，并规定解析及覆写规则
-                    HotFixController.Instance.StartHotFix( _hotFixFileQueue );
-                    return true; } );
+
+                //指定地址下载指定文件，并规定解析及覆写规则
+                LoadingTaskModel.Instance.AddTask( 5, () => { HotFixController.Instance.Excecute( _hotFixFileQueue ); return true; } );
+
+                //----------如果不需要执行Loading，则将 LocalDataManager.Instance.Install() 直接取出执行即可----------//
+                LoadingTaskModel.Instance.AddTask( 15, () => { LocalDataManager.Instance.Install(); return true; } );
 
                 //启动Loading界面，准备进度条预读取事件
                 InitLoadingLogo();

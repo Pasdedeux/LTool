@@ -1089,6 +1089,12 @@
             热更流程说明：<see href="https://www.processon.com/view/link/61013cd4637689719d2d8166">流程图</see>
             </summary>
         </member>
+        <member name="M:Assets.Scripts.Module.HotFix.HotFixController.Excecute(System.Collections.Generic.Queue{Assets.Scripts.Module.HotFix.IHotFix})">
+            <summary>
+            执行文件迁移+文件热更
+            </summary>
+            <param name="hotFixesQueue"></param>
+        </member>
         <member name="T:Assets.Scripts.Module.HotFix.ABVersion">
             <summary>
             csv资源文件内容

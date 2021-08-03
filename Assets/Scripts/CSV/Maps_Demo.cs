@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2021/7/22 22:34:08
+/// 创建时间:2021/8/3 17:32:15
 /// </summary>
 public class Maps_Demo
 {
@@ -53,36 +53,6 @@ public class Maps_Demo
 	/// </summary>
 	public string FirstKillGoodsNum { get; set; }
 	
-		[Obsolete]
-	/// <summary>
-	/// 读取配置文件
-	/// </summary>
-	/// <param name="config">配置文件数据</param>
-	/// <returns>数据列表</returns>
-	public static List<Maps_Demo> ReturnList(string csv)
-	{
-		List<Maps_Demo> vec = new List<Maps_Demo>();
-		CSVReader reader = new CSVReader(csv);
-		for (int i = 3; i < reader.Row; i++)
-		{
-			Maps_Demo item = new Maps_Demo();
-			item.ID = reader.GetData(0, i);
-			item.SuperName = reader.GetData(1, i);
-			item.SceneName = reader.GetData(2, i);
-			item.Time = ParseVector3(reader.GetData(3, i));
-			item.RolesID = reader.GetData(4, i);
-			item.RolesLevel = reader.GetData(5, i);
-			item.Gold = reader.GetData(6, i);
-			item.BuySkillCostGold = int.Parse(reader.GetData(7, i));
-			item.IsBoss = bool.Parse(reader.GetData(8, i));
-			item.FirstPassGoods = reader.GetData(9, i);
-			item.FirstKillGoodsNum = reader.GetData(10, i);
-			vec.Add(item);
-		}
-		return vec;
-	}
-	
-		[Obsolete]
 	/// <summary>
 	/// 读取配置文件
 	/// </summary>

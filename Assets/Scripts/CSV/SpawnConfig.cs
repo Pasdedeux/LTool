@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2021/7/22 22:34:08
+/// 创建时间:2021/8/3 17:32:15
 /// </summary>
 public class SpawnConfig
 {
@@ -29,30 +29,6 @@ public class SpawnConfig
 	/// </summary>
 	public int PreloadAmount { get; set; }
 	
-		[Obsolete]
-	/// <summary>
-	/// 读取配置文件
-	/// </summary>
-	/// <param name="config">配置文件数据</param>
-	/// <returns>数据列表</returns>
-	public static List<SpawnConfig> ReturnList(string csv)
-	{
-		List<SpawnConfig> vec = new List<SpawnConfig>();
-		CSVReader reader = new CSVReader(csv);
-		for (int i = 3; i < reader.Row; i++)
-		{
-			SpawnConfig item = new SpawnConfig();
-			item.ID = reader.GetData(0, i);
-			item.SpawnType = reader.GetData(1, i);
-			item.ABName = reader.GetData(2, i);
-			item.resPath = reader.GetData(3, i);
-			item.PreloadAmount = int.Parse(reader.GetData(4, i));
-			vec.Add(item);
-		}
-		return vec;
-	}
-	
-		[Obsolete]
 	/// <summary>
 	/// 读取配置文件
 	/// </summary>

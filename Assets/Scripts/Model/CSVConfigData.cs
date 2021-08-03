@@ -69,5 +69,6 @@ public class CSVConfigData : BaseLocalData
                   LDebug.Log( string.Format( "配置档解析完成-> {0}", item ) );
               } );
         }
+        Configs.Install();
     }
 }

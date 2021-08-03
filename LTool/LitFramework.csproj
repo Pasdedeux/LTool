@@ -331,11 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="HotFix\HotFixController.cs.meta" />
-    <None Include="HotFix\HotFixItem.meta" />
-    <None Include="HotFix\HotFixItem\HotFixAB.cs.meta" />
-    <None Include="HotFix\HotFixItem\HotFixCSVList.cs.meta" />
-    <None Include="HotFix\IHotFix.cs.meta" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

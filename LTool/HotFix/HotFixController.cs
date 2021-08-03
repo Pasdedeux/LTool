@@ -35,18 +35,24 @@ namespace Assets.Scripts.Module.HotFix
     /// </summary>
     public class HotFixController : Singleton<HotFixController>
     {
-        public void StartMoveFile( Queue<IHotFix> hotFixesQueue )
+        /// <summary>
+        /// 执行文件迁移+文件热更
+        /// </summary>
+        /// <param name="hotFixesQueue"></param>
+        public void Excecute( Queue<IHotFix> hotFixesQueue )
         {
             //是否使用可读写目录
             if ( FrameworkConfig.Instance.UsePersistantPath )
             {
                 foreach ( var item in hotFixesQueue )
                     item.DoFilesMovement();
+
+                StartHotFix( hotFixesQueue );
             }
             else MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG );
         }
 
-        public void StartHotFix( Queue<IHotFix> hotFixesQueue )
+        private void StartHotFix( Queue<IHotFix> hotFixesQueue )
         {
             //是否需要热更
             if ( FrameworkConfig.Instance.UseRemotePersistantPath )
@@ -71,7 +77,7 @@ namespace Assets.Scripts.Module.HotFix
                 yield return toHotFix.DoHotFix();
             } while ( hotFixList.Count > 0 );
 
-            MsgManager.Instance.Broadcast( InternalEvent.START_LOAD_REMOTE_CONFIG );
+            MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
         }
 
     }

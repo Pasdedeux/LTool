@@ -5,6 +5,7 @@ using LitFramework.Mono;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Profiling;
 
@@ -16,7 +17,7 @@ public class GUITest : MonoBehaviour
 
         if ( GUI.Button( new Rect( 10 + 110 * index++, 100, 100, 100 ), "测试按钮1" ) )
         {
-            LDebug.Log( ">>>走下一步" );
+            
         }
 
     }

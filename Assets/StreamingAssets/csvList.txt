@@ -1,2 +1,1 @@
-csv/Maps_Demo.csv
 csv/SpawnConfig.csv

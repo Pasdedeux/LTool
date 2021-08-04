@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2021/8/3 17:32:15
+/// 创建时间:2021/8/4 10:33:45
 /// </summary>
 public class Maps_Demo
 {
@@ -16,42 +16,6 @@ public class Maps_Demo
 	/// 地图名称
 	/// </summary>
 	public string SuperName { get; set; }
-	/// <summary>
-	/// 地图场景
-	/// </summary>
-	public string SceneName { get; set; }
-	/// <summary>
-	/// 刷兵时间点-秒
-	/// </summary>
-	public Vector3 Time { get; set; }
-	/// <summary>
-	/// 刷兵ID  RolesID:代表波次  |代表同一时刻刷怪
-	/// </summary>
-	public string RolesID { get; set; }
-	/// <summary>
-	/// 刷兵等级
-	/// </summary>
-	public string RolesLevel { get; set; }
-	/// <summary>
-	/// 击杀金币
-	/// </summary>
-	public string Gold { get; set; }
-	/// <summary>
-	/// 购买技能金币消耗
-	/// </summary>
-	public int BuySkillCostGold { get; set; }
-	/// <summary>
-	/// 是否boss
-	/// </summary>
-	public bool IsBoss { get; set; }
-	/// <summary>
-	/// 首次通关奖励道具id
-	/// </summary>
-	public string FirstPassGoods { get; set; }
-	/// <summary>
-	/// 首次击杀掉落道具数量
-	/// </summary>
-	public string FirstKillGoodsNum { get; set; }
 	
 	/// <summary>
 	/// 读取配置文件
@@ -67,15 +31,6 @@ public class Maps_Demo
 			Maps_Demo item = new Maps_Demo();
 			item.ID = reader.GetData(0, i);
 			item.SuperName = reader.GetData(1, i);
-			item.SceneName = reader.GetData(2, i);
-			item.Time = ParseVector3(reader.GetData(3, i));
-			item.RolesID = reader.GetData(4, i);
-			item.RolesLevel = reader.GetData(5, i);
-			item.Gold = reader.GetData(6, i);
-			item.BuySkillCostGold = int.Parse(reader.GetData(7, i));
-			item.IsBoss = bool.Parse(reader.GetData(8, i));
-			item.FirstPassGoods = reader.GetData(9, i);
-			item.FirstKillGoodsNum = reader.GetData(10, i);
 			vec.Add(item.ID, item);
 		}
 		return vec;

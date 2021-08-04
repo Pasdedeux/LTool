@@ -75,7 +75,17 @@ public class CSVReader
                 spilt = left.IndexOf( "," );
 
                 if ( spilt == -1 )
+                {
                     cur = left;
+
+                    //第一个字符是"\""的情况
+                    if ( cur != "" && cur[ 0 ] == '\"' )
+                    {
+                        //去掉多余的"\""号
+                        cur = cur.Substring( 1, cur.Length - 2 );
+                        cur = cur.Replace( "\"\"", "\"" );
+                    }
+                }
                 else
                 {
                     cur = left.Substring( 0, spilt );

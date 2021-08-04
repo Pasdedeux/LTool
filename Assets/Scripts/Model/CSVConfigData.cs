@@ -40,7 +40,6 @@ public class CSVConfigData : BaseLocalData
     /// </summary>
     public override void Load()
     {
-        //TODO 这里根据需要，可能修改为读写目录获取，并在此之前执行文档拷贝、远程地址解析、远程文件下载并覆盖操作，再通过读写地址获取指定文档
         //顺次加载各类配置表
         List<string> csvKeys = null;
         string localPath = FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt" ) : AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" );

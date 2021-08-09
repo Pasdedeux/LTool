@@ -280,6 +280,10 @@
     <None Include="Resources\ExcelDataReader.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LitJson\LitJson.csproj">
+      <Project>{785119E5-F380-4579-BCA3-1139E3A49E9D}</Project>
+      <Name>LitJson</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LTool\LitFramework.csproj">
       <Project>{ca4fbedf-beae-4fcd-b0d3-ceb94d3c595d}</Project>
       <Name>LitFramework</Name>

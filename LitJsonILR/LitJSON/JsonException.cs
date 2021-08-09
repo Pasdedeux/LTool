@@ -12,14 +12,9 @@
 using System;
 
 
-namespace LitJsonILR
+namespace LitJson
 {
-    public class JsonException :
-#if NETSTANDARD1_5
-        Exception
-#else
-        ApplicationException
-#endif
+    public class JsonException : ApplicationException
     {
         public JsonException () : base ()
         {

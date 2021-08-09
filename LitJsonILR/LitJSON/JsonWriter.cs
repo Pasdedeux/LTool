@@ -16,7 +16,7 @@ using System.IO;
 using System.Text;
 
 
-namespace LitJsonILR
+namespace LitJson
 {
     internal enum Condition
     {
@@ -39,7 +39,7 @@ namespace LitJsonILR
     public class JsonWriter
     {
         #region Fields
-        private static readonly NumberFormatInfo number_format;
+        private static NumberFormatInfo number_format;
 
         private WriterContext        context;
         private Stack<WriterContext> ctx_stack;
@@ -50,7 +50,6 @@ namespace LitJsonILR
         private StringBuilder        inst_string_builder;
         private bool                 pretty_print;
         private bool                 validate;
-        private bool                 lower_case_properties;
         private TextWriter           writer;
         #endregion
 
@@ -76,11 +75,6 @@ namespace LitJsonILR
         public bool Validate {
             get { return validate; }
             set { validate = value; }
-        }
-
-        public bool LowerCaseProperties {
-            get { return lower_case_properties; }
-            set { lower_case_properties = value; }
         }
         #endregion
 
@@ -172,7 +166,6 @@ namespace LitJsonILR
             indent_value = 4;
             pretty_print = false;
             validate = true;
-            lower_case_properties = false;
 
             ctx_stack = new Stack<WriterContext> ();
             context = new WriterContext ();
@@ -223,7 +216,7 @@ namespace LitJsonILR
                 writer.Write (',');
 
             if (pretty_print && ! context.ExpectingValue)
-                writer.Write (Environment.NewLine);
+                writer.Write ('\n');
         }
 
         private void PutString (string str)
@@ -339,17 +332,6 @@ namespace LitJsonILR
             context.ExpectingValue = false;
         }
 
-        public void Write(float number)
-        {
-            DoValidation(Condition.Value);
-            PutNewline();
-
-            string str = Convert.ToString(number, number_format);
-            Put(str);
-
-            context.ExpectingValue = false;
-        }
-
         public void Write (int number)
         {
             DoValidation (Condition.Value);
@@ -383,7 +365,6 @@ namespace LitJsonILR
             context.ExpectingValue = false;
         }
 
-        [CLSCompliant(false)]
         public void Write (ulong number)
         {
             DoValidation (Condition.Value);
@@ -460,17 +441,14 @@ namespace LitJsonILR
         {
             DoValidation (Condition.Property);
             PutNewline ();
-            string propertyName = (property_name == null || !lower_case_properties)
-                ? property_name
-                : property_name.ToLowerInvariant();
 
-            PutString (propertyName);
+            PutString (property_name);
 
             if (pretty_print) {
-                if (propertyName.Length > context.Padding)
-                    context.Padding = propertyName.Length;
+                if (property_name.Length > context.Padding)
+                    context.Padding = property_name.Length;
 
-                for (int i = context.Padding - propertyName.Length;
+                for (int i = context.Padding - property_name.Length;
                      i >= 0; i--)
                     writer.Write (' ');
 

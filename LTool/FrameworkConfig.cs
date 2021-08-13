@@ -30,8 +30,6 @@ namespace LitFramework
     /// </summary>
     public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
-        //replace('\uFEFF', '')
-
         #region 全局设置
 
         /// <summary>
@@ -101,6 +99,13 @@ namespace LitFramework
         public bool UseRemotePersistantPath = false;
         [Header("远程配置参数文件")]
         public string RemoteUrlConfig = "http://192.168.1.102/";
+
+        #endregion
+
+        #region 项目设置
+
+        [Header("是否打印日志")]
+        public bool showLog = true;
 
         #endregion
 

@@ -261,6 +261,7 @@
     <Compile Include="HotFix\HotFixController.cs" />
     <Compile Include="HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="HotFix\HotFixItem\HotFixCSVList.cs" />
+    <Compile Include="HotFix\HotFixItem\HotfixLogic.cs" />
     <Compile Include="HotFix\IHotFix.cs" />
     <Compile Include="LitPool\SpawnPool.cs" />
     <Compile Include="LitTool\AnimBundle.cs" />

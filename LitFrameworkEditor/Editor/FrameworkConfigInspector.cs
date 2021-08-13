@@ -29,7 +29,7 @@ public class FrameworkConfigInspector : Editor
         _config = ( FrameworkConfig )target;
     }
 
-    private bool _foldOut = true, _folaOutEditor = true, _foldOutUI = true, _foldOutAB = true;
+    private bool _foldOut = true, _folaOutEditor = true, _foldOutUI = true, _foldOutAB = true, _foldGameSetting = true;
     public override void OnInspectorGUI()
     {
         //设置整个界面是以垂直方向来布局
@@ -47,7 +47,7 @@ public class FrameworkConfigInspector : Editor
             if ( !_config.UseDelayFuncPreciseDetect )
                 _config.DelayFuncDetectInterver = EditorGUILayout.FloatField( "计时间隔(值↑ 性能↑)", _config.DelayFuncDetectInterver );
 
-            _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "高计时精确度", _config.UseDelayFuncPreciseDetect );
+            _config.UseDelayFuncPreciseDetect = EditorGUILayout.Toggle( "逐帧计时", _config.UseDelayFuncPreciseDetect );
 
             EditorGUILayout.Space();
         }
@@ -83,6 +83,13 @@ public class FrameworkConfigInspector : Editor
             {
                 _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
             }
+        }
+
+        EditorGUILayout.Space();
+        _foldGameSetting = EditorGUILayout.Foldout( _foldGameSetting, "项目通用设定" );
+        if ( _foldGameSetting )
+        {
+            _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
         }
 
         EditorGUILayout.EndVertical();

@@ -63,6 +63,7 @@ namespace Assets.Scripts.Module.HotFix
 
         public IEnumerator DoHotFix()
         {
+            LDebug.Log( "开始检测更新：" + CONFIG_NAME );
             //1、下载最新的资源配置信息
             bool canGoFurther = true;
             string localContent = null;
@@ -87,7 +88,7 @@ namespace Assets.Scripts.Module.HotFix
                 },
                 errorCallBack: ( UnityWebRequest e ) =>
                 {
-                    LDebug.LogError( "Remote Error..." + e );
+                    LDebug.LogError( "Remote Error..." + e + ": " + remoteFilePath );
                     if ( !string.IsNullOrEmpty( e.error ) ) { canGoFurther = false; return; }
                 } );
 
@@ -130,6 +131,7 @@ namespace Assets.Scripts.Module.HotFix
 
                 //更新文档
                 DocumentAccessor.SaveAsset2LocalFile( localFilePath, contentByteArr );
+                LDebug.Log( "检测更新完成：" + CONFIG_NAME );
             }
         }
 

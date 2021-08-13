@@ -81,7 +81,8 @@ namespace Assets.Scripts.Controller
 
                 //启动Loading界面，准备进度条预读取事件
                 InitLoadingLogo();
-            }
+            },
+            debugEnable: FrameworkConfig.Instance.showLog
             );
         }
 

@@ -34,9 +34,11 @@
   <ItemGroup>
     <Reference Include="ILRuntime">
       <HintPath>..\..\iFunTech\Offitial_Demo\ILRuntime\ILRuntime\bin\Release\ILRuntime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ILRuntime.Mono.Cecil">
       <HintPath>..\..\iFunTech\Offitial_Demo\ILRuntime\ILRuntime\bin\Release\ILRuntime.Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

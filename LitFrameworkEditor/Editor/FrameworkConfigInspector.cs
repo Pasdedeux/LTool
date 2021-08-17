@@ -90,6 +90,7 @@ public class FrameworkConfigInspector : Editor
         if ( _foldGameSetting )
         {
             _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
+            _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
         }
 
         EditorGUILayout.EndVertical();

@@ -106,6 +106,8 @@ namespace LitFramework
 
         [Header("是否打印日志")]
         public bool showLog = true;
+        [Header("代码运行环境")]
+        public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
 
         #endregion
 
@@ -127,5 +129,11 @@ namespace LitFramework
         SRP,
         URP,
         HDRP
+    }
+
+    public enum RunEnvironment
+    {
+        DotNet,
+        ILRuntime,
     }
 }

@@ -89,7 +89,7 @@ namespace LitFramework
         [Header( "AB包文件夹名称" )]
         public string ABFolderName = "ABPackages";
         [Header( "AB总包名称" )]
-        public string ABTotalName = "ABPackage";
+        public string ABTotalName = "ABPackages";
 
         [Header( "额外登记的文件后缀" )]
         public string configs_suffix = "json|dat|assetbundle";

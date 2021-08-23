@@ -21,14 +21,12 @@ namespace Assets.Scripts.UI
     public class UILoading : BaseUI
     {
         public Image sliderSlider;
-        //public Text progressText;
+        public Text progressText;
 
         private ushort _progress = 0;
         private Func<bool> _func = () => { return true; };
         private LoadingTaskModel _loadingModel;
         private WaitForEndOfFrame _waitEndFrame;
-        private WaitForSeconds _waitSeconds;
-        private AsyncOperation _asyncOperation;
         private Coroutine _coroutine;
 
         public override void OnAwake()
@@ -37,7 +35,6 @@ namespace Assets.Scripts.UI
 
             _loadingModel = LoadingTaskModel.Instance;
             _waitEndFrame = new WaitForEndOfFrame();
-            _waitSeconds = new WaitForSeconds( 0.1f );
         }
 
         public override void OnStart()
@@ -58,27 +55,25 @@ namespace Assets.Scripts.UI
             _coroutine = LitFramework.LitTool.LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );
 
             sliderSlider.fillAmount = _progress / 100f;
-            //progressText.text = string.Format( "{0}%", _progress );
+            progressText.text = string.Format( "{0}%", _progress );
         }
 
         IEnumerator IStartLoading()
         {
             while ( _progress < 100 )
             {
-                //if( _progress == 80 ) yield return _waitSeconds;
-
                 var func = _loadingModel.TryGetTask( _progress );
                 if ( func != null ) yield return new WaitUntil( func );
 
                 _progress++;
                 if ( sliderSlider == null ) yield break;
                 sliderSlider.fillAmount = _progress / 100f;
-                //progressText.text = string.Format( "{0}%", _progress );
+                progressText.text = string.Format( "{0}%", _progress );
                 yield return _waitEndFrame;
             }
 
             sliderSlider.fillAmount = _progress / 100f;
-            //progressText.text = string.Format( "{0}%", _progress );
+            progressText.text = string.Format( "{0}%", _progress );
 
             var func1 = _loadingModel.TryGetTask( _progress );
             if ( func1 != null ) yield return new WaitUntil( func1 );

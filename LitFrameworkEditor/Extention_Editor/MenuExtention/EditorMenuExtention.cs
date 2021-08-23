@@ -367,6 +367,8 @@ namespace LitFrameworkEditor.EditorExtended
             }
             //预模式下保存制件
             var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+
+            if ( Application.isPlaying ) return;
             if ( prefabStage != null )
             {
                 EditorSceneManager.MarkSceneDirty( prefabStage.scene );

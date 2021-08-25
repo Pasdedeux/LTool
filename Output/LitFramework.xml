@@ -223,14 +223,6 @@
             <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.IGetFileSize(System.String,System.Action{System.Int64})">
-            <summary>
-            获取远端文件大小-协程方式
-            </summary>
-            <param name="path"></param>
-            <param name="callBack"></param>
-            <returns></returns>
-        </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest},System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             协程加载
@@ -247,14 +239,6 @@
             <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
             <param name="errorCallBack"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.GetFileSize(System.String,System.Action{System.Int64})">
-            <summary>
-            获取远端文件大小-同步方式
-            </summary>
-            <param name="path"></param>
-            <param name="callBack"></param>
             <returns></returns>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String},System.Action{UnityEngine.Networking.UnityWebRequest})">

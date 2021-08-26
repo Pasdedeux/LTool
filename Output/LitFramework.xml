@@ -49,7 +49,7 @@
             游戏主流程控制器，用于场景加载、跳转等命令合集
             </summary>
         </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean)">
             <summary>
             加载场景，这里使用的async加载方式
             </summary>
@@ -59,10 +59,9 @@
             <param name="loadingUIPath"></param>
             <param name="needFading"></param>
             <param name="fadingTime"></param>
-            <param name="isHot"></param>
             <param name="isAdditive"></param>
         </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean)">
             <summary>
             加载场景，这里使用的async加载方式
             </summary>
@@ -72,7 +71,6 @@
             <param name="loadingUIPath"></param>
             <param name="needFading"></param>
             <param name="fadingTime"></param>
-            <param name="isHot"></param>
             <param name="isAdditive"></param>
         </member>
         <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
@@ -754,6 +752,294 @@
             零点访问器。用于单机版本记录零点刷新
             单机做零点刷新，一般就以本地时间即可
             </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.BaseUI.IsShowing">
+            <summary>
+            该窗口是否开启中
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.BaseUI.CurrentUIType">
+            <summary>
+            当前窗口类型
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.BaseUI.IsStarted">
+            <summary>
+            是否执行过Start
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.BaseUI.AssetsName">
+            <summary>
+            资源名
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.BaseUI.IsInitOver">
+            <summary>
+            创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.BaseUI._hasEnabled">
+            <summary>
+            这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.BaseUI.GameObjectInstance">
+            <summary>
+            关联的UI实例
+            </summary>
+        </member>
+        <member name="M:LitFramework.HotFix.BaseUI.Show(System.Boolean)">
+            <summary>
+            显示窗体
+            </summary>
+            <param name="replay">会传bool到 OnEnable/OnDisable</param>
+        </member>
+        <member name="M:LitFramework.HotFix.BaseUI.CheckMask">
+            <summary>
+            检测并显示模态窗体背景
+            </summary>
+        </member>
+        <member name="M:LitFramework.HotFix.BaseUI.Close(System.Boolean,System.Boolean)">
+            <summary>
+            隐藏窗口
+            </summary>
+            <param name="isDestroy">是否摧毁并彻底释放</param>
+            <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
+        </member>
+        <member name="M:LitFramework.HotFix.BaseUI.OnShow">
+            <inheritdoc/>
+             <remarks>
+             刷新窗体
+             </remarks>
+        </member>
+        <member name="M:LitFramework.HotFix.BaseUI.OnBackPushed">
+            <summary>
+            点击返回事件
+            </summary>
+        </member>
+        <member name="T:LitFramework.HotFix.UIManager">
+            <summary>
+            以下UI类，需配合UImanager.unitypackage使用。
+            
+            主要包含Cavas_Root及相关Tag等
+            
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.TransRoot">
+            <summary>
+            UI根节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.TransNormal">
+            <summary>
+            普通窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.TransFixed">
+            <summary>
+            固定UI节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.TransPopUp">
+            <summary>
+            弹出窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.TransGlobal">
+            <summary>
+            顶级窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.RectransRoot">
+            <summary>
+            UI根节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.RectransNormal">
+            <summary>
+            普通窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.RectransFixed">
+            <summary>
+            固定UI节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.RectransPopUp">
+            <summary>
+            弹出窗口节点
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.RectransGlobal">
+            <summary>
+            弹出窗口节点
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager.LoadResourceFunc">
+            <summary>
+            外部传入UI的加载方法。Resource.Load || AssetBundle.Load
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.UICam">
+            <summary>
+            UI摄像机
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager._fadeImage">
+            <summary>
+            全局渐变遮罩
+            </summary>
+        </member>
+        <member name="E:LitFramework.HotFix.UIManager.DelHideCallBack">
+            <summary>
+             遮罩结束时回调
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.FadeImage">
+            <summary>
+            Image_fadeBG控制类，一般用于全局黑屏转场。
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.MaskImage">
+            <summary>
+            PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
+            </summary>
+        </member>
+        <member name="P:LitFramework.HotFix.UIManager.CanvasScaler">
+            <summary>
+            UI适配策略
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager._allRegisterUIDict">
+            <summary>
+            所有的预制件名称列表
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager._stackCurrentUI">
+            <summary>
+            //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager._dictLoadedAllUIs">
+            <summary>
+            缓存已经开启过的所有窗体
+            </summary>
+        </member>
+        <member name="F:LitFramework.HotFix.UIManager._dictCurrentShowUIs">
+            <summary>
+            当前显示的非弹出类UI窗体
+            </summary>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.ShowFade(System.Action,System.Single)">
+            <summary>
+            隐退开始
+            </summary>
+            <param name="time"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.HideFade(System.Action,System.Single)">
+            <summary>
+            隐退结束
+            </summary>
+            <param name="time"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.Show(System.String)">
+            <summary>
+            显示（打开）UI窗口
+            功能：
+            1、根据UI窗体的名称，加载到UI窗口缓存列表
+            2、根据不同UI显示模式，做不同的加载处理
+            </summary>
+            <param name="uiName">UI窗体预制件名称</param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.Close(System.String,System.Boolean)">
+            <summary>
+            关闭指定UI
+            </summary>
+            <param name="uiName"></param>
+            <param name="isDestroy">是否直接释放所有资源，销毁</param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.ClearPopUpStackArray">
+            <summary>
+            清空弹出窗口栈
+            </summary>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.LoadUIToAndFromAllList(System.String)">
+            <summary>
+            根据UI预制件名称加载到UI缓存列表（按需），同时获取实例
+            </summary>
+            <param name="uiName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.LoadUI(System.String)">
+            <summary>
+            加载指定名称UI
+            功能：
+            1、根据名称加载预制体
+            2、根据UI类型加载到不同节点下
+            3、隐藏创建的UI克隆体
+            4、把克隆体加入到所有窗体列表
+            </summary>
+            <param name="uiName">窗体名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.LoadParallelUI(System.String)">
+            <summary>
+            加载当前窗体到当前窗体集合
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.UnLoadParallelUI(System.String,System.Boolean)">
+            <summary>
+            从当前UI列表缓存中卸载UI窗体
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.LoadUniqueUI(System.String)">
+            <summary>
+            加载独占UI窗体
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.UnLoadUniqueUI(System.String,System.Boolean)">
+            <summary>
+            卸载当前UI，并将原先被隐藏的UI重新显示
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.LoadStackUI(System.String)">
+            <summary>
+            弹出窗口，入栈
+            先冻结栈中窗口，再将此窗口入栈
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.UnLoadStackUI(System.String,System.Boolean)">
+            <summary>
+            弹出窗口，出栈
+            </summary>
+            <param name="uiName"></param>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.GetUIByName(System.String)">
+            <summary>
+            从现有缓存中查找目标UI，未加载则返回null
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.OnEscapeCallback">
+            <summary>
+            返回键执行关闭窗口操作
+            </summary>
+        </member>
+        <member name="M:LitFramework.HotFix.UIManager.RegistFunctionCallFun(System.String,System.String)">
+            <summary>
+            反射注册UI回调
+            </summary>
+            <param name="_assetsName"></param>
+            <param name="_className"></param>
         </member>
         <member name="T:LitFramework.UI.Base.UIModelBehavior">
             <summary>

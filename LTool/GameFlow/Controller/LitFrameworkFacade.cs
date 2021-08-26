@@ -23,7 +23,6 @@ using LitFramework.GameFlow.Model.DataLoadInterface;
 using LitFramework.InputSystem;
 using LitFramework.LitPool;
 using LitFramework.LitTool;
-using LitFramework.Mono;
 using LitFramework.TimeRecord;
 using System;
 using System.Collections.Generic;
@@ -54,8 +53,17 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         beforeExecuteFunc?.Invoke();
 
         //UI模块
-        UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
-        UIManager.Instance.Install();
+        if ( FrameworkConfig.Instance.UseHotFixMode )
+        {
+            LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
+            LitFramework.HotFix.UIManager.Instance.Install();
+        }
+        else
+        {
+            LitFramework.Mono.UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
+            LitFramework.Mono.UIManager.Instance.Install();
+        }
+       
 
         //Audio System
         AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };

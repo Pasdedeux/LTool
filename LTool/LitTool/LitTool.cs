@@ -17,7 +17,6 @@
 //----------------------------------------------------------------*/
 #endregion
 
-using LitFramework.Mono;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -335,7 +334,12 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static Vector3 UI2WorldPos( RectTransform uiTarget )
         {
-            var canvasScaler = UIManager.Instance.CanvasScaler;
+            CanvasScaler canvasScaler = null;
+            if ( FrameworkConfig.Instance.UseHotFixMode )
+                canvasScaler = LitFramework.HotFix.UIManager.Instance.CanvasScaler;
+            else
+                canvasScaler = LitFramework.Mono.UIManager.Instance.CanvasScaler;
+            
             var reference = canvasScaler.referenceResolution;
 
             Vector2 targetAnchored = uiTarget.anchoredPosition;
@@ -357,8 +361,12 @@ namespace LitFramework.LitTool
             screenPos = targetAnchored + 0.5f * new Vector2( Screen.width, Screen.height );
 
             var worldPos = new Vector3();
-            var uiManager = UIManager.Instance;
-            RectTransformUtility.ScreenPointToWorldPointInRectangle( uiManager.RectransRoot, screenPos, uiManager.UICam, out worldPos );
+
+            if ( FrameworkConfig.Instance.UseHotFixMode )
+                RectTransformUtility.ScreenPointToWorldPointInRectangle( LitFramework.HotFix.UIManager.Instance.RectransRoot, screenPos, LitFramework.HotFix.UIManager.Instance.UICam, out worldPos );
+            else
+                RectTransformUtility.ScreenPointToWorldPointInRectangle( LitFramework.Mono.UIManager.Instance.RectransRoot, screenPos, LitFramework.Mono.UIManager.Instance.UICam, out worldPos );
+
             return worldPos;
         }
 

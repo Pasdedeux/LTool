@@ -350,6 +350,8 @@
     </Compile>
     <Compile Include="ThirdParty\AD\ADManager.cs" />
     <Compile Include="TimeRecord\ZeroTimeRecord.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="ViewTest\BezierViewTest.cs" />
     <Compile Include="LitTool\CameraCapture.cs" />
     <Compile Include="LitTool\CSExtention.cs" />

@@ -78,7 +78,7 @@ namespace LitFramework.HotFix
             }
             else
                 DoStart();
-            
+
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace LitFramework.HotFix
             if ( !freeze )
             {
                 _rootCanvas.enabled = false;
-                
+
                 if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
                     UIMaskManager.Instance.CancelMaskWindow();
             }
@@ -137,7 +137,7 @@ namespace LitFramework.HotFix
 
         public virtual void OnAdapter()
         {
-            if(_rootRectTransform==null)
+            if ( _rootRectTransform == null )
                 _rootRectTransform = GameObjectInstance.GetComponent<RectTransform>();
             _rootRectTransform.anchorMax = Vector2.one;
             _rootRectTransform.anchorMin = Vector2.zero;
@@ -152,7 +152,7 @@ namespace LitFramework.HotFix
         /// </summary>
         public virtual void OnBackPushed()
         {
-            Debug.Log("关闭ui:" + AssetsName);
+            LDebug.Log( "关闭ui:" + AssetsName );
             UIManager.Instance.Close( AssetsName );
         }
 
@@ -179,7 +179,7 @@ namespace LitFramework.HotFix
             Dispose();
             IsStarted = false;
             IsInitOver = false;
-            GameObject.Destroy(GameObjectInstance);
+            GameObject.Destroy( GameObjectInstance );
             Resources.UnloadUnusedAssets();
         }
         #endregion

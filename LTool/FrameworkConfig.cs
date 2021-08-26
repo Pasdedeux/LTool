@@ -108,6 +108,8 @@ namespace LitFramework
         public bool showLog = true;
         [Header("代码运行环境")]
         public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
+        [Header( "使用热更模块" )]
+        public bool UseHotFixMode = true;
 
         #endregion
 

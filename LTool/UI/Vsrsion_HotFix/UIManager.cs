@@ -179,7 +179,6 @@ namespace LitFramework.HotFix
             //Mask蒙版初始化
             var ss = UIMaskManager.Instance;
 
-            GuideShaderController.Instance.Install();
             UICam = UnityHelper.FindTheChildNode( TransRoot, "UICamera" ).GetComponent<Camera>();
             CanvasScaler = TransRoot.GetComponent<CanvasScaler>();
             GameObject.DontDestroyOnLoad( TransRoot.gameObject );
@@ -462,14 +461,30 @@ namespace LitFramework.HotFix
             {
                 if ( _allRegisterUIDict.ContainsKey( uiName ) )
                 {
-                    baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ], true, true ) ) as BaseUI;
+                    if ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet )
+                    {
+                        //TODO 获取热更工程程序集
+                        //
+                        var assembly = Assembly.LoadFrom( "Assembly-CSharp" );
+                        baseUI = ( BaseUI )assembly.CreateInstance( _allRegisterUIDict[ uiName ],true );
+                    }
+                    else if( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime )
+                    {
+                        //TODO 获取Unity编辑器程序集
+                        //
+                    }
+                    //========================//
+                    //baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ], true, true ) ) as BaseUI;
                     baseUI.GameObjectInstance = prefClone;
                     baseUI.AssetsName = uiName;
                     baseUI.IsInitOver = true;
+                    //========================//
                 }
 
                 if ( baseUI == null )
                 { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
+
+                baseUI.OnAwake();
 
                 switch ( baseUI.CurrentUIType.uiNodeType )
                 {
@@ -489,7 +504,6 @@ namespace LitFramework.HotFix
                         throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType.uiShowMode );
                 }
 
-                baseUI.OnAwake();
                 baseUI.OnAdapter();
 
                 //加入到所有窗体缓存中
@@ -796,31 +810,39 @@ namespace LitFramework.HotFix
 
         private void AssemblyReflection()
         {
-            System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
+            //System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
 
-            System.Type[] assemblyTypes = asb.GetTypes();
-
-            for ( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            
+            for ( int i = 0; i < assemblies.Length; i++ )
             {
-                if ( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
+                var asb = assemblies[ i ];
+                System.Type[] assemblyTypes = asb.GetTypes();
+
+                for ( int indexType = 0; indexType < assemblyTypes.Length; indexType++ )
                 {
-                    //通过程序集获取到他的返回实例对象方法  并且初始化对象
-                    System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
-                    if ( mif != null )
+                    if ( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
                     {
-                        //目前只认静态方法
-                        if ( mif.IsStatic )
-                            mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
-                        //else
-                        //{
-                        //    //TODO 需要实例化的带参数方法
-                        //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
-                        //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
-                        //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
-                        //}
+                        //通过程序集获取到他的返回实例对象方法  并且初始化对象
+                        System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
+                        if ( mif != null )
+                        {
+                            //目前只认静态方法
+                            if ( mif.IsStatic )
+                                mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
+                            //else
+                            //{
+                            //    //TODO 需要实例化的带参数方法
+                            //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
+                            //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
+                            //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
+                            //}
+                        }
                     }
                 }
             }
+
+            
         }
         #endregion
 

@@ -3,7 +3,6 @@ using LitFramework;
 using LitFramework.Base;
 using LitFramework.InputSystem;
 using LitFramework.LitTool;
-using LitFramework.Mono;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -108,7 +107,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
     }
 
 
-    
+
 
     /// <summary>
     /// 聚焦到引导目标
@@ -141,7 +140,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
 
         UIMaskManager.Instance.SetMaskEnable( UITransparentEnum.NoPenetratingMiddle );
         InputControlManager.Instance.IsEnable = false;
-       
+
         //获取高亮区域的四个顶点的世界坐标
         _target.rectTransform.GetWorldCorners( _corners );
 
@@ -151,7 +150,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         _targetBtn = operateImage.GetComponent<Button>();
         if ( _targetBtn != null )
             _targetBtn.onClick.AddListener( OnClickTargetButtonGuideDone );
-        
+
         //计算高亮显示区域的圆心
         float x = _corners[ 0 ].x + ( ( _corners[ 3 ].x - _corners[ 0 ].x ) / 2f );
         float y = _corners[ 0 ].y + ( ( _corners[ 1 ].y - _corners[ 0 ].y ) / 2f );
@@ -191,8 +190,10 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
             _currentRadius = 10f;
         }
         _material.SetFloat( "_Slider", _currentRadius );
-        
-        UIManager.Instance.MaskImage.transform.SetAsLastSibling();
+        if ( FrameworkConfig.Instance.UseHotFixMode )
+            LitFramework.HotFix.UIManager.Instance.MaskImage.transform.SetAsLastSibling();
+        else
+            LitFramework.Mono.UIManager.Instance.MaskImage.transform.SetAsLastSibling();
     }
 
     public void Install()
@@ -200,12 +201,20 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( _isInit ) return;
         _isInit = true;
 
+        if ( FrameworkConfig.Instance.UseHotFixMode )
+        {
+            _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>( LitFramework.HotFix.UIManager.Instance.TransPopUp, "Image_Hand" );
+            _parentBG = LitFramework.HotFix.UIManager.Instance.MaskImage;
+        }
+        else
+        {
+            _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>( LitFramework.Mono.UIManager.Instance.TransPopUp, "Image_Hand" );
+            _parentBG = LitFramework.Mono.UIManager.Instance.MaskImage;
+        }
         //加载新手引导所需各类资源
         _circleMat = GameObject.Instantiate<Material>( Resources.Load<Material>( "Shaders/Guide/Material/CircleMateria" ) );
         _rectMat = GameObject.Instantiate<Material>( Resources.Load<Material>( "Shaders/Guide/Material/RectMateria" ) );
-        _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>( UIManager.Instance.TransPopUp, "Image_Hand" );
         _hand.sprite = GameObject.Instantiate<Sprite>( Resources.Load<Sprite>( "Prefabs/UI/common_hand" ) );
-        _parentBG = UIManager.Instance.MaskImage;
 
         Assert.IsNotNull( _circleMat, "GuideShaderController circleMat 未加载成功" );
         Assert.IsNotNull( _rectMat, "GuideShaderController rectMat 未加载成功" );
@@ -223,8 +232,18 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( _ev == null )
             _ev = _parentBG.gameObject.AddComponent<EventPenetrate>();
         _targetThreshold = _initType == LitShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
-        _uiCam = UIManager.Instance.UICam;
-        _rootCanv = UIManager.Instance.TransRoot.GetComponent<Canvas>();
+
+        if ( FrameworkConfig.Instance.UseHotFixMode )
+        {
+            _uiCam = LitFramework.HotFix.UIManager.Instance.UICam;
+            _rootCanv = LitFramework.HotFix.UIManager.Instance.TransRoot.GetComponent<Canvas>();
+        }
+        else
+        {
+            _uiCam = LitFramework.Mono.UIManager.Instance.UICam;
+            _rootCanv = LitFramework.Mono.UIManager.Instance.TransRoot.GetComponent<Canvas>();
+        }
+
         _parentBG.enabled = false;
 
         ResetGuide();
@@ -299,7 +318,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
     /// </summary>
     private void OnClickTargetButtonGuideDone()
     {
-        if ( _targetBtn!=null )
+        if ( _targetBtn != null )
             _targetBtn.onClick.RemoveListener( OnClickTargetButtonGuideDone );
         CurrentGuideOver();
 

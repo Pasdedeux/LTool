@@ -91,6 +91,7 @@ public class FrameworkConfigInspector : Editor
         {
             _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
             _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
+            _config.UseHotFixMode =EditorGUILayout.Toggle( "使用热更模式", _config.UseHotFixMode );
         }
 
         EditorGUILayout.EndVertical();

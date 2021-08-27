@@ -32,13 +32,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ILRuntime">
-      <HintPath>..\..\iFunTech\Offitial_Demo\ILRuntime\ILRuntime\bin\Release\ILRuntime.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ILRuntime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="ILRuntime.Mono.Cecil">
-      <HintPath>..\..\iFunTech\Offitial_Demo\ILRuntime\ILRuntime\bin\Release\ILRuntime.Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ILRuntime.Mono.Cecil, Version=0.11.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

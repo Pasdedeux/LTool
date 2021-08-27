@@ -43,7 +43,7 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
         /// </summary>
-        internal bool IsInitOver = false;
+        public bool IsInitOver = false;
         /// <summary>
         /// 这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
         /// </summary>
@@ -71,14 +71,9 @@ namespace LitFramework.HotFix
             else
                 OnEnabled( replay );
 
-            if ( IsStarted )
-            {
-                OnShow();
-                _rootCanvas.enabled = true;
-            }
-            else
-                DoStart();
-
+            if ( !IsStarted ) DoStart();
+            OnShow();
+            _rootCanvas.enabled = true;
         }
 
         /// <summary>

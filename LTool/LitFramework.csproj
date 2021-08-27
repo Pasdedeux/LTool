@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LitFramework</RootNamespace>
     <AssemblyName>LitFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -105,6 +105,10 @@
     <Reference Include="Iced, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5baba79f4264913b, processorArchitecture=MSIL">
       <HintPath>..\packages\Iced.1.8.0\lib\net45\Iced.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="LitJson, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Output\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.10.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
@@ -311,6 +315,7 @@
     <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
     <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="Guide\Control\GuideShaderController.cs" />
     <Compile Include="HotFix\HotFixController.cs" />
     <Compile Include="HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="HotFix\HotFixItem\HotFixCSVList.cs" />
@@ -329,7 +334,6 @@
     <Compile Include="GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
-    <Compile Include="Guide\Control\GuideShaderController.cs" />
     <Compile Include="Guide\GuideConfig.cs" />
     <Compile Include="Guide\Model\EventPenetrate.cs" />
     <Compile Include="Guide\Model\GuideDataModel.cs" />
@@ -394,13 +398,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LitJson\LitJson.csproj">
-      <Project>{785119e5-f380-4579-bca3-1139e3a49e9d}</Project>
-      <Name>LitJson</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

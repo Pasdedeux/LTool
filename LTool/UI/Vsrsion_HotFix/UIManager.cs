@@ -37,6 +37,7 @@ using LitFramework.Base;
 using UnityEngine.UI;
 using LitFramework.LitTool;
 using LitFramework.UI.Base;
+using System.Diagnostics;
 
 namespace LitFramework.HotFix
 {
@@ -341,7 +342,6 @@ namespace LitFramework.HotFix
                         if ( baseUI.IsInitOver )
                             baseUI.OnEnabled( false );
                         baseUI.Show();
-
                     }
                 }
             }
@@ -461,17 +461,20 @@ namespace LitFramework.HotFix
             {
                 if ( _allRegisterUIDict.ContainsKey( uiName ) )
                 {
-                    if ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet )
+                    //获取Unity编辑器程序集
+                    var assembly = Assembly.Load( "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" );
+                    if ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet || uiName.IndexOf( "Canvas_Loading" ) != -1 )
                     {
-                        //TODO 获取热更工程程序集
-                        //
-                        var assembly = Assembly.LoadFrom( "Assembly-CSharp" );
-                        baseUI = ( BaseUI )assembly.CreateInstance( _allRegisterUIDict[ uiName ],true );
+                        LDebug.Log( ">>>>>UI Load Search Assembly " + assembly.FullName + "  :  " + _allRegisterUIDict[ uiName ] );
+                        baseUI = ( BaseUI )assembly.CreateInstance( _allRegisterUIDict[ uiName ], true );
                     }
-                    else if( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime )
+                    else if ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime )
                     {
-                        //TODO 获取Unity编辑器程序集
-                        //
+                        //获取热更工程程序集
+                        //借由反射现成方法，调取生成ILR内部实例，并返回结果
+                        LDebug.Log( ">>>> RunEnvironment.ILRuntime " + assembly.FullName );
+                        var ssstype = assembly.GetType( "Assets.Scripts.ILRScriptCall" );
+                        baseUI = ssstype.GetMethod( "GetUITypeByThis" ).Invoke( null, new object[ 1 ] { _allRegisterUIDict[ uiName ] } ) as BaseUI;
                     }
                     //========================//
                     //baseUI = Activator.CreateInstance( Type.GetType( _allRegisterUIDict[ uiName ], true, true ) ) as BaseUI;
@@ -482,7 +485,7 @@ namespace LitFramework.HotFix
                 }
 
                 if ( baseUI == null )
-                { Debug.LogError( uiName + "UI 脚本加载失败" ); return null; }
+                { LDebug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
                 baseUI.OnAwake();
 
@@ -805,7 +808,7 @@ namespace LitFramework.HotFix
             if ( !String.IsNullOrEmpty( uiPathName ) && !_allRegisterUIDict.ContainsKey( uiPathName ) )
                 _allRegisterUIDict.Add( uiPathName, className );
 
-            Debug.Log( "LitFramework UI添加成功 " + uiPathName );
+            LDebug.Log( "LitFramework UI添加成功 " + uiPathName );
         }
 
         private void AssemblyReflection()
@@ -813,7 +816,7 @@ namespace LitFramework.HotFix
             //System.Reflection.Assembly asb = System.Reflection.Assembly.GetExecutingAssembly();
 
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            
+
             for ( int i = 0; i < assemblies.Length; i++ )
             {
                 var asb = assemblies[ i ];
@@ -823,26 +826,22 @@ namespace LitFramework.HotFix
                 {
                     if ( !assemblyTypes[ indexType ].IsAbstract && assemblyTypes[ indexType ].BaseType == typeof( BaseUI ) )
                     {
-                        //通过程序集获取到他的返回实例对象方法  并且初始化对象
-                        System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
-                        if ( mif != null )
+                        if ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet || ( FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime && assemblyTypes[ indexType ].Name.Equals( "UILoading" ) ) )
                         {
-                            //目前只认静态方法
-                            if ( mif.IsStatic )
-                                mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
-                            //else
-                            //{
-                            //    //TODO 需要实例化的带参数方法
-                            //    ConstructorInfo magicConstructor = assemblyTypes[ indexType ].GetConstructor( Type.EmptyTypes );
-                            //    object magicClassObject = magicConstructor.Invoke( new object[] { } );
-                            //    mif.Invoke( magicClassObject , new object[] { assemblyTypes[ indexType ].Name } );
-                            //}
+                            //通过程序集获取到他的返回实例对象方法  并且初始化对象
+                            System.Reflection.MethodInfo mif = assemblyTypes[ indexType ].GetMethod( "RegistSystem" );
+                            if ( mif != null )
+                            {
+                                //目前只认静态方法
+                                if ( mif.IsStatic )
+                                    mif.Invoke( null, new object[] { assemblyTypes[ indexType ].Namespace + "." + assemblyTypes[ indexType ].Name } );
+                            }
                         }
                     }
                 }
             }
 
-            
+
         }
         #endregion
 

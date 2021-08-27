@@ -1366,6 +1366,69 @@
             <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
         </member>
+        <member name="F:GuideShaderController._target">
+            <summary>
+            要高亮显示的目标
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._corners">
+            <summary>
+            区域范围缓存
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._center">
+            <summary>
+            镂空区域圆心
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._radius">
+            <summary>
+            镂空区域半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._material">
+            <summary>
+            遮罩材质
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._currentRadius">
+            <summary>
+            当前高亮区域的半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._shrinkVelocity">
+            <summary>
+            收缩速度
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
+            <summary>
+            聚焦到引导目标
+            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
+            </summary>
+            <param name="operateImage">目标点击区域Button Image</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:GuideShaderController.CurrentGuideOver">
+            <summary>
+            引导完成后UI重置
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ResetGuide">
+            <summary>
+            重置引导画面-去除镂空区域
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
+            <summary>
+            新手引导UI点击回调
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
+            <summary>
+            3D物体触碰回调
+            </summary>
+        </member>
         <member name="T:Assets.Scripts.Module.HotFix.HotFixController">
             <summary>
             热更模块
@@ -1947,69 +2010,6 @@
             <param name="x"></param>
             <param name="y"></param>
             <returns></returns>
-        </member>
-        <member name="F:GuideShaderController._target">
-            <summary>
-            要高亮显示的目标
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._corners">
-            <summary>
-            区域范围缓存
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._center">
-            <summary>
-            镂空区域圆心
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._radius">
-            <summary>
-            镂空区域半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._material">
-            <summary>
-            遮罩材质
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._currentRadius">
-            <summary>
-            当前高亮区域的半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._shrinkVelocity">
-            <summary>
-            收缩速度
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
-            <summary>
-            聚焦到引导目标
-            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
-            </summary>
-            <param name="operateImage">目标点击区域Button Image</param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:GuideShaderController.CurrentGuideOver">
-            <summary>
-            引导完成后UI重置
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ResetGuide">
-            <summary>
-            重置引导画面-去除镂空区域
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
-            <summary>
-            新手引导UI点击回调
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
-            <summary>
-            3D物体触碰回调
-            </summary>
         </member>
         <member name="T:GuideConfig">
             <summary>

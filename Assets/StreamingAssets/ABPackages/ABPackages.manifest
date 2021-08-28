@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 2356752977
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: material
+      Dependencies: {}
+    Info_1:
+      Name: fbx
+      Dependencies: {}

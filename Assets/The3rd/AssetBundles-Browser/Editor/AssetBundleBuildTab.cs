@@ -453,6 +453,16 @@ namespace AssetBundleBrowser
                                         abVersionsDic.Add( content[ 0 ], ab );
                                     }
                                 }
+                                else
+                                {
+                                    ab = new ABVersion
+                                    {
+                                        AbName = content[ 0 ],
+                                        Version = Convert.ToInt32( content[ 1 ] ),
+                                        MD5 = content[ 2 ]
+                                    };
+                                    abVersionsDic.Add( content[ 0 ], ab );
+                                }
                             }
                             else
                             {
@@ -460,8 +470,8 @@ namespace AssetBundleBrowser
                             }
                         }
                     }
+                    MatchFiles( abVersionsDic );
                 } ) );
-                MatchFiles( abVersionsDic );
             }
             else
             {
@@ -548,8 +558,9 @@ namespace AssetBundleBrowser
                 string suffix = file.Substring( file.Length - 4 );
                 if ( suffix != "meta" )
                 {
-                    string md5 = GetMD5HashFromFile( file );
-                    string abName = file.Substring( _abResPath.Length + 1 );
+                    var newFile = file.Replace( "\\", "/" );
+                    string md5 = GetMD5HashFromFile( newFile );
+                    string abName = newFile.Substring( _abResPath.Length + 1 );
                     if ( !abVersionsDic.ContainsKey( abName ) )
                     {
                         ABVersion ab = new ABVersion

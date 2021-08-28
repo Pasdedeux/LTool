@@ -1,21 +1,17 @@
 ManifestFileVersion: 0
-CRC: 19924894
+CRC: 1211572206
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f03ebadb1f62f4bee44e3a1c2e9f0b20
+    Hash: 28b837d7f06117c39234f91737f20c6e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 939e20ecac0e95a3f7c5cfb3e57acb1d
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
 HashAppended: 0
 ClassTypes:
-- Class: 21
-  Script: {instanceID: 0}
-- Class: 28
-  Script: {instanceID: 0}
-- Class: 48
+- Class: 49
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Art/Material/UVQueueAnimation.mat
+- Assets/Art/Font/_desc.txt
 Dependencies: []

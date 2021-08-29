@@ -74,9 +74,9 @@
       <HintPath>..\packages\Iced.1.8.0\lib\net45\Iced.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="LitJsonILR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LitJson, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Output\LitJsonILR.dll</HintPath>
+      <HintPath>..\Output\LitJson.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.10.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>

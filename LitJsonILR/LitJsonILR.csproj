@@ -7,8 +7,8 @@
     <ProjectGuid>{E23993D7-796A-4D39-9D72-49755653A332}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LitJsonILR</RootNamespace>
-    <AssemblyName>LitJsonILR</AssemblyName>
+    <RootNamespace>LitJson</RootNamespace>
+    <AssemblyName>LitJson</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

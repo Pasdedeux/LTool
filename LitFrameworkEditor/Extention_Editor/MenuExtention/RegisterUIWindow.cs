@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework;
 using LitFramework.LitTool;
 using LitFrameworkEditor.EditorExtended;
 using LitJson;
@@ -96,7 +97,7 @@ public class RegisterUIWindow : EditorWindow
 
         using ( new BackgroundColorScope( Color.green ) )
         {
-            if ( GUILayout.Button( "创建脚本+UI预制件+绑定", GUILayout.Height( 40 ) ) )
+            if ( GUILayout.Button( "创建脚本+UI预制件+注册绑定", GUILayout.Height( 40 ) ) )
             {
                 _saveLocalFileInfo = new FileInfo( Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME );
 
@@ -109,6 +110,10 @@ public class RegisterUIWindow : EditorWindow
                     //CS 脚本
                     UICreateParse cs = new UICreateParse();
                     string csOutPath = Application.dataPath + "/Scripts/UI";
+                    if ( !FrameworkConfig.Instance.UseHotFixMode )
+                        csOutPath = Application.dataPath + "/Scripts/UI";
+                    else
+                        csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI";
                     EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
                     AssetDatabase.Refresh();
 
@@ -177,6 +182,12 @@ public class RegisterUIWindow : EditorWindow
                     //CS 脚本
                     UICreateParse cs = new UICreateParse();
                     string csOutPath = Application.dataPath + "/Scripts/UI";
+
+                    if ( !FrameworkConfig.Instance.UseHotFixMode )
+                        csOutPath = Application.dataPath + "/Scripts/UI";
+                    else
+                        csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI";
+
 
                     EditorMenuExtention.CreateCSFile( csOutPath, uiScriptsName + ".cs", cs.CreateCS( this ) );
                     AssetDatabase.Refresh();
@@ -275,11 +286,14 @@ public class RegisterUIWindow : EditorWindow
             EditorUtility.ClearProgressBar();
             LDebug.Log( " 成功生成UI预制件! " );
 
-            //反射生成脚本组件
-            var asmb = System.Reflection.Assembly.Load( "Assembly-CSharp" );
-            var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
-            if ( null != t ) newCanvas.gameObject.AddComponent( t );
-            else LDebug.LogError( "UI脚本绑定失败" );
+            if ( !FrameworkConfig.Instance.UseHotFixMode )
+            {
+                //反射生成脚本组件
+                var asmb = System.Reflection.Assembly.Load( "Assembly-CSharp" );
+                var t = asmb.GetType( "Assets.Scripts.UI." + uiScriptsName );
+                if ( null != t ) newCanvas.gameObject.AddComponent( t );
+                else LDebug.LogError( "UI脚本绑定失败" );
+            }
 
             string localPath = "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";
             //预防重名
@@ -418,12 +432,14 @@ namespace LitFrameworkEditor.EditorExtended
         private bool _useAnimRoot = true,
         _useOnEnable_OnDisable = true,
         _useDefaultExitBtn = true;
+        private bool _isHotFix = false;
 
         List<string> CSString = new List<string>();
         RegisterUIWindow _uiWindowInfo;
 
         public string CreateCS( RegisterUIWindow uiWindowInfo )
         {
+            _isHotFix = FrameworkConfig.Instance.UseHotFixMode;
             _uiWindowInfo = uiWindowInfo;
             _className = uiWindowInfo.uiScriptsName;
             _useAnimRoot = uiWindowInfo.useAnimRoot;
@@ -441,12 +457,22 @@ namespace LitFrameworkEditor.EditorExtended
         private void AddBody()
         {
             if ( _useDefaultExitBtn )
-                CSString.Add( "public Button btnExit;" );
+                CSString.Add( "private Button _btnExit;" );
             CSString.Add( "private bool _isFreeze;" );
             CSString.Add( "private Transform _root;" );
             if ( _useAnimRoot )
                 CSString.Add( "private DOTweenAnimation[] _anims;" );
 
+            if ( _isHotFix )
+            {
+                CSString.Add( "" );
+                CSString.Add( "public static int RegistSystem( string className )" );
+                CSString.Add( "{" );
+                CSString.Add( string.Format( "UIManager.Instance.RegistFunctionCallFun( ResPath.UI.{0}, className );", _className.ToUpper() ) );
+                CSString.Add( "return 1;" );
+                CSString.Add( "}" );
+            }
+            
             #region Awake
 
             CSString.Add( "" );
@@ -469,11 +495,11 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "/// </summary>" );
             CSString.Add( "private void Init()" );
             CSString.Add( "{" );
-            CSString.Add( "_root = transform;" );
+            CSString.Add( "_root = this.GameObjectInstance.transform;" );
 
             if ( _uiWindowInfo.useDefaultExitBtn )
             {
-                CSString.Add( "btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"Btn_Exit\" );" );
+                CSString.Add( "_btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"Btn_Exit\" );" );
             }
 
             CSString.Add( "" );
@@ -508,7 +534,7 @@ namespace LitFrameworkEditor.EditorExtended
 
                 if ( _uiWindowInfo.useDefaultExitBtn )
                 {
-                    CSString.Add( "btnExit.onClick.AddListener( OnClickExit );" );
+                    CSString.Add( "_btnExit.onClick.AddListener( OnClickExit );" );
                 }
                 CSString.Add( "//TODO 注册事件" );
                 CSString.Add( "//.." );
@@ -522,7 +548,7 @@ namespace LitFrameworkEditor.EditorExtended
 
                 if ( _uiWindowInfo.useDefaultExitBtn )
                 {
-                    CSString.Add( "btnExit.onClick.RemoveAllListeners();" );
+                    CSString.Add( "_btnExit.onClick.RemoveAllListeners();" );
                 }
                 CSString.Add( "//TODO 取消注册事件" );
                 CSString.Add( "//.." );
@@ -579,7 +605,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "using UnityEngine.UI;" );
             CSString.Add( "using System;" );
             CSString.Add( "using LitFramework;" );
-            CSString.Add( "using LitFramework.Mono;" );
+            CSString.Add( _isHotFix ? "using LitFramework.HotFix;" : "using LitFramework.Mono;" );
             CSString.Add( "using LitFramework.LitTool;" );
             CSString.Add( "using System.Collections.Generic;" );
 

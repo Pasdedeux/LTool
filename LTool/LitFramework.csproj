@@ -308,77 +308,77 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crypto\CryptoSHA1.cs" />
-    <Compile Include="Crypto\ICrypto.cs" />
-    <Compile Include="FrameworkConfig.cs" />
-    <Compile Include="GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="GameFlow\Controller\LitFrameworkFacade.cs" />
-    <Compile Include="GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
-    <Compile Include="GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
-    <Compile Include="Guide\Control\GuideShaderController.cs" />
-    <Compile Include="HotFix\HotFixController.cs" />
-    <Compile Include="HotFix\HotFixItem\HotFixAB.cs" />
-    <Compile Include="HotFix\HotFixItem\HotFixCSVList.cs" />
-    <Compile Include="HotFix\HotFixItem\HotfixLogic.cs" />
-    <Compile Include="HotFix\IHotFix.cs" />
-    <Compile Include="LitPool\SpawnPool.cs" />
-    <Compile Include="LitTool\AnimBundle.cs" />
-    <Compile Include="LitTool\AudioManager.cs" />
-    <Compile Include="BaseModel\Cloneable.cs" />
-    <Compile Include="BaseModel\Singleton.cs" />
-    <Compile Include="BaseModel\SingletonMono.cs" />
-    <Compile Include="Crypto\Crypto.cs" />
-    <Compile Include="Crypto\CryptoMD5.cs" />
-    <Compile Include="Device\ShowFPS.cs" />
-    <Compile Include="Extention_Editor\CSVReader.cs" />
-    <Compile Include="GameFlow\Controller\GameFlowController.cs" />
-    <Compile Include="GameFlow\Manager\SceneLoadManager.cs" />
-    <Compile Include="GameFlow\Model\LoadingTaskModel.cs" />
-    <Compile Include="Guide\GuideConfig.cs" />
-    <Compile Include="Guide\Model\EventPenetrate.cs" />
-    <Compile Include="Guide\Model\GuideDataModel.cs" />
-    <Compile Include="InputSystem\InputControlManager.cs" />
-    <Compile Include="LitPool\PoolManager.cs" />
-    <Compile Include="LitPool\PrefabPool.cs" />
-    <Compile Include="LitPool\PrefabsDict.cs" />
-    <Compile Include="LitPool\SpawnManager.cs" />
-    <Compile Include="LitTool\AssetPathManager.cs" />
-    <Compile Include="LitTool\DocumentAccessor.cs" />
-    <Compile Include="LitTool\LitTool.cs" />
-    <Compile Include="MsgSystem\InternalEvent.cs" />
-    <Compile Include="MsgSystem\MsgManager.cs" />
+    <Compile Include="LitCore\Crypto\CryptoSHA1.cs" />
+    <Compile Include="LitCore\Crypto\ICrypto.cs" />
+    <Compile Include="LitCore\FrameworkConfig.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
+    <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="LitCore\Guide\Control\GuideShaderController.cs" />
+    <Compile Include="LitCore\HotFix\HotFixController.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotFixAB.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotFixCSVList.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotfixLogic.cs" />
+    <Compile Include="LitCore\HotFix\IHotFix.cs" />
+    <Compile Include="LitCore\LitPool\SpawnPool.cs" />
+    <Compile Include="LitCore\LitTool\AnimBundle.cs" />
+    <Compile Include="LitCore\LitTool\AudioManager.cs" />
+    <Compile Include="LitCore\BaseModel\Cloneable.cs" />
+    <Compile Include="LitCore\BaseModel\Singleton.cs" />
+    <Compile Include="LitCore\BaseModel\SingletonMono.cs" />
+    <Compile Include="LitCore\Crypto\Crypto.cs" />
+    <Compile Include="LitCore\Crypto\CryptoMD5.cs" />
+    <Compile Include="LitCore\Device\ShowFPS.cs" />
+    <Compile Include="LitCore\Extention_Editor\CSVReader.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\GameFlowController.cs" />
+    <Compile Include="LitCore\GameFlow\Manager\SceneLoadManager.cs" />
+    <Compile Include="LitCore\GameFlow\Model\LoadingTaskModel.cs" />
+    <Compile Include="LitCore\Guide\GuideConfig.cs" />
+    <Compile Include="LitCore\Guide\Model\EventPenetrate.cs" />
+    <Compile Include="LitCore\Guide\Model\GuideDataModel.cs" />
+    <Compile Include="LitCore\InputSystem\InputControlManager.cs" />
+    <Compile Include="LitCore\LitPool\PoolManager.cs" />
+    <Compile Include="LitCore\LitPool\PrefabPool.cs" />
+    <Compile Include="LitCore\LitPool\PrefabsDict.cs" />
+    <Compile Include="LitCore\LitPool\SpawnManager.cs" />
+    <Compile Include="LitCore\LitTool\AssetPathManager.cs" />
+    <Compile Include="LitCore\LitTool\DocumentAccessor.cs" />
+    <Compile Include="LitCore\LitTool\LitTool.cs" />
+    <Compile Include="LitCore\MsgSystem\InternalEvent.cs" />
+    <Compile Include="LitCore\MsgSystem\MsgManager.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ThirdParty\AD\ADManager.cs" />
-    <Compile Include="TimeRecord\ZeroTimeRecord.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="UI\Vsrsion_HotFix\UIManager.cs" />
-    <Compile Include="ViewTest\BezierViewTest.cs" />
-    <Compile Include="LitTool\CameraCapture.cs" />
-    <Compile Include="LitTool\CSExtention.cs" />
-    <Compile Include="LitTool\LDebug.cs" />
-    <Compile Include="LitTool\LMath.cs" />
-    <Compile Include="LitTool\SpriteAdapter.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\ADManager.cs" />
+    <Compile Include="LitCore\TimeRecord\ZeroTimeRecord.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="LitCore\LitTool\CameraCapture.cs" />
+    <Compile Include="LitCore\LitTool\CSExtention.cs" />
+    <Compile Include="LitCore\LitTool\LDebug.cs" />
+    <Compile Include="LitCore\LitTool\LMath.cs" />
+    <Compile Include="LitCore\LitTool\SpriteAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BaseModel\IManager.cs" />
-    <Compile Include="ThirdParty\AD\BaseAdAdapter.cs" />
-    <Compile Include="ThirdParty\AD\IAd.cs" />
-    <Compile Include="ThirdParty\Statistic\BaseStatistician.cs" />
-    <Compile Include="ThirdParty\Statistic\StatisticManager.cs" />
-    <Compile Include="UI\Base\BindingProperty.cs" />
-    <Compile Include="UI\Base\IUIManager.cs" />
-    <Compile Include="UI\Base\IViewModel.cs" />
-    <Compile Include="UI\Base\UIModelBehavior.cs" />
-    <Compile Include="UI\Base\UIType.cs" />
-    <Compile Include="UI\Manager\UIMaskManager.cs" />
-    <Compile Include="UI\SysDefine.cs" />
-    <Compile Include="UI\UnityHelper.cs" />
-    <Compile Include="UI\Version_Mono\BaseUI.cs" />
-    <Compile Include="UI\Version_Mono\UIManager.cs" />
-    <Compile Include="UnityPackage\Optimization.cs" />
+    <Compile Include="LitCore\BaseModel\IManager.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\BaseAdAdapter.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\IAd.cs" />
+    <Compile Include="LitCore\ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="LitCore\ThirdParty\Statistic\StatisticManager.cs" />
+    <Compile Include="LitCore\UI\Base\BindingProperty.cs" />
+    <Compile Include="LitCore\UI\Base\IUIManager.cs" />
+    <Compile Include="LitCore\UI\Base\IViewModel.cs" />
+    <Compile Include="LitCore\UI\Base\UIModelBehavior.cs" />
+    <Compile Include="LitCore\UI\Base\UIType.cs" />
+    <Compile Include="LitCore\UI\Manager\UIMaskManager.cs" />
+    <Compile Include="LitCore\UI\SysDefine.cs" />
+    <Compile Include="LitCore\UI\UnityHelper.cs" />
+    <Compile Include="LitCore\UI\Version_Mono\BaseUI.cs" />
+    <Compile Include="LitCore\UI\Version_Mono\UIManager.cs" />
+    <Compile Include="LitCore\LitTool\Optimization.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -389,8 +389,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ThirdParty\Example\" />
-    <Folder Include="ThirdParty\IAP\" />
+    <Folder Include="LitCore\ThirdParty\IAP\" />
+    <Folder Include="NotInclude\" />
+    <Folder Include="UnityPackage\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

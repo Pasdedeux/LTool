@@ -298,21 +298,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editor\ArrayObject3D.cs" />
-    <Compile Include="Editor\BitmapFontExporter.cs" />
-    <Compile Include="Editor\FrameworkConfigInspector.cs" />
-    <Compile Include="Editor\LitAttributes\SetProperty.cs" />
-    <Compile Include="Editor\SceneViewExtention.cs" />
-    <Compile Include="Editor\UGUIOptimize.cs" />
-    <Compile Include="Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
-    <Compile Include="Extention_Editor\CSVTool\CSVParser.cs" />
-    <Compile Include="Extention_Editor\CSVTool\CSVReader.cs" />
-    <Compile Include="Extention_Editor\CSVTool\CSVWriter.cs" />
-    <Compile Include="Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
-    <Compile Include="Extention_Editor\BaseTool\FolderCopy.cs" />
-    <Compile Include="Extention_Editor\MenuExtention\RegisterAudio.cs" />
-    <Compile Include="Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
-    <Compile Include="Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\ArrayObject3D.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\BitmapFontExporter.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\FrameworkConfigInspector.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\LitAttributes\SetProperty.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\SceneViewExtention.cs" />
+    <Compile Include="LitFrameworkEditor\Editor\UGUIOptimize.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\CSVTool\CSVParser.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\CSVTool\CSVReader.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\CSVTool\CSVWriter.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\BaseTool\FolderCopy.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
+    <Compile Include="LitFrameworkEditor\Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
     <Compile Include="GlobalEditorSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

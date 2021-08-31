@@ -22,34 +22,37 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-[Serializable]
-/// <summary>
-/// ICloneable基类，扩展与该接口
-/// </summary>
-public abstract class Cloneable<T>  where T : class, ICloneable
+namespace LitFramework
 {
+    [Serializable]
     /// <summary>
-    /// 基础覆写方法
+    /// ICloneable基类，扩展与该接口
     /// </summary>
-    /// <returns></returns>
-    public virtual object Clone()
+    public abstract class Cloneable<T> where T : class, ICloneable
     {
-        return MemberwiseClone();
-    }
-
-    public T DeepClone()
-    {
-        using ( Stream objectStream = new MemoryStream() )
+        /// <summary>
+        /// 基础覆写方法
+        /// </summary>
+        /// <returns></returns>
+        public virtual object Clone()
         {
-            IFormatter formatter = new BinaryFormatter();
-            formatter.Serialize( objectStream, this );
-            objectStream.Seek( 0, SeekOrigin.Begin );
-            return formatter.Deserialize( objectStream ) as T;
+            return MemberwiseClone();
         }
-    }
 
-    public T ShallowClone()
-    {
-        return Clone() as T;
+        public T DeepClone()
+        {
+            using ( Stream objectStream = new MemoryStream() )
+            {
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize( objectStream, this );
+                objectStream.Seek( 0, SeekOrigin.Begin );
+                return formatter.Deserialize( objectStream ) as T;
+            }
+        }
+
+        public T ShallowClone()
+        {
+            return Clone() as T;
+        }
     }
 }

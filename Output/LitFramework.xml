@@ -656,6 +656,12 @@
             </summary>
             <param name="name"></param>
         </member>
+        <member name="M:LitFramework.Cloneable`1.Clone">
+            <summary>
+            基础覆写方法
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:LitFramework.Singleton`1">
             <summary>
             非组件单例基类
@@ -1984,12 +1990,6 @@
             </summary>
             <param name="key"></param>
             <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cloneable`1.Clone">
-            <summary>
-            基础覆写方法
-            </summary>
             <returns></returns>
         </member>
         <member name="T:CSVReader">

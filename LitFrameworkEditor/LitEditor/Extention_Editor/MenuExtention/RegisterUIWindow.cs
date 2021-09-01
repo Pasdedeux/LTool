@@ -699,7 +699,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "//*******************************************************************" );
             CSString.Add( "" );
             CSString.Add( "using LitFramework;" );
-            CSString.Add( "public partial class ResPath" );
+            CSString.Add( "internal partial class ResPath" );
             CSString.Add( "{" );
         }
         private void AddTail()
@@ -709,16 +709,16 @@ namespace LitFrameworkEditor.EditorExtended
         private void AddBody( ResPathTemplate rpt )
         {
             //Sound
-            CSString.Add( "public partial class Sound" );
+            CSString.Add( "internal partial class Sound" );
             CSString.Add( "{" );
             foreach ( var item in rpt.Sound )
             {
-                CSString.Add( string.Format( "public const string {0} = \"{1}\";", item.Key.ToUpper(), item.Value ) );
+                CSString.Add( string.Format( "internal const string {0} = \"{1}\";", item.Key.ToUpper(), item.Value ) );
             }
             CSString.Add( "}" );
 
             //UI
-            CSString.Add( "public partial class UI" );
+            CSString.Add( "internal partial class UI" );
             CSString.Add( "{" );
             foreach ( var item in rpt.UI )
             {
@@ -727,7 +727,7 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add( "/// <summary>" );
                 CSString.Add( string.Format( "/// {0}", nameAndComment.Length > 1 ? nameAndComment[ 1 ] : "" ) );
                 CSString.Add( "/// </summary>" );
-                CSString.Add( string.Format( "public const string {0} = \"{1}\";", item.Key.ToUpper(), nameAndComment[ 0 ] ) );
+                CSString.Add( string.Format( "internal const string {0} = \"{1}\";", item.Key.ToUpper(), nameAndComment[ 0 ] ) );
             }
             CSString.Add( "}" );
         }

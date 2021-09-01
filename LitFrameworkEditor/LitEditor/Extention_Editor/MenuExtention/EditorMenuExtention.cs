@@ -117,6 +117,10 @@ namespace LitFrameworkEditor.EditorExtended
             string streampath = Application.dataPath + "/StreamingAssets";
             string csvOutPath = Application.dataPath + "/StreamingAssets/csv";
             string csOutPath = Application.dataPath + "/Scripts/CSV";
+            if ( !FrameworkConfig.Instance.UseHotFixMode )
+                csOutPath = Application.dataPath + "/Scripts/CSV";
+            else
+                csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/CSV";
             DirectoryInfo theXMLFolder = new DirectoryInfo( xlsxpath );
 
             //文件列表
@@ -173,7 +177,11 @@ namespace LitFrameworkEditor.EditorExtended
 
                 //============更新并保存CS============//
                 ConfigsParse rpp = new ConfigsParse();
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
+                
+                if ( !FrameworkConfig.Instance.UseHotFixMode )
+                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
+                else
+                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
             }
             catch ( Exception e ) { LDebug.LogError( e.Message ); }
             finally

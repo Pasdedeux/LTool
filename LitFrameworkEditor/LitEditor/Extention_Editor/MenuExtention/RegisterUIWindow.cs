@@ -258,7 +258,7 @@ public class RegisterUIWindow : EditorWindow
                                 rpt.UI[ key ] += "|" + resPathSumList[ key ];
                         }
                     }
-                }
+                } 
 
                 //=================================//
 
@@ -273,7 +273,12 @@ public class RegisterUIWindow : EditorWindow
                 //============更新并保存CS============//
                 //更新并保存CS
                 ResPathParse rpp = new ResPathParse();
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+                
+                if ( !FrameworkConfig.Instance.UseHotFixMode )
+                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+                else
+                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/ILRuntime/HotFixLogic", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+
                 AssetDatabase.Refresh();
             }
         }
@@ -396,10 +401,15 @@ public class RegisterUIWindow : EditorWindow
             var result = JsonMapper.ToJson( rpt );
             sw.Write( result );
         }
-
+          
         //更新并保存CS
         ResPathParse rpp = new ResPathParse();
-        EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+        
+        if ( !FrameworkConfig.Instance.UseHotFixMode )
+            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+        else
+            EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/ILRuntime/HotFixLogic", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+
         AssetDatabase.Refresh();
     }
 
@@ -712,6 +722,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "{" );
             foreach ( var item in rpt.UI )
             {
+                if ( FrameworkConfig.Instance.UseHotFixMode && item.Key.ToUpper().Equals( "UILOADING" ) ) continue;
                 string[] nameAndComment = item.Value.Split( '|' );
                 CSString.Add( "/// <summary>" );
                 CSString.Add( string.Format( "/// {0}", nameAndComment.Length > 1 ? nameAndComment[ 1 ] : "" ) );

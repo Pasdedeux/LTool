@@ -539,7 +539,7 @@ namespace LitJson
                     instance = ( ( ILRuntime.Reflection.ILRuntimeType )value_type ).ILType.Instantiate();
                 else
                     instance = Activator.CreateInstance( value_type );
-                bool isIntKey = t_data.IsDictionary && value_type.GetGenericArguments()[ 0 ] == typeof( int );
+                
                 while ( true )
                 {
                     reader.Read();
@@ -594,49 +594,31 @@ namespace LitJson
                         }
 
                         var dict = ( ( IDictionary )instance );
-                        var elem_type = t_data.ElementType;
-                        object readValue = ReadValue( elem_type, reader );
                         var rt = t_data.ElementType is ILRuntime.Reflection.ILRuntimeWrapperType
                             ? ( ( ILRuntime.Reflection.ILRuntimeWrapperType )t_data.ElementType ).RealType
                             : t_data.ElementType;
-                        //value 是枚举的情况没处理,毕竟少
-                        if ( isIntKey )
+                        //让字典Key自适应类型
+                        if ( t_data.IsDictionary )
                         {
-                            var dictValueType = value_type.GetGenericArguments()[ 1 ];
-                            IConvertible convertible = dictValueType as IConvertible;
-                            if ( convertible == null )
+                            var dicTypes = instance.GetType().GetGenericArguments();
+                            var converter = System.ComponentModel.TypeDescriptor.GetConverter( dicTypes[ 0 ] );
+                            if ( converter != null )
                             {
-                                //自定义类型扩展
-                                if ( dictValueType == typeof( double ) ) //CheckCLRTypes() 没有double,也可以修改ilruntime源码实现
-                                {
-                                    var v = Convert.ChangeType( readValue.ToString(), dictValueType );
-                                    dict.Add( Convert.ToInt32( property ), v );
-                                }
-                                else
-                                {
-                                    readValue = rt.CheckCLRTypes( readValue );
-                                    dict.Add( Convert.ToInt32( property ), readValue );
-                                    // throw new JsonException (String.Format("The type {0} doesn't not support",dictValueType));
-                                }
-                            }
-                            else
-                            {
-                                var v = Convert.ChangeType( readValue, dictValueType );
-                                dict.Add( Convert.ToInt32( property ), v );
+                                property = converter.ConvertFromString( ( string )property );
+                                t_data.ElementType = dicTypes[ 1 ];
                             }
                         }
-                        else
-                        {
-                            readValue = rt.CheckCLRTypes( readValue );
-                            dict.Add( property, readValue );
-                        }
+                        var readValue = ReadValue( t_data.ElementType, reader );
+                        var checkedCLRType = rt.CheckCLRTypes( readValue );
+                        dict.Add( property, checkedCLRType );
                     }
                 }
-
             }
 
             return instance;
         }
+
+
 
         private static IJsonWrapper ReadValue( WrapperFactory factory,
                                                JsonReader reader )

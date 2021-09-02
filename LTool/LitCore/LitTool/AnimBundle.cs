@@ -55,7 +55,7 @@ namespace LitFramework.LitTool
                 cash.transform.localScale = Vector3.one;
                 cash.transform.parent = parnet;
                 cash.transform.position = from;
-
+                
                 var exPos = new Vector2( from.x, from.y ) + UnityEngine.Random.insideUnitCircle * range;
                 cash.transform.DOMove( exPos, explodeTime ).SetUpdate( true ).SetEase( Ease.OutBack );
 

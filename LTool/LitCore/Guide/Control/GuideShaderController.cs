@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using LitFramework;
+﻿using LitFramework;
 using LitFramework.Base;
 using LitFramework.InputSystem;
 using LitFramework.LitTool;
@@ -9,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
+using DG.Tweening;
 
 public enum LitShaderType
 {
@@ -83,7 +82,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( !_isShowHand )
         {
             _isShowHand = true;
-
+            
             _hand.DOKill();
             _hand.enabled = true;
             _hand.transform.SetAsLastSibling();

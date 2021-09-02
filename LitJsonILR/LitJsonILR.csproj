@@ -33,11 +33,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\iFunTech\xscrosstalk\UnityProject\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
+    <Reference Include="ILRuntime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\iFunTech\xscrosstalk\UnityProject\Library\ScriptAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="ILRuntime.Mono.Cecil, Version=0.11.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -537,11 +537,11 @@ namespace LitJson
                 AddObjectMetadata( value_type );
                 ObjectMetadata t_data = object_metadata[ value_type ];
 
-                //Debug.LogError( "heiheihei  " + inst_type.Name +"   "+( value_type is ILRuntime.Reflection.ILRuntimeType )+ "   " + reader.Token.ToString() );
+                //Debug.LogError( "heiheihei  " + inst_type.Name + "   " + ( value_type is ILRuntime.Reflection.ILRuntimeType ) + "   " + reader.Token.ToString() );
                 //Debug.LogError( "heiheihei  " + inst_type.IsValueType );
                 //Debug.LogError( "heiheihei  " + inst_type.FullName );
                 //Debug.LogError( "heiheihei  " + inst_type.BaseType );
-                //Debug.LogError( "heiheihei  " + inst_type.DeclaringType );
+                //Debug.LogError( "heiheihei  " + inst_type.UnderlyingSystemType );
                 //Debug.LogError( "heiheihei  " + inst_type.ReflectedType );
 
                 if ( value_type is ILRuntime.Reflection.ILRuntimeType )

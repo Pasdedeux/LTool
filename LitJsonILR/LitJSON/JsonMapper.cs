@@ -20,6 +20,7 @@ using ILRuntime.Runtime.Stack;
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.Utils;
 using Object = System.Object;
+using UnityEngine;
 
 namespace LitJson
 {
@@ -385,7 +386,7 @@ namespace LitJson
         private static object ReadValue( Type inst_type, JsonReader reader )
         {
             reader.Read();
-
+            
             if ( reader.Token == JsonToken.ArrayEnd )
                 return null;
 
@@ -410,7 +411,7 @@ namespace LitJson
                             "Can't assign null to an instance of type {0}",
                             inst_type ) );
             }
-
+            
             if ( reader.Token == JsonToken.Double ||
                 reader.Token == JsonToken.Int ||
                 reader.Token == JsonToken.Long ||
@@ -535,6 +536,14 @@ namespace LitJson
             {
                 AddObjectMetadata( value_type );
                 ObjectMetadata t_data = object_metadata[ value_type ];
+
+                //Debug.LogError( "heiheihei  " + inst_type.Name +"   "+( value_type is ILRuntime.Reflection.ILRuntimeType )+ "   " + reader.Token.ToString() );
+                //Debug.LogError( "heiheihei  " + inst_type.IsValueType );
+                //Debug.LogError( "heiheihei  " + inst_type.FullName );
+                //Debug.LogError( "heiheihei  " + inst_type.BaseType );
+                //Debug.LogError( "heiheihei  " + inst_type.DeclaringType );
+                //Debug.LogError( "heiheihei  " + inst_type.ReflectedType );
+
                 if ( value_type is ILRuntime.Reflection.ILRuntimeType )
                     instance = ( ( ILRuntime.Reflection.ILRuntimeType )value_type ).ILType.Instantiate();
                 else

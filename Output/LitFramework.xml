@@ -150,7 +150,7 @@
             <param name="secondsTime">炸开后等多久开始飞</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean,System.Boolean)">
             <summary>
              获取外部persistant路径+"//"
             </summary>

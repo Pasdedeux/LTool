@@ -42,9 +42,9 @@ namespace LitFramework.LitTool
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// <returns></returns>
-        public string GetPersistentDataPath( string filePath, bool useUri = true )
+        public string GetPersistentDataPath( string filePath, bool useUri = true , bool dontEscape = false )
         {
-            Uri uri = new Uri( Application.persistentDataPath +"/"+ filePath );
+            Uri uri = new Uri( Application.persistentDataPath + "/" + filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
             return _tmpPath.Replace( "%20", " " );
         }

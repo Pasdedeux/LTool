@@ -21,6 +21,7 @@ using ILRuntime.CLR.Method;
 using ILRuntime.CLR.Utils;
 using Object = System.Object;
 using UnityEngine;
+using ILRuntime.CLR.TypeSystem;
 
 namespace LitJson
 {
@@ -537,18 +538,11 @@ namespace LitJson
                 AddObjectMetadata( value_type );
                 ObjectMetadata t_data = object_metadata[ value_type ];
 
-                //Debug.LogError( "heiheihei  " + inst_type.Name + "   " + ( value_type is ILRuntime.Reflection.ILRuntimeType ) + "   " + reader.Token.ToString() );
-                //Debug.LogError( "heiheihei  " + inst_type.IsValueType );
-                //Debug.LogError( "heiheihei  " + inst_type.FullName );
-                //Debug.LogError( "heiheihei  " + inst_type.BaseType );
-                //Debug.LogError( "heiheihei  " + inst_type.UnderlyingSystemType );
-                //Debug.LogError( "heiheihei  " + inst_type.ReflectedType );
-
                 if ( value_type is ILRuntime.Reflection.ILRuntimeType )
                     instance = ( ( ILRuntime.Reflection.ILRuntimeType )value_type ).ILType.Instantiate();
                 else
                     instance = Activator.CreateInstance( value_type );
-                
+
                 while ( true )
                 {
                     reader.Read();
@@ -603,8 +597,8 @@ namespace LitJson
                         }
 
                         var dict = ( ( IDictionary )instance );
-                        var rt = t_data.ElementType is ILRuntime.Reflection.ILRuntimeWrapperType
-                            ? ( ( ILRuntime.Reflection.ILRuntimeWrapperType )t_data.ElementType ).RealType
+                        var rt = t_data.ElementType is ILRuntime.Reflection.ILRuntimeWrapperType 
+                            ? ( ( ILRuntime.Reflection.ILRuntimeWrapperType )t_data.ElementType ).RealType 
                             : t_data.ElementType;
                         //让字典Key自适应类型
                         if ( t_data.IsDictionary )
@@ -614,9 +608,11 @@ namespace LitJson
                             if ( converter != null )
                             {
                                 property = converter.ConvertFromString( ( string )property );
-                                t_data.ElementType = dicTypes[ 1 ];
+                                //对于有自定义类当值的字典类型，需要通过CLRType才能获取到对应的类名
+                                t_data.ElementType = dicTypes[ 1 ].FullName == "ILRuntime.Runtime.Intepreter.ILTypeInstance" ? ( ( ILRuntime.Reflection.ILRuntimeWrapperType )value_type ).CLRType.GenericArguments[1].Value.ReflectionType : dicTypes[ 1 ];
                             }
                         }
+
                         var readValue = ReadValue( t_data.ElementType, reader );
                         var checkedCLRType = rt.CheckCLRTypes( readValue );
                         dict.Add( property, checkedCLRType );

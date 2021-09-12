@@ -156,22 +156,25 @@
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            <param name="dontEscape">若包含中文字符，设为true</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            /// <param name="dontEscape">若包含中文字符，设为true</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+            /// <param name="dontEscape">若包含中文字符，设为true</param>
             <returns></returns>
         </member>
         <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">

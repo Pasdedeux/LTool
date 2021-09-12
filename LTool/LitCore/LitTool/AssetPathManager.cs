@@ -41,6 +41,7 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+        /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
         public string GetPersistentDataPath( string filePath, bool useUri = true , bool dontEscape = false )
         {
@@ -55,10 +56,11 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+        /// /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
-        public string GetStreamAssetDataPath(string filePath, bool useUri = true )
+        public string GetStreamAssetDataPath(string filePath, bool useUri = true, bool dontEscape = false )
         {
-            Uri uri = new Uri( Application.streamingAssetsPath +"/"+ filePath );
+            Uri uri = new Uri( Application.streamingAssetsPath +"/"+ filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
             return _tmpPath.Replace( "%20", " " );
         }
@@ -69,10 +71,11 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="filePath">要加载的文件名</param>
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
+        /// /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
-        public string GetTemporaryCachePath( string filePath, bool useUri = true )
+        public string GetTemporaryCachePath( string filePath, bool useUri = true, bool dontEscape = false )
         {
-            Uri uri = new Uri( Application.temporaryCachePath + "/" + filePath );
+            Uri uri = new Uri( Application.temporaryCachePath + "/" + filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
             return _tmpPath.Replace( "%20", " " );
         }

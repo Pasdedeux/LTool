@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /Output
+/Output/LitFramework.xml
+/Output/LitFramework.dll

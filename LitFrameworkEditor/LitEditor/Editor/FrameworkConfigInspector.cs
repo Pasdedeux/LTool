@@ -37,7 +37,28 @@ public class FrameworkConfigInspector : Editor
 
         _config.renderingType = ( LitRenderingType )EditorGUILayout.EnumPopup( "Rendering Type: ", _config.renderingType );
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
-        _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
+        
+        EditorGUILayout.Space();
+        _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
+
+        EditorGUILayout.Space();
+        _foldGameSetting = EditorGUILayout.Foldout( _foldGameSetting, "项目环境设定" );
+        if ( _foldGameSetting )
+        {
+            _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
+            _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
+            _config.UseHotFixMode = EditorGUILayout.Toggle( "UI使用热更制作模式", _config.UseHotFixMode );
+            _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
+            _config.UsePersistantPath = EditorGUILayout.Toggle( "使用读写目录", _config.UsePersistantPath );
+            if ( _config.UsePersistantPath )
+            {
+                _config.UseRemotePersistantPath = EditorGUILayout.Toggle( "使用远程更新", _config.UseRemotePersistantPath );
+                if ( _config.UseRemotePersistantPath )
+                {
+                    _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
+                }
+            }
+        }
 
         EditorGUILayout.Space();
 
@@ -51,6 +72,7 @@ public class FrameworkConfigInspector : Editor
 
             EditorGUILayout.Space();
         }
+        EditorGUILayout.Space();
 
         _folaOutEditor = EditorGUILayout.Foldout( _folaOutEditor, "编辑器设定" );
         if ( _folaOutEditor )
@@ -74,25 +96,9 @@ public class FrameworkConfigInspector : Editor
         }
 
         EditorGUILayout.Space();
-        _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
-        _config.UsePersistantPath = EditorGUILayout.Toggle( "使用读写目录", _config.UsePersistantPath );
-        if ( _config.UsePersistantPath )
-        {
-            _config.UseRemotePersistantPath = EditorGUILayout.Toggle( "使用远程更新", _config.UseRemotePersistantPath );
-            if ( _config.UseRemotePersistantPath )
-            {
-                _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
-            }
-        }
+        
 
         EditorGUILayout.Space();
-        _foldGameSetting = EditorGUILayout.Foldout( _foldGameSetting, "项目通用设定" );
-        if ( _foldGameSetting )
-        {
-            _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
-            _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
-            _config.UseHotFixMode =EditorGUILayout.Toggle( "UI使用热更制作模式", _config.UseHotFixMode );
-        }
 
         EditorGUILayout.EndVertical();
     }

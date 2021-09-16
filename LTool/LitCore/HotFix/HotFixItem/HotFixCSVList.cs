@@ -49,8 +49,9 @@ namespace Assets.Scripts.Module.HotFix
                 DocumentAccessor.LoadAsset( localPath, ( string e ) =>
                 csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ) );
 
-                foreach ( var item in csvKeys )
+                for ( int i = 1; i < csvKeys.Length; i++ )
                 {
+                    string item = csvKeys[i].Split( ',' )[ 0 ];
                     if ( !DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ) )
                     {
                         DocumentAccessor.LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( item ), ( UnityWebRequest e ) =>

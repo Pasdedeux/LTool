@@ -90,7 +90,7 @@ namespace LitFrameworkEditor.EditorExtended
                         Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
                         //listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                         string str = "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv";
-                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] ), Version = 1 } ); 
+                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" ), Version = 1 } );
                     }
                     else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
                     {
@@ -109,7 +109,7 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     if ( item.Equals( "csv" ) ) continue;
 
-                    GetFiles( new DirectoryInfo( streampath ), item , _csvListToBeRestored );
+                    GetFiles( new DirectoryInfo( streampath ), item, _csvListToBeRestored );
                 }
             }
             catch ( Exception e ) { Debug.LogError( e.Message ); }
@@ -134,17 +134,20 @@ namespace LitFrameworkEditor.EditorExtended
         private static void MatchCSVTotalFile( List<ABVersion> csvListToBeRestored )
         {
             string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
-            FileStream fs = new FileStream( listpath, FileMode.Create );
-            StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding( false ) );
-            listwriter.WriteLine( _csvListTitle );
+            FileStream fs;
+            StreamWriter listwriter;
 
-            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" ) ) )
+            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt", false ) ) )
             {
                 //本地主配置文件获取
                 string localContent = null;
-                string localFilePath = AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt", false );
-                DocumentAccessor.LoadAsset( localFilePath, ( string e ) => { localContent = e; } );
+                string localFilePath = AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" );
+                DocumentAccessor.LoadAsset( localFilePath, ( e ) => { localContent = e; } );
                 List<ABVersion> localABVersionsDic = ResolveABContent( localContent );
+
+                fs = new FileStream( listpath, FileMode.Create );
+                listwriter = new StreamWriter( fs, new UTF8Encoding( false ) );
+                listwriter.WriteLine( _csvListTitle );
 
                 for ( int i = 0; i < csvListToBeRestored.Count; i++ )
                 {
@@ -162,9 +165,13 @@ namespace LitFrameworkEditor.EditorExtended
             }
             else
             {
+                fs = new FileStream( listpath, FileMode.Create );
+                listwriter = new StreamWriter( fs, new UTF8Encoding( false ) );
+                listwriter.WriteLine( _csvListTitle );
+
                 for ( int i = 0; i < csvListToBeRestored.Count; i++ )
                 {
-                    listwriter.WriteLine( string.Format( _csvContentValue , csvListToBeRestored[i].AbName, csvListToBeRestored[ i ].Version, csvListToBeRestored[ i ].MD5 ) );
+                    listwriter.WriteLine( string.Format( _csvContentValue, csvListToBeRestored[ i ].AbName, csvListToBeRestored[ i ].Version, csvListToBeRestored[ i ].MD5 ) );
                 }
             }
             listwriter.Close();
@@ -252,7 +259,7 @@ namespace LitFrameworkEditor.EditorExtended
                         cnt.configsNameList.Add( NextFile.Name.Split( '.' )[ 0 ], reader.GetData( 0, 2 ) );
                         //listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
                         string str = "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv";
-                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] ), Version = 1 } );
+                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" ), Version = 1 } );
                     }
                     else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
                     {
@@ -276,7 +283,7 @@ namespace LitFrameworkEditor.EditorExtended
 
                 //============更新并保存CS============//
                 ConfigsParse rpp = new ConfigsParse();
-                
+
                 if ( !FrameworkConfig.Instance.UseHotFixMode )
                     EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
                 else
@@ -311,7 +318,7 @@ namespace LitFrameworkEditor.EditorExtended
             path += className;
 
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
             sw.Write( cs );
             sw.Close();
             sw.Dispose();
@@ -321,7 +328,7 @@ namespace LitFrameworkEditor.EditorExtended
         static void CreateCSVFile( string path, string data )
         {
             FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding(false) );
+            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( true ) );
             sw.Write( data );
             sw.Close();
             sw.Dispose();
@@ -530,7 +537,7 @@ namespace LitFrameworkEditor.EditorExtended
                 }
                 foreach ( DirectoryInfo info in directory.GetDirectories() )//获取文件夹下的子文件夹
                 {
-                    GetFiles( info, pattern , listwriter );//递归调用该函数，获取子文件夹下的文件
+                    GetFiles( info, pattern, listwriter );//递归调用该函数，获取子文件夹下的文件
                 }
             }
         }

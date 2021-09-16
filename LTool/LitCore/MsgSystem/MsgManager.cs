@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 /// <summary>
 /// 事件管理器
 /// 
-/// id内部采用ushort类型，参数采用枚举类型
+/// 值为ushort类型：参数采用枚举类型。为防止枚举值重复，枚举类需要头部包含上一个类
 /// </summary>
 public class MsgManager : Singleton<MsgManager>
 {

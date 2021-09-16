@@ -107,26 +107,57 @@ namespace Assets.Scripts.Module.HotFix
                 DocumentAccessor.LoadAsset( localFilePath, ( string e ) => { localContent = e; } );
 
 
-                //本地配置表默认全更新。
-                string[] str = remoteContent.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
-                string[] localFileContent = localContent.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
-                var toDelete = localFileContent.Where( a => !str.Contains( a ) );
+                ////本地配置表默认全更新。
+                //string[] str = remoteContent.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
+                //string[] localFileContent = localContent.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
+                //var toDelete = localFileContent.Where( a => !str.Contains( a ) );
 
+                //foreach ( var item in toDelete )
+                //{
+                //    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( item, false ) );
+                //    if ( fileInfo.Exists ) fileInfo.Delete();
+                //    LDebug.Log( ">>>Delete " + item, LogColor.red );
+                //    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ), LogColor.red );
+                //}
+
+                //for ( int w = 0; w < str.Length; w++ )
+                //{
+                //    LDebug.Log( "Remote update..." + str[ w ] + "开始读取" );
+                //    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + str[ w ], ( UnityWebRequest e ) =>
+                //    {
+                //        LDebug.Log( "Remote update..." + str[ w ] + "读取完成", LogColor.yellow );
+                //        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( str[ w ], false ), e.downloadHandler.data );
+                //    } );
+                //}
+
+                ////更新文档
+                //DocumentAccessor.SaveAsset2LocalFile( localFilePath, contentByteArr );
+                //LDebug.Log( "检测更新完成：" + CONFIG_NAME );
+
+                //本地配置表默认增量更新。修改为增量更新后，后续的逻辑跟HOTFIXAB是一样的
+                Dictionary<string, ABVersion> remoteABVersionsDic = ResolveABContent( remoteContent );
+                Dictionary<string, ABVersion> localABVersionsDic = ResolveABContent( localContent );
+
+                //需要删除的对象
+                var toDelete = localABVersionsDic.Where( a => !remoteABVersionsDic.ContainsKey( a.Key ) );
                 foreach ( var item in toDelete )
                 {
-                    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( item, false ) );
+                    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ) );
                     if ( fileInfo.Exists ) fileInfo.Delete();
-                    LDebug.Log( ">>>Delete " + item, LogColor.red );
-                    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ), LogColor.red );
+                    LDebug.Log( ">>>Delete " + item.Key, LogColor.red );
+                    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ) ), LogColor.red );
                 }
 
-                for ( int w = 0; w < str.Length; w++ )
+                //需要更新的对象：可以根据需求拓展对version的使用规则。
+                //默认是更新版本号更高或者新增加的对象。
+                var toUpdate = remoteABVersionsDic.Where( a => !localABVersionsDic.ContainsKey( a.Key ) || a.Value.Version > localABVersionsDic[ a.Key ].Version );
+                foreach ( var item in toUpdate )
                 {
-                    LDebug.Log( "Remote update..." + str[ w ] + "开始读取" );
-                    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + str[ w ], ( UnityWebRequest e ) =>
+                    LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + FrameworkConfig.Instance.ABFolderName + "/" + item.Key + " 开始读取" );
+                    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + FrameworkConfig.Instance.ABFolderName + "/" + item.Key, ( UnityWebRequest e ) =>
                     {
-                        LDebug.Log( "Remote update..." + str[ w ] + "读取完成", LogColor.yellow );
-                        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( str[ w ], false ), e.downloadHandler.data );
+                        LDebug.Log( "Remote update..." + item.Key + "读取完成", LogColor.yellow );
+                        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ), e.downloadHandler.data );
                     } );
                 }
 
@@ -134,6 +165,33 @@ namespace Assets.Scripts.Module.HotFix
                 DocumentAccessor.SaveAsset2LocalFile( localFilePath, contentByteArr );
                 LDebug.Log( "检测更新完成：" + CONFIG_NAME );
             }
+        }
+
+        //解析ABVersion配置表
+        private Dictionary<string, ABVersion> ResolveABContent( string contentResolve )
+        {
+            Dictionary<string, ABVersion> resultDict = new Dictionary<string, ABVersion>();
+
+            string[] str = contentResolve.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
+            int toLoadNum = str.Length;
+
+            for ( int k = 1; k < str.Length; k++ )
+            {
+                string line = str[ k ];
+                if ( line != "" )
+                {
+                    string[] content = line.Split( ',' );
+                    ABVersion ab = new ABVersion
+                    {
+                        AbName = content[ 0 ],
+                        Version = int.Parse( content[ 1 ] ),
+                        MD5 = content[ 2 ].Trim()
+                    };
+                    resultDict.Add( content[ 0 ], ab );
+                }
+            }
+
+            return resultDict;
         }
     }
 }

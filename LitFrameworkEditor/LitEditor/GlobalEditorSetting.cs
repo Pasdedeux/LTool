@@ -45,6 +45,7 @@ public class GlobalEditorSetting
 }
 
 
+#region UI/Sound文本模板
 
 #region 模板类
 /// <summary>
@@ -147,4 +148,17 @@ class ConfigsNamesTemplate
 {
     public Dictionary<string, string> configsNameList = new Dictionary<string, string>();
 }
+#endregion
+
+#endregion
+
+#region CSV/AB配置登记档
+
+public class ABVersion
+{
+    public string AbName;
+    public int Version;
+    public string MD5;
+}
+
 #endregion

@@ -73,8 +73,8 @@ namespace Assets.Scripts.Module.HotFix
 
             do
             {
-                IHotFix toHotFix = hotFixList.Dequeue();
-                yield return toHotFix.DoHotFix();
+                yield return hotFixList.Peek().DoHotFix();
+                hotFixList.Dequeue();
             } while ( hotFixList.Count > 0 );
 
             MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );

@@ -45,7 +45,6 @@ public class FrameworkConfigInspector : Editor
         _foldGameSetting = EditorGUILayout.Foldout( _foldGameSetting, "项目环境设定" );
         if ( _foldGameSetting )
         {
-            _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
             _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
             _config.UseHotFixMode = EditorGUILayout.Toggle( "UI使用热更制作模式", _config.UseHotFixMode );
             _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
@@ -58,6 +57,7 @@ public class FrameworkConfigInspector : Editor
                     _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
                 }
             }
+            _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
         }
 
         EditorGUILayout.Space();

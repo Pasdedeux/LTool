@@ -43,7 +43,7 @@ namespace LitFramework.LitTool
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
-        public string GetPersistentDataPath( string filePath, bool useUri = true , bool dontEscape = false )
+        public string GetPersistentDataPath( string filePath, bool useUri = true , bool dontEscape = true )
         {
             Uri uri = new Uri( Application.persistentDataPath + "/" + filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
@@ -58,7 +58,7 @@ namespace LitFramework.LitTool
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
-        public string GetStreamAssetDataPath(string filePath, bool useUri = true, bool dontEscape = false )
+        public string GetStreamAssetDataPath(string filePath, bool useUri = true, bool dontEscape = true )
         {
             Uri uri = new Uri( Application.streamingAssetsPath +"/"+ filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;
@@ -73,7 +73,7 @@ namespace LitFramework.LitTool
         /// <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
         /// /// <param name="dontEscape">若包含中文字符，设为true</param>
         /// <returns></returns>
-        public string GetTemporaryCachePath( string filePath, bool useUri = true, bool dontEscape = false )
+        public string GetTemporaryCachePath( string filePath, bool useUri = true, bool dontEscape = true )
         {
             Uri uri = new Uri( Application.temporaryCachePath + "/" + filePath, dontEscape );
             _tmpPath = useUri ? uri.AbsoluteUri : uri.AbsolutePath;

@@ -246,7 +246,7 @@ namespace PathologicalGames
             PoolManager.Pools.Add( this );
         }
 
-        public virtual void LoadSpawnConfig() { }
+        public virtual void LoadSpawnConfig(  bool isHotFix = false ) { }
 
         /// <summary>
         /// Runs when this group GameObject is destroyed and executes clean-up

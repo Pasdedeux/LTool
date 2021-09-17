@@ -376,7 +376,7 @@ namespace LitFramework.LitTool
                     }
                     else if ( uwr.downloadProgress == 1 )
                     {
-                        LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                        LDebug.Log( " >Load data : \n" + uwr.downloadHandler.text );
                         callBack?.Invoke( uwr.downloadHandler.text );
                         return;
                     }

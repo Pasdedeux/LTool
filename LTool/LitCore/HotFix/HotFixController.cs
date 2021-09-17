@@ -30,17 +30,21 @@ namespace Assets.Scripts.Module.HotFix
     /// 热更模块
     /// 
     /// 完成美术资源、配置档及代码迁移+热更流程
+    /// <para>三者进行在线更新时，如果遇到任何错误将会阻断后续本模块更新，其它模块继续，并且不会使加载过程予以结束</para>
     /// 
     /// 热更流程说明：<see href="https://www.processon.com/view/link/61013cd4637689719d2d8166">流程图</see>
     /// </summary>
     public class HotFixController : Singleton<HotFixController>
     {
+        private bool _acountError = false;
         /// <summary>
         /// 执行文件迁移+文件热更
         /// </summary>
         /// <param name="hotFixesQueue"></param>
         public void Excecute( Queue<IHotFix> hotFixesQueue )
         {
+            MsgManager.Instance.Register( InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError );
+
             //是否使用可读写目录
             if ( FrameworkConfig.Instance.UsePersistantPath )
             {
@@ -51,6 +55,7 @@ namespace Assets.Scripts.Module.HotFix
             }
             else MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG );
         }
+
 
         private void StartHotFix( Queue<IHotFix> hotFixesQueue )
         {
@@ -77,18 +82,14 @@ namespace Assets.Scripts.Module.HotFix
                 hotFixList.Dequeue();
             } while ( hotFixList.Count > 0 );
 
-            MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
+            if ( !_acountError )
+                MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
         }
 
-    }
-
-    /// <summary>
-    /// csv资源文件内容
-    /// </summary>
-    public class ABVersion
-    {
-        public string AbName;
-        public int Version;
-        public string MD5;
+        private void OnReceiveError( MsgArgs obj )
+        {
+            _acountError = true;
+            MsgManager.Instance.UnRegister( InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError );
+        }
     }
 }

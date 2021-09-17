@@ -30,6 +30,8 @@ namespace Assets.Scripts.Module.HotFix
 {
     public class HotfixLogic : IHotFix
     {
+        //版本总表
+        private const string CONFIG_VERSION = "dllverion.bin";
         //Dll热更工程库
         private const string CONFIG_NAME = "LHotfixProject.dll";
         //Dll热更工程调试库
@@ -37,6 +39,12 @@ namespace Assets.Scripts.Module.HotFix
 
         public void DoFilesMovement()
         {
+            //版本总表
+            if ( !DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_VERSION, false ) ) )
+            {
+                DocumentAccessor.LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( CONFIG_VERSION ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_VERSION, false ), e.downloadHandler.data ) );
+            }
+
             //Dll热更工程库
             if ( !DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_NAME, false ) ) )
             {
@@ -46,33 +54,33 @@ namespace Assets.Scripts.Module.HotFix
             //Dll热更工程调试库
             if ( !DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_NAME_PDB, false ) ) )
             {
-                if( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( CONFIG_NAME_PDB, false ) ) )
+                if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( CONFIG_NAME_PDB, false ) ) )
                     DocumentAccessor.LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( CONFIG_NAME_PDB ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_NAME_PDB, false ), e.downloadHandler.data ) );
             }
         }
 
         public IEnumerator DoHotFix()
         {
-            //1、下载最新的资源配置信息
+            //下载总表进行匹配更新
             bool canGoFurther = true;
             string localContent = null;
-
-            //================DLL 运行库================//
-            string remoteFilePath = CONFIG_NAME;
+            string wrongFileName = string.Empty;
+            string remoteFilePath = CONFIG_VERSION;
+            string localFilePath = AssetPathManager.Instance.GetPersistentDataPath( remoteFilePath, false );
             //发送下载XX文件事件
             MsgManager.Instance.Broadcast( InternalEvent.HANDLING_REMOTE_RES, new MsgArgs( remoteFilePath, InternalEvent.RemoteStatus.Download ) );
 
-            string localFilePath = AssetPathManager.Instance.GetPersistentDataPath( remoteFilePath, false );
-            //2、根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
+            //根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
             if ( DocumentAccessor.IsExists( localFilePath ) )
             {
                 string remoteContent = null;
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
+                LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow );
                 yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: ( UnityWebRequest e ) =>
                 {
-                    LDebug.Log( "Remote update..." + remoteFilePath + "读取完成" );
+                    LDebug.Log( "Remote update..." + remoteFilePath + "读取完成", LogColor.yellow );
                     remoteContent = e.downloadHandler.text;
                     contentByteArr = e.downloadHandler.data;
                 },
@@ -82,10 +90,60 @@ namespace Assets.Scripts.Module.HotFix
                     if ( !string.IsNullOrEmpty( e.error ) ) { canGoFurther = false; return; }
                 } );
 
-                //因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
+                // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
                 if ( !canGoFurther )
                 {
-                    MsgManager.Instance.Broadcast( InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs( remoteContent, remoteFilePath ) );
+                    LDebug.LogError( "Remote Update Abort..." + wrongFileName + " : " + remoteFilePath );
+                    MsgManager.Instance.Broadcast( InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs( remoteContent, remoteFilePath, wrongFileName ) );
+                    yield break;
+                }
+
+                //本地主配置文件获取
+                DocumentAccessor.LoadAsset( localFilePath, ( string e ) => { localContent = e; } );
+
+                var remoteVersion = remoteContent.Split( '=' )[ 1 ];
+                var localVersion = localContent.Split( '=' )[ 1 ];
+                if ( remoteVersion != localVersion )
+                {
+                    //更新文档
+                    DocumentAccessor.SaveAsset2LocalFile( localFilePath, contentByteArr );
+                }
+                else yield break;
+            }
+            else yield break;
+
+            //1、下载最新的资源配置信息
+            //================DLL 运行库================//
+            remoteFilePath = CONFIG_NAME;
+            //发送下载XX文件事件
+            MsgManager.Instance.Broadcast( InternalEvent.HANDLING_REMOTE_RES, new MsgArgs( remoteFilePath, InternalEvent.RemoteStatus.Download ) );
+
+            localFilePath = AssetPathManager.Instance.GetPersistentDataPath( remoteFilePath, false );
+            //2、根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
+            if ( DocumentAccessor.IsExists( localFilePath ) )
+            {
+                string remoteContent = null;
+                byte[] contentByteArr = null;
+
+                //远程主配置文件获取
+                LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow );
+                yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: ( UnityWebRequest e ) =>
+                {
+                    LDebug.Log( "Remote update..." + remoteFilePath + "读取完成", LogColor.yellow );
+                    remoteContent = e.downloadHandler.text;
+                    contentByteArr = e.downloadHandler.data;
+                },
+                errorCallBack: ( UnityWebRequest e ) =>
+                {
+                    LDebug.LogError( "Remote Error..." + e + ": " + remoteFilePath );
+                    if ( !string.IsNullOrEmpty( e.error ) ) { canGoFurther = false; return; }
+                } );
+
+                // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
+                if ( !canGoFurther )
+                {
+                    LDebug.LogError( "Remote Update Abort..." + wrongFileName + " : " + remoteFilePath );
+                    MsgManager.Instance.Broadcast( InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs( remoteContent, remoteFilePath, wrongFileName ) );
                     yield break;
                 }
 
@@ -102,6 +160,10 @@ namespace Assets.Scripts.Module.HotFix
 
             remoteFilePath = CONFIG_NAME_PDB;
             localFilePath = AssetPathManager.Instance.GetPersistentDataPath( remoteFilePath, false );
+
+            //发送下载XX文件事件
+            MsgManager.Instance.Broadcast( InternalEvent.HANDLING_REMOTE_RES, new MsgArgs( remoteFilePath, InternalEvent.RemoteStatus.Download ) );
+
             //2、根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
             if ( DocumentAccessor.IsExists( localFilePath ) )
             {
@@ -109,22 +171,24 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
+                LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow );
                 yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: ( UnityWebRequest e ) =>
                 {
-                    LDebug.Log( "Remote update..." + remoteFilePath + "读取完成" );
+                    LDebug.Log( "Remote update..." + remoteFilePath + "读取完成", LogColor.yellow );
                     remoteContent = e.downloadHandler.text;
                     contentByteArr = e.downloadHandler.data;
                 },
                 errorCallBack: ( UnityWebRequest e ) =>
                 {
-                    LDebug.LogError( "Remote Error..." + e + ": "+ remoteFilePath );
+                    LDebug.LogError( "Remote Error..." + e + ": " + remoteFilePath );
                     if ( !string.IsNullOrEmpty( e.error ) ) { canGoFurther = false; return; }
                 } );
 
-                //因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
+                // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
                 if ( !canGoFurther )
                 {
-                    MsgManager.Instance.Broadcast( InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs( remoteContent, remoteFilePath ) );
+                    LDebug.LogError( "Remote Update Abort..." + wrongFileName + " : " + remoteFilePath );
+                    MsgManager.Instance.Broadcast( InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs( remoteContent, remoteFilePath, wrongFileName ) );
                     yield break;
                 }
 

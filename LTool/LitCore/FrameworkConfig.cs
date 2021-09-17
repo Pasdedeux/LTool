@@ -138,4 +138,15 @@ namespace LitFramework
         DotNet,
         ILRuntime,
     }
+
+
+    /// <summary>
+    /// csv资源文件内容
+    /// </summary>
+    public class ABVersion
+    {
+        public string AbName;
+        public int Version;
+        public string MD5;
+    }
 }

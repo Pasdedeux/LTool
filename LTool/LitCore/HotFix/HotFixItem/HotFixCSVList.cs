@@ -143,10 +143,10 @@ namespace Assets.Scripts.Module.HotFix
                 var toDelete = localABVersionsDic.Where( a => !remoteABVersionsDic.ContainsKey( a.Key ) );
                 foreach ( var item in toDelete )
                 {
-                    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ) );
+                    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( item.Key, false ) );
                     if ( fileInfo.Exists ) fileInfo.Delete();
                     LDebug.Log( ">>>Delete " + item.Key, LogColor.red );
-                    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ) ), LogColor.red );
+                    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item.Key, false ) ), LogColor.red );
                 }
 
                 //需要更新的对象：可以根据需求拓展对version的使用规则。
@@ -154,11 +154,11 @@ namespace Assets.Scripts.Module.HotFix
                 var toUpdate = remoteABVersionsDic.Where( a => !localABVersionsDic.ContainsKey( a.Key ) || a.Value.Version > localABVersionsDic[ a.Key ].Version );
                 foreach ( var item in toUpdate )
                 {
-                    LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + FrameworkConfig.Instance.ABFolderName + "/" + item.Key + " 开始读取" );
-                    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + FrameworkConfig.Instance.ABFolderName + "/" + item.Key, ( UnityWebRequest e ) =>
+                    LDebug.Log( "Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key + " 开始读取" );
+                    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key, ( UnityWebRequest e ) =>
                     {
                         LDebug.Log( "Remote update..." + item.Key + "读取完成", LogColor.yellow );
-                        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( FrameworkConfig.Instance.ABFolderName + "/" + item.Key, false ), e.downloadHandler.data );
+                        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( item.Key, false ), e.downloadHandler.data );
                     } );
                 }
 

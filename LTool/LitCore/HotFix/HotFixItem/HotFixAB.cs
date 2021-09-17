@@ -32,6 +32,8 @@ namespace Assets.Scripts.Module.HotFix
     {
         //AB配置档
         private const string CONFIG_NAME = "ABVersion.csv";
+        //AB路径配置档
+        private const string CONFIG_AB_PATH = "ABPath.csv";
 
         public void DoFilesMovement()
         {
@@ -58,6 +60,11 @@ namespace Assets.Scripts.Module.HotFix
                         } );
                     }
                 }
+            }
+            //ABPath路径配置表
+            if ( !DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_AB_PATH, false ) ) )
+            {
+                DocumentAccessor.LoadAsset( AssetPathManager.Instance.GetStreamAssetDataPath( CONFIG_AB_PATH ), ( UnityWebRequest e ) => DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( CONFIG_AB_PATH, false ), e.downloadHandler.data ) );
             }
         }
 

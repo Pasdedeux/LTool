@@ -39,7 +39,9 @@ public class FrameworkConfigInspector : Editor
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
         
         EditorGUILayout.Space();
+
         _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
+        _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
 
         EditorGUILayout.Space();
         _foldGameSetting = EditorGUILayout.Foldout( _foldGameSetting, "项目环境设定" );
@@ -57,7 +59,6 @@ public class FrameworkConfigInspector : Editor
                     _config.RemoteUrlConfig = EditorGUILayout.TextField( "远程配置地址", _config.RemoteUrlConfig );
                 }
             }
-            _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
         }
 
         EditorGUILayout.Space();

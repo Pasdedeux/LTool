@@ -44,7 +44,7 @@ namespace LitFramework
                         //这里会先触发继承类Awake()方法
                         _instance = gObj.AddComponent( typeof( T ) ) as T;
 
-                        //DontDestroyOnLoad( gObj );
+                        DontDestroyOnLoad( gObj );
                     }
                 }
 

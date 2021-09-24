@@ -277,12 +277,6 @@ public class AdapterMopub : BaseAdAdapter
 #endif
     }
 
-    public override bool IsSdkInitialized()
-    {
-        //TODO 接的时候再重新弄
-        return true;
-    }
-
 
 #if MOPUB
     //banner读取成功
@@ -431,6 +425,7 @@ public class AdapterMopub : BaseAdAdapter
     {
         LDebug.Log("激励视频跳转其他应用,id:" + adUnitId);
     }
+#endif
 
     public override bool IsSdkInitialized()
     {
@@ -440,6 +435,5 @@ public class AdapterMopub : BaseAdAdapter
         return false;
 #endif
     }
-#endif
 
 }

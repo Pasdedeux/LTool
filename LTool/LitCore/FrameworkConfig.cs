@@ -97,7 +97,7 @@ namespace LitFramework
         public bool UsePersistantPath = false;
         [Header( "开启远程更新" )]
         public bool UseRemotePersistantPath = false;
-        [Header("远程配置参数文件")]
+        [Header("远程配置参数文件(带上/)")]
         public string RemoteUrlConfig = "http://192.168.1.102/";
 
         #endregion

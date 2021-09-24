@@ -48,7 +48,7 @@ public class FrameworkConfigInspector : Editor
         if ( _foldGameSetting )
         {
             _config.scriptEnvironment = ( RunEnvironment )EditorGUILayout.EnumPopup( "代码运行环境: ", _config.scriptEnvironment );
-            _config.UseHotFixMode = EditorGUILayout.Toggle( "UI使用热更制作模式", _config.UseHotFixMode );
+            _config.UseHotFixMode = EditorGUILayout.Toggle( "UI使用热更制作(读取路径)", _config.UseHotFixMode );
             _config.configs_suffix = EditorGUILayout.TextField( "录入的配置档后缀", _config.configs_suffix );
             _config.UsePersistantPath = EditorGUILayout.Toggle( "使用读写目录", _config.UsePersistantPath );
             if ( _config.UsePersistantPath )

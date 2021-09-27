@@ -60,6 +60,12 @@ namespace LitFramework
         [Header( "URP项目" )]
         public LitRenderingType renderingType = LitRenderingType.Internal;
 
+        /// <summary>
+        /// 当前项目资源加载方式
+        /// </summary>
+        [Header( "资源加载方式" )]
+        public ResLoadType resLoadType = ResLoadType.Resource;
+
         #endregion
 
         #region UI设置
@@ -137,6 +143,12 @@ namespace LitFramework
     {
         DotNet,
         ILRuntime,
+    }
+
+    public enum ResLoadType
+    {
+        Resource,
+        AssetBundle,
     }
 
 

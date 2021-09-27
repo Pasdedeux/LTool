@@ -36,6 +36,7 @@ public class FrameworkConfigInspector : Editor
         EditorGUILayout.BeginVertical();
 
         _config.renderingType = ( LitRenderingType )EditorGUILayout.EnumPopup( "Rendering Type: ", _config.renderingType );
+        _config.resLoadType = ( ResLoadType )EditorGUILayout.EnumPopup( "ResLoad Type: ", _config.resLoadType );
         _config.TargetFrameRate = EditorGUILayout.IntField( "目标帧率", _config.TargetFrameRate );
         
         EditorGUILayout.Space();

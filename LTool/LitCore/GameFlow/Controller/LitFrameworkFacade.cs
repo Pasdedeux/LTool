@@ -71,7 +71,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         
         //操作控制器，默认Enbale=true
         InputControlManager.Instance.Install();
-
+        
         //零点计时器初始化
         ZeroTimeRecord.Instance.Install();
 

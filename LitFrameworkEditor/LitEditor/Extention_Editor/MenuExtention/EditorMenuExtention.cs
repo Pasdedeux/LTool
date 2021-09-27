@@ -248,6 +248,8 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     if ( Path.GetExtension( NextFile.Name ) == ".xlsx" )
                     {
+                        LDebug.Log( " >表处理 : " + NextFile.Name );
+
                         string csvfile = XLSXTOCSV( NextFile.OpenRead() );
                         CSVParser cp = new CSVParser();
                         CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );

@@ -16,6 +16,7 @@
 
 using LitFramework;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 /// <summary>
 /// FrameworkConfig
 /// </summary>
@@ -34,6 +35,8 @@ public class FrameworkConfigInspector : Editor
     {
         //设置整个界面是以垂直方向来布局
         EditorGUILayout.BeginVertical();
+
+        EditorGUI.BeginChangeCheck();
 
         _config.renderingType = ( LitRenderingType )EditorGUILayout.EnumPopup( "Rendering Type: ", _config.renderingType );
         _config.resLoadType = ( ResLoadType )EditorGUILayout.EnumPopup( "ResLoad Type: ", _config.resLoadType );
@@ -101,6 +104,10 @@ public class FrameworkConfigInspector : Editor
         
 
         EditorGUILayout.Space();
+
+
+        if ( EditorGUI.EndChangeCheck() )
+            EditorSceneManager.MarkAllScenesDirty();
 
         EditorGUILayout.EndVertical();
     }

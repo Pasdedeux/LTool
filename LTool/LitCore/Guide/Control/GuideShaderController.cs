@@ -1,6 +1,6 @@
 ﻿using LitFramework;
 using LitFramework.Base;
-using LitFramework.InputSystem;
+using LitFramework.InputSystemSp;
 using LitFramework.LitTool;
 using System;
 using System.Collections;

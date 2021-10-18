@@ -83,6 +83,8 @@ public class MsgManager : Singleton<MsgManager>
         ushort idCode = id.ToUInt16( null );
         if ( !_internalMsgDict.ContainsKey( idCode ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgDict[ idCode ].Invoke( msg );
+        msg?.Dispose();
+        msg = null;
     }
 
     #endregion
@@ -123,6 +125,8 @@ public class MsgManager : Singleton<MsgManager>
     {
         if ( !_internalMsgDict.ContainsKey( id ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgDict[ id ].Invoke( msg );
+        msg?.Dispose();
+        msg = null;
     }
     #endregion
 
@@ -162,6 +166,8 @@ public class MsgManager : Singleton<MsgManager>
     {
         if ( !_internalMsgTempleDict.ContainsKey( id ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgTempleDict[ id ].Invoke( msg );
+        msg?.Dispose();
+        msg = null;
     }
     #endregion
 }
@@ -170,7 +176,7 @@ public class MsgManager : Singleton<MsgManager>
 /// <summary>
 /// 消息参数体。
 /// </summary>
-public class MsgArgs
+public class MsgArgs:IDisposable
 {
     //考虑导复合类型的参数传递，这里牺牲了一定了性能
     public object[] args;
@@ -178,6 +184,13 @@ public class MsgArgs
     public MsgArgs( params object[] rArgs )
     {
         args = rArgs;
+    }
+
+    public void Dispose()
+    {
+        //for (int i = 0; i < args.Length; i++)
+        //    args[i] = null;
+        args = null;
     }
 
     public T Get<T>( int nIndex )

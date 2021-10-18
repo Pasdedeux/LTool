@@ -29,7 +29,7 @@ using System.Linq;
 using Assets.Scripts;
 using LitFramework;
 using LitFramework.Base;
-using LitFramework.InputSystem;
+using LitFramework.InputSystemSp;
 using LitFramework.Mono;
 using UnityEngine;
 

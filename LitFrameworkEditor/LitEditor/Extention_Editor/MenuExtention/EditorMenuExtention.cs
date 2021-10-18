@@ -83,9 +83,9 @@ namespace LitFrameworkEditor.EditorExtended
                 //对文件进行遍历
                 foreach ( var NextFile in TheFolder.GetFiles() )
                 {
-                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx" )
+                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx"&&!NextFile.Name.StartsWith("~$"))
                     {
-                        string csvfile = XLSXTOCSV( NextFile.OpenRead() );
+                        string csvfile = XLSXTOCSV( NextFile.Open(FileMode.Open, FileAccess.Read,FileShare.ReadWrite) );
                         CreateCSVFile( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
                         Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
                         //listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
@@ -246,11 +246,11 @@ namespace LitFrameworkEditor.EditorExtended
                 //对文件进行遍历
                 foreach ( var NextFile in theXMLFolder.GetFiles() )
                 {
-                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx" )
+                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx"&& !NextFile.Name.StartsWith("~$"))
                     {
                         LDebug.Log( " >表处理 : " + NextFile.Name );
-
-                        string csvfile = XLSXTOCSV( NextFile.OpenRead() );
+                        FileStream stream =  NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        string csvfile = XLSXTOCSV(stream);
                         CSVParser cp = new CSVParser();
                         CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
                         CreateCSVFile( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
@@ -351,7 +351,9 @@ namespace LitFrameworkEditor.EditorExtended
                 for ( int j = 0; j < result.Tables[ 0 ].Rows[ 0 ].ItemArray.Length; j++ )
                 {
                     if ( result.Tables[ 0 ].Rows[ 0 ].ItemArray[ j ].ToString() == "" )
+                    {
                         break;
+                    }
                     rowlen++;
                 }
 
@@ -364,7 +366,11 @@ namespace LitFrameworkEditor.EditorExtended
 
                     for ( int j = 0; j < rowlen; j++ )
                     {
-                        rowlist.Add( result.Tables[ 0 ].Rows[ i ].ItemArray[ j ] );
+                         if (result.Tables[0].Rows[0].ItemArray[j].ToString() != "备注")
+                        {
+                            rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
+                        }
+                       
                     }
                     writer.AddRow( rowlist.ToArray() );
 

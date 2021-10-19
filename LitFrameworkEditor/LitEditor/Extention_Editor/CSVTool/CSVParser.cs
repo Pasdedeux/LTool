@@ -97,7 +97,7 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     subtype = subtype.Substring( 3 );
                 }
-                CSString.Add( string.Format( "public {0} {1} {{ get; set; }}" , CheckDictType( subtype ) , _attribute[ i ] ) );
+                CSString.Add( string.Format( "public {0} {1} {{ get; private set; }}" , CheckDictType( subtype ) , _attribute[ i ] ) );
             }
             //添加方法
             //AddMethod( EnMethodType.List );

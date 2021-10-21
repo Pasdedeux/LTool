@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 129613821
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: fbx
+      Dependencies: {}
+    Info_1:
+      Name: font
+      Dependencies: {}

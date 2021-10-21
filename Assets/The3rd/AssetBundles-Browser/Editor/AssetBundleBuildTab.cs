@@ -410,7 +410,7 @@ namespace AssetBundleBrowser
         private static string _abResPath ;
 
         /// <summary>
-        /// 生成csv文件
+        /// 生成csv文件：通过记录版本号，以及MD5码，实现增量更新
         /// </summary>
         public static IEnumerator IEStartSendCSV( string outpuut )
         {

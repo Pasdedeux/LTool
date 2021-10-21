@@ -16,7 +16,6 @@ E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Release\HotfixProject.c
 E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Release\LHotfixProject.dll
 E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Release\LHotfixProject.pdb
 E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Release\HotfixProject.csproj.CopyComplete
-C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Release\HotfixProject.csproj.CopyComplete
 C:\Personal\Unity\iFunTech\xscrosstalk\UnityProject\Assets\StreamingAssets\LHotfixProject.dll
 C:\Personal\Unity\iFunTech\xscrosstalk\UnityProject\Assets\StreamingAssets\LHotfixProject.pdb
 C:\Personal\Unity\iFunTech\xscrosstalk\UnityProject\HotfixProject\obj\Release\HotfixProject.csproj.CoreCompileInputs.cache
@@ -36,4 +35,3 @@ E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\LHotfixProject.dll
 E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\LHotfixProject.pdb
 E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache
 C:\Personal\Unity\iFunTech\xscrosstalk\UnityProject\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache
-C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache

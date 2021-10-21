@@ -58,9 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlSelect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\PopupMenu.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\Parse\Parse.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Setting\UPRToolSetting.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtraRegister.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\Common_IEnumeratorAdapter.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenProShortcuts.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Linq_Enumerable_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TypingEffect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GSlider.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
@@ -69,28 +72,42 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIContentScaler.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ShapeHitTest.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\BaseUIAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GObjectAdapter.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Reporter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Int32_Binding.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GRootAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\IHtmlObject.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\PackageItem.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\TweenManager.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\Common\Utils.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\IHtmlPageContext.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\OverdrawMonitor\UPRCameraOverdrawMonitor.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\Common_ApplicationExceptionAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_SingletonMono_1_FrameworkConfig_Binding.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\MailGPUProfiler\HWCounters.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\CaptureCamera.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\NativeHelper.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTextFieldAdapter.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\ParticleSystemProfiler\ProfileManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\CompositeMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PolygonMesh.cs" />
     <Compile Include="Assets\Scripts\Essential\SDK\LitFrameworkAndroidPlugin.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\DotNetScriptCall.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventContext.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\RsLoadManager_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\RsCom\RsLoadAB.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\HitTestContext.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NAudioClip.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseType.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\Parse\LLex.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\GoWrapper.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\Configs.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\IManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\MeshColliderHitTest.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Common\Struct\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\UI\GUITest.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTree.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader.cs" />
@@ -99,17 +116,22 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RectMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\MovieClip.cs" />
     <Compile Include="Assets\Scripts\LoadingStart.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\JPEGEncoder.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlElement.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Common\Struct\List.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlLink.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearDisplay2.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearFontSize.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\IKeyboard.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLIterator.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Common\Setting\LuaDeepProfilerAssetSetting.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\CSVReader_Binding.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Single_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextField.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\Common_SerializedScriptableObjectAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTreeNode.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\LuaProfiler.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_AdapterRegister.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GImage.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Image.cs" />
@@ -119,11 +141,14 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\UpdateContext.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\URPCam.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\DisplayObject.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GGroupAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GGraph.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\QuaternionBinder.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearLook.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTweener.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GComboBoxAdapter.cs" />
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\JsonConfigData.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GComponent.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\TestReporter.cs" />
@@ -145,14 +170,21 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIPackage.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\Common_AdapterRegister.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\FillMesh.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GRichTextFieldAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\ChangePageAction.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIPainter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlParseOptions.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_WindowAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTreeAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\ScriptableLoader.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_String_Binding.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\Parse\Common.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLUtils.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GScrollBarAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\LDebug_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\IFilter.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\StageEngine.cs" />
@@ -162,8 +194,10 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextInput.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Relations.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLabelAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GGroup.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\RectHitTest.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GSliderAdapter.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtention.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\BlurFilter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TouchScreenKeyboard.cs" />
@@ -177,7 +211,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TextFormat.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\BitmapFont.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\IAnimationGear.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Bin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GComboBox.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTextInputAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\DragDropManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stage.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearDisplay.cs" />
@@ -185,6 +221,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\ScrollPane.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLList.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\Rotate.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLoader3DAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GGraphAdapter.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\Common\UPROpen.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIPanel.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\Singleton.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\MaterialManager.cs" />
@@ -193,33 +232,46 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NGraphics.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\ILRScriptCall.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\ZipManager.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_Singleton_1_RsLoadManager_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GProgressBarAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\SwipeGesture.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\UBBParser.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\OverdrawMonitor\UPROverdrawMonitor.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearIcon.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearXY.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\StageCamera.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\IUISource.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Transition.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GButtonAdapter.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\LuaDLL.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\LuaHookSetup.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\InnerPackageS.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\ReporterGUI.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Char_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearBase.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Shape.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GComponentAdapter.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GImageAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GRoot.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GMovieClip.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Common\Struct\Sample.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\LineMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\InputEvent.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\Spine\SpineLoader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\RTLSupport.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\ParticleSystemProfiler\ProfileResults.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\RsLoadManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\ColorFilter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearText.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\FontManager.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\ResPath.cs" />
     <Compile Include="Assets\Scripts\UI\UILoading.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\StraightLineMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ColliderHitTest.cs" />
@@ -232,9 +284,12 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GScrollBar.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\MeshFactory.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\PinchGesture.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\Vector3Binder.cs" />
     <Compile Include="Assets\Scripts\Essential\ResPool\ExtendSpawnPool.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\DebugAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\UnityEngine_Vector3_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Controller.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\CSV\SpawnConfig.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLabel.cs" />
     <Compile Include="Assets\Scripts\Essential\ResPath.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\ReporterMessageReceiver.cs" />
@@ -250,17 +305,24 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\EllipseMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\PlayTransitionAction.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\ShaderConfig.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\Driver\Parse\Util.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\AsyncCreationHelper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\RelationItem.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\FieldTypes.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\Vector2Binder.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GListAdapter.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\RsCom\RsLoadResource.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlParser.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Core\NetWork\NetWorkClient.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\DragonBones\DragonBonesLoader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\TranslationHelper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIConfig.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader3D.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Common\Setting\LuaDeepProfilerSetting.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\ControllerAction.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\PackageLoad.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLoaderAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TextField.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RegularPolygonMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearAnimation.cs" />
@@ -268,50 +330,14 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\TweenValue.cs" />
     <Compile Include="Assets\The3rd\Demigiant\Scripts\AnimationManager.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\AuthorizedManager.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_FrameworkConfig_Binding.cs" />
+    <Compile Include="Assets\The3rd\UPRTools\Scripts\NetWorkServer.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\TextMeshPro\TMPFont.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\LongPressGesture.cs" />
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\CSVConfigData.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\CSV\SpawnConfig.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\Configs.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_FrameworkConfig_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_String_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\LDebug_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Int32_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_Singleton_1_RsLoadManager_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Char_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Linq_Enumerable_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Collections_Generic_Dictionary_2_String_ILTypeInstance_Bin.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Single_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_SingletonMono_1_FrameworkConfig_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\RsLoadManager_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Generated\UnityEngine_Vector3_Binding.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\Vector2Binder.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\Vector3Binder.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\QuaternionBinder.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GRichTextFieldAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_WindowAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTreeAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLoader3DAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GGraphAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GImageAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GListAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GObjectAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTextFieldAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTextInputAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GComboBoxAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GGroupAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLabelAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLoaderAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GButtonAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GRootAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GComponentAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GScrollBarAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GProgressBarAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GSliderAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\ResPath.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\FBX\_desc.txt" />
@@ -319,14 +345,19 @@
      <None Include="Assets\Shader\CircleShader.shader" />
      <None Include="Assets\smcs.rsp" />
      <None Include="Assets\Art\Psd\_desc.txt" />
+     <None Include="Assets\Art\Texture\_desc.txt" />
      <None Include="Assets\Shader\RectShader.shader" />
      <None Include="Assets\link.xml" />
      <None Include="Assets\StreamingAssets\LHotfixProject.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTween\DOTween.XML" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.dll" />
+     <None Include="Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRHook.dll" />
+     <None Include="Assets\The3rd\UPRTools\Resources\DebugOverdrawColor.shader" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Text.shader" />
+     <None Include="Assets\StreamingAssets\Assembly-CSharp-firstpass.dll" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Image.shader" />
      <None Include="Assets\StreamingAssets\csvList.txt" />
+     <None Include="Assets\StreamingAssets\Assembly-CSharp.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTween\DOTween.dll" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
      <None Include="Assets\Art\Animator\Animation\_desc.txt" />
@@ -336,6 +367,7 @@
      <None Include="Assets\Resources\Shaders\UI\UIGrey.shader" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.xml" />
      <None Include="Assets\StreamingAssets\build_info.txt" />
+     <None Include="Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRBinary.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.XML" />
      <None Include="Assets\Art\Font\_desc.txt" />
      <None Include="Assets\The3rd\Demigiant\DOTween\readme.txt" />
@@ -557,8 +589,14 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Serialization.AOTGenerated">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
+    </Reference>
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="UPRBinary">
+      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRBinary.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -590,11 +628,11 @@
     <Reference Include="DOTweenPro">
       <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
     <Reference Include="UnityStore">
       <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -617,6 +655,9 @@
     <Reference Include="Excel">
       <HintPath>Assets\Plugins\Excel.dll</HintPath>
     </Reference>
+    <Reference Include="UPRHook">
+      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRHook.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
@@ -625,9 +666,6 @@
     </Reference>
     <Reference Include="LitFrameworkEditor">
       <HintPath>Assets\Plugins\LitFrameworkEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization.AOTGenerated">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -1045,6 +1083,10 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{427AC1B8-6A29-DF40-5582-C6DA04B54039}</Project>
       <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityWebSocket.Runtime.csproj">
+      <Project>{FA4189B4-D6EE-F0A1-C1C4-0FBECCFCF964}</Project>
+      <Name>UnityWebSocket.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

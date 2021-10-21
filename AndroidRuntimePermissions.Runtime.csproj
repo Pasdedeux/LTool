@@ -289,8 +289,14 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Serialization.AOTGenerated">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
+    </Reference>
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="UPRBinary">
+      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRBinary.dll</HintPath>
     </Reference>
     <Reference Include="DemiEditor">
       <HintPath>Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
@@ -325,11 +331,11 @@
     <Reference Include="DOTweenPro">
       <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
     <Reference Include="UnityStore">
       <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -358,6 +364,12 @@
     <Reference Include="Excel">
       <HintPath>Assets\Plugins\Excel.dll</HintPath>
     </Reference>
+    <Reference Include="UPR.Cecil">
+      <HintPath>Assets\The3rd\UPRTools\Editor\ILProfiler\Cecil\UPR.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UPRHook">
+      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRHook.dll</HintPath>
+    </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
@@ -366,9 +378,6 @@
     </Reference>
     <Reference Include="LitFrameworkEditor">
       <HintPath>Assets\Plugins\LitFrameworkEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization.AOTGenerated">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

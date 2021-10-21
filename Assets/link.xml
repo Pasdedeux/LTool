@@ -1,0 +1,9 @@
+<linker>
+  <assembly fullname="UnityEngine" preserve="all"/>
+  <assembly fullname="Assembly-CSharp"></assembly>
+  <assembly fullname="Assembly-CSharp-firstpass"></assembly>
+
+  <assembly fullname="mscorlib" preserve="all"/>
+  <assembly fullname="DOTween" preserve="all"/>
+
+</linker>

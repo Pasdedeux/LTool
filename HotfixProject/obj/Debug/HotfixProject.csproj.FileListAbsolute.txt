@@ -1,0 +1,13 @@
+C:\Personal\Unity\iFunTech\_BasePackage\Assets\StreamingAssets\LHotfixProject.dll
+C:\Personal\Unity\iFunTech\_BasePackage\Assets\StreamingAssets\LHotfixProject.pdb
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Debug\HotfixProject.csproj.AssemblyReference.cache
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Debug\HotfixProject.csproj.CoreCompileInputs.cache
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Debug\LHotfixProject.dll
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Debug\LHotfixProject.pdb
+E:\MyGitHub\Unity\iFunTech\BasePackage\Assets\StreamingAssets\LHotfixProject.dll
+E:\MyGitHub\Unity\iFunTech\BasePackage\Assets\StreamingAssets\LHotfixProject.pdb
+E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Debug\HotfixProject.csproj.AssemblyReference.cache
+E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Debug\HotfixProject.csproj.CoreCompileInputs.cache
+E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Debug\HotfixProject.csproj.CopyComplete
+E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Debug\LHotfixProject.dll
+E:\MyGitHub\Unity\iFunTech\BasePackage\HotfixProject\obj\Debug\LHotfixProject.pdb

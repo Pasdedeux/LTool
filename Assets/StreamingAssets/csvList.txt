@@ -1,0 +1,2 @@
+CsvName,Version,MD5
+csv/SpawnConfig.csv,1,0409798769B9F27ADF1B3CBFE1C454BA

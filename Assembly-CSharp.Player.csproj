@@ -366,7 +366,6 @@
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\Shaders\UI\UIGrey.shader" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.xml" />
-     <None Include="Assets\StreamingAssets\build_info.txt" />
      <None Include="Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRBinary.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.XML" />
      <None Include="Assets\Art\Font\_desc.txt" />

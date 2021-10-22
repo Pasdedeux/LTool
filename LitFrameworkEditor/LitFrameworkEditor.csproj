@@ -74,10 +74,6 @@
       <HintPath>..\packages\Iced.1.8.0\lib\net45\Iced.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="LitJson, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\LitJson.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.10.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
       <Private>False</Private>
@@ -363,6 +359,10 @@
     <None Include="Resources\ExcelDataReader.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LitJsonILR\LitJsonILR.csproj">
+      <Project>{e23993d7-796a-4d39-9d72-49755653a332}</Project>
+      <Name>LitJsonILR</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LTool\LitFramework.csproj">
       <Project>{ca4fbedf-beae-4fcd-b0d3-ceb94d3c595d}</Project>
       <Name>LitFramework</Name>

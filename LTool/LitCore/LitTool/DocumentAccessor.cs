@@ -30,7 +30,7 @@ using UnityEngine.Networking;
 
 namespace LitFramework.LitTool
 {
-    public class DocumentAccessor : Singleton<DocumentAccessor>
+    public partial class DocumentAccessor : Singleton<DocumentAccessor>
     {
         private static object _lock = new object();
 

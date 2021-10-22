@@ -29,7 +29,7 @@ using System.Linq;
 using Assets.Scripts;
 using LitFramework;
 using LitFramework.Base;
-using LitFramework.InputSystemSp;
+using LitFramework.InputSystem;
 using LitFramework.Mono;
 using UnityEngine;
 
@@ -503,7 +503,7 @@ public class Purchaser : Singleton<Purchaser>
                 string receipt = product.receipt;
                 string currency = product.metadata.isoCurrencyCode;
                 int amount = decimal.ToInt32( product.metadata.localizedPrice * 100 );
-                Receipt receiptClass = JsonUtility.FromJson<Receipt>( receipt );
+                Receipt receiptClass = LitJson.JsonMapper.ToObject<Receipt>( receipt );
                 ProcessPurchaseReceiptEventHandler?.Invoke( currency, prod.Value.BuyID, amount, receiptClass );
 
                 // Return a flag indicating whether this product has completely been received, or if the application needs 
@@ -521,7 +521,7 @@ public class Purchaser : Singleton<Purchaser>
                 string receipt = product.receipt;
                 string currency = product.metadata.isoCurrencyCode;
                 int amount = decimal.ToInt32( product.metadata.localizedPrice * 100 );
-                Receipt receiptClass = JsonUtility.FromJson<Receipt>( receipt );
+                Receipt receiptClass = LitJson.JsonMapper.ToObject<Receipt>( receipt );
                 ProcessPurchaseReceiptEventHandler?.Invoke( currency, prod.Value.AlternativeBuyID, amount, receiptClass );
 
                 // Return a flag indicating whether this product has completely been received, or if the application needs 

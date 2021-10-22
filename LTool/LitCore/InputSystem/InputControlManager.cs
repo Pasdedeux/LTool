@@ -45,7 +45,7 @@ namespace LitFramework.InputSystem
         OnUI = 1 << 5
     }
 
-    public class InputControlManager : SingletonMono<InputControlManager>, IManager
+    public partial class InputControlManager : SingletonMono<InputControlManager>, IManager
     {
         #region 事件委托
         /// <summary>

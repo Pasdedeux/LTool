@@ -1,6 +1,5 @@
 ﻿using LitFramework;
 using LitFramework.Base;
-using LitFramework.InputSystemSp;
 using LitFramework.LitTool;
 using System;
 using System.Collections;
@@ -9,6 +8,7 @@ using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+using LitFramework.InputSystem;
 
 public enum LitShaderType
 {

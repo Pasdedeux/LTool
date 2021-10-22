@@ -66,66 +66,61 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="LitCore\BaseModel\Cloneable.cs" />
+    <Compile Include="LitCore\BaseModel\IManager.cs" />
+    <Compile Include="LitCore\BaseModel\Singleton.cs" />
+    <Compile Include="LitCore\BaseModel\SingletonMono.cs" />
+    <Compile Include="LitCore\Crypto\Crypto.cs" />
+    <Compile Include="LitCore\Crypto\CryptoMD5.cs" />
     <Compile Include="LitCore\Crypto\CryptoSHA1.cs" />
     <Compile Include="LitCore\Crypto\ICrypto.cs" />
+    <Compile Include="LitCore\Device\ShowFPS.cs" />
+    <Compile Include="LitCore\Extention_Editor\CSVReader.cs" />
     <Compile Include="LitCore\FrameworkConfig.cs" />
     <Compile Include="LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\GameFlowController.cs" />
     <Compile Include="LitCore\GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="LitCore\GameFlow\Manager\SceneLoadManager.cs" />
     <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
     <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="LitCore\Guide\Control\GuideShaderController.cs" />
+    <Compile Include="LitCore\Guide\GuideConfig.cs" />
+    <Compile Include="LitCore\Guide\Model\EventPenetrate.cs" />
+    <Compile Include="LitCore\Guide\Model\GuideDataModel.cs" />
     <Compile Include="LitCore\HotFix\HotFixController.cs" />
     <Compile Include="LitCore\HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="LitCore\HotFix\HotFixItem\HotFixCSVList.cs" />
     <Compile Include="LitCore\HotFix\HotFixItem\HotfixLogic.cs" />
     <Compile Include="LitCore\HotFix\IHotFix.cs" />
-    <Compile Include="LitCore\LitPool\SpawnPool.cs" />
-    <Compile Include="LitCore\LitTool\AnimBundle.cs" />
-    <Compile Include="LitCore\LitTool\AudioManager.cs" />
-    <Compile Include="LitCore\BaseModel\Cloneable.cs" />
-    <Compile Include="LitCore\BaseModel\Singleton.cs" />
-    <Compile Include="LitCore\BaseModel\SingletonMono.cs" />
-    <Compile Include="LitCore\Crypto\Crypto.cs" />
-    <Compile Include="LitCore\Crypto\CryptoMD5.cs" />
-    <Compile Include="LitCore\Device\ShowFPS.cs" />
-    <Compile Include="LitCore\Extention_Editor\CSVReader.cs" />
-    <Compile Include="LitCore\GameFlow\Controller\GameFlowController.cs" />
-    <Compile Include="LitCore\GameFlow\Manager\SceneLoadManager.cs" />
-    <Compile Include="LitCore\GameFlow\Model\LoadingTaskModel.cs" />
-    <Compile Include="LitCore\Guide\GuideConfig.cs" />
-    <Compile Include="LitCore\Guide\Model\EventPenetrate.cs" />
-    <Compile Include="LitCore\Guide\Model\GuideDataModel.cs" />
     <Compile Include="LitCore\InputSystem\InputControlManager.cs" />
     <Compile Include="LitCore\LitPool\PoolManager.cs" />
     <Compile Include="LitCore\LitPool\PrefabPool.cs" />
     <Compile Include="LitCore\LitPool\PrefabsDict.cs" />
     <Compile Include="LitCore\LitPool\SpawnManager.cs" />
+    <Compile Include="LitCore\LitPool\SpawnPool.cs" />
+    <Compile Include="LitCore\LitTool\AnimBundle.cs" />
     <Compile Include="LitCore\LitTool\AssetPathManager.cs" />
-    <Compile Include="LitCore\LitTool\DocumentAccessor.cs" />
-    <Compile Include="LitCore\LitTool\LitTool.cs" />
-    <Compile Include="LitCore\MsgSystem\InternalEvent.cs" />
-    <Compile Include="LitCore\MsgSystem\MsgManager.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="LitCore\ThirdParty\AD\ADManager.cs" />
-    <Compile Include="LitCore\TimeRecord\ZeroTimeRecord.cs" />
-    <Compile Include="LitCore\UI\Vsrsion_HotFix\BaseUI.cs" />
-    <Compile Include="LitCore\UI\Vsrsion_HotFix\UIManager.cs" />
-    <Compile Include="LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="LitCore\LitTool\AudioManager.cs" />
     <Compile Include="LitCore\LitTool\CameraCapture.cs" />
     <Compile Include="LitCore\LitTool\CSExtention.cs" />
+    <Compile Include="LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="LitCore\LitTool\LDebug.cs" />
+    <Compile Include="LitCore\LitTool\LitTool.cs" />
     <Compile Include="LitCore\LitTool\LMath.cs" />
+    <Compile Include="LitCore\LitTool\Optimization.cs" />
     <Compile Include="LitCore\LitTool\SpriteAdapter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LitCore\BaseModel\IManager.cs" />
+    <Compile Include="LitCore\MsgSystem\InternalEvent.cs" />
+    <Compile Include="LitCore\MsgSystem\MsgManager.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\ADManager.cs" />
     <Compile Include="LitCore\ThirdParty\AD\BaseAdAdapter.cs" />
     <Compile Include="LitCore\ThirdParty\AD\IAd.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserConfig.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserDataModel.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserStoreItem.cs" />
     <Compile Include="LitCore\ThirdParty\Statistic\BaseStatistician.cs" />
     <Compile Include="LitCore\ThirdParty\Statistic\StatisticManager.cs" />
+    <Compile Include="LitCore\TimeRecord\ZeroTimeRecord.cs" />
     <Compile Include="LitCore\UI\Base\BindingProperty.cs" />
     <Compile Include="LitCore\UI\Base\IUIManager.cs" />
     <Compile Include="LitCore\UI\Base\IViewModel.cs" />
@@ -136,7 +131,15 @@
     <Compile Include="LitCore\UI\UnityHelper.cs" />
     <Compile Include="LitCore\UI\Version_Mono\BaseUI.cs" />
     <Compile Include="LitCore\UI\Version_Mono\UIManager.cs" />
-    <Compile Include="LitCore\LitTool\Optimization.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -147,7 +150,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LitCore\ThirdParty\IAP\" />
+    <Folder Include="LitCore\GameFlow\View\" />
     <Folder Include="NotInclude\" />
     <Folder Include="UnityPackage\" />
   </ItemGroup>
@@ -215,10 +218,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Iced.dll</HintPath>
     </Reference>
-    <Reference Include="LitJson, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\LitJson.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Microsoft.CodeAnalysis.dll</HintPath>
@@ -266,10 +265,6 @@
     <Reference Include="spine-unity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\spine-unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Stores, Version=1.0.7016.24194, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Stores.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -484,10 +479,12 @@
     <Reference Include="UnityEngine.UnityWebRequestWWWModule">
       <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityStore, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityStore.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LitJsonILR\LitJsonILR.csproj">
+      <Project>{e23993d7-796a-4d39-9d72-49755653a332}</Project>
+      <Name>LitJsonILR</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

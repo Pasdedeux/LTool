@@ -20,7 +20,7 @@
 using LitFramework;
 using LitFramework.Base;
 using LitFramework.GameFlow.Model.DataLoadInterface;
-using LitFramework.InputSystemSp;
+using LitFramework.InputSystem;
 using LitFramework.LitPool;
 using LitFramework.LitTool;
 using LitFramework.TimeRecord;

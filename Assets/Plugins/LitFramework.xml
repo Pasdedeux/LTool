@@ -4,40 +4,6 @@
         <name>LitFramework</name>
     </assembly>
     <members>
-        <member name="M:LitFramework.Cloneable`1.Clone">
-            <summary>
-            基础覆写方法
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:LitFramework.Singleton`1">
-            <summary>
-            非组件单例基类
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="F:LitFramework.Singleton`1._instance">
-            <summary>
-            volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。
-            </summary>
-        </member>
-        <member name="M:LitFramework.Singleton`1.DoDestroy">
-            <summary>
-            移除
-            </summary>
-        </member>
-        <member name="T:LitFramework.SingletonMono`1">
-            <summary>
-            组件单例基类
-            </summary>
-            <typeparam name="T">继承子类类名</typeparam>
-            
-        </member>
-        <member name="M:LitFramework.SingletonMono`1.DoDestroy">
-            <summary>
-            移除
-            </summary>
-        </member>
         <member name="T:LitFramework.FrameworkConfig">
             <summary>
             框架控制参数
@@ -68,11 +34,6 @@
             当前项目是否是URP
             </summary>
         </member>
-        <member name="F:LitFramework.FrameworkConfig.resLoadType">
-            <summary>
-            当前项目资源加载方式
-            </summary>
-        </member>
         <member name="F:LitFramework.FrameworkConfig.TouchDetectUI">
             <summary>
             触碰/点击忽略UI。默认为true
@@ -83,17 +44,12 @@
             开启UGUI组件优化（仅对象创建时）
             </summary>
         </member>
-        <member name="T:LitFramework.ABVersion">
-            <summary>
-            csv资源文件内容
-            </summary>
-        </member>
         <member name="T:LitFramework.GameFlow.GameFlowController">
             <summary>
             游戏主流程控制器，用于场景加载、跳转等命令合集
             </summary>
         </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean)">
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.Int32,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
             <summary>
             加载场景，这里使用的async加载方式
             </summary>
@@ -103,9 +59,10 @@
             <param name="loadingUIPath"></param>
             <param name="needFading"></param>
             <param name="fadingTime"></param>
+            <param name="isHot"></param>
             <param name="isAdditive"></param>
         </member>
-        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean)">
+        <member name="M:LitFramework.GameFlow.GameFlowController.ChangeScene(System.String,System.Action,System.Action,System.String,System.Boolean,System.Single,System.Boolean,System.Boolean)">
             <summary>
             加载场景，这里使用的async加载方式
             </summary>
@@ -115,6 +72,7 @@
             <param name="loadingUIPath"></param>
             <param name="needFading"></param>
             <param name="fadingTime"></param>
+            <param name="isHot"></param>
             <param name="isAdditive"></param>
         </member>
         <member name="M:LitFramework.GameFlow.Manager.SceneLoadManager.LoadSceneAsync(System.Int32,System.Boolean)">
@@ -173,69 +131,6 @@
             清楚本次UI登记的任务
             </summary>
         </member>
-        <member name="E:LitFramework.InputSystem.InputControlManager.EscapeCallBack">
-            <summary>
-            点击返回键
-            </summary>
-        </member>
-        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedContinuePressCallBack">
-            <summary>
-            是否持续点击触发
-            </summary>
-        </member>
-        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedOnUICallBack">
-            <summary>
-            是否点击到UI反馈
-            </summary>
-        </member>
-        <member name="E:LitFramework.InputSystem.InputControlManager.FingerZoomCallback">
-            <summary>
-            双指|鼠标滚轮放大程度
-            </summary>
-        </member>
-        <member name="E:LitFramework.InputSystem.InputControlManager.FingerRotateCallBack">
-            <summary>
-            双指滑动相对上次记录偏移角度。顺时针计算
-            </summary>
-        </member>
-        <member name="P:LitFramework.InputSystem.InputControlManager.CurrentIsOnUI">
-            <summary>
-            当前是否在点击UI
-            </summary>
-        </member>
-        <member name="P:LitFramework.InputSystem.InputControlManager.IsEnable">
-            <summary>
-            鼠标点击操作功能是否开启
-            </summary>
-        </member>
-        <member name="T:LitFramework.LitPool.SpawnManager">
-            <summary>
-            对外控制用脚本
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Install">
-            <summary>
-            初始化并获取对象池
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
-            <summary>
-            卸载模块
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
-            <summary>
-            从对象池中获取一个对象
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
-            <summary>
-            回收入对象池
-            </summary>
-            <param name="item"></param>
-        </member>
         <member name="T:LitFramework.LitTool.AnimBundle">
             <summary>
             UI/场景动画包。存放一些预设的动画
@@ -257,92 +152,28 @@
             <param name="secondsTime">炸开后等多久开始飞</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetPersistentDataPath(System.String,System.Boolean)">
             <summary>
              获取外部persistant路径+"//"
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
-            <param name="dontEscape">若包含中文字符，设为true</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetStreamAssetDataPath(System.String,System.Boolean)">
             <summary>
             
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
-            /// <param name="dontEscape">若包含中文字符，设为true</param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean,System.Boolean)">
+        <member name="M:LitFramework.LitTool.AssetPathManager.GetTemporaryCachePath(System.String,System.Boolean)">
             <summary>
             
             </summary>
             <param name="filePath">要加载的文件名</param>
             <param name="useUri">true-用于www/unitywebrequest加载路径,  false-用于FileInfo FileStream</param>
-            /// <param name="dontEscape">若包含中文字符，设为true</param>
-            <returns></returns>
-        </member>
-        <member name="T:LitFramework.LitTool.TextureCapture">
-            <summary>
-            截屏功能
-            </summary>
-        </member>
-        <member name="T:LitFramework.LitTool.TextureCapture.CaptureSize">
-            <summary>
-            截图尺寸
-            </summary>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.SaveCapture(UnityEngine.Camera,LitFramework.LitTool.TextureCapture.CaptureSize,System.String,System.String,System.Single,System.Single)">
-            <summary>
-            保存截图 ，默认存储于TempPath
-            </summary>
-            <param name="targetCamera">目标摄像机</param>
-            <param name="captureSize">截图尺寸</param>
-            <param name="outPutName">文件名称</param>
-            <param name="outPut">存储路径 - 外部输入格式: AssetPathManager.Instance.GetTemporaryCachePath( outPutName , false )</param>
-            <param name="fixedSizeX">指定截图尺寸下的纵横像素值X</param>
-            <param name="fixedSizeY">指定截图尺寸下的纵横像素值Y</param>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera)">
-            <summary> 相机截图 </summary>
-            <param name="camera">目标相机,设备屏幕宽高</param>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.GetTexture2d(UnityEngine.RenderTexture)">
-            <summary>
-            从RenderTexture处获取Texture2D
-            </summary>
-            <param name="renderT"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera,System.Int32,System.Int32)">
-            <summary> 相机截图 </summary>
-            <param name="camera">目标相机</param>
-            <param name="width">宽度</param>
-            <param name="height">高度</param>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.SaveTexture(System.String,UnityEngine.Texture2D)">
-            <summary> 保存贴图 </summary>
-            <param name="path">保存路径</param>
-            <param name="texture">Texture2D</param>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToRendertexture(UnityEngine.Texture2D,System.Int32,System.Int32)">
-            <summary>
-            Texture2D 转换为 RenderTexture
-            </summary>
-            <param name="targetT">需要转换的Texture2D</param>
-            <param name="imgWidth">目标RenderTexture像素宽度</param>
-            <param name="imgHeiht">目标RenderTexture像素高度</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToSprite(UnityEngine.Texture2D,System.Int32,System.Int32)">
-            <summary>
-            Texture2D 转换为 Sprite
-            </summary>
-            <param name="targetT">需要转换的Texture2D</param>
-            <param name="ImageWidth">目标RenderTexture像素宽度</param>
-            <param name="imageHeight">目标RenderTexture像素高度</param>
             <returns></returns>
         </member>
         <member name="F:LitFramework.LitTool.DocumentAccessor.ReadTextAdditionalCondition">
@@ -392,39 +223,35 @@
             <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest},System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             协程加载
             </summary>
             <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
-            <param name="errorCallBack"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String},System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.ILoadAsset(System.String,System.Action{System.String})">
             <summary>
             协程加载
             </summary>
             <param name="path">例如：AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
-            <param name="errorCallBack"></param>
             <returns></returns>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String},System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{System.String})">
             <summary>
             同步加载
             </summary>
             <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
-            <param name="errorCallBack"></param>
         </member>
-        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest},System.Action{UnityEngine.Networking.UnityWebRequest})">
+        <member name="M:LitFramework.LitTool.DocumentAccessor.LoadAsset(System.String,System.Action{UnityEngine.Networking.UnityWebRequest})">
             <summary>
             同步加载
             </summary>
             <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
             <param name="callBack"></param>
-            <param name="errorCallBack"></param>
         </member>
         <member name="M:LitFramework.LitTool.DocumentAccessor.WWWLoading(System.String,System.Action{UnityEngine.WWW})">
             <summary>
@@ -459,6 +286,11 @@
             <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
             <param name="name">FTP服务器登陆用户名</param>
             <param name="password">FTP服务器登录密码</param>
+        </member>
+        <member name="M:LitFramework.LitTool.DocumentAccessor.MoveStreamPath2PersistantPath">
+            <summary>
+            迁移StreamingAsset文件到目录PersisitantPath
+            </summary>
         </member>
         <member name="T:LitFramework.LitTool.LitTool">
             <summary>
@@ -617,14 +449,6 @@
             <param name="alignByGeometry">是否使用几何对齐</param>
             <param name="richText">是否支持富文本</param>
         </member>
-        <member name="M:LitFramework.LitTool.LitTool.LoadSpriteAtlas(System.String,System.String)">
-            <summary>
-            Resource - 加载图集中的子对象
-            </summary>
-            <param name="spriteName"></param>
-            <param name="atlasPath"></param>
-            <returns></returns>
-        </member>
         <member name="T:LitFramework.LitTool.MonoForCorouting">
             <summary>
             全局使用的monobehaivor
@@ -640,6 +464,102 @@
             时间判定回调
             </summary>
             <param name="nowTime"></param>
+        </member>
+        <member name="T:LitFramework.LitTool.TextureCapture">
+            <summary>
+            截屏功能
+            </summary>
+        </member>
+        <member name="T:LitFramework.LitTool.TextureCapture.CaptureSize">
+            <summary>
+            截图尺寸
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.SaveCapture(UnityEngine.Camera,LitFramework.LitTool.TextureCapture.CaptureSize,System.String,System.String,System.Single,System.Single)">
+            <summary>
+            保存截图 ，默认存储于TempPath
+            </summary>
+            <param name="targetCamera">目标摄像机</param>
+            <param name="captureSize">截图尺寸</param>
+            <param name="outPutName">文件名称</param>
+            <param name="outPut">存储路径 - 外部输入格式: AssetPathManager.Instance.GetTemporaryCachePath( outPutName , false )</param>
+            <param name="fixedSizeX">指定截图尺寸下的纵横像素值X</param>
+            <param name="fixedSizeY">指定截图尺寸下的纵横像素值Y</param>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera)">
+            <summary> 相机截图 </summary>
+            <param name="camera">目标相机,设备屏幕宽高</param>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.GetTexture2d(UnityEngine.RenderTexture)">
+            <summary>
+            从RenderTexture处获取Texture2D
+            </summary>
+            <param name="renderT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Capture(UnityEngine.Camera,System.Int32,System.Int32)">
+            <summary> 相机截图 </summary>
+            <param name="camera">目标相机</param>
+            <param name="width">宽度</param>
+            <param name="height">高度</param>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.SaveTexture(System.String,UnityEngine.Texture2D)">
+            <summary> 保存贴图 </summary>
+            <param name="path">保存路径</param>
+            <param name="texture">Texture2D</param>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToRendertexture(UnityEngine.Texture2D,System.Int32,System.Int32)">
+            <summary>
+            Texture2D 转换为 RenderTexture
+            </summary>
+            <param name="targetT">需要转换的Texture2D</param>
+            <param name="imgWidth">目标RenderTexture像素宽度</param>
+            <param name="imgHeiht">目标RenderTexture像素高度</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.TextureCapture.Texture2DToSprite(UnityEngine.Texture2D,System.Int32,System.Int32)">
+            <summary>
+            Texture2D 转换为 Sprite
+            </summary>
+            <param name="targetT">需要转换的Texture2D</param>
+            <param name="ImageWidth">目标RenderTexture像素宽度</param>
+            <param name="imageHeight">目标RenderTexture像素高度</param>
+            <returns></returns>
+        </member>
+        <member name="T:LitFramework.LitTool.ResourceManager">
+            <summary>
+            待完善-基于resource.load的图集加载、assetbundle、文件加载等
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.LoadSpriteAtlas(System.String,System.String)">
+            <summary>
+            加载图集中的子对象
+            </summary>
+            <param name="spriteName"></param>
+            <param name="atlasPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadFileUWR(System.String,System.Boolean)">
+            <summary>
+            加载 .txt/ .dat/ .csv等文件
+            </summary>
+            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <param name="useRawDataArray">true - 返回的是download data    false - 直接返回结果字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadTextureUWR(System.String)">
+            <summary>
+            加载png 等图像格式
+            </summary>
+            <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitTool.ResourceManager.IDoLoadAssetBundleUWR(System.String)">
+            <summary>
+            加载AssetBundle
+            </summary>
+            /// <param name="searchPath">要加载文件的【带后缀】完整路径 Application.streamingAssetsPath+ "Csv/CutTool.csv"</param>
+            <returns></returns>
         </member>
         <member name="T:LitFramework.LitTool.SpriteAdapter">
             <summary>
@@ -765,6 +685,97 @@
             播放独立音效，单次且不可覆盖播放
             </summary>
             <param name="name"></param>
+        </member>
+        <member name="T:LitFramework.Singleton`1">
+            <summary>
+            非组件单例基类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:LitFramework.Singleton`1._instance">
+            <summary>
+            volatile多用于多线程的环境，当一个变量定义为volatile时，读取这个变量的值时候每次都是从momery里面读取而不是从cache读。这样做是为了保证读取该变量的信息都是最新的，而无论其他线程如何更新这个变量。
+            </summary>
+        </member>
+        <member name="M:LitFramework.Singleton`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="T:LitFramework.SingletonMono`1">
+            <summary>
+            组件单例基类
+            </summary>
+            <typeparam name="T">继承子类类名</typeparam>
+            
+        </member>
+        <member name="M:LitFramework.SingletonMono`1.DoDestroy">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="E:LitFramework.InputSystem.InputControlManager.EscapeCallBack">
+            <summary>
+            点击返回键
+            </summary>
+        </member>
+        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedContinuePressCallBack">
+            <summary>
+            是否持续点击触发
+            </summary>
+        </member>
+        <member name="F:LitFramework.InputSystem.InputControlManager.IsTouchedOnUICallBack">
+            <summary>
+            是否点击到UI反馈
+            </summary>
+        </member>
+        <member name="E:LitFramework.InputSystem.InputControlManager.FingerZoomCallback">
+            <summary>
+            双指|鼠标滚轮放大程度
+            </summary>
+        </member>
+        <member name="E:LitFramework.InputSystem.InputControlManager.FingerRotateCallBack">
+            <summary>
+            双指滑动相对上次记录偏移角度。顺时针计算
+            </summary>
+        </member>
+        <member name="P:LitFramework.InputSystem.InputControlManager.CurrentIsOnUI">
+            <summary>
+            当前是否在点击UI
+            </summary>
+        </member>
+        <member name="P:LitFramework.InputSystem.InputControlManager.IsEnable">
+            <summary>
+            鼠标点击操作功能是否开启
+            </summary>
+        </member>
+        <member name="T:LitFramework.LitPool.SpawnManager">
+            <summary>
+            对外控制用脚本
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Install">
+            <summary>
+            初始化并获取对象池
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.Uninstall">
+            <summary>
+            卸载模块
+            </summary>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.SpwanObject(System.String)">
+            <summary>
+            从对象池中获取一个对象
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LitFramework.LitPool.SpawnManager.DespawnObject(UnityEngine.Transform)">
+            <summary>
+            回收入对象池
+            </summary>
+            <param name="item"></param>
         </member>
         <member name="T:LitFramework.TimeRecord.ZeroTimeRecord">
             <summary>
@@ -1073,313 +1084,6 @@
             返回键执行关闭窗口操作
             </summary>
         </member>
-        <member name="P:LitFramework.HotFix.BaseUI.IsShowing">
-            <summary>
-            该窗口是否开启中
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.BaseUI.CurrentUIType">
-            <summary>
-            当前窗口类型
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.BaseUI.IsStarted">
-            <summary>
-            是否执行过Start
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.BaseUI.AssetsName">
-            <summary>
-            资源名
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.BaseUI.IsInitOver">
-            <summary>
-            创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.BaseUI._hasEnabled">
-            <summary>
-            这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.BaseUI.GameObjectInstance">
-            <summary>
-            关联的UI实例
-            </summary>
-        </member>
-        <member name="M:LitFramework.HotFix.BaseUI.Show(System.Boolean)">
-            <summary>
-            显示窗体
-            </summary>
-            <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        </member>
-        <member name="M:LitFramework.HotFix.BaseUI.CheckMask">
-            <summary>
-            检测并显示模态窗体背景
-            </summary>
-        </member>
-        <member name="M:LitFramework.HotFix.BaseUI.Close(System.Boolean,System.Boolean)">
-            <summary>
-            隐藏窗口
-            </summary>
-            <param name="isDestroy">是否摧毁并彻底释放</param>
-            <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
-        </member>
-        <member name="M:LitFramework.HotFix.BaseUI.OnShow">
-            <inheritdoc/>
-             <remarks>
-             刷新窗体
-             </remarks>
-        </member>
-        <member name="M:LitFramework.HotFix.BaseUI.OnBackPushed">
-            <summary>
-            点击返回事件
-            </summary>
-        </member>
-        <member name="T:LitFramework.HotFix.UIManager">
-            <summary>
-            以下UI类，需配合UImanager.unitypackage使用。
-            
-            主要包含Cavas_Root及相关Tag等
-            
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.TransRoot">
-            <summary>
-            UI根节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.TransNormal">
-            <summary>
-            普通窗口节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.TransFixed">
-            <summary>
-            固定UI节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.TransPopUp">
-            <summary>
-            弹出窗口节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.TransGlobal">
-            <summary>
-            顶级窗口节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.RectransRoot">
-            <summary>
-            UI根节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.RectransNormal">
-            <summary>
-            普通窗口节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.RectransFixed">
-            <summary>
-            固定UI节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.RectransPopUp">
-            <summary>
-            弹出窗口节点
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.RectransGlobal">
-            <summary>
-            弹出窗口节点
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager.LoadResourceFunc">
-            <summary>
-            外部传入UI的加载方法。Resource.Load || AssetBundle.Load
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.UICam">
-            <summary>
-            UI摄像机
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager._fadeImage">
-            <summary>
-            全局渐变遮罩
-            </summary>
-        </member>
-        <member name="E:LitFramework.HotFix.UIManager.DelHideCallBack">
-            <summary>
-             遮罩结束时回调
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.FadeImage">
-            <summary>
-            Image_fadeBG控制类，一般用于全局黑屏转场。
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.MaskImage">
-            <summary>
-            PopUp 类弹窗所使用的背景蒙版，默认颜色为黑色
-            </summary>
-        </member>
-        <member name="P:LitFramework.HotFix.UIManager.CanvasScaler">
-            <summary>
-            UI适配策略
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager._allRegisterUIDict">
-            <summary>
-            所有的预制件名称列表
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager._stackCurrentUI">
-            <summary>
-            //定义“栈”集合,存储显示当前所有弹出窗口的窗体类型
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager._dictLoadedAllUIs">
-            <summary>
-            缓存已经开启过的所有窗体
-            </summary>
-        </member>
-        <member name="F:LitFramework.HotFix.UIManager._dictCurrentShowUIs">
-            <summary>
-            当前显示的非弹出类UI窗体
-            </summary>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.ShowFade(System.Action,System.Single)">
-            <summary>
-            隐退开始
-            </summary>
-            <param name="time"></param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.HideFade(System.Action,System.Single)">
-            <summary>
-            隐退结束
-            </summary>
-            <param name="time"></param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.Show(System.String)">
-            <summary>
-            显示（打开）UI窗口
-            功能：
-            1、根据UI窗体的名称，加载到UI窗口缓存列表
-            2、根据不同UI显示模式，做不同的加载处理
-            </summary>
-            <param name="uiName">UI窗体预制件名称</param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.Close(System.String,System.Boolean)">
-            <summary>
-            关闭指定UI
-            </summary>
-            <param name="uiName"></param>
-            <param name="isDestroy">是否直接释放所有资源，销毁</param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.ClearPopUpStackArray">
-            <summary>
-            清空弹出窗口栈
-            </summary>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.LoadUIToAndFromAllList(System.String)">
-            <summary>
-            根据UI预制件名称加载到UI缓存列表（按需），同时获取实例
-            </summary>
-            <param name="uiName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.LoadUI(System.String)">
-            <summary>
-            加载指定名称UI
-            功能：
-            1、根据名称加载预制体
-            2、根据UI类型加载到不同节点下
-            3、隐藏创建的UI克隆体
-            4、把克隆体加入到所有窗体列表
-            </summary>
-            <param name="uiName">窗体名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.LoadParallelUI(System.String)">
-            <summary>
-            加载当前窗体到当前窗体集合
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.UnLoadParallelUI(System.String,System.Boolean)">
-            <summary>
-            从当前UI列表缓存中卸载UI窗体
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.LoadUniqueUI(System.String)">
-            <summary>
-            加载独占UI窗体
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.UnLoadUniqueUI(System.String,System.Boolean)">
-            <summary>
-            卸载当前UI，并将原先被隐藏的UI重新显示
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.LoadStackUI(System.String)">
-            <summary>
-            弹出窗口，入栈
-            先冻结栈中窗口，再将此窗口入栈
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.UnLoadStackUI(System.String,System.Boolean)">
-            <summary>
-            弹出窗口，出栈
-            </summary>
-            <param name="uiName"></param>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.GetUIByName(System.String)">
-            <summary>
-            从现有缓存中查找目标UI，未加载则返回null
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.OnEscapeCallback">
-            <summary>
-            返回键执行关闭窗口操作
-            </summary>
-        </member>
-        <member name="M:LitFramework.HotFix.UIManager.RegistFunctionCallFun(System.String,System.String)">
-            <summary>
-            反射注册UI回调
-            </summary>
-            <param name="_assetsName"></param>
-            <param name="_className"></param>
-        </member>
-        <member name="T:CSVReader">
-            <summary>
-            编辑器部分的同步文件，如果有改动需要在两边共同修改
-            </summary>
-        </member>
-        <member name="M:CSVReader.ParseCSV(System.String)">
-            <summary>
-            解析csv数据
-            </summary>
-            <param name="csv"></param>
-        </member>
-        <member name="M:CSVReader.GetData(System.Int32,System.Int32)">
-            <summary>
-            获取数据
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
-        </member>
         <member name="T:GameDriver">
             <summary>
             框架驱动器。提供Update FixedUpdate LateUpdate驱动
@@ -1403,213 +1107,6 @@
             <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
             <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
             <param name="debugEnable">框架启动时是否开启日志</param>
-        </member>
-        <member name="F:GuideShaderController._target">
-            <summary>
-            要高亮显示的目标
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._corners">
-            <summary>
-            区域范围缓存
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._center">
-            <summary>
-            镂空区域圆心
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._radius">
-            <summary>
-            镂空区域半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._material">
-            <summary>
-            遮罩材质
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._currentRadius">
-            <summary>
-            当前高亮区域的半径
-            </summary>
-        </member>
-        <member name="F:GuideShaderController._shrinkVelocity">
-            <summary>
-            收缩速度
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
-            <summary>
-            聚焦到引导目标
-            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
-            </summary>
-            <param name="operateImage">目标点击区域Button Image</param>
-            <param name="callBack"></param>
-        </member>
-        <member name="M:GuideShaderController.CurrentGuideOver">
-            <summary>
-            引导完成后UI重置
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.ResetGuide">
-            <summary>
-            重置引导画面-去除镂空区域
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
-            <summary>
-            新手引导UI点击回调
-            </summary>
-        </member>
-        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
-            <summary>
-            3D物体触碰回调
-            </summary>
-        </member>
-        <member name="T:GuideConfig">
-            <summary>
-            引导动画配置
-            </summary>
-        </member>
-        <member name="T:GuideDataModel">
-            <summary>
-            分部类。可以在业务逻辑上继续扩展
-            </summary>
-        </member>
-        <member name="F:GuideDataModel.FocusTargetDoneEvent">
-            <summary>
-            圆形/矩形聚焦完毕回调
-            </summary>
-        </member>
-        <member name="F:GuideDataModel.GuideDoneEvent">
-            <summary>
-            点击目标位置完成本轮
-            </summary>
-        </member>
-        <member name="T:Assets.Scripts.Module.HotFix.HotFixController">
-            <summary>
-            热更模块
-            
-            完成美术资源、配置档及代码迁移+热更流程
-            <para>三者进行在线更新时，如果遇到任何错误将会阻断后续本模块更新，其它模块继续，并且不会使加载过程予以结束</para>
-            
-            热更流程说明：<see href="https://www.processon.com/view/link/61013cd4637689719d2d8166">流程图</see>
-            </summary>
-        </member>
-        <member name="M:Assets.Scripts.Module.HotFix.HotFixController.Excecute(System.Collections.Generic.Queue{Assets.Scripts.Module.HotFix.IHotFix})">
-            <summary>
-            执行文件迁移+文件热更
-            </summary>
-            <param name="hotFixesQueue"></param>
-        </member>
-        <member name="T:Assets.Scripts.Module.HotFix.HotFixCSVList">
-            <summary>
-            配置档热更
-            </summary>
-        </member>
-        <member name="T:PathologicalGames.PoolManager">
-            <description>
-            PoolManager v2.0
-             - PoolManager.Pools is not a complete implimentation of the IDictionary interface
-               Which enabled:
-                   * Much more acurate and clear error handling
-                   * Member access protection so you can't run anything you aren't supposed to.
-             - Moved all functions for working with Pools from PoolManager to PoolManager.Pools
-               which enabled shorter names to reduces the length of lines of code.
-            Online Docs: http://docs.poolmanager2.path-o-logical.com
-            </description>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String)">
-            <summary>
-            Creates a new GameObject with a SpawnPool Component which registers itself
-            with the PoolManager.Pools dictionary. The SpawnPool can then be accessed 
-            directly via the return value of this function or by via the PoolManager.Pools 
-            dictionary using a 'key' (string : the name of the pool, SpawnPool.poolName).
-            </summary>
-            <param name="poolName">
-            The name for the new SpawnPool. The GameObject will have the word "Pool"
-            Added at the end.
-            </param>
-            <returns>A reference to the new SpawnPool component</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String,UnityEngine.GameObject)">
-             <summary>
-            Creates a SpawnPool Component on an 'owner' GameObject which registers 
-             itself with the PoolManager.Pools dictionary. The SpawnPool can then be 
-             accessed directly via the return value of this function or via the
-             PoolManager.Pools dictionary.
-             </summary>
-             <param name="poolName">
-             The name for the new SpawnPool. The GameObject will have the word "Pool"
-             Added at the end.
-             </param>
-             <param name="owner">A GameObject to add the SpawnPool Component</param>
-             <returns>A reference to the new SpawnPool component</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.assertValidPoolName(System.String)">
-            <summary>
-            Used to ensure a name is valid before creating anything.
-            </summary>
-            <param name="poolName">The name to test</param>
-            <returns>True if sucessful, false if failed.</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.ToString">
-            <summary>
-            Returns a formatted string showing all the pool names
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Destroy(System.String)">
-            <summary>
-            Destroy an entire SpawnPool, including its GameObject and all children.
-            You can also just destroy the GameObject directly to achieve the same result.
-            This is really only here to make it easier when a reference isn't at hand.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.DestroyAll">
-            <summary>
-            Destroy ALL SpawnPools, including their GameObjects and all children.
-            You can also just destroy the GameObjects directly to achieve the same result.
-            This is really only here to make it easier when a reference isn't at hand.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Add(PathologicalGames.SpawnPool)">
-            <summary>
-            Used internally by SpawnPools to add themseleves on Awake().
-            Use PoolManager.CreatePool() to create an entirely new SpawnPool GameObject
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.Remove(PathologicalGames.SpawnPool)">
-            <summary>
-            Used internally by SpawnPools to remove themseleves on Destroy().
-            Use PoolManager.Destroy() to destroy an entire SpawnPool GameObject.
-            </summary>
-            <param name="spawnPool"></param>
-        </member>
-        <member name="P:PathologicalGames.SpawnPoolsDict.Count">
-            <summary>
-            Get the number of SpawnPools in PoolManager
-            </summary>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.ContainsKey(System.String)">
-            <summary>
-            Returns true if a pool exists with the passed pool name.
-            </summary>
-            <param name="poolName">The name to look for</param>
-            <returns>True if the pool exists, otherwise, false.</returns>
-        </member>
-        <member name="M:PathologicalGames.SpawnPoolsDict.TryGetValue(System.String,PathologicalGames.SpawnPool@)">
-            <summary>
-            Used to get a SpawnPool when the user is not sure if the pool name is used.
-            This is faster than checking IsPool(poolName) and then accessing Pools][poolName.]
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
         </member>
         <member name="T:PathologicalGames.SpawnPool">
             <description>
@@ -2040,6 +1537,286 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:PathologicalGames.PoolManager">
+            <description>
+            PoolManager v2.0
+             - PoolManager.Pools is not a complete implimentation of the IDictionary interface
+               Which enabled:
+                   * Much more acurate and clear error handling
+                   * Member access protection so you can't run anything you aren't supposed to.
+             - Moved all functions for working with Pools from PoolManager to PoolManager.Pools
+               which enabled shorter names to reduces the length of lines of code.
+            Online Docs: http://docs.poolmanager2.path-o-logical.com
+            </description>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String)">
+            <summary>
+            Creates a new GameObject with a SpawnPool Component which registers itself
+            with the PoolManager.Pools dictionary. The SpawnPool can then be accessed 
+            directly via the return value of this function or by via the PoolManager.Pools 
+            dictionary using a 'key' (string : the name of the pool, SpawnPool.poolName).
+            </summary>
+            <param name="poolName">
+            The name for the new SpawnPool. The GameObject will have the word "Pool"
+            Added at the end.
+            </param>
+            <returns>A reference to the new SpawnPool component</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Create(System.String,UnityEngine.GameObject)">
+             <summary>
+            Creates a SpawnPool Component on an 'owner' GameObject which registers 
+             itself with the PoolManager.Pools dictionary. The SpawnPool can then be 
+             accessed directly via the return value of this function or via the
+             PoolManager.Pools dictionary.
+             </summary>
+             <param name="poolName">
+             The name for the new SpawnPool. The GameObject will have the word "Pool"
+             Added at the end.
+             </param>
+             <param name="owner">A GameObject to add the SpawnPool Component</param>
+             <returns>A reference to the new SpawnPool component</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.assertValidPoolName(System.String)">
+            <summary>
+            Used to ensure a name is valid before creating anything.
+            </summary>
+            <param name="poolName">The name to test</param>
+            <returns>True if sucessful, false if failed.</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.ToString">
+            <summary>
+            Returns a formatted string showing all the pool names
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Destroy(System.String)">
+            <summary>
+            Destroy an entire SpawnPool, including its GameObject and all children.
+            You can also just destroy the GameObject directly to achieve the same result.
+            This is really only here to make it easier when a reference isn't at hand.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.DestroyAll">
+            <summary>
+            Destroy ALL SpawnPools, including their GameObjects and all children.
+            You can also just destroy the GameObjects directly to achieve the same result.
+            This is really only here to make it easier when a reference isn't at hand.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Add(PathologicalGames.SpawnPool)">
+            <summary>
+            Used internally by SpawnPools to add themseleves on Awake().
+            Use PoolManager.CreatePool() to create an entirely new SpawnPool GameObject
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.Remove(PathologicalGames.SpawnPool)">
+            <summary>
+            Used internally by SpawnPools to remove themseleves on Destroy().
+            Use PoolManager.Destroy() to destroy an entire SpawnPool GameObject.
+            </summary>
+            <param name="spawnPool"></param>
+        </member>
+        <member name="P:PathologicalGames.SpawnPoolsDict.Count">
+            <summary>
+            Get the number of SpawnPools in PoolManager
+            </summary>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.ContainsKey(System.String)">
+            <summary>
+            Returns true if a pool exists with the passed pool name.
+            </summary>
+            <param name="poolName">The name to look for</param>
+            <returns>True if the pool exists, otherwise, false.</returns>
+        </member>
+        <member name="M:PathologicalGames.SpawnPoolsDict.TryGetValue(System.String,PathologicalGames.SpawnPool@)">
+            <summary>
+            Used to get a SpawnPool when the user is not sure if the pool name is used.
+            This is faster than checking IsPool(poolName) and then accessing Pools][poolName.]
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ABVersion">
+            <summary>
+            csv资源文件内容
+            </summary>
+        </member>
+        <member name="M:AssetDriver.DownLoadABIE(System.String)">
+            <summary>
+            当所有资源下载完成或者更新完成,开始游戏
+            </summary>
+            <param name="abName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.ResponseExportCSV(System.Collections.Generic.List{ABVersion},System.String)">
+            <summary>
+            将ssv写入到指定目录
+            </summary>
+            <param name="abVersions"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:AssetDriver.DownLoadAB(System.String)">
+            <summary>
+            获取包依赖信息
+            </summary>
+            <param name="fileNames"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:AssetDriver.bundleDic" -->
+        <member name="P:AssetDriver.ABFilePath">
+            <summary>
+            AB包路径
+            </summary>
+        </member>
+        <member name="P:AssetDriver.MainABName">
+            <summary>
+            主包名字
+            </summary>
+        </member>
+        <member name="M:AssetDriver.LoadAB(System.String)">
+            <summary>
+            加载AB包
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.LoadFromAB``1(System.String)">
+            <summary>
+            从AB包中加载资源
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="abName"></param>
+            <param name="resName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AssetDriver.RemoveMenory">
+            <summary>
+            卸载没有被使用的资源
+            </summary>
+        </member>
+        <member name="M:AssetDriver.ClearOneAB(System.String)">
+            <summary>
+            卸载单个AB包
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:AssetDriver.ClearAll">
+            <summary>
+            卸载所有AB包
+            </summary>
+        </member>
+        <member name="M:Cloneable`1.Clone">
+            <summary>
+            基础覆写方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CSVReader">
+            <summary>
+            编辑器部分的同步文件，如果有改动需要在两边共同修改
+            </summary>
+        </member>
+        <member name="M:CSVReader.ParseCSV(System.String)">
+            <summary>
+            解析csv数据
+            </summary>
+            <param name="csv"></param>
+        </member>
+        <member name="M:CSVReader.GetData(System.Int32,System.Int32)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="F:GuideShaderController._target">
+            <summary>
+            要高亮显示的目标
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._corners">
+            <summary>
+            区域范围缓存
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._center">
+            <summary>
+            镂空区域圆心
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._radius">
+            <summary>
+            镂空区域半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._material">
+            <summary>
+            遮罩材质
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._currentRadius">
+            <summary>
+            当前高亮区域的半径
+            </summary>
+        </member>
+        <member name="F:GuideShaderController._shrinkVelocity">
+            <summary>
+            收缩速度
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ChangeTarget(UnityEngine.UI.Image,System.Action)">
+            <summary>
+            聚焦到引导目标
+            TODO 这个地方需要增加对场景3D物体的特定点击回调操作
+            </summary>
+            <param name="operateImage">目标点击区域Button Image</param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:GuideShaderController.CurrentGuideOver">
+            <summary>
+            引导完成后UI重置
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.ResetGuide">
+            <summary>
+            重置引导画面-去除镂空区域
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnClickTargetButtonGuideDone">
+            <summary>
+            新手引导UI点击回调
+            </summary>
+        </member>
+        <member name="M:GuideShaderController.OnTouchTargetGuideDone">
+            <summary>
+            3D物体触碰回调
+            </summary>
+        </member>
+        <member name="T:GuideConfig">
+            <summary>
+            引导动画配置
+            </summary>
+        </member>
+        <member name="T:GuideDataModel">
+            <summary>
+            分部类。可以在业务逻辑上继续扩展
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.FocusTargetDoneEvent">
+            <summary>
+            圆形/矩形聚焦完毕回调
+            </summary>
+        </member>
+        <member name="F:GuideDataModel.GuideDoneEvent">
+            <summary>
+            点击目标位置完成本轮
+            </summary>
+        </member>
         <member name="T:PrefabPool">
             <summary>
             This class is used to display a more complex user entry interface in the 
@@ -2329,6 +2106,114 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="T:MsgManager">
+            <summary>
+            事件管理器
+            
+            id内部采用ushort类型，参数采用枚举类型
+            </summary>
+        </member>
+        <member name="M:MsgManager.Register``1(``0,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。</typeparam>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister``1(``0,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast``1(``0,MsgArgs)">
+            <summary>
+            广播事件。统用枚举类
+            </summary>
+            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="M:MsgManager.Register(System.UInt16,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister(System.UInt16,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast(System.UInt16,MsgArgs)">
+            <summary>
+            广播事件
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="M:MsgManager.Register(System.String,System.Action{MsgArgs})">
+            <summary>
+            注册事件关注。推荐用于临时事件注册
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.UnRegister(System.String,System.Action{MsgArgs})">
+            <summary>
+            取消事件关注。推荐用于临时事件注册
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="callBack">事件回调</param>
+        </member>
+        <member name="M:MsgManager.Broadcast(System.String,MsgArgs)">
+            <summary>
+            广播事件。推荐用于临时事件注册
+            </summary>
+            <param name="id">Event ID</param>
+            <param name="msg">事件参数</param>
+        </member>
+        <member name="T:MsgArgs">
+            <summary>
+            消息参数体。
+            </summary>
+        </member>
+        <member name="P:ADManager.UseBackgroundAD">
+            <summary>
+            是否开启切回前台插页广告
+            </summary>
+        </member>
+        <member name="F:ADManager.CanShowInitialEvent">
+            <summary>
+            是否需要播放插页广告回调
+            </summary>
+        </member>
+        <member name="P:ADManager.Adapter">
+            <summary>
+            当前使用中的广告适配器
+            </summary>
+        </member>
+        <member name="P:ADManager.UseAds">
+            <summary>
+            是否启用广告
+            </summary>
+        </member>
+        <member name="M:ADManager.ShowFullScreen">
+            <summary>
+            满足 CanShowInitialEvent 回调判定条件，或者直接返回播放插页
+            </summary>
+        </member>
+        <member name="T:BezierViewTest">
+            <summary>
+            贝塞尔曲线测试类，用于演示
+            </summary>
+        </member>
         <member name="T:CSExtention">
             <summary>
             方法扩展类
@@ -2380,6 +2265,13 @@
             <summary>
             图片回复
             </summary>
+        </member>
+        <member name="M:LitJson.JsonData.ContainsKey(System.String)">
+            <summary>
+            Determines whether the json contains an element that has the specified key.
+            </summary>
+            <param name="key">The key to locate in the json.</param>
+            <returns>true if the json contains an element that has the specified key; otherwise, false.</returns>
         </member>
         <member name="M:UnityEngine.LMath.VectorAngle(UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean)">
             <summary>
@@ -2496,134 +2388,6 @@
             </summary>
             <param name="go"></param>
             <returns></returns>
-        </member>
-        <member name="T:MsgManager">
-            <summary>
-            事件管理器
-            
-            值为ushort类型：参数采用枚举类型。为防止枚举值重复，枚举类需要头部包含上一个类
-            </summary>
-        </member>
-        <member name="M:MsgManager.Register``1(``0,System.Action{MsgArgs})">
-            <summary>
-            注册事件关注
-            </summary>
-            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。</typeparam>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.UnRegister``1(``0,System.Action{MsgArgs})">
-            <summary>
-            取消事件关注
-            </summary>
-            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.Broadcast``1(``0,MsgArgs)">
-            <summary>
-            广播事件。统用枚举类
-            </summary>
-            <typeparam name="T">统用枚举类。可接受多种枚举。这里会转换为ushort类型。<em>通用枚举的转换，采用的是IConvertible.ToUInt16。中间借用了format涉及到了拆装箱，ID转换将会固定产生40B</em></typeparam>
-            <param name="id">Event ID</param>
-            <param name="msg">事件参数</param>
-        </member>
-        <member name="M:MsgManager.Register(System.UInt16,System.Action{MsgArgs})">
-            <summary>
-            注册事件关注
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.UnRegister(System.UInt16,System.Action{MsgArgs})">
-            <summary>
-            取消事件关注
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.Broadcast(System.UInt16,MsgArgs)">
-            <summary>
-            广播事件
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="msg">事件参数</param>
-        </member>
-        <member name="M:MsgManager.Register(System.String,System.Action{MsgArgs})">
-            <summary>
-            注册事件关注。推荐用于临时事件注册
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.UnRegister(System.String,System.Action{MsgArgs})">
-            <summary>
-            取消事件关注。推荐用于临时事件注册
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="callBack">事件回调</param>
-        </member>
-        <member name="M:MsgManager.Broadcast(System.String,MsgArgs)">
-            <summary>
-            广播事件。推荐用于临时事件注册
-            </summary>
-            <param name="id">Event ID</param>
-            <param name="msg">事件参数</param>
-        </member>
-        <member name="T:MsgArgs">
-            <summary>
-            消息参数体。
-            </summary>
-        </member>
-        <member name="P:ADManager.UseBackgroundAD">
-            <summary>
-            是否开启切回前台插页广告
-            </summary>
-        </member>
-        <member name="F:ADManager.CanShowInitialEvent">
-            <summary>
-            是否需要播放插页广告回调
-            </summary>
-        </member>
-        <member name="P:ADManager.Adapter">
-            <summary>
-            当前使用中的广告适配器
-            </summary>
-        </member>
-        <member name="P:ADManager.UseAds">
-            <summary>
-            是否启用广告
-            </summary>
-        </member>
-        <member name="M:ADManager.ShowFullScreen">
-            <summary>
-            满足 CanShowInitialEvent 回调判定条件，或者直接返回播放插页
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.NotInit">
-            <summary>
-            未初始化
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.ProductError">
-            <summary>
-            商品未找到或未初始化
-            </summary>
-        </member>
-        <member name="F:BuyFailReason.Other">
-            <summary>
-            其它错误
-            </summary>
-        </member>
-        <member name="F:PurchaserDataModel.BuySuccessEvent">
-            <summary>
-            购买物品ID成功时回调
-            </summary>
-        </member>
-        <member name="F:PurchaserDataModel.BuyFailEvent">
-            <summary>
-            购买失败时回调
-            </summary>
         </member>
         <member name="F:UIType.isClearPopUp">
             <summary>
@@ -2796,11 +2560,6 @@
             </summary>
             <param name="parents">父对象的方位</param>
             <param name="child">子对象的方法</param>
-        </member>
-        <member name="T:BezierViewTest">
-            <summary>
-            贝塞尔曲线测试类，用于演示
-            </summary>
         </member>
     </members>
 </doc>

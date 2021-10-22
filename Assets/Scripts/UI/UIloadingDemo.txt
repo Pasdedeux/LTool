@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using LitFramework;
 using UnityEngine;
-using LitFramework.HotFix;
+using LitFramework.Mono;
 using UnityEngine.UI;
 using LitFramework.GameFlow;
 using LitFramework.LitTool;

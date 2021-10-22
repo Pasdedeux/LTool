@@ -140,31 +140,10 @@
             包含Tools菜单下一系列工具包文件
             </summary>
         </member>
-        <member name="F:LitFrameworkEditor.EditorExtended.EditorMenuExtention._csvListTitle">
-            <summary>
-            写入CSV标题栏
-            </summary>
-        </member>
-        <member name="F:LitFrameworkEditor.EditorExtended.EditorMenuExtention._csvContentValue">
-            <summary>
-            写入CSV的值
-            </summary>
-        </member>
-        <member name="F:LitFrameworkEditor.EditorExtended.EditorMenuExtention._csvListToBeRestored">
-            <summary>
-            需要存档的配置文件
-            </summary>
-        </member>
         <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.XlsxToCSV">
             <summary>
             将XLSX文件夹的excel文档转换为csv文件
             </summary>
-        </member>
-        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.MatchCSVTotalFile(System.Collections.Generic.List{LitFramework.ABVersion})">
-            <summary>
-            加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-            </summary>
-            <param name="csvListToBeRestored"></param>
         </member>
         <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.CsvToCs">
             <summary>
@@ -200,14 +179,6 @@
             </summary>
         </member>
         <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.GetFiles(System.IO.DirectoryInfo,System.String,System.IO.StreamWriter)">
-            <summary>
-            查找指定文件夹下指定后缀名的文件
-            </summary>
-            <param name="directory">文件夹</param>
-            <param name="pattern">后缀名</param>
-            <returns>文件路径</returns>
-        </member>
-        <member name="M:LitFrameworkEditor.EditorExtended.EditorMenuExtention.GetFiles(System.IO.DirectoryInfo,System.String,System.Collections.Generic.List{LitFramework.ABVersion})">
             <summary>
             查找指定文件夹下指定后缀名的文件
             </summary>
@@ -272,8 +243,8 @@
         </member>
         <member name="P:LitFrameworkEditor.Properties.Resources.Culture">
             <summary>
-              重写当前线程的 CurrentUICulture 属性，对
-              使用此强类型资源类的所有资源查找执行重写。
+              重写当前线程的 CurrentUICulture 属性
+              重写当前线程的 CurrentUICulture 属性。
             </summary>
         </member>
         <member name="F:BitmapFontExporter.fontFile">

@@ -157,7 +157,7 @@ namespace LitFrameworkEditor.EditorExtended
                         ABVersion local = localABVersionsDic[ k ];
                         if ( local.AbName == toSave.AbName )
                         {
-                            toSave.Version = local.MD5 != toSave.MD5 ? local.Version + 1 : local.Version;
+                            toSave.Version = local.MD5 != toSave.MD5 && local.Version != 0 ? local.Version + 1 : local.Version;
                         }
                     }
                     listwriter.WriteLine( string.Format( _csvContentValue, toSave.AbName, toSave.Version, toSave.MD5 ) );
@@ -536,6 +536,7 @@ namespace LitFrameworkEditor.EditorExtended
                 {
                     foreach ( FileInfo info in directory.GetFiles( "*." + pattern ) )
                     {
+                        //TODO 未能提供检查是否重名
                         listwriter.WriteLine( info.Name );
                     }
                 }
@@ -562,9 +563,16 @@ namespace LitFrameworkEditor.EditorExtended
             {
                 try
                 {
-                    foreach ( FileInfo info in directory.GetFiles( "*." + pattern ) )
+                    foreach (FileInfo info in directory.GetFiles("*." + pattern))
                     {
-                        listwriter.Add( new ABVersion { AbName = info.Name, MD5 = string.Empty, Version = 0 } );
+                        string realName = info.FullName.Replace("\\", "/");
+                        realName = realName.Substring(realName.LastIndexOf("StreamingAssets") + "StreamingAssets".Length + 1);
+                        if (listwriter.Any(e => e.AbName == realName))
+                        {
+                            LDebug.LogWarning($">>配置档 {realName} 重复录入。已忽略 ");
+                            continue;
+                        }
+                        listwriter.Add(new ABVersion { AbName = realName, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(info.FullName), Version = 0 });
                     }
                 }
                 catch ( Exception ex )

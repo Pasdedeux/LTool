@@ -21,7 +21,11 @@ namespace Assets.Scripts.LitCore.LitTool
         /// <param name="password"></param>
         public static void CompressFileWithPassword(string[] addedFilePaths, string outputFilePath, string password = null)
         {
-            using (ZipOutputStream zipStream = new ZipOutputStream(File.Create(outputFilePath)))
+            FileInfo fi = new FileInfo(outputFilePath);
+            if (!Directory.Exists(fi.DirectoryName)) Directory.CreateDirectory(fi.DirectoryName);
+
+            FileStream fs = File.Create(outputFilePath);
+            using (ZipOutputStream zipStream = new ZipOutputStream(fs))
             {
                 if (!string.IsNullOrEmpty(password))
                     zipStream.Password = password;
@@ -46,11 +50,11 @@ namespace Assets.Scripts.LitCore.LitTool
             byte[] buffer = new byte[fileStream.Length];
             fileStream.Read(buffer, 0, buffer.Length);
             string tempFile = sourceFilePath.Substring(sourceFilePath.LastIndexOf("\\") + 1);
-            ///剔除掉非相对根目录  /test 之上的冗余路径
-            /// 如传入的资源路径是 /Users/wangdong/Documents/Work/ziptest/Assets/test
-            /// 需要把test之前的路径都剔除掉  _inputResRootFolder = "test"
-            int ind = tempFile.LastIndexOf("/");
-            string realPath = tempFile.Substring(ind, tempFile.Length - ind);
+            /////剔除掉非相对根目录  /test 之上的冗余路径
+            ///// 如传入的资源路径是 /Users/wangdong/Documents/Work/ziptest/Assets/test
+            ///// 需要把test之前的路径都剔除掉  _inputResRootFolder = "test"
+            //int ind = tempFile.LastIndexOf("/");
+            string realPath = tempFile;//.Substring(ind, tempFile.Length - ind);
             ///realPath 就是  /test
             ZipEntry entry = new ZipEntry(realPath);
             entry.DateTime = DateTime.Now;

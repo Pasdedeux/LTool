@@ -34,6 +34,8 @@ namespace LitFramework.MsgSystem
         public static string REMOTE_UPDATE_ERROR = "lhwUtVKjI=REMOTE_LOAD_FAIL";
         //开始远程下载配置文件
         public static string START_LOAD_REMOTE_CONFIG = "lhwUtVKjI=START_LOAD_REMOTE_CONFIG";
+        //开始远程下载配置文件
+        public static string START_ZIP_REMOTE_CONFIG = "lhwUtVKjI=START_ZIP_REMOTE_CONFIG";
         //远程更新结束
         public static string END_LOAD_REMOTE_CONFIG = "lhwUtVKjI=END_LOAD_REMOTE_CONFIG";
         //带参数。对特定文件进入处理阶段：下载、写入

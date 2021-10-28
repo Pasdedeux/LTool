@@ -97,7 +97,9 @@ public class FrameworkConfigInspector : Editor
         if ( _foldOutAB )
         {
             _config.ABFolderName = EditorGUILayout.TextField( "AB包文件夹名称", _config.ABFolderName );
-            _config.ABTotalName = EditorGUILayout.TextField( "AB总包名称", _config.ABTotalName );
+            _config.useZIP = EditorGUILayout.Toggle("是否使用压缩包格式", _config.useZIP);
+            //分包名称目前还不支持单独设置
+            //_config.ABTotalName = EditorGUILayout.TextField( "AB总包名称", _config.ABTotalName );
         }
 
         EditorGUILayout.Space();

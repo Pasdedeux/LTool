@@ -41,55 +41,64 @@ namespace Assets.Scripts.Module.HotFix
         /// 执行文件迁移+文件热更
         /// </summary>
         /// <param name="hotFixesQueue"></param>
-        public void Excecute( Queue<IHotFix> hotFixesQueue )
+        public void Excecute(Queue<IHotFix> hotFixesQueue)
         {
-            MsgManager.Instance.Register( InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError );
+            MsgManager.Instance.Register(InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError);
 
             //是否使用可读写目录
-            if ( FrameworkConfig.Instance.UsePersistantPath )
+            if (FrameworkConfig.Instance.UsePersistantPath)
             {
-                foreach ( var item in hotFixesQueue )
-                    item.DoFilesMovement();
+                foreach (var item in hotFixesQueue)
+                    item.MoveExecute();
 
-                StartHotFix( hotFixesQueue );
+                StartHotFix(hotFixesQueue);
+                FinalExcute(hotFixesQueue);
             }
-            else MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG );
+            else MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG);
         }
 
-
-        private void StartHotFix( Queue<IHotFix> hotFixesQueue )
+        private void StartHotFix(Queue<IHotFix> hotFixesQueue)
         {
             //是否需要热更
-            if ( FrameworkConfig.Instance.UseRemotePersistantPath )
+            if (FrameworkConfig.Instance.UseRemotePersistantPath)
             {
-                if ( string.IsNullOrEmpty( FrameworkConfig.Instance.RemoteUrlConfig ) )
+                if (string.IsNullOrEmpty(FrameworkConfig.Instance.RemoteUrlConfig))
                 {
-                    LDebug.LogErrorFormat( ">>REMOTE_IP： {0} 无效!", FrameworkConfig.Instance.RemoteUrlConfig );
+                    LDebug.LogErrorFormat(">>REMOTE_IP： {0} 无效!", FrameworkConfig.Instance.RemoteUrlConfig);
                     return;
                 }
-                LitTool.MonoBehaviour.StartCoroutine( IStartHotFix( hotFixesQueue ) );
+                LitTool.MonoBehaviour.StartCoroutine(IStartHotFix(hotFixesQueue));
             }
-            else MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
+            else MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG);
         }
 
-        private IEnumerator IStartHotFix( Queue<IHotFix> hotFixList )
+        private void FinalExcute(Queue<IHotFix> hotFixesQueue)
         {
-            MsgManager.Instance.Broadcast( InternalEvent.START_LOAD_REMOTE_CONFIG );
+            MsgManager.Instance.Broadcast(InternalEvent.START_ZIP_REMOTE_CONFIG);
 
+            foreach (var item in hotFixesQueue)
+                item.FinalExecute();
+
+            if (!_acountError)
+                MsgManager.Instance.Broadcast(InternalEvent.END_LOAD_REMOTE_CONFIG);
+        }
+
+        private IEnumerator IStartHotFix(Queue<IHotFix> hotFixList)
+        {
+            MsgManager.Instance.Broadcast(InternalEvent.START_LOAD_REMOTE_CONFIG);
+
+            Queue<IHotFix> localQueue = new Queue<IHotFix>(hotFixList);
             do
             {
-                yield return hotFixList.Peek().DoHotFix();
-                hotFixList.Dequeue();
-            } while ( hotFixList.Count > 0 );
-
-            if ( !_acountError )
-                MsgManager.Instance.Broadcast( InternalEvent.END_LOAD_REMOTE_CONFIG );
+                yield return localQueue.Peek().HotFixExecute();
+                localQueue.Dequeue();
+            } while (localQueue.Count > 0);
         }
 
-        private void OnReceiveError( MsgArgs obj )
+        private void OnReceiveError(MsgArgs obj)
         {
             _acountError = true;
-            MsgManager.Instance.UnRegister( InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError );
+            MsgManager.Instance.UnRegister(InternalEvent.REMOTE_UPDATE_ERROR, OnReceiveError);
         }
     }
 }

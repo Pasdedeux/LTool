@@ -94,8 +94,11 @@ namespace LitFramework
         #region 配置档设置
         [Header( "AB包文件夹名称" )]
         public string ABFolderName = "ABPackages";
-        [Header( "AB总包名称" )]
+        //[Header( "AB总包名称" )]
+        [HideInInspector]
         public string ABTotalName = "ABPackages";
+        [Header("是否打成压缩包")]
+        public bool useZIP = false;
 
         [Header( "额外登记的文件后缀" )]
         public string configs_suffix = "json|dat|assetbundle";

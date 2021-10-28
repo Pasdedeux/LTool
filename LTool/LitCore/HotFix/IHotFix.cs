@@ -20,7 +20,8 @@ namespace Assets.Scripts.Module.HotFix
 {
     public interface IHotFix
     {
-        void DoFilesMovement();
-        IEnumerator DoHotFix();
+        void MoveExecute();
+        IEnumerator HotFixExecute();
+        void FinalExecute();
     }
 }

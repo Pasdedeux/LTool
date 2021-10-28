@@ -4,42 +4,66 @@ using System;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Checksum;
 
 namespace Assets.Scripts.LitCore.LitTool
 {
     /// <summary>
     /// ICSharpCode.SharpZipLib 方案
     /// </summary>
-    public class ZipManager : Singleton<ZipManager>, IManager
+    public class ZipManager
     {
-        public void Install()
-        {
-            
-        }
-
-        public void Uninstall()
-        {
-            
-        }
-
-
         /// <summary>
-        /// Method that compress specified files inside a folder (non-recursive) into a zip file.
+        /// Use english is better...Method that compress specified files inside a folder (non-recursive) into a zip file.
         /// </summary>
         /// <param name="addedFilePaths">eg: AssetPathManager.Instance.GetStreamAssetDataPath("tutorial", false)</param>
         /// <param name="outputFilePath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test1.zip", false)</param>
         /// <param name="password"></param>
-        private void CompressFileWithPassword(string[] addedFilePaths, string outputFilePath, string password = null)
+        public static void CompressFileWithPassword(string[] addedFilePaths, string outputFilePath, string password = null)
         {
-            using (ZipFile zip = ZipFile.Create(outputFilePath))
+            using (ZipOutputStream zipStream = new ZipOutputStream(File.Create(outputFilePath)))
             {
-                zip.Password = password;
-                zip.BeginUpdate();
+                if (!string.IsNullOrEmpty(password))
+                    zipStream.Password = password;
+                zipStream.SetLevel(9); // 压缩级别直接顶满
                 for (int i = 0; i < addedFilePaths.Length; i++)
-                    zip.Add(addedFilePaths[i]);
-                zip.CommitUpdate();
+                    CreateZipFiles(addedFilePaths[i], zipStream);
+                zipStream.Finish();
+                zipStream.Close();
             }
         }
+
+
+        /// <summary>
+        /// 递归压缩文件
+        /// </summary>
+        /// <param name="sourceFilePath">待压缩的文件或文件夹路径</param>
+        /// <param name="zipStream">打包结果的zip文件路径。全路径包括文件名和.zip扩展名</param>
+        private static void CreateZipFiles(string sourceFilePath, ZipOutputStream zipStream)
+        {
+            Crc32 crc = new Crc32();
+            FileStream fileStream = File.OpenRead(sourceFilePath);
+            byte[] buffer = new byte[fileStream.Length];
+            fileStream.Read(buffer, 0, buffer.Length);
+            string tempFile = sourceFilePath.Substring(sourceFilePath.LastIndexOf("\\") + 1);
+            ///剔除掉非相对根目录  /test 之上的冗余路径
+            /// 如传入的资源路径是 /Users/wangdong/Documents/Work/ziptest/Assets/test
+            /// 需要把test之前的路径都剔除掉  _inputResRootFolder = "test"
+            int ind = tempFile.LastIndexOf("/");
+            string realPath = tempFile.Substring(ind, tempFile.Length - ind);
+            ///realPath 就是  /test
+            ZipEntry entry = new ZipEntry(realPath);
+            entry.DateTime = DateTime.Now;
+            entry.Size = fileStream.Length;
+            fileStream.Close();
+            crc.Reset();
+            crc.Update(buffer);
+            entry.Crc = crc.Value;
+            zipStream.PutNextEntry(entry);
+            zipStream.Write(buffer, 0, buffer.Length);
+        }
+
+
 
         /// <summary>
         /// Method that compress all the files inside a folder (non-recursive) into a zip file.
@@ -47,7 +71,7 @@ namespace Assets.Scripts.LitCore.LitTool
         /// <param name="directoryPath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("tutorial", false)</param>
         /// <param name="outputFilePath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test1.zip", false)</param>
         /// <param name="compressionLevel"></param>
-        private void CompressDirectoryWithPassword(string directoryPath, string outputFilePath, string password = null, int compressionLevel = 9)
+        public static void CompressDirectoryWithPassword(string directoryPath, string outputFilePath, string password = null, int compressionLevel = 9)
         {
             try
             {
@@ -62,7 +86,8 @@ namespace Assets.Scripts.LitCore.LitTool
                     // Define a password for the file (if providen)
                     // set its value to null or don't declare it to leave the file
                     // without password protection
-                    OutputStream.Password = password;
+                    if (!string.IsNullOrEmpty(password))
+                        OutputStream.Password = password;
 
                     // Define the compression level
                     // 0 - store only to 9 - means best compression
@@ -109,7 +134,7 @@ namespace Assets.Scripts.LitCore.LitTool
 
                     // Close is important to wrap things up and unlock the file.
                     OutputStream.Close();
-
+                    
                     Console.WriteLine("Files successfully compressed");
                 }
             }
@@ -123,18 +148,18 @@ namespace Assets.Scripts.LitCore.LitTool
         /// <summary>
         /// Extracts the content from a .zip file inside an specific folder.
         /// </summary>
-        /// <param name="FileZipPath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test.zip", false)</param>
-        /// <param name="OutputFolder">AssetPathManager.Instance.GetStreamAssetDataPath("", false)</param>
+        /// <param name="fileZipPath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test.zip", false)</param>
+        /// <param name="outputFolder">AssetPathManager.Instance.GetStreamAssetDataPath("", false)</param>
         /// <param name="password"></param>
-        public void ExtractZipContent(string FileZipPath, string OutputFolder, string password)
+        public static void ExtractZipContent(string fileZipPath, string outputFolder, string password = null)
         {
             ZipFile file = null;
             try
             {
-                FileStream fs = File.OpenRead(FileZipPath);
+                FileStream fs = File.OpenRead(fileZipPath);
                 file = new ZipFile(fs);
 
-                if (!String.IsNullOrEmpty(password))
+                if (!string.IsNullOrEmpty(password))
                 {
                     // AES encrypted entries are handled automatically
                     file.Password = password;
@@ -148,7 +173,7 @@ namespace Assets.Scripts.LitCore.LitTool
                         continue;
                     }
 
-                    String entryFileName = zipEntry.Name;
+                    string entryFileName = zipEntry.Name;
                     // to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
                     // Optionally match entrynames against a selection list here to skip as desired.
                     // The unpacked length is available in the zipEntry.Size property.
@@ -158,7 +183,7 @@ namespace Assets.Scripts.LitCore.LitTool
                     Stream zipStream = file.GetInputStream(zipEntry);
 
                     // Manipulate the output filename here as desired.
-                    String fullZipToPath = Path.Combine(OutputFolder, entryFileName);
+                    string fullZipToPath = Path.Combine(outputFolder, entryFileName);
                     string directoryName = Path.GetDirectoryName(fullZipToPath);
 
                     if (directoryName.Length > 0)
@@ -174,6 +199,10 @@ namespace Assets.Scripts.LitCore.LitTool
                         StreamUtils.Copy(zipStream, streamWriter, buffer);
                     }
                 }
+            }
+            catch(Exception e)
+            {
+                LDebug.LogError(" Zip Error >> " + e);
             }
             finally
             {

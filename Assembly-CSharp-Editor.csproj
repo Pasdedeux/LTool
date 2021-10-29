@@ -84,6 +84,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
     <Compile Include="Assets\The3rd\UPRTools\Editor\View\ParticleSystemAssetTreeView\BackendData\ParticleSystemElement.cs" />
+    <Compile Include="Assets\Scripts\Editor\SGMenuOptions.cs" />
+    <Compile Include="Assets\Scripts\Editor\SGDefaultControls.cs" />
+    <Compile Include="Assets\Scripts\Editor\LoopScrollRectInspector.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />

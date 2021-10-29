@@ -2046,8 +2046,8 @@ public class Reporter : MonoBehaviour
 			url = System.IO.Path.Combine(streamingAssetsPath, prefFile);
 		}
 
-		//if (Application.platform != RuntimePlatform.OSXWebPlayer && Application.platform != RuntimePlatform.WindowsWebPlayer)
-			if (!url.Contains("://"))
+        //if (Application.platform != RuntimePlatform.OSXWebPlayer && Application.platform != RuntimePlatform.WindowsWebPlayer)
+            if (!url.Contains("://"))
 				url = "file://" + url;
 
 
@@ -2061,7 +2061,7 @@ public class Reporter : MonoBehaviour
 #endif
 
 		if (!string.IsNullOrEmpty(www.error)) {
-			Debug.LogError(www.error);
+			//Debug.LogError(www.error);
 		}
 		else {
 #if UNITY_CHANGE4

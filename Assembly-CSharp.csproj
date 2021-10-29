@@ -338,6 +338,13 @@
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\UI\UITest.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollRect.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
+    <Compile Include="Assets\Scripts\UI\Componets\ScrollIndexCallback1.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\FBX\_desc.txt" />

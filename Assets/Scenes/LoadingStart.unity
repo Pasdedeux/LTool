@@ -226,6 +226,98 @@ PrefabInstance:
     - {fileID: 468661339, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
     - {fileID: 468661338, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
+--- !u!1 &321517293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321517296}
+  - component: {fileID: 321517295}
+  - component: {fileID: 321517294}
+  m_Layer: 0
+  m_Name: Reporter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &321517294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321517293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10fb744d0047ce458855af9830a4e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &321517295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321517293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dcdc5e9e7ae094d9439077e88a9898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  show: 0
+  UserData: 
+  fps: 0
+  fpsText: 
+  images:
+    clearImage: {fileID: 2800000, guid: 4f5fa18294969724780f52842b364a24, type: 3}
+    collapseImage: {fileID: 2800000, guid: 6838c6b02d89ba64a8524fed422ce2cb, type: 3}
+    clearOnNewSceneImage: {fileID: 2800000, guid: 3e642e3ffbdeb604a8d984690d1f84e6, type: 3}
+    showTimeImage: {fileID: 2800000, guid: b1880bf5177ab944cb6113f5a0af098e, type: 3}
+    showSceneImage: {fileID: 2800000, guid: 4a09baba94fd10e4da186ab520f02153, type: 3}
+    userImage: {fileID: 2800000, guid: ce4e31158259d5b49979495b71b8b22d, type: 3}
+    showMemoryImage: {fileID: 2800000, guid: 6961cc8f4477fae4e8d4c9da46078fbf, type: 3}
+    softwareImage: {fileID: 2800000, guid: 77b109d23a5fe0045a8f74b186a2e884, type: 3}
+    dateImage: {fileID: 2800000, guid: 2345bfad130a8934aae8f32ea7fed948, type: 3}
+    showFpsImage: {fileID: 2800000, guid: 61b6471086eb9b946932827f2ea3c7f6, type: 3}
+    infoImage: {fileID: 2800000, guid: 9ee310ffa2c2a754ba469ffb5129bdff, type: 3}
+    saveLogsImage: {fileID: 2800000, guid: 4c9f1b04fb103ee42a1e7d32dfcb4642, type: 3}
+    searchImage: {fileID: 2800000, guid: cb6f16aa93040b5499cc7bb01a5aa88e, type: 3}
+    closeImage: {fileID: 2800000, guid: 7e60b90d7def96a4d9eeb249f8c5045f, type: 3}
+    buildFromImage: {fileID: 2800000, guid: 2b3955ebdc02d6b4a863bf8961249364, type: 3}
+    systemInfoImage: {fileID: 2800000, guid: 6c2351a725bea11438f1af9945f0c0af, type: 3}
+    graphicsInfoImage: {fileID: 2800000, guid: 4ffc91490f78a8e4590a03a116b0841c, type: 3}
+    backImage: {fileID: 2800000, guid: 91f22268c55561e498b76c17f279b4a2, type: 3}
+    logImage: {fileID: 2800000, guid: 253e0aa7358442a4c984d23fc4ac7885, type: 3}
+    warningImage: {fileID: 2800000, guid: e55d80aa2ce13b9429ffda516282632f, type: 3}
+    errorImage: {fileID: 2800000, guid: 038cbd3c727d87949b1b5defa1f364dc, type: 3}
+    barImage: {fileID: 2800000, guid: 4fe91f9a449722c46831037e77f82ed9, type: 3}
+    button_activeImage: {fileID: 2800000, guid: 53fddc34da48f034c87e87384b0dbcfd, type: 3}
+    even_logImage: {fileID: 2800000, guid: 48420914f37f70c4ba328a60ed1db05d, type: 3}
+    odd_logImage: {fileID: 2800000, guid: e4617bc434d95184c98180ea095a6930, type: 3}
+    selectedImage: {fileID: 2800000, guid: ea0c86a5023630145a54d9f4aec7a85f, type: 3}
+    reporterScrollerSkin: {fileID: 11400000, guid: c48e250ee440d984cbd4b3e2478d39b6, type: 2}
+  size: {x: 32, y: 32}
+  maxSize: 20
+  numOfCircleToShow: 1
+  Initialized: 0
+--- !u!4 &321517296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321517293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590764917
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,101 +504,25 @@ MonoBehaviour:
   dontReparent: 0
   _dontDestroyOnLoad: 0
   logMessages: 0
-  perPrefabPoolOptions: []
+  perPrefabPoolOptions:
+  - SortSpawnName: "\u6D4B\u8BD51"
+    Pools:
+    - prefab: {fileID: 2575696412639056332, guid: e0f9e4fdba19ca54fb2f1a918f55ddc5, type: 3}
+      preloadAmount: 50
+      preloadTime: 0
+      preloadFrames: 2
+      preloadDelay: 0
+      limitInstances: 0
+      limitAmount: 100
+      limitFIFO: 0
+      cullDespawned: 0
+      cullAbove: 50
+      cullDelay: 60
+      cullMaxPerPass: 5
+      _logMessages: 0
+      spawnPool: {fileID: 0}
   maxParticleDespawnTime: 300
   loadType: 0
---- !u!1 &1574448305
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1574448308}
-  - component: {fileID: 1574448307}
-  - component: {fileID: 1574448306}
-  m_Layer: 0
-  m_Name: Reporter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1574448306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574448305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b10fb744d0047ce458855af9830a4e14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1574448307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574448305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88dcdc5e9e7ae094d9439077e88a9898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  show: 0
-  UserData: 
-  fps: 0
-  fpsText: 
-  images:
-    clearImage: {fileID: 2800000, guid: 4f5fa18294969724780f52842b364a24, type: 3}
-    collapseImage: {fileID: 2800000, guid: 6838c6b02d89ba64a8524fed422ce2cb, type: 3}
-    clearOnNewSceneImage: {fileID: 2800000, guid: 3e642e3ffbdeb604a8d984690d1f84e6, type: 3}
-    showTimeImage: {fileID: 2800000, guid: b1880bf5177ab944cb6113f5a0af098e, type: 3}
-    showSceneImage: {fileID: 2800000, guid: 4a09baba94fd10e4da186ab520f02153, type: 3}
-    userImage: {fileID: 2800000, guid: ce4e31158259d5b49979495b71b8b22d, type: 3}
-    showMemoryImage: {fileID: 2800000, guid: 6961cc8f4477fae4e8d4c9da46078fbf, type: 3}
-    softwareImage: {fileID: 2800000, guid: 77b109d23a5fe0045a8f74b186a2e884, type: 3}
-    dateImage: {fileID: 2800000, guid: 2345bfad130a8934aae8f32ea7fed948, type: 3}
-    showFpsImage: {fileID: 2800000, guid: 61b6471086eb9b946932827f2ea3c7f6, type: 3}
-    infoImage: {fileID: 2800000, guid: 9ee310ffa2c2a754ba469ffb5129bdff, type: 3}
-    saveLogsImage: {fileID: 2800000, guid: 4c9f1b04fb103ee42a1e7d32dfcb4642, type: 3}
-    searchImage: {fileID: 2800000, guid: cb6f16aa93040b5499cc7bb01a5aa88e, type: 3}
-    closeImage: {fileID: 2800000, guid: 7e60b90d7def96a4d9eeb249f8c5045f, type: 3}
-    buildFromImage: {fileID: 2800000, guid: 2b3955ebdc02d6b4a863bf8961249364, type: 3}
-    systemInfoImage: {fileID: 2800000, guid: 6c2351a725bea11438f1af9945f0c0af, type: 3}
-    graphicsInfoImage: {fileID: 2800000, guid: 4ffc91490f78a8e4590a03a116b0841c, type: 3}
-    backImage: {fileID: 2800000, guid: 91f22268c55561e498b76c17f279b4a2, type: 3}
-    logImage: {fileID: 2800000, guid: 253e0aa7358442a4c984d23fc4ac7885, type: 3}
-    warningImage: {fileID: 2800000, guid: e55d80aa2ce13b9429ffda516282632f, type: 3}
-    errorImage: {fileID: 2800000, guid: 038cbd3c727d87949b1b5defa1f364dc, type: 3}
-    barImage: {fileID: 2800000, guid: 4fe91f9a449722c46831037e77f82ed9, type: 3}
-    button_activeImage: {fileID: 2800000, guid: 53fddc34da48f034c87e87384b0dbcfd, type: 3}
-    even_logImage: {fileID: 2800000, guid: 48420914f37f70c4ba328a60ed1db05d, type: 3}
-    odd_logImage: {fileID: 2800000, guid: e4617bc434d95184c98180ea095a6930, type: 3}
-    selectedImage: {fileID: 2800000, guid: ea0c86a5023630145a54d9f4aec7a85f, type: 3}
-    reporterScrollerSkin: {fileID: 11400000, guid: c48e250ee440d984cbd4b3e2478d39b6, type: 2}
-  size: {x: 32, y: 32}
-  maxSize: 20
-  numOfCircleToShow: 2
-  Initialized: 0
---- !u!4 &1574448308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574448305}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1892123137
 GameObject:
   m_ObjectHideFlags: 0

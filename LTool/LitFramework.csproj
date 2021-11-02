@@ -110,6 +110,7 @@
     <Compile Include="LitCore\LitTool\LMath.cs" />
     <Compile Include="LitCore\LitTool\Optimization.cs" />
     <Compile Include="LitCore\LitTool\SpriteAdapter.cs" />
+    <Compile Include="LitCore\LitTool\ZipManager.cs" />
     <Compile Include="LitCore\MsgSystem\InternalEvent.cs" />
     <Compile Include="LitCore\MsgSystem\MsgManager.cs" />
     <Compile Include="LitCore\ThirdParty\AD\ADManager.cs" />
@@ -126,6 +127,12 @@
     <Compile Include="LitCore\UI\Base\IViewModel.cs" />
     <Compile Include="LitCore\UI\Base\UIModelBehavior.cs" />
     <Compile Include="LitCore\UI\Base\UIType.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\BaseScrollElement.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollRect.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
     <Compile Include="LitCore\UI\Manager\UIMaskManager.cs" />
     <Compile Include="LitCore\UI\SysDefine.cs" />
     <Compile Include="LitCore\UI\UnityHelper.cs" />
@@ -217,6 +224,20 @@
     <Reference Include="Iced, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5baba79f4264913b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Iced.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\References\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil, Version=0.11.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil.Pdb">
+      <HintPath>..\References\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

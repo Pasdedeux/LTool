@@ -41,7 +41,7 @@ namespace Assets.Scripts.Module.HotFix
         public void MoveExecute()
         {
             //AB档总表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)))
+            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME), (UnityWebRequest e) =>
              {
@@ -73,12 +73,9 @@ namespace Assets.Scripts.Module.HotFix
                     }
                 }
             }
-            else
-            {
-
-            }
+            
             //ABPath路径配置表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false)))
+            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_AB_PATH, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_AB_PATH), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false), e.downloadHandler.data));
             }

@@ -56,7 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollRect.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlSelect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\PopupMenu.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtraRegister.cs" />
@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\HitTestContext.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NAudioClip.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseType.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\Singleton.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\GoWrapper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\MeshColliderHitTest.cs" />
@@ -113,7 +114,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\VertexBuffer.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\UnityEngine_UI_Graphic_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\SelectionShape.cs" />
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\BaseScrollElement.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RectMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\MovieClip.cs" />
     <Compile Include="Assets\Scripts\LoadingStart.cs" />
@@ -127,6 +127,7 @@
     <Compile Include="Assets\Scripts\ILRuntime\Generated\CSVReader_Binding.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\System_Single_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextField.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\Configs.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\Common_SerializedScriptableObjectAdapter.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTreeNode.cs" />
@@ -139,12 +140,12 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\UpdateContext.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_HotFix_BaseUI_Binding.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\URPCam.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\CSV\SpawnConfig.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\DisplayObject.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GGroupAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GGraph.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\QuaternionBinder.cs" />
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Container.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\FrameworkController.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XML.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\ResPath.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObjectPool.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Timers.cs" />
@@ -169,6 +171,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObject.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Tree\TreeView.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\GamePlay_AdapterRegister.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\HotfixEntry.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\UnityEngine_Mathf_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIObjectFactory.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\MultiKeyDictionary.cs" />
@@ -186,7 +189,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_WindowAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GTreeAdapter.cs" />
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\ScriptableLoader.cs" />
@@ -196,7 +198,6 @@
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GScrollBarAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\LDebug_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\IFilter.cs" />
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\StageEngine.cs" />
@@ -210,8 +211,8 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GGroup.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\RectHitTest.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GSliderAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtention.cs" />
-    <Compile Include="Assets\Scripts\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\BlurFilter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TouchScreenKeyboard.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GRichTextField.cs" />
@@ -346,6 +347,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIConfig.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader3D.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\ControllerAction.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\IManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GLoaderAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TextField.cs" />
@@ -364,14 +366,6 @@
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\CSVConfigData.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\CoroutineAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\Configs.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\SingletonMono.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\CSV\SpawnConfig.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\HotfixEntry.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\Model\Const\ResPath.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\IManager.cs" />
-    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\ILRBaseModel\Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

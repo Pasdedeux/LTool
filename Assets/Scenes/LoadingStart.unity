@@ -374,7 +374,7 @@ MonoBehaviour:
   ABTotalName: ABPackages
   useZIP: 0
   configs_suffix: json|dat|assetbundle
-  UsePersistantPath: 1
+  UsePersistantPath: 0
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1

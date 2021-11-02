@@ -1544,6 +1544,17 @@
             <param name="outputFolder">AssetPathManager.Instance.GetStreamAssetDataPath("", false)</param>
             <param name="password"></param>
         </member>
+        <member name="T:Assets.Scripts.UI.BaseScrollElement">
+            <summary>
+            列表窗口的元素项基类。用于规定通用列表组件的元素通用行为
+            </summary>
+        </member>
+        <member name="M:Assets.Scripts.UI.BaseScrollElement.OnUpdateInfo(MsgArgs)">
+            <summary>
+            接收列表更新事件
+            </summary>
+            <param name="args"></param>
+        </member>
         <member name="T:PathologicalGames.PoolManager">
             <description>
             PoolManager v2.0

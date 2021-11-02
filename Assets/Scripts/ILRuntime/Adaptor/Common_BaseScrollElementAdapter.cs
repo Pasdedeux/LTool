@@ -69,10 +69,7 @@ namespace LHotfixProject
 
             public override void Dispose()
             {
-                if (mDispose_2.CheckShouldInvokeBase(this.instance))
-                    base.Dispose();
-                else
-                    mDispose_2.Invoke(this.instance);
+                mDispose_2.Invoke(this.instance);
             }
 
             public override void UpdateInfo(global::MsgArgs args)

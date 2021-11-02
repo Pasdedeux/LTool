@@ -372,8 +372,9 @@ MonoBehaviour:
   TouchStationaryTime: 0.5
   ABFolderName: ABPackages
   ABTotalName: ABPackages
+  useZIP: 0
   configs_suffix: json|dat|assetbundle
-  UsePersistantPath: 0
+  UsePersistantPath: 1
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1
@@ -504,23 +505,7 @@ MonoBehaviour:
   dontReparent: 0
   _dontDestroyOnLoad: 0
   logMessages: 0
-  perPrefabPoolOptions:
-  - SortSpawnName: "\u6D4B\u8BD51"
-    Pools:
-    - prefab: {fileID: 2575696412639056332, guid: e0f9e4fdba19ca54fb2f1a918f55ddc5, type: 3}
-      preloadAmount: 50
-      preloadTime: 0
-      preloadFrames: 2
-      preloadDelay: 0
-      limitInstances: 0
-      limitAmount: 100
-      limitFIFO: 0
-      cullDespawned: 0
-      cullAbove: 50
-      cullDelay: 60
-      cullMaxPerPass: 5
-      _logMessages: 0
-      spawnPool: {fileID: 0}
+  perPrefabPoolOptions: []
   maxParticleDespawnTime: 300
   loadType: 0
 --- !u!1 &1892123137

@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LitFramework;
+using Assets.Scripts.UI;
 
 namespace UnityEngine.UI
 {
@@ -348,7 +350,7 @@ namespace UnityEngine.UI
                 objectsToFill = null;
                 for (int i = content.childCount - 1; i >= 0; i--)
                 {
-                    prefabSource.ReturnObject(content.GetChild(i));
+                    prefabSource.ReturnObject(this,content.GetChild(i));
                 }
             }
         }
@@ -454,12 +456,12 @@ namespace UnityEngine.UI
                 {
                     if (itemTypeEnd < totalCount)
                     {
-                        dataSource.ProvideData(content.GetChild(i), itemTypeEnd);
+                        dataSource.ProvideData(this, itemTypeEnd);
                         itemTypeEnd++;
                     }
                     else
                     {
-                        prefabSource.ReturnObject(content.GetChild(i));
+                        prefabSource.ReturnObject(this, content.GetChild(i));
                         i--;
                     }
                 }
@@ -732,13 +734,15 @@ namespace UnityEngine.UI
             }
             else
             {
-                nextItem = prefabSource.GetObject().transform as RectTransform;
+                nextItem = prefabSource.GetObject(this).transform as RectTransform;
                 nextItem.transform.SetParent(content, false);
                 nextItem.gameObject.SetActive(true);
             }
-            dataSource.ProvideData(nextItem, itemIdx);
+            dataSource.ProvideData(this, itemIdx);
             return nextItem;
         }
+
+
         protected void ReturnToTempPool(bool fromStart, int count = 1)
         {
             if (fromStart)
@@ -751,12 +755,12 @@ namespace UnityEngine.UI
             while (deletedItemTypeStart > 0)
             {
                 deletedItemTypeStart--;
-                prefabSource.ReturnObject(content.GetChild(0));
+                prefabSource.ReturnObject(this, content.GetChild(0));
             }
             while (deletedItemTypeEnd > 0)
             {
                 deletedItemTypeEnd--;
-                prefabSource.ReturnObject(content.GetChild(content.childCount - 1));
+                prefabSource.ReturnObject(this, content.GetChild(content.childCount - 1));
             }
         }
         //==========LoopScrollRect==========

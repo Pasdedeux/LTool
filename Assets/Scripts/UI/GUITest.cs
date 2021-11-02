@@ -23,7 +23,7 @@ public class GUITest : MonoBehaviour
         {
             //DocumentAccessor.SaveAsset2LocalFileByJson(  new TesttClass() , AssetPathManager.Instance.GetStreamAssetDataPath( "TessJson.json", false ) );
 
-            UIManager.Instance.Show(ResPath.UI.UITEST);
+            //UIManager.Instance.Show(ResPath.UI.UITEST);
         }
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
@@ -35,7 +35,7 @@ public class GUITest : MonoBehaviour
             //    LDebug.Log( ">>>" + obj.pos );
             //} );
 
-            UIManager.Instance.Close(ResPath.UI.UITEST);
+            //UIManager.Instance.Show(ResPath.UI.UITEST2);
         }
 
 

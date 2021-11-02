@@ -31,7 +31,6 @@ using ILRuntime.Runtime.Intepreter;
 using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using PathologicalGames;
-using ILRuntime.Runtime.Enviorment;
 using System.Reflection;
 
 namespace Assets.Scripts
@@ -272,6 +271,8 @@ namespace Assets.Scripts
                     ((Action)act)();
                 });
             });
+            _appdomain.DelegateManager.RegisterFunctionDelegate<Assets.Scripts.UI.BaseScrollElement>();
+
 
             SetupAddGetComponent();
             LitJson.JsonMapper.RegisterILRuntimeCLRRedirection(_appdomain);
@@ -308,6 +309,16 @@ namespace Assets.Scripts
             var method = mainClass.GetMethod("SpawnReflection");
             method.Invoke(null, new object[] { sp });
         }
+
+
+        public static LitFramework.HotFix.BaseUI GetUITypeByThis(string uiAssembly)
+        {
+            LDebug.Log("Get UI From Hotfix..." + _appdomain.LoadedTypes[uiAssembly].BaseType.BaseType + "   " + _appdomain.LoadedTypes[uiAssembly].ReflectionType + "   ");
+            //需要获取的是实例类
+            var ss = _appdomain.Instantiate(_appdomain.LoadedTypes[uiAssembly].ReflectionType.FullName);
+            return ss.CLRInstance as LitFramework.HotFix.BaseUI;
+        }
+
 
         #endregion
 

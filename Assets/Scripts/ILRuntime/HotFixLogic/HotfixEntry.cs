@@ -24,8 +24,6 @@ namespace LHotfixProject
            
             //需要保证资源提前加载完毕
             RsLoadManager.Instance.Install();
-
-            
         }
 
         /// <summary>

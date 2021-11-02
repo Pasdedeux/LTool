@@ -4,6 +4,7 @@ namespace LHotfixProject{
         domain.RegisterCrossBindingAdaptor( new QueueAdapter() );
         domain.RegisterCrossBindingAdaptor( new IEqualityComparer_1_Int32Adapter() );
         domain.RegisterCrossBindingAdaptor( new ApplicationExceptionAdapter() );
+        domain.RegisterCrossBindingAdaptor( new BaseScrollElementAdapter() );
       }
   }
 }

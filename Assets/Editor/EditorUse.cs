@@ -42,6 +42,8 @@ public class EditorUse
             animTarget.isFrom = true;
             animTarget.endValueFloat = 0f;
             animTarget.optionalBool0 = true;
+            animTarget.autoKill = false;
+            animTarget.autoPlay = false;
 
             //出场UI动画
             animTarget = e.AddComponent<DOTweenAnimation>();
@@ -52,6 +54,8 @@ public class EditorUse
             animTarget.isFrom = false;
             animTarget.endValueFloat = 0f;
             animTarget.optionalBool0 = true;
+            animTarget.autoKill = false;
+            animTarget.autoPlay = false;
         };
 
         //组件创建回调

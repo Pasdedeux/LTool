@@ -6,6 +6,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Collections;
 using ILRuntime.Runtime;
+using Assets.Scripts.UI;
 
 [System.Reflection.Obfuscation( Exclude = true )]
 public class ILRuntimeCrossBinding
@@ -21,6 +22,7 @@ public class ILRuntimeCrossBinding
             typeof( Queue ),
             typeof( IEqualityComparer<int> ),
             typeof( ApplicationException ),
+            typeof( BaseScrollElement ),
             //typeof( Sirenix.OdinInspector.SerializedScriptableObject ),
         };
 

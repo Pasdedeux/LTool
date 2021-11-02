@@ -56,41 +56,27 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\ParticleSystemAssetTreeView\BackendData\TreeViewWithTreeModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\EditorToolSet.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
     <Compile Include="Assets\Editor\EditorUse.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\ParticleSystemAssetTreeView\MultiColumnTreeView.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\UPRTools.cs" />
+    <Compile Include="Assets\Scripts\Editor\LoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCrossBinding.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\TreeDataModel\TreeElement.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\TreeDataModel\TreeModel.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCLRBinding.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\ILProfiler\ApkProfiler.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIContentScalerEditor.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\DisplayObjectEditor.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\ILProfiler\WinProfiler.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\ShaderVariantsCheck\ShaderVariantsCheck.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Editor\ReporterEditor.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\ILProfiler\InjectUtils.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
     <Compile Include="Assets\Editor\ILRuntimeMenu.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\TreeDataModel\TreeElementUtility.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\ILProfiler\IL2PPRofiler.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\UPRProfilerClient\Editor\StartUp.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
-    <Compile Include="Assets\The3rd\UPRTools\Editor\View\ParticleSystemAssetTreeView\BackendData\ParticleSystemElement.cs" />
     <Compile Include="Assets\Scripts\Editor\SGMenuOptions.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
     <Compile Include="Assets\Scripts\Editor\SGDefaultControls.cs" />
-    <Compile Include="Assets\Scripts\Editor\LoopScrollRectInspector.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />
-     <None Include="Assets\The3rd\UPRTools\Editor\ILProfiler\Cecil\UPR.Cecil.dll" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
      <None Include="Assets\The3rd\Demigiant\DOTween\Editor\DOTweenEditor.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenProEditor.XML" />
@@ -336,9 +322,6 @@
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
-    <Reference Include="UPRBinary">
-      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRBinary.dll</HintPath>
-    </Reference>
     <Reference Include="DemiEditor">
       <HintPath>Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>
@@ -372,11 +355,11 @@
     <Reference Include="DOTweenPro">
       <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
-    <Reference Include="UnityStore">
-      <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
-    </Reference>
     <Reference Include="ExcelDataReader">
       <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
@@ -404,12 +387,6 @@
     </Reference>
     <Reference Include="Excel">
       <HintPath>Assets\Plugins\Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="UPR.Cecil">
-      <HintPath>Assets\The3rd\UPRTools\Editor\ILProfiler\Cecil\UPR.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="UPRHook">
-      <HintPath>Assets\The3rd\UPRTools\UPRProfilerClient\Plugins\UPRHook.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
@@ -853,10 +830,6 @@
     <ProjectReference Include="UnityEngine.UI.csproj">
       <Project>{427AC1B8-6A29-DF40-5582-C6DA04B54039}</Project>
       <Name>UnityEngine.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityWebSocket.Runtime.csproj">
-      <Project>{FA4189B4-D6EE-F0A1-C1C4-0FBECCFCF964}</Project>
-      <Name>UnityWebSocket.Runtime</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

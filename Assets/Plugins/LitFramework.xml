@@ -1508,6 +1508,42 @@
             配置档热更
             </summary>
         </member>
+        <member name="T:Assets.Scripts.LitCore.LitTool.ZipManager">
+            <summary>
+            ICSharpCode.SharpZipLib 方案
+            </summary>
+        </member>
+        <member name="M:Assets.Scripts.LitCore.LitTool.ZipManager.CompressFileWithPassword(System.String[],System.String,System.String)">
+            <summary>
+            Use english is better...Method that compress specified files inside a folder (non-recursive) into a zip file.
+            </summary>
+            <param name="addedFilePaths">eg: AssetPathManager.Instance.GetStreamAssetDataPath("tutorial", false)</param>
+            <param name="outputFilePath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test1.zip", false)</param>
+            <param name="password"></param>
+        </member>
+        <member name="M:Assets.Scripts.LitCore.LitTool.ZipManager.CreateZipFiles(System.String,ICSharpCode.SharpZipLib.Zip.ZipOutputStream)">
+            <summary>
+            递归压缩文件
+            </summary>
+            <param name="sourceFilePath">待压缩的文件或文件夹路径</param>
+            <param name="zipStream">打包结果的zip文件路径。全路径包括文件名和.zip扩展名</param>
+        </member>
+        <member name="M:Assets.Scripts.LitCore.LitTool.ZipManager.CompressDirectoryWithPassword(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Method that compress all the files inside a folder (non-recursive) into a zip file.
+            </summary>
+            <param name="directoryPath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("tutorial", false)</param>
+            <param name="outputFilePath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test1.zip", false)</param>
+            <param name="compressionLevel"></param>
+        </member>
+        <member name="M:Assets.Scripts.LitCore.LitTool.ZipManager.ExtractZipContent(System.String,System.String,System.String)">
+            <summary>
+            Extracts the content from a .zip file inside an specific folder.
+            </summary>
+            <param name="fileZipPath">eg: AssetPathManager.Instance.GetStreamAssetDataPath("test.zip", false)</param>
+            <param name="outputFolder">AssetPathManager.Instance.GetStreamAssetDataPath("", false)</param>
+            <param name="password"></param>
+        </member>
         <member name="T:PathologicalGames.PoolManager">
             <description>
             PoolManager v2.0

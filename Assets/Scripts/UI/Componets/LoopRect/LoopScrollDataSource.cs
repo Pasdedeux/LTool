@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LitFramework.MsgSystem;
 
 namespace UnityEngine.UI
 {
     public abstract class LoopScrollDataSource
     {
-        public abstract void ProvideData(Transform transform, int idx);
+        public abstract void ProvideData(LoopScrollRect sr, int idx);
     }
 
     public class LoopScrollSendIndexSource : LoopScrollDataSource
@@ -14,9 +15,9 @@ namespace UnityEngine.UI
 
         LoopScrollSendIndexSource() { }
 
-        public override void ProvideData(Transform transform, int idx)
+        public override void ProvideData(LoopScrollRect sr, int idx)
         {
-            transform.SendMessage("ScrollCellIndex", idx, SendMessageOptions.DontRequireReceiver);
+            MsgManager.Instance.Broadcast(InternalEvent.UI_SCROLL_ELEMENT, new MsgArgs(sr.GetInstanceID(), idx));
         }
     }
 
@@ -29,9 +30,9 @@ namespace UnityEngine.UI
             this.objectsToFill = objectsToFill;
         }
 
-        public override void ProvideData(Transform transform, int idx)
+        public override void ProvideData(LoopScrollRect sr, int idx)
         {
-            transform.SendMessage("ScrollCellIndex", objectsToFill[idx]);
+            LDebug.Log($"  UI元件： {sr.name}以下子对象Index {idx}更新");
         }
     }
 }

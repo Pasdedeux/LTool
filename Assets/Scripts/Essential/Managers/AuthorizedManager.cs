@@ -41,6 +41,8 @@ namespace Assets.Scripts.Essential.SDK
               PERMISSION_ACCESS_NETWORK_STATE,
               PERMISSION_GET_TASKS,
               PERMISSION_WAKE_LOCK,
+              PERMISSION_READ_EXTERNAL_STORAGE,
+              PERMISSION_WRITE_EXTERNAL_STORAGE,
 
               //特殊权限-视SDK要求而定
               //PERMISSION_SYSTEM_OVERLAY_WINDOW,
@@ -53,8 +55,6 @@ namespace Assets.Scripts.Essential.SDK
               //PERMISSION_CHANGE_WIFI_STATE,
               //PERMISSION_CHANGE_NETWORK_STATE,
               //PERMISSION_SYSTEM_ALERT_WINDOW,
-              //PERMISSION_READ_EXTERNAL_STORAGE,
-              //PERMISSION_WRITE_EXTERNAL_STORAGE,
               //PERMISSION_REQUEST_INSTALL_PACKAGES,
         };
 

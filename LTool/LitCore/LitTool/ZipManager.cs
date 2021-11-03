@@ -138,7 +138,7 @@ namespace Assets.Scripts.LitCore.LitTool
 
                     // Close is important to wrap things up and unlock the file.
                     OutputStream.Close();
-
+                    
                     Console.WriteLine("Files successfully compressed");
                 }
             }
@@ -204,7 +204,7 @@ namespace Assets.Scripts.LitCore.LitTool
                     }
                 }
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 LDebug.LogError(" Zip Error >> " + e);
             }

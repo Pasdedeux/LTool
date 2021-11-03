@@ -30,7 +30,7 @@ using UnityEngine.Networking;
 
 namespace LitFramework.LitTool
 {
-    public partial class DocumentAccessor : Singleton<DocumentAccessor>
+    public class DocumentAccessor : Singleton<DocumentAccessor>
     {
         private static object _lock = new object();
 
@@ -278,6 +278,72 @@ namespace LitFramework.LitTool
         {
             FileInfo fileInfo = new FileInfo( fileFullPath );
             return fileInfo.Exists;
+        }
+        /// <summary>
+        /// 判断指定持久化路径下是否存在指定文件
+        /// </summary>
+        /// <param name="subPath">相对路径param>
+        /// <param name="fullPath"></param>
+        /// <returns></returns>
+        public static bool IsInPersistentDoc(string subPath, out string fullPath)
+        {
+            fullPath = AssetPathManager.Instance.GetPersistentDataPath(subPath, false);
+            if (File.Exists(fullPath))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 判断指定StreamingAssets路径下是否存在指定文件
+        /// </summary>
+        /// <param name="subPath">相对路径</param>
+        /// <param name="fullPath"></param>
+        /// <returns></returns>
+        public static bool IsInStreamingAssetsDoc(string subPath, out string fullPath)
+        {
+            fullPath = AssetPathManager.Instance.GetStreamAssetDataPath(subPath, false);
+
+            if (!Application.isEditor && Application.platform == RuntimePlatform.Android)
+            {
+                if (!LitFrameworkAndroidPlugin.IsAssetExists(subPath))
+                    return false;
+            }
+            else
+            {
+                if (!File.Exists(fullPath))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        /// <summary>
+        /// 获取不带file://的路径 -1 不存在。 1：streamingAssets 2：PersistentData
+        /// </summary>
+        /// <param name="subPath">相对路径</param>
+        /// <param name="fullPath"></param>
+        /// <returns></returns>
+        public static int  GetFullPath(string subPath, bool useUri ,out string fullPath)
+        {
+            if (string.IsNullOrEmpty(subPath))
+            {
+                LDebug.LogError("The path is null or empty!");
+            }
+
+            string tPath;
+            if(IsInPersistentDoc(subPath, out tPath))
+            {
+                fullPath = AssetPathManager.Instance.GetPersistentDataPath(subPath,useUri);
+                return 2;
+            }
+            if(IsInStreamingAssetsDoc(subPath, out tPath))
+            {
+                fullPath = AssetPathManager.Instance.GetStreamAssetDataPath(subPath, useUri);
+                return 1;
+            }
+            fullPath = null;
+            return -1;
         }
 
         #region UnityWebRequest

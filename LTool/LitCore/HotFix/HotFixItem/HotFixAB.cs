@@ -201,7 +201,7 @@ namespace Assets.Scripts.Module.HotFix
                     FileInfo fileInfo = new FileInfo(AssetPathManager.Instance.GetPersistentDataPath(fileName, false));
                     if (fileInfo.Exists)
                     {
-                        ZipManager.ExtractZipContent(AssetPathManager.Instance.GetPersistentDataPath(fileName, false), AssetPathManager.Instance.GetPersistentDataPath(FrameworkConfig.Instance.ABFolderName + "/", false), "123");
+                        ZipManager.ExtractZipContent(AssetPathManager.Instance.GetPersistentDataPath(fileName, false), AssetPathManager.Instance.GetPersistentDataPath(FrameworkConfig.Instance.ABFolderName + "/", false));
                         fileInfo.Delete();
                     }
                 }

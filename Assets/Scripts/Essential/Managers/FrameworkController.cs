@@ -75,7 +75,6 @@ namespace Assets.Scripts.Controller
 
                 //系统自启动模块
                 VibrateManager.Instance.Install();
-                AuthorizedManager.Instance.Install();
             },
             afterExecuteFunc: () =>
             {

@@ -85,19 +85,28 @@ namespace Assets.Scripts.Essential.SDK
 
         public void Install()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
-            var toCheckListIndex = AndroidRuntimePermissions.CheckPermissions( _permissionToRequestDict ).Select( ( a, k ) => new { value = a, index = k } ).Where( a => a.value != AndroidRuntimePermissions.Permission.Granted ).Select( k => k.index ).ToList();
-            
+#if UNITY_ANDROID //&& !UNITY_EDITOR
+            var checkPermission = AndroidRuntimePermissions.CheckPermissions(_permissionToRequestDict);
+            for (int i = 0; i < checkPermission.Length; i++)
+            {
+                LDebug.Log(">>" + checkPermission[i]);
+            }
+            var toCheckListIndex = checkPermission.Select( ( a, k ) => new { value = a, index = k } ).Where( a => a.value != AndroidRuntimePermissions.Permission.Granted ).Select( k => k.index ).ToList();
+
             var toRequestArray = new string[ toCheckListIndex.Count ];
             for ( int i = 0; i < toCheckListIndex.Count; i++ ) toRequestArray[ i ] = _permissionToRequestDict[ toCheckListIndex[ i ] ];
-            AndroidRuntimePermissions.RequestPermissions( toRequestArray );
+            var ps = AndroidRuntimePermissions.RequestPermissions( toRequestArray );
+            for (int i = 0; i < ps.Length; i++)
+            {
+                LDebug.Log(">>!!" + ps[i]);
+            }
 #endif
         }
 
 
         public bool CheckPermission( string permission )
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
             return AndroidRuntimePermissions.CheckPermission( permission ) == AndroidRuntimePermissions.Permission.Granted;
 #else
             return true;
@@ -107,7 +116,7 @@ namespace Assets.Scripts.Essential.SDK
 
         public void CheckPermission( string permission, Action callBaccIFTrue )
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
             switch ( AndroidRuntimePermissions.CheckPermission( permission ) )
             {
                 case AndroidRuntimePermissions.Permission.Denied:
@@ -128,7 +137,7 @@ namespace Assets.Scripts.Essential.SDK
 
         public bool RequestPermission( string permission )
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
             return AndroidRuntimePermissions.RequestPermission( permission ) == AndroidRuntimePermissions.Permission.Granted;
 #else
             return true;

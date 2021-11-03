@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
+using Assets.Scripts.Essential.SDK;
 
 public class LoadingStart : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class LoadingStart : MonoBehaviour
     /// </summary>
     void Start()
     {
+        AuthorizedManager.Instance.Install();
         //启动框架本身
         FrameworkController.Instance.InitFramework();
         

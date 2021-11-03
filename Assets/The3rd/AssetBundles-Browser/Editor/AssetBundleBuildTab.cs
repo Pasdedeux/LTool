@@ -12,6 +12,7 @@ using LitFramework.Crypto;
 using System;
 using System.Text;
 using System.Linq;
+using Assets.Scripts.LitCore.LitTool;
 
 namespace AssetBundleBrowser
 {
@@ -31,8 +32,8 @@ namespace AssetBundleBrowser
 
         class ToggleData
         {
-            internal ToggleData(bool s, 
-                string title, 
+            internal ToggleData(bool s,
+                string title,
                 string tooltip,
                 List<string> onToggles,
                 BuildAssetBundleOptions opt = BuildAssetBundleOptions.None)
@@ -115,7 +116,7 @@ namespace AssetBundleBrowser
                     m_UserData = data;
                 file.Close();
             }
-            
+
             m_ToggleData = new List<ToggleData>();
             m_ToggleData.Add(new ToggleData(
                 false,
@@ -169,7 +170,7 @@ namespace AssetBundleBrowser
             m_TargetContent = new GUIContent("Build Target", "Choose target platform to build for.");
             m_CompressionContent = new GUIContent("Compression", "Choose no compress, standard (LZMA), or chunk based (LZ4)");
 
-            if(m_UserData.m_UseDefaultPath)
+            if (m_UserData.m_UseDefaultPath)
             {
                 ResetPathToDefault();
             }
@@ -187,12 +188,13 @@ namespace AssetBundleBrowser
             GUILayout.BeginVertical();
 
             // build target
-            using (new EditorGUI.DisabledScope (!AssetBundleModel.Model.DataSource.CanSpecifyBuildTarget)) {
+            using (new EditorGUI.DisabledScope(!AssetBundleModel.Model.DataSource.CanSpecifyBuildTarget))
+            {
                 ValidBuildTarget tgt = (ValidBuildTarget)EditorGUILayout.EnumPopup(m_TargetContent, m_UserData.m_BuildTarget);
                 if (tgt != m_UserData.m_BuildTarget)
                 {
                     m_UserData.m_BuildTarget = tgt;
-                    if(m_UserData.m_UseDefaultPath)
+                    if (m_UserData.m_UseDefaultPath)
                     {
                         m_UserData.m_OutputPath = "AssetBundles/";
                         m_UserData.m_OutputPath += m_UserData.m_BuildTarget.ToString();
@@ -203,7 +205,8 @@ namespace AssetBundleBrowser
 
 
             ////output path
-            using (new EditorGUI.DisabledScope (!AssetBundleModel.Model.DataSource.CanSpecifyBuildOutputDirectory)) {
+            using (new EditorGUI.DisabledScope(!AssetBundleModel.Model.DataSource.CanSpecifyBuildOutputDirectory))
+            {
                 EditorGUILayout.Space();
                 GUILayout.BeginHorizontal();
                 var newPath = EditorGUILayout.TextField("Output Path", m_UserData.m_OutputPath);
@@ -250,15 +253,16 @@ namespace AssetBundleBrowser
             }
 
             // advanced options
-            using (new EditorGUI.DisabledScope (!AssetBundleModel.Model.DataSource.CanSpecifyBuildOptions)) {
+            using (new EditorGUI.DisabledScope(!AssetBundleModel.Model.DataSource.CanSpecifyBuildOptions))
+            {
                 EditorGUILayout.Space();
                 m_AdvancedSettings = EditorGUILayout.Foldout(m_AdvancedSettings, "Advanced Settings");
-                if(m_AdvancedSettings)
+                if (m_AdvancedSettings)
                 {
                     var indent = EditorGUI.indentLevel;
                     EditorGUI.indentLevel = 1;
                     CompressOptions cmp = (CompressOptions)EditorGUILayout.IntPopup(
-                        m_CompressionContent, 
+                        m_CompressionContent,
                         (int)m_UserData.m_Compression,
                         m_CompressionOptions,
                         m_CompressionValues);
@@ -289,7 +293,7 @@ namespace AssetBundleBrowser
 
             // build.
             EditorGUILayout.Space();
-            if ( GUILayout.Button( "Build" ) )
+            if (GUILayout.Button("Build"))
             {
                 EditorApplication.delayCall += ExecuteBuild;
             }
@@ -300,7 +304,8 @@ namespace AssetBundleBrowser
         private void ExecuteBuild()
         {
             string outPutPath = m_UserData.m_OutputPath + "/" + FrameworkConfig.Instance.ABFolderName;
-            if (AssetBundleModel.Model.DataSource.CanSpecifyBuildOutputDirectory) {
+            if (AssetBundleModel.Model.DataSource.CanSpecifyBuildOutputDirectory)
+            {
 
                 if (string.IsNullOrEmpty(outPutPath))
                     BrowseForFolder();
@@ -325,8 +330,8 @@ namespace AssetBundleBrowser
                                 Directory.Delete(outPutPath, true);
 
                             if (m_CopyToStreaming.state)
-                            if (Directory.Exists(m_streamingPath))
-                                Directory.Delete(m_streamingPath, true);
+                                if (Directory.Exists(m_streamingPath))
+                                    Directory.Delete(m_streamingPath, true);
                         }
                         catch (System.Exception e)
                         {
@@ -340,7 +345,8 @@ namespace AssetBundleBrowser
 
             BuildAssetBundleOptions opt = BuildAssetBundleOptions.None;
 
-            if (AssetBundleModel.Model.DataSource.CanSpecifyBuildOptions) {
+            if (AssetBundleModel.Model.DataSource.CanSpecifyBuildOptions)
+            {
                 if (m_UserData.m_Compression == CompressOptions.Uncompressed)
                     opt |= BuildAssetBundleOptions.UncompressedAssetBundle;
                 else if (m_UserData.m_Compression == CompressOptions.ChunkBasedCompression)
@@ -353,26 +359,26 @@ namespace AssetBundleBrowser
             }
 
             ABBuildInfo buildInfo = new ABBuildInfo();
-            
+
             buildInfo.outputDirectory = outPutPath;
             buildInfo.options = opt;
-            buildInfo.buildTarget = ( BuildTarget )m_UserData.m_BuildTarget;
-            buildInfo.onBuild = ( assetBundleName ) =>
+            buildInfo.buildTarget = (BuildTarget)m_UserData.m_BuildTarget;
+            buildInfo.onBuild = (assetBundleName) =>
             {
-                if ( m_InspectTab == null )
+                if (m_InspectTab == null)
                     return;
-                m_InspectTab.AddBundleFolder( buildInfo.outputDirectory );
+                m_InspectTab.AddBundleFolder(buildInfo.outputDirectory);
                 m_InspectTab.RefreshBundles();
             };
 
-            AssetBundleModel.Model.DataSource.BuildAssetBundles( buildInfo );
+            AssetBundleModel.Model.DataSource.BuildAssetBundles(buildInfo);
 
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
 
-            if(m_CopyToStreaming.state)
+            if (m_CopyToStreaming.state)
                 DirectoryCopy(outPutPath, m_streamingPath);
 
-            LitTool.MonoBehaviour.StartCoroutine( IEStartSendCSV( m_UserData.m_OutputPath ) );
+            LitTool.MonoBehaviour.StartCoroutine(IEStartSendCSV(m_UserData.m_OutputPath));
             LitTool.MonoBehaviour.StartCoroutine(IEPathfToABSendCSV(m_UserData.m_OutputPath));
         }
 
@@ -407,170 +413,191 @@ namespace AssetBundleBrowser
         /// <summary>
         /// 资源所在路径
         /// </summary>
-        private static string _abResPath ;
+        private static string _abResPath;
 
         /// <summary>
-        /// 生成csv文件：通过记录版本号，以及MD5码，实现增量更新
+        /// 生成csv文件
         /// </summary>
-        public static IEnumerator IEStartSendCSV( string outpuut )
+        public static IEnumerator IEStartSendCSV(string outpuut)
         {
             _IsABVersionCSV = false;
-            _abResPath = outpuut+ "/" + FrameworkConfig.Instance.ABFolderName;
+            _abResPath = outpuut + "/" + FrameworkConfig.Instance.ABFolderName;
+
             string csvPath = outpuut + "/" + ABVersionName;
             Dictionary<string, ABVersion> abVersionsDic = new Dictionary<string, ABVersion>();
-            if ( File.Exists( csvPath ) )
+            if (File.Exists(csvPath))
             {
-                FileInfo fi = new FileInfo( csvPath );
-                LitTool.MonoBehaviour.StartCoroutine( DocumentAccessor.ILoadAsset( fi.FullName, ( string e ) =>
+                FileInfo fi = new FileInfo(csvPath);
+                LitTool.MonoBehaviour.StartCoroutine(DocumentAccessor.ILoadAsset(fi.FullName, (string e) =>
                 {
-                    string[] str = e.Split( '\n' );
-                    for ( int i = 1; i < str.Length; i++ )
+                    string[] str = e.Split('\n');
+                    for (int i = 1; i < str.Length; i++)
                     {
-                        string line = str[ i ];
-                        if ( line != "" )
+                        string line = str[i];
+                        if (line != "")
                         {
-                            string[] content = line.Split( ',' );
+                            string[] content = line.Split(',');
 
-                            if ( File.Exists( _abResPath + "/" + content[ 0 ] ) )
+                            if (File.Exists(_abResPath + "/" + content[0]))
                             {
-                                string md5AquireName = content[ 0 ];
-                                if ( content[ 0 ].Contains( ".assetbundle" ) )
+                                string md5AquireName = content[0];
+                                if (content[0].Contains(".assetbundle"))
                                 {
-                                    md5AquireName = md5AquireName.Split( '.' )[ 0 ];
+                                    md5AquireName = md5AquireName.Split('.')[0];
                                 }
-                                string newMd5 = GetMD5HashFromFile( _abResPath + "/" + md5AquireName );
+                                string newMd5 = GetMD5HashFromFile(_abResPath + "/" + md5AquireName);
                                 ABVersion ab;
-                                content[ 2 ] = content[ 2 ].Trim();
-                                if ( content[ 2 ] != newMd5 )
+                                content[2] = content[2].Trim();
+                                if (content[2] != newMd5)
                                 {
-                                    if ( abVersionsDic.ContainsKey( content[ 0 ] ) )
+                                    if (abVersionsDic.ContainsKey(content[0]))
                                     {
-                                        abVersionsDic[ content[ 0 ] ].Version = Convert.ToInt32( content[ 1 ] ) + 1;
-                                        abVersionsDic[ content[ 0 ] ].MD5 = newMd5;
+                                        abVersionsDic[content[0]].Version = Convert.ToInt32(content[1]) + 1;
+                                        abVersionsDic[content[0]].MD5 = newMd5;
                                     }
                                     else
                                     {
                                         ab = new ABVersion
                                         {
-                                            AbName = content[ 0 ],
-                                            Version = Convert.ToInt32( content[ 1 ] ) + 1,
+                                            AbName = content[0],
+                                            Version = Convert.ToInt32(content[1]) + 1,
                                             MD5 = newMd5
                                         };
-                                        abVersionsDic.Add( content[ 0 ], ab );
+                                        abVersionsDic.Add(content[0], ab);
                                     }
                                 }
                                 else
                                 {
                                     ab = new ABVersion
                                     {
-                                        AbName = content[ 0 ],
-                                        Version = Convert.ToInt32( content[ 1 ] ),
-                                        MD5 = content[ 2 ]
+                                        AbName = content[0],
+                                        Version = Convert.ToInt32(content[1]),
+                                        MD5 = content[2]
                                     };
-                                    abVersionsDic.Add( content[ 0 ], ab );
+                                    abVersionsDic.Add(content[0], ab);
                                 }
                             }
                             else
                             {
-                                abVersionsDic.Remove( content[ 0 ] );
+                                abVersionsDic.Remove(content[0]);
                             }
                         }
                     }
-                    MatchFiles( abVersionsDic );
-                } ) );
+                    MatchFiles(abVersionsDic);
+                }));
             }
             else
             {
-                FullfillCSVDict( abVersionsDic );
+                FullfillCSVDict(abVersionsDic);
             }
-            yield return new WaitUntil( IsABVersionCSV );
+            yield return new WaitUntil(IsABVersionCSV);
             List<ABVersion> abVersionsList = new List<ABVersion>();
-            foreach ( var item in abVersionsDic )
+            foreach (var item in abVersionsDic)
             {
-                abVersionsList.Add( item.Value );
+                abVersionsList.Add(item.Value);
             }
-            ResponseExportCSV( abVersionsList, csvPath );
+            //导出AB压缩包
+            ExportABZip(abVersionsList, outpuut);
+            //导出记录版本的CSV
+            ExportCSV(abVersionsList, csvPath);
 
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.Refresh();
 #endif
         }
 
+        /// <summary>
+        /// 导出AB压缩包
+        /// </summary>
+        /// <param name="abVersionsList"></param>
+        /// <param name="v"></param>
+        private static void ExportABZip(List<ABVersion> abVersionsList, string output)
+        {
+            if (!FrameworkConfig.Instance.useZIP) return;
 
+            List<KeyValuePair<string, string>> recordedGroup;
+            var keyGrouped = abVersionsList.GroupBy(e => e.AbName.Split('.')[0]);
+            foreach (var item in keyGrouped)
+            {
+                ZipManager.CompressFileWithPassword(
+                    item.Select(e => new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + e.AbName).FullName).ToArray(),
+                    new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + item.Key + ".zip").FullName);
+            }
+        }
 
         /// <summary>
         /// 将ssv写入到指定目录
         /// </summary>
         /// <param name="abVersions"></param>
         /// <param name="fileName"></param>
-        public static void ResponseExportCSV( List<ABVersion> abVersions, string fileName )
+        private static void ExportCSV(List<ABVersion> abVersions, string fileName)
         {
-            if ( fileName.Length > 0 )
+            if (fileName.Length > 0)
             {
                 //if ( !abVersions.Exists( e => e.AbName.Equals( ABPathName ) ) )
                 //    abVersions = new List<ABVersion> { new ABVersion { AbName = ABPathName, Version = 0, MD5 = string.Empty } };
 
-                FileStream fs = new FileStream( fileName, FileMode.Create, FileAccess.Write );
-                StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
+                FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
 
-                sw.WriteLine( _dataHeard );
+                sw.WriteLine(_dataHeard);
                 //写入数据
-                for ( int i = 0; i < abVersions.Count; i++ )
+                for (int i = 0; i < abVersions.Count; i++)
                 {
-                    string dataStr = string.Format( _dataHeardValue, abVersions[ i ].AbName, abVersions[ i ].Version, abVersions[ i ].MD5 );
-                    sw.WriteLine( dataStr );
+                    string dataStr = string.Format(_dataHeardValue, abVersions[i].AbName, abVersions[i].Version, abVersions[i].MD5);
+                    sw.WriteLine(dataStr);
                 }
                 sw.Close();
                 fs.Close();
             }
         }
 
-        private static void FullfillCSVDict( Dictionary<string, ABVersion> abVersionsDic )
+        private static void FullfillCSVDict(Dictionary<string, ABVersion> abVersionsDic)
         {
             //先获取指定路径下的所有Asset，包括子文件夹下的资源
-            DirectoryInfo dir = new DirectoryInfo( _abResPath );
-            FileInfo[] files = dir.GetFiles(); 
+            DirectoryInfo dir = new DirectoryInfo(_abResPath);
+            FileInfo[] files = dir.GetFiles();
 
-            foreach ( var file in files )
+            foreach (var file in files)
             {
-                string suffix = file.FullName.Substring( file.FullName.Length - 4 );
-                if ( suffix != "meta" )
+                string suffix = file.FullName.Substring(file.FullName.Length - 4);
+                if (suffix != "meta")
                 {
                     //对AB包添加后缀
-                    FileInfo fi = new FileInfo( file.FullName );
+                    FileInfo fi = new FileInfo(file.FullName);
                     var fileName = file.Name;
-                    string md5 = GetMD5HashFromFile( _abResPath + "/" + fi.Name );
+                    string md5 = GetMD5HashFromFile(_abResPath + "/" + fi.Name);
                     ////assetbundle
                     //if ( !fileName.Contains("."))
                     //{
                     //    fileName += ".assetbundle";
                     //    File.Move( fi.FullName, fi.FullName + ".assetbundle" );
                     //}
-                    
+
                     ABVersion ab = new ABVersion
                     {
                         AbName = fileName,
                         Version = 1,
                         MD5 = md5
                     };
-                    abVersionsDic.Add( fileName, ab );
+                    abVersionsDic.Add(fileName, ab);
                 }
             }
             _IsABVersionCSV = true;
         }
 
-        private static void MatchFiles( Dictionary<string, ABVersion> abVersionsDic )
+        private static void MatchFiles(Dictionary<string, ABVersion> abVersionsDic)
         {
-            string[] files = Directory.GetFiles( _abResPath );
-            foreach ( string file in files )
+            string[] files = Directory.GetFiles(_abResPath);
+            foreach (string file in files)
             {
-                string suffix = file.Substring( file.Length - 4 );
-                if ( suffix != "meta" )
+                string suffix = file.Substring(file.Length - 4);
+                if (suffix != "meta")
                 {
-                    var newFile = file.Replace( "\\", "/" );
-                    string md5 = GetMD5HashFromFile( newFile );
-                    string abName = newFile.Substring( _abResPath.Length + 1 );
-                    if ( !abVersionsDic.ContainsKey( abName ) )
+                    var newFile = file.Replace("\\", "/");
+                    string md5 = GetMD5HashFromFile(newFile);
+                    string abName = newFile.Substring(_abResPath.Length + 1);
+                    if (!abVersionsDic.ContainsKey(abName))
                     {
                         ABVersion ab = new ABVersion
                         {
@@ -578,7 +605,7 @@ namespace AssetBundleBrowser
                             Version = 1,
                             MD5 = md5
                         };
-                        abVersionsDic.Add( abName, ab );
+                        abVersionsDic.Add(abName, ab);
                     }
                 }
             }
@@ -590,15 +617,15 @@ namespace AssetBundleBrowser
         /// </summary>
         /// <param name="fileName">传入的文件名（含路径及后缀名）</param>
         /// <returns></returns>
-        private static string GetMD5HashFromFile( string fileName )
+        private static string GetMD5HashFromFile(string fileName)
         {
             try
             {
-                return LitFramework.Crypto.Crypto.md5.GetFileHash( fileName );
+                return LitFramework.Crypto.Crypto.md5.GetFileHash(fileName);
             }
-            catch ( Exception ex )
+            catch (Exception ex)
             {
-                throw new Exception( string.Format( "Get MD5 Hash From File( {0} ) Fail,error: {2} ", fileName, ex.Message ) );
+                throw new Exception(string.Format("Get MD5 Hash From File( {0} ) Fail,error: {2} ", fileName, ex.Message));
             }
         }
 
@@ -606,7 +633,7 @@ namespace AssetBundleBrowser
         #endregion
 
         #region PathfToAB
-       
+
 
         private static bool _IsPathfToABCSV;
 
@@ -633,13 +660,14 @@ namespace AssetBundleBrowser
             _IsPathfToABChange = false;
             string _PathfToABResPath = outpuut + "/" + FrameworkConfig.Instance.ABFolderName;
             string csvPath = outpuut + "/" + ABPathName;
-          
+
             Dictionary<string, string> abPathDic = new Dictionary<string, string>();
             if (File.Exists(csvPath))
             {
                 File.Delete(csvPath);
-               PathfToABMatchFiles(abPathDic);
-             }else
+                PathfToABMatchFiles(abPathDic);
+            }
+            else
             {
                 PathfToABMatchFiles(abPathDic);
             }
@@ -664,14 +692,14 @@ namespace AssetBundleBrowser
                 for (int j = 0; j < asstePath.Length; j++)
                 {
                     string path = asstePath[j].Trim();
-                    if(path.Contains("Assets/Resources/"))
+                    if (path.Contains("Assets/Resources/"))
                     {
                         path = path.Remove(0, 17);
                         int endDot = path.LastIndexOf('.');
                         path = path.Remove(endDot, path.Length - endDot);
                         if (abPathDic.ContainsKey(path))
                         {
-                           // LDebug.LogError(path + "----" + "重名了！！！或者打到两包里了");
+                            // LDebug.LogError(path + "----" + "重名了！！！或者打到两包里了");
                         }
                         else
                         {
@@ -679,7 +707,7 @@ namespace AssetBundleBrowser
                             _IsPathfToABChange = true;
                         }
                     }
-                    
+
                 }
 
             }
@@ -699,12 +727,12 @@ namespace AssetBundleBrowser
                 StreamWriter sw = new StreamWriter(fs, new UTF8Encoding(false));
 
                 sw.WriteLine(_PathfToABHeard);
-                foreach(KeyValuePair<string,string> keyValuePair in abPathDic)
+                foreach (KeyValuePair<string, string> keyValuePair in abPathDic)
                 {
                     string dataStr = string.Format(_PathfToABValue, keyValuePair.Key, keyValuePair.Value);
                     sw.WriteLine(dataStr);
                 }
-              
+
                 sw.Close();
                 fs.Close();
             }
@@ -750,7 +778,7 @@ namespace AssetBundleBrowser
                 var gamePath = System.IO.Path.GetFullPath(".");
                 gamePath = gamePath.Replace("\\", "/");
                 if (newPath.StartsWith(gamePath) && newPath.Length > gamePath.Length)
-                    newPath = newPath.Remove(0, gamePath.Length+1);
+                    newPath = newPath.Remove(0, gamePath.Length + 1);
                 m_UserData.m_OutputPath = newPath;
                 //EditorUserBuildSettings.SetPlatformSettings(EditorUserBuildSettings.activeBuildTarget.ToString(), "AssetBundleOutputPath", m_OutputPath);
             }

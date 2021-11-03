@@ -63,6 +63,8 @@
     <Compile Include="Assets\Plugins\AndroidRuntimePermissions\Android\PermissionCallbackAsync.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Plugins\AndroidRuntimePermissions\CREDITS.txt" />
+     <None Include="Assets\Plugins\AndroidRuntimePermissions\README.txt" />
      <None Include="Assets\Plugins\AndroidRuntimePermissions\AndroidRuntimePermissions.Runtime.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

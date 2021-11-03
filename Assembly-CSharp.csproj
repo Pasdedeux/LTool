@@ -56,7 +56,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlSelect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\PopupMenu.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtraRegister.cs" />
@@ -366,6 +365,7 @@
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\CSVConfigData.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\CoroutineAdapter.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

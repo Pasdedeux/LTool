@@ -30,7 +30,7 @@ using UnityEngine.Networking;
 
 namespace LitFramework.LitTool
 {
-    public class DocumentAccessor : Singleton<DocumentAccessor>
+    public partial class DocumentAccessor : Singleton<DocumentAccessor>
     {
         private static object _lock = new object();
 
@@ -38,10 +38,10 @@ namespace LitFramework.LitTool
         /// 参数1-解析出的一条完整信息
         /// 参数2-以解析出的信息第一个元素为键，整条消息作为值构建的字典   
         /// </summary>
-        private static Func<List<string> , Dictionary<string , List<string>> , bool> ReadTextAdditionalCondition =
-            ( e , d ) => { return true; };
+        private static Func<List<string>, Dictionary<string, List<string>>, bool> ReadTextAdditionalCondition =
+            (e, d) => { return true; };
 
-        [Obsolete( "该方法在路径传入上有其它要求，建议使用LoadAsset/ILoadAsset读取text文件" )]
+        [Obsolete("该方法在路径传入上有其它要求，建议使用LoadAsset/ILoadAsset读取text文件")]
         /// <summary>
         /// 解析txt 或者 远端txt内容
         /// </summary>
@@ -49,26 +49,26 @@ namespace LitFramework.LitTool
         /// <param name="isContent">path字符串如果是地址，为false，反之为true</param>
         /// <param name="chars">分隔符为列表。如果isContent 是True，会先默认以"\r\n"分割，再对每个按照char分割</param>
         /// <returns></returns>
-        public static Dictionary<string , List<string>> OpenText( string path , bool isContent = false , Char[] chars = null )
+        public static Dictionary<string, List<string>> OpenText(string path, bool isContent = false, Char[] chars = null)
         {
-            Dictionary<string , List<string>> content = new Dictionary<string , List<string>>();
+            Dictionary<string, List<string>> content = new Dictionary<string, List<string>>();
 
-            if( !isContent )
+            if (!isContent)
             {
-                StreamReader sr = new StreamReader( path , new UTF8Encoding(false));
+                StreamReader sr = new StreamReader(path, new UTF8Encoding(false));
                 string line;
-                while( ( line = sr.ReadLine() ) != null )
+                while ((line = sr.ReadLine()) != null)
                 {
-                    if( string.IsNullOrEmpty( line ) )
+                    if (string.IsNullOrEmpty(line))
                         continue;
-                    List<string> list = line.Split( chars ).ToList();
+                    List<string> list = line.Split(chars).ToList();
 
-                    if( !content.ContainsKey( list[ 0 ] ) )
-                        content.Add( list[ 0 ] , list );
+                    if (!content.ContainsKey(list[0]))
+                        content.Add(list[0], list);
                     else
                     {
-                        if( ReadTextAdditionalCondition( list , content ) )
-                            content[ list[ 0 ] ] = list;
+                        if (ReadTextAdditionalCondition(list, content))
+                            content[list[0]] = list;
                     }
                 }
                 sr.Dispose();
@@ -77,13 +77,13 @@ namespace LitFramework.LitTool
             else
             {
                 //path.Replace( "\r\n", "\n" );
-                string[] res = path.Split( new string[] { "\r\n" } , StringSplitOptions.None );
-                for( int i = 0; i < res.Length; i++ )
+                string[] res = path.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int i = 0; i < res.Length; i++)
                 {
-                    if( !string.IsNullOrEmpty( res[ i ] ) )
+                    if (!string.IsNullOrEmpty(res[i]))
                     {
-                        List<string> list = res[ i ].Split( chars ).ToList();
-                        content[ list[ 0 ] ] = list;
+                        List<string> list = res[i].Split(chars).ToList();
+                        content[list[0]] = list;
                     }
                 }
             }
@@ -96,26 +96,26 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="fileName">以上三个地址下，子目录路径。例如：csv/csvList.txt</param>
         /// <returns></returns>
-        public static string CheckRoute( string fileName )
+        public static string CheckRoute(string fileName)
         {
             string path = null;
-            if ( IsExists( AssetPathManager.Instance.GetPersistentDataPath( fileName, false ) ) )
+            if (IsExists(AssetPathManager.Instance.GetPersistentDataPath(fileName, false)))
             {
-                path = AssetPathManager.Instance.GetPersistentDataPath( fileName );
+                path = AssetPathManager.Instance.GetPersistentDataPath(fileName);
             }
-            else if ( IsExists( AssetPathManager.Instance.GetTemporaryCachePath( fileName, false ) ) )
+            else if (IsExists(AssetPathManager.Instance.GetTemporaryCachePath(fileName, false)))
             {
-                path = AssetPathManager.Instance.GetTemporaryCachePath( fileName );
+                path = AssetPathManager.Instance.GetTemporaryCachePath(fileName);
             }
             else
             {
-                path = AssetPathManager.Instance.GetStreamAssetDataPath( fileName );
+                path = AssetPathManager.Instance.GetStreamAssetDataPath(fileName);
             }
 
             return path;
         }
 
-        [ Obsolete]
+        [Obsolete]
         /// <summary>
         /// 将本地版本字典保存到文件，如txt
         /// </summary>
@@ -123,21 +123,21 @@ namespace LitFramework.LitTool
         /// <param name="dataPath">存入的目标文件</param>
         /// <param name="append">追加的信息，会被添加到第一行</param>
         /// <param name="identifier">目标字典值的连接符</param>
-        public static void SaveText( Dictionary<string , List<string>> targetList , string dataPath , string append = null , string identifier = "=" )
+        public static void SaveText(Dictionary<string, List<string>> targetList, string dataPath, string append = null, string identifier = "=")
         {
             //FileInfo fi = new FileInfo( dataPath );
             //if( fi.Exists )
             //    fi.Delete();
 
             StringBuilder sb = new StringBuilder();
-            if( append != null )
-                sb.AppendLine( append );
-            foreach( var item in targetList )
+            if (append != null)
+                sb.AppendLine(append);
+            foreach (var item in targetList)
             {
-                sb.AppendLine( string.Join( identifier , item.Value.ToArray() ) );
+                sb.AppendLine(string.Join(identifier, item.Value.ToArray()));
             }
 
-            WriteFile( sb , dataPath );
+            WriteFile(sb, dataPath);
         }
 
         /// <summary>
@@ -145,14 +145,14 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="sb"></param>
         /// <param name="targetPath"></param>
-        public static void WriteFile( StringBuilder sb , string targetPath )
+        public static void WriteFile(StringBuilder sb, string targetPath)
         {
-            lock( _lock )
+            lock (_lock)
             {
-                using( FileStream fs = new FileStream( targetPath , FileMode.Create ) )
+                using (FileStream fs = new FileStream(targetPath, FileMode.Create))
                 {
-                    StreamWriter sw = new StreamWriter( fs );
-                    sw.WriteLine( sb );
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.WriteLine(sb);
                     sw.Close();
                 }
             }
@@ -162,25 +162,25 @@ namespace LitFramework.LitTool
         /// 读取目标地址文件
         /// </summary>
         /// <param name="targetPath">完整地址+名称</param>
-        public static string ReadFile( string targetPath )
+        public static string ReadFile(string targetPath)
         {
-            if( !IsExists( targetPath ) )
+            if (!IsExists(targetPath))
             {
-                Debug.Log( "文件不存在:" + targetPath );
+                Debug.Log("文件不存在:" + targetPath);
                 return string.Empty;
             }
 
             //使用流的形式读取
             string str = null;
-            if( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor )
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.WindowsEditor)
             {
                 try
                 {
-                    str = File.ReadAllText( targetPath );
+                    str = File.ReadAllText(targetPath);
                 }
-                catch( Exception e )
+                catch (Exception e)
                 {
-                    Debug.LogError( "File.ReadAllText error " + targetPath + "  " + e.Message );
+                    Debug.LogError("File.ReadAllText error " + targetPath + "  " + e.Message);
                     //路径与名称未找到文件则直接返回空
                     return null;
                 }
@@ -197,14 +197,14 @@ namespace LitFramework.LitTool
                     //var fn = string.Format( "{0}/{1}" , Application.persistentDataPath , name );
 
                     var fn = targetPath;
-                    sr = File.OpenText( fn );
-                    
+                    sr = File.OpenText(fn);
+
                     string line;
-                    while( ( line = sr.ReadLine() ) != null )
+                    while ((line = sr.ReadLine()) != null)
                     {
                         //一行一行的读取
                         //将每一行的内容存入数组链表容器中
-                        sb.AppendLine( line );
+                        sb.AppendLine(line);
                     }
                 }
                 catch
@@ -213,7 +213,7 @@ namespace LitFramework.LitTool
                 }
                 finally
                 {
-                    if( sr != null )
+                    if (sr != null)
                     {
                         //关闭流
                         sr.Close();
@@ -233,16 +233,16 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="dataPath">完整目标地址，例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false ) </param>
         /// <param name="info">bytes数组</param>
-        public static void SaveAsset2LocalFile( string dataPath, byte[] info )
+        public static void SaveAsset2LocalFile(string dataPath, byte[] info)
         {
-            FileInfo fileInfo = new FileInfo( dataPath );
-            if ( !fileInfo.Directory.Exists ) fileInfo.Directory.Create();
-            if ( fileInfo.Exists ) fileInfo.Delete();
+            FileInfo fileInfo = new FileInfo(dataPath);
+            if (!fileInfo.Directory.Exists) fileInfo.Directory.Create();
+            if (fileInfo.Exists) fileInfo.Delete();
 
-            using ( Stream sw = fileInfo.Create() )
+            using (Stream sw = fileInfo.Create())
             {
                 //写入  
-                sw.Write( info, 0, info.Length );
+                sw.Write(info, 0, info.Length);
                 //写入并清除字节流
                 sw.Flush();
                 //关闭流  
@@ -258,13 +258,13 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="jsonData">需要被JSON化的类实例</param>
         /// <param name="dataPath">完整地址。例如：AssetPathManager.Instance.GetPersistentDataPath( "level.dat", false )</param>
-        public static void SaveAsset2LocalFileByJson( object jsonData, string dataPath )
+        public static void SaveAsset2LocalFileByJson(object jsonData, string dataPath)
         {
-            FileInfo fileInfo = new FileInfo( dataPath );
-            using ( StreamWriter sw = fileInfo.CreateText() )
+            FileInfo fileInfo = new FileInfo(dataPath);
+            using (StreamWriter sw = fileInfo.CreateText())
             {
-                var result = JsonMapper.ToJson( jsonData );
-                sw.Write( result );
+                var result = JsonMapper.ToJson(jsonData);
+                sw.Write(result);
                 sw.Flush();
             }
         }
@@ -274,76 +274,10 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="fileFullPath">完整路径。例如：AssetPathManager.Instance.GetPersistentDataPath( "csv/Map.csv", false ) </param>
         /// <returns></returns>
-        public static bool IsExists( string fileFullPath )
+        public static bool IsExists(string fileFullPath)
         {
-            FileInfo fileInfo = new FileInfo( fileFullPath );
+            FileInfo fileInfo = new FileInfo(fileFullPath);
             return fileInfo.Exists;
-        }
-        /// <summary>
-        /// 判断指定持久化路径下是否存在指定文件
-        /// </summary>
-        /// <param name="subPath">相对路径param>
-        /// <param name="fullPath"></param>
-        /// <returns></returns>
-        public static bool IsInPersistentDoc(string subPath, out string fullPath)
-        {
-            fullPath = AssetPathManager.Instance.GetPersistentDataPath(subPath, false);
-            if (File.Exists(fullPath))
-            {
-                return true;
-            }
-            return false;
-        }
-        /// <summary>
-        /// 判断指定StreamingAssets路径下是否存在指定文件
-        /// </summary>
-        /// <param name="subPath">相对路径</param>
-        /// <param name="fullPath"></param>
-        /// <returns></returns>
-        public static bool IsInStreamingAssetsDoc(string subPath, out string fullPath)
-        {
-            fullPath = AssetPathManager.Instance.GetStreamAssetDataPath(subPath, false);
-
-            if (!Application.isEditor && Application.platform == RuntimePlatform.Android)
-            {
-                if (!LitFrameworkAndroidPlugin.IsAssetExists(subPath))
-                    return false;
-            }
-            else
-            {
-                if (!File.Exists(fullPath))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        /// <summary>
-        /// 获取不带file://的路径 -1 不存在。 1：streamingAssets 2：PersistentData
-        /// </summary>
-        /// <param name="subPath">相对路径</param>
-        /// <param name="fullPath"></param>
-        /// <returns></returns>
-        public static int  GetFullPath(string subPath, bool useUri ,out string fullPath)
-        {
-            if (string.IsNullOrEmpty(subPath))
-            {
-                LDebug.LogError("The path is null or empty!");
-            }
-
-            string tPath;
-            if(IsInPersistentDoc(subPath, out tPath))
-            {
-                fullPath = AssetPathManager.Instance.GetPersistentDataPath(subPath,useUri);
-                return 2;
-            }
-            if(IsInStreamingAssetsDoc(subPath, out tPath))
-            {
-                fullPath = AssetPathManager.Instance.GetStreamAssetDataPath(subPath, useUri);
-                return 1;
-            }
-            fullPath = null;
-            return -1;
         }
 
         #region UnityWebRequest
@@ -354,11 +288,11 @@ namespace LitFramework.LitTool
         /// <param name="callBack"></param>
         /// <param name="errorCallBack"></param>
         /// <returns></returns>
-        public static IEnumerator ILoadAsset( string path , Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null )
+        public static IEnumerator ILoadAsset(string path, Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
-            Uri uri = new Uri( path );
-            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
-            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            Uri uri = new Uri(path);
+            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
@@ -367,14 +301,14 @@ namespace LitFramework.LitTool
 
                 yield return uwr.SendWebRequest();
 
-                if ( uwr.isNetworkError || uwr.isHttpError )
+                if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    LDebug.LogError( "  >Error: " + uwr.error );
-                    errorCallBack?.Invoke( uwr );
+                    LDebug.LogError("  >Error: " + uwr.error);
+                    errorCallBack?.Invoke(uwr);
                 }
                 else
                 {
-                    callBack?.Invoke( uwr );
+                    callBack?.Invoke(uwr);
                     //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
@@ -387,11 +321,11 @@ namespace LitFramework.LitTool
         /// <param name="callBack"></param>
         /// <param name="errorCallBack"></param>
         /// <returns></returns>
-        public static IEnumerator ILoadAsset( string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null )
+        public static IEnumerator ILoadAsset(string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
-            Uri uri = new Uri( path );
-            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
-            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            Uri uri = new Uri(path);
+            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
@@ -400,14 +334,14 @@ namespace LitFramework.LitTool
 
                 yield return uwr.SendWebRequest();
 
-                if ( uwr.isNetworkError || uwr.isHttpError )
+                if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    LDebug.LogError( "  >Error: " + uwr.error );
-                    errorCallBack?.Invoke( uwr );
+                    LDebug.LogError("  >Error: " + uwr.error);
+                    errorCallBack?.Invoke(uwr);
                 }
                 else
                 {
-                    callBack?.Invoke( uwr.downloadHandler.text );
+                    callBack?.Invoke(uwr.downloadHandler.text);
                     //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
@@ -419,11 +353,11 @@ namespace LitFramework.LitTool
         /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
         /// <param name="errorCallBack"></param>
-        public static void LoadAsset( string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null )
+        public static void LoadAsset(string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
-            Uri uri = new Uri( path );
-            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
-            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            Uri uri = new Uri(path);
+            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
@@ -432,18 +366,18 @@ namespace LitFramework.LitTool
 
                 uwr.SendWebRequest();
 
-                while ( true )
+                while (true)
                 {
-                    if ( uwr.isHttpError || uwr.isNetworkError )
+                    if (uwr.isHttpError || uwr.isNetworkError)
                     {
-                        LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
-                        errorCallBack?.Invoke( uwr );
+                        LDebug.LogError("  >Error: " + uwr.error + " " + uwr.url);
+                        errorCallBack?.Invoke(uwr);
                         return;
                     }
-                    else if ( uwr.downloadProgress == 1 )
+                    else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log( " >Load data : \n" + uwr.downloadHandler.text );
-                        callBack?.Invoke( uwr.downloadHandler.text );
+                        LDebug.Log(" >Load data : \n" + uwr.downloadHandler.text);
+                        callBack?.Invoke(uwr.downloadHandler.text);
                         return;
                     }
                 }
@@ -456,11 +390,11 @@ namespace LitFramework.LitTool
         /// <param name="path">AssetPathManager.Instance.GetStreamAssetDataPath("csv/csvList.csv")</param>
         /// <param name="callBack"></param>
         /// <param name="errorCallBack"></param>
-        public static void LoadAsset( string path, Action<UnityWebRequest> callBack , Action<UnityWebRequest> errorCallBack = null )
+        public static void LoadAsset(string path, Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
-            Uri uri = new Uri( path );
-            LDebug.LogWarning( " >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath );
-            using ( UnityWebRequest uwr = UnityWebRequest.Get( uri ) )
+            Uri uri = new Uri(path);
+            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
                 uwr.disposeUploadHandlerOnDispose = true;
@@ -469,18 +403,18 @@ namespace LitFramework.LitTool
 
                 uwr.SendWebRequest();
 
-                while ( true )
+                while (true)
                 {
-                    if ( uwr.isHttpError || uwr.isNetworkError )
+                    if (uwr.isHttpError || uwr.isNetworkError)
                     {
-                        LDebug.LogError( "  >Error: " + uwr.error + " " + uwr.url );
-                        errorCallBack?.Invoke( uwr );
+                        LDebug.LogError("  >Error: " + uwr.error + " " + uwr.url);
+                        errorCallBack?.Invoke(uwr);
                         return;
                     }
-                    else if ( uwr.downloadProgress == 1 )
+                    else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
-                        callBack?.Invoke( uwr );
+                        LDebug.Log(" >Received: \n" + uwr.downloadHandler.text);
+                        callBack?.Invoke(uwr);
                         return;
                     }
                 }
@@ -497,20 +431,20 @@ namespace LitFramework.LitTool
         /// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
         /// <param name="callBack">加载完成后的回调</param>
         /// <returns></returns>
-        public IEnumerator WWWLoading( string filePath , Action<WWW> callBack = null )
+        public IEnumerator WWWLoading(string filePath, Action<WWW> callBack = null)
         {
-            WWW www = new WWW( filePath );
+            WWW www = new WWW(filePath);
 
             //while ( !www.isDone ) { }
             yield return www;
 
-            if ( www.error != null )
-                throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}", www.error, filePath ) );
+            if (www.error != null)
+                throw new Exception(string.Format("WWW Error: {0}  filePath: {1}", www.error, filePath));
 
-            if( www.isDone )
+            if (www.isDone)
             {
-                if( callBack != null )
-                    callBack.Invoke( www );
+                if (callBack != null)
+                    callBack.Invoke(www);
             }
 
             yield return null;
@@ -526,25 +460,25 @@ namespace LitFramework.LitTool
         /// <param name="filePath">包含IP地址在内（网络请求时）的完整地址</param>
         /// <param name="callBack">加载完成后的回调</param>
         /// <returns></returns>
-        public static string WWWLoadingWithWaiting( string wwwFilePath, Action<WWW> callBack = null )
+        public static string WWWLoadingWithWaiting(string wwwFilePath, Action<WWW> callBack = null)
         {
-            LDebug.Log( wwwFilePath );
+            LDebug.Log(wwwFilePath);
             string resutl = null;
-            WWW www = new WWW( wwwFilePath );
-            while ( !www.isDone ) { }
+            WWW www = new WWW(wwwFilePath);
+            while (!www.isDone) { }
 
-            if ( www.error != null )
+            if (www.error != null)
             {
-                if ( Application.platform == RuntimePlatform.WindowsEditor )
-                    throw new Exception( string.Format( "WWW Error: {0}  filePath: {1}  ", www.error, wwwFilePath ) );
+                if (Application.platform == RuntimePlatform.WindowsEditor)
+                    throw new Exception(string.Format("WWW Error: {0}  filePath: {1}  ", www.error, wwwFilePath));
                 else
-                    Debug.LogError( "WWW Error: " + www.error );
+                    Debug.LogError("WWW Error: " + www.error);
             }
 
-            if ( www.isDone )
+            if (www.isDone)
             {
-                if ( callBack != null )
-                    callBack.Invoke( www );
+                if (callBack != null)
+                    callBack.Invoke(www);
             }
 
             resutl = www.text;
@@ -566,13 +500,13 @@ namespace LitFramework.LitTool
         /// <param name="configsPathsList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
         /// <param name="name">FTP服务器登陆用户名</param>
         /// <param name="password">FTP服务器登录密码</param>
-        public void DownLoadFromFTP( string ftpIP, List<string> configsPathsList, string name = null, string password = null )
+        public void DownLoadFromFTP(string ftpIP, List<string> configsPathsList, string name = null, string password = null)
         {
-            for ( int i = 0; i < configsPathsList.Count; i++ )
+            for (int i = 0; i < configsPathsList.Count; i++)
             {
-                var result = FTPDownload( ftpIP + configsPathsList[ i ], userName: name, password: password );
-                DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( configsPathsList[ i ], false ), result );
-                LDebug.Log( ">>>" + configsPathsList[ i ] + result.Count() );
+                var result = FTPDownload(ftpIP + configsPathsList[i], userName: name, password: password);
+                DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPathsList[i], false), result);
+                LDebug.Log(">>>" + configsPathsList[i] + result.Count());
             }
         }
         /// <summary>
@@ -582,84 +516,84 @@ namespace LitFramework.LitTool
         /// <param name="configsNamesList">待加载文件地址，需要带上后缀。例如XXX/Role.csv</param>
         /// <param name="name">FTP服务器登陆用户名</param>
         /// <param name="password">FTP服务器登录密码</param>
-        public void DownLoadFromFTP( string ftpIP, string configsPath, string name = null, string password = null )
+        public void DownLoadFromFTP(string ftpIP, string configsPath, string name = null, string password = null)
         {
-            var result = FTPDownload( ftpIP + configsPath, userName: name, password: password );
-            DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( configsPath, false ), result );
-            LDebug.Log( ">>>" + configsPath + result.Count() );
+            var result = FTPDownload(ftpIP + configsPath, userName: name, password: password);
+            DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPath, false), result);
+            LDebug.Log(">>>" + configsPath + result.Count());
         }
 
-        private byte[] FTPDownload( string ftpUrl, string savePath = "", string userName = "", string password = "" )
+        private byte[] FTPDownload(string ftpUrl, string savePath = "", string userName = "", string password = "")
         {
-            FtpWebRequest request = ( FtpWebRequest )WebRequest.Create( new Uri( ftpUrl ) );
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(new Uri(ftpUrl));
 
             request.UsePassive = true;
             request.UseBinary = true;
             request.KeepAlive = true;
 
-            if ( !string.IsNullOrEmpty( userName ) && !string.IsNullOrEmpty( password ) )
+            if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(password))
             {
-                request.Credentials = new NetworkCredential( userName, password );
+                request.Credentials = new NetworkCredential(userName, password);
             }
 
             request.Method = WebRequestMethods.Ftp.DownloadFile;
 
             WebResponse webResponse;
-            if ( !string.IsNullOrEmpty( savePath ) )
+            if (!string.IsNullOrEmpty(savePath))
             {
                 webResponse = request.GetResponse();
-                LDebug.Log( "FTP连接状态: " + webResponse );
-                DownloadAndSave( webResponse, savePath );
+                LDebug.Log("FTP连接状态: " + webResponse);
+                DownloadAndSave(webResponse, savePath);
                 return null;
             }
             else
             {
                 webResponse = request.GetResponse();
-                LDebug.Log( "FTP连接状态: " + webResponse );
-                return DownloadAsbyteArray( webResponse );
+                LDebug.Log("FTP连接状态: " + webResponse);
+                return DownloadAsbyteArray(webResponse);
             }
         }
 
-        byte[] DownloadAsbyteArray( WebResponse request )
+        byte[] DownloadAsbyteArray(WebResponse request)
         {
-            using ( Stream input = request.GetResponseStream() )
+            using (Stream input = request.GetResponseStream())
             {
-                byte[] buffer = new byte[ 16 * 1024 ];
-                using ( MemoryStream ms = new MemoryStream() )
+                byte[] buffer = new byte[16 * 1024];
+                using (MemoryStream ms = new MemoryStream())
                 {
                     int read;
-                    while ( input.CanRead && ( read = input.Read( buffer, 0, buffer.Length ) ) > 0 )
+                    while (input.CanRead && (read = input.Read(buffer, 0, buffer.Length)) > 0)
                     {
-                        ms.Write( buffer, 0, read );
+                        ms.Write(buffer, 0, read);
                     }
                     return ms.ToArray();
                 }
             }
         }
 
-        void DownloadAndSave( WebResponse request, string savePath )
+        void DownloadAndSave(WebResponse request, string savePath)
         {
             Stream reader = request.GetResponseStream();
 
             //Create Directory if it does not exist
-            if ( !Directory.Exists( Path.GetDirectoryName( savePath ) ) )
+            if (!Directory.Exists(Path.GetDirectoryName(savePath)))
             {
-                Directory.CreateDirectory( Path.GetDirectoryName( savePath ) );
+                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
             }
 
-            using ( FileStream fileStream = new FileStream( savePath, FileMode.Create ) )
+            using (FileStream fileStream = new FileStream(savePath, FileMode.Create))
             {
                 int bytesRead = 0;
-                byte[] buffer = new byte[ 2048 ];
+                byte[] buffer = new byte[2048];
 
-                while ( true )
+                while (true)
                 {
-                    bytesRead = reader.Read( buffer, 0, buffer.Length );
+                    bytesRead = reader.Read(buffer, 0, buffer.Length);
 
-                    if ( bytesRead == 0 )
+                    if (bytesRead == 0)
                         break;
 
-                    fileStream.Write( buffer, 0, bytesRead );
+                    fileStream.Write(buffer, 0, bytesRead);
                 }
             }
         }

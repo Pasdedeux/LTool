@@ -5,7 +5,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 using AssetBundleBrowser.AssetBundleDataSource;
-using LitFramework;
 using LitFramework.LitTool;
 using System.Collections;
 using LitFramework.Crypto;
@@ -13,6 +12,7 @@ using System;
 using System.Text;
 using System.Linq;
 using Assets.Scripts.LitCore.LitTool;
+using LitFramework;
 
 namespace AssetBundleBrowser
 {

@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_6;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_6;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;IAP;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -247,7 +247,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NGraphics.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\ILRScriptCall.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\Essential\Managers\ZipManager.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\Generated\LitFramework_Singleton_1_RsLoadManager_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
@@ -366,6 +365,81 @@
     <Compile Include="Assets\Scripts\ILRuntime\Adaptor\FairyGUI_GMovieClipAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\ILRuntime\FixedBinder\MonoBehaviourAdapter.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Crypto\CryptoSHA1.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\ZipManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Manager\UIMaskManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Guide\GuideConfig.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Version_Mono\BaseUI.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\AD\ADManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\AnimBundle.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\IAP\PurchaserDataModel.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\Statistic\StatisticManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\HotFix\HotFixItem\HotFixAB.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\AD\BaseAdAdapter.cs" />
+    <Compile Include="Assets\Scripts\LitCore\HotFix\HotFixItem\HotFixCSVList.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Base\UIModelBehavior.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Base\BindingProperty.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Base\IViewModel.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
+    <Compile Include="Assets\Scripts\LitCore\BaseModel\SingletonMono.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\CSExtention.cs" />
+    <Compile Include="Assets\Scripts\LitCore\HotFix\HotFixController.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\BaseScrollElement.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Device\ShowFPS.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\AssetPathManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Crypto\ICrypto.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitPool\PrefabsDict.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\SpriteAdapter.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\LitTool.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Version_Mono\UIManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Guide\Control\GuideShaderController.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitPool\PrefabPool.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\UnityHelper.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Guide\Model\EventPenetrate.cs" />
+    <Compile Include="Assets\Scripts\LitCore\MsgSystem\InternalEvent.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\IAP\PurchaserConfig.cs" />
+    <Compile Include="Assets\Scripts\LitCore\MsgSystem\MsgManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
+    <Compile Include="Assets\Scripts\LitCore\HotFix\HotFixItem\HotfixLogic.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameFlowController.cs" />
+    <Compile Include="Assets\Scripts\LitCore\TimeRecord\ZeroTimeRecord.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\AD\IAd.cs" />
+    <Compile Include="Assets\Scripts\LitCore\FrameworkConfig.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\ThirdParty\IAP\PurchaserStoreItem.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Crypto\CryptoMD5.cs" />
+    <Compile Include="Assets\Scripts\LitCore\BaseModel\Cloneable.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Manager\SceneLoadManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\LDebug.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Extention_Editor\CSVReader.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitPool\SpawnPool.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Crypto\Crypto.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Optimization.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Base\UIType.cs" />
+    <Compile Include="Assets\Scripts\LitCore\BaseModel\IManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Guide\Model\GuideDataModel.cs" />
+    <Compile Include="Assets\Scripts\LitCore\HotFix\IHotFix.cs" />
+    <Compile Include="Assets\Scripts\LitCore\BaseModel\Singleton.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\SysDefine.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Componets\LoopRect\LoopScrollRect.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\CameraCapture.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitPool\PoolManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\InputSystem\InputControlManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitPool\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\UI\Base\IUIManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\LMath.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
@@ -683,9 +757,6 @@
     <Reference Include="ExcelDataReader.DataSet">
       <HintPath>Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
     </Reference>
-    <Reference Include="LitFramework">
-      <HintPath>Assets\Plugins\LitFramework.dll</HintPath>
-    </Reference>
     <Reference Include="DemiLib">
       <HintPath>Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.dll</HintPath>
     </Reference>
@@ -703,9 +774,6 @@
     </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="LitFrameworkEditor">
-      <HintPath>Assets\Plugins\LitFrameworkEditor.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -1103,10 +1171,6 @@
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.AssetBundleBrowser.Editor.csproj">
-      <Project>{A526CECB-4824-8985-3840-D03753FE228D}</Project>
-      <Name>Unity.AssetBundleBrowser.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{3C155BAE-08CF-49D6-3F2F-6F0E3FA6DDAA}</Project>

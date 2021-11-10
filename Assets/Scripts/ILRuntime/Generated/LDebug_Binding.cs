@@ -44,8 +44,8 @@ namespace ILRuntime.Runtime.Generated
             System.String @content = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-
-            global::LDebug.Log(@content, @color);
+            var stTrace = __domain.DebugService.GetStackTrace(__intp);
+            global::LDebug.Log(@content + "\n" + stTrace, @color);
 
             return __ret;
         }

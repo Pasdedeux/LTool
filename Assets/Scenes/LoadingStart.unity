@@ -358,7 +358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 590764917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -914704915, guid: 97287ccd5bef19e41a2419019a8d5250, type: 3}
+  m_Script: {fileID: 11500000, guid: ab2f6e8310f2db84aa188539bfb16b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TargetFrameRate: 30
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1985084804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 296020102, guid: 97287ccd5bef19e41a2419019a8d5250, type: 3}
+  m_Script: {fileID: 11500000, guid: 55beb02972e87f6439d6f1efcf8bf998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shrinkTime: 0.2

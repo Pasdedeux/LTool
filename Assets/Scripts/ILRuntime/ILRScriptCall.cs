@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 using LHotfixProject;
+using ILRuntime.Runtime;
 using ILRuntime.Runtime.Stack;
 using ILRuntime.Runtime.Intepreter;
 using ILRuntime.CLR.Method;
@@ -272,7 +273,6 @@ namespace Assets.Scripts
                 });
             });
             _appdomain.DelegateManager.RegisterFunctionDelegate<Assets.Scripts.UI.BaseScrollElement>();
-
 
             SetupAddGetComponent();
             LitJson.JsonMapper.RegisterILRuntimeCLRRedirection(_appdomain);

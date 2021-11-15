@@ -25,7 +25,8 @@ using UnityEngine;
 namespace Assets.Scripts.Essential.Tools
 {
     /// <summary>
-    /// 此处用与扩展Vector2/Vector3等其它各类数据解析类型
+    /// 此处用与扩展Vector2/Vector3等其它各类数据解析类型。
+    /// 目前仅针对编辑器模式操作响应加入两种类型RegisterExporter，导出类型按照需要增加更多类型解析，增加的时候仅需根据类的数据类型进行添加
     /// </summary>
 #if UNITY_EDITOR
     [UnityEditor.InitializeOnLoad]

@@ -55,18 +55,18 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //UI模块
         if ( FrameworkConfig.Instance.UseHotFixMode )
         {
-            LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
+            LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
             LitFramework.HotFix.UIManager.Instance.Install();
         }
         else
         {
-            LitFramework.Mono.UIManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as GameObject; };
+            LitFramework.Mono.UIManager.Instance.LoadResourceFunc = ( e ) => RsLoadManager.Instance.Load<GameObject>(e);
             LitFramework.Mono.UIManager.Instance.Install();
         }
-       
+
 
         //Audio System
-        AudioManager.Instance.LoadResourceFunc = ( e ) => { return Resources.Load( e ) as AudioClip; };
+        AudioManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<AudioClip>(e);
         AudioManager.Instance.Install();
         
         //操作控制器，默认Enbale=true

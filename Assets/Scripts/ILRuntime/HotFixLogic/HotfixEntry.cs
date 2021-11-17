@@ -21,9 +21,7 @@ namespace LHotfixProject
         public static void Pre_RunGame_ILRuntime()
         {
             LDebug.Log( ">>>>执行预加载或初始化", LogColor.yellow );
-           
-            //需要保证资源提前加载完毕
-            RsLoadManager.Instance.Install();
+            
         }
 
         /// <summary>

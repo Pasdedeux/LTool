@@ -45,39 +45,28 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     /// <param name="debugEnable">框架启动时是否开启日志</param>
     public void StartUp( Action afterExecuteFunc = null, Action beforeExecuteFunc = null, bool debugEnable = true )
     {
-        DontDestroyOnLoad( GameObject.Find( "Canvas_Root" ) );
-
-        LDebug.Enable = debugEnable;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
         beforeExecuteFunc?.Invoke();
 
-        //UI模块
-        if ( FrameworkConfig.Instance.UseHotFixMode )
-        {
-            LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
-            LitFramework.HotFix.UIManager.Instance.Install();
-        }
-        else
-        {
-            LitFramework.Mono.UIManager.Instance.LoadResourceFunc = ( e ) => RsLoadManager.Instance.Load<GameObject>(e);
-            LitFramework.Mono.UIManager.Instance.Install();
-        }
-
-
+        //系统自启动模块
+        VibrateManager.Instance.Install();
         //Audio System
         AudioManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<AudioClip>(e);
         AudioManager.Instance.Install();
-        
+        //如果需要执行Loading，则将 LocalDataManager.Instance.Install() 直接放入LoadingTask即可
+        //【配置档】加载流程预绑定，如果有其它自定文件类处理扩展
+        LocalDataManager.Instance.InstallEventHandler += e =>
+        {
+            //顺次加载本地配置表、JSON数据
+            new CSVConfigData(e);
+            new JsonConfigData(e);
+        };
+        LocalDataManager.Instance.Install();
         //操作控制器，默认Enbale=true
         InputControlManager.Instance.Install();
-        
         //零点计时器初始化
         ZeroTimeRecord.Instance.Install();
-
         //对象池开启
         SpawnManager.Instance.Install();
-        
         //新手引导模块
         GuideShaderController.Instance.Install();
 

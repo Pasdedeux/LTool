@@ -19,23 +19,16 @@ using Assets.Scripts.Essential.SDK;
 using Assets.Scripts.Module.HotFix;
 using LitFramework;
 using LitFramework.GameFlow;
-using LitFramework.GameFlow.Model.DataLoadInterface;
 using LitFramework.HotFix;
-using LitFramework.LitTool;
 using LitFramework.MsgSystem;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Controller
 {
     public class FrameworkController : Singleton<FrameworkController>
     {
-        //需要迁移或热更文件
+        //定义需要迁移或热更文件
         private Queue<IHotFix> _hotFixFileQueue = new Queue<IHotFix>
         (
             new IHotFix[] { 
@@ -58,79 +51,75 @@ namespace Assets.Scripts.Controller
         /// </summary>
         public void InitFramework()
         {
-            //框架启动：直接启动，或者使用LoadingTaskModel登记启动时机
-            LitFrameworkFacade.Instance.StartUp(beforeExecuteFunc: () =>
+            GameObject.DontDestroyOnLoad(GameObject.Find("Canvas_Root"));
+
+            LDebug.Enable = FrameworkConfig.Instance.showLog;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+            AuthorizedManager.Instance.Install();
+
+            //文件迁移和热更结束后，才进行后续加载步骤
+            //若未开启对应功能，则直接继续后续步骤
+            MsgManager.Instance.Register(InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs);
+            //由于UI的使用，需要提前执行方法确定
+            RsLoadManager.Instance.Install();
+            //UI模块中Loading界面先于热更逻辑执行，故需要提前完成初始化
+            if (FrameworkConfig.Instance.UseHotFixMode)
             {
-                //文件迁移和热更结束后，才进行后续加载步骤
-                //若未开启对应功能，则直接继续后续步骤
-                MsgManager.Instance.Register(InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs);
-
-                //【配置档】加载流程预绑定，如果有其它自定文件类处理扩展
-                LocalDataManager.Instance.InstallEventHandler += e =>
-                {
-                    //顺次加载本地配置表、JSON数据
-                    new CSVConfigData(e);
-                    new JsonConfigData(e);
-                };
-
-                //系统自启动模块
-                VibrateManager.Instance.Install();
-            },
-            afterExecuteFunc: () =>
+                //保留命名空间
+                LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
+                LitFramework.HotFix.UIManager.Instance.Install();
+            }
+            else
             {
-                //框架基础启动完毕后，需要进行的自定义加载事件
-                //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗
-                //同时不排除业务场景中需要把这个等待过程单独表现在进度条上。
-                //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
+                //保留命名空间
+                LitFramework.Mono.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
+                LitFramework.Mono.UIManager.Instance.Install();
+            }
 
-                //切换运行环境
-                if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet) sc = new DotNetScriptCall();
-                else if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime) sc = new ILRScriptCall();
+            //框架基础启动完毕后，需要进行的自定义加载事件
+            //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗
+            //同时不排除业务场景中需要把这个等待过程单独表现在进度条上。
+            //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
+            //切换运行环境
+            if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet) sc = new DotNetScriptCall();
+            else if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime) sc = new ILRScriptCall();
 
-                //执行热更流程
-                LoadingTaskModel.Instance.AddTask(5, () =>
-                {
-                    //暂停接入任务
-                    UI.UILoading.LOADING_CONTINUE = false;
-                    HotFixController.Instance.Excecute(_hotFixFileQueue);
-                    return true;
-                });
+            //执行热更流程
+            LoadingTaskModel.Instance.AddTask(5, () =>
+            {
+                //暂停接入任务
+                UI.UILoading.LOADING_CONTINUE = false;
+                HotFixController.Instance.Excecute(_hotFixFileQueue);
+                return true;
+            });
+
+            //==================具体项目的代码从这里开始==================//
+            LoadingTaskModel.Instance.AddTask(20, () =>
+            {
+                _asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
+                _asyncOperation.allowSceneActivation = true;
+                return true;
+            });
+            //==================具体项目的代码从这里结束==================//
 
 
+            LoadingTaskModel.Instance.AddTask(100, () =>
+            {
+                while (!_asyncOperation.isDone) { };
+                sc.StartRun();
+                UIManager.Instance.Close(ResPath.UI.UILOADING);
+                return true;
+            });
 
-                //==================具体项目的代码从这里开始==================//
-
-                LoadingTaskModel.Instance.AddTask(20, () =>
-                {
-                    _asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync( 1 );
-                    _asyncOperation.allowSceneActivation = true;
-                    return true;
-                });
-
-                //==================具体项目的代码从这里结束==================//
-
-
-
-                LoadingTaskModel.Instance.AddTask(100, () =>
-                {
-                    while (!_asyncOperation.isDone) { };
-                    sc.StartRun();
-                    UIManager.Instance.Close(ResPath.UI.UILOADING);
-                    return true;
-                });
-
-                //启动Loading界面，准备进度条预读取事件
-                InitLoadingLogo();
-            },
-            debugEnable: FrameworkConfig.Instance.showLog
-            );
+            //启动Loading界面，准备进度条预读取事件
+            StartLoadingLogo();
         }
-
 
         /// <summary>
         /// UI Loading
         /// </summary>
-        public void InitLoadingLogo()
+        public void StartLoadingLogo()
         {
             //默认启动游戏先开始显示UI界面，并增加一次渐显效果
             UIManager.Instance.Show(ResPath.UI.UILOADING);
@@ -145,12 +134,12 @@ namespace Assets.Scripts.Controller
         private void LoadAllConfigs(MsgArgs e = null)
         {
             MsgManager.Instance.UnRegister(InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs);
+            //除UI外，其它模块需要确保在资源完整更新后，执行项目启动
+            LitFrameworkFacade.Instance.StartUp();
             //在热更模式下，用于初始化
             sc.PreStartRun();
             //执行ScriptableObject的数据注入
             ScriptableLoader.Instance.InjectScriptableData("CommonData");
-            //如果需要执行Loading，则将 LocalDataManager.Instance.Install() 直接放入LoadingTask即可
-            LocalDataManager.Instance.Install();
             //继续加载任务
             UI.UILoading.LOADING_CONTINUE = true;
         }

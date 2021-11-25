@@ -43,9 +43,9 @@ namespace LitFramework.LitTool
         {
             get
             {
-                if ( _mono == null )
+                if (_mono == null)
                 {
-                    GameObject go = new GameObject( "Monobehavior" );
+                    GameObject go = new GameObject("Monobehavior");
                     MonoBehaviour = go.AddComponent<MonoForCorouting>();
                     go.hideFlags = HideFlags.HideAndDontSave; //可见性，以及不可消除性
                 }
@@ -67,7 +67,7 @@ namespace LitFramework.LitTool
             set
             {
                 _usePreciseMode = value;
-                if ( !value )
+                if (!value)
                 {
                     _delayFuncWaitTimeMax = FrameworkConfig.Instance.DelayFuncDetectInterver;
                     _delayFuncTimeCouting = 0f;
@@ -84,24 +84,24 @@ namespace LitFramework.LitTool
         /// </summary>
         private static void BindingUpdate()
         {
-            if ( !UsePreciseModeForDelayFunc )
+            if (!UsePreciseModeForDelayFunc)
             {
                 //每X秒触发一次分发
                 _delayFuncTimeCouting += Time.unscaledDeltaTime;
-                if ( _delayFuncTimeCouting >= _delayFuncWaitTimeMax )
+                if (_delayFuncTimeCouting >= _delayFuncWaitTimeMax)
                 {
                     _delayFuncTimeCouting = 0f;
                     //LDebug.Log( DelayFuncRealEvent?.GetInvocationList().Length );
 
-                    DelayFuncEvent?.Invoke( Time.time );
-                    DelayFuncRealEvent?.Invoke( Time.unscaledTime );
+                    DelayFuncEvent?.Invoke(Time.time);
+                    DelayFuncRealEvent?.Invoke(Time.unscaledTime);
                 }
             }
             //逐帧遍历
             else
             {
-                DelayFuncEvent?.Invoke( Time.time );
-                DelayFuncRealEvent?.Invoke( Time.unscaledTime );
+                DelayFuncEvent?.Invoke(Time.time);
+                DelayFuncRealEvent?.Invoke(Time.unscaledTime);
             }
         }
 
@@ -112,12 +112,12 @@ namespace LitFramework.LitTool
         /// <param name="func">延迟时间结束后回调函数。暂不支持主动取消，使用过程中需要注意</param>
         /// <param name="useIgnoreTimeScale">是否忽略TimeScale，默认为true</param>
         /// <param name="useUpdate">使用update方式或者协程方式，默认是update方式</param>
-        public static void DelayPlayFunction( float time, Action func, bool useIgnoreTimeScale = true, bool useUpdate = true )
+        public static void DelayPlayFunction(float time, Action func, bool useIgnoreTimeScale = true, bool useUpdate = true)
         {
-            if ( _driver == null ) { _driver = GameDriver.Instance; _driver.UpdateEventHandler += BindingUpdate; }
+            if (_driver == null) { _driver = GameDriver.Instance; _driver.UpdateEventHandler += BindingUpdate; }
 
-            if ( useUpdate ) DelayPlayFuncUpdate( time, func, useIgnoreTimeScale );
-            else DelayPlayFuncMono( time, func, useIgnoreTimeScale );
+            if (useUpdate) DelayPlayFuncUpdate(time, func, useIgnoreTimeScale);
+            else DelayPlayFuncMono(time, func, useIgnoreTimeScale);
         }
 
         #region 协程方案
@@ -128,26 +128,26 @@ namespace LitFramework.LitTool
         /// <param name="time">等待时间，秒</param>
         /// <param name="func">时间到了回调函数</param>
         /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
-        static void DelayPlayFuncMono( float time, Action func, bool realTime )
+        static void DelayPlayFuncMono(float time, Action func, bool realTime)
         {
-            if ( realTime )
+            if (realTime)
             {
-                MonoBehaviour.StartCoroutine( DelayFunctionReal( time, func ) );
+                MonoBehaviour.StartCoroutine(DelayFunctionReal(time, func));
             }
             else
             {
-                MonoBehaviour.StartCoroutine( DelayFunction( time, func ) );
+                MonoBehaviour.StartCoroutine(DelayFunction(time, func));
             }
 
         }
-        static IEnumerator DelayFunction( float time, Action func )
+        static IEnumerator DelayFunction(float time, Action func)
         {
-            yield return new WaitForSeconds( time );
+            yield return new WaitForSeconds(time);
             func?.Invoke();
         }
-        static IEnumerator DelayFunctionReal( float time, Action func )
+        static IEnumerator DelayFunctionReal(float time, Action func)
         {
-            yield return new WaitForSecondsRealtime( time );
+            yield return new WaitForSecondsRealtime(time);
             func?.Invoke();
         }
 
@@ -156,13 +156,13 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="conditionFunc">通过需要的判定条件</param>
         /// <param name="func">通过达成后的回调函数</param>
-        public static void WaitUntilFunction( Func<bool> conditionFunc, Action func )
+        public static void WaitUntilFunction(Func<bool> conditionFunc, Action func)
         {
-            MonoBehaviour.StartCoroutine( IWaitUntilFunction( conditionFunc, func ) );
+            MonoBehaviour.StartCoroutine(IWaitUntilFunction(conditionFunc, func));
         }
-        static IEnumerator IWaitUntilFunction( Func<bool> conditionFunc, Action func )
+        static IEnumerator IWaitUntilFunction(Func<bool> conditionFunc, Action func)
         {
-            yield return new WaitUntil( conditionFunc );
+            yield return new WaitUntil(conditionFunc);
             func?.Invoke();
         }
 
@@ -176,9 +176,9 @@ namespace LitFramework.LitTool
         /// <param name="time">等待时间，秒</param>
         /// <param name="func">时间到了回调函数</param>
         /// <param name="realTime">是否是真实时间（忽略TimeScale）</param>
-        static void DelayPlayFuncUpdate( float time, Action func, bool realTime )
+        static void DelayPlayFuncUpdate(float time, Action func, bool realTime)
         {
-            new DelayFuncDecoration( realTime ? Time.unscaledTime + time : Time.time + time, func, realTime );
+            new DelayFuncDecoration(realTime ? Time.unscaledTime + time : Time.time + time, func, realTime);
         }
 
         #endregion
@@ -187,9 +187,94 @@ namespace LitFramework.LitTool
 
         #region 时间转换工具
 
-        private static DateTime _dateStartUTC = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc );
-        private static DateTime _dateStart = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Local );
         private static TimeSpan _timtSpan = new TimeSpan();
+        public static readonly DateTime dateStart = new DateTime(1970, 1, 1, 0, 0, 0).ToLocalTime();
+
+        /// <summary>
+        /// 获取当前UTC时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        public static long GetUTCTimeStamp()
+        {
+            long timeStamp = Convert.ToInt64((DateTime.UtcNow - dateStart).TotalSeconds);
+            return timeStamp;
+        }
+
+        /// <summary>
+        /// 获取UTC时间戳Timestamp
+        /// </summary>
+        /// <param name="dt">UTC日期</param>
+        /// <returns></returns>
+        public static long GetUTCTimeStamp(DateTime dt)
+        {
+            long timeStamp = Convert.ToInt64((dt - dateStart).TotalSeconds);
+            return timeStamp;
+        }
+
+        /// <summary>
+        /// UTC 时间戳Timestamp转换成UTC日期
+        /// </summary>
+        /// <param name="timeStamp">需要转换的时间戳秒</param>
+        /// <returns>返回的UTC日期</returns>
+        public static DateTime GetUTCDateTime(long timeStamp)
+        {
+            long lTime = timeStamp * 10000000;
+            TimeSpan toNow = new TimeSpan(lTime);
+            DateTime targetDt = dateStart.Add(toNow);
+            return targetDt;
+        }
+
+
+        /// <summary>
+        /// 获取当前时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        public static long GetTimeStamp()
+        {
+            long timeStamp = Convert.ToInt64((DateTime.Now - dateStart).TotalSeconds);
+            return timeStamp;
+        }
+        /// <summary>
+        /// 获取当前时间戳Timestamp
+        /// </summary>
+        /// <returns></returns>
+        public static long GetTimeMillisStamp()
+        {
+            long timeStamp = Convert.ToInt64((DateTime.Now - dateStart).TotalMilliseconds);
+            return timeStamp;
+        }
+        /// <summary>
+        /// 获取时间戳Timestamp
+        /// </summary>
+        /// <param name="dt">本地日期</param>
+        /// <returns></returns>
+        public static long GetTimeStamp(DateTime dt)
+        {
+            long timeStamp = Convert.ToInt64((dt - dateStart).TotalSeconds);
+            return timeStamp;
+        }
+
+        /// <summary>
+        /// 时间戳Timestamp转换成日期
+        /// </summary>
+        /// <param name="timeStamp">需要转换的时间戳秒</param>
+        /// <returns>返回的日期</returns>
+        public static DateTime GetDateTime(long timeStamp)
+        {
+            long lTime = timeStamp * 10000000;
+            TimeSpan toNow = new TimeSpan(lTime);
+            DateTime targetDt = dateStart.Add(toNow);
+            return targetDt;
+        }
+
+        /// <summary>
+        /// 获取当前时区信息
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetTimeZoneInfo()
+        {
+            return TimeZoneInfo.Local.BaseUtcOffset;
+        }
 
         /// <summary>
         /// 获取指定显示显示格式的时间跨度表达
@@ -201,19 +286,19 @@ namespace LitFramework.LitTool
         /// <param name="endTime">结束日期</param>
         /// <param name="format">返回的日期格式</param>
         /// <returns></returns>
-        public static string GetTimeSpanWithFormat( DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}" )
+        public static string GetTimeSpanWithFormat(DateTime startTime, DateTime endTime, string format = "{0:00}:{1:00}")
         {
             _timtSpan = endTime - startTime;
             //todo 尚待扩展
-            if ( format.Equals( "{0:00}:{1:00}" ) )
+            if (format.Equals("{0:00}:{1:00}"))
             {
-                return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes + ( _timtSpan.Days * 24 * 60 ), _timtSpan.Seconds );
+                return string.Format("{0:00}:{1:00}", _timtSpan.Minutes + (_timtSpan.Days * 24 * 60), _timtSpan.Seconds);
             }
-            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) )
+            else if (format.Equals("{0:00}:{1:00}:{2:00}"))
             {
-                return string.Format( "{0:00}:{1:00}:{2:00}", ( _timtSpan.Hours + ( _timtSpan.Days * 24 ) ), _timtSpan.Minutes, _timtSpan.Seconds );
+                return string.Format("{0:00}:{1:00}:{2:00}", (_timtSpan.Hours + (_timtSpan.Days * 24)), _timtSpan.Minutes, _timtSpan.Seconds);
             }
-            return string.Format( "{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds );
+            return string.Format("{0:00}:{1:00}", _timtSpan.Minutes, _timtSpan.Seconds);
         }
 
         /// <summary>
@@ -222,89 +307,20 @@ namespace LitFramework.LitTool
         /// <param name="span"></param>
         /// <param name="format"></param>
         /// <returns></returns>
-        public static string GetTimeSpanWithFormat( TimeSpan span, string format = "{0:00}:{1:00}" )
+        public static string GetTimeSpanWithFormat(TimeSpan span, string format = "{0:00}:{1:00}")
         {
             //todo 尚待扩展
-            if ( format.Equals( "{0:00}:{1:00}" ) )
+            if (format.Equals("{0:00}:{1:00}"))
             {
-                return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
+                return string.Format("{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds);
             }
-            else if ( format.Equals( "{0:00}:{1:00}:{2:00}" ) )
+            else if (format.Equals("{0:00}:{1:00}:{2:00}"))
             {
-                return string.Format( "{0:00}:{1:00}:{2:00}", span.Hours + span.Days * 24, span.Minutes, span.Seconds );
+                return string.Format("{0:00}:{1:00}:{2:00}", span.Hours + span.Days * 24, span.Minutes, span.Seconds);
             }
-            return string.Format( "{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds );
+            return string.Format("{0:00}:{1:00}", span.Minutes + span.Days * 24 * 60 + span.Hours * 60, span.Seconds);
         }
 
-
-        /// <summary>
-        /// 获取当前UTC时间戳Timestamp
-        /// </summary>
-        /// <returns></returns>
-        public static long GetUTCTimeStamp()
-        {
-            long timeStamp = Convert.ToInt64( ( DateTime.UtcNow - _dateStartUTC ).TotalSeconds );
-            return timeStamp;
-        }
-
-        /// <summary>
-        /// 获取UTC时间戳Timestamp
-        /// </summary>
-        /// <param name="dt">UTC日期</param>
-        /// <returns></returns>
-        public static long GetUTCTimeStamp( DateTime dt )
-        {
-            long timeStamp = Convert.ToInt64( ( dt - _dateStartUTC ).TotalSeconds );
-            return timeStamp;
-        }
-
-        /// <summary>
-        /// UTC 时间戳Timestamp转换成UTC日期
-        /// </summary>
-        /// <param name="timeStamp">需要转换的时间戳秒</param>
-        /// <returns>返回的UTC日期</returns>
-        public static DateTime GetUTCDateTime( long timeStamp )
-        {
-            long lTime = timeStamp * 10000000;
-            TimeSpan toNow = new TimeSpan( lTime );
-            DateTime targetDt = _dateStartUTC.Add( toNow );
-            return targetDt;
-        }
-
-
-        /// <summary>
-        /// 获取当前时间戳Timestamp
-        /// </summary>
-        /// <returns></returns>
-        public static long GetTimeStamp()
-        {
-            long timeStamp = Convert.ToInt64( ( DateTime.Now - _dateStart ).TotalSeconds );
-            return timeStamp;
-        }
-
-        /// <summary>
-        /// 获取时间戳Timestamp
-        /// </summary>
-        /// <param name="dt">日期</param>
-        /// <returns></returns>
-        public static long GetTimeStamp( DateTime dt )
-        {
-            long timeStamp = Convert.ToInt64( ( dt - _dateStart ).TotalSeconds );
-            return timeStamp;
-        }
-
-        /// <summary>
-        /// 时间戳Timestamp转换成日期
-        /// </summary>
-        /// <param name="timeStamp">需要转换的时间戳秒</param>
-        /// <returns>返回的日期</returns>
-        public static DateTime GetDateTime( long timeStamp )
-        {
-            long lTime = timeStamp * 10000000;
-            TimeSpan toNow = new TimeSpan( lTime );
-            DateTime targetDt = _dateStart.Add( toNow );
-            return targetDt;
-        }
 
 
         #endregion
@@ -318,12 +334,12 @@ namespace LitFramework.LitTool
         /// <param name="uiCam">UI相机</param>
         /// <param name="uiCanvas">被放置的UICANVAS节点</param>
         /// <returns>被放置的UI世界坐标，设置其 transform.position即可。（没有返回UI坐标的Vector2是为了避免容器父节点坐标影响)</returns>
-        public static Vector3 World2UIPos( Vector3 targetWorldPos, Camera mainCam, Camera uiCam, RectTransform uiCanvas )
+        public static Vector3 World2UIPos(Vector3 targetWorldPos, Camera mainCam, Camera uiCam, RectTransform uiCanvas)
         {
             Vector3 result = Vector3.zero;
             //屏幕转UI  ui(当前的canvas)  _camera_UiCamera(UI的摄像机)
-            var vec3 = mainCam.WorldToScreenPoint( targetWorldPos );
-            RectTransformUtility.ScreenPointToWorldPointInRectangle( uiCanvas, vec3, uiCam, out result );
+            var vec3 = mainCam.WorldToScreenPoint(targetWorldPos);
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(uiCanvas, vec3, uiCam, out result);
             return result;
         }
 
@@ -332,19 +348,19 @@ namespace LitFramework.LitTool
         /// </summary>
         /// <param name="uiTarget">目标UI对象</param>
         /// <returns></returns>
-        public static Vector3 UI2WorldPos( RectTransform uiTarget )
+        public static Vector3 UI2WorldPos(RectTransform uiTarget)
         {
             CanvasScaler canvasScaler = null;
-            if ( FrameworkConfig.Instance.UseHotFixMode )
+            if (FrameworkConfig.Instance.UseHotFixMode)
                 canvasScaler = LitFramework.HotFix.UIManager.Instance.CanvasScaler;
             else
                 canvasScaler = LitFramework.Mono.UIManager.Instance.CanvasScaler;
-            
+
             var reference = canvasScaler.referenceResolution;
 
             Vector2 targetAnchored = uiTarget.anchoredPosition;
             Vector2 screenPos;
-            switch ( canvasScaler.screenMatchMode )
+            switch (canvasScaler.screenMatchMode)
             {
                 case CanvasScaler.ScreenMatchMode.MatchWidthOrHeight:
                     var scale = canvasScaler.matchWidthOrHeight == 0 ? Screen.width / reference.x : Screen.height / reference.y;
@@ -358,14 +374,14 @@ namespace LitFramework.LitTool
                     targetAnchored.x *= scaleX;
                     break;
             }
-            screenPos = targetAnchored + 0.5f * new Vector2( Screen.width, Screen.height );
+            screenPos = targetAnchored + 0.5f * new Vector2(Screen.width, Screen.height);
 
             var worldPos = new Vector3();
 
-            if ( FrameworkConfig.Instance.UseHotFixMode )
-                RectTransformUtility.ScreenPointToWorldPointInRectangle( LitFramework.HotFix.UIManager.Instance.RectransRoot, screenPos, LitFramework.HotFix.UIManager.Instance.UICam, out worldPos );
+            if (FrameworkConfig.Instance.UseHotFixMode)
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(LitFramework.HotFix.UIManager.Instance.RectransRoot, screenPos, LitFramework.HotFix.UIManager.Instance.UICam, out worldPos);
             else
-                RectTransformUtility.ScreenPointToWorldPointInRectangle( LitFramework.Mono.UIManager.Instance.RectransRoot, screenPos, LitFramework.Mono.UIManager.Instance.UICam, out worldPos );
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(LitFramework.Mono.UIManager.Instance.RectransRoot, screenPos, LitFramework.Mono.UIManager.Instance.UICam, out worldPos);
 
             return worldPos;
         }
@@ -377,11 +393,11 @@ namespace LitFramework.LitTool
         /// <param name="parent">3D位置在世界中的父对象</param>
         /// <param name="mainCam">所参照的世界主相机</param>
         /// <returns></returns>
-        public static Vector3 ScreenToLocalPos( Vector3 screenPos, Transform parent, Camera mainCam )
+        public static Vector3 ScreenToLocalPos(Vector3 screenPos, Transform parent, Camera mainCam)
         {
-            Vector3 point = new Vector3( screenPos.x, screenPos.y, -mainCam.transform.position.z );
-            Vector3 worldPos = mainCam.ScreenToWorldPoint( point );
-            return parent.worldToLocalMatrix.MultiplyPoint( worldPos );
+            Vector3 point = new Vector3(screenPos.x, screenPos.y, -mainCam.transform.position.z);
+            Vector3 worldPos = mainCam.ScreenToWorldPoint(point);
+            return parent.worldToLocalMatrix.MultiplyPoint(worldPos);
         }
 
         /// <summary>
@@ -391,10 +407,10 @@ namespace LitFramework.LitTool
         /// <param name="screen">屏幕坐标</param>
         /// <param name="uiCam">UICam</param>
         /// <returns>返回画布上的二维坐标</returns>
-        public static Vector2 ScreenToCanvasPos( Canvas canvas, Vector3 screen, Camera uiCam )
+        public static Vector2 ScreenToCanvasPos(Canvas canvas, Vector3 screen, Camera uiCam)
         {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle( canvas.transform as RectTransform,
-                screen, uiCam, out Vector2 position );
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform,
+                screen, uiCam, out Vector2 position);
             return position;
         }
 
@@ -406,15 +422,15 @@ namespace LitFramework.LitTool
         /// <param name="style">下滑线类型，默认为'_'</param>
         /// <param name="alignByGeometry">是否使用几何对齐</param>
         /// <param name="richText">是否支持富文本</param>
-        public static void CreateLinkStyle( Text target, string contents, string style = "_", bool alignByGeometry = false, bool richText = false )
+        public static void CreateLinkStyle(Text target, string contents, string style = "_", bool alignByGeometry = false, bool richText = false)
         {
-            if ( target == null )
+            if (target == null)
                 return;
             //克隆Text，获得相同的属性  
-            Text underline = Instantiate( target ) as Text;
+            Text underline = Instantiate(target) as Text;
 
             underline.name = "lhw";
-            underline.transform.SetParent( target.transform );
+            underline.transform.SetParent(target.transform);
             underline.alignByGeometry = alignByGeometry;
             target.text = contents;
             target.supportRichText = richText;
@@ -429,12 +445,12 @@ namespace LitFramework.LitTool
 
             float perlineWidth = underline.preferredWidth;      //单个下划线宽度  
             float width = target.preferredWidth;
-            int lineCount = ( int )Mathf.Round( width / perlineWidth );
+            int lineCount = (int)Mathf.Round(width / perlineWidth);
 
             StringBuilder sb = new StringBuilder();
-            for ( int k = 0; k < lineCount; k++ )
+            for (int k = 0; k < lineCount; k++)
             {
-                sb.Append( style );
+                sb.Append(style);
             }
             underline.text += sb.ToString();
             underline.transform.localScale = Vector3.one;
@@ -451,30 +467,30 @@ namespace LitFramework.LitTool
         /// <param name="spriteName"></param>
         /// <param name="atlasPath"></param>
         /// <returns></returns>
-        public Sprite LoadSpriteAtlas( string spriteName, string atlasPath = null )
+        public Sprite LoadSpriteAtlas(string spriteName, string atlasPath = null)
         {
             //常驻内存
-            Sprite sprite = Resources.Load<Sprite>( spriteName );
+            Sprite sprite = Resources.Load<Sprite>(spriteName);
 
-            if ( sprite != null || string.IsNullOrEmpty( atlasPath ) )
+            if (sprite != null || string.IsNullOrEmpty(atlasPath))
             {
-                return GameObject.Instantiate<Sprite>( sprite );
+                return GameObject.Instantiate<Sprite>(sprite);
             }
-            if ( !_atlasDict.ContainsKey( atlasPath ) )
+            if (!_atlasDict.ContainsKey(atlasPath))
             {
-                Sprite[] atlasSprites = Resources.LoadAll<Sprite>( atlasPath );
-                _atlasDict.Add( atlasPath, atlasSprites );
+                Sprite[] atlasSprites = Resources.LoadAll<Sprite>(atlasPath);
+                _atlasDict.Add(atlasPath, atlasSprites);
             }
 
-            var sprites = _atlasDict[ atlasPath ];
-            var length = _atlasDict[ atlasPath ].Length;
-            for ( int i = 0; i < length; i++ )
+            var sprites = _atlasDict[atlasPath];
+            var length = _atlasDict[atlasPath].Length;
+            for (int i = 0; i < length; i++)
             {
-                if ( sprites[ i ].name.Equals( string.Concat( new string[] { atlasPath, "_", spriteName } ) ) )
+                if (sprites[i].name.Equals(string.Concat(new string[] { atlasPath, "_", spriteName })))
 
-                    return sprite = sprites[ i ];
+                    return sprite = sprites[i];
             }
-            return GameObject.Instantiate<Sprite>( sprite );
+            return GameObject.Instantiate<Sprite>(sprite);
         }
         #endregion
     }
@@ -486,7 +502,7 @@ namespace LitFramework.LitTool
     {
         public void Awake()
         {
-            DontDestroyOnLoad( this );
+            DontDestroyOnLoad(this);
         }
     }
 
@@ -499,13 +515,13 @@ namespace LitFramework.LitTool
         private float _targetTime;
         private bool _isReal;
 
-        public DelayFuncDecoration( float targetTime, Action func, bool useReal )
+        public DelayFuncDecoration(float targetTime, Action func, bool useReal)
         {
             _targetTime = targetTime;
             _callBackFunc = func;
             _isReal = useReal;
 
-            if ( _isReal ) LitTool.DelayFuncRealEvent += DelayFuncEventHandler;
+            if (_isReal) LitTool.DelayFuncRealEvent += DelayFuncEventHandler;
             else LitTool.DelayFuncEvent += DelayFuncEventHandler;
         }
 
@@ -514,13 +530,13 @@ namespace LitFramework.LitTool
         /// 时间判定回调
         /// </summary>
         /// <param name="nowTime"></param>
-        private void DelayFuncEventHandler( float nowTime )
+        private void DelayFuncEventHandler(float nowTime)
         {
-            if ( nowTime >= _targetTime )
+            if (nowTime >= _targetTime)
             {
                 _callBackFunc?.Invoke();
 
-                if ( _isReal ) LitTool.DelayFuncRealEvent -= DelayFuncEventHandler;
+                if (_isReal) LitTool.DelayFuncRealEvent -= DelayFuncEventHandler;
                 else LitTool.DelayFuncEvent -= DelayFuncEventHandler;
 
                 Dispose();

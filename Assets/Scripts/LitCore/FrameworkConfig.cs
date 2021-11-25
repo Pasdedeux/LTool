@@ -76,6 +76,12 @@ namespace LitFramework
         [Header( "触碰/点击忽略UI。true" )]
         public bool TouchDetectUI = true;
 
+        [Header("UI DOT动画进场ID")]
+        public string OPENID = "OpenAni";
+        [Header("UI DOT动画出场ID")]
+        public string CLOSEID = "CloseAni";
+
+
         #endregion
 
         #region 编辑器设置

@@ -90,6 +90,8 @@ public class FrameworkConfigInspector : Editor
         if ( _foldOutUI )
         {
             _config.TouchDetectUI = EditorGUILayout.Toggle( "开启UGUI触屏检测", _config.TouchDetectUI );
+            _config.OPENID = EditorGUILayout.TextField("UGUI进场动画ID", _config.OPENID);
+            _config.CLOSEID = EditorGUILayout.TextField("UGUI出场动画ID", _config.CLOSEID);
         }
 
         EditorGUILayout.Space();

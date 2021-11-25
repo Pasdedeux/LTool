@@ -12,6 +12,7 @@
  * Copyright @ Derek Liu 2018 All rights reserved 
 *****************************************************************/
 
+using DG.Tweening;
 using LitFramework.UI.Base;
 using System;
 using System.Collections;
@@ -32,10 +33,15 @@ namespace LitFramework.HotFix
         /// </summary>
         public UIType CurrentUIType
         { get { return _uiType; } set { _uiType = value; } }
+
+        /// <summary>
+        /// 是否执行过Awake
+        /// </summary>
+        protected bool IsAwaked { get; set; }
         /// <summary>
         /// 是否执行过Start
         /// </summary>
-        private bool IsStarted { get; set; }
+        protected bool IsStarted { get; set; }
         /// <summary>
         /// 资源名
         /// </summary>
@@ -54,25 +60,33 @@ namespace LitFramework.HotFix
         /// 关联的UI实例
         /// </summary>
         public GameObject GameObjectInstance { get; set; }
+        /// <summary>
+        /// 动画列表
+        /// </summary>
+        protected DOTweenAnimation[] m_anims;
+        protected Transform m_root,m_AniTrans;
+
+        //基础信息的初始化状态
+        private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
+        private Quaternion _initQuat = Quaternion.identity;
 
         /// <summary>
         /// 显示窗体
         /// </summary>
         /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        public void Show( bool replay = false )
+        public void Show(bool replay = false)
         {
             IsShowing = true;
 
             CheckMask();
 
-            if ( !replay )
-                //gameObject.SetActive( IsShowing );
-                _rootCanvas.enabled = IsShowing;
-            else
-                OnEnabled( replay );
+            if (!IsAwaked) DoAwake();
+            if (replay) OnEnabled(replay);
+            else OnEnabled(replay);
 
-            if ( !IsStarted ) DoStart();
-            OnShow();
+            if (!IsStarted) DoStart();
+            AnimationManager.Restart(m_anims, OPENID, OnShow);
+            //OnShow();
             _rootCanvas.enabled = true;
         }
 
@@ -82,42 +96,13 @@ namespace LitFramework.HotFix
         public void CheckMask()
         {
             //设置模态窗体调用(弹出窗体)
-            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+            if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp)
             {
-                var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
+                var modelType = UIModelBehavior.Instance.GetBehavior(AssetsName);
                 UIType targetUIType = modelType ?? CurrentUIType;
 
-                UIMaskManager.Instance.SetMaskWindow( GameObjectInstance, targetUIType.uiTransparent );
+                UIMaskManager.Instance.SetMaskWindow(GameObjectInstance, targetUIType.uiTransparent);
             }
-        }
-
-        /// <summary>
-        /// 隐藏窗口
-        /// </summary>
-        /// <param name="isDestroy">是否摧毁并彻底释放</param>
-        /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
-        public void Close( bool isDestroy = false, bool freeze = false )
-        {
-            if ( !freeze )
-            {
-                _rootCanvas.enabled = false;
-
-                if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
-                    UIMaskManager.Instance.CancelMaskWindow();
-            }
-            else
-            {
-                _rootCanvas.enabled = false;
-                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-            }
-            OnDisabled( freeze );
-
-            IsShowing = false;
-
-            OnClose();
-
-            if ( isDestroy )
-                DoDestroy();
         }
 
         public virtual void OnClose() { }
@@ -126,13 +111,13 @@ namespace LitFramework.HotFix
         /// <remarks>
         /// 刷新窗体
         /// </remarks>
-        public abstract void OnShow();
+        public virtual void OnShow() { }
 
         public virtual void Dispose() { }
 
         public virtual void OnAdapter()
         {
-            if ( _rootRectTransform == null )
+            if (_rootRectTransform == null)
                 _rootRectTransform = GameObjectInstance.GetComponent<RectTransform>();
             _rootRectTransform.anchorMax = Vector2.one;
             _rootRectTransform.anchorMin = Vector2.zero;
@@ -147,23 +132,38 @@ namespace LitFramework.HotFix
         /// </summary>
         public virtual void OnBackPushed()
         {
-            LDebug.Log( "关闭ui:" + AssetsName );
-            UIManager.Instance.Close( AssetsName );
+            LDebug.Log("关闭ui:" + AssetsName);
+            UIManager.Instance.Close(AssetsName);
         }
 
         #region Alternative Function
 
         public abstract void OnAwake();
 
-        public virtual void OnEnabled( bool replay ) { }
+        public virtual void OnEnabled(bool replay) { }
 
-        public virtual void OnDisabled( bool freeze ) { }
+        public virtual void OnDisabled(bool freeze) { }
 
         public virtual void OnStart() { }
 
         public virtual void OnUpdate() { }
 
-        private void DoStart()
+        private void DoAwake()
+        {
+            IsAwaked = true;
+            m_root = this.GameObjectInstance.transform;
+            m_AniTrans = m_root.Find("Container_Anim");
+            m_anims = AnimationManager.GetAllAnim(m_root);
+
+            _initPos = m_AniTrans.localPosition;
+            _initQuat = m_AniTrans.localRotation;
+            _initScale = m_AniTrans.localScale;
+
+            OnAwake();
+        }
+
+        //todo protected
+        protected void DoStart()
         {
             IsStarted = true;
             OnStart();
@@ -172,9 +172,10 @@ namespace LitFramework.HotFix
         private void DoDestroy()
         {
             Dispose();
+            IsAwaked = false;
             IsStarted = false;
             IsInitOver = false;
-            GameObject.Destroy( GameObjectInstance );
+            GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
         }
         #endregion

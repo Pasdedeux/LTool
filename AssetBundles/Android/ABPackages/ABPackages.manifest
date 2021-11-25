@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1132963033
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: canvas_loading
+      Dependencies: {}

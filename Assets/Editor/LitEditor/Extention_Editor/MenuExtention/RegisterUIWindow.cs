@@ -55,8 +55,8 @@ public class RegisterUIWindow : EditorWindow
 
     public bool useAnimRoot = true, useOnEnable_OnDisable = true, useDefaultExitBtn = true;
 
-    public string animStartID = "10001";
-    public string animCloseID = "10002";
+    public string animStartID = "OpenAni";
+    public string animCloseID = "CloseAni";
 
     public bool isDirty = false;
     public Canvas newCanvas;

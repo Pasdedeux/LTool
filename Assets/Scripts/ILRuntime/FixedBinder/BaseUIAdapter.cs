@@ -64,7 +64,7 @@ namespace LHotfixProject
                     mOnClose_0.Invoke(this.instance);
             }
 
-            public override void OnShow()
+            public override void OnShow(params object[] args)
             {
                 mOnShow_1.Invoke(this.instance);
             }

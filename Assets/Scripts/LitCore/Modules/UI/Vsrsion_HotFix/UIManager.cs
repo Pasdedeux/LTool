@@ -291,7 +291,7 @@ namespace LitFramework.HotFix
         /// 2、根据不同UI显示模式，做不同的加载处理
         /// </summary>
         /// <param name="uiName">UI窗体预制件名称</param>
-        public IBaseUI Show( string uiName )
+        public IBaseUI Show( string uiName ,params object[] args )
         {
             BaseUI baseUI = null;
 
@@ -317,13 +317,13 @@ namespace LitFramework.HotFix
                 switch ( targetUIType.uiShowMode )
                 {
                     case UIShowModeEnum.Parallel:
-                        LoadParallelUI( uiName );
+                        LoadParallelUI( uiName, args);
                         break;
                     case UIShowModeEnum.Stack:
-                        LoadStackUI( uiName );
+                        LoadStackUI( uiName, args);
                         break;
                     case UIShowModeEnum.Unique:
-                        LoadUniqueUI( uiName );
+                        LoadUniqueUI( uiName, args);
                         break;
                     default:
                         throw new Exception( "未登记的UI类型--" + targetUIType.uiShowMode );
@@ -336,12 +336,12 @@ namespace LitFramework.HotFix
                 if ( baseUI != null )
                 {
                     if ( baseUI.IsShowing )
-                        baseUI.OnShow();
+                        baseUI.OnShow(args: args);
                     else
                     {
                         if ( baseUI.IsInitOver )
                             baseUI.OnEnabled( false );
-                        baseUI.Show();
+                        baseUI.Show(args: args);
                     }
                 }
             }
@@ -520,7 +520,7 @@ namespace LitFramework.HotFix
         /// 加载当前窗体到当前窗体集合
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadParallelUI( string uiName )
+        private void LoadParallelUI( string uiName, params object[] args)
         {
             BaseUI baseUI;
 
@@ -535,13 +535,13 @@ namespace LitFramework.HotFix
             _dictCurrentShowUIs.TryGetValue( uiName, out baseUI );
             if ( baseUI != null )
             {
-                if ( baseUI.IsShowing )
-                    baseUI.OnShow();
+                if (baseUI.IsShowing)
+                    baseUI.OnShow(args: args);
                 else
                 {
-                    if ( baseUI.IsInitOver )
-                        baseUI.OnEnabled( false );
-                    baseUI.Show();
+                    if (baseUI.IsInitOver)
+                        baseUI.OnEnabled(false);
+                    baseUI.Show(args: args);
                 }
 
                 return;
@@ -554,7 +554,7 @@ namespace LitFramework.HotFix
                 _dictCurrentShowUIs.Add( uiName, baseUI );
                 if ( baseUI.IsInitOver )
                     baseUI.OnEnabled( false );
-                baseUI.Show();
+                baseUI.Show(args: args);
 
             }
         }
@@ -595,8 +595,8 @@ namespace LitFramework.HotFix
                     if ( !topUI.AssetsName.Equals( uiName ) )
                     {
                         topUI.OnEnabled( true );
-                        if ( !topUI.IsShowing )
-                            topUI.OnShow();
+                        if (!topUI.IsShowing)
+                            topUI.OnShow(null);
                         topUI.CheckMask();
                     }
                 }
@@ -607,7 +607,7 @@ namespace LitFramework.HotFix
         /// 加载独占UI窗体
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadUniqueUI( string uiName )
+        private void LoadUniqueUI( string uiName, params object[] args)
         {
             BaseUI baseUI;
             //当前UI显示列表中没有记录则直接返回
@@ -615,12 +615,12 @@ namespace LitFramework.HotFix
             if ( baseUI != null )
             {
                 if ( baseUI.IsShowing )
-                    baseUI.OnShow();
+                    baseUI.OnShow(args: args);
                 else
                 {
-                    if ( baseUI.IsInitOver )
-                        baseUI.OnEnabled( false );
-                    baseUI.Show();
+                    if (baseUI.IsInitOver)
+                        baseUI.OnEnabled(false);
+                    baseUI.Show(args: args);
                 }
                 return;
             }
@@ -642,7 +642,7 @@ namespace LitFramework.HotFix
                 _dictCurrentShowUIs.Add( uiName, baseUI );
                 if ( baseUI.IsInitOver )
                     baseUI.OnEnabled( false );
-                baseUI.Show();
+                baseUI.Show(args:args);
             }
 
         }
@@ -694,7 +694,7 @@ namespace LitFramework.HotFix
         /// 先冻结栈中窗口，再将此窗口入栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void LoadStackUI( string uiName )
+        private void LoadStackUI( string uiName, params object[] args)
         {
             BaseUI baseUI;
 
@@ -711,12 +711,12 @@ namespace LitFramework.HotFix
             if ( baseUI != null )
             {
                 if ( baseUI.IsShowing )
-                    baseUI.OnShow();
+                    baseUI.OnShow(args: args);
                 else
                 {
-                    if ( baseUI.IsInitOver )
-                        baseUI.OnEnabled( false );
-                    baseUI.Show();
+                    if (baseUI.IsInitOver)
+                        baseUI.OnEnabled(false);
+                    baseUI.Show(args: args);
                 }
 
                 if ( !_stackCurrentUI.Contains( baseUI ) )

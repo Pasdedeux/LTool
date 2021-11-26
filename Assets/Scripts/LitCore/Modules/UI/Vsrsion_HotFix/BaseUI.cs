@@ -74,23 +74,25 @@ namespace LitFramework.HotFix
         /// 显示窗体
         /// </summary>
         /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        public void Show(bool replay = false)
+        /// <param name="args">通过Show的传参</param>
+        public void Show(bool replay = false, params object[] args)
         {
             IsShowing = true;
 
             CheckMask();
-
+            //TODO 这里考虑增加Prewarm模式提前处理awake
             if (!IsAwaked) DoAwake();
+
             OnEnabled(replay);
+            
             if (!IsStarted) DoStart();
 
-            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID, OnShow);
-            //OnShow();
+            OnShow(args);
 
+            //动画播放前界面刷新已完成，动画独立
+            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID);
             _rootCanvas.enabled = true;
-
         }
-
 
         /// <summary>
         /// 隐藏窗口
@@ -153,7 +155,13 @@ namespace LitFramework.HotFix
         /// <remarks>
         /// 刷新窗体
         /// </remarks>
-        public virtual void OnShow() { }
+        //public virtual void OnShow() { }
+
+        /// <summary>
+        /// 刷新窗体，带参数
+        /// </summary>
+        /// <param name="args"></param>
+        public virtual void OnShow( params object[] args ) { }
 
         public virtual void Dispose() { }
 

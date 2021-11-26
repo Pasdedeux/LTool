@@ -69,7 +69,7 @@ namespace Assets.Scripts.UI
             callback?.Invoke();
         }
 
-        public override void OnShow()
+        public override void OnShow( params object[] args )
         {
             _progress = 0;
             _coroutine = LitFramework.LitTool.LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );

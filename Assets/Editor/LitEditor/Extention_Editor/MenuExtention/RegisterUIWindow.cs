@@ -470,8 +470,8 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add( "private Button _btnExit;" );
             CSString.Add( "private bool _isFreeze;" );
             CSString.Add( "private Transform _root;" );
-            if ( _useAnimRoot )
-                CSString.Add( "private DOTweenAnimation[] _anims;" );
+            //if ( _useAnimRoot )
+            //    CSString.Add( "private DOTweenAnimation[] _anims;" );
 
             if ( _isHotFix )
             {
@@ -516,8 +516,8 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "//TODO 初始化该UI信息" );
             CSString.Add( "//.." );
             CSString.Add( "" );
-            if ( _useAnimRoot )
-                CSString.Add( " _anims = AnimationManager.GetAllAnim( _root );" );
+            //if ( _useAnimRoot )
+            //    CSString.Add( " _anims = AnimationManager.GetAllAnim( _root );" );
             CSString.Add( "}" );
 
             #endregion
@@ -525,10 +525,10 @@ namespace LitFrameworkEditor.EditorExtended
             #region OnShow
 
             CSString.Add( "" );
-            CSString.Add( "public override void OnShow()" );
+            CSString.Add("public override void OnShow( params object[] args )");
             CSString.Add( "{" );
-            if ( _uiWindowInfo.useAnimRoot )
-                CSString.Add( string.Format( "_anims.Restart( \"{0}\");", FrameworkConfig.Instance.OPENID ) );
+            //if ( _uiWindowInfo.useAnimRoot )
+            //    CSString.Add( string.Format( "_anims.Restart( \"{0}\");", FrameworkConfig.Instance.OPENID ) );
             CSString.Add( "" );
             CSString.Add( "}" );
 
@@ -583,18 +583,18 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add( "" );
                 CSString.Add( "private void OnClickExit()" );
                 CSString.Add( "{" );
-                if ( _uiWindowInfo.useAnimRoot )
-                {
-                    CSString.Add(string.Format("_anims.Restart( \"{0}\", () => ", FrameworkConfig.Instance.CLOSEID));
-                    CSString.Add( "{" );
+                //if ( _uiWindowInfo.useAnimRoot )
+                //{
+                //    CSString.Add(string.Format("_anims.Restart( \"{0}\", () => ", FrameworkConfig.Instance.CLOSEID));
+                //    CSString.Add( "{" );
+                //    CSString.Add( "UIManager.Instance.Close( AssetsName );" );
+                //    CSString.Add( "//.." );
+                //    CSString.Add( "});" );
+                //}
+                //else
+                //{
                     CSString.Add( "UIManager.Instance.Close( AssetsName );" );
-                    CSString.Add( "//.." );
-                    CSString.Add( "});" );
-                }
-                else
-                {
-                    CSString.Add( "UIManager.Instance.Close( AssetsName );" );
-                }
+                //}
                 CSString.Add( "}" );
             }
 

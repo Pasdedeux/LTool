@@ -29,7 +29,7 @@ namespace LitFramework.UI.Base
         void ShowFade( Action callBack = null, float time = 0.4f );
         void HideFade( Action callBack = null , float time = 0.4f );
         void Close( string uiName, bool isDestroy = false );
-        IBaseUI Show( string uiName );
+        IBaseUI Show( string uiName , params object[] args);
     }
 
     public interface IBaseUI { }

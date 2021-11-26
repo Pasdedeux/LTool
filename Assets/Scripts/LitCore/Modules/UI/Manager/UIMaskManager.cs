@@ -102,7 +102,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _maskImage.raycastTarget = true;
                 break;
             //可以穿透
-            case UITransparentEnum.Penetrating:
+            case UITransparentEnum.PenetratingBlank:
                 if ( _maskImage.enabled/*_maskPanel.activeInHierarchy*/ ) _maskImage.enabled = false;/* _maskPanel.SetActive( false )*/;
                 _maskImage.raycastTarget = false;
                 break;

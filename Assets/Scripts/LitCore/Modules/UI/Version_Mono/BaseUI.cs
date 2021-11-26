@@ -12,6 +12,7 @@
  * Copyright @ Derek Liu 2018 All rights reserved 
 *****************************************************************/
 
+using DG.Tweening;
 using LitFramework.UI.Base;
 using System;
 using System.Collections;
@@ -51,13 +52,22 @@ namespace LitFramework.Mono
         /// </summary>
         private bool _hasEnabled = false;
 
+        /// <summary>
+        /// 动画列表
+        /// </summary>
+        protected DOTweenAnimation[] m_anims;
+        protected Transform m_root, m_AniTrans;
+        //基础信息的初始化状态
+        private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
+        private Quaternion _initQuat = Quaternion.identity;
+
         private Canvas _rootCanvas;
         private RectTransform _rootRectTransform;
         /// <summary>
         /// 显示窗体
         /// </summary>
         /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        public void Show( bool replay = false )
+        public void Show( bool replay = false, params object[] args)
         {
             IsShowing = true;
 
@@ -71,11 +81,14 @@ namespace LitFramework.Mono
 
             if ( IsStarted )
             {
-                OnShow();
+                OnShow(args);
                 _rootCanvas.enabled = true;
             }
             else
-                _waitForStartFunc = StartCoroutine( IWaitToOnShow() );
+                _waitForStartFunc = StartCoroutine( IWaitToOnShow(args) );
+
+            //动画播放前界面刷新已完成，动画独立
+            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID);
         }
 
         /// <summary>
@@ -135,7 +148,7 @@ namespace LitFramework.Mono
         /// <remarks>
         /// 刷新窗体
         /// </remarks>
-        public abstract void OnShow();
+        public abstract void OnShow(params object[] args);
 
         public virtual void Dispose() { }
 
@@ -172,6 +185,14 @@ namespace LitFramework.Mono
             _rootRectTransform.offsetMin = Vector2.zero;
             _rootCanvas.enabled = false;
 
+            m_root = _rootRectTransform.transform;
+            m_AniTrans = m_root.Find("Container_Anim");
+            m_anims = AnimationManager.GetAllAnim(m_root);
+
+            _initPos = m_AniTrans.localPosition;
+            _initQuat = m_AniTrans.localRotation;
+            _initScale = m_AniTrans.localScale;
+
             OnAwake();
         }
 
@@ -199,10 +220,10 @@ namespace LitFramework.Mono
         }
         #endregion
 
-        private IEnumerator IWaitToOnShow()
+        private IEnumerator IWaitToOnShow( params object[] args)
         {
             yield return new WaitUntil( () => { return IsStarted; } );
-            OnShow();
+            OnShow(args);
             _rootCanvas.enabled = true;
         }
 

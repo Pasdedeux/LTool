@@ -368,6 +368,8 @@ MonoBehaviour:
   renderingType: 0
   resLoadType: 0
   TouchDetectUI: 1
+  OPENID: OpenAni
+  CLOSEID: CloseAni
   UGUIOpt: 1
   TouchStationaryTime: 0.5
   ABFolderName: ABPackages

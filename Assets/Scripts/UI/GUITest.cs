@@ -15,6 +15,10 @@ using UnityEngine.Networking;
 
 public class GUITest : MonoBehaviour
 {
+
+    private void Funnn()
+    { 
+    }
     private void OnGUI()
     {
         int index = 0;
@@ -35,7 +39,7 @@ public class GUITest : MonoBehaviour
             //    LDebug.Log( ">>>" + obj.pos );
             //} );
 
-            //UIManager.Instance.Show(ResPath.UI.UITEST2);
+            //UIManager.Instance.Close(ResPath.UI.UITEST);
         }
 
 

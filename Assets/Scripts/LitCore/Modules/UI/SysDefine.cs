@@ -80,7 +80,7 @@ public enum UITransparentEnum
     /// <summary>
     /// 低透明，不可穿透
     /// </summary>
-    NoPenetratingLow,
+    NoPenetratingDark,
     /// <summary>
     /// 半透明，不可穿透
     /// </summary>
@@ -88,11 +88,11 @@ public enum UITransparentEnum
     /// <summary>
     /// 透明，不可穿透
     /// </summary>
-    NoPenetratingTotal,
+    NoPenetratingBlank,
     /// <summary>
     /// 可穿透
     /// </summary>
-    Penetrating
+    PenetratingBlank
 }
 
 

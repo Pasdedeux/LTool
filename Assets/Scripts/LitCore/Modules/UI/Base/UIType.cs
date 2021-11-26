@@ -22,5 +22,5 @@ public class UIType
     /// <summary>
     /// UI窗体透明度类型(PopUp 类型时生效)
     /// </summary>
-    public UITransparentEnum uiTransparent = UITransparentEnum.Penetrating;
+    public UITransparentEnum uiTransparent = UITransparentEnum.PenetratingBlank;
 }

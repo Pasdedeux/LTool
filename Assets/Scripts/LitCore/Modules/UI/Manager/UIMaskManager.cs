@@ -74,11 +74,11 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     /// 根据传入枚举类型，激活蒙版并完成对应显示状态
     /// </summary>
     /// <param name="transparent">透明度级别</param>
-    public void SetMaskEnable( UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
+    public void SetMaskEnable( UITransparentEnum transparent = UITransparentEnum.NoPenetratingBlank )
     {
         switch ( transparent )
         {
-            case UITransparentEnum.NoPenetratingLow:
+            case UITransparentEnum.NoPenetratingDark:
                 //_maskPanel.SetActive( true );
                 _maskImage.enabled = true;
                 _color.a = 255F / 255F;
@@ -94,7 +94,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
                 _maskImage.raycastTarget = true;
                 break;
             //完全透明
-            case UITransparentEnum.NoPenetratingTotal:
+            case UITransparentEnum.NoPenetratingBlank:
                 //_maskPanel.SetActive( true );
                 _maskImage.enabled = true;
                 _color.a = 0F / 255F;
@@ -114,7 +114,7 @@ public class UIMaskManager : SingletonMono<UIMaskManager>
     /// </summary>
     /// <param name="displayUIForms">需要为其服务的UIGameObject，比如UIMain所挂载的对象</param>
     /// <param name="transparent">透明度级别</param>
-    public void SetMaskWindow( GameObject displayUIForms, UITransparentEnum transparent = UITransparentEnum.NoPenetratingTotal )
+    public void SetMaskWindow( GameObject displayUIForms, UITransparentEnum transparent = UITransparentEnum.NoPenetratingBlank )
     {
         //顶层窗体下移
         _topPanel.transform.SetAsLastSibling();

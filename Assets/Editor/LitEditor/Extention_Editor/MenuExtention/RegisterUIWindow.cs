@@ -55,8 +55,8 @@ public class RegisterUIWindow : EditorWindow
 
     public bool useAnimRoot = true, useOnEnable_OnDisable = true, useDefaultExitBtn = true;
 
-    public string animStartID = "OpenAni";
-    public string animCloseID = "CloseAni";
+    //public string animStartID = "OpenAni";
+    //public string animCloseID = "CloseAni";
 
     public bool isDirty = false;
     public Canvas newCanvas;
@@ -86,12 +86,12 @@ public class RegisterUIWindow : EditorWindow
         useDefaultExitBtn = EditorGUILayout.Toggle( "退出按钮", useDefaultExitBtn );
         if ( useDefaultExitBtn )
             useOnEnable_OnDisable = useDefaultExitBtn ? true : EditorGUILayout.Toggle( "启用OnEnable/OnDisable", useOnEnable_OnDisable );
-        useAnimRoot = EditorGUILayout.Toggle( "动画控制器", useAnimRoot );
-        if ( useAnimRoot )
-        {
-            animStartID = EditorGUILayout.TextField( "    弹出动画ID", animStartID );
-            animCloseID = EditorGUILayout.TextField( "    关闭动画ID", animCloseID );
-        }
+        useAnimRoot = EditorGUILayout.Toggle( "使用Dotween进出场动画", useAnimRoot );
+        //if ( useAnimRoot )
+        //{
+        //    animStartID = EditorGUILayout.TextField( "    弹出动画ID", animStartID );
+        //    animCloseID = EditorGUILayout.TextField( "    关闭动画ID", animCloseID );
+        //}
 
         EditorGUILayout.Space();
 
@@ -141,7 +141,7 @@ public class RegisterUIWindow : EditorWindow
                     if ( useAnimRoot )
                     {
                         //DOTEEN插件未集成在编辑器库中，引出到库外部使用
-                        CreateAnimationComponentEvent?.Invoke( animTrans, animStartID, animCloseID );
+                        CreateAnimationComponentEvent?.Invoke( animTrans, FrameworkConfig.Instance.OPENID, FrameworkConfig.Instance.CLOSEID);
                     }
 
                     if ( useDefaultExitBtn )
@@ -528,7 +528,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add( "public override void OnShow()" );
             CSString.Add( "{" );
             if ( _uiWindowInfo.useAnimRoot )
-                CSString.Add( string.Format( "_anims.Restart( \"{0}\");", _uiWindowInfo.animStartID ) );
+                CSString.Add( string.Format( "_anims.Restart( \"{0}\");", FrameworkConfig.Instance.OPENID ) );
             CSString.Add( "" );
             CSString.Add( "}" );
 
@@ -585,7 +585,7 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add( "{" );
                 if ( _uiWindowInfo.useAnimRoot )
                 {
-                    CSString.Add( string.Format( "_anims.Restart( \"{0}\", () => ", _uiWindowInfo.animCloseID ) );
+                    CSString.Add(string.Format("_anims.Restart( \"{0}\", () => ", FrameworkConfig.Instance.CLOSEID));
                     CSString.Add( "{" );
                     CSString.Add( "UIManager.Instance.Close( AssetsName );" );
                     CSString.Add( "//.." );

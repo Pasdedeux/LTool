@@ -81,14 +81,56 @@ namespace LitFramework.HotFix
             CheckMask();
 
             if (!IsAwaked) DoAwake();
-            if (replay) OnEnabled(replay);
-            else OnEnabled(replay);
-
+            OnEnabled(replay);
             if (!IsStarted) DoStart();
-            AnimationManager.Restart(m_anims, OPENID, OnShow);
+
+            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID, OnShow);
             //OnShow();
+
             _rootCanvas.enabled = true;
+
         }
+
+
+        /// <summary>
+        /// 隐藏窗口
+        /// </summary>
+        /// <param name="isDestroy">是否摧毁并彻底释放</param>
+        /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
+        /// <param name="useAnim">是否需要播放Dotween动画</param>
+        public void Close(bool isDestroy = false, bool freeze = false, bool useAnim = true)
+        {
+            OnDisabled(freeze);
+
+            Action innerFunc = () =>
+            {
+                if (!freeze)
+                {
+                    _rootCanvas.enabled = false;
+
+                    //todo Custom待定
+                    if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing)
+                        UIMaskManager.Instance.CancelMaskWindow();
+                }
+                else
+                {
+                    _rootCanvas.enabled = false;
+                    //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
+                }
+
+                OnReset();
+                OnClose();
+
+                if (isDestroy) DoDestroy();
+
+                //确保最后执行，保证cancelmaskwindow正常执行
+                IsShowing = false;
+            };
+
+            if (useAnim) AnimationManager.Restart(m_anims, FrameworkConfig.Instance.CLOSEID, innerFunc);
+            else innerFunc();
+        }
+
 
         /// <summary>
         /// 检测并显示模态窗体背景
@@ -162,8 +204,7 @@ namespace LitFramework.HotFix
             OnAwake();
         }
 
-        //todo protected
-        protected void DoStart()
+        private void DoStart()
         {
             IsStarted = true;
             OnStart();
@@ -177,6 +218,13 @@ namespace LitFramework.HotFix
             IsInitOver = false;
             GameObject.Destroy(GameObjectInstance);
             Resources.UnloadUnusedAssets();
+        }
+
+        private void OnReset()
+        {
+            m_AniTrans.localPosition = _initPos;
+            m_AniTrans.localRotation = _initQuat;
+            m_AniTrans.localScale = _initScale;
         }
         #endregion
 

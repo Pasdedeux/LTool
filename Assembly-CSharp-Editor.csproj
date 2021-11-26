@@ -58,24 +58,35 @@
   <ItemGroup>
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSourceProvider.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\EditorToolSet.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleTree.cs" />
     <Compile Include="Assets\Editor\EditorUse.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\AssetDatabaseABDataSource.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleInspectTab.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVParser.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelAssetInfo.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
     <Compile Include="Assets\Scripts\Editor\LoopScrollRectInspector.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCrossBinding.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModel.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleRecord.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\BitmapFontExporter.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\AssetBundleRecordTests.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ArrayObject3D.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBuildTab.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCLRBinding.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\SceneViewExtention.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\BaseTool\FolderCopy.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIContentScalerEditor.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\DisplayObjectEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\Util\ABModelUtil.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBrowserMain.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Editor\ReporterEditor.cs" />
@@ -84,7 +95,10 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectTreeView.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
     <Compile Include="Assets\Scripts\Editor\SGMenuOptions.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleManageTab.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVWriter.cs" />
+    <Compile Include="Assets\Editor\LitEditor\GlobalEditorSetting.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\BundleDetailList.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageList.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageSystem.cs" />
@@ -92,24 +106,10 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelBundleInfo.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSource.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\UGUIOptimize.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
     <Compile Include="Assets\Scripts\Editor\SGDefaultControls.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\SceneViewExtention.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\UGUIOptimize.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\ArrayObject3D.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVWriter.cs" />
-    <Compile Include="Assets\Editor\LitEditor\GlobalEditorSetting.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVParser.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\BitmapFontExporter.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\BaseTool\FolderCopy.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />
@@ -391,11 +391,11 @@
     <Reference Include="DOTweenPro">
       <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
     <Reference Include="UnityStore">
       <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>

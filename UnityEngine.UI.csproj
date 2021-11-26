@@ -134,6 +134,7 @@
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\Properties\AssemblyInfo.cs" />
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\IMask.cs" />
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Layout\HorizontalOrVerticalLayoutGroup.cs" />
+    <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Config\UGUIDefaultConfig.cs" />
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\EventSystem\EventHandle.cs" />
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\UI\Core\Layout\LayoutGroup.cs" />
     <Compile Include="C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.ugui\Runtime\EventSystem\InputModules\BaseInputModule.cs" />
@@ -408,11 +409,11 @@
     <Reference Include="DOTweenPro">
       <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
     <Reference Include="UnityStore">
       <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>

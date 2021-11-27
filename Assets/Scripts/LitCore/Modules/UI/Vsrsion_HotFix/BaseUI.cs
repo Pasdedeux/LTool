@@ -37,11 +37,15 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 是否执行过Awake
         /// </summary>
-        protected bool IsAwaked { get; set; }
+        internal bool IsAwaked { get; set; }
         /// <summary>
         /// 是否执行过Start
         /// </summary>
         protected bool IsStarted { get; set; }
+        /// <summary>
+        /// 附加特性
+        /// </summary>
+        public UIFlag Flag = UIFlag.Normal;
         /// <summary>
         /// 资源名
         /// </summary>
@@ -63,7 +67,7 @@ namespace LitFramework.HotFix
         /// <summary>
         /// 动画列表
         /// </summary>
-        protected DOTweenAnimation[] m_anims;
+        public DOTweenAnimation[] ui_anims;
         protected Transform m_root,m_AniTrans;
 
         //基础信息的初始化状态
@@ -80,17 +84,13 @@ namespace LitFramework.HotFix
             IsShowing = true;
 
             CheckMask();
-            //TODO 这里考虑增加Prewarm模式提前处理awake
-            if (!IsAwaked) DoAwake();
-
+            
             OnEnabled(replay);
             
             if (!IsStarted) DoStart();
 
             OnShow(args);
 
-            //动画播放前界面刷新已完成，动画独立
-            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID);
             _rootCanvas.enabled = true;
         }
 
@@ -99,38 +99,30 @@ namespace LitFramework.HotFix
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
         /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
-        /// <param name="useAnim">是否需要播放Dotween动画</param>
-        public void Close(bool isDestroy = false, bool freeze = false, bool useAnim = true)
+        public void Close(bool isDestroy = false, bool freeze = false)
         {
             OnDisabled(freeze);
 
-            Action innerFunc = () =>
+            if (!freeze)
             {
-                if (!freeze)
-                {
-                    _rootCanvas.enabled = false;
+                _rootCanvas.enabled = false;
 
-                    //todo Custom待定
-                    if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing)
-                        UIMaskManager.Instance.CancelMaskWindow();
-                }
-                else
-                {
-                    _rootCanvas.enabled = false;
-                    //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-                }
+                if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing)
+                    UIMaskManager.Instance.CancelMaskWindow();
+            }
+            else
+            {
+                _rootCanvas.enabled = false;
+                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
+            }
 
-                OnReset();
-                OnClose();
+            OnReset();
+            OnClose();
 
-                if (isDestroy) DoDestroy();
+            if (isDestroy) DoDestroy();
 
-                //确保最后执行，保证cancelmaskwindow正常执行
-                IsShowing = false;
-            };
-
-            if (useAnim) AnimationManager.Restart(m_anims, FrameworkConfig.Instance.CLOSEID, innerFunc);
-            else innerFunc();
+            //确保最后执行，保证cancelmaskwindow正常执行
+            IsShowing = false;
         }
 
 
@@ -198,12 +190,12 @@ namespace LitFramework.HotFix
 
         public virtual void OnUpdate() { }
 
-        private void DoAwake()
+        internal void DoAwake()
         {
             IsAwaked = true;
             m_root = this.GameObjectInstance.transform;
             m_AniTrans = m_root.Find("Container_Anim");
-            m_anims = AnimationManager.GetAllAnim(m_root);
+            ui_anims = AnimationManager.GetAllAnim(m_root);
 
             _initPos = m_AniTrans.localPosition;
             _initQuat = m_AniTrans.localRotation;

@@ -95,6 +95,22 @@ public enum UITransparentEnum
     PenetratingBlank
 }
 
+/// <summary>
+/// UI状态标记，用于描述UI特定行为
+/// </summary>
+public enum UIFlag
+{
+    /// <summary>
+    /// 默认标记。无特定指令
+    /// </summary>
+    Normal,
+    /// <summary>
+    /// 固定标记。用于在CloseAll方法下予以保留
+    /// </summary>
+    Fix,
+
+}
+
 
 public class UISysDefine
 {

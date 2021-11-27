@@ -51,11 +51,15 @@ namespace LitFramework.Mono
         /// 这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
         /// </summary>
         private bool _hasEnabled = false;
+        /// <summary>
+        /// 附加特性
+        /// </summary>
+        public UIFlag Flag = UIFlag.Normal;
 
         /// <summary>
         /// 动画列表
         /// </summary>
-        protected DOTweenAnimation[] m_anims;
+        public DOTweenAnimation[] ui_anims;
         protected Transform m_root, m_AniTrans;
         //基础信息的初始化状态
         private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
@@ -87,8 +91,6 @@ namespace LitFramework.Mono
             else
                 _waitForStartFunc = StartCoroutine( IWaitToOnShow(args) );
 
-            //动画播放前界面刷新已完成，动画独立
-            AnimationManager.Restart(m_anims, FrameworkConfig.Instance.OPENID);
         }
 
         /// <summary>
@@ -187,7 +189,7 @@ namespace LitFramework.Mono
 
             m_root = _rootRectTransform.transform;
             m_AniTrans = m_root.Find("Container_Anim");
-            m_anims = AnimationManager.GetAllAnim(m_root);
+            ui_anims = AnimationManager.GetAllAnim(m_root);
 
             _initPos = m_AniTrans.localPosition;
             _initQuat = m_AniTrans.localRotation;

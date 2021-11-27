@@ -344,6 +344,9 @@ namespace LitFramework.Mono
                     }
                 }
             }
+
+            //动画播放前界面刷新已完成，动画独立
+            AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.OPENID);
             return baseUI;
         }
 
@@ -352,7 +355,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
-        public void Close( string uiName, bool isDestroy = false )
+        public void Close( string uiName, bool isDestroy = false , bool useAnim = true )
         {
             if ( string.IsNullOrEmpty( uiName ) )
                 return;
@@ -368,37 +371,55 @@ namespace LitFramework.Mono
             var modelType = UIModelBehavior.Instance.GetBehavior( uiName );
             UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
 
-            //只针对pop up 类型窗口适用 uiShowMode 功能
-            if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
-            {
-                //不同类型窗体执行各自关闭逻辑
-                switch ( baseUI.CurrentUIType.uiShowMode )
-                {
-                    case UIShowModeEnum.Parallel:
-                        UnLoadParallelUI( uiName, isDestroy );
-                        break;
-                    case UIShowModeEnum.Stack:
-                        UnLoadStackUI( uiName, isDestroy );
-                        break;
-                    case UIShowModeEnum.Unique:
-                        UnLoadUniqueUI( uiName, isDestroy );
-                        break;
-                    default:
-                        throw new Exception( "未登记的UI类型--" + baseUI.CurrentUIType );
-                }
-            }
-            else
-            {
-                baseUI.Close( isDestroy );
-            }
 
-            //销毁
-            if ( isDestroy )
+            Action innerFunc = () =>
             {
-                _dictLoadedAllUIs.Remove( uiName );
-            }
+                //只针对pop up 类型窗口适用 uiShowMode 功能
+                if (targetUIType.uiNodeType == UINodeTypeEnum.PopUp)
+                {
+                    //不同类型窗体执行各自关闭逻辑
+                    switch (baseUI.CurrentUIType.uiShowMode)
+                    {
+                        case UIShowModeEnum.Parallel:
+                            UnLoadParallelUI(uiName, isDestroy);
+                            break;
+                        case UIShowModeEnum.Stack:
+                            UnLoadStackUI(uiName, isDestroy);
+                            break;
+                        case UIShowModeEnum.Unique:
+                            UnLoadUniqueUI(uiName, isDestroy);
+                            break;
+                        default:
+                            throw new Exception("未登记的UI类型--" + baseUI.CurrentUIType);
+                    }
+                }
+                else
+                {
+                    baseUI.Close(isDestroy);
+                }
+
+                //销毁
+                if (isDestroy)
+                {
+                    _dictLoadedAllUIs.Remove(uiName);
+                }
+            };
+
+            if (useAnim) AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.CLOSEID, innerFunc);
+            else innerFunc();
         }
 
+
+        /// <summary>
+        /// 关闭所有UI
+        /// </summary>
+        /// <param name="force">是否关闭带有FixedFlag的UI</param>
+        public void CloseAll(bool force = false, bool isDestroy = false, bool useAnim = false)
+        {
+            var toCloseUI = _dictLoadedAllUIs.Where(e => !force ? e.Value.Flag != UIFlag.Fix : (e.Value is BaseUI)).Select(e => e.Value).ToList();
+            foreach (var item in toCloseUI)
+                Close(item.AssetsName, isDestroy, useAnim);
+        }
 
 
         /// <summary>

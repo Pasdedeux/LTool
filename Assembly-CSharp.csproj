@@ -438,6 +438,9 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\Crypto.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\TestUseModel.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\UIExport\ResPath.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\UI\UITest.cs" />
+    <Compile Include="Assets\Scripts\ILRuntime\HotFixLogic\UIExport\UITest.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

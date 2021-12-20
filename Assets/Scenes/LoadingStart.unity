@@ -375,7 +375,7 @@ MonoBehaviour:
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1
   scriptEnvironment: 0
-  UseHotFixMode: 1
+  UseHotFixMode: 0
 --- !u!1 &697112009
 GameObject:
   m_ObjectHideFlags: 0

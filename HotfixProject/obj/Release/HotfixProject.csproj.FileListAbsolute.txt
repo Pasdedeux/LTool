@@ -35,3 +35,5 @@ E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\LHotfixProject.dll
 E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\LHotfixProject.pdb
 E:\MyGitHub\Unity\UnityProject\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache
 C:\Personal\Unity\iFunTech\xscrosstalk\UnityProject\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Release\HotfixProject.csproj.AssemblyReference.cache
+C:\Personal\Unity\iFunTech\_BasePackage\HotfixProject\obj\Release\HotfixProject.csproj.CopyComplete

@@ -397,7 +397,7 @@ public class CreatUIWindow : OdinEditorWindow
         {
             SetCsAttrbuteArray(keyValue.Value, aCSWrite, "private");
         }
-        aCSWrite.WriteLine("protected override void FinMenber()");
+        aCSWrite.WriteLine("protected override void FindMember()");
         //开始初始化
         aCSWrite.StartBracket();
         aCSWrite.WriteLine("SetUIType();");

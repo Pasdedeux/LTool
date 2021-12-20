@@ -8,7 +8,7 @@ namespace LHotfixProject
     public class BaseUIAdapter : CrossBindingAdaptor
     {
         static CrossBindingMethodInfo mOnClose_0 = new CrossBindingMethodInfo("OnClose");
-        static CrossBindingMethodInfo mOnShow_1 = new CrossBindingMethodInfo("OnShow");
+        static CrossBindingMethodInfo<System.Object[]> mOnShow_1 = new CrossBindingMethodInfo<System.Object[]>("OnShow");
         static CrossBindingMethodInfo mDispose_2 = new CrossBindingMethodInfo("Dispose");
         static CrossBindingMethodInfo mOnAdapter_3 = new CrossBindingMethodInfo("OnAdapter");
         static CrossBindingMethodInfo mOnBackPushed_4 = new CrossBindingMethodInfo("OnBackPushed");
@@ -17,6 +17,7 @@ namespace LHotfixProject
         static CrossBindingMethodInfo<System.Boolean> mOnDisabled_7 = new CrossBindingMethodInfo<System.Boolean>("OnDisabled");
         static CrossBindingMethodInfo mOnStart_8 = new CrossBindingMethodInfo("OnStart");
         static CrossBindingMethodInfo mOnUpdate_9 = new CrossBindingMethodInfo("OnUpdate");
+        static CrossBindingMethodInfo mFindMember_10 = new CrossBindingMethodInfo("FindMember");
         public override Type BaseCLRType
         {
             get
@@ -64,9 +65,14 @@ namespace LHotfixProject
                     mOnClose_0.Invoke(this.instance);
             }
 
+            protected override void FindMember()
+            {
+                mFindMember_10.Invoke(this.instance);
+            }
+
             public override void OnShow(params object[] args)
             {
-                mOnShow_1.Invoke(this.instance);
+                mOnShow_1.Invoke(this.instance, args);
             }
 
             public override void Dispose()

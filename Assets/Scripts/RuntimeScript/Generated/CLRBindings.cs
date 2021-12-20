@@ -23,8 +23,6 @@ namespace ILRuntime.Runtime.Generated
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             LDebug_Binding.Register(app);
-            LitFramework_Singleton_1_RsLoadManager_Binding.Register(app);
-            RsLoadManager_Binding.Register(app);
             LitFramework_SingletonMono_1_FrameworkConfig_Binding.Register(app);
             LitFramework_FrameworkConfig_Binding.Register(app);
             System_String_Binding.Register(app);

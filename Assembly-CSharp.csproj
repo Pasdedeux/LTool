@@ -91,7 +91,6 @@
     <Compile Include="Assets\Scripts\Essential\SDK\LitFrameworkAndroidPlugin.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\DotNetScriptCall.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventContext.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\Generated\RsLoadManager_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\AD\BaseAdAdapter.cs" />
@@ -267,7 +266,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NGraphics.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\ILRScriptCall.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\Generated\LitFramework_Singleton_1_RsLoadManager_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
@@ -411,7 +409,7 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\Crypto.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\TestUseModel.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

@@ -179,7 +179,7 @@ namespace LitFramework.HotFix
         }
 
         #region Alternative Function
-        protected virtual void FinMenber() { }
+        protected virtual void FindMember() { }
         public abstract void OnAwake();
 
         public virtual void OnEnabled(bool replay) { }
@@ -199,7 +199,7 @@ namespace LitFramework.HotFix
             _initPos = m_AniTrans.localPosition;
             _initQuat = m_AniTrans.localRotation;
             _initScale = m_AniTrans.localScale;
-            FinMenber();
+            FindMember();
         }
 
         private void DoStart()

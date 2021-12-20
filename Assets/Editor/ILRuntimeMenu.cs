@@ -34,7 +34,7 @@ public class ILRuntimeMenu
         if ( EditorUtility.DisplayDialog( "提示", "是否拷贝到Unity工程", "确认", "取消" ) )
         {
             string uPath = Application.dataPath + "/../HotfixProject/HotFixLogic/";
-            string hPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/";
+            string hPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/";
 
             Directory.Delete( hPath ,true );
             FolderCopy.CopyTo( uPath, hPath );
@@ -54,7 +54,7 @@ public class ILRuntimeMenu
         if ( EditorUtility.DisplayDialog( "提示", "是否拷贝到热更新工程", "确认", "取消" ) )
         {
             string uPath = Application.dataPath + "/../HotfixProject/HotFixLogic/";
-            string hPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/";
+            string hPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/";
 
             Directory.Delete( uPath, true );
             FolderCopy.CopyTo( hPath, uPath );

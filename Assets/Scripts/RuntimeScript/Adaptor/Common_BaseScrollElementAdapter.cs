@@ -4,14 +4,16 @@ using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Intepreter;
 
 namespace LHotfixProject
-{
+{   
     public class BaseScrollElementAdapter : CrossBindingAdaptor
     {
         static CrossBindingMethodInfo<UnityEngine.UI.LoopScrollRect, UnityEngine.Transform> mRegisterEvent_0 = new CrossBindingMethodInfo<UnityEngine.UI.LoopScrollRect, UnityEngine.Transform>("RegisterEvent");
         static CrossBindingMethodInfo mUnRegisterEvent_1 = new CrossBindingMethodInfo("UnRegisterEvent");
-        static CrossBindingMethodInfo mDispose_2 = new CrossBindingMethodInfo("Dispose");
-        static CrossBindingMethodInfo<global::MsgArgs> mUpdateInfo_3 = new CrossBindingMethodInfo<global::MsgArgs>("UpdateInfo");
-        static CrossBindingMethodInfo mInit_4 = new CrossBindingMethodInfo("Init");
+        static CrossBindingMethodInfo<global::MsgArgs> mUpdateInfo_2 = new CrossBindingMethodInfo<global::MsgArgs>("UpdateInfo");
+        static CrossBindingMethodInfo mOnInit_3 = new CrossBindingMethodInfo("OnInit");
+        static CrossBindingMethodInfo mSetElement_4 = new CrossBindingMethodInfo("SetElement");
+        static CrossBindingMethodInfo mDispose_5 = new CrossBindingMethodInfo("Dispose");
+        static CrossBindingMethodInfo mFindMenber_6 = new CrossBindingMethodInfo("FindMenber");
         public override Type BaseCLRType
         {
             get
@@ -67,19 +69,35 @@ namespace LHotfixProject
                     mUnRegisterEvent_1.Invoke(this.instance);
             }
 
-            public override void Dispose()
-            {
-                mDispose_2.Invoke(this.instance);
-            }
-
             public override void UpdateInfo(global::MsgArgs args)
             {
-                mUpdateInfo_3.Invoke(this.instance, args);
+                mUpdateInfo_2.Invoke(this.instance, args);
+            }
+
+            public override void OnInit()
+            {
+                if (mOnInit_3.CheckShouldInvokeBase(this.instance))
+                    base.OnInit();
+                else
+                    mOnInit_3.Invoke(this.instance);
             }
 
             public override void SetElement()
             {
-                mInit_4.Invoke(this.instance);
+                mSetElement_4.Invoke(this.instance);
+            }
+
+            public override void Dispose()
+            {
+                mDispose_5.Invoke(this.instance);
+            }
+
+            public override void FindMenber()
+            {
+                if (mFindMenber_6.CheckShouldInvokeBase(this.instance))
+                    base.FindMenber();
+                else
+                    mFindMenber_6.Invoke(this.instance);
             }
 
             public override string ToString()

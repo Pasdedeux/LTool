@@ -51,9 +51,9 @@ namespace Assets.Scripts
         //热更工程启动方法
         public static string HOTFIX_FUNCNAME = "RunGame_ILRuntime";
         //跨域继承类适配器存储路径
-        public static string ADAPTOR_SAVE_PATH = "Assets/Scripts/ILRuntime/Adaptor/";
+        public static string ADAPTOR_SAVE_PATH = "Assets/Scripts/RuntimeScript/Adaptor/";
         //CLR绑定文件存储路径
-        public static string CLR_SAVE_PATH = "Assets/Scripts/ILRuntime/Generated";
+        public static string CLR_SAVE_PATH = "Assets/Scripts/RuntimeScript/Generated";
         //DLL、  PDB文件存储路径
         public static string DLL_SAVE_PATH = "Assets/StreamingAssets/";
 

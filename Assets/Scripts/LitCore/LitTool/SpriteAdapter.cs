@@ -29,6 +29,11 @@ namespace LitFramework.LitTool
     {
         private Transform _selfTrans;
 
+        //横向修正系数，适用于非成品素材
+        public float ScaleFixed_X = 1f;
+        //纵向修正系数
+        public float ScaleFixed_Y = 1f;
+
         private bool _isOrthographic = true;
         public bool IsOrthographic
         {
@@ -96,9 +101,12 @@ namespace LitFramework.LitTool
                 _baseScale = _oneVec * _cameraSize.y / _spriteRenderer.sprite.bounds.size.y;
             }
 
-            _selfTrans.localScale = _baseScale;
+            var multipleFixVec3 = _baseScale;
+            multipleFixVec3.x *= ScaleFixed_X;
+            multipleFixVec3.y *= ScaleFixed_Y;
             //保持图片自身的初始位置不会因为FOV变化而产生位移
-            _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
+            //_selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
+            _selfTrans.localScale = multipleFixVec3;
         }
 
         /// <summary>
@@ -110,7 +118,10 @@ namespace LitFramework.LitTool
             _selfTrans.localPosition = _cam.ScreenToWorldPoint( _localScreenPos );
             //在给定距离的视锥体高度（两者的单位都为世界单位）
             float frustumHeight = 2.0f * _distance * Mathf.Tan( _cam.fieldOfView * 0.5f * Mathf.Deg2Rad );
-            _selfTrans.localScale = _localScale * frustumHeight;
+            var multipleFixVec3 = _localScale * frustumHeight;
+            multipleFixVec3.x *= ScaleFixed_X;
+            multipleFixVec3.y *= ScaleFixed_Y;
+            _selfTrans.localScale = multipleFixVec3;
         }
 
     }

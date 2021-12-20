@@ -91,5 +91,15 @@ namespace LitFramework.LitPool
         {
             Pool.Despawn( item, Pool.transform );
         }
+        /// <summary>
+        /// 动态创建对象进入对象池
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="spawnName"></param>
+        public void CreateSpawnPool(Transform prefab)
+        {
+            PrefabPool newPrefabPool = new PrefabPool(prefab);
+            Pool.CreatePrefabPool(newPrefabPool);
+        }
     }
 }

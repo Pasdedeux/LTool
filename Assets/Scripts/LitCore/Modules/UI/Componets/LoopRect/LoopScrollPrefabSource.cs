@@ -18,7 +18,7 @@ namespace UnityEngine.UI
         public static Dictionary<int, Dictionary<Transform, BaseScrollElement>> ScrollElementDict = new Dictionary<int, Dictionary<Transform, BaseScrollElement>>();
 
         //Loop Rect创建新对象的同时，均会与新子对象建立消息侦听，避免使用SendMessage
-        public virtual GameObject GetObject(LoopScrollRect scrollRect)
+        public virtual GameObject GetObject(LoopScrollRect scrollRect, int idx)
         {
             var go = SpawnManager.Instance.SpwanObject(prefabName);
             var insID = scrollRect.GetInstanceID();
@@ -35,7 +35,8 @@ namespace UnityEngine.UI
             }
             ScrollElementDict[insID][trans] = ExecuteTypeScript();
             ScrollElementDict[insID][trans].RegisterEvent(scrollRect, trans);
-            ScrollElementDict[insID][trans].Init();
+            ScrollElementDict[insID][trans].index = idx;
+            ScrollElementDict[insID][trans].SetElement();
 
             return go;
         }
@@ -44,17 +45,17 @@ namespace UnityEngine.UI
         public virtual void ReturnObject(LoopScrollRect scrollRect, Transform trans)
         {
             var insID = scrollRect.GetInstanceID();
-            try
-            {
+            //try
+            //{
                 ScrollElementDict[insID][trans].UnRegisterEvent();
                 ScrollElementDict[insID][trans].Dispose();
                 ScrollElementDict[insID][trans] = null;
                 ScrollElementDict[insID].Remove(trans);
-            }
-            catch (System.Exception)
-            {
-                throw new System.Exception($"{scrollRect.name}不存在于事件列表: {trans.name}");
-            }
+            //}
+            //catch (System.Exception)
+            //{
+            //    throw new System.Exception($"{scrollRect.name}不存在于事件列表: {trans.name}");
+            //}
             SpawnManager.Instance.DespawnObject(trans);
         }
     }

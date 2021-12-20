@@ -90,7 +90,7 @@ public enum UITransparentEnum
     /// </summary>
     NoPenetratingBlank,
     /// <summary>
-    /// 可穿透
+    /// 透明可穿透
     /// </summary>
     PenetratingBlank
 }

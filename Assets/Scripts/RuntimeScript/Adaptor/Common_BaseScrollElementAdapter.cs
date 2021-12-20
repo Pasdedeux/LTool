@@ -4,7 +4,7 @@ using ILRuntime.Runtime.Enviorment;
 using ILRuntime.Runtime.Intepreter;
 
 namespace LHotfixProject
-{   
+{
     public class BaseScrollElementAdapter : CrossBindingAdaptor
     {
         static CrossBindingMethodInfo<UnityEngine.UI.LoopScrollRect, UnityEngine.Transform> mRegisterEvent_0 = new CrossBindingMethodInfo<UnityEngine.UI.LoopScrollRect, UnityEngine.Transform>("RegisterEvent");
@@ -77,7 +77,7 @@ namespace LHotfixProject
                 mUpdateInfo_3.Invoke(this.instance, args);
             }
 
-            public override void Init()
+            public override void SetElement()
             {
                 mInit_4.Invoke(this.instance);
             }

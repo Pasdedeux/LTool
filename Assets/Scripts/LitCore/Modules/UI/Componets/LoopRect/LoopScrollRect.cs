@@ -338,6 +338,10 @@ namespace UnityEngine.UI
                 //Debug.Assert(Mathf.Abs(GetDimension(content.anchorMax)) == value, this);
             }
         }
+        protected override void Reset()
+        {
+            base.IsExport = true;
+        }
 #endif
 
         public void ClearCells()
@@ -734,7 +738,7 @@ namespace UnityEngine.UI
             }
             else
             {
-                nextItem = prefabSource.GetObject(this).transform as RectTransform;
+                nextItem = prefabSource.GetObject(this, itemIdx).transform as RectTransform;
                 nextItem.transform.SetParent(content, false);
                 nextItem.gameObject.SetActive(true);
             }

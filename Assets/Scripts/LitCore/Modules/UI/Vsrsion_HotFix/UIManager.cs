@@ -310,9 +310,6 @@ namespace LitFramework.HotFix
             if ( targetUIType.isClearPopUp )
                 ClearPopUpStackArray();
 
-            //TODO 这里考虑增加Prewarm提前处理awake
-            if (!baseUI.IsAwaked) baseUI.DoAwake();
-
             //只针对pop up 类型窗口适用 uiShowMode 功能
             if ( targetUIType.uiNodeType == UINodeTypeEnum.PopUp )
             {
@@ -501,6 +498,7 @@ namespace LitFramework.HotFix
                 if ( baseUI == null )
                 { LDebug.LogError( uiName + "UI 脚本加载失败" ); return null; }
 
+                baseUI.Initialize();
                 baseUI.OnAwake();
 
                 switch ( baseUI.CurrentUIType.uiNodeType )

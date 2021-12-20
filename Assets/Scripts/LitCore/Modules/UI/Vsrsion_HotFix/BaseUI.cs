@@ -33,11 +33,6 @@ namespace LitFramework.HotFix
         /// </summary>
         public UIType CurrentUIType
         { get { return _uiType; } set { _uiType = value; } }
-
-        /// <summary>
-        /// 是否执行过Awake
-        /// </summary>
-        internal bool IsAwaked { get; set; }
         /// <summary>
         /// 是否执行过Start
         /// </summary>
@@ -68,7 +63,7 @@ namespace LitFramework.HotFix
         /// 动画列表
         /// </summary>
         public DOTweenAnimation[] ui_anims;
-        protected Transform m_root,m_AniTrans;
+        protected Transform root,m_AniTrans;
 
         //基础信息的初始化状态
         private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
@@ -84,9 +79,13 @@ namespace LitFramework.HotFix
             IsShowing = true;
 
             CheckMask();
-            
-            OnEnabled(replay);
-            
+
+            if (!replay)
+                //gameObject.SetActive( IsShowing );
+                _rootCanvas.enabled = IsShowing;
+            else
+                OnEnabled(replay);
+
             if (!IsStarted) DoStart();
 
             OnShow(args);
@@ -167,6 +166,7 @@ namespace LitFramework.HotFix
             _rootRectTransform.offsetMin = Vector2.zero;
             _rootCanvas = GameObjectInstance.GetComponent<Canvas>();
             _rootCanvas.enabled = false;
+            root = _rootCanvas.transform;
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace LitFramework.HotFix
         }
 
         #region Alternative Function
-
+        protected virtual void FinMenber() { }
         public abstract void OnAwake();
 
         public virtual void OnEnabled(bool replay) { }
@@ -190,18 +190,16 @@ namespace LitFramework.HotFix
 
         public virtual void OnUpdate() { }
 
-        internal void DoAwake()
+        internal void Initialize()
         {
-            IsAwaked = true;
-            m_root = this.GameObjectInstance.transform;
-            m_AniTrans = m_root.Find("Container_Anim");
-            ui_anims = AnimationManager.GetAllAnim(m_root);
+            root = this.GameObjectInstance.transform;
+            m_AniTrans = root.Find("Container_Anim");
+            ui_anims = AnimationManager.GetAllAnim(root);
 
             _initPos = m_AniTrans.localPosition;
             _initQuat = m_AniTrans.localRotation;
             _initScale = m_AniTrans.localScale;
-
-            OnAwake();
+            FinMenber();
         }
 
         private void DoStart()
@@ -213,7 +211,6 @@ namespace LitFramework.HotFix
         private void DoDestroy()
         {
             Dispose();
-            IsAwaked = false;
             IsStarted = false;
             IsInitOver = false;
             GameObject.Destroy(GameObjectInstance);

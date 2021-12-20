@@ -26,6 +26,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using System.Linq;
 
 public static class AnimationManager
 {
@@ -57,11 +58,15 @@ public static class AnimationManager
 
     public static void Restart( this DOTweenAnimation[] animArray, string id, Action callBack = null )
     {
-        for ( int i = 0; i < animArray.Length; i++ )
-            animArray[ i ].DORestartById( id );
+        for (int i = 0; i < animArray.Length; i++)
+            animArray[i].DORestartById(id);
 
-        if ( callBack != null )
-            LitFramework.LitTool.LitTool.DelayPlayFunction( 0.4f, () => { callBack.Invoke(); } );
+        //动画回调以指定ID中耗时最长的动画播放结束时刻为准
+        if (animArray.Length > 0)
+        {
+            if (callBack != null) LitFramework.LitTool.LitTool.DelayPlayFunction(animArray.Max(e => e.delay + e.duration), () => { callBack.Invoke(); });
+        }
+        else callBack?.Invoke();
     }
 
     public static void Pause( this DOTweenAnimation[] animArray, string id , Action callBack = null )

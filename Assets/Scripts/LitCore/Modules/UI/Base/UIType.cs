@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIType 
 {
+
+    [Header("是否需要清空弹出窗口栈")]
     /// <summary>
     /// 是否需要清空弹出窗口栈
     /// </summary>
@@ -11,16 +13,18 @@ public class UIType
     /// <summary>
     /// UI窗体挂载的节点类型
     /// </summary>
-    public UINodeTypeEnum uiNodeType = UINodeTypeEnum.Normal;
+    public UINodeTypeEnum uiNodeType = UINodeTypeEnum.PopUp;
+    [Header("UI窗体显示方式")]
     /// <summary>
     /// UI窗体显示方式
     /// Normal - 示窗体与其他窗体可以同时显示
     /// PopUp - 多层弹窗，同时需要维护多个弹出窗口并依次恢复显示的情况
     /// Unique - 独占窗口，显示时其他界面隐藏
     /// </summary>
-    public UIShowModeEnum uiShowMode = UIShowModeEnum.Parallel;
+    public UIShowModeEnum uiShowMode = UIShowModeEnum.Stack;
     /// <summary>
     /// UI窗体透明度类型(PopUp 类型时生效)
     /// </summary>
-    public UITransparentEnum uiTransparent = UITransparentEnum.PenetratingBlank;
+    [Header("UI窗体透明度类型(PopUp 类型时生效)")]
+    public UITransparentEnum uiTransparent = UITransparentEnum.NoPenetratingMiddle;
 }

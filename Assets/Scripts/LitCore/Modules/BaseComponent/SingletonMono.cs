@@ -31,7 +31,7 @@ namespace LitFramework
                 //是否已存在单例挂载对象
                 if ( _instance == null )
                 {
-                    _instance = FindObjectOfType( typeof( T ) ) as T;
+                    _instance = FindObjectOfType<T>();
 
                     //若不存在则创建一个【隐匿对象】将（继承类）以组件方式挂载
                     if ( _instance == null )
@@ -42,7 +42,7 @@ namespace LitFramework
                         gObj.hideFlags = HideFlags.HideAndDontSave; //可见性，以及不可消除性
 
                         //这里会先触发继承类Awake()方法
-                        _instance = gObj.AddComponent( typeof( T ) ) as T;
+                        _instance = gObj.AddComponent<T>();
 
                         DontDestroyOnLoad( gObj );
                     }

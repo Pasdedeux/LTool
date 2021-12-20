@@ -14,7 +14,21 @@ namespace Assets.Scripts.UI
     /// </summary>
     public abstract class BaseScrollElement
     {
-        protected Transform linkedTrans;
+        public int index;
+        private Transform _linkedTrans;
+        public Transform linkedTrans {
+            set
+            {
+                _linkedTrans = value;
+                if(_linkedTrans)
+                {
+                    FindMenber();
+                    OnInit();
+                }
+            }
+            get => _linkedTrans;
+        }
+
         protected int linkedTransID;
 
         //LoopScrollPrefabRect 从池中取出时自动注册归属的菜单事件
@@ -30,14 +44,17 @@ namespace Assets.Scripts.UI
         /// <param name="args"></param>
         protected void OnUpdateInfo(MsgArgs args)
         {
-            if (args.Get<int>(0) != linkedTransID) return;
+            if (args.Get<int>(0) != linkedTransID || args.Get<int>(1) != index) return;
             UpdateInfo(args);
         }
 
         public abstract void UpdateInfo(MsgArgs args);
-
-        public abstract void Init();
+        public virtual void OnInit() { }
+        public abstract void SetElement();
 
         public abstract void Dispose();
+        public virtual void FindMenber()
+        {
+        }
     }
 }

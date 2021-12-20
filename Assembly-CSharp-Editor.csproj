@@ -66,7 +66,7 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelAssetInfo.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
-    <Compile Include="Assets\Scripts\Editor\LoopScrollRectInspector.cs" />
+    <Compile Include="Assets\Editor\UI\LoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCrossBinding.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModel.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\AssetBundleRecordTests.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\ArrayObject3D.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreatUIWindow.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBuildTab.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCLRBinding.cs" />
@@ -91,7 +92,7 @@
     <Compile Include="Assets\Editor\ILRuntimeMenu.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectTreeView.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
-    <Compile Include="Assets\Scripts\Editor\SGMenuOptions.cs" />
+    <Compile Include="Assets\Editor\UI\SGMenuOptions.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleManageTab.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVWriter.cs" />
@@ -105,9 +106,8 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\UGUIOptimize.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
-    <Compile Include="Assets\Scripts\Editor\SGDefaultControls.cs" />
+    <Compile Include="Assets\Editor\UI\SGDefaultControls.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreatUIWindow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />

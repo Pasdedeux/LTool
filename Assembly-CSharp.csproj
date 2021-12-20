@@ -67,6 +67,7 @@
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenTextMeshPro.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_IDisposableAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GProgressBar.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIContentScaler.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ShapeHitTest.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\BaseUIAdapter.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\CompositeMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PolygonMesh.cs" />
     <Compile Include="Assets\Scripts\Essential\SDK\LitFrameworkAndroidPlugin.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\DotNetScriptCall.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventContext.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
@@ -105,11 +107,13 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NAudioClip.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseType.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\CryptoSHA1.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\GoWrapper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\AnimBundle.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\SingletonMono.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\MeshColliderHitTest.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\Crypto.cs" />
     <Compile Include="Assets\Scripts\UI\GUITest.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTree.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader.cs" />
@@ -226,7 +230,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\RectHitTest.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GSliderAdapter.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\SingletonMono.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\ShowFPS.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\SysDefine.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\ICrypto.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtention.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\BlurFilter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TouchScreenKeyboard.cs" />
@@ -234,6 +240,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlImage.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\RotationGesture.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Window.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\AnimationManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ToolSet.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GButton.cs" />
@@ -266,8 +273,8 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NGraphics.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\ILRScriptCall.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GProgressBarAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\LDebug.cs" />
@@ -297,6 +304,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GRoot.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GMovieClip.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\Singleton.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\CryptoMD5.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PoolManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\LineMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\InputEvent.cs" />
@@ -352,6 +360,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\TextMeshPro\TMPTextFormat.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\VibrateManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\IScriptCall.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTween.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -401,15 +410,6 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Vsrsion_HotFix\BaseUI.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\ShowFPS.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\CryptoSHA1.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\ICrypto.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\AnimationManager.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\CryptoMD5.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\CSVReader.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\Crypto.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

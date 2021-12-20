@@ -28,13 +28,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class RegisterUIWindow : EditorWindow
 {
     //Resources 目录
     private static string UIPrefabBaseDirectoryName = "Resources";
 
-    [MenuItem("Tools/Build/Build UI &u", priority = 50)]
+    //[MenuItem("Tools/Build/Build UI &u", priority = 50)]
     private static void CreateUIWindow()
     {
         ExpandEdiorUseEvent?.Invoke();

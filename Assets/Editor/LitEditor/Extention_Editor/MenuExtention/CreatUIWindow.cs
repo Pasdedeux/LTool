@@ -133,7 +133,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI/" + aFolderName;
         if (File.Exists(csOutPath + aScriptsName + ".cs"))
         {
             return;
@@ -201,7 +201,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI/" + aFolderName;
         if (File.Exists(csOutPath + aScriptsName + ".cs"))
         {
             return;
@@ -257,7 +257,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI/" + aFolderName;
         if (File.Exists(csOutPath + aScriptsName + ".cs"))
         {
             return;
@@ -329,7 +329,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport/" + folderName;
 
 
         tempArray.Clear();
@@ -430,7 +430,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport/" + folderName;
 
 
         tempArray.Clear();
@@ -503,7 +503,7 @@ public class CreatUIWindow : OdinEditorWindow
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
+            csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport/" + folderName;
 
 
         tempArray.Clear();
@@ -1152,7 +1152,7 @@ public class CreatUIWindow : OdinEditorWindow
         string floder;
         if (FrameworkConfig.Instance.UseHotFixMode)
         {
-            floder = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport";
+            floder = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport";
         }else
         {
             floder = Application.dataPath + "/Scripts/UIExport";
@@ -1332,7 +1332,7 @@ public class CreatUIWindow : OdinEditorWindow
         //}
         //else
         //{
-        //    custonPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/";
+        //    custonPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI/";
         //}
         //paths = Directory.GetFiles(custonPath, "UI*.cs", SearchOption.AllDirectories);
 
@@ -1363,7 +1363,7 @@ public class CreatUIWindow : OdinEditorWindow
         }
         else
         {
-            exportCS = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/";
+            exportCS = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport/";
         }
         paths = Directory.GetFiles(exportCS, csF+"*.cs", SearchOption.AllDirectories);
 
@@ -1420,7 +1420,7 @@ public class CreatUIWindow : OdinEditorWindow
         }
         else
         {
-            custonPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFloder + aCsF + aName + ".cs";
+            custonPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI/" + aFloder + aCsF + aName + ".cs";
         }
         if (File.Exists(custonPath))
         {
@@ -1433,7 +1433,7 @@ public class CreatUIWindow : OdinEditorWindow
         }
         else
         {
-            exportCS = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + aFloder + aCsF + aName + ".cs";
+            exportCS = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UIExport/" + aFloder + aCsF + aName + ".cs";
         }
         if (File.Exists(exportCS))
         {

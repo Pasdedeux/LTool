@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{427AC1B8-6A29-DF40-5582-C6DA04B54039}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F56FEE0B-DE77-99CC-BAC7-6C92D9F5ECA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidRuntimePermissions.Runtime", "AndroidRuntimePermissions.Runtime.csproj", "{BFB3E4A1-77D7-A6F4-E89A-A69753388A0C}"
@@ -10,8 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.CompatibilityLayer", "Sirenix.OdinInspector.CompatibilityLayer.csproj", "{3C155BAE-08CF-49D6-3F2F-6F0E3FA6DDAA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{EE30DD4C-8781-76C2-9105-29421C7B5421}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEditor.UI", "UnityEditor.UI.csproj", "{F20DD249-E173-7A09-33CF-804EBC30EBD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}"
 EndProject
@@ -25,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{427AC1B8-6A29-DF40-5582-C6DA04B54039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{427AC1B8-6A29-DF40-5582-C6DA04B54039}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{427AC1B8-6A29-DF40-5582-C6DA04B54039}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{427AC1B8-6A29-DF40-5582-C6DA04B54039}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F56FEE0B-DE77-99CC-BAC7-6C92D9F5ECA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F56FEE0B-DE77-99CC-BAC7-6C92D9F5ECA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F56FEE0B-DE77-99CC-BAC7-6C92D9F5ECA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +37,6 @@ Global
 		{EE30DD4C-8781-76C2-9105-29421C7B5421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE30DD4C-8781-76C2-9105-29421C7B5421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE30DD4C-8781-76C2-9105-29421C7B5421}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F20DD249-E173-7A09-33CF-804EBC30EBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F20DD249-E173-7A09-33CF-804EBC30EBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F20DD249-E173-7A09-33CF-804EBC30EBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F20DD249-E173-7A09-33CF-804EBC30EBD8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Release|Any CPU.ActiveCfg = Release|Any CPU

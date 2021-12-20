@@ -134,10 +134,11 @@ namespace Assets.Scripts.Controller
         private void LoadAllConfigs(MsgArgs e = null)
         {
             MsgManager.Instance.UnRegister(InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs);
-            //在热更模式下，用于初始化
-            sc.PreStartRun();
+            sc.Load();
             //除UI外，其它模块需要确保在资源完整更新后，执行项目启动
             LitFrameworkFacade.Instance.StartUp();
+            //在热更模式下，用于初始化
+            sc.PreStartRun();
             //执行ScriptableObject的数据注入
             ScriptableLoader.Instance.InjectScriptableData("CommonData");
             //继续加载任务

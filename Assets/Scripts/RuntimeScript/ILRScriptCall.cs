@@ -71,8 +71,6 @@ namespace Assets.Scripts
         /// </summary>
         public void PreStartRun()
         {
-            LoadILRuntime();
-
             //热更模式下，对象池扩展加载需要延迟到DLL预加载执行，原本位置只针对DOTNET环境执行
             GameObject.FindObjectOfType<ExtendSpawnPool>().LoadSpawnConfig(true);
 
@@ -88,7 +86,7 @@ namespace Assets.Scripts
             _appdomain.Invoke(string.Format("{0}.{1}", HOTFIX_NAMESPACE, HOTFIX_CLASS), HOTFIX_FUNCNAME, null, null);
         }
 
-        void LoadILRuntime()
+        public void Load()
         {
             _appdomain = new ILRuntime.Runtime.Enviorment.AppDomain();
 

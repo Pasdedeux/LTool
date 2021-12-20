@@ -31,6 +31,10 @@ namespace Assets.Scripts
     public class DotNetScriptCall : IScriptCall
     {
         private bool _isPreInit = false;
+
+        public void Load() { }
+
+
         public void PreStartRun()
         {
             Type t = Type.GetType(string.Format("{0}.{1}", ILRScriptCall.HOTFIX_NAMESPACE, ILRScriptCall.HOTFIX_CLASS));
@@ -117,7 +121,6 @@ namespace Assets.Scripts
             //        throw new Exception(string.Format("CommonData字段  {0}  在承接类CommonDataInfo中未找到对应字段", fieldInfo.Name));
             //}
         }
-
 
         #endregion
     }

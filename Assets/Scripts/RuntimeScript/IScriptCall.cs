@@ -24,6 +24,7 @@ namespace Assets.Scripts
 {
     public interface IScriptCall
     {
+        void Load();
         void PreStartRun();
         void StartRun();
     }

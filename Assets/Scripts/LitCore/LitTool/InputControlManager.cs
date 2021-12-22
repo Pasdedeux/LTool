@@ -148,6 +148,7 @@ namespace LitFramework.InputSystem
 
         //输出的滑动结果
         private TouchDirection _touchResult = TouchDirection.None;
+        private int _uiLayer;
 
         private FrameworkConfig _config;
 
@@ -165,16 +166,19 @@ namespace LitFramework.InputSystem
                 eventsys.AddComponent<EventSystem>();
             }
             _currentEventSys = eventsys.GetComponent<EventSystem>();
+            _uiLayer = LayerMask.NameToLayer("UI");
 
             //给内部方法绑定一个计算当前是否是持续性按压状态
             TouchEndCallback += CalculateTimeByPressOver;
             TouchStationaryCallback += CalculateTimeByPressStart;
 
-            GameDriver.Instance.UpdateEventHandler += InputUpdateHandler;
+            GameDriver.Instance.UpdateEventHandler += OnInputUpdateHandler;
         }
 
         public void Uninstall()
         {
+            GameDriver.Instance.UpdateEventHandler -= OnInputUpdateHandler;
+
             EscapeCallBack = null;
             TouchBeganCallback = null;
             TouchMoveCallback = null;
@@ -192,7 +196,7 @@ namespace LitFramework.InputSystem
 
         public int TouchCount { get { return Input.touchCount; } }
 
-        private void InputUpdateHandler()
+        private void OnInputUpdateHandler()
         {
             //点击返回
             if ( Input.GetKeyDown( KeyCode.Escape ) )
@@ -217,7 +221,7 @@ namespace LitFramework.InputSystem
                     if ( Input.GetMouseButtonDown( 0 ) )
                     {
                         //点击UI检测
-                        if ( EventSystem.current.IsPointerOverGameObject()&& EventSystem.current.gameObject.layer == LayerMask.NameToLayer("UI"))
+                        if ( EventSystem.current.IsPointerOverGameObject() && EventSystem.current.gameObject.layer == _uiLayer )
                         {
                              _touchResult |= TouchDirection.OnUI;
                         }
@@ -299,13 +303,13 @@ namespace LitFramework.InputSystem
             _clockWiseDegree = degree;
         }
 
-        //获取一次滑动行为
+        //获取一次单点滑动
         public TouchDirection GetTouchMoveDirection( TouchDirection dirResult )
         {
             if ( TouchCount == 1 )
             {
                 //实时检测触碰到UI
-                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) && _currentEventSys.gameObject.layer == LayerMask.NameToLayer("UI"))
+                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) && _currentEventSys.gameObject.layer == _uiLayer )
                 {
                     dirResult |= TouchDirection.OnUI;
 

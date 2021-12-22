@@ -217,8 +217,10 @@ namespace LitFramework.InputSystem
                     if ( Input.GetMouseButtonDown( 0 ) )
                     {
                         //点击UI检测
-                        if ( EventSystem.current.IsPointerOverGameObject() )
-                            _touchResult |= TouchDirection.OnUI;
+                        if ( EventSystem.current.IsPointerOverGameObject()&& EventSystem.current.gameObject.layer == LayerMask.NameToLayer("UI"))
+                        {
+                             _touchResult |= TouchDirection.OnUI;
+                        }
                         IsTouchedOnUICallBack?.Invoke( CurrentIsOnUI );
 
                         if ( _config.TouchDetectUI && CurrentIsOnUI ) return;
@@ -303,7 +305,7 @@ namespace LitFramework.InputSystem
             if ( TouchCount == 1 )
             {
                 //实时检测触碰到UI
-                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) )
+                if ( _currentEventSys.IsPointerOverGameObject( Input.touches[ 0 ].fingerId ) && _currentEventSys.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
                     dirResult |= TouchDirection.OnUI;
 

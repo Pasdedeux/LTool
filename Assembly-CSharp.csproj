@@ -91,7 +91,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PolygonMesh.cs" />
     <Compile Include="Assets\Scripts\Essential\SDK\LitFrameworkAndroidPlugin.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
-    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\DotNetScriptCall.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\DotNetScriptCall.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventContext.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
@@ -271,7 +271,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\RichTextField.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\UnityHelper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\NGraphics.cs" />
-    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\ILRScriptCall.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\ILRScriptCall.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
@@ -359,7 +359,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlInput.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\TextMeshPro\TMPTextFormat.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\VibrateManager.cs" />
-    <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\IScriptCall.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\IScriptCall.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTween.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />

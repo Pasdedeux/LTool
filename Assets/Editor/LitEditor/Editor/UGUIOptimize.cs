@@ -49,7 +49,12 @@ namespace LitFrameworkEditor.Editor
         /// <summary>
         /// 创建相机时回调
         /// </summary>
-        public static Action<Camera> camModeFunc = null;
+        public static Action<Canvas> camModeFunc = (e) => 
+        {
+            var graph = e.gameObject.GetComponent<GraphicRaycaster>();
+            if (graph != null)
+                GameObject.DestroyImmediate(graph);
+        };
 
         /// <summary>
         /// 修改UGUI Image组件设置
@@ -73,7 +78,7 @@ namespace LitFrameworkEditor.Editor
         /// 修改 Camera 组件
         /// </summary>
         /// <param name="cam"></param>
-        internal static void ModifyCame( Camera cam )
+        internal static void ModifyCanvas( Canvas cam )
         {
             camModeFunc?.Invoke( cam );
         }
@@ -105,13 +110,14 @@ namespace LitFrameworkEditor.Editor
                 UGUIOptimizeStrategy.ModifyImage( image );
         }
         /// <summary>
-        /// 创建相机
+        /// 创建Canvas
         /// </summary>
         /// <param name="munuCommand"></param>
-        public static void CreateCamera( MenuCommand menuCommand )
+        public static void CreateCanvas( MenuCommand menuCommand )
         {
-            var cam = UGUIOptTool.CreatCustomUGUI<Camera>();
-            UGUIOptimizeStrategy.ModifyCame( cam );
+            var canvas = UGUIOptTool.CreatCustomUGUI<Canvas>();
+            if (LitFramework.FrameworkConfig.Instance.UGUIOpt)
+                UGUIOptimizeStrategy.ModifyCanvas( canvas );
         }
     }
 
@@ -132,6 +138,7 @@ namespace LitFrameworkEditor.Editor
             GameObject newType = new GameObject( typeName );
             GameObject go = Selection.activeGameObject;
             GameObjectUtility.SetParentAndAlign( newType, go );
+            newType.transform.IdentityTransform();
 
             var addComnent = newType.AddComponent<T>();
             return addComnent;

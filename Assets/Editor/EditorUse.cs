@@ -92,11 +92,11 @@ public class EditorUse
             UGUIOptimizeCommand.CreatImage( menuCommand );
         }
 
-        //[MenuItem( "GameObject/URP/Camera" )]
-        //private static void CreatCamera( MenuCommand menuCommand )
-        //{
-        //    UGUIOptimizeCommand.CreateCamera( menuCommand );
-        //}
+        [MenuItem("GameObject/UI/Canvas")]
+        private static void CreatCamera(MenuCommand menuCommand)
+        {
+            UGUIOptimizeCommand.CreateCanvas(menuCommand);
+        }
     }
 
     #endregion

@@ -50,7 +50,7 @@ namespace Assets.Scripts.UI
             _loadingModel = LoadingTaskModel.Instance;
             _waitEndFrame = new WaitForEndOfFrame();
             _waitSeconds = new WaitForSeconds( 0.1f );
-
+            
             _sliderSlider = UnityHelper.GetTheChildNodeComponetScripts<Image>( this.GameObjectInstance.transform, "Image_Progress" );
             _progressText = UnityHelper.GetTheChildNodeComponetScripts<Text>( this.GameObjectInstance.transform, "Text_Loading" );
             _versionText = UnityHelper.GetTheChildNodeComponetScripts<Text>( this.GameObjectInstance.transform, "Text_Version" );

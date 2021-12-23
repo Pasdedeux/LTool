@@ -37,7 +37,7 @@ public class CreatUIWindow : OdinEditorWindow
     {
         var window = GetWindow<CreatUIWindow>();
         // Nifty little trick to quickly position the window in the middle of the editor.
-        window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 600);
+        window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
         Object selet = Selection.activeObject;
         if(selet)
         {
@@ -69,9 +69,9 @@ public class CreatUIWindow : OdinEditorWindow
     [HorizontalGroup(LabelWidth = 40)]
     public string uiScriptsName;
     [LabelText("UI路径")]
-    [HorizontalGroup("Class", LabelWidth = 40)]
+    [HorizontalGroup("Class")]
     public string uiFolderName;
-    [HorizontalGroup("Class", LabelWidth = 40)]
+    [HorizontalGroup("Class")]
     [LabelText("类说明")]
     public string uiSummary;
     [Space(10, order = 0)]
@@ -86,6 +86,10 @@ public class CreatUIWindow : OdinEditorWindow
     [Space(10, order = 0)]
     [HorizontalGroup("Prefab", LabelWidth = 150)]
     public bool IsFloor=false;
+    [LabelText("是否使用低帧率")]
+    [Space(10, order = 0)]
+    [HorizontalGroup("Prefab", LabelWidth = 150)]
+    public bool UseLowFrame = false;
     [BoxGroup("UI类型设置")]
     [ShowInInspector]
     public UIType uiType = new UIType();
@@ -113,7 +117,7 @@ public class CreatUIWindow : OdinEditorWindow
 
             EditorUtility.DisplayProgressBar("UI生成", "设置基础脚本", 2f / 4f);
             //设置基础cs
-            SetBaseCs(_Prefab, mCSWrite, uiFolderName+"/", uiType, IsFloor);
+            SetBaseCs(_Prefab, mCSWrite, uiFolderName+"/", uiType, IsFloor, useLowFrame: UseLowFrame );
 
             EditorUtility.DisplayProgressBar("UI生成", "设置路径文本", 2f / 4f);
 
@@ -313,7 +317,7 @@ public class CreatUIWindow : OdinEditorWindow
         Debug.Log("自定义Element文件更新完成");
     }
     #region BaseCS
-    public static void SetBaseCs(GameObject aPrefab, CSWriteTool aCSWrite, string folderName, UIType uiType=null,bool isFloor=false,string uiSummary="")
+    public static void SetBaseCs(GameObject aPrefab, CSWriteTool aCSWrite, string folderName, UIType uiType=null,bool isFloor=false,bool useLowFrame = false, string uiSummary="")
     {
         if (!aPrefab)
         {
@@ -383,6 +387,7 @@ public class CreatUIWindow : OdinEditorWindow
             aCSWrite.WriteLine("CurrentUIType.uiShowMode = UIShowModeEnum.{0};", uiType.uiShowMode.ToString());
             aCSWrite.WriteLine("CurrentUIType.uiTransparent = UITransparentEnum.{0};", uiType.uiTransparent.ToString());
             aCSWrite.WriteLine("Flag = UIFlag.{0};", isFloor? "Fix" : "Normal");
+            aCSWrite.WriteLine("UseLowFrame = {0};", useLowFrame ? "true" : "false");
             aCSWrite.EndBracket();
         }
 
@@ -1132,7 +1137,7 @@ public class CreatUIWindow : OdinEditorWindow
         animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
         animTarget.easeType = Ease.OutBack;
         animTarget.duration = 0.4f;
-        animTarget.id = "OpenAni";
+        animTarget.id = FrameworkConfig.Instance.OPENID;
         animTarget.isFrom = true;
         animTarget.endValueFloat = 0f;
         animTarget.optionalBool0 = true;
@@ -1142,7 +1147,7 @@ public class CreatUIWindow : OdinEditorWindow
         animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
         animTarget.easeType = Ease.InBack;
         animTarget.duration = 0.4f;
-        animTarget.id = "CloseAni";
+        animTarget.id = FrameworkConfig.Instance.CLOSEID;
         animTarget.isFrom = false;
         animTarget.endValueFloat = 0f;
         animTarget.optionalBool0 = true;
@@ -1544,7 +1549,7 @@ public class CreatUIWindow : OdinEditorWindow
             SetCustomCs(folder, "UI" + className, _WriteTool, returnBtn != null, "");
 
             //设置基础cs
-            SetBaseCs(_Prefab, _WriteTool, folder, null, returnBtn != null, "");
+            SetBaseCs(_Prefab, _WriteTool, folder, null, returnBtn != null, uiSummary: "");
         }
         else if (obj.name.StartsWith("ExCom_"))
         {

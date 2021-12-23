@@ -42,6 +42,10 @@ namespace LitFramework.HotFix
         /// </summary>
         public UIFlag Flag = UIFlag.Normal;
         /// <summary>
+        /// 是否使用低帧率
+        /// </summary>
+        public bool UseLowFrame = false;
+        /// <summary>
         /// 资源名
         /// </summary>
         public string AssetsName { get; set; }

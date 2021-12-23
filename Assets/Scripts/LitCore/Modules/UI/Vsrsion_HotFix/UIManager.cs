@@ -346,7 +346,7 @@ namespace LitFramework.HotFix
             }
 
             //动画播放前界面刷新已完成，动画独立
-            AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.OPENID);
+            AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.OPENID ,() => { if (baseUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
             return baseUI;
         }
 
@@ -403,6 +403,8 @@ namespace LitFramework.HotFix
                 {
                     _dictLoadedAllUIs.Remove(uiName);
                 }
+
+                Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
             };
 
             if (useAnim) AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.CLOSEID, innerFunc);

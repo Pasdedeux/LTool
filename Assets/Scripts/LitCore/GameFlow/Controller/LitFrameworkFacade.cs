@@ -42,8 +42,7 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
     /// </summary>
     /// <param name="afterExecuteFunc">框架启动完成后，依次执行的自定义方法</param>
     /// <param name="beforeExecuteFunc">框架启动前，依次执行的自定义方法。主要是项目中顺次执行本地数据加载</param>
-    /// <param name="debugEnable">框架启动时是否开启日志</param>
-    public void StartUp( Action afterExecuteFunc = null, Action beforeExecuteFunc = null, bool debugEnable = true )
+    public void StartUp(Action beforeExecuteFunc = null, Action afterExecuteFunc = null )
     {
         beforeExecuteFunc?.Invoke();
 

@@ -403,12 +403,12 @@ namespace LitFramework.HotFix
                 {
                     _dictLoadedAllUIs.Remove(uiName);
                 }
-
-                Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
             };
 
             if (useAnim) AnimationManager.Restart(baseUI.ui_anims, FrameworkConfig.Instance.CLOSEID, innerFunc);
             else innerFunc();
+
+            Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
 
             LDebug.Log($"  UIClose: {baseUI.AssetsName}");
         }

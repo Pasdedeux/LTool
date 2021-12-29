@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -53,69 +54,69 @@
     <UnityVersion>2020.3.6f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSourceProvider.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\EditorToolSet.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleTree.cs" />
     <Compile Include="Assets\Editor\EditorUse.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\AssetDatabaseABDataSource.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleInspectTab.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleRecord.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreatUIWindow.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\Util\ABModelUtil.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBrowserMain.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
-    <Compile Include="Assets\Editor\ILRuntimeMenu.cs" />
-    <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
-    <Compile Include="Assets\Editor\UI\SGMenuOptions.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleManageTab.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\BundleDetailList.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageSystem.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSource.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\UGUIOptimize.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
-    <Compile Include="Assets\Editor\UI\SGDefaultControls.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSourceProvider.cs" />
-    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\EditorToolSet.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
-    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleTree.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVParser.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelAssetInfo.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
     <Compile Include="Assets\Editor\UI\LoopScrollRectInspector.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\UGUIRaycastCheck.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCrossBinding.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModel.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleRecord.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\BitmapFontExporter.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\AssetBundleRecordTests.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\ArrayObject3D.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreateUIWindow.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBuildTab.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
     <Compile Include="Assets\Editor\ILRuntimeCLRBinding.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\SceneViewExtention.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\BaseTool\FolderCopy.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIContentScalerEditor.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\DisplayObjectEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\Util\ABModelUtil.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBrowserMain.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Editor\ReporterEditor.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
+    <Compile Include="Assets\Editor\ILRuntimeMenu.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectTreeView.cs" />
+    <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
+    <Compile Include="Assets\Editor\UI\SGMenuOptions.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\BuildSceneSettingEditor.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleManageTab.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVWriter.cs" />
     <Compile Include="Assets\Editor\LitEditor\GlobalEditorSetting.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\BundleDetailList.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageList.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageSystem.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelBundleInfo.cs" />
+    <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\ABDataSource.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPainterEditor.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\UGUIOptimize.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterUIWindow.cs" />
+    <Compile Include="Assets\Editor\UI\SGDefaultControls.cs" />
+    <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\PackagesWindow.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />
-     <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
-     <None Include="Assets\The3rd\Demigiant\DOTween\Editor\DOTweenEditor.dll" />
-     <None Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenProEditor.XML" />
-     <None Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll" />
-     <None Include="Assets\The3rd\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />
+    <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.xml" />
+    <None Include="Assets\The3rd\Demigiant\DOTween\Editor\DOTweenEditor.dll" />
+    <None Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenProEditor.XML" />
+    <None Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenProEditor.dll" />
+    <None Include="Assets\The3rd\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -419,11 +420,11 @@
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.4.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.4.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
@@ -785,20 +786,23 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.SecurityCore">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.Codeless">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -809,11 +813,11 @@
     <Reference Include="UnityEngine.Purchasing.SecurityStub">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    <Reference Include="UnityEngine.Purchasing.Stores">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -821,47 +825,44 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing.SecurityCore">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing.Codeless">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Codeless.dll</HintPath>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing.Stores">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

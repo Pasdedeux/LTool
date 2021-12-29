@@ -30,7 +30,7 @@ using Sirenix.Utilities;
 using System.Collections.Generic;
 using UnityEditor.Experimental.SceneManagement;
 
-public class CreatUIWindow : OdinEditorWindow
+public class CreateUIWindow : OdinEditorWindow
 {
     [MenuItem(@"Assets/UI/Build", priority = 0)]
     public static EditorWindow OpenWindow()
@@ -38,7 +38,7 @@ public class CreatUIWindow : OdinEditorWindow
         ;
         if (LitFramework.FrameworkConfig.Instance.UseHotFixMode)
         {
-            CreatUIWindow window = GetWindow<CreatUIWindow>();
+            CreateUIWindow window = GetWindow<CreateUIWindow>();
             // Nifty little trick to quickly position the window in the middle of the editor.
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
             Object selet = Selection.activeObject;

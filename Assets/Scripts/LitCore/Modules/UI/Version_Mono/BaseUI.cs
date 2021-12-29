@@ -56,6 +56,7 @@ namespace LitFramework.Mono
         /// </summary>
         public UIFlag Flag = UIFlag.Normal;
 
+        [HideInInspector]
         /// <summary>
         /// 动画列表
         /// </summary>

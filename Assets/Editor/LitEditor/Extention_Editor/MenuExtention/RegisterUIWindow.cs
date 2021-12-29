@@ -28,6 +28,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 此编辑器目前不再支持HotFixUI制作
+/// 
+/// HOTfixui 由CreateUIWindow完成
+/// </summary>
 //[ExecuteInEditMode]
 public class RegisterUIWindow : EditorWindow
 {
@@ -505,7 +510,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add("/// </summary>");
             CSString.Add("private void Init()");
             CSString.Add("{");
-            CSString.Add("_root = this.GameObjectInstance.transform;");
+            CSString.Add(_isHotFix ? "_root = this.GameObjectInstance.transform;": "_root = this.transform;");
 
             if (_uiWindowInfo.useDefaultExitBtn)
             {

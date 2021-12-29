@@ -411,6 +411,7 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\UITest4.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

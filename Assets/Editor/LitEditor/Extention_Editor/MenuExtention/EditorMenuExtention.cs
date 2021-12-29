@@ -316,10 +316,11 @@ namespace LitFrameworkEditor.EditorExtended
                 //该路径不存在
                 Directory.CreateDirectory( path );
             }
+
             path += "/";
             path += className;
 
-            FileStream fs = new FileStream( path, FileMode.Create );
+            FileStream fs = new FileStream( path, FileMode.OpenOrCreate );
             StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
             sw.Write( cs );
             sw.Close();

@@ -58,12 +58,6 @@ public class EditorUse
             animTarget.autoPlay = false;
         };
 
-        //组件创建回调
-        UGUIOptimizeStrategy.camModeFunc = e => 
-        {
-            if ( FrameworkConfig.Instance.renderingType == LitRenderingType.URP )
-                e.gameObject.AddComponent<URPCam>();
-        };
         #endregion
 
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;

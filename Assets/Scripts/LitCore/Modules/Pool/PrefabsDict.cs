@@ -123,21 +123,26 @@ public class PrefabsDict : IDictionary<string, Transform>
             Transform prefab;
             try
             {
-                prefab = this._prefabs[ key ];
+                if (!this._prefabs.TryGetValue(key, out prefab))
+                {
+                    this._prefabs[key] = RsLoadManager.Instance.Load<GameObject>(key).transform;
+                    prefab = this._prefabs[key];
+                }
+
             }
-            catch ( KeyNotFoundException )
+            catch (Exception)
             {
-                string msg = string.Format( "A Prefab with the name '{0}' not found. " +
+                string msg = string.Format("A Prefab with the name '{0}' not found. " +
                                             "\nPrefabs={1}",
-                                            key, this.ToString() );
-                throw new KeyNotFoundException( msg );
+                                            key, this.ToString());
+                throw new Exception(msg);
             }
 
             return prefab;
         }
         set
         {
-            throw new System.NotImplementedException( "Read-only." );
+            throw new System.NotImplementedException("Read-only.");
         }
     }
 

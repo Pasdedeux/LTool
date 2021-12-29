@@ -47,9 +47,9 @@ namespace LitFrameworkEditor.Editor
         public static Action<Text> txtModFunc = ( e ) => { e.supportRichText = false; e.raycastTarget = false; };
 
         /// <summary>
-        /// 创建相机时回调
+        /// 创建Canvas时回调
         /// </summary>
-        public static Action<Canvas> camModeFunc = (e) => 
+        public static Action<Canvas> canvasModeFunc = (e) => 
         {
             var graph = e.gameObject.GetComponent<GraphicRaycaster>();
             if (graph != null)
@@ -80,7 +80,7 @@ namespace LitFrameworkEditor.Editor
         /// <param name="cam"></param>
         internal static void ModifyCanvas( Canvas cam )
         {
-            camModeFunc?.Invoke( cam );
+            canvasModeFunc?.Invoke( cam );
         }
     }
 

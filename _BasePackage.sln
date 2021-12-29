@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.CompatibilityLayer.Editor", "Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj", "{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +41,14 @@ Global
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F4F8825-D7F3-ECCC-633D-684F7A5B9873}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Release|Any CPU.Build.0 = Release|Any CPU
 		{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02218BBF-D130-B5F1-9D65-45ABE6DF7DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C23C67E9-D190-FDE6-BDD4-1BCDCAE4A576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

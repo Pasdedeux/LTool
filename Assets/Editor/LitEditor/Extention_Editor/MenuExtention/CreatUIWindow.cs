@@ -33,35 +33,41 @@ using UnityEditor.Experimental.SceneManagement;
 public class CreatUIWindow : OdinEditorWindow
 {
     [MenuItem(@"Assets/UI/Build", priority = 0)]
-    public static CreatUIWindow OpenWindow()
+    public static EditorWindow OpenWindow()
     {
-        var window = GetWindow<CreatUIWindow>();
-        // Nifty little trick to quickly position the window in the middle of the editor.
-        window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
-        Object selet = Selection.activeObject;
-        if(selet)
+        ;
+        if (LitFramework.FrameworkConfig.Instance.UseHotFixMode)
         {
-            string seletPath = AssetDatabase.GetAssetPath(selet);
-            if(seletPath.Contains(GlobalEditorSetting.UI_PREFAB_PATH))
+            CreatUIWindow window = GetWindow<CreatUIWindow>();
+            // Nifty little trick to quickly position the window in the middle of the editor.
+            window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
+            Object selet = Selection.activeObject;
+            if (selet)
             {
-                int startFolerIndex = "Assets/Resources/Prefabs/UI/".Length;
-                int classLen = 0;
-                if(seletPath.Contains("."))
+                string seletPath = AssetDatabase.GetAssetPath(selet);
+                if (seletPath.Contains(GlobalEditorSetting.UI_PREFAB_PATH))
                 {
-                    classLen=seletPath.Length - seletPath.IndexOf(selet.name);
+                    int startFolerIndex = "Assets/Resources/Prefabs/UI/".Length;
+                    int classLen = 0;
+                    if (seletPath.Contains("."))
+                    {
+                        classLen = seletPath.Length - seletPath.IndexOf(selet.name);
+                    }
+
+                    int endLength = seletPath.Length - startFolerIndex - classLen;
+                    if (classLen > 0)
+                    {
+                        endLength = endLength - 1;
+                    }
+                    string folder = seletPath.Substring(startFolerIndex, endLength);
+                    window.uiFolderName = folder;
                 }
-                
-                int endLength = seletPath.Length - startFolerIndex - classLen;
-                if (classLen > 0)
-                {
-                    endLength = endLength - 1;
-                }
-                string folder = seletPath.Substring(startFolerIndex, endLength);
-                window.uiFolderName = folder;
             }
+            window.uiScriptsName = "UI";
+            return window;
         }
-        window.uiScriptsName = "UI";
-        return window;
+        else
+            return GetWindow<RegisterUIWindow>();
     }
     private static CSWriteTool mCSWrite = new CSWriteTool();
    [ValidateInput("CheckClassNameValid", "(UI+类名) 例如：UIMain 类名应该不为空、空格，并且以UI开头")]

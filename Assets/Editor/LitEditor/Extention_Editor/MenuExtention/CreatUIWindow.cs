@@ -1054,9 +1054,10 @@ public class CreatUIWindow : OdinEditorWindow
         var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
 
-        var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-        graphics.ignoreReversedGraphics = true;
-        graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+        //提升性能，需要时增加到子对象上
+        //var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+        //graphics.ignoreReversedGraphics = true;
+        //graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
 
         GameObject animTrans = new GameObject("Container_Anim", typeof(RectTransform));
         animTrans.transform.SetParent(newCanvas.transform);

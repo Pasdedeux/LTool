@@ -124,9 +124,9 @@ public class RegisterUIWindow : EditorWindow
                     var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
                     canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
 
-                    var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-                    graphics.ignoreReversedGraphics = true;
-                    graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+                    //var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+                    //graphics.ignoreReversedGraphics = true;
+                    //graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
 
                     GameObject animTrans = new GameObject("Container_Anim", typeof(RectTransform));
                     animTrans.transform.SetParent(newCanvas.transform);

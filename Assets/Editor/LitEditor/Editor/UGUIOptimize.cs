@@ -44,7 +44,7 @@ namespace LitFrameworkEditor.Editor
         /// Text.raycastTarget = false;</para>
         /// <para>扩展方式为：CustomComponentOptimizing.txtModFunc += ( e ) => { ( e as Text ).supportRichText = true; };</para>
         /// </summary>
-        public static Action<Text> txtModFunc = ( e ) => { e.supportRichText = false; e.raycastTarget = false; };
+        public static Action<Text> txtModFunc = ( e ) => { e.supportRichText = false; e.raycastTarget = false; }; 
 
         /// <summary>
         /// 创建Canvas时回调

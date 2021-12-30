@@ -1,4 +1,6 @@
-﻿预制件ID,预制件所属分类,AB包资源名称#分割,Resource资源路径,初始数量
-ID,SpawnType,ABName,resPath,PreloadAmount
-string,string,string,string,int
-1,子弹,prefab_obj#Bullet,Prefabs/UI/Image,3
+﻿预制件ID,预制件所属分类,Resource资源路径,初始数量
+ID,SpawnType,resPath,PreloadAmount
+string,string,string,int
+1,测试,Prefabs/Test/Image_1,1
+2,测试1,Prefabs/Test/Image_2,3
+3,测试,Prefabs/Test/Image_1,5

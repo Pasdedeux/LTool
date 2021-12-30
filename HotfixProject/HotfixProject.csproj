@@ -419,13 +419,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HotFixLogic\CSV\SpawnConfig.cs" />
     <Compile Include="HotFixLogic\HotfixEntry.cs" />
+    <Compile Include="HotFixLogic\ILRBaseModel\IManager.cs" />
+    <Compile Include="HotFixLogic\ILRBaseModel\Singleton.cs" />
+    <Compile Include="HotFixLogic\ILRBaseModel\SingletonMono.cs" />
+    <Compile Include="HotFixLogic\Model\Const\Configs.cs" />
+    <Compile Include="HotFixLogic\Model\Const\ResPath.cs" />
+    <Compile Include="HotFixLogic\Model\Pool\SpawnPoolReflection.cs" />
+    <Compile Include="HotFixLogic\UIExport\ResPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="HotFixLogic\UI\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)createVersion.bat</PostBuildEvent>

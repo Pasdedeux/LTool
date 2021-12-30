@@ -141,7 +141,9 @@ namespace LitFramework
         #endregion
     }
 
-
+    /// <summary>
+    /// 渲染管线
+    /// </summary>
     public enum LitRenderingType
     {
         Internal,
@@ -149,13 +151,17 @@ namespace LitFramework
         URP,
         HDRP
     }
-
+    /// <summary>
+    /// 代码执行方式
+    /// </summary>
     public enum RunEnvironment
     {
         DotNet,
         ILRuntime,
     }
-
+    /// <summary>
+    /// 项目默认资源加载方式
+    /// </summary>
     public enum ResLoadType
     {
         Resource,

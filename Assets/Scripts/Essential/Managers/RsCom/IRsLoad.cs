@@ -55,7 +55,7 @@ namespace Assets.Scripts.Essential.Managers.RsCom
         /// 回收资源
         /// </summary>
         /// <param name="aPath"></param>
-        void RecoveryAsset();
+        void UnloadAsset();
         /// <summary>
         /// 同步获取AssetBundle
         /// </summary>

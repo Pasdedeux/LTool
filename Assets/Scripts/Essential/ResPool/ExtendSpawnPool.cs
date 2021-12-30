@@ -29,9 +29,13 @@ namespace Assets.Scripts
 {
     public class ExtendSpawnPool : SpawnPool
     {
+        /// <summary>
+        /// 会被调用两次：对象池初始化，配置表更新以后被热更框架调用
+        /// </summary>
+        /// <param name="isHotFix"></param>
         public override void LoadSpawnConfig( bool isHotFix = false )
         {
-            if ( loadType == LoadType.None ) return;
+            if (!useSpawnConfig) return;
 
             if ( FrameworkConfig.Instance.scriptEnvironment != RunEnvironment.ILRuntime )
                 Assets.Scripts.DotNetScriptCall.SetSpawnPool( this );

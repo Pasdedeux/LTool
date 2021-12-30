@@ -11,7 +11,7 @@ using UnityEngine.Profiling;
 using Assets.Scripts.Module;
 using System.Reflection;
 using UnityEngine.Networking;
-
+using LitFramework.LitPool;
 
 public class GUITest : MonoBehaviour
 {
@@ -25,21 +25,18 @@ public class GUITest : MonoBehaviour
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
         {
-            //DocumentAccessor.SaveAsset2LocalFileByJson(  new TesttClass() , AssetPathManager.Instance.GetStreamAssetDataPath( "TessJson.json", false ) );
+            var sp = SpawnManager.Instance.SpwanObject("Image_1");
+            var sp1 = SpawnManager.Instance.SpwanObject("Image_1");
 
-            //UIManager.Instance.Show(ResPath.UI.UITEST);
         }
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
         {
-            //var stri = AssetPathManager.Instance.GetStreamAssetDataPath( "TessJson.json" );
-            //DocumentAccessor.LoadAsset( stri, ( string e ) => 
-            //{
-            //    var obj = LitJson.JsonMapper.ToObject<TesttClass>( e );
-            //    LDebug.Log( ">>>" + obj.pos );
-            //} );
-
-            //UIManager.Instance.Close(ResPath.UI.UITEST);
+            SpawnManager.Instance.SpwanObject("Image_2");
+            SpawnManager.Instance.SpwanObject("Image_2");
+            SpawnManager.Instance.SpwanObject("Image_2");
+            SpawnManager.Instance.SpwanObject("Image_2");
+            SpawnManager.Instance.SpwanObject("Image_2");
         }
 
 

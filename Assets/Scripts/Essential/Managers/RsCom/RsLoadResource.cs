@@ -60,7 +60,7 @@ namespace Assets.Scripts.Essential.Managers.RsCom
             };
         }
 
-        public void RecoveryAsset()
+        public void UnloadAsset()
         {
             Resources.UnloadUnusedAssets();
         }

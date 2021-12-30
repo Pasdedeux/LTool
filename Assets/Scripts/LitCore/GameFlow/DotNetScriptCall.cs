@@ -78,7 +78,7 @@ namespace Assets.Scripts
 
         public static void SetSpawnPool(SpawnPool sp)
         {
-            var mainClass = Type.GetType("SpawnPoolReflection", true);
+            var mainClass =  Type.GetType("FrameworkSys.SpawnPoolReflection", true);
             var method = mainClass.GetMethod("SpawnReflection");
             method.Invoke(null, new object[] { sp });
         }

@@ -334,7 +334,7 @@ namespace LitFrameworkEditor.EditorExtended
                 case "Vector3":
                     result = "ParseVector3(" + attribute + ")";
                     break;
-                default:
+                default://"En_"
                     //result =( Hebdomad )Enum.Parse( typeof( Hebdomad ), testText )
                     result = "(" + type + ")Enum.Parse(typeof(" +type +")," + attribute + ")";
                     break;

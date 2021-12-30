@@ -411,6 +411,7 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Model\Pool\SpawnPoolReflection.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
@@ -464,7 +465,6 @@
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-TMP.shader" />
      <None Include="Assets\Art\Audios\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-     <None Include="Assets\GDD\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <Reference Include="UnityEngine">

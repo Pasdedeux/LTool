@@ -51,10 +51,11 @@ public class PrefabPool
     /// </summary>
     public Transform prefab;
 
+    [HideInInspector]
     /// <summary>
     /// A reference of the prefab's GameObject stored for performance reasons
     /// </summary>
-    internal GameObject prefabGO;  // Hidden in inspector, but not Debug tab
+    public GameObject prefabGO;  // Hidden in inspector, but not Debug tab
 
     /// <summary>
     /// The number of instances to preload
@@ -597,7 +598,7 @@ public class PrefabPool
     /// This is to allow asynchronous Spawn() usage in Awake() at game start
     /// </summary>
     /// <returns></returns>
-    internal void PreloadInstances()
+    public void PreloadInstances()
     {
         // If this has already been run for this PrefabPool, there is something
         //   wrong!

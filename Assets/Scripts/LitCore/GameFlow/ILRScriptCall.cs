@@ -215,6 +215,26 @@ namespace Assets.Scripts
                     ((Action<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>)act)(arg0, arg1);
                 });
             });
+            //对象池
+            _appdomain.DelegateManager.RegisterFunctionDelegate<PathologicalGames.SortSpawnPool, System.Boolean>();
+            _appdomain.DelegateManager.RegisterDelegateConvertor<System.Predicate<PathologicalGames.SortSpawnPool>>((act) =>
+            {
+                return new System.Predicate<PathologicalGames.SortSpawnPool>((obj) =>
+                {
+                    return ((Func<PathologicalGames.SortSpawnPool, System.Boolean>)act)(obj);
+                });
+            });
+            _appdomain.DelegateManager.RegisterFunctionDelegate<global::PrefabPool, System.Boolean>();
+            _appdomain.DelegateManager.RegisterDelegateConvertor<System.Predicate<global::PrefabPool>>((act) =>
+            {
+                return new System.Predicate<global::PrefabPool>((obj) =>
+                {
+                    return ((Func<global::PrefabPool, System.Boolean>)act)(obj);
+                });
+            });
+
+
+
             //UnityAction<float>
             _appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction>((act) => { return new UnityEngine.Events.UnityAction(() => { ((Action)act)(); }); });
             _appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<float>>((action) => { return new UnityEngine.Events.UnityAction<float>((a) => { ((System.Action<float>)action)(a); }); });
@@ -303,7 +323,7 @@ namespace Assets.Scripts
 
         public static void SetSpawnPool(SpawnPool sp)
         {
-            var mainClass = _appdomain.LoadedTypes["SpawnPoolReflection"].ReflectionType;
+            var mainClass = _appdomain.LoadedTypes["FrameworkSys.SpawnPoolReflection"].ReflectionType;
             var method = mainClass.GetMethod("SpawnReflection");
             method.Invoke(null, new object[] { sp });
         }

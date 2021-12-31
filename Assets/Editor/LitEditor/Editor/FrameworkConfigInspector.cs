@@ -44,7 +44,11 @@ public class FrameworkConfigInspector : Editor
         
         EditorGUILayout.Space();
 
+        EditorGUILayout.BeginHorizontal();
         _config.showLog = EditorGUILayout.Toggle( "开启调试日志", _config.showLog );
+        _config.isProgramTest = EditorGUILayout.Toggle("程序开发调试", _config.isProgramTest);
+        EditorGUILayout.EndHorizontal();
+
         _config.vSyncCount = EditorGUILayout.IntField( "是否开启vSunc(默认0即可)", _config.vSyncCount );
 
         EditorGUILayout.Space();

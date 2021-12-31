@@ -23,6 +23,7 @@
 *
 ======================================*/
 
+using LitFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,19 +124,21 @@ public class PrefabsDict : IDictionary<string, Transform>
             Transform prefab;
             try
             {
-                if (!this._prefabs.TryGetValue(key, out prefab))
+                //方便程序开发，直接在此节点做判断
+                if (!FrameworkConfig.Instance.isProgramTest)
+                    prefab = this._prefabs[key];
+                else if (!this._prefabs.TryGetValue(key, out prefab))
                 {
                     this._prefabs[key] = RsLoadManager.Instance.Load<GameObject>(key).transform;
                     prefab = this._prefabs[key];
                 }
-
             }
-            catch (Exception)
+            catch (KeyNotFoundException)
             {
                 string msg = string.Format("A Prefab with the name '{0}' not found. " +
                                             "\nPrefabs={1}",
                                             key, this.ToString());
-                throw new Exception(msg);
+                throw new KeyNotFoundException(msg);
             }
 
             return prefab;

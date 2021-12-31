@@ -123,6 +123,8 @@ namespace LitFramework
 
         [Header("是否打印日志")]
         public bool showLog = true;
+        [Header("程序开发调试")]
+        public bool isProgramTest = false;
         [Header("代码运行环境")]
         public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
         [Header( "UI使用热更制作模式" )]

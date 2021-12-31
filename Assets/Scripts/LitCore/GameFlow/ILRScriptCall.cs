@@ -165,7 +165,7 @@ namespace Assets.Scripts
         private void RegisterDelegate(ILRuntime.Runtime.Enviorment.AppDomain domain)
         {
             //===============这里做一些ILRuntime的注册===============//
-
+            
             //这里做一些ILRuntime的注册，这里我们注册值类型Binder，注释和解注下面的代码来对比性能差别
             _appdomain.RegisterValueTypeBinder(typeof(Vector3), new Vector3Binder());
             _appdomain.RegisterValueTypeBinder(typeof(Quaternion), new QuaternionBinder());
@@ -240,6 +240,7 @@ namespace Assets.Scripts
             _appdomain.DelegateManager.RegisterDelegateConvertor<UnityEngine.Events.UnityAction<float>>((action) => { return new UnityEngine.Events.UnityAction<float>((a) => { ((System.Action<float>)action)(a); }); });
 
             #region FariyGUI delegate
+#if FGUI
 
             _appdomain.DelegateManager.RegisterMethodDelegate<FairyGUI.EventContext>();
             _appdomain.DelegateManager.RegisterDelegateConvertor<FairyGUI.EventCallback0>((act) => { return new FairyGUI.EventCallback0(() => { ((Action)act)(); }); });
@@ -266,10 +267,11 @@ namespace Assets.Scripts
                 });
             });
 
-            #endregion
-
             _appdomain.DelegateManager.RegisterMethodDelegate<Vector2>();
             _appdomain.DelegateManager.RegisterMethodDelegate<System.Int32, FairyGUI.GObject>();
+
+#endif
+#endregion
 
 
             _appdomain.DelegateManager.RegisterMethodDelegate<System.String, System.Action<UnityEngine.U2D.SpriteAtlas>>();
@@ -299,7 +301,7 @@ namespace Assets.Scripts
             ILRuntime.Runtime.Generated.CLRBindings.Initialize(_appdomain);
         }
 
-        #region 静态外调方法
+#region 静态外调方法
 
         //================静态外调方法===============//
         public static void SetConfigInstall(string className, string methodName, string e)
@@ -338,9 +340,9 @@ namespace Assets.Scripts
         }
 
 
-        #endregion
+#endregion
 
-        #region AddComponent/GetComponent重定向方法
+#region AddComponent/GetComponent重定向方法
         unsafe void SetupAddGetComponent()
         {
             var arr = typeof(GameObject).GetMethods();
@@ -453,9 +455,9 @@ namespace Assets.Scripts
 
             return __esp;
         }
-        #endregion
+#endregion
 
-        #region 业务逻辑
+#region 业务逻辑
 
         /// <summary>
         /// 用于将Resource下的ScriptableObject
@@ -492,6 +494,6 @@ namespace Assets.Scripts
         }
 
 
-        #endregion
+#endregion
     }
 }

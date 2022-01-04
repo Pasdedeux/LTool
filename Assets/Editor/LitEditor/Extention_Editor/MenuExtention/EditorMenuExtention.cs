@@ -249,7 +249,7 @@ namespace LitFrameworkEditor.EditorExtended
                     if ( Path.GetExtension( NextFile.Name ) == ".xlsx"&& !NextFile.Name.StartsWith("~$"))
                     {
                         LDebug.Log( " >表处理 : " + NextFile.Name );
-                        FileStream stream =  NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        FileStream stream =  NextFile.Open(FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
                         string csvfile = XLSXTOCSV(stream);
                         CSVParser cp = new CSVParser();
                         CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
@@ -320,7 +320,7 @@ namespace LitFrameworkEditor.EditorExtended
             path += "/";
             path += className;
 
-            FileStream fs = new FileStream( path, FileMode.OpenOrCreate );
+            FileStream fs = new FileStream( path, FileMode.Create );
             StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
             sw.Write( cs );
             sw.Close();

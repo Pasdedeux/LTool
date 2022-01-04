@@ -25,18 +25,13 @@ public class GUITest : MonoBehaviour
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
         {
-            var sp = SpawnManager.Instance.SpwanObject("Image_1");
-            var sp1 = SpawnManager.Instance.SpwanObject("Image_1");
-
+            //var ccc = Configs.sSpawnConfig.IDs;
+            var cc = Configs.sSpawnConfig[0].resPath;
         }
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
         {
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
+            
         }
 
 

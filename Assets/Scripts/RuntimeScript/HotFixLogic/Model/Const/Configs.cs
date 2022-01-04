@@ -1,7 +1,7 @@
 #region << 版 本 注 释 >>
 ///*----------------------------------------------------------------
 // Author : Derek Liu
-// 创建时间:2022/1/4 14:13:28
+// 创建时间:2022/1/4 18:07:42
 // 备注：由模板工具自动生成
 ///----------------------------------------------------------------*/
 #endregion
@@ -15,9 +15,9 @@ using System.Linq;
 using System.Collections.Generic;
 public static partial class Configs
 {
-	public static SpawnConfig sSpawnConfig;
+	public static SpawnConfig SpawnConfigDict;
 	public static void Install()
 	{
-		sSpawnConfig = new SpawnConfig();
+		SpawnConfigDict = new SpawnConfig();
 	}
 }

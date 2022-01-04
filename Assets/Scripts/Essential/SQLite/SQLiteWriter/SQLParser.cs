@@ -72,19 +72,24 @@ namespace LitFrameworkEditor.EditorExtended
         }
         private void AddUsingNameSpace()
         {
+            CSString.Add("#region << 版 本 注 释 >>");
+            CSString.Add("///*----------------------------------------------------------------");
+            CSString.Add("// Author : Derek Liu");
+            CSString.Add("// 创建时间:" + DateTime.Now.ToString());
+            CSString.Add("// 备注：由模板工具自动生成");
+            CSString.Add("///----------------------------------------------------------------*/");
+            CSString.Add("#endregion");
+            CSString.Add("");
+            CSString.Add("//*******************************************************************");
+            CSString.Add("//**                  该类由工具自动生成，请勿手动修改                   **");
+            CSString.Add("//*******************************************************************");
+            CSString.Add("");
             CSString.Add("using UnityEngine;");
             CSString.Add("using System;");
             CSString.Add("using System.Text;");
             CSString.Add("using System.Collections.Generic;");
             CSString.Add("using SQLite;");
             CSString.Add("using " + SPACENAME + ";");
-            //CSString.Add( "#if UNITY_EDITOR" );
-            //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
-            //CSString.Add( "#endif" );
-            CSString.Add("/// <summary>");
-            CSString.Add("/// Author : Derek Liu");
-            CSString.Add("/// 创建时间:" + DateTime.Now.ToString());
-            CSString.Add("/// </summary>");
         }
         private void AddHead()
         {
@@ -333,7 +338,7 @@ namespace LitFrameworkEditor.EditorExtended
         }
         private void AddBody_Table()
         {
-            CSString.Add(string.Format("public const string TName = \"{0}\";", _classNameWithoutFlag));
+            CSString.Add(string.Format("private const string TName = \"{0}\";", _classNameWithoutFlag));
 
             CSString.Add("private int sCount = -1;");
             CSString.Add("public  int  Count {");
@@ -353,7 +358,7 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add("get {");
             CSString.Add("if(sIDs == null) {");
             CSString.Add("sIDs = new List<int>();");
-            CSString.Add("var tList = SQLManager.Instance.QueryGeneric(string.Format(SQLReader.SELECT_CLOWS_ORDERBY,\"ID\",TName)).rows;");
+            CSString.Add($"var tList = SQLManager.Instance.QueryGeneric(string.Format(SQLReader.SELECT_CLOWS_ORDERBY,\"{_attribute[0]}\",TName)).rows;");
             CSString.Add("for(int i = 0; i < tList.Count; i++){");
             CSString.Add("sIDs.Add((int)tList[i][0]);");
             CSString.Add("}");

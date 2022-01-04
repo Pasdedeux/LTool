@@ -103,15 +103,15 @@ class ConfigsParse
     {
         foreach ( var item in rpt.configsNameList )
         {
-            CSString.Add( string.Format( "public static Dictionary<{2}, {1}> {0};", item.Key + "Dict", item.Key, item.Value ) );
-            CSString.Add( string.Format( "public static List<{1}> {0};", item.Key + "List", item.Key ) );
+            CSString.Add( string.Format("public static Dictionary<{2}, {1}> {0}Dict;", item.Key, item.Key, item.Value ) );
+            CSString.Add( string.Format("public static List<{1}> {0}List;", item.Key , item.Key ) );
         }
 
         CSString.Add( string.Format( "public static void Install()" ) );
         CSString.Add( "{" );
         foreach ( var item in rpt.configsNameList )
         {
-            CSString.Add( string.Format( "{0} = {1}.Values.ToList();", item.Key + "List", item.Key + "Dict" ) );
+            CSString.Add(string.Format("{0}List = {1}Dict.Values.ToList();", item.Key, item.Key));
         }
         CSString.Add( "}" );
     }

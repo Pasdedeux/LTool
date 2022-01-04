@@ -57,12 +57,36 @@ namespace LitFrameworkEditor.EditorExtended
 
             _className = className;
 
+            AddUsingNameSpace();
+
             AddHead();
             AddBody();
             AddTail();
             string result = GetFomatedCS();
 
             return result;
+        }
+
+        private void AddUsingNameSpace()
+        {
+            CSString.Add("#region << 版 本 注 释 >>");
+            CSString.Add("///*----------------------------------------------------------------");
+            CSString.Add("// Author : Derek Liu");
+            CSString.Add("// 创建时间:" + DateTime.Now.ToString());
+            CSString.Add("// 备注：由模板工具自动生成");
+            CSString.Add("///----------------------------------------------------------------*/");
+            CSString.Add("#endregion");
+            CSString.Add("");
+            CSString.Add("//*******************************************************************");
+            CSString.Add("//**                  该类由工具自动生成，请勿手动修改                   **");
+            CSString.Add("//*******************************************************************");
+            CSString.Add("");
+            CSString.Add("using UnityEngine;");
+            CSString.Add("using System;");
+            CSString.Add("using System.Text;");
+            CSString.Add("using System.Collections.Generic;");
+            CSString.Add("using SQLite;");
+            CSString.Add("using " + SPACENAME + ";");
         }
 
         private void AddHead()

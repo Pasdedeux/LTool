@@ -1,16 +1,24 @@
+#region << 版 本 注 释 >>
+///*----------------------------------------------------------------
+// Author : Derek Liu
+// 创建时间:2022/1/4 18:07:42
+// 备注：由模板工具自动生成
+///----------------------------------------------------------------*/
+#endregion
+
+//*******************************************************************
+//**                  该类由工具自动生成，请勿手动修改                   **
+//*******************************************************************
+
 using UnityEngine;
 using System;
 using System.Text;
 using System.Collections.Generic;
 using SQLite;
 using LitFramework;
-/// <summary>
-/// Author : Derek Liu
-/// 创建时间:2022/1/4 14:13:28
-/// </summary>
 public class SpawnConfig
 {
-	public const string TName = "SpawnConfig";
+	private const string TName = "SpawnConfig";
 	private int sCount = -1;
 	public  int  Count {
 		get {
@@ -55,18 +63,10 @@ public class SpawnConfig
 	#region Raw
 	public class SpawnConfigRaw
 	{
-		private string sID;
 		/// <summary>
 		/// 预制件ID
 		/// </summary>
-		public string ID { 
-			get {
-				if(string.IsNullOrEmpty(sID)){
-					sID = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,"ID",TName,ID));
-				}
-				return sID;
-			}
-		}
+		public int ID {get;set;}
 		private string sSpawnType;
 		/// <summary>
 		/// 预制件所属分类

@@ -58,14 +58,14 @@ class SQLConfigsParse
     {
         foreach (var item in rpt.configsNameList)
         {
-            CSString.Add(string.Format("public static {0} s{0};", item.Key));
+            CSString.Add(string.Format("public static {0} {0}Dict;", item.Key));
         }
 
         CSString.Add(string.Format("public static void Install()"));
         CSString.Add("{");
         foreach (var item in rpt.configsNameList)
         {
-            CSString.Add(string.Format("s{0} = new {0}();", item.Key));
+            CSString.Add(string.Format("{0}Dict = new {0}();", item.Key));
         }
         CSString.Add("}");
     }

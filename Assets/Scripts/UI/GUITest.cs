@@ -26,7 +26,7 @@ public class GUITest : MonoBehaviour
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
         {
             //var ccc = Configs.sSpawnConfig.IDs;
-            var cc = Configs.sSpawnConfig[0].resPath;
+            LDebug.Log( Configs.SpawnConfigDict[1].resPath);
         }
 
         if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))

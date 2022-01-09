@@ -25,6 +25,9 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.String), typeof(global::LogColor)};
             method = type.GetMethod("Log", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Log_0);
+            args = new Type[]{typeof(System.Object)};
+            method = type.GetMethod("Log", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Log_1);
 
 
         }
@@ -46,6 +49,22 @@ namespace ILRuntime.Runtime.Generated
 
 
             global::LDebug.Log(@content, @color);
+
+            return __ret;
+        }
+
+        static StackObject* Log_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Object @content = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            global::LDebug.Log(@content);
 
             return __ret;
         }

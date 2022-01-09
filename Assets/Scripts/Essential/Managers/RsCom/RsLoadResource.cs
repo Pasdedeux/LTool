@@ -69,8 +69,10 @@ namespace Assets.Scripts.Essential.Managers.RsCom
         //FAKE
         public AssetBundle LoadAB( string aPath )
         {
-            throw new NotImplementedException();
+            return null;
         }
 
+        public void AfterInit() { }
+        
     }
 }

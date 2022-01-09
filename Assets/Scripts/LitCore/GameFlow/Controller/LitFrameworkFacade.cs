@@ -51,6 +51,10 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //Audio System
         AudioManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<AudioClip>(e);
         AudioManager.Instance.Install();
+        //RsLoader补充性调用，用以满足在起始RsLoader初始化时，AB相关数据尚未执行热更新的情况（这种情况下即使调用RsLoadAB接口也是以RsLoadResource方法实现的调用）
+        RsLoadManager.Instance.AfterInit();
+        //数据库选择性连接
+        if (FrameworkConfig.Instance.useSql) SQLite.SQLManager.Install();
         //如果需要执行Loading，则将 LocalDataManager.Instance.Install() 直接放入LoadingTask即可
         //【配置档】加载流程预绑定，如果有其它自定文件类处理扩展
         LocalDataManager.Instance.InstallEventHandler += e =>

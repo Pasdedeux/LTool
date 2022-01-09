@@ -35,7 +35,7 @@ namespace Assets.Scripts
         /// <param name="isHotFix"></param>
         public override void LoadSpawnConfig( bool isHotFix = false )
         {
-            if (!useSpawnConfig) return;
+            if (!FrameworkConfig.Instance.useSpawnConfig) return;
 
             if ( FrameworkConfig.Instance.scriptEnvironment != RunEnvironment.ILRuntime )
                 Assets.Scripts.DotNetScriptCall.SetSpawnPool( this );

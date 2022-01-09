@@ -40,19 +40,19 @@ namespace Assets.Scripts.Module.HotFix
         public void MoveExecute()
         {
             //版本总表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_VERSION, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_VERSION, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_VERSION, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_VERSION), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_VERSION, false), e.downloadHandler.data));
             }
 
             //Dll热更工程库
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false), e.downloadHandler.data));
             }
 
             //Dll热更工程调试库
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME_PDB, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME_PDB, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME_PDB, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME_PDB), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME_PDB, false), e.downloadHandler.data));
             }

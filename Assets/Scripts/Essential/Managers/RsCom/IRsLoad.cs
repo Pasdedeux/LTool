@@ -25,6 +25,7 @@ namespace Assets.Scripts.Essential.Managers.RsCom
 {
     interface IRsLoad
     {
+        void AfterInit();
         /// <summary>
         /// 同步获取Resources下资源
         /// </summary>

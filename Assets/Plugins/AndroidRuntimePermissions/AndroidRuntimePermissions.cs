@@ -107,7 +107,7 @@ public static class AndroidRuntimePermissions
 
 	public static Permission[] RequestPermissions( params string[] permissions )
 	{
-		ValidateArgument( permissions );
+		//ValidateArgument( permissions );
 
 #if IS_ANDROID_PLATFORM
 		PermissionCallback nativeCallback;

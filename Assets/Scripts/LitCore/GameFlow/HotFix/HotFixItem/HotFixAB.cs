@@ -41,7 +41,7 @@ namespace Assets.Scripts.Module.HotFix
         public void MoveExecute()
         {
             //AB档总表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME), (UnityWebRequest e) =>
              {
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Module.HotFix
                         if (item.Contains(".manifest")) continue;
                         item += ".zip";
                     }
-                    if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(item, false)))
+                    if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item, false)))
                     {
                         DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(item), (UnityWebRequest e) =>
                      {
@@ -75,7 +75,7 @@ namespace Assets.Scripts.Module.HotFix
             }
             
             //ABPath路径配置表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_AB_PATH, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_AB_PATH), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_AB_PATH, false), e.downloadHandler.data));
             }
@@ -182,8 +182,51 @@ namespace Assets.Scripts.Module.HotFix
 
                 //更新文档
                 DocumentAccessor.SaveAsset2LocalFile(localFilePath, contentByteArr);
-                LDebug.Log("检测更新完成：" + CONFIG_NAME);
+                LDebug.Log("检测更新完成：" + remoteFilePath);
             }
+            else LDebug.Log("文件不存在，不执行远程下载：" + remoteFilePath);
+
+            //=========================ABPATH=======================//
+            LDebug.Log("开始检测更新：" + CONFIG_AB_PATH);
+            //1、下载最新的资源配置信息
+            canGoFurther = true;
+            localContent = null;
+            wrongFileName = string.Empty;
+            remoteFilePath = CONFIG_AB_PATH;
+
+            //发送下载XX文件事件
+            MsgManager.Instance.Broadcast(InternalEvent.HANDLING_REMOTE_RES, new MsgArgs(remoteFilePath, InternalEvent.RemoteStatus.Download));
+
+            localFilePath = AssetPathManager.Instance.GetPersistentDataPath(remoteFilePath, false);
+            //2、根据本地是否存在资源配置信息，如果不存在，则视为远程更新流程不执行
+            if (DocumentAccessor.IsExists(localFilePath))
+            {
+                string remoteContent = null;
+                byte[] contentByteArr = null;
+
+                //远程主配置文件获取
+                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
+                {
+                    LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                    remoteContent = e.downloadHandler.text;
+                    contentByteArr = e.downloadHandler.data;
+                },
+                errorCallBack: (UnityWebRequest e) =>
+                {
+                    LDebug.LogError("Remote Error..." + e + ": " + remoteFilePath);
+                    if (!string.IsNullOrEmpty(e.error)) { canGoFurther = false; return; }
+                });
+
+                //因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
+                if (!canGoFurther)
+                {
+                    MsgManager.Instance.Broadcast(InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs(remoteContent, remoteFilePath));
+                    yield break;
+                }
+                LDebug.Log("检测更新完成：" + remoteFilePath);
+            }
+            else LDebug.Log("文件不存在，不执行远程下载：" + remoteFilePath);
         }
 
         //解压AB压缩包

@@ -320,7 +320,7 @@ namespace LitFrameworkEditor.EditorExtended
             path += "/";
             path += className;
 
-            FileStream fs = new FileStream( path, FileMode.OpenOrCreate );
+            FileStream fs = new FileStream( path, FileMode.Create );
             StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
             sw.Write( cs );
             sw.Close();

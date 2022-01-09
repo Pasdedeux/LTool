@@ -70,7 +70,7 @@ public class CreateUIWindow : OdinEditorWindow
             return GetWindow<RegisterUIWindow>();
     }
     private static CSWriteTool mCSWrite = new CSWriteTool();
-   [ValidateInput("CheckClassNameValid", "(UI+类名) 例如：UIMain 类名应该不为空、空格，并且以UI开头")]
+    [ValidateInput("CheckClassNameValid", "(UI+类名) 例如：UIMain 类名应该不为空、空格，并且以UI开头")]
     [LabelText("脚本名")]
     [HorizontalGroup(LabelWidth = 40)]
     public string uiScriptsName;

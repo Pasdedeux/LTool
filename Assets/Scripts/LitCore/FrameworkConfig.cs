@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,106 +31,146 @@ namespace LitFramework
     /// </summary>
     public class FrameworkConfig:SingletonMono<FrameworkConfig>
     {
-        #region 全局设置
-
+        #region 基础设置
+        [FoldoutGroup("基础设置")]
         /// <summary>
         /// 设置目标帧率
         /// </summary>
-        [Header("目标帧率")]
+        [LabelText("目标帧率")]
         public int TargetFrameRate = 30;
+        [FoldoutGroup("基础设置")]
         /// <summary>
         /// 开启垂直同步。默认为0-不开启，1-Every VBlank（每个VBlank计算一帧）,2-Every Second VBlank（每两个VBlank计算一帧）
         /// </summary>
-        [Header("垂直同步数。默认为0不开启")]
-        public int vSyncCount = 0; 
-
+        [LabelText("垂直同步数。默认为不开启")]
+        public int vSyncCount = 0;
+        [FoldoutGroup("基础设置")]
         /// <summary>
         /// 延迟调用函数计时检测间隔
         /// </summary>
-        [Header( "延迟调用函数计时检测间隔" )]
+        [LabelText( "延迟调用函数计时检测间隔" )]
         public float DelayFuncDetectInterver = 0.1f;
+        [FoldoutGroup("基础设置")]
         /// <summary>
         /// 开启使用逐帧遍历延迟函数调用。默认为false
         /// </summary>
-        [Header( "开启使用逐帧遍历延迟函数调用。默认为false" )]
+        [LabelText( "使用逐帧遍历延迟函数" )]
         public bool UseDelayFuncPreciseDetect = false;
-
+        //[FoldoutGroup("基础设置")]
         /// <summary>
         /// 当前项目是否是URP
         /// </summary>
-        [Header( "URP项目" )]
+        //[LabelText( "URP项目" )]
+        [HideInInspector]
         public LitRenderingType renderingType = LitRenderingType.Internal;
-
+        [FoldoutGroup("基础设置")]
         /// <summary>
         /// 当前项目资源加载方式
         /// </summary>
-        [Header( "资源加载方式" )]
+        [LabelText( "资源加载方式" )]
         public ResLoadType resLoadType = ResLoadType.Resource;
 
         #endregion
 
         #region UI设置
-
+        [FoldoutGroup("UI设置")]
+        [LabelText("以热更模式读取")]
+        public bool UseHotFixMode = true;
+        [FoldoutGroup("UI设置")]
         /// <summary>
         /// 触碰/点击忽略UI。默认为true
         /// </summary>
-        [Header( "触碰/点击忽略UI。true" )]
+        [LabelText( "触碰/点击UI检测" )]
         public bool TouchDetectUI = true;
-
-        [Header("UI DOT动画默认进场ID")]
+        [FoldoutGroup("UI设置")]
+        [LabelText("UI DOT动画默认进场ID")]
         public string OPENID = "open";
-        [Header("UI DOT动画默认出场ID")]
+        [FoldoutGroup("UI设置")]
+        [LabelText("UI DOT动画默认出场ID")]
         public string CLOSEID = "close";
-
-        [Header("UI低帧率")]
+        [FoldoutGroup("UI设置")]
+        [LabelText("UI低帧率")]
         public int UI_LOW_FRAMERATE = 10;
 
         #endregion
 
         #region 编辑器设置
-
+        [FoldoutGroup("编辑器设置")]
         /// <summary>
         /// 开启UGUI组件优化（仅对象创建时）
         /// </summary>
-        [Header("开启UGUI组件优化（对象创建）")]
+        [LabelText("开启UGUI组件优化（对象创建）")]
         public bool UGUIOpt = true;
-
-        [Header("静止按压判定时间")]
+        [FoldoutGroup("编辑器设置")]
+        [LabelText("静止按压判定时间")]
         public float TouchStationaryTime = 0.5f;
 
         #endregion
 
         #region 配置档设置
-        [Header( "AB包文件夹名称" )]
+        
+        [FoldoutGroup("配置档设置")]
+        [LabelText( "AB包文件夹名称" )]
         public string ABFolderName = "ABPackages";
-        //[Header( "AB总包名称" )]
+        //[LabelText( "AB总包名称" )]
         [HideInInspector]
         public string ABTotalName = "ABPackages";
-        [Header("是否打成压缩包")]
+        
+        [FoldoutGroup("配置档设置")]
+        [LabelText( "额外登记的文件后缀" )]
+        public string configs_suffix = "json|dat|assetbundle";
+       
+        [FoldoutGroup("配置档设置")]
+        [LabelText("是否打成压缩包")]
         public bool useZIP = false;
 
-        [Header( "额外登记的文件后缀" )]
-        public string configs_suffix = "json|dat|assetbundle";
-        [ Header("使用可读写目录")]
+        [FoldoutGroup("配置档设置")]
+        [LabelText("是否使用Sqllite")]
+        public bool useSql = false;
+
+        [FoldoutGroup("配置档设置")]
+        [LabelText("是否动态添加对象池")]
+        public bool useSpawnConfig = false;
+       
+        [FoldoutGroup("配置档设置")]
+        [ShowIf("useSpawnConfig")]
+        [LabelText("动态加载方式")]
+        public ResLoadType loadType = ResLoadType.Resource;
+
+
+        [FoldoutGroup("热更新")]
+        [ LabelText("使用可读写目录")]
         public bool UsePersistantPath = false;
-        [Header( "开启远程更新" )]
+
+        [FoldoutGroup("热更新")]
+        [ShowIf("UsePersistantPath")]
+        [LabelText( "开启远程更新" )]
         public bool UseRemotePersistantPath = false;
-        [Header("远程配置参数文件(带上/)")]
+
+        [FoldoutGroup("热更新")]
+        [ShowIf("UseRemotePersistantPath")]
+        [LabelText("远程配置参数文件(*/)")]
         public string RemoteUrlConfig = "http://192.168.1.102/";
 
         #endregion
 
-        #region 项目设置
+        #region 调试设置
 
-        [Header("是否打印日志")]
+        [BoxGroup("调试设置",centerLabel:true)]
+        [LabelText("是否打印日志")]
         public bool showLog = true;
-        [Header("程序开发调试")]
+        [BoxGroup("调试设置", centerLabel: true)]
+        [LabelText("程序开发调试")]
         public bool isProgramTest = false;
-        [Header("代码运行环境")]
-        public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
-        [Header( "UI使用热更制作模式" )]
-        public bool UseHotFixMode = true;
+        [BoxGroup("调试设置", centerLabel: true)]
+        [ShowIf("UsePersistantPath")]
+        [LabelText("强制更新读写目录")]
+        public bool ForceUpdatePersistant = false;
 
+        [Space(10)]
+        [LabelText("代码运行环境")]
+        public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
+        
         #endregion
 
         #region Func

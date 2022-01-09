@@ -23,6 +23,8 @@ public class ILRuntimeCrossBinding
             typeof( IEqualityComparer<int> ),
             typeof( ApplicationException ),
             typeof( BaseScrollElement ),
+            //typeof( System.Exception ),
+            //typeof( System.Collections.IEnumerable ),
             //typeof( Sirenix.OdinInspector.SerializedScriptableObject ),
         };
 

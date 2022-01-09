@@ -65,20 +65,25 @@ namespace Assets.Scripts.Essential.Managers.RsCom
 
         public RsLoadAB()
         {
+            
+        }
+
+        public void AfterInit()
+        {
             string path = FrameworkConfig.Instance.UsePersistantPath ? Application.persistentDataPath + "/" : Application.streamingAssetsPath + "/";
-            DocumentAccessor.LoadAsset( path + "ABPath.csv", ( string e ) =>
+            DocumentAccessor.LoadAsset(path + "ABPath.csv", (string e) =>
             {
-                string[] str = e.Split( '\n' );
-                for ( int i = 1; i < str.Length; i++ )
+                string[] str = e.Split('\n');
+                for (int i = 1; i < str.Length; i++)
                 {
-                    string line = str[ i ];
-                    if ( line != "" )
+                    string line = str[i];
+                    if (line != "")
                     {
-                        string[] content = line.Split( ',' );
-                        PathToAB.Add( content[ 0 ].Trim(), content[ 1 ].Trim() );
+                        string[] content = line.Split(',');
+                        PathToAB.Add(content[0].Trim(), content[1].Trim());
                     }
                 }
-            } );
+            });
             m_ResoucesTP = ResoucesASYLoadTP.File;
             AbPath = path;
             AbPath = AbPath + FrameworkConfig.Instance.ABFolderName + "/";

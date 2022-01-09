@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_6;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;IAP;FGUI;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_6;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;UNITY_ASTC_ONLY_DECOMPRESS;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;IAP;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;DEVELOPMENT_BUILD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Statistic\StatisticManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseManager.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Collections_Generic_List_1_Int32_Binding.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLDataTable.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTweener.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_QueueAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\BlendMode.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixController.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\UnityEngine_Vector3_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XML.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Timers.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Tree\TreeNode.cs" />
@@ -183,10 +185,10 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\SwipeGesture.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\IHotFix.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\UBBParser.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Single_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\IUIManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GButtonAdapter.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\SQLiteReader\SQLReader.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\ReporterGUI.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\PinchGesture.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\MeshFactory.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Object_Binding.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\Vector3Binder.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\DebugAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Controller.cs" />
@@ -220,7 +223,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearSize.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\VibrateManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\Example\PlayerDataExample.cs" />
+    <Compile Include="Assets\Scripts\Essential\SQLite\PlayerDataExample.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\EllipseMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixItem\HotFixCSVList.cs" />
@@ -229,7 +232,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\AsyncCreationHelper.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\RelationItem.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\SQLiteReader\SQLManager.cs" />
+    <Compile Include="Assets\Scripts\Essential\SQLite\SQLManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlParser.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\TranslationHelper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIConfig.cs" />
@@ -240,6 +243,8 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RegularPolygonMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\EMRenderSupport.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Msg\MsgManager.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Array_Binding.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\SpawnPool.cs" />
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\CSVConfigData.cs" />
@@ -273,9 +278,10 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\AssetPathManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\Example\ExampleQuery.cs" />
+    <Compile Include="Assets\Scripts\Essential\SQLite\ExampleQuery.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\SQLiteWriter\SQLParser.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Int32_Binding.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Text_StringBuilder_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\CryptoSHA1.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\SingletonMono.cs" />
@@ -319,9 +325,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\UIPainter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlParseOptions.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlButton.cs" />
-    <Compile Include="Assets\Scripts\Essential\SQLite\SQLiteWriter\SQLiteWriter.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GTreeAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
+    <Compile Include="Assets\Scripts\Essential\SQLite\SQLReader.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -370,12 +376,14 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PoolManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\Spine\SpineLoader.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\BindingProperty.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Reflection_MemberInfo_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Filter\ColorFilter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
     <Compile Include="Assets\Scripts\UI\UILoading.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\StraightLineMesh.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ColliderHitTest.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\ZeroTimeRecord.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Type_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Vsrsion_HotFix\UIManager.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RoundedRectMesh.cs" />
@@ -409,6 +417,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader3D.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\LitFrameworkFacade.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\ControllerAction.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Char_Binding.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TextField.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearAnimation.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\TweenValue.cs" />
@@ -428,6 +437,7 @@
      <None Include="Assets\Shader\LitQueueAnimate.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Shader\CircleShader.shader" />
+     <None Include="Assets\StreamingAssets\csvList.txt" />
      <None Include="Assets\smcs.rsp" />
      <None Include="Assets\Art\Psd\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -438,21 +448,18 @@
      <None Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF SSD.shader" />
-     <None Include="Assets\StreamingAssets\LHotfixProject.dll" />
      <None Include="Assets\The3rd\Demigiant\DOTween\DOTween.XML" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.dll" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Text.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Image.shader" />
-     <None Include="Assets\StreamingAssets\csvList.txt" />
-     <None Include="Assets\Scripts\Essential\SQLite\Plugins\x86\sqlite3.dll" />
-     <None Include="Assets\Scripts\Essential\SQLite\Plugins\x64\sqlite3.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\The3rd\Demigiant\DOTween\DOTween.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets\StreamingAssets\LHotfixProject.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

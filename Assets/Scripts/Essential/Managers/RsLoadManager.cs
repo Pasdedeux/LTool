@@ -121,5 +121,10 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
     {
         _rsLoad = null;
     }
+
+    public void AfterInit()
+    {
+        _rsLoad.AfterInit();
+    }
 }
 

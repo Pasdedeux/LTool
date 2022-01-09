@@ -31,8 +31,7 @@ namespace LHotfixProject
         public static void RunGame_ILRuntime()
         {
             //记得完成相关CLR绑定以及适配器制作
-            LDebug.Log( string.Format( "《《《 --- {0} version v1.0.1 --- 》》》", FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet ? "DotNet" : "HotFix" ), LogColor.yellow );
+            LDebug.Log( string.Format( "《《《 --- {0} version v1.0.0 --- 》》》", FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet ? "DotNet" : "HotFix" ), LogColor.yellow );
         }
-
     }
 }

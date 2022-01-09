@@ -39,7 +39,7 @@ namespace Assets.Scripts.Module.HotFix
         public void MoveExecute()
         {
             //配置档总表
-            if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)))
+            if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false)))
             {
                 DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(CONFIG_NAME), (UnityWebRequest e) => DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(CONFIG_NAME, false), e.downloadHandler.data));
 
@@ -52,7 +52,7 @@ namespace Assets.Scripts.Module.HotFix
                 for (int i = 1; i < csvKeys.Length; i++)
                 {
                     string item = csvKeys[i].Split(',')[0];
-                    if (!DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item, false)) && DocumentAccessor.IsExists(AssetPathManager.Instance.GetStreamAssetDataPath(item, false)))
+                    if (FrameworkConfig.Instance.ForceUpdatePersistant || !DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item, false)))
                     {
                         DocumentAccessor.LoadAsset(AssetPathManager.Instance.GetStreamAssetDataPath(item), (UnityWebRequest e) =>
                      {

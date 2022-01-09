@@ -444,6 +444,7 @@ MonoBehaviour:
   UseDelayFuncPreciseDetect: 0
   renderingType: 0
   resLoadType: 0
+  UseHotFixMode: 1
   TouchDetectUI: 1
   OPENID: open
   CLOSEID: close
@@ -452,14 +453,18 @@ MonoBehaviour:
   TouchStationaryTime: 0.5
   ABFolderName: ABPackages
   ABTotalName: ABPackages
-  useZIP: 0
   configs_suffix: json|dat|assetbundle
+  useZIP: 0
+  useSql: 0
+  useSpawnConfig: 0
+  loadType: 0
   UsePersistantPath: 0
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1
+  isProgramTest: 0
+  ForceUpdatePersistant: 1
   scriptEnvironment: 0
-  UseHotFixMode: 1
 --- !u!1 &697112009
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,8 +592,6 @@ MonoBehaviour:
   logMessages: 0
   perPrefabPoolOptions: []
   maxParticleDespawnTime: 300
-  useSpawnConfig: 0
-  loadType: 1
 --- !u!1 &1985084804
 GameObject:
   m_ObjectHideFlags: 0

@@ -169,13 +169,6 @@ namespace PathologicalGames
         internal List<Transform> _spawned = new List<Transform>();
         #endregion Private Properties
 
-        [Header("是否使用动态加载")]
-        public bool useSpawnConfig = false;
-
-        [EnableIf("useSpawnConfig")]
-        [Header("动态加载方式")]
-        public ResLoadType loadType = ResLoadType.Resource;
-
         #region Constructor and Init
         private void Awake()
         {

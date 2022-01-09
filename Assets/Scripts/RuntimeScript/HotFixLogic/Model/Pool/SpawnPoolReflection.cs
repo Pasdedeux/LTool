@@ -38,40 +38,40 @@ namespace FrameworkSys
         {
             LDebug.Log("成功反射调用执行 SpawnPoolReflection -> SpawnReflection");
 
-            Dictionary<string, SpawnConfig> spawnConfigs = Configs.SpawnConfigDict;
-
-            foreach ( var item in spawnConfigs )
+            var spawnConfigs = Configs.SpawnConfigDict;
+            List<int> ids = spawnConfigs.Keys.ToList();
+            for (int i=0;i< ids.Count;i++)
             {
                 bool poolExist = false;
                 List<PrefabPool> spawnList;
-                SpawnConfig spawnItem = item.Value;
-                if ( sp.perPrefabPoolOptions.Exists( e => e.SortSpawnName == spawnItem.SpawnType ) )
+                var spawnItem = spawnConfigs[ids[i]];
+                if (sp.perPrefabPoolOptions.Exists(e => e.SortSpawnName == spawnItem.SpawnType))
                 {
-                    var sorted = sp.perPrefabPoolOptions.Where( e => e.SortSpawnName == spawnItem.SpawnType ).First();
+                    var sorted = sp.perPrefabPoolOptions.Where(e => e.SortSpawnName == spawnItem.SpawnType).First();
                     spawnList = sorted.Pools;
                 }
                 else
                 {
                     SortSpawnPool ssp = new SortSpawnPool();
                     ssp.SortSpawnName = spawnItem.SpawnType;
-                    sp.perPrefabPoolOptions.Add( ssp );
+                    sp.perPrefabPoolOptions.Add(ssp);
                     ssp.Pools = spawnList = new List<PrefabPool>();
                 }
 
                 GameObject instantiateObj = null;
-                instantiateObj = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, sp.loadType);
-                if ( instantiateObj == null )
+                instantiateObj = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType);
+                if (instantiateObj == null)
                 {
-                    throw new Exception( string.Format( "检查配置表SpawnConfig的ID: {0} 资源是否存在", spawnItem.ID ) );
+                    throw new Exception(string.Format("检查配置表SpawnConfig的ID: {0} 资源是否存在", spawnItem.ID));
                 }
 
                 int hashCode = instantiateObj.GetHashCode();
                 //判定是否存在于池表，如果存在直接叠加
-                poolExist = spawnList.Exists(e=>e.prefabGO.GetHashCode() == hashCode);
+                poolExist = spawnList.Exists(e => e.prefabGO.GetHashCode() == hashCode);
                 if (!poolExist)
                 {
                     PrefabPool spawnObj = new PrefabPool();
-                    spawnObj.prefab = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, sp.loadType).transform;
+                    spawnObj.prefab = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType).transform;
                     spawnObj.preloadAmount = spawnItem.PreloadAmount;
                     spawnObj.inspectorInstanceConstructor();
 

@@ -139,6 +139,14 @@ namespace Assets.Scripts
                     }
                 }
             }
+
+            ////是否以读取数据库方式读取配置
+            //if (FrameworkConfig.Instance.useSql)
+            //{
+            //    var mainClass = _appdomain.LoadedTypes["SQLite.SQLManager"].ReflectionType;
+            //    var method = mainClass.GetMethod("Install");
+            //    method.Invoke(null, null);
+            //}
         }
 
 

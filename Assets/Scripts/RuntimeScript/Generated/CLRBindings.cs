@@ -22,10 +22,21 @@ namespace ILRuntime.Runtime.Generated
         /// </summary>
         public static void Initialize(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
+            System_String_Binding.Register(app);
+            System_Collections_Generic_List_1_Int32_Binding.Register(app);
+            System_Array_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding.Register(app);
+            System_Type_Binding.Register(app);
             LDebug_Binding.Register(app);
+            System_Reflection_MemberInfo_Binding.Register(app);
+            System_Object_Binding.Register(app);
+            System_Char_Binding.Register(app);
+            System_Single_Binding.Register(app);
+            UnityEngine_Vector3_Binding.Register(app);
+            System_Text_StringBuilder_Binding.Register(app);
+            System_Int32_Binding.Register(app);
             LitFramework_SingletonMono_1_FrameworkConfig_Binding.Register(app);
             LitFramework_FrameworkConfig_Binding.Register(app);
-            System_String_Binding.Register(app);
         }
 
         /// <summary>

@@ -32,7 +32,16 @@ namespace Assets.Scripts
     {
         private bool _isPreInit = false;
 
-        public void Load() { }
+        public void Load() 
+        {
+            ////是否以读取数据库方式读取配置
+            //if (FrameworkConfig.Instance.useSql)
+            //{
+            //    var mainClass = Type.GetType("SQLite.SQLManager", true);
+            //    var method = mainClass.GetMethod("Install");
+            //    method.Invoke(null, null);
+            //}
+        }
 
 
         public void PreStartRun()

@@ -85,11 +85,11 @@ namespace Assets.Scripts.Essential.SDK
 
         public void Install()
         {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
             var checkPermission = AndroidRuntimePermissions.CheckPermissions(_permissionToRequestDict);
             for (int i = 0; i < checkPermission.Length; i++)
             {
-                LDebug.Log(">>" + checkPermission[i]);
+                LDebug.Log($">>{_permissionToRequestDict[i]}: {checkPermission[i]}" );
             }
             var toCheckListIndex = checkPermission.Select( ( a, k ) => new { value = a, index = k } ).Where( a => a.value != AndroidRuntimePermissions.Permission.Granted ).Select( k => k.index ).ToList();
 
@@ -98,7 +98,7 @@ namespace Assets.Scripts.Essential.SDK
             var ps = AndroidRuntimePermissions.RequestPermissions( toRequestArray );
             for (int i = 0; i < ps.Length; i++)
             {
-                LDebug.Log(">>!!" + ps[i]);
+                LDebug.Log($">>Re request {toRequestArray[ i ]} : {ps[i]}");
             }
 #endif
         }

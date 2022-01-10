@@ -125,8 +125,13 @@ namespace LitFramework
         public bool useZIP = false;
 
         [FoldoutGroup("配置档设置")]
+        [OnValueChanged("CheckPersistPath")]
         [LabelText("是否使用Sqllite")]
         public bool useSql = false;
+        private void CheckPersistPath()
+        {
+            if (useSql && !UsePersistantPath) UsePersistantPath = true;
+        }
 
         [FoldoutGroup("配置档设置")]
         [LabelText("是否动态添加对象池")]
@@ -139,8 +144,13 @@ namespace LitFramework
 
 
         [FoldoutGroup("热更新")]
+        [OnValueChanged("CheckUseSql")]
         [ LabelText("使用可读写目录")]
         public bool UsePersistantPath = false;
+        private void CheckUseSql()
+        {
+            if (!UsePersistantPath && useSql) useSql = false;
+        }
 
         [FoldoutGroup("热更新")]
         [ShowIf("UsePersistantPath")]

@@ -40,7 +40,8 @@ namespace LitFramework.MsgSystem
         public static string END_LOAD_REMOTE_CONFIG = "lhwUtVKjI=END_LOAD_REMOTE_CONFIG";
         //带参数。对特定文件进入处理阶段：下载、写入
         public static string HANDLING_REMOTE_RES = "lhwUtVKjI=HANDLING_REMOTE_RES";
-
+        //正式进入/Loading结束
+        public static string START_UP = "lhwUtVKjI=START_UP";
 
         //UI系统专用
         //通用列表元素接收样式设定通知

@@ -21,26 +21,48 @@ public class GUITest : MonoBehaviour
     }
     private void OnGUI()
     {
-        int index = 0;
-
-        if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
+        //第一行
+        int index = 0, vindex = 0 ;
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "测试1"))
         {
-            var sp = SpawnManager.Instance.SpwanObject("Image_1");
-            var sp1 = SpawnManager.Instance.SpwanObject("Image_1");
 
         }
-
-        if (GUI.Button(new Rect(10 + 110 * index++, 100, 100, 100), "测试按钮1"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试2"))
         {
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
-            SpawnManager.Instance.SpwanObject("Image_2");
+           
         }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试3"))
+        {
 
+        }
+        ////第二行
+        //index = 0;vindex++;
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试4"))
+        //{
 
+        //}
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试5"))
+        //{
 
+        //}
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试6"))
+        //{
+
+        //}
+        ////第三行
+        //index = 0; vindex++;
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试7"))
+        //{
+
+        //}
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试8"))
+        //{
+
+        //}
+        //if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "测试9"))
+        //{
+
+        //}
     }
 
 }

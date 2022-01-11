@@ -137,7 +137,7 @@ namespace LitFramework.HotFix
         /// </summary>
         private Dictionary<string, BaseUI> _dictLoadedAllUIs;
         /// <summary>
-        /// 当前显示的非弹出类UI窗体
+        /// 当前显示的弹出类UI窗体
         /// </summary>
         private Dictionary<string, BaseUI> _dictCurrentShowUIs;
 
@@ -415,7 +415,7 @@ namespace LitFramework.HotFix
 
             Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
 
-            LDebug.Log($"  UIClose: {baseUI.AssetsName}");
+            LDebug.Log($" Lit >> UIClose: {baseUI.AssetsName}");
         }
 
 

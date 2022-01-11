@@ -137,16 +137,17 @@ namespace LitFramework.HotFix
         /// </summary>
         private Dictionary<string, BaseUI> _dictLoadedAllUIs;
         /// <summary>
-        /// 当前显示的弹出类UI窗体
+        /// 当前显示的弹出类UI窗体。按操作排序
+        /// 记录顺序开启的所有弹窗，原则上按照顺序记录顺次关闭。stack弹窗使用单独队列管理顺序，并共享此列表
         /// </summary>
-        private Dictionary<string, BaseUI> _dictCurrentShowUIs;
+        private List<BaseUI> _listCurrentShowUIs;
 
         public void Install()
         {
             _allRegisterUIDict = new Dictionary<string, string>();
             _stackCurrentUI = new Stack<BaseUI>();
+            _listCurrentShowUIs = new List<BaseUI>(16);
             _dictLoadedAllUIs = new Dictionary<string, BaseUI>();
-            _dictCurrentShowUIs = new Dictionary<string, BaseUI>();
 
             TransRoot = GameObject.FindGameObjectWithTag(UISysDefine.SYS_TAG_ROOTCANVAS).transform;
             TransNormal = UnityHelper.FindTheChildNode(TransRoot, UISysDefine.SYS_TAG_NORMALCANVAS);
@@ -204,7 +205,7 @@ namespace LitFramework.HotFix
             }
             _allRegisterUIDict.Clear();
             _stackCurrentUI.Clear();
-            _dictCurrentShowUIs.Clear();
+            _listCurrentShowUIs.Clear();
 
             TransFixed = null;
             TransPopUp = null;
@@ -221,7 +222,7 @@ namespace LitFramework.HotFix
             _stackCurrentUI = null;
             _allRegisterUIDict = null;
             _dictLoadedAllUIs = null;
-            _dictCurrentShowUIs = null;
+            _listCurrentShowUIs = null;
 
             DelHideCallBack = null;
             LoadResourceFunc = null;
@@ -552,9 +553,9 @@ namespace LitFramework.HotFix
                     topUI.OnDisabled(true);
             }
 
-            _dictCurrentShowUIs.TryGetValue(uiName, out baseUI);
-            if (baseUI != null)
+            if (_listCurrentShowUIs.Exists(e => e.AssetsName.Equals(uiName)))
             {
+                baseUI = _listCurrentShowUIs.Where(e => e.AssetsName.Equals(uiName)).First();
                 if (baseUI.IsShowing)
                     baseUI.OnShow(args: args);
                 else
@@ -571,7 +572,7 @@ namespace LitFramework.HotFix
             _dictLoadedAllUIs.TryGetValue(uiName, out baseUI);
             if (baseUI != null)
             {
-                _dictCurrentShowUIs.Add(uiName, baseUI);
+                _listCurrentShowUIs.Add(baseUI);
                 if (baseUI.IsInitOver)
                     baseUI.OnEnabled(false);
                 baseUI.Show(args: args);
@@ -588,16 +589,18 @@ namespace LitFramework.HotFix
             BaseUI baseUI;
 
             //当前UI显示列表中没有记录或者总表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue(uiName, out baseUI);
-            if (baseUI == null)
+            if (!_listCurrentShowUIs.Exists(e => e.AssetsName.Equals(uiName)))
             {
                 _dictLoadedAllUIs.TryGetValue(uiName, out baseUI);
                 if (baseUI == null)
                     return;
             }
             else
+            {
+                baseUI = _listCurrentShowUIs.Where(e => e.AssetsName.Equals(uiName)).First();
                 //隐藏窗口并从列表中移除
-                _dictCurrentShowUIs.Remove(uiName);
+                _listCurrentShowUIs.Remove(baseUI);
+            }
 
             baseUI.Close(isDestroy: isDestroy);
 
@@ -622,7 +625,8 @@ namespace LitFramework.HotFix
                 }
                 else
                 {
-                    var keys = _dictCurrentShowUIs.Values.ToList();
+                    //TODO 混合弹窗事件对背景板的影响
+                    var keys = _listCurrentShowUIs;
                     for (int i = 0; i < keys.Count; i++)
                     {
                         if (keys[i].IsShowing) keys[i].CheckMask();
@@ -639,9 +643,10 @@ namespace LitFramework.HotFix
         {
             BaseUI baseUI;
             //当前UI显示列表中没有记录则直接返回
-            _dictCurrentShowUIs.TryGetValue(uiName, out baseUI);
-            if (baseUI != null)
+            //.TryGetValue(uiName, out baseUI);
+            if (_listCurrentShowUIs.Exists(e => e.AssetsName.Equals(uiName)))
             {
+                baseUI = _listCurrentShowUIs.Where(e => e.AssetsName.Equals(uiName)).First();
                 if (baseUI.IsShowing)
                     baseUI.OnShow(args: args);
                 else
@@ -654,27 +659,29 @@ namespace LitFramework.HotFix
             }
 
             //正在显示的UI进行隐藏
-            var toCloseList = _dictCurrentShowUIs.Values.ToList();
+            var toCloseList = _listCurrentShowUIs;
             for (int i = toCloseList.Count - 1; i > -1; i--)
                 Close(toCloseList[i].AssetsName, useAnim: false);
-            //foreach (BaseUI baseui in _dictCurrentShowUIs.Values)
-            //{
-            //    baseui.OnDisabled(true);
-            //    baseui.Close(freeze: true);
-            //}
-            while (_stackCurrentUI.Count>0)
-                Close(_stackCurrentUI.Pop().AssetsName,useAnim:false);
-            //foreach (BaseUI baseui in _stackCurrentUI)
-            //{
-            //    baseui.OnDisabled(true);
-            //    baseui.Close(freeze: true);
-            //}
+            ////foreach (BaseUI baseui in _dictCurrentShowUIs.Values)
+            ////{
+            ////    baseui.OnDisabled(true);
+            ////    baseui.Close(freeze: true);
+            ////}
+
+            //while (_stackCurrentUI.Count > 0)
+            //    Close(_stackCurrentUI.Pop().AssetsName, useAnim: false);
+
+            ////foreach (BaseUI baseui in _stackCurrentUI)
+            ////{
+            ////    baseui.OnDisabled(true);
+            ////    baseui.Close(freeze: true);
+            ////}
 
             //把当前窗体加载到正显示的UI窗口缓存中去
             _dictLoadedAllUIs.TryGetValue(uiName, out baseUI);
             if (baseUI != null)
             {
-                _dictCurrentShowUIs.Add(uiName, baseUI);
+                _listCurrentShowUIs.Add(baseUI);
                 if (baseUI.IsInitOver)
                     baseUI.OnEnabled(false);
                 baseUI.Show(args: args);
@@ -690,8 +697,8 @@ namespace LitFramework.HotFix
         {
             BaseUI baseUI;
 
-            _dictCurrentShowUIs.TryGetValue(uiName, out baseUI);
-            if (baseUI == null)
+            //_dictCurrentShowUIs.TryGetValue(uiName, out baseUI);
+            if (!_listCurrentShowUIs.Exists(e => e.AssetsName.Equals(uiName)))
             {
                 if (!isDestroy)
                     return;
@@ -702,8 +709,11 @@ namespace LitFramework.HotFix
                     return;
             }
             else
+            {
+                baseUI = _listCurrentShowUIs.Where(e => e.AssetsName.Equals(uiName)).First();
                 //隐藏窗口并从列表中移除
-                _dictCurrentShowUIs.Remove(uiName);
+                _listCurrentShowUIs.Remove(baseUI);
+            }
 
             baseUI.Close(isDestroy: isDestroy);
 
@@ -712,7 +722,7 @@ namespace LitFramework.HotFix
                 ClearPopUpStackArray();
 
             //正在显示的窗口和栈缓存的窗口再次进行显示处理
-            foreach (BaseUI baseui in _dictCurrentShowUIs.Values)
+            foreach (BaseUI baseui in _listCurrentShowUIs)
             {
                 if (!baseui.IsShowing)
                     baseui.Show(true);

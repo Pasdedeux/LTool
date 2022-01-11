@@ -104,7 +104,8 @@ namespace LitFramework.HotFix
         /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
         public void Close(bool isDestroy = false, bool freeze = false)
         {
-            OnDisabled(freeze);
+            ////已由框架层调用，重复调用可能需要看下必要性
+            //OnDisabled(freeze);
 
             if (!freeze)
             {

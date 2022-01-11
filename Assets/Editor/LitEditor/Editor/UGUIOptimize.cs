@@ -51,9 +51,9 @@ namespace LitFrameworkEditor.Editor
         /// </summary>
         public static Action<Canvas> canvasModeFunc = (e) => 
         {
-            var graph = e.gameObject.GetComponent<GraphicRaycaster>();
-            if (graph != null)
-                GameObject.DestroyImmediate(graph);
+            //var graph = e.gameObject.GetComponent<GraphicRaycaster>();
+            //if (graph != null)
+            //    GameObject.DestroyImmediate(graph);
         };
 
         /// <summary>

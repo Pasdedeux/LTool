@@ -74,7 +74,7 @@ namespace LitFramework
 
         #region UI设置
         [FoldoutGroup("UI设置")]
-        [LabelText("以热更模式读取")]
+        [LabelText("以热更模式制作")]
         public bool UseHotFixMode = true;
         [FoldoutGroup("UI设置")]
         /// <summary>

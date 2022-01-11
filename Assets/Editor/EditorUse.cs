@@ -44,6 +44,7 @@ public class EditorUse
             animTarget.optionalBool0 = true;
             animTarget.autoKill = false;
             animTarget.autoPlay = false;
+            animTarget.isIndependentUpdate = true;
 
             //出场UI动画
             animTarget = e.AddComponent<DOTweenAnimation>();
@@ -56,8 +57,9 @@ public class EditorUse
             animTarget.optionalBool0 = true;
             animTarget.autoKill = false;
             animTarget.autoPlay = false;
+            animTarget.isIndependentUpdate = true;
         };
-
+        CreateUIWindow.CreateAnimationComponentEvent = RegisterUIWindow.CreateAnimationComponentEvent;
         #endregion
 
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
@@ -74,13 +76,13 @@ public class EditorUse
     [ExecuteInEditMode]
     public static class UGUICustom
     {
-        [MenuItem( "GameObject/UI/Text" )]
+        [MenuItem("GameObject/UI/Text")]
         private static void CreatText( MenuCommand menuCommand )
         {
             UGUIOptimizeCommand.CreatText( menuCommand );
         }
 
-        [MenuItem( "GameObject/UI/Image" )]
+        [MenuItem("GameObject/UI/Image")]
         private static void CreatImage( MenuCommand menuCommand )
         {
             UGUIOptimizeCommand.CreatImage( menuCommand );

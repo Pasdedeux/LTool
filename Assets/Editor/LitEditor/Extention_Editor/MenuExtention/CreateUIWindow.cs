@@ -29,9 +29,12 @@ using Sirenix.Utilities.Editor;
 using Sirenix.Utilities;
 using System.Collections.Generic;
 using UnityEditor.Experimental.SceneManagement;
+using System;
 
 public class CreateUIWindow : OdinEditorWindow
 {
+    public static Action<GameObject, string, string> CreateAnimationComponentEvent;
+
     [MenuItem(@"Assets/UI/Build", priority = 0)]
     public static EditorWindow OpenWindow()
     {
@@ -41,7 +44,7 @@ public class CreateUIWindow : OdinEditorWindow
             CreateUIWindow window = GetWindow<CreateUIWindow>();
             // Nifty little trick to quickly position the window in the middle of the editor.
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
-            Object selet = Selection.activeObject;
+            UnityEngine.Object selet = Selection.activeObject;
             if (selet)
             {
                 string seletPath = AssetDatabase.GetAssetPath(selet);
@@ -80,21 +83,21 @@ public class CreateUIWindow : OdinEditorWindow
     [HorizontalGroup("Class")]
     [LabelText("类说明")]
     public string uiSummary;
-    [Space(10, order = 0)]
+    //[Space(10, order = 0)]
     [LabelText("退出按钮")]
-    [HorizontalGroup("Prefab", LabelWidth = 40)]
+    [HorizontalGroup("Prefab", LabelWidth = 5)]
     public bool useDefaultExitBtn = true;
     [LabelText("打开退出是否有动画")]
-    [Space(10, order = 0)]
+    //[Space(10, order = 0)]
     [HorizontalGroup("Prefab",LabelWidth =80)]
     public bool useAnimRoot = true;
     [LabelText("关闭所有界面时是否过滤掉")]
-    [Space(10, order = 0)]
+    //[Space(10, order = 0)]
     [HorizontalGroup("Prefab", LabelWidth = 150)]
     public bool IsFloor=false;
     [LabelText("是否使用低帧率")]
-    [Space(10, order = 0)]
-    [HorizontalGroup("Prefab", LabelWidth = 150)]
+    //[Space(10, order = 0)]
+    [HorizontalGroup("Prefab", LabelWidth = 0)]
     public bool UseLowFrame = false;
     [BoxGroup("UI类型设置")]
     [ShowInInspector]
@@ -1061,9 +1064,9 @@ public class CreateUIWindow : OdinEditorWindow
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
 
         //提升性能，需要时增加到子对象上
-        //var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-        //graphics.ignoreReversedGraphics = true;
-        //graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+        var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+        graphics.ignoreReversedGraphics = true;
+        graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
 
         GameObject animTrans = new GameObject("Container_Anim", typeof(RectTransform));
         animTrans.transform.SetParent(newCanvas.transform);
@@ -1077,7 +1080,8 @@ public class CreateUIWindow : OdinEditorWindow
 
         if (useAnimRoot)
         {
-            SetOpenCloseAni(animTrans);
+            //DOTEEN插件未集成在编辑器库中，引出到库外部使用
+            CreateAnimationComponentEvent?.Invoke(animTrans, FrameworkConfig.Instance.OPENID, FrameworkConfig.Instance.CLOSEID);
         }
 
         if (useDefaultExitBtn)
@@ -1135,29 +1139,6 @@ public class CreateUIWindow : OdinEditorWindow
             return false;
         }
         return  !string.IsNullOrWhiteSpace(aValue) && aValue.Substring(0, 2).Equals("UI");
-    }
-    private void SetOpenCloseAni(GameObject root)
-    {
-        DOTweenAnimation animTarget;
-        //进场UI动画
-        animTarget = root.AddComponent<DOTweenAnimation>();
-        animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
-        animTarget.easeType = Ease.OutBack;
-        animTarget.duration = 0.4f;
-        animTarget.id = FrameworkConfig.Instance.OPENID;
-        animTarget.isFrom = true;
-        animTarget.endValueFloat = 0f;
-        animTarget.optionalBool0 = true;
-
-        //出场UI动画
-        animTarget = root.AddComponent<DOTweenAnimation>();
-        animTarget.animationType = DOTweenAnimation.AnimationType.Scale;
-        animTarget.easeType = Ease.InBack;
-        animTarget.duration = 0.4f;
-        animTarget.id = FrameworkConfig.Instance.CLOSEID;
-        animTarget.isFrom = false;
-        animTarget.endValueFloat = 0f;
-        animTarget.optionalBool0 = true;
     }
     private static void UpdataPath(CSWriteTool cSWrite)
     {
@@ -1238,10 +1219,10 @@ public class CreateUIWindow : OdinEditorWindow
     private static void DeleteUI()
     {
 
-        Object[] objs = Selection.GetFiltered<Object>(SelectionMode.Unfiltered);
+        UnityEngine.Object[] objs = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.Unfiltered);
         if(objs.Length==1)
         {
-            Object select = objs[0];
+            UnityEngine.Object select = objs[0];
             string path = AssetDatabase.GetAssetPath(select);
             if (path.EndsWith(".cs") && (select.name.StartsWith("UI") || select.name.StartsWith("ExCom") || select.name.StartsWith("Element")))
             {
@@ -1459,11 +1440,11 @@ public class CreateUIWindow : OdinEditorWindow
         CSWriteTool _WriteTool = mCSWrite;
         if (pathf.Contains("Assets/Resources/Prefabs/UI/"))
         {
-            Object[] objs  = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);
+            UnityEngine.Object[] objs  = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.DeepAssets);
             int len = objs.Length;
             for (int i = 0; i < len; i++)
             {
-                Object obj = objs[i];
+                UnityEngine.Object obj = objs[i];
 
                 UpdateOne(obj, _WriteTool);
                 EditorUtility.DisplayProgressBar("更新预制", obj.name, (float)i / len);
@@ -1477,7 +1458,7 @@ public class CreateUIWindow : OdinEditorWindow
             {
                 string pth= paths[i];
                 pth = "Assets/"+ pth.Substring(Application.dataPath.Length);
-                Object obj = AssetDatabase.LoadAssetAtPath(pth, typeof(Object));
+                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath(pth, typeof(UnityEngine.Object));
 
                 UpdateOne(obj, _WriteTool);
                 EditorUtility.DisplayProgressBar("更新预制", obj.name, (float)i / len);
@@ -1491,7 +1472,7 @@ public class CreateUIWindow : OdinEditorWindow
         AssetDatabase.Refresh();
     }
 
-    private static void UpdateOne(Object obj ,CSWriteTool _WriteTool)
+    private static void UpdateOne(UnityEngine.Object obj ,CSWriteTool _WriteTool)
     {
         if(!obj)
         {

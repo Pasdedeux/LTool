@@ -46,6 +46,7 @@ namespace Assets.Scripts.UI
             CurrentUIType.uiNodeType = UINodeTypeEnum.Fixed;
             CurrentUIType.uiShowMode = UIShowModeEnum.Stack;
             CurrentUIType.uiTransparent = UITransparentEnum.NoPenetratingMiddle;
+            Flag = UIFlag.Fix;
 
             _loadingModel = LoadingTaskModel.Instance;
             _waitEndFrame = new WaitForEndOfFrame();

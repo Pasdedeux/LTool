@@ -22,7 +22,7 @@ using UnityEngine.UI;
 namespace LitFramework.Mono
 {
 
-    public abstract class BaseUI : MonoBehaviour, UI.Base.IBaseUI
+    public abstract class BaseUI : MonoBehaviour, IBaseUI
     {
         /// <summary>
         /// 该窗口是否开启中
@@ -72,25 +72,25 @@ namespace LitFramework.Mono
         /// 显示窗体
         /// </summary>
         /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        public void Show( bool replay = false, params object[] args)
+        public void Show(bool replay = false, params object[] args)
         {
             IsShowing = true;
 
             CheckMask();
 
-            if ( !replay )
+            if (!replay)
                 //gameObject.SetActive( IsShowing );
                 _rootCanvas.enabled = IsShowing;
             else
-                OnEnabled( replay );
+                OnEnabled(replay);
 
-            if ( IsStarted )
+            if (IsStarted)
             {
                 OnShow(args);
                 _rootCanvas.enabled = true;
             }
             else
-                _waitForStartFunc = StartCoroutine( IWaitToOnShow(args) );
+                _waitForStartFunc = StartCoroutine(IWaitToOnShow(args));
 
         }
 
@@ -100,12 +100,12 @@ namespace LitFramework.Mono
         public void CheckMask()
         {
             //设置模态窗体调用(弹出窗体)
-            if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp )
+            if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp)
             {
-                var modelType = UIModelBehavior.Instance.GetBehavior( AssetsName );
+                var modelType = UIModelBehavior.Instance.GetBehavior(AssetsName);
                 UIType targetUIType = modelType ?? CurrentUIType;
 
-                UIMaskManager.Instance.SetMaskWindow( gameObject, targetUIType.uiTransparent );
+                UIMaskManager.Instance.SetMaskWindow(gameObject, targetUIType.uiTransparent);
             }
         }
 
@@ -114,14 +114,14 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="isDestroy">是否摧毁并彻底释放</param>
         /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
-        public void Close( bool isDestroy = false, bool freeze = false )
+        public void Close(bool isDestroy = false, bool freeze = false)
         {
             //默认执行OnDisable()
-            if ( !freeze )
+            if (!freeze)
             {
                 _rootCanvas.enabled = false;
-                
-                if ( CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing )
+
+                if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing)
                     UIMaskManager.Instance.CancelMaskWindow();
             }
             else
@@ -129,19 +129,19 @@ namespace LitFramework.Mono
                 _rootCanvas.enabled = false;
                 //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
             }
-            OnDisabled( freeze );
+            OnDisabled(freeze);
 
             IsShowing = false;
 
-            if ( _waitForStartFunc != null )
+            if (_waitForStartFunc != null)
             {
-                StopCoroutine( _waitForStartFunc );
+                StopCoroutine(_waitForStartFunc);
                 _waitForStartFunc = null;
             }
 
             OnClose();
 
-            if ( isDestroy )
+            if (isDestroy)
                 DoDestroy();
         }
 
@@ -161,9 +161,9 @@ namespace LitFramework.Mono
 
         public abstract void OnAwake();
 
-        public virtual void OnEnabled( bool replay ) { }
+        public virtual void OnEnabled(bool replay) { }
 
-        public virtual void OnDisabled( bool freeze ) { }
+        public virtual void OnDisabled(bool freeze) { }
 
         public virtual void OnStart() { }
 
@@ -174,7 +174,7 @@ namespace LitFramework.Mono
             Dispose();
             IsStarted = false;
             IsInitOver = false;
-            GameObject.Destroy( gameObject );
+            GameObject.Destroy(gameObject);
             Resources.UnloadUnusedAssets();
         }
 
@@ -207,14 +207,14 @@ namespace LitFramework.Mono
 
         private void OnEnable()
         {
-            if ( IsInitOver )
-                OnEnabled( false );
+            if (IsInitOver)
+                OnEnabled(false);
         }
 
         private void OnDisable()
         {
-            if ( IsInitOver )
-                OnDisabled( false );
+            if (IsInitOver)
+                OnDisabled(false);
         }
 
         private void Update()
@@ -223,9 +223,9 @@ namespace LitFramework.Mono
         }
         #endregion
 
-        private IEnumerator IWaitToOnShow( params object[] args)
+        private IEnumerator IWaitToOnShow(params object[] args)
         {
-            yield return new WaitUntil( () => { return IsStarted; } );
+            yield return new WaitUntil(() => { return IsStarted; });
             OnShow(args);
             _rootCanvas.enabled = true;
         }
@@ -235,8 +235,8 @@ namespace LitFramework.Mono
         /// </summary>
         public virtual void OnBackPushed()
         {
-            Debug.Log( "关闭ui:" + AssetsName );
-            UIManager.Instance.Close( AssetsName );
+            Debug.Log("关闭ui:" + AssetsName);
+            UIManager.Instance.Close(AssetsName);
         }
     }
 }

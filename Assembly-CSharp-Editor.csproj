@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
-    <Compile Include="Assets\Editor\EditorUse.cs" />
+    <Compile Include="Assets\Editor\LitEditor\EditorUse.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\AssetDatabaseABDataSource.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleInspectTab.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />

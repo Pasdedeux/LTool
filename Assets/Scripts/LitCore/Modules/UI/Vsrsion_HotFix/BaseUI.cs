@@ -20,7 +20,7 @@ using UnityEngine;
 
 namespace LitFramework.HotFix
 {
-    public abstract class BaseUI : UI.Base.IBaseUI
+    public abstract class BaseUI : IBaseUI
     {
         private RectTransform _rootRectTransform;
         /// <summary>
@@ -67,7 +67,7 @@ namespace LitFramework.HotFix
         /// 动画列表
         /// </summary>
         public DOTweenAnimation[] ui_anims;
-        protected Transform root,m_AniTrans;
+        protected Transform root, m_AniTrans;
 
         //基础信息的初始化状态
         private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
@@ -157,7 +157,7 @@ namespace LitFramework.HotFix
         /// 刷新窗体，带参数
         /// </summary>
         /// <param name="args"></param>
-        public virtual void OnShow( params object[] args ) { }
+        public virtual void OnShow(params object[] args) { }
 
         public virtual void Dispose() { }
 

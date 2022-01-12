@@ -101,9 +101,13 @@ public class GUITest : MonoBehaviour
         }
 
         index = 0; vindex++;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
         {
-            UIManager.Instance.CloseAll(true,useAnim:true);
+            UIManager.Instance.CloseAll(isDestroy: true,useAnim:true);
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(true)"))
+        {
+            UIManager.Instance.CloseAll(isDestroy: true, useAnim: true, force: true);
         }
     }
 

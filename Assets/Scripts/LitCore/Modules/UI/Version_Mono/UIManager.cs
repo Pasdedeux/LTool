@@ -355,7 +355,7 @@ namespace LitFramework.Mono
         /// </summary>
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
-        public void Close( string uiName, bool isDestroy = false , bool useAnim = true )
+        public void Close( string uiName, bool isDestroy = false , bool useAnim = true, bool force = false )
         {
             if ( string.IsNullOrEmpty( uiName ) )
                 return;

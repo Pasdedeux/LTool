@@ -357,7 +357,7 @@ namespace LitFramework.HotFix
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
         /// <param name="useAnim">是否需要播放Dotween动画</param>
-        public void Close(string uiName, bool isDestroy = false, bool useAnim = true)
+        public void Close(string uiName, bool isDestroy = false, bool useAnim = true, bool force = false )
         {
             if (string.IsNullOrEmpty(uiName))
                 return;
@@ -370,7 +370,7 @@ namespace LitFramework.HotFix
                 return;
             }
 
-            if (!baseUI.IsShowing) return;
+            if (!force && !baseUI.IsShowing) return;
 
             var modelType = UIModelBehavior.Instance.GetBehavior(uiName);
             UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
@@ -428,7 +428,7 @@ namespace LitFramework.HotFix
         {
             if (_stackCurrentUI != null && _stackCurrentUI.Count > 0)
             {
-                while (_stackCurrentUI.Count > 0) 
+                while (_stackCurrentUI.Count > 0)
                 {
                     var stackUI = _stackCurrentUI.Pop();
                     Close(stackUI.AssetsName, useAnim: false);
@@ -613,8 +613,8 @@ namespace LitFramework.HotFix
 
             if (baseUI.CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp)
             {
-                if (_listCurrentPopupShowUIs.Count > 0) _listCurrentPopupShowUIs.Last().CheckMask();
-                
+                CheckCurrentUIMask();
+
                 ////正在显示的窗口和栈缓存的窗口再次进行显示处理
                 //var keys = _listCurrentPopupShowUIs;
                 //for (int i = 0; i < keys.Count; i++)
@@ -622,27 +622,27 @@ namespace LitFramework.HotFix
                 //    if (keys[i].IsShowing) keys[i].CheckMask();
                 //}
 
-                    ////优先判断栈里是否有窗口
-                    //if (_stackCurrentUI.Count > 0)
-                    //{
-                    //    BaseUI topUI = _stackCurrentUI.Peek();
-                    //    if (!topUI.AssetsName.Equals(uiName))
-                    //    {
-                    //        topUI.OnEnabled(true);
-                    //        if (!topUI.IsShowing)
-                    //            topUI.OnShow(null);
-                    //        topUI.CheckMask();
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    //TODO 混合弹窗事件对背景板的影响
-                    //    var keys = _listCurrentShowUIs;
-                    //    for (int i = 0; i < keys.Count; i++)
-                    //    {
-                    //        if (keys[i].IsShowing) keys[i].CheckMask();
-                    //    }
-                    //}
+                ////优先判断栈里是否有窗口
+                //if (_stackCurrentUI.Count > 0)
+                //{
+                //    BaseUI topUI = _stackCurrentUI.Peek();
+                //    if (!topUI.AssetsName.Equals(uiName))
+                //    {
+                //        topUI.OnEnabled(true);
+                //        if (!topUI.IsShowing)
+                //            topUI.OnShow(null);
+                //        topUI.CheckMask();
+                //    }
+                //}
+                //else
+                //{
+                //    //TODO 混合弹窗事件对背景板的影响
+                //    var keys = _listCurrentShowUIs;
+                //    for (int i = 0; i < keys.Count; i++)
+                //    {
+                //        if (keys[i].IsShowing) keys[i].CheckMask();
+                //    }
+                //}
             }
         }
 
@@ -736,7 +736,7 @@ namespace LitFramework.HotFix
             if (baseUI.CurrentUIType.isClearPopUp)
                 ClearPopUpStackArray();
 
-            if (_listCurrentPopupShowUIs.Count > 0) _listCurrentPopupShowUIs.Last().CheckMask();
+            CheckCurrentUIMask();
         }
 
         /// <summary>
@@ -827,7 +827,7 @@ namespace LitFramework.HotFix
                 topUI.Close(isDestroy: isDestroy);
             }
             _listCurrentPopupShowUIs.Remove(topUI);
-            if (_listCurrentPopupShowUIs.Count > 0) _listCurrentPopupShowUIs.Last().CheckMask();
+            CheckCurrentUIMask();
         }
 
         /// <summary>
@@ -850,7 +850,7 @@ namespace LitFramework.HotFix
         {
             var toCloseUI = _dictLoadedAllUIs.Where(e => !force ? e.Value.Flag != UIFlag.Fix : (e.Value is BaseUI)).Select(e => e.Value).ToList();
             foreach (var item in toCloseUI)
-                Close(item.AssetsName, isDestroy, useAnim);
+                Close(item.AssetsName, isDestroy, useAnim, force);
         }
 
 
@@ -864,6 +864,14 @@ namespace LitFramework.HotFix
                 var baseUi = _stackCurrentUI.Peek();
                 Close(baseUi.AssetsName);
                 return;
+            }
+        }
+
+        private void CheckCurrentUIMask()
+        {
+            for (int i = 0; i < _listCurrentPopupShowUIs.Count; i++)
+            {
+                if (_listCurrentPopupShowUIs[i].IsShowing) _listCurrentPopupShowUIs[i].CheckMask();
             }
         }
 

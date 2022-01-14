@@ -30,6 +30,12 @@ namespace LitFramework.UI.Base
     /// 以装饰者模式封装UI窗口逻辑业务
     /// <para>无论是否使用monobehavior，该层均定义了UI各项行为的调用关系及顺序</para>
     /// <para>同类型接口交由UIManager使用，关联上层装饰者</para>
+    /// <para></para>
+    /// 
+    /// 备注：
+    /// 1、将顶层UI需要减少访问的非必掉接口隐藏，避免强行实现太多无关方法
+    /// 2、提供存储状态的位置
+    /// 3、维持一定的自管理逻辑，减轻UIManager需要维护的逻辑量，使其专注于流程
     /// </summary>
     public class BaseUICore : IBaseUI
     {
@@ -58,6 +64,7 @@ namespace LitFramework.UI.Base
 
 
 
+
         /// <summary>
         /// 显示窗体
         /// </summary>
@@ -65,20 +72,28 @@ namespace LitFramework.UI.Base
         /// <param name="args">通过Show的传参</param>
         public void Show(bool replay = false, params object[] args)
         {
-            IsShowing = true;
-
-            CheckMask();
-
-            if (!replay)
-                RootCanvas.enabled = IsShowing;
+            if (IsShowing)
+                OnShow(args: args);
             else
-                OnEnabled(replay);
+            {
+                if (IsInitOver)
+                    OnEnabled(false);
 
-            if (!IsStarted) DoStart();
+                IsShowing = true;
 
-            OnShow(args);
+                CheckMask();
 
-            RootCanvas.enabled = true;
+                if (!replay)
+                    RootCanvas.enabled = IsShowing;
+                else
+                    OnEnabled(replay);
+
+                if (!IsStarted) DoStart();
+
+                OnShow(args);
+
+                RootCanvas.enabled = true;
+            }
         }
 
         /// <summary>
@@ -88,9 +103,6 @@ namespace LitFramework.UI.Base
         /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
         public void Close(bool isDestroy = false, bool freeze = false)
         {
-            ////已由框架层调用，重复调用可能需要看下必要性
-            //OnDisabled(freeze);
-
             if (!freeze)
             {
                 RootCanvas.enabled = false;

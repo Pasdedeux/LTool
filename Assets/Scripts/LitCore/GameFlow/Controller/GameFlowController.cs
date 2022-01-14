@@ -61,10 +61,7 @@ namespace LitFramework.GameFlow
         /// <param name="isAdditive"></param>
         public void ChangeScene( int sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isAdditive = false )
         {
-            if ( FrameworkConfig.Instance.UseHotFixMode )
-                _iUIManger = HotFix.UIManager.Instance;
-            else
-                _iUIManger = Mono.UIManager.Instance;
+            _iUIManger = UIManager.Instance;
 
             //No UIloading && No Fading
             if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )
@@ -204,10 +201,7 @@ namespace LitFramework.GameFlow
         /// <param name="isAdditive"></param>
         public void ChangeScene( string sceneID, Action callBackBeforeChanging = null, Action callBackAfterChanging = null, string loadingUIPath = null, bool needFading = true, float fadingTime = 0.5f, bool isAdditive = false )
         {
-            if ( FrameworkConfig.Instance.UseHotFixMode )
-                _iUIManger = HotFix.UIManager.Instance;
-            else
-                _iUIManger = Mono.UIManager.Instance;
+            _iUIManger = UIManager.Instance;
 
             //No UIloading && No Fading
             if ( string.IsNullOrEmpty( loadingUIPath ) && !needFading )

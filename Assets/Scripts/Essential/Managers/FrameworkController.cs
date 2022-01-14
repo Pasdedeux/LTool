@@ -63,19 +63,9 @@ namespace Assets.Scripts.Controller
             MsgManager.Instance.Register(InternalEvent.END_LOAD_REMOTE_CONFIG, LoadAllConfigs);
             //由于UI的使用，需要提前执行方法确定
             RsLoadManager.Instance.Install();
-            //UI模块中Loading界面先于热更逻辑执行，故需要提前完成初始化
-            if (FrameworkConfig.Instance.UseHotFixMode)
-            {
-                //保留命名空间
-                LitFramework.HotFix.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
-                LitFramework.HotFix.UIManager.Instance.Install();
-            }
-            else
-            {
-                //保留命名空间
-                LitFramework.Mono.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
-                LitFramework.Mono.UIManager.Instance.Install();
-            }
+            //UI模块中Loading界面先于热更逻辑执行，故需要提前完成初始化UIManager
+            LitFramework.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
+            LitFramework.UIManager.Instance.Install();
 
             //框架基础启动完毕后，需要进行的自定义加载事件
             //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗

@@ -428,14 +428,42 @@
     <Compile Include="HotFixLogic\Model\Const\ResPath.cs" />
     <Compile Include="HotFixLogic\Model\Pool\SpawnPoolReflection.cs" />
     <Compile Include="HotFixLogic\UIExport\ResPath.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIGerwerwe.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIParrallel1.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIParrallel2.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIParrallel3.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIStack1.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIStack2.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIStack3.cs" />
+    <Compile Include="HotFixLogic\UIExport\UITest1.cs" />
+    <Compile Include="HotFixLogic\UIExport\UITest2.cs" />
+    <Compile Include="HotFixLogic\UIExport\UITest6666.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIUnique1.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIUnique2.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIUnique3.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIWWWW.cs" />
+    <Compile Include="HotFixLogic\UIExport\UIZTest.cs" />
+    <Compile Include="HotFixLogic\UI\UIGerwerwe.cs" />
+    <Compile Include="HotFixLogic\UI\UIParrallel1.cs" />
+    <Compile Include="HotFixLogic\UI\UIParrallel2.cs" />
+    <Compile Include="HotFixLogic\UI\UIParrallel3.cs" />
+    <Compile Include="HotFixLogic\UI\UIStack1.cs" />
+    <Compile Include="HotFixLogic\UI\UIStack2.cs" />
+    <Compile Include="HotFixLogic\UI\UIStack3.cs" />
+    <Compile Include="HotFixLogic\UI\UITest1.cs" />
+    <Compile Include="HotFixLogic\UI\UITest2.cs" />
+    <Compile Include="HotFixLogic\UI\UITest6666.cs" />
+    <Compile Include="HotFixLogic\UI\UIUnique1.cs" />
+    <Compile Include="HotFixLogic\UI\UIUnique2.cs" />
+    <Compile Include="HotFixLogic\UI\UIUnique3.cs" />
+    <Compile Include="HotFixLogic\UI\UIWWWW.cs" />
+    <Compile Include="HotFixLogic\UI\UIZTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HotFixLogic\UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)createVersion.bat</PostBuildEvent>

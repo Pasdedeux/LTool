@@ -33,6 +33,7 @@ using ILRuntime.CLR.Method;
 using ILRuntime.CLR.TypeSystem;
 using PathologicalGames;
 using System.Reflection;
+using LitFramework.UI.Base;
 
 namespace Assets.Scripts
 {
@@ -123,10 +124,12 @@ namespace Assets.Scripts
             }
 
             var allTypes = _appdomain.LoadedTypes.Values.ToList();
-            for (int i = 0; i < allTypes.Count; i++)
+            var interfaceType = typeof(IBaseUI);
+            for (int indexType = 0; indexType < allTypes.Count; indexType++)
             {
-                var reflectType = allTypes[i].ReflectionType;
-                if (!reflectType.IsAbstract && reflectType.BaseType != null && reflectType.BaseType.BaseType == typeof(LitFramework.HotFix.BaseUI))
+                var item = allTypes[indexType];
+                var reflectType = item.ReflectionType;
+                if (!reflectType.IsAbstract && reflectType.BaseType != null && interfaceType.IsAssignableFrom(reflectType.BaseType.BaseType))
                 {
                     LDebug.Log(reflectType.Name);
                     //通过程序集获取到他的返回实例对象方法  并且初始化对象
@@ -339,14 +342,17 @@ namespace Assets.Scripts
         }
 
 
-        public static LitFramework.HotFix.BaseUI GetUITypeByThis(string uiAssembly)
+        public static IBaseUI GetUITypeByThis(string uiAssembly)
         {
-            LDebug.Log("Get UI From Hotfix..." + _appdomain.LoadedTypes[uiAssembly].BaseType.BaseType + "   " + _appdomain.LoadedTypes[uiAssembly].ReflectionType + "   ");
-            //需要获取的是实例类
-            var ss = _appdomain.Instantiate(_appdomain.LoadedTypes[uiAssembly].ReflectionType.FullName);
-            return ss.CLRInstance as LitFramework.HotFix.BaseUI;
+            if (_appdomain.LoadedTypes.ContainsKey(uiAssembly))
+            {
+                LDebug.Log("Get UI From Hotfix..." + _appdomain.LoadedTypes[uiAssembly].BaseType.BaseType + "   " + _appdomain.LoadedTypes[uiAssembly].ReflectionType + "   ");
+                //需要获取的是实例类
+                var ss = _appdomain.Instantiate(_appdomain.LoadedTypes[uiAssembly].ReflectionType.FullName);
+                return ss.CLRInstance as IBaseUI;
+            }
+            else return null;
         }
-
 
 #endregion
 

@@ -351,13 +351,9 @@ namespace LitFramework.LitTool
         public static Vector3 UI2WorldPos(RectTransform uiTarget)
         {
             CanvasScaler canvasScaler = null;
-            if (FrameworkConfig.Instance.UseHotFixMode)
-                canvasScaler = LitFramework.HotFix.UIManager.Instance.CanvasScaler;
-            else
-                canvasScaler = LitFramework.Mono.UIManager.Instance.CanvasScaler;
+            canvasScaler = UIManager.Instance.CanvasScaler;
 
             var reference = canvasScaler.referenceResolution;
-
             Vector2 targetAnchored = uiTarget.anchoredPosition;
             Vector2 screenPos;
             switch (canvasScaler.screenMatchMode)
@@ -378,10 +374,7 @@ namespace LitFramework.LitTool
 
             var worldPos = new Vector3();
 
-            if (FrameworkConfig.Instance.UseHotFixMode)
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(LitFramework.HotFix.UIManager.Instance.RectransRoot, screenPos, LitFramework.HotFix.UIManager.Instance.UICam, out worldPos);
-            else
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(LitFramework.Mono.UIManager.Instance.RectransRoot, screenPos, LitFramework.Mono.UIManager.Instance.UICam, out worldPos);
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(UIManager.Instance.RectransRoot, screenPos, UIManager.Instance.UICam, out worldPos);
 
             return worldPos;
         }

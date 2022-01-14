@@ -30,6 +30,8 @@ using Sirenix.Utilities;
 using System.Collections.Generic;
 using UnityEditor.Experimental.SceneManagement;
 using System;
+using LitFramework.LitTool;
+using LitJson;
 
 public class CreateUIWindow : OdinEditorWindow
 {
@@ -107,15 +109,22 @@ public class CreateUIWindow : OdinEditorWindow
     private FileInfo _saveLocalFileInfo;
 
     private GameObject _Prefab;
+    static ResPathTemplate rpt = null;
 
     [Button("创建脚本+UI预制件+注册绑定", ButtonSizes.Medium, ButtonHeight = 40), GUIColor(0f, 0.8f, 0f)]
     private void CreatCSPrefabPath()
     {
         _saveLocalFileInfo = new FileInfo(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
 
-        if (CheckClassNameValid(uiScriptsName))
+        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+        if (DocumentAccessor.IsExists(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME))
         {
+            var content = DocumentAccessor.ReadFile(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
+            rpt = JsonMapper.ToObject<ResPathTemplate>(content);
+        }
 
+        if (CheckClassNameValid(uiScriptsName) && !rpt.UI.ContainsKey(uiScriptsName))
+        {
             EditorUtility.DisplayProgressBar("UI生成", "设置UI预制", 1f/4f);
             //设置预制
             SetPrefab();
@@ -139,6 +148,8 @@ public class CreateUIWindow : OdinEditorWindow
         }
         else
             EditorUtility.DisplayDialog("类名错误", "类名应该不为空、空格，并且以UI开头", "哦");
+
+        rpt = null;
     }
     private static void SetCustomCs(string aFolderName,string aScriptsName,CSWriteTool aCSWrite,bool haveClose,string uiSummary)
     {
@@ -147,7 +158,7 @@ public class CreateUIWindow : OdinEditorWindow
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
             csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
-        if (File.Exists(csOutPath + aScriptsName + ".cs"))
+        if (File.Exists(csOutPath + aScriptsName + ".cs")|| rpt.UI.ContainsKey(aScriptsName))
         {
             return;
         }
@@ -157,6 +168,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("using System.Collections.Generic;");
         aCSWrite.WriteLine("using UnityEngine;");
         aCSWrite.WriteLine("using UnityEngine.UI;");
+        aCSWrite.WriteLine("using LitFramework;");
         aCSWrite.WriteLine("using LitFramework.HotFix;");
         aCSWrite.WriteLine("namespace Assets.Scripts.UI");
         //开始namespace
@@ -215,7 +227,7 @@ public class CreateUIWindow : OdinEditorWindow
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
             csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
-        if (File.Exists(csOutPath + aScriptsName + ".cs"))
+        if (File.Exists(csOutPath + aScriptsName + ".cs") || rpt.UI.ContainsKey(aScriptsName))
         {
             return;
         }
@@ -225,6 +237,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("using System.Collections.Generic;");
         aCSWrite.WriteLine("using UnityEngine;");
         aCSWrite.WriteLine("using UnityEngine.UI;");
+        aCSWrite.WriteLine("using LitFramework;");
         aCSWrite.WriteLine("using LitFramework.HotFix;");
         aCSWrite.WriteLine("namespace Assets.Scripts.UI");
         //开始namespace
@@ -271,7 +284,7 @@ public class CreateUIWindow : OdinEditorWindow
             csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
         else
             csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
-        if (File.Exists(csOutPath + aScriptsName + ".cs"))
+        if (File.Exists(csOutPath + aScriptsName + ".cs") || rpt.UI.ContainsKey(aScriptsName))
         {
             return;
         }
@@ -280,6 +293,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("using System.Collections.Generic;");
         aCSWrite.WriteLine("using UnityEngine;");
         aCSWrite.WriteLine("using UnityEngine.UI;");
+        aCSWrite.WriteLine("using LitFramework;");
         aCSWrite.WriteLine("using LitFramework.HotFix;");
         aCSWrite.WriteLine("namespace Assets.Scripts.UI");
         //开始namespace
@@ -339,6 +353,8 @@ public class CreateUIWindow : OdinEditorWindow
         }
         string className = "UI" + aPrefab.name.Substring(7);
         string csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
+        if (rpt.UI.ContainsKey(className)) return;
+
         if (!FrameworkConfig.Instance.UseHotFixMode)
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
@@ -375,6 +391,7 @@ public class CreateUIWindow : OdinEditorWindow
             aCSWrite.WriteLine("using System.Collections.Generic;");
             aCSWrite.WriteLine("using UnityEngine;");
             aCSWrite.WriteLine("using UnityEngine.UI;");
+            aCSWrite.WriteLine("using LitFramework;");
             aCSWrite.WriteLine("using LitFramework.HotFix;");
             aCSWrite.WriteLine("namespace Assets.Scripts.UI");
             //开始namespace
@@ -411,15 +428,15 @@ public class CreateUIWindow : OdinEditorWindow
         {
             SetCsAttrbuteArray(keyValue.Value, aCSWrite, "private");
         }
-        aCSWrite.WriteLine("protected override void FindMember()");
+        aCSWrite.WriteLine("public override void FindMember()");
         //开始初始化
         aCSWrite.StartBracket();
         aCSWrite.WriteLine("SetUIType();");
 
-        SetCsFindPath(m_Container, "", "m_AniTrans", aCSWrite);
+        SetCsFindPath(m_Container, "", "RootAniTrans", aCSWrite);
         foreach (KeyValuePair<string, Transform> keyValue in tempArray)
         {
-            CsFindPathArray(keyValue.Value, keyValue.Key, "m_AniTrans", aCSWrite);
+            CsFindPathArray(keyValue.Value, keyValue.Key, "RootAniTrans", aCSWrite);
         }
         aCSWrite.EndBracket();
 
@@ -445,7 +462,7 @@ public class CreateUIWindow : OdinEditorWindow
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
             csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
-
+        if (rpt.UI.ContainsKey(className)) return;
 
         tempArray.Clear();
         aCSWrite.Reset();
@@ -453,6 +470,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("using System.Collections.Generic;");
         aCSWrite.WriteLine("using UnityEngine;");
         aCSWrite.WriteLine("using UnityEngine.UI;");
+        aCSWrite.WriteLine("using LitFramework; ");
         aCSWrite.WriteLine("using LitFramework.LitPool; ");
         aCSWrite.WriteLine("namespace Assets.Scripts.UI");
         //开始namespace
@@ -518,7 +536,7 @@ public class CreateUIWindow : OdinEditorWindow
             csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         else
             csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
-
+        if (rpt.UI.ContainsKey(className)) return;
 
         tempArray.Clear();
         aCSWrite.Reset();
@@ -526,6 +544,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("using System.Collections.Generic;");
         aCSWrite.WriteLine("using UnityEngine;");
         aCSWrite.WriteLine("using UnityEngine.UI;");
+        aCSWrite.WriteLine("using LitFramework; ");
         aCSWrite.WriteLine("using LitFramework.LitPool; ");
         aCSWrite.WriteLine("namespace Assets.Scripts.UI");
         //开始namespace
@@ -1150,7 +1169,7 @@ public class CreateUIWindow : OdinEditorWindow
         {
             floder = Application.dataPath + "/Scripts/UIExport";
         }
-        
+
         string prefabPath = Application.dataPath + "/Resources/Prefabs/UI";
         DirectoryInfo direction = new DirectoryInfo(prefabPath);
         FileInfo[] files = direction.GetFiles("*.prefab", SearchOption.AllDirectories);
@@ -1163,7 +1182,8 @@ public class CreateUIWindow : OdinEditorWindow
         cSWrite.StartBracket();
         foreach (FileInfo fileInfo in files)
         {
-            if("Canvas_Loading.prefab".Equals(fileInfo.Name))
+            LDebug.Log(fileInfo.Name);
+            if ("Canvas_Loading.prefab".Equals(fileInfo.Name))
             {
                 continue;
             }
@@ -1171,6 +1191,9 @@ public class CreateUIWindow : OdinEditorWindow
             if (fileInfo.Name.StartsWith("Canvas_"))
             {
                 string className = _Name.Replace("Canvas_", "UI");
+
+                if (rpt.UI.ContainsKey(className)) continue;
+
                 int startIndex = Application.dataPath.Length + 11;
                 int lengthPath = fileInfo.FullName.Length - startIndex - 7;
                 string path = fileInfo.FullName.Substring(startIndex, lengthPath);
@@ -1218,6 +1241,13 @@ public class CreateUIWindow : OdinEditorWindow
     [MenuItem(@"Assets/UI/DeleteUI", priority = 1)]
     private static void DeleteUI()
     {
+
+        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+        if (DocumentAccessor.IsExists(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME))
+        {
+            var content = DocumentAccessor.ReadFile(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
+            rpt = JsonMapper.ToObject<ResPathTemplate>(content);
+        }
 
         UnityEngine.Object[] objs = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.Unfiltered);
         if(objs.Length==1)
@@ -1402,7 +1432,11 @@ public class CreateUIWindow : OdinEditorWindow
     private static void DeleteOne(string aName,string aFloder,string aPrefabF,string aCsF)
     {
         string prefabPath = Application.dataPath+ "/Resources/Prefabs/UI/" + aFloder + aPrefabF + aName + ".prefab";
-        if(File.Exists(prefabPath))
+
+        var className = aCsF + aName;
+        if (className.Contains(className)) return;
+
+        if (File.Exists(prefabPath))
         {
             File.Delete(prefabPath);
         }
@@ -1436,6 +1470,13 @@ public class CreateUIWindow : OdinEditorWindow
     [MenuItem(@"Assets/UI/UpdateUI", priority =1)]
     private static void UpdateUI(MenuCommand menuCommand)
     {
+        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+        if (DocumentAccessor.IsExists(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME))
+        {
+            var content = DocumentAccessor.ReadFile(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
+            rpt = JsonMapper.ToObject<ResPathTemplate>(content);
+        }
+
         string pathf = AssetDatabase.GetAssetPath(Selection.activeObject);
         CSWriteTool _WriteTool = mCSWrite;
         if (pathf.Contains("Assets/Resources/Prefabs/UI/"))
@@ -1465,7 +1506,6 @@ public class CreateUIWindow : OdinEditorWindow
             }
         }
         
-
         //路径更新
         UpdataPath(_WriteTool);
         EditorUtility.ClearProgressBar();
@@ -1572,8 +1612,14 @@ public class CreateUIWindow : OdinEditorWindow
         //LDebug.Log("ProgramFiles:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), LogColor.orange);
         //LDebug.Log("CDBurning:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.CDBurning), LogColor.orange);
 
-       // Directory directory = new Directory(System.Environment.CurrentDirectory);
+        // Directory directory = new Directory(System.Environment.CurrentDirectory);
 
+        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
+        if (DocumentAccessor.IsExists(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME))
+        {
+            var content = DocumentAccessor.ReadFile(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
+            rpt = JsonMapper.ToObject<ResPathTemplate>(content);
+        }
 
         string path = "";
         for (int i=0;i<60;i++)

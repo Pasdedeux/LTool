@@ -394,6 +394,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlPageContext.cs" />
     <Compile Include="Assets\Scripts\Essential\ResPool\ExtendSpawnPool.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\IAP\PurchaserConfig.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\BaseUICore.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLabel.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -430,6 +431,9 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\UITesssssss.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UI\UITest.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\UITest.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

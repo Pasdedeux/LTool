@@ -21,222 +21,85 @@ using UnityEngine.UI;
 
 namespace LitFramework.Mono
 {
-
+    /// <summary>
+    /// 与Hotfix相同
+    /// 
+    /// 留出位置留待项目内进行其它扩展
+    /// </summary>
     public abstract class BaseUI : MonoBehaviour, IBaseUI
     {
-        /// <summary>
-        /// 该窗口是否开启中
-        /// </summary>
-        public bool IsShowing { get; set; }
-        private UIType _uiType = new UIType();
-        /// <summary>
-        /// 当前窗口类型
-        /// </summary>
-        public UIType CurrentUIType
-        { get { return _uiType; } set { _uiType = value; } }
-        /// <summary>
-        /// 是否执行过Start
-        /// </summary>
-        private bool IsStarted { get; set; }
-        private Coroutine _waitForStartFunc;
-        /// <summary>
-        /// 资源名
-        /// </summary>
+        #region 自持有状态
+
+        public bool IsShowing { get; set; } = false;
+        public bool IsStarted { get; set; } = false;
+        public bool IsInitOver { get; set; } = false;
+        public bool UseLowFrame { get; set; } = false;
         public string AssetsName { get; set; }
-        /// <summary>
-        /// 创建完毕标记，用于控制UI预制件在第一次创建出来时，不要自动触发OnEnable
-        /// </summary>
-        internal bool IsInitOver = false;
-        /// <summary>
-        /// 这个标记的作用是，一个隐藏的UI被重新激活，会自动触发OnEnable，会与框架中Show方法自动触发OnEnabled（如果IsShow为False）
-        /// </summary>
-        private bool _hasEnabled = false;
-        /// <summary>
-        /// 附加特性
-        /// </summary>
-        public UIFlag Flag = UIFlag.Normal;
+        public UIFlag Flag { get; set; } = UIFlag.Normal;
+        public UIType CurrentUIType { get; set; } = new UIType();
+        public GameObject GameObjectInstance { get; set; }
+        public DOTweenAnimation[] DotAnims { get; set; }
+        public Transform RootTrans { get; set; }
+        public Transform RootAniTrans { get; set; }
+        public Canvas RootCanvas { get; set; }
 
-        [HideInInspector]
-        /// <summary>
-        /// 动画列表
-        /// </summary>
-        public DOTweenAnimation[] ui_anims;
-        protected Transform m_root, m_AniTrans;
-        //基础信息的初始化状态
-        private Vector3 _initPos = Vector3.zero, _initScale = Vector3.zero;
-        private Quaternion _initQuat = Quaternion.identity;
+        #endregion
 
-        private Canvas _rootCanvas;
-        private RectTransform _rootRectTransform;
-        /// <summary>
-        /// 显示窗体
-        /// </summary>
-        /// <param name="replay">会传bool到 OnEnable/OnDisable</param>
-        public void Show(bool replay = false, params object[] args)
+        #region 核心业务类
+
+        private IBaseUI _uiCore;
+
+        public void CallCtor()
         {
-            IsShowing = true;
-
-            CheckMask();
-
-            if (!replay)
-                //gameObject.SetActive( IsShowing );
-                _rootCanvas.enabled = IsShowing;
-            else
-                OnEnabled(replay);
-
-            if (IsStarted)
-            {
-                OnShow(args);
-                _rootCanvas.enabled = true;
-            }
-            else
-                _waitForStartFunc = StartCoroutine(IWaitToOnShow(args));
-
+            if (_uiCore == null) _uiCore = new BaseUICore(this);
         }
 
-        /// <summary>
-        /// 检测并显示模态窗体背景
-        /// </summary>
         public void CheckMask()
         {
-            //设置模态窗体调用(弹出窗体)
-            if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp)
-            {
-                var modelType = UIModelBehavior.Instance.GetBehavior(AssetsName);
-                UIType targetUIType = modelType ?? CurrentUIType;
-
-                UIMaskManager.Instance.SetMaskWindow(gameObject, targetUIType.uiTransparent);
-            }
+            _uiCore.CheckMask();
         }
 
-        /// <summary>
-        /// 隐藏窗口
-        /// </summary>
-        /// <param name="isDestroy">是否摧毁并彻底释放</param>
-        /// <param name="freeze">是否暂时冻结，会传bool到 OnEnable/OnDisable</param>
+        public void Show(bool replay = false, params object[] args)
+        {
+            _uiCore.Show(replay, args);
+        }
+
         public void Close(bool isDestroy = false, bool freeze = false)
         {
-            //默认执行OnDisable()
-            if (!freeze)
-            {
-                _rootCanvas.enabled = false;
-
-                if (CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp && IsShowing)
-                    UIMaskManager.Instance.CancelMaskWindow();
-            }
-            else
-            {
-                _rootCanvas.enabled = false;
-                //对于处于冻结的UI，可能需要断开该窗口的网络通信或者操作、刷新响应等操作
-            }
-            OnDisabled(freeze);
-
-            IsShowing = false;
-
-            if (_waitForStartFunc != null)
-            {
-                StopCoroutine(_waitForStartFunc);
-                _waitForStartFunc = null;
-            }
-
-            OnClose();
-
-            if (isDestroy)
-                DoDestroy();
+            _uiCore.Close(isDestroy, freeze);
         }
 
-        public virtual void OnClose() { }
+        public void Initialize()
+        {
+            _uiCore.Initialize();
+        }
 
-        ///<inheritdoc/>
-        /// <remarks>
-        /// 刷新窗体
-        /// </remarks>
-        public abstract void OnShow(params object[] args);
+        #endregion
+
+        #region 子类覆写
 
         public virtual void Dispose() { }
 
-        public virtual void OnAdapter() { }
+        public virtual void FindMember() { }
 
-        #region Alternative Function
+        public virtual void OnAdapter() { }
 
         public abstract void OnAwake();
 
-        public virtual void OnEnabled(bool replay) { }
+        public virtual void OnBackPushed() { }
+
+        public virtual void OnClose() { }
 
         public virtual void OnDisabled(bool freeze) { }
+
+        public virtual void OnEnabled(bool replay) { }
+
+        public virtual void OnShow(params object[] args) { }
 
         public virtual void OnStart() { }
 
         public virtual void OnUpdate() { }
 
-        private void DoDestroy()
-        {
-            Dispose();
-            IsStarted = false;
-            IsInitOver = false;
-            GameObject.Destroy(gameObject);
-            Resources.UnloadUnusedAssets();
-        }
-
-        private void Awake()
-        {
-            _rootCanvas = gameObject.GetComponent<Canvas>();
-            _rootRectTransform = gameObject.GetComponent<RectTransform>();
-            _rootRectTransform.anchorMin = Vector2.zero;
-            _rootRectTransform.anchorMax = Vector2.one;
-            _rootRectTransform.offsetMax = Vector2.zero;
-            _rootRectTransform.offsetMin = Vector2.zero;
-            _rootCanvas.enabled = false;
-
-            m_root = _rootRectTransform.transform;
-            m_AniTrans = m_root.Find("Container_Anim");
-            ui_anims = AnimationManager.GetAllAnim(m_root);
-
-            _initPos = m_AniTrans.localPosition;
-            _initQuat = m_AniTrans.localRotation;
-            _initScale = m_AniTrans.localScale;
-
-            OnAwake();
-        }
-
-        private void Start()
-        {
-            OnStart();
-            IsStarted = true;
-        }
-
-        private void OnEnable()
-        {
-            if (IsInitOver)
-                OnEnabled(false);
-        }
-
-        private void OnDisable()
-        {
-            if (IsInitOver)
-                OnDisabled(false);
-        }
-
-        private void Update()
-        {
-            OnUpdate();
-        }
         #endregion
-
-        private IEnumerator IWaitToOnShow(params object[] args)
-        {
-            yield return new WaitUntil(() => { return IsStarted; });
-            OnShow(args);
-            _rootCanvas.enabled = true;
-        }
-
-        /// <summary>
-        /// 点击返回事件
-        /// </summary>
-        public virtual void OnBackPushed()
-        {
-            Debug.Log("关闭ui:" + AssetsName);
-            UIManager.Instance.Close(AssetsName);
-        }
     }
 }

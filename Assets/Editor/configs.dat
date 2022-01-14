@@ -1,6 +1,4 @@
 {
-	"UI": {
-		"UILOADING": "Prefabs/UI/Canvas_Loading"
-	},
+	"UI": {"UILOADING": "Prefabs/UI/Canvas_Loading"},
 	"Sound": {}
 }

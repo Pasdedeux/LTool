@@ -29,9 +29,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 此编辑器目前不再支持HotFixUI制作
+/// 此编辑器目前仅支持Mono版本UI制作。不再支持HotFixUI制作
 /// 
-/// HOTfixui 由CreateUIWindow完成
+/// 未来会将此UI创建类整合到CreateUIWindow类中
+/// 
+/// HotFixUI 由CreateUIWindow完成
 /// </summary>
 //[ExecuteInEditMode]
 public class RegisterUIWindow : EditorWindow
@@ -129,9 +131,9 @@ public class RegisterUIWindow : EditorWindow
                     var canvasScaler = newCanvas.gameObject.AddComponent<CanvasScaler>();
                     canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
 
-                    //var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
-                    //graphics.ignoreReversedGraphics = true;
-                    //graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
+                    var graphics = newCanvas.gameObject.AddComponent<GraphicRaycaster>();
+                    graphics.ignoreReversedGraphics = true;
+                    graphics.blockingObjects = GraphicRaycaster.BlockingObjects.None;
 
                     GameObject animTrans = new GameObject("Container_Anim", typeof(RectTransform));
                     animTrans.transform.SetParent(newCanvas.transform);
@@ -278,11 +280,10 @@ public class RegisterUIWindow : EditorWindow
                 //============更新并保存CS============//
                 //更新并保存CS
                 ResPathParse rpp = new ResPathParse();
-
                 if (!FrameworkConfig.Instance.UseHotFixMode)
                     EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
                 else
-                    EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/ILRuntime/HotFixLogic", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+                    EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
 
                 AssetDatabase.Refresh();
             }
@@ -409,11 +410,10 @@ public class RegisterUIWindow : EditorWindow
 
         //更新并保存CS
         ResPathParse rpp = new ResPathParse();
-
         if (!FrameworkConfig.Instance.UseHotFixMode)
             EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
         else
-            EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/ILRuntime/HotFixLogic", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+            EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
 
         AssetDatabase.Refresh();
     }
@@ -471,70 +471,80 @@ namespace LitFrameworkEditor.EditorExtended
 
         private void AddBody()
         {
+            CSString.Add("#region 初始化");
+
             if (_useDefaultExitBtn)
                 CSString.Add("private Button _btnExit;");
-            CSString.Add("private bool _isFreeze;");
-            CSString.Add("private Transform _root;");
+            //CSString.Add("private bool _isFreeze;");
+            //CSString.Add("private Transform RootTrans;");
             //if ( _useAnimRoot )
             //    CSString.Add( "private DOTweenAnimation[] _anims;" );
 
-            if (_isHotFix)
+            //todo 均会提供此函数。未来版本可能会移除改为特性支持
+            //if (_isHotFix)
+            //{
+            //RegistSystem
+            CSString.Add("");
+            CSString.Add("public static int RegistSystem( string className )");
+            CSString.Add("{");
+            CSString.Add(string.Format("UIManager.Instance.RegistFunctionCallFun( ResPath.UI.{0}, className );", _className.ToUpper()));
+            CSString.Add("return 1;");
+            CSString.Add("}");
+            //}
+
+            #region Init 用于初始化各类UI信息
+
+            //SetUIType
+            CSString.Add("");
+            CSString.Add("/// <summary>");
+            CSString.Add("/// 用于初始化各类UI信息");
+            CSString.Add("/// </summary>");
+            CSString.Add("private void SetUIType()");
+            CSString.Add("{");
+            CSString.Add(string.Format("CurrentUIType.uiNodeType = UINodeTypeEnum.{0};", _uiWindowInfo.uiNodeType));
+            CSString.Add(string.Format("CurrentUIType.uiShowMode = UIShowModeEnum.{0};", _uiWindowInfo.uiShowMode));
+            CSString.Add(string.Format("CurrentUIType.uiTransparent = UITransparentEnum.{0};", _uiWindowInfo.uiTransparent));
+            CSString.Add($"Flag = UIFlag.{/*isFloor ? "Fix" : */"Normal"};");
+            CSString.Add($"UseLowFrame = {/*useLowFrame ? "true" : */"false"};");
+            CSString.Add("}");
+
+            //FindMember
+            CSString.Add("");
+            CSString.Add("/// <summary>");
+            CSString.Add("/// 变量初始化");
+            CSString.Add("/// </summary>");
+            CSString.Add("public override void FindMember()");
+            CSString.Add("{");
+            CSString.Add("SetUIType();");
+            CSString.Add("");
+            if (_uiWindowInfo.useDefaultExitBtn)
             {
-                CSString.Add("");
-                CSString.Add("public static int RegistSystem( string className )");
-                CSString.Add("{");
-                CSString.Add(string.Format("UIManager.Instance.RegistFunctionCallFun( ResPath.UI.{0}, className );", _className.ToUpper()));
-                CSString.Add("return 1;");
-                CSString.Add("}");
+                CSString.Add("_btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( RootTrans, \"Button_Exit\" );");
             }
+            CSString.Add("}");
+
+            //CSString.Add("");
+            //CSString.Add("//TODO 初始化该UI信息");
+            //CSString.Add("//..");
+            //CSString.Add("");
+            ////if ( _useAnimRoot )
+            ////    CSString.Add( " _anims = AnimationManager.GetAllAnim( RootTrans );" );
+            //CSString.Add("}");
+
+            #endregion
+
+            CSString.Add("#endregion");
 
             #region Awake
 
             CSString.Add("");
             CSString.Add("public override void OnAwake()");
             CSString.Add("{");
-            CSString.Add(string.Format("CurrentUIType.uiNodeType = UINodeTypeEnum.{0};", _uiWindowInfo.uiNodeType));
-            CSString.Add(string.Format("CurrentUIType.uiShowMode = UIShowModeEnum.{0};", _uiWindowInfo.uiShowMode));
-            CSString.Add(string.Format("CurrentUIType.uiTransparent = UITransparentEnum.{0};", _uiWindowInfo.uiTransparent));
+            //CSString.Add(string.Format("CurrentUIType.uiNodeType = UINodeTypeEnum.{0};", _uiWindowInfo.uiNodeType));
+            //CSString.Add(string.Format("CurrentUIType.uiShowMode = UIShowModeEnum.{0};", _uiWindowInfo.uiShowMode));
+            //CSString.Add(string.Format("CurrentUIType.uiTransparent = UITransparentEnum.{0};", _uiWindowInfo.uiTransparent));
             CSString.Add("");
-            CSString.Add("Init();");
-            CSString.Add("}");
-
-            #endregion
-
-            #region Init 用于初始化各类UI信息
-
-            CSString.Add("");
-            CSString.Add("/// <summary>");
-            CSString.Add("/// 用于初始化各类UI信息");
-            CSString.Add("/// </summary>");
-            CSString.Add("private void Init()");
-            CSString.Add("{");
-            CSString.Add(_isHotFix ? "_root = this.GameObjectInstance.transform;": "_root = this.transform;");
-
-            if (_uiWindowInfo.useDefaultExitBtn)
-            {
-                CSString.Add("_btnExit = UnityHelper.GetTheChildNodeComponetScripts<Button>( _root, \"Button_Exit\" );");
-            }
-
-            CSString.Add("");
-            CSString.Add("//TODO 初始化该UI信息");
-            CSString.Add("//..");
-            CSString.Add("");
-            //if ( _useAnimRoot )
-            //    CSString.Add( " _anims = AnimationManager.GetAllAnim( _root );" );
-            CSString.Add("}");
-
-            #endregion
-
-            #region OnShow
-
-            CSString.Add("");
-            CSString.Add("public override void OnShow( params object[] args )");
-            CSString.Add("{");
-            //if ( _uiWindowInfo.useAnimRoot )
-            //    CSString.Add( string.Format( "_anims.Restart( \"{0}\");", FrameworkConfig.Instance.OPENID ) );
-            CSString.Add("");
+            //CSString.Add("Init();");
             CSString.Add("}");
 
             #endregion
@@ -554,7 +564,7 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add("//TODO 注册事件");
                 CSString.Add("//..");
                 CSString.Add("");
-                CSString.Add("_isFreeze = freeze;");
+                //CSString.Add("_isFreeze = freeze;");
                 CSString.Add("}");
 
                 CSString.Add("");
@@ -570,6 +580,18 @@ namespace LitFrameworkEditor.EditorExtended
                 CSString.Add("");
                 CSString.Add("}");
             }
+
+            #endregion
+
+            #region OnShow
+
+            CSString.Add("");
+            CSString.Add("public override void OnShow( params object[] args )");
+            CSString.Add("{");
+            //if ( _uiWindowInfo.useAnimRoot )
+            //    CSString.Add( string.Format( "_anims.Restart( \"{0}\");", FrameworkConfig.Instance.OPENID ) );
+            CSString.Add("");
+            CSString.Add("}");
 
             #endregion
 

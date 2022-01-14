@@ -189,10 +189,7 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
             _currentRadius = 10f;
         }
         _material.SetFloat( "_Slider", _currentRadius );
-        if ( FrameworkConfig.Instance.UseHotFixMode )
-            LitFramework.HotFix.UIManager.Instance.MaskImage.transform.SetAsLastSibling();
-        else
-            LitFramework.Mono.UIManager.Instance.MaskImage.transform.SetAsLastSibling();
+        LitFramework.UIManager.Instance.MaskImage.transform.SetAsLastSibling();
     }
 
     public void Install()
@@ -200,16 +197,9 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
         if ( _isInit ) return;
         _isInit = true;
 
-        if ( FrameworkConfig.Instance.UseHotFixMode )
-        {
-            _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>( LitFramework.HotFix.UIManager.Instance.TransPopUp, "Image_Hand" );
-            _parentBG = LitFramework.HotFix.UIManager.Instance.MaskImage;
-        }
-        else
-        {
-            _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>( LitFramework.Mono.UIManager.Instance.TransPopUp, "Image_Hand" );
-            _parentBG = LitFramework.Mono.UIManager.Instance.MaskImage;
-        }
+        _hand = UnityHelper.GetTheChildNodeComponetScripts<Image>(LitFramework.UIManager.Instance.TransPopUp, "Image_Hand");
+        _parentBG = LitFramework.UIManager.Instance.MaskImage;
+
         //加载新手引导所需各类资源
         _circleMat = GameObject.Instantiate<Material>( Resources.Load<Material>( "Shaders/Guide/Material/CircleMateria" ) );
         _rectMat = GameObject.Instantiate<Material>( Resources.Load<Material>( "Shaders/Guide/Material/RectMateria" ) );
@@ -232,17 +222,8 @@ public partial class GuideShaderController : SingletonMono<GuideShaderController
             _ev = _parentBG.gameObject.AddComponent<EventPenetrate>();
         _targetThreshold = _initType == LitShaderType.Circle ? _guideConfig.thresholdCircle : _guideConfig.thresholdRect;
 
-        if ( FrameworkConfig.Instance.UseHotFixMode )
-        {
-            _uiCam = LitFramework.HotFix.UIManager.Instance.UICam;
-            _rootCanv = LitFramework.HotFix.UIManager.Instance.TransRoot.GetComponent<Canvas>();
-        }
-        else
-        {
-            _uiCam = LitFramework.Mono.UIManager.Instance.UICam;
-            _rootCanv = LitFramework.Mono.UIManager.Instance.TransRoot.GetComponent<Canvas>();
-        }
-
+        _uiCam = UIManager.Instance.UICam;
+        _rootCanv = UIManager.Instance.TransRoot.GetComponent<Canvas>();
         _parentBG.enabled = false;
 
         ResetGuide();

@@ -85,7 +85,7 @@ namespace Assets.Scripts.Essential.SDK
 
         public void Install()
         {
-#if UNITY_ANDROID //&& !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             var checkPermission = AndroidRuntimePermissions.CheckPermissions(_permissionToRequestDict);
             for (int i = 0; i < checkPermission.Length; i++)
             {

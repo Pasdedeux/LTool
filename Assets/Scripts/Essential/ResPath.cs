@@ -1,7 +1,7 @@
 #region << 版 本 注 释 >>
 ///*----------------------------------------------------------------
 // Author : Derek Liu
-// 创建时间:2021/8/30 14:24:19
+// 创建时间:2022/1/13 13:14:17
 // 备注：由模板工具自动生成
 ///----------------------------------------------------------------*/
 #endregion
@@ -13,6 +13,9 @@
 using LitFramework;
 internal partial class ResPath
 {
+	internal partial class Sound
+	{
+	}
 	internal partial class UI
 	{
 		/// <summary>

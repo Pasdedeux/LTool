@@ -65,7 +65,7 @@ namespace LHotfixProject
                     mOnClose_0.Invoke(this.instance);
             }
 
-            protected override void FindMember()
+            public override void FindMember()
             {
                 mFindMember_10.Invoke(this.instance);
             }

@@ -25,16 +25,16 @@ public class GUITest : MonoBehaviour
         int index = 0, vindex = 0 ;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "stack1"))
         {
+            //UIManager.Instance.Show(ResPath.UI.UIKKKKKK);
         }
-        //第二行
-        index = 0;vindex++;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "prallel1"))
-        {
-        }
-        //第三行
         index = 0; vindex++;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "unique1"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
         {
+            UIManager.Instance.CloseAll(isDestroy: true,useAnim:true);
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(true)"))
+        {
+            UIManager.Instance.CloseAll(isDestroy: true, useAnim: true, force: true);
         }
     }
 

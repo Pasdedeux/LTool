@@ -97,10 +97,10 @@ namespace LitFrameworkEditor.Extention_Editor
 
             //============更新并保存CS============//
             ResPathParse rpp = new ResPathParse();
-            if ( !FrameworkConfig.Instance.UseHotFixMode )
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+            if (!FrameworkConfig.Instance.UseHotFixMode)
+                EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
             else
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/ILRuntime/HotFixLogic", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
             AssetDatabase.Refresh();
         }
 

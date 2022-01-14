@@ -1175,6 +1175,7 @@ public class CreateUIWindow : OdinEditorWindow
         FileInfo[] files = direction.GetFiles("*.prefab", SearchOption.AllDirectories);
         cSWrite.Reset();
         cSWrite.WriteLine("using Assets.Scripts.UI;");
+        cSWrite.WriteLine("using LitFramework;");
         cSWrite.WriteLine("using LitFramework.HotFix; ");
         cSWrite.WriteLine("internal partial class ResPath");
         cSWrite.StartBracket();

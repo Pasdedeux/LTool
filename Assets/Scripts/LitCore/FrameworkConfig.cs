@@ -158,7 +158,7 @@ namespace LitFramework
         public bool UseRemotePersistantPath = false;
 
         [FoldoutGroup("热更新")]
-        [ShowIf("UseRemotePersistantPath")]
+        [ShowIf("@UsePersistantPath && UseRemotePersistantPath")]
         [LabelText("远程配置参数文件(*/)")]
         public string RemoteUrlConfig = "http://192.168.1.102/";
 

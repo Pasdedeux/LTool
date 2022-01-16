@@ -459,7 +459,7 @@ MonoBehaviour:
   useSpawnConfig: 0
   loadType: 0
   UsePersistantPath: 0
-  UseRemotePersistantPath: 0
+  UseRemotePersistantPath: 1
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1
   isProgramTest: 0

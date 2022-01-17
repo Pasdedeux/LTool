@@ -115,19 +115,27 @@ namespace LitFrameworkEditor.EditorExtended
 
                 csvData.Add( row );
             }
-
         }
+
         /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public string GetData( int x , int y )
+        public string GetData(int x, int y)
         {
-            if( y >= csvData.Count && x >= csvData[ y ].Count )
-                return "";
-            return csvData[ y ][ x ];
+            try
+            {
+                if (y >= csvData.Count && x >= csvData[y].Count)
+                    return "";
+                return csvData[y][x];
+            }
+            catch (Exception)
+            {
+
+                throw new Exception($"运行时数据转换错误: 行 {y} - 列 {x}");
+            }
         }
 
         public string[] GetRow( int index )

@@ -416,7 +416,7 @@ namespace LitFramework
 
             Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
 
-            LDebug.Log($" Lit >> UIClose: {baseUI.AssetsName}");
+            LDebug.Log($"   UIClose: {baseUI.AssetsName}");
         }
 
 

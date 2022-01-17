@@ -68,8 +68,6 @@ namespace Assets.Scripts.Controller
             LitFramework.UIManager.Instance.Install();
 
             //框架基础启动完毕后，需要进行的自定义加载事件
-            //配置表的实际加载放到这里单独执行而没有包含到框架内自动执行，是因为配置表本身可能数量多、数据量大，会有较长时间消耗
-            //同时不排除业务场景中需要把这个等待过程单独表现在进度条上。
             //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
             //切换运行环境
             if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet) sc = new DotNetScriptCall();

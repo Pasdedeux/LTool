@@ -420,9 +420,19 @@ namespace LitFrameworkEditor.EditorExtended
             CSString.Add("}");
 
 
-            CSString.Add(string.Format("public List<{0}> QueryBy(string queryWhere)", _type[0]));
+            
+            CSString.Add("");
+            CSString.Add("/// <summary>");
+            CSString.Add("/// 自定义查找语句");
+            CSString.Add("/// </summary>");
+            CSString.Add("/// <param name=\"queryWhere\">基础where语句，查找值需要以?代替。如\"ID >? and PreloadAmount <?</ param > ");
+            CSString.Add("/// <param name=\"args\">需要将查找的“值”按照查询语句 “？”顺序填充</param>");
+            CSString.Add("///<returns></returns>");
+            CSString.Add(string.Format("public List<{0}> QueryBy(string queryWhere, params object[] args)", _type[0]));
             CSString.Add("{");
-            CSString.Add(string.Format("var tList = SQLManager.Instance.QueryGeneric(string.Format(SQLReader.SELECT_ID_WHERE, \"{0}\", TName, queryWhere)).rows;", _attribute[0]));
+            CSString.Add(string.Format("var queryCommand = string.Format(SQLReader.SELECT_ID_WHERE, \"{0}\", TName, queryWhere);", _attribute[0]));
+            CSString.Add("var tList = SQLManager.Instance.QueryGeneric(queryCommand, args).rows;");
+            CSString.Add("");
             CSString.Add(string.Format("List<{0}> result = new List<{0}>(tList.Count);", _type[0]));
             CSString.Add("for (int i = 0; i < tList.Count; i++)");
             CSString.Add("{");

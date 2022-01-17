@@ -334,7 +334,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\CSExtention.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\StageEngine.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\SpriteAdapter.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\UI\Version_Mono\UIManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Guide\Model\EventPenetrate.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextInput.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Relations.cs" />
@@ -384,7 +383,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ColliderHitTest.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\ZeroTimeRecord.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Type_Binding.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\UI\UIManager.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RoundedRectMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Optimization.cs" />
@@ -431,9 +430,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\Scripts\UI\UITesssssss.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UI\UITest.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\UITest.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

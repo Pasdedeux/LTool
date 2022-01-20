@@ -45,17 +45,17 @@ namespace UnityEngine.UI
         public virtual void ReturnObject(LoopScrollRect scrollRect, Transform trans)
         {
             var insID = scrollRect.GetInstanceID();
-            //try
-            //{
+            try
+            {
                 ScrollElementDict[insID][trans].UnRegisterEvent();
                 ScrollElementDict[insID][trans].Dispose();
                 ScrollElementDict[insID][trans] = null;
                 ScrollElementDict[insID].Remove(trans);
-            //}
-            //catch (System.Exception)
-            //{
-            //    throw new System.Exception($"{scrollRect.name}不存在于事件列表: {trans.name}");
-            //}
+            }
+            catch (System.Exception)
+            {
+                throw new System.Exception($"{scrollRect.name}不存在于事件列表: {trans.name}");
+            }
             SpawnManager.Instance.DespawnObject(trans);
         }
     }

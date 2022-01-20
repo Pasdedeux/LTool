@@ -348,6 +348,7 @@ namespace UnityEngine.UI
         {
             if (Application.isPlaying)
             {
+                StopMovement();
                 itemTypeStart = 0;
                 itemTypeEnd = 0;
                 totalCount = 0;

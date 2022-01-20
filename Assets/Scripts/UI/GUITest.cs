@@ -25,7 +25,7 @@ public class GUITest : MonoBehaviour
         int index = 0, vindex = 0 ;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "stack1"))
         {
-            //UIManager.Instance.Show(ResPath.UI.UIKKKKKK);
+            UIManager.Instance.Show(ResPath.UI.UITESTVERTICAL);
         }
         index = 0; vindex++;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))

@@ -44,6 +44,7 @@ namespace Assets.Scripts.UI
         /// <param name="args"></param>
         protected void OnUpdateInfo(MsgArgs args)
         {
+            LDebug.Log(">>>" + args.Get<int>(1) + ">>>>" + index, LogColor.red);
             if (args.Get<int>(0) != linkedTransID || args.Get<int>(1) != index) return;
             UpdateInfo(args);
         }

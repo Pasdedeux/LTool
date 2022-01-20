@@ -20,11 +20,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
     public class UITestElement : BaseScrollElement
     {
+        private Text _btnText;
+        private LayoutElement _le;
+
         public override void Dispose()
         {
             
@@ -32,12 +36,15 @@ namespace Assets.Scripts
 
         public override void SetElement()
         {
-            
+            _le = linkedTrans.GetComponent<LayoutElement>();
+            _btnText = UnityHelper.GetTheChildNodeComponetScripts<Text>(linkedTrans, "Text");
         }
 
         public override void UpdateInfo(MsgArgs args)
         {
-            LDebug.Log(">>UITestElement " + index + " 获得更新");
+            _btnText.text = args.Get<int>(1).ToString();
+            _le.preferredHeight = UnityEngine.Random.Range(150, 200);
+            LDebug.Log(">>UITestElement " + index + " 获得更新 "+ linkedTrans.name);
         }
     }
 }

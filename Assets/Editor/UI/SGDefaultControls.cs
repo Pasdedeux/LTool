@@ -109,12 +109,12 @@ namespace UnityEngine.UI
 
             HorizontalLayoutGroup layoutGroup = content.AddComponent<HorizontalLayoutGroup>();
             layoutGroup.childAlignment = TextAnchor.MiddleLeft;
-            layoutGroup.childForceExpandWidth = false;
+            layoutGroup.childControlWidth = true;
             layoutGroup.childForceExpandHeight = true;
 
             ContentSizeFitter sizeFitter = content.AddComponent<ContentSizeFitter>();
             sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-            sizeFitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
+            sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
             return root;
         }
@@ -150,10 +150,10 @@ namespace UnityEngine.UI
             VerticalLayoutGroup layoutGroup = content.AddComponent<VerticalLayoutGroup>();
             layoutGroup.childAlignment = TextAnchor.UpperCenter;
             layoutGroup.childForceExpandWidth = true;
-            layoutGroup.childForceExpandHeight = false;
+            layoutGroup.childControlHeight = true;
 
             ContentSizeFitter sizeFitter = content.AddComponent<ContentSizeFitter>();
-            sizeFitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+            sizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
             sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
             return root;

@@ -725,17 +725,22 @@ namespace UnityEngine.UI
         protected RectTransform GetFromTempPool(int itemIdx)
         {
             RectTransform nextItem = null;
+
+            //LDebug.Log("<>" + deletedItemTypeStart + "<>" + deletedItemTypeEnd);
+
             if (deletedItemTypeStart > 0)
             {
                 deletedItemTypeStart--;
                 nextItem = content.GetChild(0) as RectTransform;
                 nextItem.SetSiblingIndex(itemIdx - itemTypeStart + deletedItemTypeStart);
+                prefabSource.BindElementScript(nextItem, this, itemIdx);
             }
             else if (deletedItemTypeEnd > 0)
             {
                 deletedItemTypeEnd--;
                 nextItem = content.GetChild(content.childCount - 1) as RectTransform;
                 nextItem.SetSiblingIndex(itemIdx - itemTypeStart + deletedItemTypeStart);
+                prefabSource.BindElementScript(nextItem, this, itemIdx);
             }
             else
             {

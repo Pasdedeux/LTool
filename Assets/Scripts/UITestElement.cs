@@ -44,7 +44,7 @@ namespace Assets.Scripts
         {
             _btnText.text = args.Get<int>(1).ToString();
             _le.preferredHeight = UnityEngine.Random.Range(150, 200);
-            LDebug.Log(">>UITestElement " + index + " 获得更新 "+ linkedTrans.name);
+            //LDebug.Log(">>UITestElement " + index + " 获得更新 "+ linkedTrans.name);
         }
     }
 }

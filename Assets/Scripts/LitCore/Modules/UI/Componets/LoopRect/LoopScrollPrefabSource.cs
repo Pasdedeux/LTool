@@ -21,10 +21,16 @@ namespace UnityEngine.UI
         public virtual GameObject GetObject(LoopScrollRect scrollRect, int idx)
         {
             var go = SpawnManager.Instance.SpwanObject(prefabName);
-            var insID = scrollRect.GetInstanceID();
-            var trans = go.transform;
+            BindElementScript(go.transform, scrollRect, idx);
 
-            go.transform.localScale = Vector3.one;
+            return go;
+        }
+
+        public void BindElementScript(Transform trans, LoopScrollRect scrollRect, int idx)
+        {
+            var insID = scrollRect.GetInstanceID();
+
+            trans.localScale = Vector3.one;
             if (!ScrollElementDict.ContainsKey(insID)) ScrollElementDict.Add(insID, new Dictionary<Transform, BaseScrollElement>());
             if (ScrollElementDict[insID].ContainsKey(trans))
             {
@@ -35,10 +41,9 @@ namespace UnityEngine.UI
             }
             ScrollElementDict[insID][trans] = ExecuteTypeScript();
             ScrollElementDict[insID][trans].RegisterEvent(scrollRect, trans);
+            //LDebug.Log("赋值ID " + idx);
             ScrollElementDict[insID][trans].index = idx;
             ScrollElementDict[insID][trans].SetElement();
-
-            return go;
         }
 
         //回收时解除消息绑定，及两者间关联

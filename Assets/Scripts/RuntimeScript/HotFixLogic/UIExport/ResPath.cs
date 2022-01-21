@@ -5,6 +5,5 @@ internal partial class ResPath
 {
 	internal partial class UI
 	{
-		public const string UITESTVERTICAL = "Prefabs/UI/Canvas_TestVertical"; 
 	}
 }

@@ -92,10 +92,10 @@ namespace LHotfixProject
                 mDispose_5.Invoke(this.instance);
             }
 
-            public override void FindMenber()
+            public override void FindMember()
             {
                 if (mFindMenber_6.CheckShouldInvokeBase(this.instance))
-                    base.FindMenber();
+                    base.FindMember();
                 else
                     mFindMenber_6.Invoke(this.instance);
             }

@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI
                 _linkedTrans = value;
                 if(_linkedTrans)
                 {
-                    FindMenber();
+                    FindMember();
                     OnInit();
                 }
             }
@@ -44,7 +44,7 @@ namespace Assets.Scripts.UI
         /// <param name="args"></param>
         protected void OnUpdateInfo(MsgArgs args)
         {
-            LDebug.Log(">>>" + args.Get<int>(1) + ">>>>" + index, LogColor.red);
+            //LDebug.Log(">>>" + args.Get<int>(1) + ">>>>" + index, LogColor.red);
             if (args.Get<int>(0) != linkedTransID || args.Get<int>(1) != index) return;
             UpdateInfo(args);
         }
@@ -54,7 +54,7 @@ namespace Assets.Scripts.UI
         public abstract void SetElement();
 
         public abstract void Dispose();
-        public virtual void FindMenber()
+        public virtual void FindMember()
         {
         }
     }

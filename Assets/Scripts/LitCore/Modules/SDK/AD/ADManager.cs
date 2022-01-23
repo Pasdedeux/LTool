@@ -200,7 +200,7 @@ public class ADManager : Singleton<ADManager>, IManager
     /// </summary>
     public void ShowFullScreen()
     {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
             IsAppLeave = true;
             Adapter.ShowInterstitial();
 #else
@@ -215,7 +215,7 @@ public class ADManager : Singleton<ADManager>, IManager
     /// </summary>
     public void ShowRewardedVedio()
     {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
             IsPlayReward = true;
             IsAppLeave = true;
             Adapter.ShowRewarded();

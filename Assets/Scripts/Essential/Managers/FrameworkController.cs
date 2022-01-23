@@ -82,6 +82,26 @@ namespace Assets.Scripts.Controller
                 return true;
             });
 
+            //SDK初始化流程
+            LoadingTaskModel.Instance.AddTask(10, () => 
+            {
+                //广告初始化
+                ADManager.Instance.InstallEventHandler = e => 
+                {
+                    AdapterAdmob am = new AdapterAdmob(e);
+                };
+                ADManager.Instance.Install();
+
+                //统计初始化
+                StatisticManager.Instance.InstallEventHandler = e => 
+                {
+                };
+                StatisticManager.Instance.Install();
+                return true;
+            });
+
+
+
             //==================具体项目的代码从这里开始==================//
             LoadingTaskModel.Instance.AddTask(20, () =>
             {
@@ -90,6 +110,8 @@ namespace Assets.Scripts.Controller
                 return true;
             });
             //==================具体项目的代码从这里结束==================//
+
+
 
 
             LoadingTaskModel.Instance.AddTask(100, () =>

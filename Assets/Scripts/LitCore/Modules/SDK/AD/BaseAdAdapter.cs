@@ -35,6 +35,7 @@ public abstract class BaseAdAdapter : IAdPlatform
         mng.Adapter = this;
 
         Init();
+
         InitBannerCallBack();
         InitInterstitialCallBack();
         InitRewardedCallBack();

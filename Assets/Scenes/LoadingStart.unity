@@ -590,24 +590,7 @@ MonoBehaviour:
   dontReparent: 0
   _dontDestroyOnLoad: 0
   logMessages: 0
-  perPrefabPoolOptions:
-  - SortSpawnName: ceshi
-    Pools:
-    - prefab: {fileID: 6236543069296088380, guid: 0a6b2276853cddd4f911707ba0b2a6f5, type: 3}
-      prefabGO: {fileID: 0}
-      preloadAmount: 1
-      preloadTime: 0
-      preloadFrames: 2
-      preloadDelay: 0
-      limitInstances: 0
-      limitAmount: 100
-      limitFIFO: 0
-      cullDespawned: 0
-      cullAbove: 50
-      cullDelay: 60
-      cullMaxPerPass: 5
-      _logMessages: 0
-      spawnPool: {fileID: 0}
+  perPrefabPoolOptions: []
   maxParticleDespawnTime: 300
 --- !u!1 &1985084804
 GameObject:

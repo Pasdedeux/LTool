@@ -13,46 +13,55 @@
 * Copyright @ Derek Liu 2020. All rights reserved.
 *******************************************************************
 ======================================*/
-
+#if ADMOB
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
+#endif
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class AdapterAdmob : BaseAdAdapter
+public class AdapterAdmob
+    #if ADMOB
+    : BaseAdAdapter
+#endif
 {
-    public AdapterAdmob(ADManager mng) : base(mng) { }
 
-    #region Android Test
+    public AdapterAdmob(ADManager mng)
+        #if ADMOB
+       : base(mng) 
+#endif
+        { }
 
-    //开屏广告 ca-app-pub-3940256099942544/3419835294
-    //横幅广告 ca-app-pub-3940256099942544/6300978111
-    //插页式广告 ca-app-pub-3940256099942544/1033173712
-    //插页式视频广告 ca-app-pub-3940256099942544/8691691433
-    //激励广告 ca-app-pub-3940256099942544/5224354917
-    //插页式激励广告 ca-app-pub-3940256099942544/5354046379
-    //原生高级广告 ca-app-pub-3940256099942544/2247696110
-    //原生高级视频广告 ca-app-pub-3940256099942544/1044960115
+#region Android Test
 
-    #endregion
+//开屏广告 ca-app-pub-3940256099942544/3419835294
+//横幅广告 ca-app-pub-3940256099942544/6300978111
+//插页式广告 ca-app-pub-3940256099942544/1033173712
+//插页式视频广告 ca-app-pub-3940256099942544/8691691433
+//激励广告 ca-app-pub-3940256099942544/5224354917
+//插页式激励广告 ca-app-pub-3940256099942544/5354046379
+//原生高级广告 ca-app-pub-3940256099942544/2247696110
+//原生高级视频广告 ca-app-pub-3940256099942544/1044960115
 
-    #region IOS Test
+#endregion
 
-    //广告格式 演示广告单元 ID
-    //开屏广告    ca-app-pub-3940256099942544/5662855259
-    //横幅广告 ca-app-pub-3940256099942544/2934735716
-    //插页式广告 ca-app-pub-3940256099942544/4411468910
-    //插页式视频广告 ca-app-pub-3940256099942544/5135589807
-    //激励广告 ca-app-pub-3940256099942544/1712485313
-    //插页式激励广告 ca-app-pub-3940256099942544/6978759866
-    //原生高级广告 ca-app-pub-3940256099942544/3986624511
-    //原生高级视频广告 ca-app-pub-3940256099942544/2521693316
+#region IOS Test
 
-    #endregion
+//广告格式 演示广告单元 ID
+//开屏广告    ca-app-pub-3940256099942544/5662855259
+//横幅广告 ca-app-pub-3940256099942544/2934735716
+//插页式广告 ca-app-pub-3940256099942544/4411468910
+//插页式视频广告 ca-app-pub-3940256099942544/5135589807
+//激励广告 ca-app-pub-3940256099942544/1712485313
+//插页式激励广告 ca-app-pub-3940256099942544/6978759866
+//原生高级广告 ca-app-pub-3940256099942544/3986624511
+//原生高级视频广告 ca-app-pub-3940256099942544/2521693316
 
+#endregion
+#if ADMOB
     private bool isInited = false;
     private BannerView bannerView;
     private InterstitialAd interstitial;
@@ -246,7 +255,7 @@ public class AdapterAdmob : BaseAdAdapter
     }
 
 
-    #region Banner/Ins Callback
+#region Banner/Ins Callback
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
         LDebug.Log("HandleAdLoaded event received");
@@ -296,9 +305,9 @@ public class AdapterAdmob : BaseAdAdapter
         LDebug.Log("HandleAdClosed event received");
     }
 
-    #endregion
+#endregion
 
-    #region Ins Callback
+#region Ins Callback
     public void HandleInsOnAdLoaded(object sender, EventArgs args)
     {
         LDebug.Log("HandleAdLoaded event received");
@@ -350,9 +359,9 @@ public class AdapterAdmob : BaseAdAdapter
         CreateInterstitial();
     }
 
-    #endregion
+#endregion
 
-    #region Rewarded Callback
+#region Rewarded Callback
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
@@ -424,5 +433,6 @@ public class AdapterAdmob : BaseAdAdapter
                         + amount.ToString() + " " + type);
     }
 
-    #endregion
+#endregion
+#endif
 }

@@ -15,10 +15,6 @@ using LitFramework.LitPool;
 
 public class GUITest : MonoBehaviour
 {
-
-    private void Funnn()
-    { 
-    }
     private void OnGUI()
     {
         //第一行

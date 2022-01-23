@@ -17,7 +17,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 编辑器扩展，以及框架库的外展方法(Editor类型)覆写
 /// </summary>
-[InitializeOnLoadAttribute]
+[InitializeOnLoad]
 [ExecuteInEditMode]
 public class EditorUse
 {
@@ -30,7 +30,7 @@ public class EditorUse
         //放到这里是因为Dotween效果无法包含在库中
 
         //UI创建窗口初始化
-        RegisterUIWindow.CreateAnimationComponentEvent = ( e, f, g ) =>
+        RegisterUIWindow.CreateAnimationComponentEvent = (e, f, g) =>
         {
             DOTweenAnimation animTarget;
             //进场UI动画
@@ -62,11 +62,56 @@ public class EditorUse
         CreateUIWindow.CreateAnimationComponentEvent = RegisterUIWindow.CreateAnimationComponentEvent;
         #endregion
 
+        #region 导入包设置
+        // .unitypackage 开始导入
+        AssetDatabase.importPackageStarted += packageName =>
+        {
+            Debug.Log(packageName);
+        };
+        // .unitypackage 导入成功
+        AssetDatabase.importPackageCompleted += packageName =>
+        {
+            //Debug.Log(packageName);
+            //if (packageName.Equals("BasePackage_ilr"))
+            //{
+            //    string buildOutputDir = "./Temp/Bin/Debug";
+            //    List<string> scripts = new List<string>();
+            //    string[] arr = new[]
+            //    {
+            //        "HotfixProject",
+            //    };
+            //    for (int i = 0; i < arr.Length; i++)
+            //    {
+            //        DirectoryInfo dti = new DirectoryInfo(arr[i]);
+            //        FileInfo[] fileInfos = dti.GetFiles("*.cs", System.IO.SearchOption.AllDirectories);
+            //        for (int j = 0; j < fileInfos.Length; j++)
+            //        {
+            //            scripts.Add(fileInfos[j].FullName);
+            //        }
+            //    }
+
+            //    UnityEditor.Compilation.AssemblyBuilder assemblyBuilder = new UnityEditor.Compilation.AssemblyBuilder(Path.Combine(buildOutputDir, $"temp.dll"), scripts.ToArray());
+            //    assemblyBuilder.compilerOptions.AllowUnsafeCode = true;
+            //}
+        };
+        // .unitypackage 取消导入
+        AssetDatabase.importPackageCancelled += packageName =>
+        {
+            Debug.Log(packageName);
+        };
+        // .unitypackage 导入失败
+        AssetDatabase.importPackageFailed += (packageName, errorMessage) =>
+        {
+            Debug.Log(errorMessage);
+        };
+
+        #endregion
+
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
-    private static void OnPlayerModeStateChanged( PlayModeStateChange playModeState )
+    private static void OnPlayerModeStateChanged(PlayModeStateChange playModeState)
     {
-        LDebug.LogWarning( string.Format( "state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying ) );
+        LDebug.LogWarning(string.Format("state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying));
     }
 
     #endregion
@@ -77,15 +122,15 @@ public class EditorUse
     public static class UGUICustom
     {
         [MenuItem("GameObject/UI/Text")]
-        private static void CreatText( MenuCommand menuCommand )
+        private static void CreatText(MenuCommand menuCommand)
         {
-            UGUIOptimizeCommand.CreatText( menuCommand );
+            UGUIOptimizeCommand.CreatText(menuCommand);
         }
 
         [MenuItem("GameObject/UI/Image")]
-        private static void CreatImage( MenuCommand menuCommand )
+        private static void CreatImage(MenuCommand menuCommand)
         {
-            UGUIOptimizeCommand.CreatImage( menuCommand );
+            UGUIOptimizeCommand.CreatImage(menuCommand);
         }
 
         [MenuItem("GameObject/UI/Canvas")]
@@ -114,7 +159,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         string[] importedAssets,
         string[] deletedAssets,
         string[] movedAssets,
-        string[] movedFromAssetPaths )
+        string[] movedFromAssetPaths)
     {
         //LDebug.Log( "====>importedAssets<====" );
     }
@@ -143,7 +188,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在模型完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessModel( GameObject go )
+    public void OnPostprocessModel(GameObject go)
     {
         //LDebug.Log( "====>OnPostprocessModel<====" );
     }
@@ -159,7 +204,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 当 AnimationClip 已完成导入时调用此函数。
     /// </summary>
-    public void OnPostprocessAnimation( GameObject go, AnimationClip ac )
+    public void OnPostprocessAnimation(GameObject go, AnimationClip ac)
     {
         //LDebug.Log( "====>OnPostprocessAnimation<====" );
     }
@@ -167,7 +212,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将资源分配给其他资源捆绑包时调用的处理程序。
     /// </summary>
-    public void OnPostprocessAssetbundleNameChanged( string s1, string s2, string s3 )
+    public void OnPostprocessAssetbundleNameChanged(string s1, string s2, string s3)
     {
         //LDebug.Log( "====>OnPostprocessAssetbundleNameChanged<====" );
     }
@@ -175,7 +220,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在立方体贴图纹理完成导入之前获取通知。
     /// </summary>
-    public void OnPostprocessCubemap( Cubemap cm )
+    public void OnPostprocessCubemap(Cubemap cm)
     {
         //LDebug.Log( "====>OnPostprocessCubemap<====" );
     }
@@ -183,7 +228,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 当自定义属性的动画曲线已完成导入时调用此函数。
     /// </summary>
-    public void OnPostprocessGameObjectWithAnimatedUserProperties( GameObject go, EditorCurveBinding[] bindings )
+    public void OnPostprocessGameObjectWithAnimatedUserProperties(GameObject go, EditorCurveBinding[] bindings)
     {
         //// add a particle emitter to every game object that has a custom property called "particleAmount"
         //// then map the animation to the emission rate
@@ -206,7 +251,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在材质资源完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessMaterial( Material material )
+    public void OnPostprocessMaterial(Material material)
     {
         //LDebug.Log( "====>OnPostprocessMaterial<====" );
     }
@@ -214,7 +259,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在精灵的纹理完成导入时获取通知。
     /// </summary>
-    void OnPostprocessSprites( Texture2D texture, Sprite[] sprites )
+    void OnPostprocessSprites(Texture2D texture, Sprite[] sprites)
     {
         //LDebug.Log( "====>Sprites: " + sprites.Length + "<====" );
     }
@@ -224,10 +269,10 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessTexture()
     {
-        TextureImporter textureImporter = ( TextureImporter )assetImporter;
-        Assert.IsNotNull( textureImporter, "未检测到有效Texture资源" );
+        TextureImporter textureImporter = (TextureImporter)assetImporter;
+        Assert.IsNotNull(textureImporter, "未检测到有效Texture资源");
 
-        switch ( textureImporter.textureType )
+        switch (textureImporter.textureType)
         {
             case TextureImporterType.Default:
                 //textureImporter.mipmapEnabled = false;
@@ -251,13 +296,13 @@ public class AssetsInEditorManager : AssetPostprocessor
                 break;
         }
 
-        LDebug.Log( "====>OnPreprocessTexture<====" + textureImporter.name );
+        LDebug.Log("====>OnPreprocessTexture<====" + textureImporter.name);
     }
 
     /// <summary>
     /// 将此函数添加到一个子类中，以在纹理刚完成导入之前获取通知。
     /// </summary>
-    public void OnPostprocessTexture( Texture2D texture )
+    public void OnPostprocessTexture(Texture2D texture)
     {
         //LDebug.Log( "====>OnPostprocessTexture<====" );
     }
@@ -273,7 +318,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// <summary>
     /// 将此函数添加到一个子类中，以在音频剪辑完成导入时获取通知。
     /// </summary>
-    public void OnPostprocessAudio( AudioClip audio )
+    public void OnPostprocessAudio(AudioClip audio)
     {
         //LDebug.Log( "====>OnPostprocessAudio<====" );
     }
@@ -285,11 +330,11 @@ public class AssetsInEditorManager : AssetPostprocessor
 [ExecuteInEditMode]
 public class ComponentExpand : MonoBehaviour
 {
-    Type window = GetType( "AddComponentWindow" );
+    Type window = GetType("AddComponentWindow");
 
     private void Awake()
     {
-        Debug.Log( "EditorAwake" );
+        Debug.Log("EditorAwake");
     }
 
     /// <summary>
@@ -297,29 +342,29 @@ public class ComponentExpand : MonoBehaviour
     /// </summary>
     /// <param name="typeName"></param>
     /// <returns></returns>
-    public static Type GetType( string typeName )
+    public static Type GetType(string typeName)
     {
         Type type = null;
         Assembly[] assemblyArray = AppDomain.CurrentDomain.GetAssemblies();
         int assemblyArrayLength = assemblyArray.Length;
-        for ( int i = 0; i < assemblyArrayLength; ++i )
+        for (int i = 0; i < assemblyArrayLength; ++i)
         {
-            type = assemblyArray[ i ].GetType( typeName );
-            if ( type != null )
+            type = assemblyArray[i].GetType(typeName);
+            if (type != null)
             {
                 return type;
             }
         }
 
-        for ( int i = 0; ( i < assemblyArrayLength ); ++i )
+        for (int i = 0; (i < assemblyArrayLength); ++i)
         {
-            Type[] typeArray = assemblyArray[ i ].GetTypes();
+            Type[] typeArray = assemblyArray[i].GetTypes();
             int typeArrayLength = typeArray.Length;
-            for ( int j = 0; j < typeArrayLength; ++j )
+            for (int j = 0; j < typeArrayLength; ++j)
             {
-                if ( typeArray[ j ].Name.Equals( typeName ) )
+                if (typeArray[j].Name.Equals(typeName))
                 {
-                    return typeArray[ j ];
+                    return typeArray[j];
                 }
             }
         }

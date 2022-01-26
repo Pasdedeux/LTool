@@ -324,7 +324,7 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\UIType.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_IEqualityComparer_1Adapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Container.cs" />
-    <Compile Include="Assets\Scripts\Essential\Managers\FrameworkController.cs" />
+    <Compile Include="Assets\Scripts\LitCore\GameFlow\Manager\FrameworkController.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Model\Const\ResPath.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObjectPool.cs" />

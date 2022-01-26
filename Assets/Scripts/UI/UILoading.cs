@@ -73,7 +73,7 @@ namespace Assets.Scripts.UI
         public override void OnShow( params object[] args )
         {
             _progress = 0;
-            _coroutine = LitFramework.LitTool.LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );
+            _coroutine = LitTool.MonoBehaviour.StartCoroutine( IStartLoading() );
 
             _sliderSlider.fillAmount = _progress / 100f;
             _progressText.text = string.Format( "{0}%", _progress );
@@ -104,9 +104,11 @@ namespace Assets.Scripts.UI
 
         public override void OnClose()
         {
-            LitFramework.LitTool.LitTool.MonoBehaviour.StopCoroutine( _coroutine );
-            _coroutine = null;
+            if (_coroutine != null)
+            {
+                LitTool.MonoBehaviour.StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
         }
-
     }
 }

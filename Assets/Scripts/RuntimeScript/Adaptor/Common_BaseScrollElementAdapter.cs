@@ -13,7 +13,7 @@ namespace LHotfixProject
         static CrossBindingMethodInfo mOnInit_3 = new CrossBindingMethodInfo("OnInit");
         static CrossBindingMethodInfo mSetElement_4 = new CrossBindingMethodInfo("SetElement");
         static CrossBindingMethodInfo mDispose_5 = new CrossBindingMethodInfo("Dispose");
-        static CrossBindingMethodInfo mFindMenber_6 = new CrossBindingMethodInfo("FindMenber");
+        static CrossBindingMethodInfo mFindMenber_6 = new CrossBindingMethodInfo("FindMember");
         public override Type BaseCLRType
         {
             get

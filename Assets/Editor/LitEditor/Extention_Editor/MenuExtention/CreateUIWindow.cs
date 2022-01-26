@@ -505,7 +505,7 @@ public class CreateUIWindow : OdinEditorWindow
             SetCsAttrbuteArray(keyValue.Value, aCSWrite, "internal");
         }
 
-        aCSWrite.WriteLine("public override void FindMenber()");
+        aCSWrite.WriteLine("public override void FindMember()");
         aCSWrite.StartBracket();
 
         CsFindPathCom(aPrefab.transform, "","", "linkedTrans", aCSWrite);
@@ -560,7 +560,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("public {0} (Transform tans)", className);
         aCSWrite.StartBracket();
         aCSWrite.WriteLine("transform = tans;");
-        aCSWrite.WriteLine("FindMenber();");
+        aCSWrite.WriteLine("FindMember();");
 
         aCSWrite.WriteLine("OnInite();");
         aCSWrite.EndBracket();
@@ -580,7 +580,7 @@ public class CreateUIWindow : OdinEditorWindow
         {
             SetCsAttrbuteArray(keyValue.Value, aCSWrite,"private");
         }
-        aCSWrite.WriteLine("public void FindMenber()");
+        aCSWrite.WriteLine("public void FindMember()");
         aCSWrite.StartBracket();
 
         CsFindPathCom(aPrefab.transform, null,"", "transform", aCSWrite);

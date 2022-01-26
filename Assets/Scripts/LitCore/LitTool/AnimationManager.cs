@@ -64,7 +64,12 @@ public static class AnimationManager
         //动画回调以指定ID中耗时最长的动画播放结束时刻为准
         if (animArray.Length > 0)
         {
-            if (callBack != null) LitFramework.LitTool.LitTool.DelayPlayFunction(animArray.Where(k => k.id.Equals(id)).Max(e => e.delay + e.duration), () => { callBack.Invoke(); });
+            if (callBack != null)
+            {
+                var condition = animArray.Where(k => k.id.Equals(id));
+                if (condition.Count() > 0)
+                    LitFramework.LitTool.LitTool.DelayPlayFunction(condition.Max(e => e.delay + e.duration), () => { callBack.Invoke(); });
+            }
         }
         else callBack?.Invoke();
     }

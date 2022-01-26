@@ -12,6 +12,7 @@ using Assets.Scripts.Module;
 using System.Reflection;
 using UnityEngine.Networking;
 using LitFramework.LitPool;
+using LitFramework.InputSystem;
 
 public class GUITest : MonoBehaviour
 {
@@ -21,32 +22,12 @@ public class GUITest : MonoBehaviour
         int index = 0, vindex = 0 ;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "stack1"))
         {
-            ADManager.Instance.RewardPlayEventHandler = e =>
-            {
-                LDebug.Log("播放v" + e);
-                if (e)
-                {
-                    LDebug.Log("播放成功");
-                }
-                else
-                    LDebug.Log("播放失败");
-            };
-            ADManager.Instance.ShowRewardedVedio();
+            InputControlManager.Instance.IsEnable = true;
         }
         index = 0; vindex++;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
         {
-            ADManager.Instance.InterstitialPlayEvent = e =>
-            {
-                LDebug.Log("播放iiiii" + e);
-                if (e)
-                {
-                    LDebug.Log("播放成功");
-                }
-                else
-                    LDebug.Log("播放失败");
-            };
-            ADManager.Instance.ShowFullScreen();
+            InputControlManager.Instance.IsEnable = false;
         }
         index = 0; vindex++;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))

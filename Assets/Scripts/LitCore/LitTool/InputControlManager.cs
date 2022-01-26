@@ -126,7 +126,10 @@ namespace LitFramework.InputSystem
             set
             {
                 if ( _isInit )
+                {
                     _isEnable = value;
+                    _currentEventSys.enabled = value;
+                }
                 else
                     throw new Exception( "UIControlManager is not installed" );
             }
@@ -166,6 +169,7 @@ namespace LitFramework.InputSystem
                 eventsys.AddComponent<EventSystem>();
             }
             _currentEventSys = eventsys.GetComponent<EventSystem>();
+            _currentEventSys.enabled = true;
             _uiLayer = LayerMask.NameToLayer("UI");
 
             //给内部方法绑定一个计算当前是否是持续性按压状态

@@ -118,8 +118,8 @@ namespace Assets.Scripts.Controller
             {
                 while (!_asyncOperation.isDone) { };
                 sc.StartRun();
-                UIManager.Instance.Close(ResPath.UI.UILOADING, true);
-                MsgManager.Instance.Broadcast(InternalEvent.START_UP);
+                //UIManager.Instance.Close(ResPath.UI.UILOADING, true);
+                //MsgManager.Instance.Broadcast(InternalEvent.START_UP);
                 return true;
             });
 

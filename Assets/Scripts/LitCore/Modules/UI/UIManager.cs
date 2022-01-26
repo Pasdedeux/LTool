@@ -334,16 +334,7 @@ namespace LitFramework
                 //获取当前UI，进行展示处理
                 _dictLoadedAllUIs.TryGetValue(uiName, out baseUI);
                 if (baseUI != null)
-                {
-                    if (baseUI.IsShowing)
-                        baseUI.OnShow(args: args);
-                    else
-                    {
-                        if (baseUI.IsInitOver)
-                            baseUI.OnEnabled(false);
-                        baseUI.Show(args: args);
-                    }
-                }
+                    baseUI.Show(args: args);
             }
 
             //动画播放前界面刷新已完成，动画独立

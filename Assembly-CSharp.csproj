@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_ApplicationExceptionAdapter.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GTextFieldAdapter.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTFacebook.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\QuaternionBinder.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Statistic\StatisticManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GList.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterMopub.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Collections_Generic_List_1_Int32_Binding.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\ScriptableLoader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLUtils.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterAdmob.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GScrollBarAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\Cloneable.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\LDebug_Binding.cs" />
@@ -207,6 +210,7 @@
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Guide\Model\GuideDataModel.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTGA.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GScrollBar.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\PinchGesture.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\MeshFactory.cs" />
@@ -218,12 +222,14 @@
     <Compile Include="Assets\Scripts\Essential\ResPath.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\IAP\PurchaserStoreItem.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\ReporterMessageReceiver.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTUMeng.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\PixelHitTest.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GPath.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearSize.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\VibrateManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\InputControlManager.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterIronSource.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\PlayerDataExample.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\EllipseMesh.cs" />
@@ -245,6 +251,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\EMRenderSupport.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Msg\MsgManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTFireBase.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Array_Binding.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\SpawnPool.cs" />
@@ -299,6 +306,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\IKeyboard.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearFontSize.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTAppFlyer.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextField.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_SerializedScriptableObjectAdapter.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
@@ -330,6 +338,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLReader.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\CSExtention.cs" />
@@ -431,15 +440,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTUMeng.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTAppFlyer.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterIronSource.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTFireBase.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTFacebook.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterMopub.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTGA.cs" />
-    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterAdmob.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

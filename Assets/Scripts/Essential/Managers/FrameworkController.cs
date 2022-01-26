@@ -88,7 +88,7 @@ namespace Assets.Scripts.Controller
                 //广告初始化
                 ADManager.Instance.InstallEventHandler = e => 
                 {
-                    AdapterAdmob am = new AdapterAdmob(e);
+                    
                 };
                 ADManager.Instance.Install();
 

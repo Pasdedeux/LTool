@@ -153,8 +153,5 @@ namespace Assets.Scripts.Controller
             UI.UILoading.LOADING_CONTINUE = true;
         }
 
-
-
-
     }
 }

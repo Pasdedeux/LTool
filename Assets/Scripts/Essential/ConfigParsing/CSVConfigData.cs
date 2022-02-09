@@ -42,7 +42,7 @@ public class CSVConfigData : BaseLocalData
     {
         //顺次加载各类配置表
         List<string> csvKeys = null;
-        string localPath = FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt", dontEscape: true ) : AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt", dontEscape: true );
+        string localPath = FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath( "csvList.txt") : AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt");
 
         DocumentAccessor.LoadAsset( localPath, ( string e ) =>
         csvKeys = e.Split( new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries ).ToList() );

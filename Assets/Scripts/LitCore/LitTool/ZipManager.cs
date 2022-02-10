@@ -52,7 +52,7 @@ namespace Assets.Scripts.LitCore.LitTool
             fileStream.Read(buffer, 0, buffer.Length);
             string tempFile = sourceFilePath.Substring(sourceFilePath.LastIndexOf("\\") + 1);
             /////剔除掉非相对根目录  /test 之上的冗余路径
-            ///// 如传入的资源路径是 /Users/wangdong/Documents/Work/ziptest/Assets/test
+            ///// 如传入的资源路径是 /Users/lc10278/Documents/Work/ziptest/Assets/test
             ///// 需要把test之前的路径都剔除掉  _inputResRootFolder = "test"
             //int ind = tempFile.LastIndexOf("/");
             string realPath = tempFile;//.Substring(ind, tempFile.Length - ind);

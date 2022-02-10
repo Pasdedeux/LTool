@@ -5,6 +5,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Checksum;
+using UnityEngine;
 
 namespace Assets.Scripts.LitCore.LitTool
 {
@@ -157,6 +158,10 @@ namespace Assets.Scripts.LitCore.LitTool
         /// <param name="password"></param>
         public static void ExtractZipContent(string fileZipPath, string outputFolder, string password = null)
         {
+            //LDebug.LogError(GetPath());
+            //LDebug.LogError(outputFolder);
+            //LDebug.LogError(GetPath().StartsWith(outputFolder));
+
             ZipFile file = null;
             try
             {
@@ -176,7 +181,7 @@ namespace Assets.Scripts.LitCore.LitTool
                         // Ignore directories
                         continue;
                     }
-
+                    
                     string entryFileName = zipEntry.Name;
                     // to remove the folder from the entry:- entryFileName = Path.GetFileName(entryFileName);
                     // Optionally match entrynames against a selection list here to skip as desired.
@@ -216,6 +221,20 @@ namespace Assets.Scripts.LitCore.LitTool
                     file.Close(); // Ensure we release resources
                 }
             }
+        }
+
+
+        private static string GetPath()
+        {
+            string path = "";
+            using (AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            {
+                using (AndroidJavaObject currentActivity = jc.GetStatic<AndroidJavaObject>("currentActivity"))
+                {
+                    path = currentActivity.Call<AndroidJavaObject>("getFilesDir").Call<string>("getCanonicalPath");
+                }
+            }
+            return path;
         }
 
     }

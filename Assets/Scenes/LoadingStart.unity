@@ -454,7 +454,7 @@ MonoBehaviour:
   ABFolderName: ABPackages
   ABTotalName: ABPackages
   configs_suffix: json|dat|assetbundle
-  useZIP: 0
+  useZIP: 1
   useSql: 0
   useSpawnConfig: 0
   loadType: 0

@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\AD\BaseAdAdapter.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Scripts\testWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\RsCom\RsLoadAB.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_BaseScrollElementAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\HitTestContext.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopScrollRect.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLIterator.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\AD\ADManager.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\lz4test.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Model\Const\Configs.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTreeNode.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
@@ -110,6 +112,8 @@
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLDataTable.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTweener.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtest.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\SevenZipTest.cs" />
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\JsonConfigData.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\TestReporter.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
@@ -138,6 +142,7 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PrefabPool.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\ScriptableLoader.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Plugins\LZ4.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLUtils.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterAdmob.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GScrollBarAdapter.cs" />
@@ -191,6 +196,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\UBBParser.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Single_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\IUIManager.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\LZ4testWebGLtvOS.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GButtonAdapter.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
@@ -286,6 +292,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\AssetPathManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\fLZ.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\ExampleQuery.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Int32_Binding.cs" />
@@ -317,10 +324,12 @@
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\CSV\SpawnConfig.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\IManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GGroupAdapter.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\lzma.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearLook.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\AudioManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GComboBoxAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GComponent.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\benchmark\Scripts\benchmark.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\UIType.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_IEqualityComparer_1Adapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Container.cs" />
@@ -328,6 +337,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Model\Const\ResPath.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObjectPool.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtestWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObject.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Version_Mono\BaseUI.cs" />
@@ -338,6 +348,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLReader.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\testLzmaWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixItem\HotFixAB.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -348,6 +359,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GTextInput.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Relations.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GGroup.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Plugins\lzip.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\ICrypto.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtention.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Window.cs" />
@@ -366,6 +378,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\RichTextField.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ZipReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearColor.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Scripts\testZip.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\CameraCapture.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearIcon.cs" />
@@ -382,6 +395,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GImageAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GMovieClip.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\Singleton.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Plugins\brotli.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PoolManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\Spine\SpineLoader.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\BindingProperty.cs" />
@@ -398,6 +412,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RoundedRectMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Optimization.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\IColorGear.cs" />
+    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Scripts\brotlitest.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\CLRBindings.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventBridge.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\HtmlPageContext.cs" />
@@ -440,21 +455,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Scripts\testWebGLtvOS.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\lz4test.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\fLZ.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtestWebGLtvOS.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Plugins\lzip.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\zip\Scripts\testZip.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\lzma.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\LZ4testWebGLtvOS.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Scripts\brotlitest.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Plugins\LZ4.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtest.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\SevenZipTest.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\testLzmaWebGLtvOS.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\benchmark\Scripts\benchmark.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Plugins\brotli.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
@@ -737,17 +737,11 @@
     <Reference Include="Sirenix.Serialization.AOTGenerated">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\AOT\Sirenix.Serialization.AOTGenerated.dll</HintPath>
     </Reference>
-    <Reference Include="ILRuntime.Mono.Cecil.Pdb">
-      <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    <Reference Include="LitJsonILR">
+      <HintPath>Assets\Plugins\LitJsonILR.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>Assets\Plugins\EPPlus.dll</HintPath>
-    </Reference>
-    <Reference Include="LitJsonILR">
-      <HintPath>Assets\Plugins\LitJsonILR.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
@@ -755,29 +749,44 @@
     <Reference Include="DOTween">
       <HintPath>Assets\The3rd\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="ILRuntime.Mono.Cecil">
-      <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.dll</HintPath>
-    </Reference>
     <Reference Include="UDP">
       <HintPath>Assets\Plugins\UDP\UDP.dll</HintPath>
     </Reference>
     <Reference Include="ILRuntime">
       <HintPath>Assets\Plugins\ILRuntime.dll</HintPath>
     </Reference>
-    <Reference Include="DOTweenPro">
-      <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
-    </Reference>
     <Reference Include="UnityStore">
       <HintPath>Assets\Plugins\UnityChannel\UnityStore.dll</HintPath>
     </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>Assets\Plugins\UnityChannel\ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Utilities">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil.Pdb">
+      <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>Assets\Plugins\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil">
+      <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>Assets\Plugins\ExcelDataReader.dll</HintPath>
     </Reference>
     <Reference Include="ExcelDataReader.DataSet">
       <HintPath>Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
@@ -788,17 +797,8 @@
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="ChannelPurchase">
-      <HintPath>Assets\Plugins\UnityChannel\ChannelPurchase.dll</HintPath>
-    </Reference>
     <Reference Include="Excel">
       <HintPath>Assets\Plugins\Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Utilities">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:\Program Files\Unity\2020.3.6f1c1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>

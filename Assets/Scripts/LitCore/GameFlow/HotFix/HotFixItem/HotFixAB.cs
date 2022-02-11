@@ -239,14 +239,28 @@ namespace Assets.Scripts.Module.HotFix
             {
                 foreach (var item in remoteABVersionsDic.Keys)
                 {
+                    if (item.Contains(".manifest")) continue;
                     //解压完成后，删除原压缩包
                     string fileName = $"{FrameworkConfig.Instance.ABFolderName}/{item}.zip";
+                    LDebug.Log($" 解压缩开始：[{fileName}]", LogColor.yellow);
                     FileInfo fileInfo = new FileInfo(AssetPathManager.Instance.GetPersistentDataPath(fileName, false));
                     if (fileInfo.Exists)
                     {
-                        ZipManager.ExtractZipContent(AssetPathManager.Instance.GetPersistentDataPath(fileName, false), AssetPathManager.Instance.GetPersistentDataPath(FrameworkConfig.Instance.ABFolderName + "/", false));
-                        fileInfo.Delete();
+                        try
+                        {
+                            ZipManager.ExtractZipContent(AssetPathManager.Instance.GetPersistentDataPath(fileName, false), AssetPathManager.Instance.GetPersistentDataPath(FrameworkConfig.Instance.ABFolderName + "/", false), "31409");
+                        }
+                        catch (Exception)
+                        {
+                            LDebug.LogError($" 解压缩错误：[{fileName}]", LogColor.green);
+                        }
+                        finally
+                        {
+                            //使用完后删除压缩包文件
+                            fileInfo.Delete();
+                        }
                     }
+                    LDebug.Log($" 解压缩结束：[{fileName}]", LogColor.green);
                 }
             }
             catch (Exception e) { zipSuccess = false; }

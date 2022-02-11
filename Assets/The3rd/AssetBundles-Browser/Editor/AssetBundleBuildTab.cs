@@ -519,9 +519,18 @@ namespace AssetBundleBrowser
             var keyGrouped = abVersionsList.GroupBy(e => e.AbName.Split('.')[0]);
             foreach (var item in keyGrouped)
             {
-                ZipManager.CompressFileWithPassword(
-                    item.Select(e => new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + e.AbName).FullName).ToArray(),
-                    new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + item.Key + ".zip").FullName);
+                string fullName = null;
+                try
+                {
+                    fullName = new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + item.Key + ".zip").FullName;
+                    ZipManager.CompressFileWithPassword(
+                    item.Select(e => new FileInfo(output + "/" + FrameworkConfig.Instance.ABTotalName + "/" + e.AbName).FullName).ToArray(), fullName, "31409");
+                }
+                catch (Exception)
+                {
+                    LDebug.LogError($" Ñ¹Ëõ´íÎó£º[{fullName}]", LogColor.green);
+                    return;
+                }
             }
         }
 

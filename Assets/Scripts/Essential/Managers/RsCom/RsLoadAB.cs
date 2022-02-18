@@ -63,9 +63,8 @@ namespace Assets.Scripts.Essential.Managers
         private List<ReBundle> _recoveryReBundleList = new List<ReBundle>();
         private Dictionary<string, string> _pathToAB = new Dictionary<string, string>();
         private Dictionary<string, ReBundle> _bundlePool = new Dictionary<string, ReBundle>();
-        private RsLoadManager _rsManager;
 
-        public RsLoadAB(RsLoadManager mng) { _rsManager = mng; }
+        public RsLoadAB() { }
 
         public void AfterInit()
         {
@@ -94,48 +93,21 @@ namespace Assets.Scripts.Essential.Managers
             string abName;
             UnityEngine.Object rs = null;
 
-            if (_rsManager.UseSpawnPool)
+            if (_pathToAB.TryGetValue(aPath, out abName))
             {
-                rs = SpawnManager.Instance.SpwanObject(aPath);
-                if (rs == null)
+                AssetBundle ab = LoadAB(abName);
+                if (ab)
                 {
-                    if (_pathToAB.TryGetValue(aPath, out abName))
-                    {
-                        AssetBundle ab = LoadAB(abName);
-                        if (ab)
-                        {
-                            string aName = ResoucesName(aPath);
-                            rs = ab.LoadAsset(aName);
-                        }
-
-                        CheckShader(rs);
-                    }
-                    else
-                    {
-                        rs = Resources.Load(aPath);
-                    }
+                    string aName = ResoucesName(aPath);
+                    rs = ab.LoadAsset(aName);
                 }
+
+                CheckShader(rs);
             }
             else
             {
-                if (_pathToAB.TryGetValue(aPath, out abName))
-                {
-                    AssetBundle ab = LoadAB(abName);
-                    if (ab)
-                    {
-                        string aName = ResoucesName(aPath);
-                        rs = ab.LoadAsset(aName);
-                    }
-
-                    CheckShader(rs);
-                }
-                else
-                {
-                    rs = Resources.Load(aPath);
-                }
+                rs = Resources.Load(aPath);
             }
-
-
             return rs;
         }
 
@@ -144,43 +116,19 @@ namespace Assets.Scripts.Essential.Managers
             string abName;
             T rs = default(T);
 
-            if (_rsManager.UseSpawnPool)
+            if (_pathToAB.TryGetValue(aPath, out abName))
             {
-                rs = SpawnManager.Instance.SpwanObject(aPath) as T;
-                if (rs == null)
+                AssetBundle ab = LoadAB(abName);
+                if (ab)
                 {
-                    if (_pathToAB.TryGetValue(aPath, out abName))
-                    {
-                        AssetBundle ab = LoadAB(abName);
-                        if (ab)
-                        {
-                            string aName = ResoucesName(aPath);
-                            rs = ab.LoadAsset<T>(aName);
-                            CheckShader(rs);
-                        }
-                    }
-                    else
-                    {
-                        rs = Resources.Load<T>(aPath);
-                    }
+                    string aName = ResoucesName(aPath);
+                    rs = ab.LoadAsset<T>(aName);
+                    CheckShader(rs);
                 }
             }
             else
             {
-                if (_pathToAB.TryGetValue(aPath, out abName))
-                {
-                    AssetBundle ab = LoadAB(abName);
-                    if (ab)
-                    {
-                        string aName = ResoucesName(aPath);
-                        rs = ab.LoadAsset<T>(aName);
-                        CheckShader(rs);
-                    }
-                }
-                else
-                {
-                    rs = Resources.Load<T>(aPath);
-                }
+                rs = Resources.Load<T>(aPath);
             }
 
             return rs;
@@ -190,143 +138,62 @@ namespace Assets.Scripts.Essential.Managers
         {
             string abName;
 
-            if (_rsManager.UseSpawnPool)
+            if (_pathToAB.TryGetValue(aPath, out abName))
             {
-                var rs = SpawnManager.Instance.SpwanObject(aPath);
-                if (rs == null)
+                LoadABAsync(abName, (AssetBundle ab) =>
                 {
-                    if (_pathToAB.TryGetValue(aPath, out abName))
+                    string aName = ResoucesName(aPath);
+                    AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync(aName);
+                    assetBundleRequest.completed += (AsyncOperation async) =>
                     {
-                        LoadABAsync(abName, (AssetBundle ab) =>
-                        {
-                            string aName = ResoucesName(aPath);
-                            AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync(aName);
-                            assetBundleRequest.completed += (AsyncOperation async) =>
-                            {
-                                CheckShader(assetBundleRequest.asset);
-                                onComplete?.Invoke(assetBundleRequest.asset);
-                            };
-                        });
-                    }
-                    else
-                    {
-                        ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
-                        resourceRequest.completed += (AsyncOperation async) =>
-                        {
-                            onComplete?.Invoke(resourceRequest.asset);
-                        };
-                    }
-                }
-                else onComplete?.Invoke(rs);
+                        CheckShader(assetBundleRequest.asset);
+                        onComplete?.Invoke(assetBundleRequest.asset);
+                    };
+                });
             }
             else
             {
-                if (_pathToAB.TryGetValue(aPath, out abName))
+                ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
+                resourceRequest.completed += (AsyncOperation async) =>
                 {
-                    LoadABAsync(abName, (AssetBundle ab) =>
-                    {
-                        string aName = ResoucesName(aPath);
-                        AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync(aName);
-                        assetBundleRequest.completed += (AsyncOperation async) =>
-                        {
-                            CheckShader(assetBundleRequest.asset);
-                            onComplete?.Invoke(assetBundleRequest.asset);
-                        };
-                    });
-                }
-                else
-                {
-                    ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
-                    resourceRequest.completed += (AsyncOperation async) =>
-                    {
-                        onComplete?.Invoke(resourceRequest.asset);
-                    };
-                }
+                    onComplete?.Invoke(resourceRequest.asset);
+                };
             }
-                
-            
         }
 
         public void LoadAsync<T>(string aPath, Action<UnityEngine.Object> onComplete) where T : UnityEngine.Object
         {
             string abName;
 
-            if (_rsManager.UseSpawnPool)
+            if (_pathToAB.TryGetValue(aPath, out abName))
             {
-                var rs = SpawnManager.Instance.SpwanObject(aPath);
-                if (rs == null)
+                LoadABAsync(abName, (AssetBundle ab) =>
                 {
-                    if (_pathToAB.TryGetValue(aPath, out abName))
+                    if (ab == null)
                     {
-                        LoadABAsync(abName, (AssetBundle ab) =>
-                        {
-                            if (ab == null)
-                            {
-                                LDebug.LogError(abName + " is Null!");
-                                onComplete?.Invoke(null);
-                            }
-                            else
-                            {
-
-                                string aName = ResoucesName(aPath);
-                                AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync<T>(aName);
-                                assetBundleRequest.completed += (AsyncOperation async) =>
-                                {
-                                    CheckShader(assetBundleRequest.asset);
-                                    onComplete?.Invoke(assetBundleRequest.asset);
-                                };
-                            }
-
-                        });
+                        LDebug.LogError(abName + " is Null!");
+                        onComplete?.Invoke(null);
                     }
                     else
                     {
-                        ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
-                        resourceRequest.completed += (AsyncOperation async) =>
+                        string aName = ResoucesName(aPath);
+                        AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync<T>(aName);
+                        assetBundleRequest.completed += (AsyncOperation async) =>
                         {
-                            onComplete?.Invoke(resourceRequest.asset);
+                            CheckShader(assetBundleRequest.asset);
+                            onComplete?.Invoke(assetBundleRequest.asset);
                         };
                     }
-                }
-                else onComplete?.Invoke(rs);
+                });
             }
             else
             {
-                if (_pathToAB.TryGetValue(aPath, out abName))
+                ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
+                resourceRequest.completed += (AsyncOperation async) =>
                 {
-                    LoadABAsync(abName, (AssetBundle ab) =>
-                    {
-                        if (ab == null)
-                        {
-                            LDebug.LogError(abName + " is Null!");
-                            onComplete?.Invoke(null);
-                        }
-                        else
-                        {
-
-                            string aName = ResoucesName(aPath);
-                            AssetBundleRequest assetBundleRequest = ab.LoadAssetAsync<T>(aName);
-                            assetBundleRequest.completed += (AsyncOperation async) =>
-                            {
-                                CheckShader(assetBundleRequest.asset);
-                                onComplete?.Invoke(assetBundleRequest.asset);
-                            };
-                        }
-
-                    });
-                }
-                else
-                {
-                    ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
-                    resourceRequest.completed += (AsyncOperation async) =>
-                    {
-                        onComplete?.Invoke(resourceRequest.asset);
-                    };
-                }
+                    onComplete?.Invoke(resourceRequest.asset);
+                };
             }
-
-
-                
         }
 
         public void UnloadAsset()

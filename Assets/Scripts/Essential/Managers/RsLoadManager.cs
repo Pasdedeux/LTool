@@ -1,14 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*======================================
+* 项目名称 ：Assets.Scripts.Controller
+* 项目描述 ：
+* 类 名 称 ：URPCamManager
+* 类 描 述 ：
+* 命名空间 ：Assets.Scripts.Controller
+* 机器名称 ：DEREK-SURFACEPR 
+* CLR 版本 ：4.0.30319.42000
+* 作    者 ：LHW
+* 创建时间 ：2022/2/18 15:08:10
+* 版 本 号 ：v1.0.0.0
+*******************************************************************
+* Copyright @ Derek Liu 2022. All rights reserved.
+*******************************************************************
+======================================*/
+
 using UnityEngine;
-using LitFramework.LitTool;
 using System;
-using UnityEngine.Networking;
-using System.IO;
 using LitFramework;
 using LitFramework.Base;
 using Assets.Scripts.Essential.Managers;
-using LitFramework.LitPool;
 
 public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
 {
@@ -21,19 +31,19 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
     private RsLoadResource _resourceLoader;
     public void Install()
     {
-        _abLoader = new RsLoadAB(this);
-        _resourceLoader = new RsLoadResource(this);
+        _abLoader = new RsLoadAB();
+        _resourceLoader = new RsLoadResource();
 
         if (FrameworkConfig.Instance.resLoadType == ResLoadType.AssetBundle) _rsLoad = _abLoader;
         else _rsLoad = _resourceLoader;
     }
 
-    public UnityEngine.Object Load( string aPath )
+    public UnityEngine.Object Load(string aPath)
     {
-        return _rsLoad.Load( aPath );
+        return _rsLoad.Load(aPath);
     }
 
-    public UnityEngine.Object Load(string aPath, ResLoadType loadType )
+    public UnityEngine.Object Load(string aPath, ResLoadType loadType)
     {
         switch (loadType)
         {
@@ -45,9 +55,9 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
         return null;
     }
 
-    public T Load<T>( string aPath ) where T : UnityEngine.Object
+    public T Load<T>(string aPath) where T : UnityEngine.Object
     {
-        return _rsLoad.Load<T>( aPath );
+        return _rsLoad.Load<T>(aPath);
     }
 
     public T Load<T>(string aPath, ResLoadType loadType) where T : UnityEngine.Object
@@ -62,9 +72,9 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
         return null;
     }
 
-    public AssetBundle LoadAB( string aPath )
+    public AssetBundle LoadAB(string aPath)
     {
-        return _rsLoad.LoadAB( aPath );
+        return _rsLoad.LoadAB(aPath);
     }
 
     public AssetBundle LoadAB(string aPath, ResLoadType loadType)
@@ -79,9 +89,9 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
         return null;
     }
 
-    public void LoadAsync( string aPath, Action<UnityEngine.Object> onComplete )
+    public void LoadAsync(string aPath, Action<UnityEngine.Object> onComplete)
     {
-        _rsLoad.LoadAsync( aPath, onComplete );
+        _rsLoad.LoadAsync(aPath, onComplete);
     }
 
     public void LoadAsync(string aPath, ResLoadType loadType, Action<UnityEngine.Object> onComplete)
@@ -97,9 +107,9 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
         }
     }
 
-    public void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object
+    public void LoadAsync<T>(string aPath, Action<UnityEngine.Object> onComplete) where T : UnityEngine.Object
     {
-        _rsLoad.LoadAsync<T>( aPath, onComplete );
+        _rsLoad.LoadAsync<T>(aPath, onComplete);
     }
 
     public void LoadAsync<T>(string aPath, ResLoadType loadType, Action<UnityEngine.Object> onComplete) where T : UnityEngine.Object

@@ -26,39 +26,17 @@ namespace Assets.Scripts.Essential.Managers
 {
     public class RsLoadResource : IRsLoad
     {
-        private RsLoadManager _rsManager;
-
-        public RsLoadResource(RsLoadManager mng) { _rsManager = mng; }
+        public RsLoadResource() { }
 
         public UnityEngine.Object Load( string aPath )
         {
-            UnityEngine.Object rs;
-            if ( _rsManager.UseSpawnPool )
-            {
-                rs = SpawnManager.Instance.SpwanObject(aPath);
-                if( rs == null) rs = Resources.Load(aPath);
-            }
-            else
-            {
-                rs = Resources.Load(aPath);
-            }
-            
+            UnityEngine.Object rs = Resources.Load(aPath);
             return rs;
         }
 
         public T Load<T>( string aPath ) where T : UnityEngine.Object
         {
-            T rs;
-            if (_rsManager.UseSpawnPool)
-            {
-                var result = SpawnManager.Instance.SpwanObject(aPath);
-                if (result == null) rs = Resources.Load<T>(aPath);
-                else rs = result as T;
-            }
-            else
-            {
-                rs = Resources.Load<T>(aPath);
-            }
+            T rs = Resources.Load<T>(aPath);
             return rs;
         }
 
@@ -68,31 +46,11 @@ namespace Assets.Scripts.Essential.Managers
         /// <param name="onComplete"></param>
         public void LoadAsync( string aPath, Action<UnityEngine.Object> onComplete )
         {
-            if (_rsManager.UseSpawnPool)
+            ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
+            resourceRequest.completed += (AsyncOperation async) =>
             {
-                var result =  SpawnManager.Instance.SpwanObject(aPath);
-                if(result == null)
-                {
-                    ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
-                    resourceRequest.completed += (AsyncOperation async) =>
-                    {
-                        onComplete?.Invoke(resourceRequest.asset);
-                    };
-                }
-                else
-                {
-                    onComplete?.Invoke(result);
-                }
-            }
-            else
-            {
-                ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
-                resourceRequest.completed += (AsyncOperation async) =>
-                {
-                    onComplete?.Invoke(resourceRequest.asset);
-                };
-            }
-                
+                onComplete?.Invoke(resourceRequest.asset);
+            };
         }
 
         /// <summary>
@@ -102,30 +60,11 @@ namespace Assets.Scripts.Essential.Managers
         /// <param name="onComplete"></param>
         public void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object
         {
-            if (_rsManager.UseSpawnPool)
+            ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
+            resourceRequest.completed += (AsyncOperation async) =>
             {
-                var result = SpawnManager.Instance.SpwanObject(aPath) as T;
-                if (result == null)
-                {
-                    ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
-                    resourceRequest.completed += (AsyncOperation async) =>
-                    {
-                        onComplete?.Invoke(resourceRequest.asset);
-                    };
-                }
-                else
-                {
-                    onComplete?.Invoke(result);
-                }
-            }
-            else
-            {
-                ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
-                resourceRequest.completed += (AsyncOperation async) =>
-                {
-                    onComplete?.Invoke(resourceRequest.asset);
-                };
-            }
+                onComplete?.Invoke(resourceRequest.asset);
+            };
         }
 
         public void UnloadAsset()

@@ -14,6 +14,7 @@
 *******************************************************************
 ======================================*/
 
+using LitFramework.LitPool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,43 +22,110 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Essential.Managers.RsCom
+namespace Assets.Scripts.Essential.Managers
 {
     public class RsLoadResource : IRsLoad
     {
-        public RsLoadResource()
-        {
+        private RsLoadManager _rsManager;
 
-        }
+        public RsLoadResource(RsLoadManager mng) { _rsManager = mng; }
 
         public UnityEngine.Object Load( string aPath )
         {
-            UnityEngine.Object rs = Resources.Load( aPath );
+            UnityEngine.Object rs;
+            if ( _rsManager.UseSpawnPool )
+            {
+                rs = SpawnManager.Instance.SpwanObject(aPath);
+                if( rs == null) rs = Resources.Load(aPath);
+            }
+            else
+            {
+                rs = Resources.Load(aPath);
+            }
+            
             return rs;
         }
 
         public T Load<T>( string aPath ) where T : UnityEngine.Object
         {
-            T rs = Resources.Load<T>( aPath );
+            T rs;
+            if (_rsManager.UseSpawnPool)
+            {
+                var result = SpawnManager.Instance.SpwanObject(aPath);
+                if (result == null) rs = Resources.Load<T>(aPath);
+                else rs = result as T;
+            }
+            else
+            {
+                rs = Resources.Load<T>(aPath);
+            }
             return rs;
         }
 
-        public void LoadAsync( string aPath, Action<UnityEngine.Object> onComplent )
+        /// <summary>
+        /// </summary>
+        /// <param name="aPath"></param>
+        /// <param name="onComplete"></param>
+        public void LoadAsync( string aPath, Action<UnityEngine.Object> onComplete )
         {
-            ResourceRequest resourceRequest = Resources.LoadAsync( aPath );
-            resourceRequest.completed += ( AsyncOperation async ) =>
+            if (_rsManager.UseSpawnPool)
             {
-                onComplent?.Invoke( resourceRequest.asset );
-            };
+                var result =  SpawnManager.Instance.SpwanObject(aPath);
+                if(result == null)
+                {
+                    ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
+                    resourceRequest.completed += (AsyncOperation async) =>
+                    {
+                        onComplete?.Invoke(resourceRequest.asset);
+                    };
+                }
+                else
+                {
+                    onComplete?.Invoke(result);
+                }
+            }
+            else
+            {
+                ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
+                resourceRequest.completed += (AsyncOperation async) =>
+                {
+                    onComplete?.Invoke(resourceRequest.asset);
+                };
+            }
+                
         }
 
-        public void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplent ) where T : UnityEngine.Object
+        /// <summary>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="aPath"></param>
+        /// <param name="onComplete"></param>
+        public void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object
         {
-            ResourceRequest resourceRequest = Resources.LoadAsync<T>( aPath );
-            resourceRequest.completed += ( AsyncOperation async ) =>
+            if (_rsManager.UseSpawnPool)
             {
-                onComplent?.Invoke( resourceRequest.asset );
-            };
+                var result = SpawnManager.Instance.SpwanObject(aPath) as T;
+                if (result == null)
+                {
+                    ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
+                    resourceRequest.completed += (AsyncOperation async) =>
+                    {
+                        onComplete?.Invoke(resourceRequest.asset);
+                    };
+                }
+                else
+                {
+                    onComplete?.Invoke(result);
+                }
+            }
+            else
+            {
+                ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
+                resourceRequest.completed += (AsyncOperation async) =>
+                {
+                    onComplete?.Invoke(resourceRequest.asset);
+                };
+            }
         }
 
         public void UnloadAsset()

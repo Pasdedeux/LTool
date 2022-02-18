@@ -7,19 +7,22 @@ using UnityEngine.Networking;
 using System.IO;
 using LitFramework;
 using LitFramework.Base;
-using Assets.Scripts.Essential.Managers.RsCom;
+using Assets.Scripts.Essential.Managers;
+using LitFramework.LitPool;
 
 public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
 {
+    //是否优先使用对象池加载
+    public bool UseSpawnPool = true;
+
     private IRsLoad _rsLoad;
-    
     //也允许外部使用指定加载器加载物体
-    private RsLoadResource _resourceLoader;
     private RsLoadAB _abLoader;
+    private RsLoadResource _resourceLoader;
     public void Install()
     {
-        _abLoader = new RsLoadAB();
-        _resourceLoader = new RsLoadResource();
+        _abLoader = new RsLoadAB(this);
+        _resourceLoader = new RsLoadResource(this);
 
         if (FrameworkConfig.Instance.resLoadType == ResLoadType.AssetBundle) _rsLoad = _abLoader;
         else _rsLoad = _resourceLoader;

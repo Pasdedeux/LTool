@@ -21,7 +21,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Essential.Managers.RsCom
+namespace Assets.Scripts.Essential.Managers
 {
     interface IRsLoad
     {
@@ -44,14 +44,14 @@ namespace Assets.Scripts.Essential.Managers.RsCom
         /// </summary>
         /// <param name="aPath">Resources下相对路径带后缀</param>
         /// <returns></returns>
-        void LoadAsync( string aPath, Action<UnityEngine.Object> onComplent );
+        void LoadAsync( string aPath, Action<UnityEngine.Object> onComplete );
         /// <summary>
         /// 异步获取Resources下资源
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="aPath">Resources下相对路径带后缀</param>
         /// <returns></returns>
-        void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplent ) where T : UnityEngine.Object;
+        void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object;
         /// <summary>
         /// 回收资源
         /// </summary>

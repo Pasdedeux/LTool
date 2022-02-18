@@ -80,6 +80,7 @@ namespace LitFramework.LitPool
         /// <returns></returns>
         public GameObject SpwanObject( string name )
         {
+            if (Pool == null) return null;
             return Pool.Spawn( name ).gameObject;
         }
 

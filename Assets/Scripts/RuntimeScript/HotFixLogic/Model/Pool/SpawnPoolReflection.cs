@@ -38,56 +38,69 @@ namespace FrameworkSys
         {
             LDebug.Log("成功反射调用执行 SpawnPoolReflection -> SpawnReflection");
 
+            RsLoadManager.Instance.UseSpawnPool = false;
             var spawnConfigs = Configs.SpawnConfigDict;
             List<int> ids = spawnConfigs.Keys.ToList();
-            for (int i=0;i< ids.Count;i++)
+            try
             {
-                bool poolExist = false;
-                List<PrefabPool> spawnList;
-                var spawnItem = spawnConfigs[ids[i]];
-                if (sp.perPrefabPoolOptions.Exists(e => e.SortSpawnName == spawnItem.SpawnType))
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    var sorted = sp.perPrefabPoolOptions.Where(e => e.SortSpawnName == spawnItem.SpawnType).First();
-                    spawnList = sorted.Pools;
-                }
-                else
-                {
-                    SortSpawnPool ssp = new SortSpawnPool();
-                    ssp.SortSpawnName = spawnItem.SpawnType;
-                    sp.perPrefabPoolOptions.Add(ssp);
-                    ssp.Pools = spawnList = new List<PrefabPool>();
-                }
+                    bool poolExist = false;
+                    List<PrefabPool> spawnList;
+                    var spawnItem = spawnConfigs[ids[i]];
+                    if (sp.perPrefabPoolOptions.Exists(e => e.SortSpawnName == spawnItem.SpawnType))
+                    {
+                        var sorted = sp.perPrefabPoolOptions.Where(e => e.SortSpawnName == spawnItem.SpawnType).First();
+                        spawnList = sorted.Pools;
+                    }
+                    else
+                    {
+                        SortSpawnPool ssp = new SortSpawnPool();
+                        ssp.SortSpawnName = spawnItem.SpawnType;
+                        sp.perPrefabPoolOptions.Add(ssp);
+                        ssp.Pools = spawnList = new List<PrefabPool>();
+                    }
 
-                GameObject instantiateObj = null;
-                instantiateObj = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType);
-                if (instantiateObj == null)
-                {
-                    throw new Exception(string.Format("检查配置表SpawnConfig的ID: {0} 资源是否存在", spawnItem.ID));
-                }
+                    GameObject instantiateObj = null;
+                    instantiateObj = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType);
+                    if (instantiateObj == null)
+                    {
+                        throw new Exception(string.Format("检查配置表SpawnConfig的ID: {0} 资源是否存在", spawnItem.ID));
+                    }
 
-                int hashCode = instantiateObj.GetHashCode();
-                //判定是否存在于池表，如果存在直接叠加
-                poolExist = spawnList.Exists(e => e.prefabGO.GetHashCode() == hashCode);
-                if (!poolExist)
-                {
-                    PrefabPool spawnObj = new PrefabPool();
-                    spawnObj.prefab = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType).transform;
-                    spawnObj.preloadAmount = spawnItem.PreloadAmount;
-                    spawnObj.inspectorInstanceConstructor();
+                    int hashCode = instantiateObj.GetHashCode();
+                    //判定是否存在于池表，如果存在直接叠加
+                    poolExist = spawnList.Exists(e => e.prefabGO.GetHashCode() == hashCode);
+                    if (!poolExist)
+                    {
+                        PrefabPool spawnObj = new PrefabPool();
+                        spawnObj.prefab = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType).transform;
+                        spawnObj.preloadAmount = spawnItem.PreloadAmount;
+                        spawnObj.inspectorInstanceConstructor();
 
-                    sp.CreatePrefabPool(spawnObj);
-                    //动态加池
-                    spawnList.Add(spawnObj);
-                }
-                else
-                {
-                    var targetPrefabPool = spawnList.Where(e => e.prefabGO.GetHashCode() == hashCode).First();
-                    targetPrefabPool.preloadAmount += spawnItem.PreloadAmount;
-                    targetPrefabPool.PreloadInstances();
-                }
+                        sp.CreatePrefabPool(spawnObj);
+                        //动态加池
+                        spawnList.Add(spawnObj);
+                    }
+                    else
+                    {
+                        var targetPrefabPool = spawnList.Where(e => e.prefabGO.GetHashCode() == hashCode).First();
+                        targetPrefabPool.preloadAmount += spawnItem.PreloadAmount;
+                        targetPrefabPool.PreloadInstances();
+                    }
 
-                Resources.UnloadUnusedAssets();
+                    Resources.UnloadUnusedAssets();
+                }
             }
+            catch (Exception e)
+            {
+                LDebug.LogError("SpawnConfig Relection Error " + e);
+            }
+            finally
+            {
+                RsLoadManager.Instance.UseSpawnPool = true;
+            }
+            
         }
     }
 }

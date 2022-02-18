@@ -326,6 +326,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GGroupAdapter.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\lzma.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\GearLook.cs" />
+    <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTOhayoo.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\AudioManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GComboBoxAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GComponent.cs" />

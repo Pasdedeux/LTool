@@ -222,9 +222,9 @@ namespace PathologicalGames
                         sorts[ j ].inspectorInstanceConstructor();
                         this.CreatePrefabPool( sorts[ j ] );
                     }
-                    catch ( System.Exception )
+                    catch ( System.Exception e )
                     {
-                        LDebug.LogError( string.Format( "==>对象池预制件丢失!  池类型：{0}  Index: {1}", this.perPrefabPoolOptions[ i ].SortSpawnName, i ) );
+                        //LDebug.LogError( string.Format( "==>对象池预制件丢失!  池类型：{0}  Index: {1}", this.perPrefabPoolOptions[ i ].SortSpawnName, i ) );
                         throw;
                     }
 

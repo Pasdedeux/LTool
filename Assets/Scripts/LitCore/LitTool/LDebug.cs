@@ -24,6 +24,7 @@
 ======================================*/
 
 using System.Collections;
+using System.Diagnostics;
 
 public enum LogColor
 {
@@ -51,6 +52,7 @@ public static class LDebug
         }
     }
 
+    [Conditional("LOG")]
     public static void Log(object content)
     {
         if ( !Enable ) return;
@@ -58,6 +60,7 @@ public static class LDebug
         else UnityEngine.Debug.Log( content );
     }
 
+    [Conditional("LOG")]
     public static void LogWarning( object content )
     {
         if ( !Enable ) return;
@@ -65,6 +68,7 @@ public static class LDebug
         else UnityEngine.Debug.LogWarning( content );
     }
 
+    [Conditional("LOG")]
     public static void LogError( object content )
     {
         if ( !Enable ) return;
@@ -72,42 +76,49 @@ public static class LDebug
         else UnityEngine.Debug.LogError( content );
     }
 
+    [Conditional("LOG")]
     public static void LogFormat( string content, params object[] args )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogFormat( content, args );
     }
 
+    [Conditional("LOG")]
     public static void LogWarningFormat( string content, params object[] args )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogWarningFormat( content, args );
     }
 
+    [Conditional("LOG")]
     public static void LogErrorFormat( string content, params object[] args )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogErrorFormat( content, args );
     }
 
+    [Conditional("LOG")]
     public static void Log( string content, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogFormat( "<color={0}>{1}</color>", color, content );
     }
 
+    [Conditional("LOG")]
     public static void LogWarning( string content, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
     }
 
+    [Conditional("LOG")]
     public static void LogError( string content, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );
     }
 
+    [Conditional("LOG")]
     public static void LogForEach( ICollection contens, LogColor color = LogColor.green )
     {
         if ( !Enable ) return;

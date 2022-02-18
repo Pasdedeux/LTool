@@ -454,15 +454,15 @@ MonoBehaviour:
   ABFolderName: ABPackages
   ABTotalName: ABPackages
   configs_suffix: json|dat|assetbundle
-  useZIP: 1
+  useZIP: 0
   useSql: 0
   useSpawnConfig: 0
-  loadType: 0
+  loadType: 1
   UsePersistantPath: 1
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1
-  isProgramTest: 0
+  isProgramTest: 1
   ForceUpdatePersistant: 1
   scriptEnvironment: 0
 --- !u!1 &697112009

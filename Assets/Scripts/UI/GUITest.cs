@@ -22,21 +22,20 @@ public class GUITest : MonoBehaviour
         int index = 0, vindex = 0 ;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "stack1"))
         {
-            InputControlManager.Instance.IsEnable = true;
+            RsLoadManager.Instance.Load("Image_1");
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
+        {
+            
         }
         index = 0; vindex++;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
         {
-            InputControlManager.Instance.IsEnable = false;
-        }
-        index = 0; vindex++;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
-        {
-            ADManager.Instance.ShowBanner();
+            
         }
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
         {
-            ADManager.Instance.HideBanner();
+           
         }
     }
 

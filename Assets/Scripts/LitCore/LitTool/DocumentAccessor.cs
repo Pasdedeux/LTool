@@ -280,6 +280,35 @@ namespace LitFramework.LitTool
             return fileInfo.Exists;
         }
 
+
+        /// <summary>
+        /// 转化自定义类到JSON
+        /// </summary>
+        /// <param name="customClass">需要转化的类名</param>
+        /// <param name="jsonRelativePath">目标文件名。带完整后缀。例如 .json</param>
+        /// <param name="usePersistPath">是否使用可读写目录。默认不使用</param>
+        public static void ToJson(object customClass, string jsonRelativePath, bool usePersistPath = false)
+        {
+            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath, false) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath, false);
+            SaveAsset2LocalFileByJson(customClass, path);
+        }
+
+        /// <summary>
+        /// 转化JSON文件到自定义类
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jsonRelativePath">Persist/Streaming下的相对路径.带完整后缀。例如 .json</param>
+        /// <param name="usePersistPath"></param>
+        /// <returns></returns>
+        public static T ToObject<T>(string jsonRelativePath, bool usePersistPath)
+        {
+            T result = default;
+            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath, false) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath, false);
+            LoadAsset(path, (string s) => { result = JsonMapper.ToObject<T>(s); });
+            return result;
+        }
+
+
         #region UnityWebRequest
         /// <summary>
         /// 协程加载

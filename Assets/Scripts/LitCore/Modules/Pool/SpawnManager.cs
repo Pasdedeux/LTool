@@ -61,6 +61,22 @@ namespace LitFramework.LitPool
         }
 
 
+        public void CreatePool( Transform target, int preloadAmount = 2, int maxAmount = 100 )
+        {
+
+        }
+
+        public void RemovePool( Transform target )
+        {
+
+        }
+
+        public void RemovePool( string spawnType )
+        {
+
+        }
+
+
         /// <summary>
         /// 卸载模块
         /// </summary>

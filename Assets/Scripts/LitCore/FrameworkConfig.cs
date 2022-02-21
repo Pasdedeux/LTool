@@ -68,8 +68,12 @@ namespace LitFramework
         /// 当前项目资源加载方式
         /// </summary>
         [LabelText( "资源加载方式" )]
+        [OnValueChanged("CheckRsLoadType")]
         public ResLoadType resLoadType = ResLoadType.Resource;
-
+        private void CheckRsLoadType()
+        {
+            loadType = resLoadType;
+        }
         #endregion
 
         #region UI设置

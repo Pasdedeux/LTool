@@ -39,7 +39,7 @@ namespace LitFrameworkEditor.Editor
         [ MenuItem( "Tools/排列../打开平面排列窗口 %5" )]
         private static void Array3DObjectWindowOpen()
         {
-            _array3DSelf = _array3DSelf ?? EditorWindow.GetWindow<ArrayObject3D>( "阵列分布" );
+            _array3DSelf = _array3DSelf ?? EditorWindow.GetWindow<ArrayObject3D>("阵列分布");
             _array3DSelf.Show();
         }
 

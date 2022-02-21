@@ -51,6 +51,26 @@ namespace Assets.Scripts.Essential.Tools
                 w.WriteProperty( "z", v.z );
                 w.WriteObjectEnd();
             } );
+
+            JsonMapper.RegisterExporter<Color>((v, w) =>
+            {
+                w.WriteObjectStart();
+                w.WriteProperty("r", v.r);
+                w.WriteProperty("g", v.g);
+                w.WriteProperty("b", v.b);
+                w.WriteProperty("a", v.a);
+                w.WriteObjectEnd();
+            });
+
+            JsonMapper.RegisterExporter<Quaternion>((v, w) =>
+            {
+                w.WriteObjectStart();
+                w.WriteProperty("x", v.x);
+                w.WriteProperty("y", v.y);
+                w.WriteProperty("z", v.z);
+                w.WriteProperty("w", v.w);
+                w.WriteObjectEnd();
+            });
         }
     }
 }

@@ -31,6 +31,7 @@ public class GUITest : MonoBehaviour
         {
             _spwanItem = RsLoadManager.Instance.Get("Prefabs/Image_SpawnTest");
         }
+
         index = 0; vindex++;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Res Destroy"))
         {
@@ -40,6 +41,22 @@ public class GUITest : MonoBehaviour
         {
             _spwanItem.Destroy();
         }
+        
     }
 
+}
+
+public class TestInfo
+{
+    public Color ss = new Color(200f / 255, 200 / 255f, 155 / 255f);
+    public Vector3 v3 = new Vector3(20, 15, 19f);
+    public Quaternion qq = new Quaternion(1, 2.2f, 4.55666f, 7.8888f);
+    public Cust Test = new Cust { ss = 12, sss = new Vector3(25f, 12f, 1), ssss = Color.red };
+}
+
+public struct Cust
+{
+    public int ss;
+    public Vector3 sss;
+    public Color ssss;
 }

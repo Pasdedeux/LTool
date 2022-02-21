@@ -443,7 +443,7 @@ MonoBehaviour:
   DelayFuncDetectInterver: 0.1
   UseDelayFuncPreciseDetect: 0
   renderingType: 0
-  resLoadType: 0
+  resLoadType: 1
   UseHotFixMode: 1
   TouchDetectUI: 1
   OPENID: open
@@ -456,7 +456,7 @@ MonoBehaviour:
   configs_suffix: json|dat|assetbundle
   useZIP: 0
   useSql: 0
-  useSpawnConfig: 0
+  useSpawnConfig: 1
   loadType: 1
   UsePersistantPath: 1
   UseRemotePersistantPath: 0

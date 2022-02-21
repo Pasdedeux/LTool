@@ -53,7 +53,7 @@ namespace LitFramework.LitPool
                 GameObject pool = new GameObject( "PoolManager" );
                 Pool = pool.gameObject.AddComponent<SpawnPool>();
             }
-            if ( Pool == null ) throw new Exception( "对象池初始化需要预先建立对象 PoolManager 并挂载配置 SpawnPool" );
+            if ( Pool == null ) throw new Exception( "对象池初始化需要预先建立对象 PoolConfig节点，并挂载配置 ExtentedSpawnPool" );
 
             GameObject.DontDestroyOnLoad( Pool.gameObject );
 
@@ -84,12 +84,36 @@ namespace LitFramework.LitPool
             return Pool.Spawn( name ).gameObject;
         }
 
+
+        /// <summary>
+        /// 是否属于池化
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public bool IsSpawned( Transform transform )
+        {
+            if (Pool == null) return false;
+            return Pool.IsSpawned(transform);
+        }
+
+        /// <summary>
+        /// 是否属于池化
+        /// </summary>
+        /// <param name="string"></param>
+        /// <returns></returns>
+        public bool IsSpawned(string name)
+        {
+            if (Pool == null) return false;
+            return Pool.IsSpawned(name);
+        }
+
         /// <summary>
         /// 回收入对象池
         /// </summary>
         /// <param name="item"></param>
         public void DespawnObject( Transform item )
         {
+            if (Pool == null) return;
             Pool.Despawn( item, Pool.transform );
         }
     }

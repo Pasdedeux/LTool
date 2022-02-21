@@ -51,7 +51,7 @@ namespace Assets.Scripts.Essential.Managers
         /// <typeparam name="T"></typeparam>
         /// <param name="aPath">Resources下相对路径带后缀</param>
         /// <returns></returns>
-        void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object;
+        void LoadAsync<T>( string aPath, Action<T> onComplete ) where T : UnityEngine.Object;
         /// <summary>
         /// 回收资源
         /// </summary>

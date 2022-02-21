@@ -28,13 +28,13 @@ namespace Assets.Scripts.Essential.Managers
     {
         public RsLoadResource() { }
 
-        public UnityEngine.Object Load( string aPath )
+        public UnityEngine.Object Load(string aPath)
         {
             UnityEngine.Object rs = Resources.Load(aPath);
             return rs;
         }
 
-        public T Load<T>( string aPath ) where T : UnityEngine.Object
+        public T Load<T>(string aPath) where T : UnityEngine.Object
         {
             T rs = Resources.Load<T>(aPath);
             return rs;
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Essential.Managers
         /// </summary>
         /// <param name="aPath"></param>
         /// <param name="onComplete"></param>
-        public void LoadAsync( string aPath, Action<UnityEngine.Object> onComplete )
+        public void LoadAsync(string aPath, Action<UnityEngine.Object> onComplete)
         {
             ResourceRequest resourceRequest = Resources.LoadAsync(aPath);
             resourceRequest.completed += (AsyncOperation async) =>
@@ -58,12 +58,12 @@ namespace Assets.Scripts.Essential.Managers
         /// <typeparam name="T"></typeparam>
         /// <param name="aPath"></param>
         /// <param name="onComplete"></param>
-        public void LoadAsync<T>( string aPath, Action<UnityEngine.Object> onComplete ) where T : UnityEngine.Object
+        public void LoadAsync<T>(string aPath, Action<T> onComplete) where T : UnityEngine.Object
         {
             ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
             resourceRequest.completed += (AsyncOperation async) =>
             {
-                onComplete?.Invoke(resourceRequest.asset);
+                onComplete?.Invoke(resourceRequest.asset as T);
             };
         }
 
@@ -74,12 +74,12 @@ namespace Assets.Scripts.Essential.Managers
 
 
         //FAKE
-        public AssetBundle LoadAB( string aPath )
+        public AssetBundle LoadAB(string aPath)
         {
             return null;
         }
 
         public void AfterInit() { }
-        
+
     }
 }

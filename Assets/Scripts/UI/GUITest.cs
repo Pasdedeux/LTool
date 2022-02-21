@@ -16,26 +16,29 @@ using LitFramework.InputSystem;
 
 public class GUITest : MonoBehaviour
 {
+    private Transform _resourceItem;
+    private GameObject _spwanItem;
+
     private void OnGUI()
     {
         //第一行
         int index = 0, vindex = 0 ;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110* vindex, 100, 100), "stack1"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Resource"))
         {
-            RsLoadManager.Instance.Load("Image_1");
+            _resourceItem = RsLoadManager.Instance.Get("Prefabs/Image_ResourceTest").transform;
         }
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Spawn"))
         {
-            
+            _spwanItem = RsLoadManager.Instance.Get("Prefabs/Image_SpawnTest");
         }
         index = 0; vindex++;
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Res Destroy"))
         {
-            
+            _resourceItem.gameObject.Destroy();
         }
-        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "CloseAll(false)"))
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Spawn Destroy"))
         {
-           
+            _spwanItem.Destroy();
         }
     }
 

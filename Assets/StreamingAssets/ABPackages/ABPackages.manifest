@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1987791348
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: image_1
+      Dependencies:
+        Dependency_0: testmaterial
+    Info_1:
+      Name: image_2
+      Dependencies:
+        Dependency_0: testmaterial
+    Info_2:
+      Name: testmaterial
+      Dependencies: {}
+    Info_3:
+      Name: newbundle
+      Dependencies: {}

@@ -119,6 +119,7 @@ namespace Assets.Scripts.Essential.Managers
             if (_pathToAB.TryGetValue(aPath, out abName))
             {
                 AssetBundle ab = LoadAB(abName);
+                var sss = ab.GetAllAssetNames();
                 if (ab)
                 {
                     string aName = ResoucesName(aPath);
@@ -161,7 +162,7 @@ namespace Assets.Scripts.Essential.Managers
             }
         }
 
-        public void LoadAsync<T>(string aPath, Action<UnityEngine.Object> onComplete) where T : UnityEngine.Object
+        public void LoadAsync<T>(string aPath, Action<T> onComplete) where T : UnityEngine.Object
         {
             string abName;
 
@@ -181,7 +182,7 @@ namespace Assets.Scripts.Essential.Managers
                         assetBundleRequest.completed += (AsyncOperation async) =>
                         {
                             CheckShader(assetBundleRequest.asset);
-                            onComplete?.Invoke(assetBundleRequest.asset);
+                            onComplete?.Invoke(assetBundleRequest.asset as T);
                         };
                     }
                 });
@@ -191,7 +192,7 @@ namespace Assets.Scripts.Essential.Managers
                 ResourceRequest resourceRequest = Resources.LoadAsync<T>(aPath);
                 resourceRequest.completed += (AsyncOperation async) =>
                 {
-                    onComplete?.Invoke(resourceRequest.asset);
+                    onComplete?.Invoke(resourceRequest.asset as T);
                 };
             }
         }
@@ -364,8 +365,9 @@ namespace Assets.Scripts.Essential.Managers
                     Material[] materials = ren.sharedMaterials;
                     foreach (Material m in materials)
                     {
-                        var shaderName = m.shader.name;
+                        if (m == null) continue;
 
+                        var shaderName = m.shader.name;
                         var newShader = Shader.Find(shaderName);
                         if (newShader != null)
                         {

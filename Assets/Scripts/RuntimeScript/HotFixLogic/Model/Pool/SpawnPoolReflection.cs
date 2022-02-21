@@ -74,7 +74,7 @@ namespace FrameworkSys
                     if (!poolExist)
                     {
                         PrefabPool spawnObj = new PrefabPool();
-                        spawnObj.prefab = RsLoadManager.Instance.Load<GameObject>(spawnItem.resPath, FrameworkConfig.Instance.loadType).transform;
+                        spawnObj.prefab = instantiateObj.transform;
                         spawnObj.preloadAmount = spawnItem.PreloadAmount;
                         spawnObj.inspectorInstanceConstructor();
 
@@ -88,8 +88,6 @@ namespace FrameworkSys
                         targetPrefabPool.preloadAmount += spawnItem.PreloadAmount;
                         targetPrefabPool.PreloadInstances();
                     }
-
-                    Resources.UnloadUnusedAssets();
                 }
             }
             catch (Exception e)

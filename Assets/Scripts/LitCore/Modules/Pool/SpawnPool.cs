@@ -693,6 +693,18 @@ namespace PathologicalGames
 
 
         /// <summary>
+        /// Whether the prefab Dictionary contains specify item
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        public bool IsSpawned(string prefabName)
+        {
+            if (string.IsNullOrEmpty(prefabName)) return false;
+            return this.prefabs.ContainsKey(prefabName);
+        }
+
+
+        /// <summary>
         ///	See docs for SpawnInstance(Transform prefab, Vector3 pos, Quaternion rot)
         ///	for basic functionalty information.
         ///		

@@ -25,11 +25,15 @@ public class GUITest : MonoBehaviour
         int index = 0, vindex = 0 ;
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Resource"))
         {
-            _resourceItem = RsLoadManager.Instance.Get("Prefabs/Image_ResourceTest").transform;
+            _resourceItem = RsLoadManager.Instance.Get("Prefabs/Test/Image_1").transform;
         }
         if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Spawn"))
         {
-            _spwanItem = RsLoadManager.Instance.Get("Prefabs/Image_SpawnTest");
+            _spwanItem = RsLoadManager.Instance.Get("Image_2");
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "Spawn"))
+        {
+            SpawnManager.Instance.CreatePool("Prefabs/Test/Image_1", "UI");
         }
 
         index = 0; vindex++;
@@ -41,7 +45,18 @@ public class GUITest : MonoBehaviour
         {
             _spwanItem.Destroy();
         }
-        
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "RemoveByTag"))
+        {
+            SpawnManager.Instance.RemovePool("UI");
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "RemoveByTransform"))
+        {
+            SpawnManager.Instance.RemovePool(_resourceItem);
+        }
+        if (GUI.Button(new Rect(10 + 110 * index++, 100 + 110 * vindex, 100, 100), "RemoveByGameObject"))
+        {
+            SpawnManager.Instance.RemovePool(_spwanItem);
+        }
     }
 
 }

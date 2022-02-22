@@ -1,6 +1,6 @@
 ﻿预制件ID,预制件所属分类,Resource资源路径,初始数量
 ID,SpawnType,resPath,PreloadAmount
 int,string,string,int
-1,测试,Prefabs/Test/Image_1,1
-2,测试1,Prefabs/Test/Image_2,3
-3,测试,Prefabs/Test/Image_1,1
+1,UI,Prefabs/Test/Image_1,1
+2,场景,Prefabs/Test/Image_2,3
+3,UI,Prefabs/Test/Image_1,1

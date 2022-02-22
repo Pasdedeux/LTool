@@ -201,6 +201,14 @@ public class PrefabPool
         this._despawned = new List<Transform>();
     }
 
+    /// <summary>
+    /// Run by a SpawnPool when it is destroyed
+    /// </summary>
+    public void Destroy()
+    {
+        SelfDestruct();
+    }
+
 
     /// <summary>
     /// Run by a SpawnPool when it is destroyed

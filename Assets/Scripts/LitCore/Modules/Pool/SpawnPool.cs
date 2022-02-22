@@ -340,6 +340,18 @@ namespace PathologicalGames
         }
 
 
+        public void DeletePrefabPool(PrefabPool preafabPool)
+        {
+            this.StopAllCoroutines();
+
+            var sortSpawnPool = this.perPrefabPoolOptions.Where(e => e.Pools.Exists(k => k == preafabPool)).First();
+            if (sortSpawnPool.Pools.Count == 1)
+                this.perPrefabPoolOptions.Remove(sortSpawnPool);
+            this._prefabPools.Remove(preafabPool);
+            this.prefabs._Remove(preafabPool.prefab.name);
+        }
+
+
         /// <summary>
         /// Add an existing instance to this pool. This is used during game start 
         /// to pool objects which are not instanciated at runtime
@@ -898,6 +910,37 @@ namespace PathologicalGames
 
 
         #region Utility Functions
+
+
+        public PrefabPool GetPrefabPoolByInstance( Transform prefabInstance )
+        {
+            for (int i = 0; i < this._prefabPools.Count; i++)
+            {
+                if (this._prefabPools[i].prefabGO == null)
+                    Debug.LogError(string.Format("SpawnPool {0}: PrefabPool.prefabGO is null",
+                                                 this.poolName));
+
+                for (int k = 0; k < this._prefabPools[i].spawned.Count; k++) 
+                {
+                    if(this._prefabPools[i].spawned[k] == prefabInstance)return this._prefabPools[i];
+                }
+
+                for (int k = 0; k < this._prefabPools[i].despawned.Count; k++)
+                {
+                    if (this._prefabPools[i].despawned[k] == prefabInstance) return this._prefabPools[i];
+                }
+            }
+
+            // Nothing found
+            return null;
+        }
+
+
+        public PrefabPool GetPrefabPoolByInstance( GameObject prefabInstance )
+        {
+            return GetPrefabPoolByInstance(prefabInstance.transform);
+        }
+
         /// <summary>
         /// Returns the prefab pool for a given prefab.
         /// </summary>

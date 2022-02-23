@@ -170,16 +170,52 @@ namespace LitFramework
 
         #region 调试设置
 
+        private const string DEBUG_INFO_BASE = "开启中的调试设置>>";
+        private string DEBUG_Info;
+        private bool IsNotDebug = false;
+
         [BoxGroup("调试设置",centerLabel:true)]
+        [OnValueChanged("CheckPropChange")]
         [LabelText("是否打印日志")]
         public bool showLog = true;
+
         [BoxGroup("调试设置", centerLabel: true)]
         [LabelText("程序开发调试")]
+        [OnValueChanged("CheckPropChange")]
         public bool isProgramTest = false;
+
         [BoxGroup("调试设置", centerLabel: true)]
         [ShowIf("UsePersistantPath")]
         [LabelText("强制更新读写目录")]
+        [OnValueChanged("CheckPropChange")]
         public bool ForceUpdatePersistant = false;
+
+        [BoxGroup("调试设置", centerLabel: true)]
+        [OnInspectorGUI]
+        private void CheckDebugSetting()
+        {
+            if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox(DEBUG_Info, UnityEditor.MessageType.Warning);
+        }
+        
+        public void CheckPropChange()
+        {
+            DEBUG_Info = DEBUG_INFO_BASE + "\n";
+
+            //是否打印日志
+            if ( showLog ) DEBUG_Info += "ShowLog\n";
+            //程序开发调试
+            if (isProgramTest) DEBUG_Info += "IsProgramTest\n";
+            //强制更新读写目录
+            if (ForceUpdatePersistant) DEBUG_Info += "ForceUpdatePersistant\n";
+            //Reporter插件
+            if (GameObject.Find("Reporter")) DEBUG_Info += "Reporter\n";
+            //LOG宏
+#if LOG
+            DEBUG_Info += "symbol define: LOG\n";
+#endif
+
+            IsNotDebug = DEBUG_Info.Equals(DEBUG_INFO_BASE + "\n");
+        }
 
         [Space(10)]
         [LabelText("代码运行环境")]
@@ -196,6 +232,12 @@ namespace LitFramework
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
         }
         #endregion
+
+        [UnityEditor.Callbacks.DidReloadScripts]
+        private static void OnScriptsReloaded()
+        {
+            FrameworkConfig.Instance.CheckPropChange();
+        }
     }
 
     /// <summary>

@@ -60,6 +60,9 @@ public class ReporterEditor : Editor
         reporter.images.selectedImage = ( Texture2D )AssetDatabase.LoadAssetAtPath( Path.Combine( reporterPath, "Images/selected.png" ), typeof( Texture2D ) );
 
         reporter.images.reporterScrollerSkin = ( GUISkin )AssetDatabase.LoadAssetAtPath( Path.Combine( reporterPath, "Images/reporterScrollerSkin.guiskin" ), typeof( GUISkin ) );
+
+        EditorApplication.DirtyHierarchyWindowSorting();
+        EditorApplication.RepaintHierarchyWindow();
     }
 }
 

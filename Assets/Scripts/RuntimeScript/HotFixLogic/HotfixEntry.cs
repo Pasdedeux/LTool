@@ -22,7 +22,8 @@ namespace LHotfixProject
         public static void Pre_RunGame_ILRuntime()
         {
             LDebug.Log( ">>>>执行预加载或初始化", LogColor.yellow );
-            
+
+            DataManager.Instance.Install();
         }
 
         /// <summary>

@@ -369,9 +369,9 @@ MonoBehaviour:
   UsePersistantPath: 1
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
-  showLog: 0
-  isProgramTest: 0
-  ForceUpdatePersistant: 0
+  showLog: 1
+  isProgramTest: 1
+  ForceUpdatePersistant: 1
   scriptEnvironment: 0
 --- !u!1 &697112009
 GameObject:

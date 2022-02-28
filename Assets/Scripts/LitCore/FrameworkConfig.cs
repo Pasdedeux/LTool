@@ -231,13 +231,15 @@ namespace LitFramework
             Application.targetFrameRate = TargetFrameRate;
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
         }
-        #endregion
+       
 
         [UnityEditor.Callbacks.DidReloadScripts]
         private static void OnScriptsReloaded()
         {
             FrameworkConfig.Instance.CheckPropChange();
         }
+
+        #endregion
     }
 
     /// <summary>

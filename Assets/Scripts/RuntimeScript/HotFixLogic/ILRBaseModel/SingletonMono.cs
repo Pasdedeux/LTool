@@ -31,11 +31,11 @@ namespace ILRBaseModel
                 //是否已存在单例挂载对象
                 if ( _instance == null )
                 {
-                    //_instance = FindObjectOfType( typeof( T ) ) as T;
+                    _instance = FindObjectOfType(typeof(T)) as T;
 
                     //若不存在则创建一个【隐匿对象】将（继承类）以组件方式挂载
-                    //if ( _instance == null )
-                    //{
+                    if (_instance == null)
+                    {
                         GameObject gObj = new GameObject();
 
                         gObj.name = "_Singleton(" + typeof( T ).Name + ")";
@@ -44,8 +44,11 @@ namespace ILRBaseModel
                         //这里会先触发继承类Awake()方法
                         _instance = gObj.AddComponent<T>();
 
-                        //DontDestroyOnLoad( gObj );
-                    //}
+#if UNITY_EDITOR
+                        if (Application.isPlaying)
+#endif
+                            DontDestroyOnLoad(gObj);
+                    }
                 }
 
                 return _instance;

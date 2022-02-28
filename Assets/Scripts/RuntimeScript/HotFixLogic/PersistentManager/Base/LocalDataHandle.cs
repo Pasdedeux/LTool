@@ -44,17 +44,16 @@ public static class LocalDataHandle
 
         //  LDebug.Log(aName + "------------------LoadData");
         string localTextPath;
-#if UNITY_EDITOR
-        localTextPath = AssetPathManager.Instance.GetStreamAssetDataPath(aName + ".bin", false);
-#else
+        
         if (LitFramework.FrameworkConfig.Instance.UsePersistantPath)
         {
             localTextPath = AssetPathManager.Instance.GetPersistentDataPath(aName + ".bin", false);
-        }else
+        }
+        else
         {
             localTextPath = AssetPathManager.Instance.GetStreamAssetDataPath(aName + ".bin", false);
         }
-#endif
+
         if (!File.Exists(localTextPath))
         {
             return new T();
@@ -73,7 +72,7 @@ public class LocalDataBase
     {
         isCanSave = true;
     }
-    public virtual void SavaImmit()
+    public virtual void SaveImmit()
     {
         if(isCanSave)
         {

@@ -24,7 +24,7 @@ public class LocalDataToolWindow : OdinEditorWindow
 		FuncRecordLocalData LocalData = LocalDataHandle.LoadData<FuncRecordLocalData>();
 		var window = OdinEditorWindow.InspectObject(LocalData);
 		window.OnClose += LocalData.SaveFlag;
-		window.OnClose += LocalData.SavaImmit;
+		window.OnClose += LocalData.SaveImmit;
 	}
 	[Button("AccountLocalData", buttonSize: ButtonSizes.Large),GUIColor(0f, 0.8f,0.6f)]
 	public void SetAccountLocalData()
@@ -32,6 +32,6 @@ public class LocalDataToolWindow : OdinEditorWindow
 		AccountLocalData LocalData = LocalDataHandle.LoadData<AccountLocalData>();
 		var window = OdinEditorWindow.InspectObject(LocalData);
 		window.OnClose += LocalData.SaveFlag;
-		window.OnClose += LocalData.SavaImmit;
+		window.OnClose += LocalData.SaveImmit;
 	}
 }

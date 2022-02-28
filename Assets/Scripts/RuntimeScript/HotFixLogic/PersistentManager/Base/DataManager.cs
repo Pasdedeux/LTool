@@ -55,8 +55,8 @@ public class DataManager : Singleton<DataManager>,IManager
 	}
 	public void SaveData()
 	{
-		AccountLocal.SavaImmit();
-		FuncRecordLocal.SavaImmit();
+		AccountLocal.SaveImmit();
+		FuncRecordLocal.SaveImmit();
 	}
 	public System.Action DestroyPayerData;
 	public void Uninstall()

@@ -44,7 +44,10 @@ namespace LitFramework
                         //这里会先触发继承类Awake()方法
                         _instance = gObj.AddComponent<T>();
 
-                        DontDestroyOnLoad( gObj );
+#if UNITY_EDITOR
+                        if (Application.isPlaying)
+#endif
+                            DontDestroyOnLoad( gObj );
                     }
                 }
 

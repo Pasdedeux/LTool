@@ -150,14 +150,20 @@ public class CreateUIWindow : OdinEditorWindow
             EditorUtility.DisplayDialog("类名错误", "类名应该不为空、空格，并且以UI开头", "哦");
 
         rpt = null;
+        this.Close();
+    }
+    private static string GetCsPath(string aCsPath)
+    {
+        string path ="";
+        if (!FrameworkConfig.Instance.UseHotFixMode)
+            path = Application.dataPath + "/Scripts/"+aCsPath;
+        else
+            path = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/" + aCsPath;
+        return path;
     }
     private static void SetCustomCs(string aFolderName,string aScriptsName,CSWriteTool aCSWrite,bool haveClose,string uiSummary)
     {
-        string csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+        string csOutPath = GetCsPath("UI /" + aFolderName);
         if (File.Exists(csOutPath + aScriptsName + ".cs")|| rpt.UI.ContainsKey(aScriptsName))
         {
             return;
@@ -185,7 +191,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.StartBracket();
         if(haveClose)
         {
-            aCSWrite.WriteLine("bttn_ReturnBtn.onClick.AddListener(OnClickExit);");
+            aCSWrite.WriteLine("button_Return.onClick.AddListener(OnClickExit);");
         }
         //结束初始化
         aCSWrite.EndBracket();
@@ -222,11 +228,7 @@ public class CreateUIWindow : OdinEditorWindow
     }
     private static void SetCustomElementCs(string aFolderName, string aScriptsName, CSWriteTool aCSWrite)
     {
-        string csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+        string csOutPath =  GetCsPath("UI/" + aFolderName);
         if (File.Exists(csOutPath + aScriptsName + ".cs") || rpt.UI.ContainsKey(aScriptsName))
         {
             return;
@@ -279,11 +281,7 @@ public class CreateUIWindow : OdinEditorWindow
     }
     private static void SetCustomExComCs(string aFolderName, string aScriptsName, CSWriteTool aCSWrite)
     {
-        string csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UI/" + aFolderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFolderName;
+        string csOutPath = GetCsPath("UI/" + aFolderName);
         if (File.Exists(csOutPath + aScriptsName + ".cs") || rpt.UI.ContainsKey(aScriptsName))
         {
             return;
@@ -352,14 +350,9 @@ public class CreateUIWindow : OdinEditorWindow
             return;
         }
         string className = "UI" + aPrefab.name.Substring(7);
-        string csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
         if (rpt.UI.ContainsKey(className)) return;
 
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
-
+        string csOutPath = GetCsPath("UIExport/" + folderName);
 
         tempArray.Clear();
         aCSWrite.Reset();
@@ -457,11 +450,8 @@ public class CreateUIWindow : OdinEditorWindow
         }
        
         string className = aPrefab.name.Replace("Element_", "Element");
-        string csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
+
+        string csOutPath = GetCsPath("UIExport/" + folderName);
         if (rpt.UI.ContainsKey(className)) return;
 
         tempArray.Clear();
@@ -484,15 +474,17 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("public {0} ()", className);
         aCSWrite.StartBracket();
         aCSWrite.EndBracket();
-        aCSWrite.WriteLine("public {0} (Transform tans)", className);
+        aCSWrite.WriteLine("public RectTransform recTrans;");
+        aCSWrite.WriteLine("public {0} (RectTransform tans)", className);
         aCSWrite.StartBracket();
-        aCSWrite.WriteLine("linkedTrans = tans;");
+        aCSWrite.WriteLine("linkedTrans = tans.transform;");
+        aCSWrite.WriteLine("recTrans = tans;");
         aCSWrite.EndBracket();
 
         aCSWrite.WriteLine("public static {0} CreateInstance()", className);
         aCSWrite.StartBracket();
         aCSWrite.WriteLine("GameObject obj = SpawnManager.Instance.SpwanObject(AssetsName);");
-        aCSWrite.WriteLine("{0} element = new {1}(obj.transform);", className,className);
+        aCSWrite.WriteLine("{0} element = new {1}(obj.transform as RectTransform);", className,className);
         aCSWrite.WriteLine("return element;");
         aCSWrite.EndBracket();
 
@@ -508,11 +500,11 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("public override void FindMember()");
         aCSWrite.StartBracket();
 
-        CsFindPathCom(aPrefab.transform, "","", "linkedTrans", aCSWrite);
-        SetCsFindPath(aPrefab.transform, "", "linkedTrans", aCSWrite);
+        CsFindPathCom(aPrefab.transform, "","", "recTrans", aCSWrite);
+        SetCsFindPath(aPrefab.transform, "", "recTrans", aCSWrite);
         foreach (KeyValuePair<string, Transform> keyValue in tempArray)
         {
-            CsFindPathArray(keyValue.Value, keyValue.Key, "linkedTrans", aCSWrite);
+            CsFindPathArray(keyValue.Value, keyValue.Key, "recTrans", aCSWrite);
         }
         aCSWrite.EndBracket();
 
@@ -531,11 +523,7 @@ public class CreateUIWindow : OdinEditorWindow
             return;
         }
         string className = aPrefab.name.Replace("ExCom_", "ExCom");
-        string csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-            csOutPath = Application.dataPath + "/Scripts/UIExport/" + folderName;
-        else
-            csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + folderName;
+        string csOutPath = GetCsPath("UIExport/" + folderName);
         if (rpt.UI.ContainsKey(className)) return;
 
         tempArray.Clear();
@@ -555,11 +543,10 @@ public class CreateUIWindow : OdinEditorWindow
 
 
         aCSWrite.WriteLine("public static string AssetsName=ResPath.UI.{0};", className.ToUpper());
-
-        aCSWrite.WriteLine("public Transform transform;");
-        aCSWrite.WriteLine("public {0} (Transform tans)", className);
+        aCSWrite.WriteLine("public RectTransform recTrans;");
+        aCSWrite.WriteLine("public {0} (RectTransform tans)", className);
         aCSWrite.StartBracket();
-        aCSWrite.WriteLine("transform = tans;");
+        aCSWrite.WriteLine("recTrans = tans;");
         aCSWrite.WriteLine("FindMember();");
 
         aCSWrite.WriteLine("OnInite();");
@@ -568,7 +555,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("public static {0} CreateInstance()", className);
         aCSWrite.StartBracket();
         aCSWrite.WriteLine("GameObject obj= GameObject.Instantiate<GameObject>(RsLoadManager.Instance.Load<GameObject>(AssetsName));");
-        aCSWrite.WriteLine("{0} excom = new {1}(obj.transform);", className, className);
+        aCSWrite.WriteLine("{0} excom = new {1}(obj.transform as RectTransform);", className, className);
         aCSWrite.WriteLine("return excom;");
         aCSWrite.EndBracket();
 
@@ -583,11 +570,11 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("public void FindMember()");
         aCSWrite.StartBracket();
 
-        CsFindPathCom(aPrefab.transform, null,"", "transform", aCSWrite);
-        SetCsFindPath(aPrefab.transform, "", "transform", aCSWrite);
+        CsFindPathCom(aPrefab.transform, null,"", "recTrans", aCSWrite);
+        SetCsFindPath(aPrefab.transform, "", "recTrans", aCSWrite);
         foreach (KeyValuePair<string, Transform> keyValue in tempArray)
         {
-            CsFindPathArray(keyValue.Value, keyValue.Key, "transform", aCSWrite);
+            CsFindPathArray(keyValue.Value, keyValue.Key, "recTrans", aCSWrite);
         }
         aCSWrite.EndBracket();
 
@@ -650,42 +637,44 @@ public class CreateUIWindow : OdinEditorWindow
 
             string _path = aPath + trans.name;
             _Name = _Name.Replace("(", "").Replace(")", "");
-            if (!'_'.Equals(_Name[0]))
+            bool isCanExport = IsCanExport(trans);
+            UnityEngine.Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
+            if (prefab != null)
             {
-                UnityEngine.Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
-                if(prefab!=null)
+                if (prefab.name.StartsWith("ExCom_"))
                 {
-                    if(prefab.name.StartsWith("ExCom_"))
+                    string prefabName = prefab.name;
+                    string type = prefabName.Replace("_", "");
+                    string attrname = "exCom_" + _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
+                    SetCsAttrbuteCom(trans, cSWrite, attrname, aScope);
+                    cSWrite.WriteLine("private {0} {1};", type, attrname);
+                }
+                else if (prefab.name.StartsWith("Element_"))
+                {
+                    string prefabName = prefab.name;
+                    string type = prefabName.Replace("_", "");
+                    string attrname = "element_" + _Name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
+                    SetCsAttrbuteCom(trans, cSWrite, attrname, aScope);
+                    cSWrite.WriteLine("private {0} {1};", type, attrname);
+                }
+                else
+                {
+                    if (isCanExport)
                     {
-                        string prefabName = prefab.name;
-                        string type = prefabName.Replace("_", "");
-                        string attrname = _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
-
-                        SetCsAttrbuteCom(trans, cSWrite, "_" + attrname, aScope);
-                        attrname = "exCom_" + attrname;
-                        cSWrite.WriteLine("private {0} {1};", type, attrname);
-                    }else if(prefab.name.StartsWith("Element_"))
-                    {
-                        string prefabName = prefab.name;
-                        string type = prefabName.Replace("_", "");
-                        string attrname = trans.name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
-                        SetCsAttrbuteCom(trans, cSWrite, "_" + attrname, aScope);
-                        attrname = "element_" + attrname;
-                        cSWrite.WriteLine("private {0} {1};", type, attrname);
-                    }else
-                    {
-                        SetCsAttribute(trans, _path, cSWrite, aScope);
+                        SetCsAttrbuteCom(trans, cSWrite, _Name, aScope);
                     }
-
-                }else
-                {
                     SetCsAttribute(trans, _path, cSWrite, aScope);
                 }
 
-                continue;
             }
-            SetCsAttrbuteCom(trans, cSWrite, _Name, aScope);
-            SetCsAttribute(trans, _path, cSWrite, aScope);
+            else
+            {
+                if (isCanExport)
+                {
+                    SetCsAttrbuteCom(trans, cSWrite, _Name, aScope);
+                }
+                SetCsAttribute(trans, _path, cSWrite, aScope);
+            }
         }
 
     }
@@ -694,7 +683,20 @@ public class CreateUIWindow : OdinEditorWindow
         MonoBehaviour[] comArray = trans.gameObject.GetComponents<MonoBehaviour>();
         if(!string.IsNullOrEmpty(_Name))
         {
-            cSWrite.WriteLine("private Transform {0};", "trans" + _Name);
+            bool isHaveTrans = true;
+            if(!_Name.StartsWith("_"))
+            {
+                _Name = "_" + _Name;
+                isHaveTrans = false;
+            }
+            if(isHaveTrans)
+            {
+                cSWrite.WriteLine("private RectTransform {0};", "recTrans" + _Name);
+            }
+            if (_Name.Contains("exCom") || _Name.Contains("element"))
+            {
+                return;
+            }
         }
         else
         {
@@ -708,12 +710,22 @@ public class CreateUIWindow : OdinEditorWindow
                 if (uiCom.IsExport)
                 {
                     string _type = com.GetType().ToString();
+                    
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
-                    string endStr = _type.ToLower();
-                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                    string _NameCom = endStr + _Name;
+                    string _NameCom;
+                    if (_Name.Contains(_type + "_"))
+                    {
+                        _Name = _Name.Replace(_type + "_", "");
+                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
+                    }
+                    else
+                    {
+                        string endStr = _type.ToLower();
+                        string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                        endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                        _NameCom = endStr + _Name;
+                    }
                     cSWrite.WriteLine("{0} {1} {2};", aScope, _type, _NameCom);
                 }
             }
@@ -749,48 +761,66 @@ public class CreateUIWindow : OdinEditorWindow
 
         _Name = _className;
         _Name = _Name.Replace("(", "").Replace(")", "");
-        if (!'_'.Equals(_Name[0]))
+        UnityEngine.GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
+        if (prefab != null)
         {
-            UnityEngine.GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
-            if (prefab != null)
+
+            if (prefab.name.StartsWith("ExCom_"))
             {
+                string prefabName = prefab.name;
+                string type = prefabName.Replace("_", "");
+                string attrname = "exCom_" + _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
+                SetCsAttrbuteComArray(trans, cSWrite, attrname, aLen, aScope);
+                attrname = attrname + "Array";
+                cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope, type, attrname, type, aLen);
+            }
+            else if (prefab.name.StartsWith("Element_"))
+            {
+                string prefabName = prefab.name;
+                string type = prefabName.Replace("_", "");
+                string attrname = "element_" + _Name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
 
-                if (prefab.name.StartsWith("ExCom_"))
+                SetCsAttrbuteComArray(trans, cSWrite, attrname, aLen, aScope);
+
+                attrname = attrname + "Array";
+                cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope, type, attrname, type, aLen);
+            }
+            else
+            {
+                if (IsCanExport(trans))
                 {
-                    string prefabName = prefab.name;
-                    string type = prefabName.Replace("_", "");
-                    string attrname = _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
-                    SetCsAttrbuteComArray(trans, cSWrite, "_" + attrname, aLen, aScope);
-                    attrname = "exCom_" + attrname;
-                    attrname = attrname + "Array";
-
-                    cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope, type, attrname, type,aLen);
+                    SetCsAttrbuteComArray(trans, cSWrite, _Name, aLen, aScope);
                 }
-                else if (prefab.name.StartsWith("Element_"))
-                {
-                    string prefabName = prefab.name;
-                    string type = prefabName.Replace("_", "");
-                    string attrname = trans.name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
-
-                    SetCsAttrbuteComArray(trans, cSWrite, "_" + attrname, aLen, aScope);
-
-                    attrname = "element_" + attrname;
-                    attrname = attrname + "Array";
-                    cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope,type, attrname, type, aLen);
-                }
-
             }
 
-            return;
         }
-        SetCsAttrbuteComArray(trans, cSWrite, _Name, aLen, aScope);
+        else
+        {
+            if (IsCanExport(trans))
+            {
+                SetCsAttrbuteComArray(trans, cSWrite, _Name, aLen, aScope);
+            }
+        }
     }
     private static void SetCsAttrbuteComArray(Transform trans, CSWriteTool cSWrite, string _Name,int aLen,string aScope)
     {
         MonoBehaviour[] comArray = trans.gameObject.GetComponents<MonoBehaviour>();
 
         _Name = _Name + "Array";
-        cSWrite.WriteLine("{0} Transform[] {1}=new Transform[{2}];", aScope,"trans" + _Name , aLen);
+        bool isHaveTrans = true;
+        if (!_Name.StartsWith("_"))
+        {
+            _Name = "_" + _Name;
+            isHaveTrans = false;
+        }
+        if (isHaveTrans)
+        {
+            cSWrite.WriteLine("{0} RectTransform[] {1}=new RectTransform[{2}];", aScope, "recTrans" + _Name, aLen);
+        }
+        if (_Name.Contains("exCom") || _Name.Contains("element"))
+        {
+            return;
+        }
         foreach (MonoBehaviour com in comArray)
         {
             if (com is UnityEngine.EventSystems.UIBehaviour)
@@ -800,11 +830,20 @@ public class CreateUIWindow : OdinEditorWindow
                 {
                     string _type = com.GetType().ToString();
                     string[] _typePath = _type.Split('.');
-                    _type = _typePath[_typePath.Length - 1]; 
-                    string endStr = _type.ToLower();
-                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                    string _NameCom = endStr + _Name;
+                    _type = _typePath[_typePath.Length - 1];
+                    string _NameCom;
+                    if (_Name.Contains(_type + "_"))
+                    {
+                        _Name = _Name.Replace(_type + "_", "");
+                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
+                    }
+                    else
+                    {
+                        string endStr = _type.ToLower();
+                        string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                        endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                        _NameCom = endStr + _Name;
+                    }
                     cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope, _type, _NameCom, _type, aLen);
                 }
             }
@@ -824,6 +863,20 @@ public class CreateUIWindow : OdinEditorWindow
                 cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope,_type, _NameCom, _type, aLen);
             }
         }
+    }
+    private static bool IsCanExport(Transform trans)
+    {
+        bool isExport = false;
+        UnityEngine.EventSystems.UIBehaviour[] uiarray = trans.GetComponents<UnityEngine.EventSystems.UIBehaviour>();
+        foreach (UnityEngine.EventSystems.UIBehaviour uIBehaviour in uiarray)
+        {
+            if (uIBehaviour.IsExport)
+            {
+                isExport = true;
+                break;
+            }
+        }
+        return isExport;
     }
     public static void SetCsFindPath(Transform _root, string aPath, string _rootName, CSWriteTool cSWrite)
     {
@@ -846,6 +899,7 @@ public class CreateUIWindow : OdinEditorWindow
             _Name = _Name.Replace(" ", "").Replace("{", "").Replace("}", "").Replace("[", "").Replace("]", "").Replace(".", "");
 
             string _path = aPath + trans.name;
+
             if (_Name.EndsWith(")"))
             {
                 int indexStart = _Name.IndexOf('(');
@@ -861,46 +915,50 @@ public class CreateUIWindow : OdinEditorWindow
                 }
             }
 
+            bool isCanExport = IsCanExport(trans);
             _Name = _Name.Replace("(", "").Replace(")", "");
-            if (!'_'.Equals(_Name[0]))
+            UnityEngine.Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
+            if (prefab != null)
             {
-                UnityEngine.Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
-                if (prefab != null)
+
+                if (prefab.name.StartsWith("ExCom_"))
                 {
+                    string prefabName = prefab.name;
+                    string type = prefabName.Replace("_", "");
+                    string attrname = "exCom_" + _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("exCom", "").Replace("ExCom", "");
 
-                    if (prefab.name.StartsWith("ExCom_"))
-                    {
-                        string prefabName = prefab.name;
-                        string type = prefabName.Replace("_", "");
-                        string attrname = _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
+                    CsFindPathCom(trans, attrname, _path, _rootName, cSWrite);
+                    string trsndName = "_recTrans_" + attrname;
+                    cSWrite.WriteLine("{0} = new {1}({2});", attrname, type, trsndName);
+                }
+                else if (prefab.name.StartsWith("Element_"))
+                {
+                    string prefabName = prefab.name;
+                    string type = prefabName.Replace("_", "");
+                    string attrname = "element_" + _Name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
 
-                        CsFindPathCom(trans, "_" + attrname, _path, _rootName, cSWrite);
-                        cSWrite.WriteLine(" {0} = new {1}({2});", "exCom_" + attrname, type, "trans_" + attrname);
-                    }
-                    else if (prefab.name.StartsWith("Element_"))
-                    {
-                        string prefabName = prefab.name;
-                        string type = prefabName.Replace("_", "");
-                        string attrname = trans.name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
-
-                        CsFindPathCom(trans, "_" + attrname, _path, _rootName, cSWrite);
-                        cSWrite.WriteLine(" {0} = new {1}({2});", "element_" + attrname, type, "trans_" + attrname);
-                    }
-                    else
-                    {
-                        SetCsFindPath(trans, _path, _rootName, cSWrite);
-                    }
-
+                    CsFindPathCom(trans, attrname, _path, _rootName, cSWrite);
+                    string trsndName = "_recTrans_" + attrname;
+                    cSWrite.WriteLine("{0} = new {1}({2});", attrname, type, trsndName);
                 }
                 else
                 {
-                    SetCsFindPath(trans, _path, _rootName,  cSWrite);
+                    if (isCanExport)
+                    {
+                        CsFindPathCom(trans, _Name, _path, _rootName, cSWrite);
+                    }
+                    SetCsFindPath(trans, _path, _rootName, cSWrite);
                 }
 
-                continue;
             }
-            CsFindPathCom(trans,_Name,_path, _rootName, cSWrite);
-            SetCsFindPath(trans, _path, _rootName, cSWrite);
+            else
+            {
+                if (isCanExport)
+                {
+                    CsFindPathCom(trans, _Name, _path, _rootName, cSWrite);
+                }
+                SetCsFindPath(trans, _path, _rootName, cSWrite);
+            }
         }
 
     }
@@ -910,8 +968,30 @@ public class CreateUIWindow : OdinEditorWindow
         string transName;
         if(!string.IsNullOrEmpty(_Name))
         {
-            cSWrite.WriteLine("{0} = {1}.Find(\"{2}\");", "trans" + _Name, _rootName, _path);
-            transName = "trans" + _Name;
+
+            string[] nameArry = _Name.Split('_');
+            bool isHaveTrans = true;
+            if (!_Name.StartsWith("_"))
+            {
+                _Name = "_" + _Name;
+                isHaveTrans = false;
+            }
+
+            if (isHaveTrans)
+            {
+                transName = "recTrans" + _Name;
+                cSWrite.WriteLine("{0} = {1}.Find(\"{2}\") as RectTransform;", transName, _rootName, _path);
+
+            }
+            else
+            {
+                transName = "_recTrans" + _Name;
+                cSWrite.WriteLine("RectTransform {0} = {1}.Find(\"{2}\") as RectTransform;", transName, _rootName, _path);
+            }
+            if (_Name.Contains("exCom") ||_Name.Contains("element"))
+            {
+                return;
+            }
         }
         else
         {
@@ -929,10 +1009,19 @@ public class CreateUIWindow : OdinEditorWindow
                     string _type = com.GetType().ToString();
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
-                    string endStr = _type.ToLower();
-                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                    string _NameCom = endStr + _Name;
+                    string _NameCom;
+                    if (_Name.Contains(_type + "_"))
+                    {
+                        _Name = _Name.Replace(_type + "_", "");
+                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
+                    }
+                    else
+                    {
+                        string endStr = _type.ToLower();
+                        string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                        endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                        _NameCom = endStr + _Name;
+                    }
                     cSWrite.WriteLine("{0} = {1}.GetComponent<{2}>();", _NameCom, transName, _type);
                 }
             }
@@ -969,53 +1058,85 @@ public class CreateUIWindow : OdinEditorWindow
         _Name = _className;
         _Name = _Name.Replace("(", "").Replace(")", "");
 
-        if (!'_'.Equals(_Name[0]))
+        UnityEngine.GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
+        if (prefab != null)
         {
-            UnityEngine.GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(trans.gameObject);
-            if (prefab != null)
+
+            if (prefab.name.StartsWith("ExCom_"))
             {
+                string prefabName = prefab.name;
+                string type = prefabName.Replace("_", "");
+                string attrname = "exCom_" + _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom_", ""); ;
 
-                if (prefab.name.StartsWith("ExCom_"))
-                {
-                    string prefabName = prefab.name;
-                    string type = prefabName.Replace("_", "");
-                    string attrname = _Name.Replace("ExCom_", "").Replace("exCom_", "").Replace("ExCom", "").Replace("exCom", "");
+                CsFindPathComArray(trans, attrname, aPath, _rootName, cSWrite, aLen);
+                string trsndName;
 
-                    CsFindPathComArray(trans, "_"+attrname, aPath, _rootName, cSWrite, aLen);
-                    cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
-                    cSWrite.StartBracket();
-                    cSWrite.WriteLine(" {0}[i] = new {1}({2}[i]);", "exCom_" + attrname+"Array", type, "trans_" + attrname + "Array");
-                    cSWrite.EndBracket();
-                }
-                else if (prefab.name.StartsWith("Element_"))
-                {
-                    string prefabName = prefab.name;
-                    string type = prefabName.Replace("_", "");
-                    string attrname = trans.name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", "");
-
-                    CsFindPathComArray(trans, "_" + attrname, aPath, _rootName, cSWrite, aLen);
-
-                    cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
-                    cSWrite.StartBracket();
-                    cSWrite.WriteLine(" {0}[i] = new {1}({2}[i]);", "element_" + attrname + "Array", type, "trans" + attrname + "Array");
-                    cSWrite.EndBracket();
-                }
-
+                trsndName = "_recTrans_" + attrname + "Array";
+                cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
+                cSWrite.StartBracket();
+                cSWrite.WriteLine(" {0}[i] = new {1}({2}[i]);", attrname + "Array", type, trsndName);
+                cSWrite.EndBracket();
             }
-            return;
+            else if (prefab.name.StartsWith("Element_"))
+            {
+                string prefabName = prefab.name;
+                string type = prefabName.Replace("_", "");
+                string attrname = "element_" + _Name.Replace("Element_", "").Replace("element_", "").Replace("Element", "").Replace("element", ""); ;
+
+                CsFindPathComArray(trans, attrname, aPath, _rootName, cSWrite, aLen);
+                string trsndName;
+                trsndName = "_recTrans_" + attrname + "Array";
+                cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
+                cSWrite.StartBracket();
+                cSWrite.WriteLine(" {0}[i] = new {1}({2}[i]);", attrname + "Array", type, trsndName);
+                cSWrite.EndBracket();
+            }
+            else
+            {
+                if (IsCanExport(trans))
+                {
+                    CsFindPathComArray(trans, _Name, aPath, _rootName, cSWrite, aLen);
+                }
+            }
+
         }
-        CsFindPathComArray(trans, _Name, aPath, _rootName, cSWrite,aLen);
+        else
+        {
+            if (IsCanExport(trans))
+            {
+                CsFindPathComArray(trans, _Name, aPath, _rootName, cSWrite, aLen);
+            }
+        }
     }
 
     private static void CsFindPathComArray(Transform trans, string _Name, string aPath,string _rootName, CSWriteTool cSWrite,int aLen)
     {
         MonoBehaviour[] comArray = trans.gameObject.GetComponents<MonoBehaviour>();
+        bool isHaveTrans = true;
+        if (!_Name.StartsWith("_"))
+        {
+            _Name = "_" + _Name;
+            isHaveTrans = false;
+        }
         _Name = _Name + "Array";
+        string transName;
+        if(isHaveTrans)
+        {
+            transName = "recTrans" + _Name;
+        }
+        else
+        {
+            transName = "_recTrans" + _Name;
+            cSWrite.WriteLine("RectTransform[] {0}=new RectTransform[{1}];", transName, aLen);
+        }
         cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
         cSWrite.StartBracket();
-        cSWrite.WriteLine("{0}[i] = {1}.Find(\"{2} (\"+i+\")\");", "trans" + _Name, _rootName, aPath);
+        cSWrite.WriteLine("{0}[i] = {1}.Find(\"{2} (\"+i+\")\") as RectTransform;", transName, _rootName, aPath);
         cSWrite.EndBracket();
-
+        if(_Name.Contains("exCom") || _Name.Contains("element"))
+        {
+            return;
+        }
         foreach (MonoBehaviour com in comArray)
         {
             if (com is UnityEngine.EventSystems.UIBehaviour)
@@ -1026,13 +1147,23 @@ public class CreateUIWindow : OdinEditorWindow
                     string _type = com.GetType().ToString();
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
-                    string endStr = _type.ToLower();
-                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                    string _NameCom = endStr + _Name;
+
+                    string _NameCom;
+                    if (_Name.Contains(_type+"_"))
+                    {
+                        _Name = _Name.Replace(_type + "_", "");
+                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1)+ _Name;
+                    }
+                    else
+                    {
+                        string endStr = _type.ToLower();
+                        string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                        endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                        _NameCom = endStr + _Name;
+                    }
                     cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
                     cSWrite.StartBracket();
-                    cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, "trans" + _Name, _type);
+                    cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, transName, _type);
                     cSWrite.EndBracket();
                 }
             }
@@ -1051,7 +1182,7 @@ public class CreateUIWindow : OdinEditorWindow
                 string _NameCom = endStr + _Name;
                 cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
                 cSWrite.StartBracket();
-                cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, "trans" + _Name, _type);
+                cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, transName, _type);
                 cSWrite.EndBracket();
             }
         }
@@ -1105,7 +1236,7 @@ public class CreateUIWindow : OdinEditorWindow
 
         if (useDefaultExitBtn)
         {
-            GameObject btnExit = new GameObject("_ReturnBtn", typeof(RectTransform));
+            GameObject btnExit = new GameObject("Button_Return", typeof(RectTransform));
             btnExit.AddComponent<CanvasRenderer>();
             btnExit.AddComponent<Image>().maskable = false;
             btnExit.AddComponent<Button>();
@@ -1161,14 +1292,8 @@ public class CreateUIWindow : OdinEditorWindow
     }
     private static void UpdataPath(CSWriteTool cSWrite)
     {
-        string floder;
-        if (FrameworkConfig.Instance.UseHotFixMode)
-        {
-            floder = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport";
-        }else
-        {
-            floder = Application.dataPath + "/Scripts/UIExport";
-        }
+
+        string floder = GetCsPath("UIExport");
 
         string prefabPath = Application.dataPath + "/Resources/Prefabs/UI";
         DirectoryInfo direction = new DirectoryInfo(prefabPath);
@@ -1380,15 +1505,8 @@ public class CreateUIWindow : OdinEditorWindow
 
         //    EditorUtility.DisplayProgressBar("自定义脚本检测", classFloderName, curPro / allPro);
         //}
-        string exportCS;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-        {
-            exportCS = Application.dataPath + "/Scripts/UIExport/";
-        }
-        else
-        {
-            exportCS = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/";
-        }
+
+        string exportCS = GetCsPath("UIExport/");
         paths = Directory.GetFiles(exportCS, csF+"*.cs", SearchOption.AllDirectories);
 
         curPro = 0;
@@ -1441,28 +1559,13 @@ public class CreateUIWindow : OdinEditorWindow
         {
             File.Delete(prefabPath);
         }
-        string custonPath;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-        {
-            custonPath = Application.dataPath + "/Scripts/UI/" + aFloder + aCsF + aName + ".cs";
-        }
-        else
-        {
-            custonPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UI/" + aFloder + aCsF + aName + ".cs";
-        }
+
+        string custonPath = GetCsPath("UI/" + aFloder + aCsF + aName + ".cs");
         if (File.Exists(custonPath))
         {
             File.Delete(custonPath);
         }
-        string exportCS;
-        if (!FrameworkConfig.Instance.UseHotFixMode)
-        {
-            exportCS = Application.dataPath + "/Scripts/UIExport/" + aFloder + aCsF + aName + ".cs";
-        }
-        else
-        {
-            exportCS = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport/" + aFloder + aCsF + aName + ".cs";
-        }
+        string exportCS = GetCsPath("UIExport/" + aFloder + aCsF + aName + ".cs");
         if (File.Exists(exportCS))
         {
             File.Delete(exportCS);
@@ -1569,7 +1672,7 @@ public class CreateUIWindow : OdinEditorWindow
             string className = _Prefab.name.Substring(7);
             int endLength = path.Length - startFolerIndex - (_Prefab.name.Length + 7);
             string folder = path.Substring(startFolerIndex, endLength);
-            Transform returnBtnTrans = aniRoot.Find("ReturnBtn");
+            Transform returnBtnTrans = aniRoot.Find("Button_Return");
             Button returnBtn = null;
             if (returnBtnTrans)
             {
@@ -1759,19 +1862,19 @@ public class CheckUIManager
         EditorApplication.hierarchyChanged += Check;
         PrefabStage.prefabStageOpened += OpenPrefab;
         PrefabStage.prefabStageClosing += ClosePrefab;
-        
-        DuplicateTrans = new List<Transform>();
+
+        DuplicateNames = new Dictionary<string, int>();
     }
     static bool isCanChcek = false;
-    static List<Transform> DuplicateTrans;
+    static Dictionary<string,int> DuplicateNames;
     private static Transform CurPrefab;
     static void OpenPrefab(PrefabStage prefabStage)
     {
         GameObject obj=  prefabStage.prefabContentsRoot;
-        if(obj.name.StartsWith("Canvas_"))
+        if(obj.name.StartsWith("Canvas_")||obj.name.StartsWith("ExCom")||obj.name.StartsWith("Elment"))
         {
             CurPrefab = obj.transform;
-            DuplicateTrans.Clear();
+            DuplicateNames.Clear();
             CheckName(CurPrefab);
             isCanChcek = true;
         }
@@ -1779,8 +1882,20 @@ public class CheckUIManager
     }
     static void ClosePrefab(PrefabStage prefabStage)
     {
-        isCanChcek = false;
-        DuplicateTrans.Clear();
+        GameObject obj = prefabStage.prefabContentsRoot;
+       if (obj.transform== CurPrefab)
+        {
+            CurPrefab = null;
+            isCanChcek = false;
+            DuplicateNames.Clear();
+            PrefabStage prefabstage1 = PrefabStageUtility.GetCurrentPrefabStage();
+            if (prefabstage1 == null)
+            {
+                return;
+            }
+            OpenPrefab(prefabstage1);
+        }
+        
     }
     private static void Check()
     {
@@ -1788,7 +1903,7 @@ public class CheckUIManager
         {
             return;
         }
-        DuplicateTrans.Clear();
+        DuplicateNames.Clear();
         CheckName(CurPrefab);
     }
     private static void CheckName(Transform aCurCheck)
@@ -1796,25 +1911,28 @@ public class CheckUIManager
         if(aCurCheck.childCount==0)
         {
             return;
-        }else if (aCurCheck.childCount == 1)
+        }
+        UnityEngine.GameObject prefab = PrefabUtility.GetCorrespondingObjectFromSource(aCurCheck.gameObject);
+        if(prefab != null && (prefab.name.StartsWith("ExCom") || prefab.name.StartsWith("Element")))
         {
-            CheckName(aCurCheck.GetChild(0));
+            return;
         }
         foreach (Transform trans in aCurCheck)
         {
-            if(trans.name.StartsWith("_"))
+            if(trans!= aCurCheck)
             {
-                Transform first = aCurCheck.Find(trans.name);
-                if (first != trans)
+                if (DuplicateNames.ContainsKey(trans.name))
                 {
-                    DuplicateTrans.Add(trans);
-                    if (!DuplicateTrans.Contains(first))
-                    {
-                        DuplicateTrans.Add(first);
-                    }
+                    DuplicateNames[trans.name] = 2;
                 }
+                else
+                {
+                    DuplicateNames[trans.name] = 1;
+                }
+                CheckName(trans);
             }
-            CheckName(trans);
+            
+            
         }
     }
 
@@ -1831,7 +1949,9 @@ public class CheckUIManager
         {
             return;
         }
-        if(DuplicateTrans.Contains(obj.transform))
+        int count = 0;
+        DuplicateNames.TryGetValue(obj.transform.name, out count);
+        if (count>1)
         {
             GUI.contentColor = Color.red;
             var index = 0;

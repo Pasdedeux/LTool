@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GTextFieldAdapter.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\ST\AdapterSTFacebook.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\UIExport\ResPath.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Model\LoadingTaskModel.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Stats.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\AD\BaseAdAdapter.cs" />

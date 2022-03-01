@@ -28,14 +28,12 @@ public class CreatDataManagerWindow : OdinEditorWindow
     }
     private static string m_HeadAllPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/PersistentManager/";
     private static string m_HeadAssetsPath = "Assets/Scripts/RuntimeScript/HotFixLogic/PersistentManager/";
-    private CreatDataManagerWindow window;
     CSWriteTool csWrite=new CSWriteTool();
     [MenuItem(@"Assets/本地数据/Build", priority = 0)]
     public static CreatDataManagerWindow OpenWindow()
     {
         var window = GetWindow<CreatDataManagerWindow>();
         window.position = Sirenix.Utilities.Editor.GUIHelper.GetEditorWindowRect().AlignCenter(350f, 200f);
-        window.window = window;
         return window;
     }
     private bool CheckClassNameValid(string aValue)
@@ -108,7 +106,7 @@ public class CreatDataManagerWindow : OdinEditorWindow
         }
         UpdataLacalDataManager(csWrite);
         AssetDatabase.Refresh();
-        window.Close();
+        this.Close();
     }
 
     private static void CreateLocalData()

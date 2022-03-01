@@ -53,15 +53,17 @@
     <UnityVersion>2020.3.6f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\CreatDataManagerWindow.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\StageCameraEditor.cs" />
     <Compile Include="Assets\Editor\LitEditor\EditorUse.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\ConfigToolWindow.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleDataSource\AssetDatabaseABDataSource.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleInspectTab.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\LocalDataToolWindow.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleRecord.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\FrameworkConfigInspector.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreateUIWindow.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\EditorMenuExtention.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
@@ -111,9 +113,6 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelBundleInfo.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\CreatDataManagerWindow.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\LocalDataToolWindow.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\ConfigToolWindow.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />

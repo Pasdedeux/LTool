@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GRootAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\Html\IHtmlObject.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\PackageItem.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\ConfigData\CommonData.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\UIModelBehavior.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\TweenManager.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\QuaternionBinder.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Statistic\StatisticManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GList.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\DataManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterMopub.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\EaseManager.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Collections_Generic_List_1_Int32_Binding.cs" />
@@ -136,7 +138,9 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\FillMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\LMath.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GRichTextFieldAdapter.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\FuncRecordLocalData.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Action\ChangePageAction.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\FuncRecordManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_WindowAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PrefabPool.cs" />
@@ -269,6 +273,7 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\IAP\PurchaserDataModel.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtraRegister.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\CameraController.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\AccountManager.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GSlider.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\LitTool.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GProgressBar.cs" />
@@ -294,6 +299,7 @@
     <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\fLZ.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\ExampleQuery.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Common\ConstantTool.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Int32_Binding.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Text_StringBuilder_Binding.cs" />
@@ -364,6 +370,7 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\Crypto\ICrypto.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\JsonExtention.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Window.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\LocalDataHandle.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\TextFormat.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\BitmapFont.cs" />
@@ -413,6 +420,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\RoundedRectMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Optimization.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\IColorGear.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\BaseLocalConfigManager.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Scripts\brotlitest.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\CLRBindings.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventBridge.cs" />
@@ -438,6 +446,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\FieldTypes.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\Vector2Binder.cs" />
     <Compile Include="Assets\Scripts\Essential\ResPool\RsCom\RsLoadResource.cs" />
+    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\AccountLocalData.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GListAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Extensions\DragonBones\DragonBonesLoader.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GLoader3D.cs" />
@@ -456,15 +465,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\ConfigData\CommonData.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\FuncRecordLocalData.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\FuncRecordManager.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Common\ConstantTool.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\LocalDataHandle.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\DataManager.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\AccountLocalData.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\BaseLocalConfigManager.cs" />
-    <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\AccountManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

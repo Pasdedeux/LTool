@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2022/3/2 15:34:28
 /// </summary>
 public class SpawnConfig
 {

@@ -76,7 +76,6 @@ namespace LitFrameworkEditor.EditorExtended
             //CSString.Add( "#endif" );
             CSString.Add( "/// <summary>" );
             CSString.Add( "/// Author : Derek Liu" );
-            CSString.Add( "/// 创建时间:" + DateTime.Now.ToString() );
             CSString.Add( "/// </summary>" );
             //CSString.Add( "namespace " + spaceName );
             //CSString.Add( "{" );

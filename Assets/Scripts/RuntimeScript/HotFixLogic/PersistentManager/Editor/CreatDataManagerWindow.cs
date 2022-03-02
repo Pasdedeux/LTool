@@ -146,7 +146,6 @@ public class CreatDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("using UnityEngine;");
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
-        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year+"/"+ System.DateTime.Now.Month+"/"+ System.DateTime.Now.Day+"   "+ System.DateTime.Now.Hour+":"+ System.DateTime.Now.Minute+":"+ System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {
@@ -210,7 +209,6 @@ public class CreatDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("using UnityEngine;");
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
-        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {
@@ -270,7 +268,6 @@ public class CreatDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("using UnityEngine;");
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
-        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {

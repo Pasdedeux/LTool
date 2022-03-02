@@ -36,7 +36,6 @@ class SQLConfigsParse
         CSString.Add("#region << 版 本 注 释 >>");
         CSString.Add("///*----------------------------------------------------------------");
         CSString.Add("// Author : Derek Liu");
-        CSString.Add("// 创建时间:" + DateTime.Now.ToString());
         CSString.Add("// 备注：由模板工具自动生成");
         CSString.Add("///----------------------------------------------------------------*/");
         CSString.Add("#endregion");

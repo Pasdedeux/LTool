@@ -113,6 +113,10 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelBundleInfo.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />

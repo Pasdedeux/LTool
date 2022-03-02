@@ -43,7 +43,6 @@ namespace LitFrameworkEditor.EditorExtended
     /// </summary>
     public class EditorMenuExtention
     {
-
         /// <summary>
         /// 将XLSX文件夹的excel文档转换为csv文件
         /// </summary>
@@ -52,11 +51,12 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void XlsxToCSV()
         {
-            LDebug.Log("配置文件转化为CSV  开始!");
+            LDebug.Log("配置文件==>CSV  开始!", LogColor.yellow);
 
+            ExcelExport.ProjectPath = Application.dataPath;
             ExcelExport.Xlsx_2_CSV(FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件转化为CSV  结束!", LogColor.yellow);
+            LDebug.Log("配置文件==>CSV  成功!", LogColor.green);
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif
@@ -70,21 +70,16 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void CsvToCs()
         {
-            LDebug.Log( "配置文件转化为代码  开始!" );
+            LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
 
+            ExcelExport.ProjectPath = Application.dataPath;
             ExcelExport.Xlsx_2_CsvCs(FrameworkConfig.Instance.UseHotFixMode, FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件转化为代码  结束!", LogColor.yellow);
+            LDebug.Log("配置文件==>代码  成功!", LogColor.green);
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif
         }
-
-
-
-
-
-
 
 
 #if UNITY_EDITOR

@@ -47,9 +47,9 @@ namespace LitFrameworkEditor.EditorExtended
         /// 将XLSX文件夹的excel文档转换为csv文件
         /// </summary>
 #if UNITY_EDITOR
-        [MenuItem( "Tools/配置文件->CSV", priority = 20 )]
+        //[MenuItem( "Tools/配置文件->CSV", priority = 20 )]
 #endif
-        public static void XlsxToCSV()
+        private static void XlsxToCSV()
         {
             LDebug.Log("配置文件==>CSV  开始!", LogColor.yellow);
 

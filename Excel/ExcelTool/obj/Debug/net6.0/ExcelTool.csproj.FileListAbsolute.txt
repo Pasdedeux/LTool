@@ -1,0 +1,12 @@
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\ExcelTool.deps.json
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\ExcelTool.dll
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\ExcelTool.pdb
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.csproj.AssemblyReference.cache
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.GeneratedMSBuildEditorConfig.editorconfig
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.AssemblyInfoInputs.cache
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.AssemblyInfo.cs
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.csproj.CoreCompileInputs.cache
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.dll
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\refint\ExcelTool.dll
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ExcelTool.pdb
+C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\obj\Debug\net6.0\ref\ExcelTool.dll

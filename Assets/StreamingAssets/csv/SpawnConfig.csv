@@ -2,5 +2,5 @@
 ID,SpawnType,resPath,PreloadAmount
 int,string,string,int
 1,UI,Prefabs/Test/Image_1,1
-2,场景,Prefabs/Test/Image_2,3
+2,场景,Prefabs/Test/Image_2,4
 3,UI,Prefabs/Test/Image_1,1

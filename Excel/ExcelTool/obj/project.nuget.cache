@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ojgfAp9Gg9sTvreG2Ez9Na9360IGS1x/QlofM3a8X7AVaVL3Rh7fSLXEo+5nxlx8DsWgSqFzDtn/1mlpscjjrQ==",
+  "success": true,
+  "projectFilePath": "C:\\Personal\\Unity\\iFunTech\\BasePackage\\Excel\\ExcelTool\\Litframework.ExcelTool.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lc102\\.nuget\\packages\\commandlineparser\\2.8.0\\commandlineparser.2.8.0.nupkg.sha512"
+  ],
+  "logs": []
+}

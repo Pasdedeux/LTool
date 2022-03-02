@@ -35,6 +35,7 @@ namespace LitFrameworkEditor.EditorExtended
     using LitFramework;
     using LitFramework.LitTool;
     using System.Linq;
+    using Litframework.ExcelTool;
 #endif
 
     /// <summary>
@@ -42,18 +43,6 @@ namespace LitFrameworkEditor.EditorExtended
     /// </summary>
     public class EditorMenuExtention
     {
-        /// <summary>
-        /// 写入CSV标题栏
-        /// </summary>
-        private static string _csvListTitle = "CsvName,Version,MD5";
-        /// <summary>
-        /// 写入CSV的值
-        /// </summary>
-        private static string _csvContentValue = "{0},{1},{2}";
-        /// <summary>
-        /// 需要存档的配置文件
-        /// </summary>
-        private static List<ABVersion> _csvListToBeRestored = new List<ABVersion>();
 
         /// <summary>
         /// 将XLSX文件夹的excel文档转换为csv文件
@@ -63,147 +52,14 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void XlsxToCSV()
         {
-            string xlsxpath = Application.dataPath + "/XLSX";
-            string streampath = Application.dataPath + "/StreamingAssets";
-            string csvpath = Application.dataPath + "/StreamingAssets/csv";
-            _csvListToBeRestored.Clear();
-            //文件列表
-            //string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
-            //FileStream fs = new FileStream( listpath, FileMode.Create );
-            //StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
-            DirectoryInfo TheFolder = new DirectoryInfo( xlsxpath );
+            LDebug.Log("配置文件转化为CSV  开始!");
 
-            if ( !Directory.Exists( csvpath ) )
-            {
-                Directory.CreateDirectory( csvpath );
-            }
+            ExcelExport.Xlsx_2_CSV(FrameworkConfig.Instance.configs_suffix);
 
-            try
-            {
-                //对文件进行遍历
-                foreach ( var NextFile in TheFolder.GetFiles() )
-                {
-                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx"&&!NextFile.Name.StartsWith("~$"))
-                    {
-                        string csvfile = XLSXTOCSV( NextFile.Open(FileMode.Open, FileAccess.Read,FileShare.ReadWrite) );
-                        CreateCSVFile( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
-                        Debug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
-                        //listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
-                        string str = "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv";
-                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csvpath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" ), Version = 1 } );
-                    }
-                    else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
-                    {
-                        FileInfo fi = new FileInfo( csvpath + "/" + NextFile.Name );
-                        if ( fi.Exists )
-                            fi.Delete();
-                        NextFile.CopyTo( csvpath + "/" + NextFile.Name );
-                        //listwriter.WriteLine( NextFile.Name );
-                        _csvListToBeRestored.Add( new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 } );
-                    }
-                }
-
-                //遍历框架配置的额外后缀文件
-                string[] extralFile = FrameworkConfig.Instance.configs_suffix.Split( '|' );
-                foreach ( var item in extralFile )
-                {
-                    if ( item.Equals( "csv" ) ) continue;
-
-                    GetFiles( new DirectoryInfo( streampath ), item, _csvListToBeRestored );
-                }
-            }
-            catch ( Exception e ) { Debug.LogError( e.Message ); }
-            finally
-            {
-                //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-                MatchCSVTotalFile( _csvListToBeRestored );
-
-                //listwriter.Close();
-                //listwriter.Dispose();
-                //fs.Dispose();
+            LDebug.Log("配置文件转化为CSV  结束!", LogColor.yellow);
 #if UNITY_EDITOR
-                AssetDatabase.Refresh();
+            AssetDatabase.Refresh();
 #endif
-            }
-        }
-
-        /// <summary>
-        /// 加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-        /// </summary>
-        /// <param name="csvListToBeRestored"></param>
-        private static void MatchCSVTotalFile( List<ABVersion> csvListToBeRestored )
-        {
-            string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
-            FileStream fs;
-            StreamWriter listwriter;
-
-            if ( DocumentAccessor.IsExists( AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt", false ) ) )
-            {
-                //本地主配置文件获取
-                string localContent = null;
-                string localFilePath = AssetPathManager.Instance.GetStreamAssetDataPath( "csvList.txt" );
-                DocumentAccessor.LoadAsset( localFilePath, ( e ) => { localContent = e; } );
-                List<ABVersion> localABVersionsDic = ResolveABContent( localContent );
-
-                fs = new FileStream( listpath, FileMode.Create );
-                listwriter = new StreamWriter( fs, new UTF8Encoding( false ) );
-                listwriter.WriteLine( _csvListTitle );
-
-                for ( int i = 0; i < csvListToBeRestored.Count; i++ )
-                {
-                    ABVersion toSave = csvListToBeRestored[ i ];
-                    for ( int k = 0; k < localABVersionsDic.Count; k++ )
-                    {
-                        ABVersion local = localABVersionsDic[ k ];
-                        if ( local.AbName == toSave.AbName )
-                        {
-                            toSave.Version = local.MD5 != toSave.MD5 && local.Version != 0 ? local.Version + 1 : local.Version;
-                        }
-                    }
-                    listwriter.WriteLine( string.Format( _csvContentValue, toSave.AbName, toSave.Version, toSave.MD5 ) );
-                }
-            }
-            else
-            {
-                fs = new FileStream( listpath, FileMode.Create );
-                listwriter = new StreamWriter( fs, new UTF8Encoding( false ) );
-                listwriter.WriteLine( _csvListTitle );
-
-                for ( int i = 0; i < csvListToBeRestored.Count; i++ )
-                {
-                    listwriter.WriteLine( string.Format( _csvContentValue, csvListToBeRestored[ i ].AbName, csvListToBeRestored[ i ].Version, csvListToBeRestored[ i ].MD5 ) );
-                }
-            }
-            listwriter.Close();
-            listwriter.Dispose();
-            fs.Dispose();
-        }
-
-        //解析ABVersion配置表
-        private static List<ABVersion> ResolveABContent( string contentResolve )
-        {
-            List<ABVersion> resultDict = new List<ABVersion>();
-
-            string[] str = contentResolve.Split( "\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
-            int toLoadNum = str.Length;
-
-            for ( int k = 1; k < str.Length; k++ )
-            {
-                string line = str[ k ];
-                if ( line != "" )
-                {
-                    string[] content = line.Split( ',' );
-                    ABVersion ab = new ABVersion
-                    {
-                        AbName = content[ 0 ],
-                        Version = int.Parse( content[ 1 ] ),
-                        MD5 = content[ 2 ].Trim()
-                    };
-                    resultDict.Add( ab );
-                }
-            }
-
-            return resultDict;
         }
 
         /// <summary>
@@ -214,174 +70,22 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void CsvToCs()
         {
-            Debug.Log( "配置文件转化为代码  开始!" );
-            _csvListToBeRestored.Clear();
-            string xlsxpath = Application.dataPath + "/XLSX";
-            string streampath = Application.dataPath + "/StreamingAssets";
-            string csvOutPath = Application.dataPath + "/StreamingAssets/csv";
-            string csOutPath = Application.dataPath + "/Scripts/CSV";
-            if ( !FrameworkConfig.Instance.UseHotFixMode )
-                csOutPath = Application.dataPath + "/Scripts/CSV";
-            else
-                csOutPath = Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/CSV";
-            DirectoryInfo theXMLFolder = new DirectoryInfo( xlsxpath );
+            LDebug.Log( "配置文件转化为代码  开始!" );
 
-            //文件列表
-            //string listpath = Application.dataPath + "/StreamingAssets/csvList.txt";
-            //FileStream fs = new FileStream( listpath, FileMode.Create );
-            //StreamWriter listwriter = new StreamWriter( fs, new UTF8Encoding(false) );
+            ExcelExport.Xlsx_2_CsvCs(FrameworkConfig.Instance.UseHotFixMode, FrameworkConfig.Instance.configs_suffix);
 
-            if ( !Directory.Exists( csvOutPath ) )
-            {
-                Directory.CreateDirectory( csvOutPath );
-            }
-            if ( !Directory.Exists( csOutPath ) )
-            {
-                Directory.CreateDirectory( csOutPath );
-            }
-
-            try
-            {
-                ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
-                //对文件进行遍历
-                foreach ( var NextFile in theXMLFolder.GetFiles() )
-                {
-                    if ( Path.GetExtension( NextFile.Name ) == ".xlsx"&& !NextFile.Name.StartsWith("~$"))
-                    {
-                        LDebug.Log( " >表处理 : " + NextFile.Name );
-                        FileStream stream =  NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                        string csvfile = XLSXTOCSV(stream);
-                        CSVParser cp = new CSVParser();
-                        CreateCSFile( csOutPath, NextFile.Name.Split( '.' )[ 0 ] + ".cs", cp.CreateCS( NextFile.Name.Split( '.' )[ 0 ], csvfile ) );
-                        CreateCSVFile( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv", csvfile );
-                        LDebug.Log( NextFile.Name.Split( '.' )[ 0 ] + "  文件生成成功！" );
-
-                        //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
-                        CSVReader reader = new CSVReader( csvfile );
-                        cnt.configsNameList.Add( NextFile.Name.Split( '.' )[ 0 ], reader.GetData( 0, 2 ) );
-                        //listwriter.WriteLine( "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" );
-                        string str = "csv/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv";
-                        _csvListToBeRestored.Add( new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash( csvOutPath + "/" + NextFile.Name.Split( '.' )[ 0 ] + ".csv" ), Version = 1 } );
-                    }
-                    else if ( Path.GetExtension( NextFile.Name ) == ".txt" )
-                    {
-                        FileInfo fi = new FileInfo( csvOutPath + "/" + NextFile.Name );
-                        if ( fi.Exists )
-                            fi.Delete();
-                        NextFile.CopyTo( csvOutPath + "/" + NextFile.Name );
-                        //listwriter.WriteLine( NextFile.Name );
-                        _csvListToBeRestored.Add( new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 } );
-                    }
-                }
-
-                //遍历框架配置的额外后缀文件
-                string[] extralFile = FrameworkConfig.Instance.configs_suffix.Split( '|' );
-                foreach ( var item in extralFile )
-                {
-                    if ( item.Equals( "csv" ) ) continue;
-
-                    GetFiles( new DirectoryInfo( streampath ), item, _csvListToBeRestored );
-                }
-
-                //============更新并保存CS============//
-                ConfigsParse rpp = new ConfigsParse();
-
-                if ( !FrameworkConfig.Instance.UseHotFixMode )
-                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
-                else
-                    EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/Model/Const/", "Configs.cs", rpp.CreateCS( cnt ) );
-            }
-            catch ( Exception e ) { LDebug.LogError( e.Message ); }
-            finally
-            {
-                //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-                MatchCSVTotalFile( _csvListToBeRestored );
-
-                //listwriter.Close();
-                //listwriter.Dispose();
-                //fs.Dispose();
+            LDebug.Log("配置文件转化为代码  结束!", LogColor.yellow);
 #if UNITY_EDITOR
-                AssetDatabase.Refresh();
-#endif
-            }
-        }
-
-        /// <summary>
-        /// 创建CS文件
-        /// </summary>
-        public static void CreateCSFile( string path, string className, string cs )
-        {
-            if ( !Directory.Exists( path ) )
-            {
-                //该路径不存在
-                Directory.CreateDirectory( path );
-            }
-
-            path += "/";
-            path += className;
-
-            FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( false ) );
-            sw.Write( cs );
-            sw.Close();
-            sw.Dispose();
-            fs.Dispose();
-        }
-
-        static void CreateCSVFile( string path, string data )
-        {
-            FileStream fs = new FileStream( path, FileMode.Create );
-            StreamWriter sw = new StreamWriter( fs, new UTF8Encoding( true ) );
-            sw.Write( data );
-            sw.Close();
-            sw.Dispose();
-            fs.Dispose();
-        }
-
-        static string XLSXTOCSV( FileStream stream )
-        {
-#if UNITY_EDITOR
-            using ( IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader( stream ) )
-            {
-                DataSet result = excelReader.AsDataSet();
-                CSVWriter writer = new CSVWriter();
-                int rows = result.Tables[ 0 ].Rows.Count;
-
-                //通常情况下，获取第一行的列数即可
-                int rowlen = 0;
-                for ( int j = 0; j < result.Tables[ 0 ].Rows[ 0 ].ItemArray.Length; j++ )
-                {
-                    if ( result.Tables[ 0 ].Rows[ 0 ].ItemArray[ j ].ToString() == "" )
-                    {
-                        break;
-                    }
-                    rowlen++;
-                }
-
-                for ( int i = 0; i < rows; i++ )
-                {
-                    if ( result.Tables[ 0 ].Rows[ i ].ItemArray[ 0 ].ToString() == "" )
-                        break;
-
-                    List<object> rowlist = new List<object>();
-
-                    for ( int j = 0; j < rowlen; j++ )
-                    {
-                         if (result.Tables[0].Rows[0].ItemArray[j].ToString() != "备注")
-                        {
-                            rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
-                        }
-                       
-                    }
-                    writer.AddRow( rowlist.ToArray() );
-
-                }
-                return writer.ToString();
-            }
-#else
-            return "";
+            AssetDatabase.Refresh();
 #endif
         }
+
+
+
+
+
+
+
 
 #if UNITY_EDITOR
         [MenuItem( "Tools/开启PersistentData文件夹", priority = 2 )]

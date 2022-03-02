@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using LitFramework;
 /// <summary>
 /// Author : Derek Liu
-/// 创建时间:2022/2/22 16:03:39
+/// 创建时间:2022/3/2 10:41:34
 /// </summary>
 public class SpawnConfig
 {

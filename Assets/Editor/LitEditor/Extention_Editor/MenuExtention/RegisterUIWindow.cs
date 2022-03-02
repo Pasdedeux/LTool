@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using Litframework.ExcelTool;
 using LitFramework;
 using LitFramework.LitTool;
 using LitFrameworkEditor.EditorExtended;
@@ -121,7 +122,7 @@ public class RegisterUIWindow : EditorWindow
                         csOutPath = Application.dataPath + "/Scripts/UI";
                     else
                         csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI";
-                    EditorMenuExtention.CreateCSFile(csOutPath, uiScriptsName + ".cs", cs.CreateCS(this));
+                    ExcelExport.CreateCSFile(csOutPath, uiScriptsName + ".cs", cs.CreateCS(this));
                     AssetDatabase.Refresh();
 
                     //预制件
@@ -196,7 +197,7 @@ public class RegisterUIWindow : EditorWindow
                         csOutPath = Application.dataPath + "/Scripts/ILRuntime/HotFixLogic/UI";
 
 
-                    EditorMenuExtention.CreateCSFile(csOutPath, uiScriptsName + ".cs", cs.CreateCS(this));
+                    ExcelExport.CreateCSFile(csOutPath, uiScriptsName + ".cs", cs.CreateCS(this));
                     AssetDatabase.Refresh();
                 }
                 else
@@ -281,9 +282,9 @@ public class RegisterUIWindow : EditorWindow
                 //更新并保存CS
                 ResPathParse rpp = new ResPathParse();
                 if (!FrameworkConfig.Instance.UseHotFixMode)
-                    EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+                    ExcelExport.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
                 else
-                    EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+                    ExcelExport.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
 
                 AssetDatabase.Refresh();
             }
@@ -411,9 +412,9 @@ public class RegisterUIWindow : EditorWindow
         //更新并保存CS
         ResPathParse rpp = new ResPathParse();
         if (!FrameworkConfig.Instance.UseHotFixMode)
-            EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+            ExcelExport.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
         else
-            EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+            ExcelExport.CreateCSFile(Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
 
         AssetDatabase.Refresh();
     }

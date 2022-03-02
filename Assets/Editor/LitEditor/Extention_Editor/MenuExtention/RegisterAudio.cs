@@ -14,6 +14,7 @@
 *******************************************************************
 ======================================*/
 
+using Litframework.ExcelTool;
 using LitFramework;
 using LitFramework.LitTool;
 using LitFrameworkEditor.EditorExtended;
@@ -98,9 +99,9 @@ namespace LitFrameworkEditor.Extention_Editor
             //============更新并保存CS============//
             ResPathParse rpp = new ResPathParse();
             if (!FrameworkConfig.Instance.UseHotFixMode)
-                EditorMenuExtention.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
+                ExcelExport.CreateCSFile(Application.dataPath + "/Scripts", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS(rpt));
             else
-                EditorMenuExtention.CreateCSFile( Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
+                ExcelExport.CreateCSFile( Application.dataPath + "/Scripts/RuntimeScript/HotFixLogic/UIExport", GlobalEditorSetting.OUTPUT_RESPATH, rpp.CreateCS( rpt ) );
             AssetDatabase.Refresh();
         }
 

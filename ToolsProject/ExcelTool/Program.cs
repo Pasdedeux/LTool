@@ -21,13 +21,13 @@ namespace Litframework.ExcelTool
             {
                 case 1:
                     ExcelExport.Xlsx_2_CSV( options.ExtralFileExtention);
-                    Console.WriteLine("\n\n");
+                    Console.WriteLine("\n==================>\n");
                     Console.WriteLine("导出--CSV--成功!");
                     Console.WriteLine("");
                     break;
                 case 2:
                     ExcelExport.Xlsx_2_CsvCs(options.UseHotFix, options.ExtralFileExtention);
-                    Console.WriteLine("\n\n");
+                    Console.WriteLine("\n==================>\n");
                     Console.WriteLine("导出--CSV-代码--成功!");
                     Console.WriteLine("");
                     break;

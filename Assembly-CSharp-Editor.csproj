@@ -62,6 +62,7 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleInspectTab.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetListTree.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\InspectSingleBundle.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Editor\LocalDataToolWindow.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\InspectTab\AssetBundleRecord.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\CreateUIWindow.cs" />
@@ -69,6 +70,8 @@
     <Compile Include="Assets\Editor\LitEditor\Editor\LitAttributes\SetProperty.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Tests\Editor\Util\ABModelUtil.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleBrowserMain.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIConfigEditor.cs" />
     <Compile Include="Assets\Editor\ILRuntimeMenu.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\MenuExtention\RegisterAudio.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleTree.cs" />
     <Compile Include="Assets\Editor\LitEditor\Editor\SQLite\SQLParser.cs" />
+    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" />
     <Compile Include="Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVParser.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelAssetInfo.cs" />
     <Compile Include="Assets\Editor\UI\LoopScrollRectInspector.cs" />
@@ -113,10 +117,6 @@
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\MessageList.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Editor\UIPanelEditor.cs" />
     <Compile Include="Assets\The3rd\AssetBundles-Browser\Editor\AssetBundleModel\ABModelBundleInfo.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" />
-    <Compile Include="Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll" />

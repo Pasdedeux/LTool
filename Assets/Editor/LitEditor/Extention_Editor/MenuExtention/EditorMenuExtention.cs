@@ -212,7 +212,7 @@ namespace LitFrameworkEditor.EditorExtended
             ActiveEditorTracker.sharedTracker.ForceRebuild();
         }
 
-        [MenuItem( "Tools/Clear Shader Cache" )]
+        [MenuItem( "Tools/重编Shader变体" )]
         static public void ClearShaderCache_Command()
         {
             var shaderCachePath = Path.Combine( Application.dataPath, "../Library/ShaderCache" );

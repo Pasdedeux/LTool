@@ -42,12 +42,12 @@ public class RegisterUIWindow : EditorWindow
     //Resources 目录
     private static string UIPrefabBaseDirectoryName = "Resources";
 
-    //[MenuItem("Tools/Build/Build UI &u", priority = 50)]
-    private static void CreateUIWindow()
-    {
-        ExpandEdiorUseEvent?.Invoke();
-        GetWindow<RegisterUIWindow>("UI创建", true);
-    }
+    ////[MenuItem("Tools/Build/Build UI &u", priority = 50)]
+    //private static void CreateUIWindow()
+    //{
+    //    ExpandEdiorUseEvent?.Invoke();
+    //    GetWindow<RegisterUIWindow>("UI创建", true);
+    //}
 
     #region UI模板生成
 

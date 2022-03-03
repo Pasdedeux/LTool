@@ -31,7 +31,7 @@ public static class BuildSceneSettingEditor
     /// <summary>
     /// 构建场景设置为所有
     /// </summary>
-    [MenuItem( "Tools/Build/同步Scenes场景到SceneSetting", priority = 53 )]
+    [MenuItem( "Tools/Scene场景管理/同步Scenes场景到SceneSetting", priority = 53 )]
     public static void AddAllScenesToBuildSettings()
     {
         HashSet<string> sceneNames = new HashSet<string>();
@@ -59,7 +59,7 @@ public static class BuildSceneSettingEditor
     /// <summary>
     /// 删除所有的构建场景
     /// </summary>
-    [MenuItem( "Tools/Build/删除所有构建场景",priority =54 )]
+    [MenuItem( "Tools/Scene场景管理/删除所有构建场景",priority =54 )]
     public static void DeleteScenesFormBuildSettings()
     {
         List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();

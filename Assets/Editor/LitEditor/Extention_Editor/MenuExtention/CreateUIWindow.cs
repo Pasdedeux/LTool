@@ -1700,40 +1700,6 @@ public class CreateUIWindow : OdinEditorWindow
             SetBaseElementCs(obj as GameObject, _WriteTool, folder);
         }
     }
-
-    [MenuItem(@"Tools/更新ugui", priority = 1)]
-    private static void UpdateUGUI()
-    {
-        //F:\UnityPackge\BodyLife\UnityProject
-        // LDebug.Log(  System.Environment.CurrentDirectory,LogColor.orange);
-        // LDebug.Log("MyDocuments:"+System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), LogColor.orange);
-        // LDebug.Log("CommonProgramFiles:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonProgramFiles), LogColor.orange);
-        // LDebug.Log("ProgramFiles:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), LogColor.orange);
-        // LDebug.Log("CommonStartup:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonStartup), LogColor.orange);
-        // LDebug.Log("DesktopDirectory:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory), LogColor.orange);
-        //LDebug.Log("InternetCache:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.InternetCache), LogColor.orange);
-        //LDebug.Log("LocalizedResources:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalizedResources), LogColor.orange);
-        //LDebug.Log("ProgramFiles:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFiles), LogColor.orange);
-        //LDebug.Log("CDBurning:" + System.Environment.GetFolderPath(System.Environment.SpecialFolder.CDBurning), LogColor.orange);
-
-        // Directory directory = new Directory(System.Environment.CurrentDirectory);
-
-        //如果文件存在，则读取解析为存储类，写入相关数据条后写入JSON并保存
-        if (DocumentAccessor.IsExists(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME))
-        {
-            var content = DocumentAccessor.ReadFile(Application.dataPath + "/Editor/" + GlobalEditorSetting.JSON_FILE_NAME);
-            rpt = JsonMapper.ToObject<ResPathTemplate>(content);
-        }
-
-        string path = "";
-        for (int i=0;i<60;i++)
-        {
-            path = path + System.Environment.GetFolderPath((System.Environment.SpecialFolder)i) + "\n";
-        }
-        LDebug.Log(path, LogColor.orange);
-
-
-    }
 }
 public class CSWriteTool
 {

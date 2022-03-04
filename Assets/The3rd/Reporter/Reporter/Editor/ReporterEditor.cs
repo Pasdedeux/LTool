@@ -11,6 +11,9 @@ public class ReporterEditor : Editor
     [MenuItem( "Reporter/Create" )]
     public static void CreateReporter()
     {
+        var item = GameObject.Find("Reporter");
+        if (item != null) return;
+
         const int ReporterExecOrder = -12000;
         GameObject reporterObj = new GameObject();
         reporterObj.name = "Reporter";

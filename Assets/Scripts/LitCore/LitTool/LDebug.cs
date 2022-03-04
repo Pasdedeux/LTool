@@ -51,7 +51,7 @@ public static class LDebug
             UnityEngine.Debug.unityLogger.logEnabled = value;
         }
     }
-
+    
     [Conditional("LOG")]
     public static void Log(object content)
     {

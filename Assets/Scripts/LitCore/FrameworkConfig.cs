@@ -174,6 +174,13 @@ namespace LitFramework
         private string DEBUG_Info;
         private bool IsNotDebug = false;
 
+        [BoxGroup("调试设置", centerLabel: true)]
+        [OnInspectorGUI]
+        private void CheckDebugSetting()
+        {
+            if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox("", UnityEditor.MessageType.Warning);
+        }
+
         [BoxGroup("调试设置",centerLabel:true)]
         [OnValueChanged("CheckPropChange")]
         [LabelText("是否打印日志")]
@@ -191,12 +198,23 @@ namespace LitFramework
         public bool ForceUpdatePersistant = false;
 
         [BoxGroup("调试设置", centerLabel: true)]
-        [OnInspectorGUI]
-        private void CheckDebugSetting()
-        {
-            if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox(DEBUG_Info, UnityEditor.MessageType.Warning);
-        }
+        [LabelText("插件Reporter")]
+        [OnValueChanged("CheckPropChange")]
+        public bool Reporter = false;
+
+        [BoxGroup("调试设置", centerLabel: true)]
+        [LabelText("Log宏（慎点）")]
+        [OnValueChanged("CheckPropChange")]
+        [OnValueChanged("LinkShowLog")]
+        public bool UseLogSymbol = false;
+
         
+        
+        private void LinkShowLog()
+        {
+            if (showLog != UseLogSymbol) showLog = UseLogSymbol;
+        }
+
         public void CheckPropChange()
         {
             DEBUG_Info = DEBUG_INFO_BASE + "\n";
@@ -208,12 +226,50 @@ namespace LitFramework
             //强制更新读写目录
             if (ForceUpdatePersistant) DEBUG_Info += "ForceUpdatePersistant\n";
             //Reporter插件
-            if (GameObject.Find("Reporter")) DEBUG_Info += "Reporter\n";
+            if (Reporter)
+            {
+                DEBUG_Info += "Reporter\n";
+                try
+                {
+                    if (GameObject.Find("Reporter") == null)
+                        UnityEditor.EditorApplication.ExecuteMenuItem("Reporter/Create");
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message.ToString());
+                }
+            }
+            else
+            {
+                var item = GameObject.Find("Reporter");
+                if (item != null) GameObject.DestroyImmediate(item);
+                item = null;
+            }
             //LOG宏
-#if LOG
-            DEBUG_Info += "symbol define: LOG\n";
+            if (UseLogSymbol)
+            {
+#if UNITY_EDITOR
+                var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+                if (!symb.Contains("LOG"))
+                {
+                    symb.Add("LOG");
+                    UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
+                }
 #endif
-
+                DEBUG_Info += "symbol define: LOG\n";
+            }
+            else
+            {
+#if UNITY_EDITOR
+                var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+                if (symb.Contains("LOG"))
+                {
+                    symb.Remove("LOG");
+                    UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
+                }
+#endif
+            }
+           
             IsNotDebug = DEBUG_Info.Equals(DEBUG_INFO_BASE + "\n");
         }
 

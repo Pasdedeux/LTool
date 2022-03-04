@@ -119,7 +119,6 @@
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\TestReporter.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_QueueAdapter.cs" />
-    <Compile Include="Assets\Scripts\UITestElement.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\BlendMode.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixController.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\UnityEngine_Vector3_Binding.cs" />

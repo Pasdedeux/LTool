@@ -40,6 +40,11 @@ namespace Litframework.ExcelTool
         private string[] _type;
         private string _className;
         private const string SPACENAME = "LitFramework";
+        private const string TEMPLATE_VARS_NAME = "paras";
+
+        private int _template_vars_index = 0;
+        private bool _needToParseFlag = false;
+        private string _paramName;
 
         List<string> CSString = new List<string>();
 
@@ -49,6 +54,7 @@ namespace Litframework.ExcelTool
 
             CSVReader reader = new CSVReader( csv );
 
+            _template_vars_index = 0;
             _description = reader.GetRow( 0 );
             _attribute = reader.GetRow( 1 );
             _type = reader.GetRow( 2 );
@@ -169,12 +175,13 @@ namespace Litframework.ExcelTool
             CSString.Add( "{" );
             CSString.Add( string.Format( "{0} item = new {0}();" , _className ) );
             //中心
-            for( int i = 0; i < _type.Length; i++ )
+            for ( int i = 0; i < _type.Length; i++ )
             {
                 if( _type[ i ].Contains( "En_" ) )
                 {
                     string subtype = _type[ i ].Substring( 3 );
-                    CSString.Add( string.Format( "item.{0} = {1};" , _attribute[ i ] , ParseBaseType( subtype , string.Format( "reader.GetData({0}, i)" , i ) ) ) );
+                    CSString.Add( string.Format( "item.{0} = {1};" , _attribute[ i ] , 
+                        ParseBaseType( subtype , string.Format( "reader.GetData({0}, i)" , i ), ref _needToParseFlag, out _paramName) ) );
                 }
                 else if( _type[ i ].Contains( "List<" ) )
                 {
@@ -206,14 +213,16 @@ namespace Litframework.ExcelTool
 
                         CSString.Add( string.Format( "for (int k = 0; k < {0}.Length; k++)" , usubstrName ) );
                         CSString.Add( "{" );
-                        CSString.Add( string.Format( "{0}.Add({1});" , usublstname , ParseBaseType( usubtype , string.Format( "{0}[k]" , usubstrName ) ) ) );
+                        CSString.Add( string.Format( "{0}.Add({1});" , usublstname , 
+                            ParseBaseType( usubtype , string.Format( "{0}[k]" , usubstrName ), ref _needToParseFlag, out _paramName) ) );
                         CSString.Add( "}" ); 
                         CSString.Add("}");
                         CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , usublstname ) );
                     }
                     else
                     {
-                        CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , ParseBaseType( subtype , string.Format( "{0}[j]" , substrName ) ) ) );
+                        CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , 
+                            ParseBaseType( subtype , string.Format( "{0}[j]" , substrName ), ref _needToParseFlag, out _paramName) ) );
 
                     }
                     CSString.Add( "}" );
@@ -233,18 +242,37 @@ namespace Litframework.ExcelTool
                     CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
                     CSString.Add( "{" );
                     CSString.Add( string.Format( "string[] subArray = {0}[j].Split('|');" , substrName ) );
-                    CSString.Add( string.Format( "item.{0}.Add({1}, {2});" , _attribute[ i ] , ParseBaseType( subtype[ 0 ] , "subArray[0]" ) , ParseBaseType( subtype[ 1 ] , "subArray[1]" ) ) );
+                    CSString.Add( string.Format( "item.{0}.Add({1}, {2});" , _attribute[ i ] , 
+                        ParseBaseType( subtype[ 0 ] , "subArray[0]", ref _needToParseFlag, out _paramName) , 
+                        ParseBaseType( subtype[ 1 ] , "subArray[1]", ref _needToParseFlag, out _paramName) ) );
                     CSString.Add( "}" );
                     CSString.Add("}");
                 }
                 else
-                    CSString.Add( string.Format( "item.{0} = {1};" , _attribute[ i ] , ParseBaseType( _type[ i ] , string.Format( "reader.GetData({0}, i)" , i ) ) ) );
+                {
+                    var resultParse = ParseBaseType(_type[i], string.Format("reader.GetData({0}, i)", i), ref _needToParseFlag, out _paramName);
+                    if (!_needToParseFlag)
+                        CSString.Add(string.Format("item.{0} = {1};", _attribute[i], resultParse));
+                    else{
+                        CSString.Add($"{resultParse};");
+                        CSString.Add(string.Format("item.{0} = {1};", _attribute[i], _paramName));
+                    }
+                }
             }
             //收尾
-            if( mtype == EnMethodType.List )
-                CSString.Add( "vec.Add(item);" );
+            if (mtype == EnMethodType.List)
+                CSString.Add("vec.Add(item);");
             else
-                CSString.Add( string.Format( "vec.Add(item.{0}, item);" , _attribute[ 0 ] ) );
+            {
+                CSString.Add("try");
+                CSString.Add("{");
+                CSString.Add(string.Format("vec.Add(item.{0}, item);", _attribute[0]));
+                CSString.Add("}");
+                CSString.Add("catch (Exception e)");
+                CSString.Add("{");
+                CSString.Add("LDebug.LogError($\"" + "{e.Message} 表: " + $"{_className} " + "行: {i}" + "列: " + $"{_attribute[0]}" + "\", LogColor.red); ");
+                CSString.Add("}");
+            }
             CSString.Add( "}" );
             CSString.Add( "return vec;" );
             CSString.Add( "}" );
@@ -294,48 +322,53 @@ namespace Litframework.ExcelTool
             return result.ToString();
         }
 
-        private string ParseBaseType( string type , string attribute )
+        private string ParseBaseType( string type , string attribute , ref bool needTryParse , out string paramName )
         {
-            if( type.Length == 0 )
-                return "";
+            if (type.Length == 0) throw new Exception($"解析配置表 {_className} 失败！存在空数据类型! ");
+            
+            needTryParse = true;
+            paramName = $"{TEMPLATE_VARS_NAME}{_template_vars_index}";
             string result = "";
             switch( type )
             {
                 case "string":
                     result = attribute;
-                    break;
+                    needTryParse = false;
+                    return result; ;
                 case "char":
                     result = attribute;
-                    break;
+                    needTryParse = false;
+                    return result; ;
                 case "DateTime":
-                    result = "DateTime.Parse(" + attribute + ")";
+                    result = "DateTime.TryParse(" + attribute + $", out DateTime {paramName})";
                     break;
                 case "short":
-                    result = "short.Parse(" + attribute + ")";
+                    result = "short.TryParse(" + attribute + $", out short {paramName})";
                     break;
                 case "int":
-                    result = "int.Parse(" + attribute + ")";
+                    result = "int.TryParse(" + attribute + $", out int {paramName})";
                     break;
                 case "long":
-                    result = "long.Parse(" + attribute + ")";
+                    result = "long.TryParse(" + attribute + $", out long {paramName})";
                     break;
                 case "float":
-                    result = "float.Parse(" + attribute + ")";
+                    result = "float.TryParse(" + attribute + $", out float {paramName})";
                     break;
                 case "double":
-                    result = "double.Parse(" + attribute + ")";
+                    result = "double.TryParse(" + attribute + $", out double {paramName})";
                     break;
                 case "bool":
-                    result = "bool.Parse(" + attribute + ")";
+                    result = "bool.TryParse(" + attribute + $", out bool {paramName})";
                     break;
                 case "Vector3":
                     result = "ParseVector3(" + attribute + ")";
+                    needTryParse = false;
                     break;
-                default://"En_"
-                    //result =( Hebdomad )Enum.Parse( typeof( Hebdomad ), testText )
+                case "En_":
                     result = "(" + type + ")Enum.Parse(typeof(" +type +")," + attribute + ")";
                     break;
             }
+            _template_vars_index++;
             return result;
         }
     }

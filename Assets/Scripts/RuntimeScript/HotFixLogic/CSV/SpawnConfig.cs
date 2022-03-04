@@ -36,11 +36,20 @@ public class SpawnConfig
 		for (int i = 3; i < reader.Row; i++)
 		{
 			SpawnConfig item = new SpawnConfig();
-			item.ID = int.Parse(reader.GetData(0, i));
+			int.TryParse(reader.GetData(0, i), out int paras0);
+			item.ID = paras0;
 			item.SpawnType = reader.GetData(1, i);
 			item.resPath = reader.GetData(2, i);
-			item.PreloadAmount = int.Parse(reader.GetData(3, i));
-			vec.Add(item.ID, item);
+			int.TryParse(reader.GetData(3, i), out int paras1);
+			item.PreloadAmount = paras1;
+			try
+			{
+				vec.Add(item.ID, item);
+			}
+			catch (Exception e)
+			{
+				LDebug.LogError($"{e.Message} 表: SpawnConfig 行: {i}列: ID", LogColor.red); 
+			}
 		}
 		return vec;
 	}

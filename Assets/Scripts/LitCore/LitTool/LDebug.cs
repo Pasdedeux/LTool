@@ -105,14 +105,14 @@ public static class LDebug
     }
 
     [Conditional("LOG")]
-    public static void LogWarning( string content, LogColor color = LogColor.green )
+    public static void LogWarning( string content, LogColor color = LogColor.yellow )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogWarningFormat( "<color={0}>{1}</color>", color, content );
     }
 
     [Conditional("LOG")]
-    public static void LogError( string content, LogColor color = LogColor.green )
+    public static void LogError( string content, LogColor color = LogColor.red )
     {
         if ( !Enable ) return;
         UnityEngine.Debug.LogErrorFormat( "<color={0}>{1}</color>", color, content );

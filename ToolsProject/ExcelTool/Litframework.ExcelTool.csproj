@@ -18,10 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" Link="ExcelExport\CSVTool\CSVParser.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" Link="ExcelExport\CSVTool\CSVReader.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" Link="ExcelExport\CSVTool\CSVWriter.cs" />
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" Link="ExcelExport\ExcelExport.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVParser.cs" Link="ExcelExport\CSVTool\CSVParser.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVReader.cs" Link="ExcelExport\CSVTool\CSVReader.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Extention_Editor\CSVTool\CSVWriter.cs" Link="ExcelExport\CSVTool\CSVWriter.cs" />
   </ItemGroup>
 
   <ItemGroup>

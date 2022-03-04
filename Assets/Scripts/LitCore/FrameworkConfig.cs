@@ -178,7 +178,7 @@ namespace LitFramework
         [OnInspectorGUI]
         private void CheckDebugSetting()
         {
-            if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox("", UnityEditor.MessageType.Warning);
+            if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox("调试设置开启", UnityEditor.MessageType.Warning);
         }
 
         [BoxGroup("调试设置",centerLabel:true)]
@@ -203,7 +203,7 @@ namespace LitFramework
         public bool Reporter = false;
 
         [BoxGroup("调试设置", centerLabel: true)]
-        [LabelText("Log宏（慎点）")]
+        [LabelText("Log宏（慎点，有编译时间）")]
         [OnValueChanged("CheckPropChange")]
         [OnValueChanged("LinkShowLog")]
         public bool UseLogSymbol = false;

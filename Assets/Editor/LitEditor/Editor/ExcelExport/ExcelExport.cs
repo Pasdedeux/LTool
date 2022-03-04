@@ -19,7 +19,6 @@
 using Excel;
 using LitFramework;
 using LitFramework.LitTool;
-using LitFrameworkEditor.EditorExtended;
 using System;
 using System.Collections.Generic;
 using System.Data;

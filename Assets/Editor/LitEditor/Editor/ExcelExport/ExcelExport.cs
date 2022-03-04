@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 
 namespace Litframework.ExcelTool
 {
-    internal class ExcelExport
+    internal partial class ExcelExport
     {
         /// <summary>
         /// Application.DataPath
@@ -145,6 +145,8 @@ namespace Litframework.ExcelTool
                 Directory.CreateDirectory(csvpath);
             }
 
+            //============================
+
             try
             {
                 //对文件进行遍历
@@ -153,8 +155,9 @@ namespace Litframework.ExcelTool
                     if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
                     {
                         string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
-                        WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
 
+                        //======================
+                        WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
                         string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
                         _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
                     }
@@ -169,6 +172,8 @@ namespace Litframework.ExcelTool
                     }
                 }
 
+                //======================
+
                 //遍历框架配置的额外后缀文件
                 string[] extralFile = extralFileStr.Split('|');
                 foreach (var item in extralFile)
@@ -178,7 +183,11 @@ namespace Litframework.ExcelTool
                     GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
                 }
             }
-            catch (Exception e) { throw new Exception(e.Message); }
+            catch (Exception e) 
+            {
+                //======================
+                throw new Exception(e.Message); 
+            }
             finally
             {
                 //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
@@ -217,6 +226,8 @@ namespace Litframework.ExcelTool
                 Directory.CreateDirectory(csOutPath);
             }
 
+            //============================
+
             try
             {
                 ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
@@ -225,16 +236,14 @@ namespace Litframework.ExcelTool
                 {
                     if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
                     {
-                        //LDebug.Log(" >表处理 : " + NextFile.Name);
-
                         FileStream stream = NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                         string csvfile = XLSXTOCSV(stream);
-                        CSVParser cp = new CSVParser();
 
+
+                        //========================
+                        CSVParser cp = new CSVParser();
                         CreateCSFile(csOutPath, NextFile.Name.Split('.')[0] + ".cs", cp.CreateCS(NextFile.Name.Split('.')[0], csvfile));
                         WriteLocalFile(csvOutPath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
-
-                        //LDebug.Log(NextFile.Name.Split('.')[0] + "  文件生成成功！");
 
                         //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                         CSVReader reader = new CSVReader(csvfile);
@@ -254,6 +263,8 @@ namespace Litframework.ExcelTool
                     }
                 }
 
+                //=========================
+
                 //遍历框架配置的额外后缀文件
                 string[] extralFile = extralFileStr.Split('|');
                 foreach (var item in extralFile)
@@ -271,7 +282,10 @@ namespace Litframework.ExcelTool
                 else
                     CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
             }
-            catch (Exception e) { throw new Exception(e.Message); }
+            catch (Exception e) 
+            {
+                throw new Exception(e.Message); 
+            }
             finally
             {
                 //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1

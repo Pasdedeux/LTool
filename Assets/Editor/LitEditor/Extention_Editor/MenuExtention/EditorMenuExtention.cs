@@ -81,6 +81,41 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         }
 
+#if UNITY_EDITOR
+        //[MenuItem("Tools/配置文件->SQLite", priority = 22)]
+#endif
+        public static void Csv_2_Sql()
+        {
+            LDebug.Log("配置文件==>CSV  开始!", LogColor.yellow);
+
+            ExcelExport.ProjectPath = Application.dataPath;
+            ExcelExport.XlsxToSQLite(FrameworkConfig.Instance.configs_suffix);
+
+            LDebug.Log("配置文件==>CSV  成功!", LogColor.green);
+
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+
+
+#if UNITY_EDITOR
+        [MenuItem("Tools/配置文件->SQLite+代码", priority = 23)]
+#endif
+        public static void Csv_2_SqlCs()
+        {
+            LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
+
+            ExcelExport.ProjectPath = Application.dataPath;
+            ExcelExport.XlsxToSQLiteCs(FrameworkConfig.Instance.UseHotFixMode, FrameworkConfig.Instance.configs_suffix);
+
+            LDebug.Log("配置文件==>代码  成功!", LogColor.green);
+#if UNITY_EDITOR
+            AssetDatabase.Refresh();
+#endif
+        }
+
+
 
 #if UNITY_EDITOR
         [MenuItem( "Tools/开启PersistentData文件夹", priority = 2 )]

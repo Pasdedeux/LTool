@@ -24,7 +24,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace LitFrameworkEditor.EditorExtended
+namespace Litframework.ExcelTool
 {
     /// <summary>
     /// 表头为3行制

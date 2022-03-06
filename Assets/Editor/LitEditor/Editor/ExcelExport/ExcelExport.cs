@@ -102,6 +102,12 @@ namespace Litframework.ExcelTool
 
         #endregion
 
+        private static Action<string> _exportFunc1 = null;
+        private static Action<string, FileInfo, string, string, ConfigsNamesTemplate> _exportFunc2 = null;
+        private static Action<string> _exportFunc3 = null;
+        private static Action<string> _exportFunc4 = null;
+        private static Action<bool, ConfigsNamesTemplate> _exportFunc5 = null;
+
         //刷新路径节点，包含硬编配置
         internal static void CombinePath()
         {
@@ -130,69 +136,14 @@ namespace Litframework.ExcelTool
         /// <param name="extralFileStr"></param>
         public static void Xlsx_2_CSV(string extralFileStr = _defaultExtralFileType)
         {
-            CombinePath();
-
-            string xlsxpath = XLSX_ORI_DIR;
-            string streampath = STREAM_OUT_DIR;
-            string csvpath = CSV_OUTPUT_DIR;
-
-            _csvListToBeRestored.Clear();
-            //文件列表
-            DirectoryInfo TheFolder = new DirectoryInfo(xlsxpath);
-
-            if (!Directory.Exists(csvpath))
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) => 
             {
-                Directory.CreateDirectory(csvpath);
-            }
+                WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
+                string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
+                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
+            };
 
-            //============================
-
-            try
-            {
-                //对文件进行遍历
-                foreach (var NextFile in TheFolder.GetFiles())
-                {
-                    if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
-                    {
-                        string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
-
-                        //======================
-                        WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
-                        string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
-                        _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
-                    }
-                    else if (Path.GetExtension(NextFile.Name) == ".txt")
-                    {
-                        FileInfo fi = new FileInfo(csvpath + "/" + NextFile.Name);
-                        if (fi.Exists)
-                            fi.Delete();
-                        NextFile.CopyTo(csvpath + "/" + NextFile.Name);
-
-                        _csvListToBeRestored.Add(new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 });
-                    }
-                }
-
-                //======================
-
-                //遍历框架配置的额外后缀文件
-                string[] extralFile = extralFileStr.Split('|');
-                foreach (var item in extralFile)
-                {
-                    if (item.Equals("csv")) continue;
-
-                    GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
-                }
-            }
-            catch (Exception e) 
-            {
-                //======================
-                throw new Exception(e.Message); 
-            }
-            finally
-            {
-                //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-                MatchCSVTotalFile(_csvListToBeRestored);
-            }
+            Template_xlsx_2_csv(false,extralFileStr);
         }
 
         /// <summary>
@@ -202,98 +153,32 @@ namespace Litframework.ExcelTool
         /// <param name="extralFileStr"></param>
         public static void Xlsx_2_CsvCs(bool useHotFix, string extralFileStr = _defaultExtralFileType)
         {
-            CombinePath();
-
-            _csvListToBeRestored.Clear();
-            string xlsxpath = XLSX_ORI_DIR;
-            string streampath = STREAM_OUT_DIR;
-            string csvOutPath = CSV_OUTPUT_DIR;
-            string csOutPath;
-
-            if (!useHotFix)
-                csOutPath = CS_OUTPUT_DIR;
-            else
-                csOutPath = CS_HOTFIX_OUTPUT_DIR;
-
-            DirectoryInfo theXMLFolder = new DirectoryInfo(xlsxpath);
-
-            if (!Directory.Exists(csvOutPath))
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) => 
             {
-                Directory.CreateDirectory(csvOutPath);
-            }
-            if (!Directory.Exists(csOutPath))
+                CSVParser cp = new CSVParser();
+                CreateCSFile(csOutPath, NextFile.Name.Split('.')[0] + ".cs", cp.CreateCS(NextFile.Name.Split('.')[0], csvfile));
+                WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
+
+                //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
+                CSVReader reader = new CSVReader(csvfile);
+                cnt.configsNameList.Add(NextFile.Name.Split('.')[0], reader.GetData(0, 2));
+
+                string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
+                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
+            };
+            _exportFunc5 = (useHotFix, cnt) => 
             {
-                Directory.CreateDirectory(csOutPath);
-            }
-
-            //============================
-
-            try
-            {
-                ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
-                //对文件进行遍历
-                foreach (var NextFile in theXMLFolder.GetFiles())
-                {
-                    if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
-                    {
-                        FileStream stream = NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                        string csvfile = XLSXTOCSV(stream);
-
-
-                        //========================
-                        CSVParser cp = new CSVParser();
-                        CreateCSFile(csOutPath, NextFile.Name.Split('.')[0] + ".cs", cp.CreateCS(NextFile.Name.Split('.')[0], csvfile));
-                        WriteLocalFile(csvOutPath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
-
-                        //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
-                        CSVReader reader = new CSVReader(csvfile);
-                        cnt.configsNameList.Add(NextFile.Name.Split('.')[0], reader.GetData(0, 2));
-
-                        string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
-                        _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvOutPath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
-                    }
-                    else if (Path.GetExtension(NextFile.Name) == ".txt")
-                    {
-                        FileInfo fi = new FileInfo(csvOutPath + "/" + NextFile.Name);
-                        if (fi.Exists)
-                            fi.Delete();
-                        NextFile.CopyTo(csvOutPath + "/" + NextFile.Name);
-
-                        _csvListToBeRestored.Add(new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 });
-                    }
-                }
-
-                //=========================
-
-                //遍历框架配置的额外后缀文件
-                string[] extralFile = extralFileStr.Split('|');
-                foreach (var item in extralFile)
-                {
-                    if (item.Equals("csv")) continue;
-
-                    GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
-                }
-
                 //============更新并保存CS============//
-                ConfigsParse rpp = new ConfigsParse();
+                IConfigsParse rpp = new ConfigsParse();
 
                 if (!useHotFix)
                     CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
                 else
                     CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
-            }
-            catch (Exception e) 
-            {
-                throw new Exception(e.Message); 
-            }
-            finally
-            {
-                //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
-                MatchCSVTotalFile(_csvListToBeRestored);
-            }
+            };
+
+            Template_xlsx_2_csv(useHotFix,extralFileStr);
         }
-
-
 
 
 
@@ -581,7 +466,98 @@ namespace Litframework.ExcelTool
                 }
             }
         }
-        
+
+        private static void Template_xlsx_2_csv(bool useHotFix, string extralFileStr)
+        {
+            CombinePath();
+
+            string xlsxpath = XLSX_ORI_DIR;
+            string streampath = STREAM_OUT_DIR;
+            string csvpath = CSV_OUTPUT_DIR;
+            string csOutPath;
+
+            if (!useHotFix)
+                csOutPath = CS_OUTPUT_DIR;
+            else
+                csOutPath = CS_HOTFIX_OUTPUT_DIR;
+
+            _csvListToBeRestored.Clear();
+            //文件列表
+            DirectoryInfo TheFolder = new DirectoryInfo(xlsxpath);
+
+            if (!Directory.Exists(csvpath))
+            {
+                Directory.CreateDirectory(csvpath);
+            }
+            if (!Directory.Exists(csOutPath))
+            {
+                Directory.CreateDirectory(csOutPath);
+            }
+
+            //============================
+            _exportFunc1?.Invoke(csvpath);
+
+            try
+            {
+                ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
+                //对文件进行遍历
+                foreach (var NextFile in TheFolder.GetFiles())
+                {
+                    if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
+                    {
+                        string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
+
+                        //======================
+                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt);
+
+                    }
+                    else if (Path.GetExtension(NextFile.Name) == ".txt")
+                    {
+                        FileInfo fi = new FileInfo(csvpath + "/" + NextFile.Name);
+                        if (fi.Exists)
+                            fi.Delete();
+                        NextFile.CopyTo(csvpath + "/" + NextFile.Name);
+
+                        _csvListToBeRestored.Add(new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 });
+                    }
+                }
+
+                //======================
+                _exportFunc3?.Invoke(csvpath);
+
+                //遍历框架配置的额外后缀文件
+                string[] extralFile = extralFileStr.Split('|');
+                foreach (var item in extralFile)
+                {
+                    if (item.Equals("csv")) continue;
+
+                    GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
+                }
+
+                _exportFunc5?.Invoke(useHotFix, cnt);
+            }
+            catch (Exception e)
+            {
+                //======================
+                _exportFunc4?.Invoke(null);
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                //加载本地文件，没有就创建完成。有则比对同名文件的MD5，不一样则version+1
+                MatchCSVTotalFile(_csvListToBeRestored);
+                ReleaseActionHandler();
+            }
+        }
+
+        private static void ReleaseActionHandler()
+        {
+            _exportFunc1 = null;
+            _exportFunc2 = null;
+            _exportFunc3 = null;
+            _exportFunc4 = null;
+            _exportFunc5 = null;
+        }
     }
 
     ///// <summary>
@@ -603,11 +579,11 @@ namespace Litframework.ExcelTool
     }
 
     /// <summary>
-    /// 配置表路径注册类
+    /// CSV代码模板
     /// </summary>
-    class ConfigsParse
+    class ConfigsParse: IConfigsParse
     {
-        List<string> CSString = new List<string>();
+        private List<string> CSString = new List<string>();
 
         public string CreateCS(ConfigsNamesTemplate rpt)
         {
@@ -619,7 +595,7 @@ namespace Litframework.ExcelTool
             return result;
         }
 
-        private void AddHead()
+        public void AddHead()
         {
             CSString.Add("#region << 版 本 注 释 >>");
             CSString.Add("///*----------------------------------------------------------------");
@@ -638,11 +614,11 @@ namespace Litframework.ExcelTool
             CSString.Add("public static partial class Configs");
             CSString.Add("{");
         }
-        private void AddTail()
+        public void AddTail()
         {
             CSString.Add("}");
         }
-        private void AddBody(ConfigsNamesTemplate rpt)
+        public void AddBody(ConfigsNamesTemplate rpt)
         {
             foreach (var item in rpt.configsNameList)
             {
@@ -658,7 +634,7 @@ namespace Litframework.ExcelTool
             }
             CSString.Add("}");
         }
-        string GetFomatedCS()
+        public string GetFomatedCS()
         {
             StringBuilder result = new StringBuilder();
             int tablevel = 0;
@@ -683,5 +659,15 @@ namespace Litframework.ExcelTool
             }
             return result.ToString();
         }
+    }
+
+
+    interface IConfigsParse
+    {
+        string CreateCS(ConfigsNamesTemplate rpt);
+        void AddHead();
+        void AddTail();
+        void AddBody(ConfigsNamesTemplate rpt);
+        string GetFomatedCS();
     }
 }

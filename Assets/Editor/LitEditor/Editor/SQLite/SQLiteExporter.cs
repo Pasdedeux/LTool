@@ -80,7 +80,7 @@ namespace Litframework.ExcelTool
             _exportFunc5 = (useHotFix, cnt) =>
             {
                 //============更新并保存CS============//
-                IConfigsParse rpp = new ConfigsParse();
+                IConfigsParse rpp = new SQLConfigsParse();
 
                 if (!useHotFix)
                     CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));

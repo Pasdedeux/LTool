@@ -467,6 +467,12 @@ namespace Litframework.ExcelTool
             }
         }
 
+        /// <summary>
+        /// 模板方法
+        /// </summary>
+        /// <param name="useHotFix"></param>
+        /// <param name="extralFileStr"></param>
+        /// <exception cref="Exception"></exception>
         private static void Template_xlsx_2_csv(bool useHotFix, string extralFileStr)
         {
             CombinePath();
@@ -550,6 +556,9 @@ namespace Litframework.ExcelTool
             }
         }
 
+        /// <summary>
+        /// 自动释放委托链接
+        /// </summary>
         private static void ReleaseActionHandler()
         {
             _exportFunc1 = null;

@@ -42,6 +42,9 @@ namespace Litframework.ExcelTool
         /// 源配置文件地址
         /// </summary>
         private static string XLSX_ORI_DIR;
+
+        #region Client
+
         /// <summary>
         /// 目标工程StreammingAsset地址
         /// </summary>
@@ -51,21 +54,44 @@ namespace Litframework.ExcelTool
         /// </summary>
         private static string CSV_OUTPUT_DIR;
         /// <summary>
-        /// 【非热更】配置文件导出位置
+        /// 【非热更】配值代码类导出位置
         /// </summary>
         private static string CS_OUTPUT_DIR;
         /// <summary>
-        /// 【热更】配置文件导出位置
+        /// 【热更】配值代码类导出位置
         /// </summary>
         private static string CS_HOTFIX_OUTPUT_DIR;
         /// <summary>
-        /// 【非热更】代码文件导出位置
+        /// 【非热更】Configs导出位置
         /// </summary>
         private static string CONFIG_CS_OUTPUT_DIR;
         /// <summary>
-        /// 【热更】代码文件导出位置
+        /// 【热更】Configs导出位置
         /// </summary>
         private static string CONFIG_CS_HOTFIX_OUTPUT_DIR;
+
+        #endregion
+
+        #region Server
+
+        /// <summary>
+        /// 服务器根目录
+        /// </summary>
+        private static string SERVER_CORE_DIR;
+        /// <summary>
+        /// 服务器配置文档存放路径
+        /// </summary>
+        private static string SERVER_CSV_OUT_DIR;
+        /// <summary>
+        /// 服务器配值脚本类存放路径
+        /// </summary>
+        private static string SERVER_CS_OUT_DIR;
+        /// <summary>
+        /// 服务器配值Configs存放路径
+        /// </summary>
+        private static string SERVER_CONFIGS_OUT_DIR;
+
+        #endregion
 
         #endregion
 
@@ -102,14 +128,19 @@ namespace Litframework.ExcelTool
 
         #endregion
 
-        private static Action<string> _exportFunc1 = null;
+        //预处理：开启SQL
+        private static Action<string> _exportFunc1 = null,
+        //处理完毕的销毁与释放
+        _exportFunc3 = null, 
+        //异常处理
+        _exportFunc4 = null;
+        //本地转换CSV与指定目录生成CS文件
         private static Action<string, FileInfo, string, string, ConfigsNamesTemplate> _exportFunc2 = null;
-        private static Action<string> _exportFunc3 = null;
-        private static Action<string> _exportFunc4 = null;
-        private static Action<bool, ConfigsNamesTemplate> _exportFunc5 = null;
+        //Config文件生成、更新与本地保存
+        private static Action<bool, bool, ConfigsNamesTemplate> _exportFunc5 = null;
 
         //刷新路径节点，包含硬编配置
-        internal static void CombinePath()
+        private static void CombinePath(bool useServer)
         {
             // 源配置文件地址
             XLSX_ORI_DIR = ProjectPath + "/XLSX";
@@ -125,6 +156,16 @@ namespace Litframework.ExcelTool
             CONFIG_CS_OUTPUT_DIR = ProjectPath + "/Scripts/Model/Const/";
             // 【热更】代码文件导出位置
             CONFIG_CS_HOTFIX_OUTPUT_DIR = ProjectPath + "/Scripts/RuntimeScript/HotFixLogic/Model/Const/";
+
+            if (useServer)
+            {
+                //Server配置
+                //目录不存在会提前创建 Server/HotFix/Configs
+                SERVER_CONFIGS_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("HotFix").CreateSubdirectory("Configs").FullName;
+                SERVER_CSV_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("Configs").FullName;
+                SERVER_CS_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("Model").CreateSubdirectory("Generated").FullName;
+                SERVER_CORE_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("App").FullName;
+            }
         }
 
 
@@ -134,16 +175,20 @@ namespace Litframework.ExcelTool
         /// 只导出CSV
         /// </summary>
         /// <param name="extralFileStr"></param>
-        public static void Xlsx_2_CSV(string extralFileStr = _defaultExtralFileType)
+        public static void Xlsx_2_CSV( bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) => 
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt ) => 
             {
-                WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
-                string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
-                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
+                var fileName = NextFile.Name.Split('.')[0];
+                WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
+                if (useServer)
+                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
+
+                string str = "csv/" + fileName + ".csv";
+                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
             };
 
-            Template_xlsx_2_csv(false,extralFileStr);
+            Template_xlsx_2_csv(false, useServer, extralFileStr);
         }
 
         /// <summary>
@@ -151,33 +196,47 @@ namespace Litframework.ExcelTool
         /// </summary>
         /// <param name="useHotFix"></param>
         /// <param name="extralFileStr"></param>
-        public static void Xlsx_2_CsvCs(bool useHotFix, string extralFileStr = _defaultExtralFileType)
+        public static void Xlsx_2_CsvCs(bool useHotFix, bool useServer, string extralFileStr = _defaultExtralFileType)
         {
             _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) => 
             {
-                CSVParser cp = new CSVParser();
-                CreateCSFile(csOutPath, NextFile.Name.Split('.')[0] + ".cs", cp.CreateCS(NextFile.Name.Split('.')[0], csvfile));
-                WriteLocalFile(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv", csvfile);
+                var cp = new CSVParser();
+                var fileName = NextFile.Name.Split('.')[0];
+                var csString = cp.CreateCS(fileName, csvfile);
+
+                CreateCSFile(csOutPath, fileName + ".cs", csString);
+                WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
+
+                if( useServer )
+                {
+                    CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
+                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
+                }
 
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 CSVReader reader = new CSVReader(csvfile);
-                cnt.configsNameList.Add(NextFile.Name.Split('.')[0], reader.GetData(0, 2));
+                cnt.configsNameList.Add(fileName, reader.GetData(0, 2));
 
-                string str = "csv/" + NextFile.Name.Split('.')[0] + ".csv";
-                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + NextFile.Name.Split('.')[0] + ".csv"), Version = 1 });
+                string str = "csv/" + fileName + ".csv";
+                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
             };
-            _exportFunc5 = (useHotFix, cnt) => 
+            _exportFunc5 = (useHotFix, useServer, cnt) => 
             {
                 //============更新并保存CS============//
                 IConfigsParse rpp = new ConfigsParse();
-
+                var createdCS = rpp.CreateCS(cnt);
+                //Client
                 if (!useHotFix)
-                    CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
+                    CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
                 else
-                    CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
+                    CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, createdCS);
+
+                //Server
+                if (useServer)
+                    CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
             };
 
-            Template_xlsx_2_csv(useHotFix,extralFileStr);
+            Template_xlsx_2_csv(useHotFix, useServer, extralFileStr);
         }
 
 
@@ -473,9 +532,9 @@ namespace Litframework.ExcelTool
         /// <param name="useHotFix"></param>
         /// <param name="extralFileStr"></param>
         /// <exception cref="Exception"></exception>
-        private static void Template_xlsx_2_csv(bool useHotFix, string extralFileStr)
+        private static void Template_xlsx_2_csv(bool useHotFix, bool useServer, string extralFileStr)
         {
-            CombinePath();
+            CombinePath(useServer);
 
             string xlsxpath = XLSX_ORI_DIR;
             string streampath = STREAM_OUT_DIR;
@@ -514,7 +573,7 @@ namespace Litframework.ExcelTool
                         string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
 
                         //======================
-                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt);
+                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt );
 
                     }
                     else if (Path.GetExtension(NextFile.Name) == ".txt")
@@ -540,7 +599,8 @@ namespace Litframework.ExcelTool
                     GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
                 }
 
-                _exportFunc5?.Invoke(useHotFix, cnt);
+                _exportFunc5?.Invoke(useHotFix, useServer, cnt);
+
             }
             catch (Exception e)
             {

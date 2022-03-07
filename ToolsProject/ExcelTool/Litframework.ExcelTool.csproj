@@ -22,6 +22,9 @@
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" Link="ExcelExport\CSVTool\CSVReader.cs" />
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" Link="ExcelExport\CSVTool\CSVWriter.cs" />
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" Link="ExcelExport\ExcelExport.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteExporter.cs" Link="SQLExport\SQLiteExporter.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteWriter.cs" Link="SQLExport\SQLiteWriter.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLParser.cs" Link="SQLExport\SQLParser.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,6 +91,7 @@
 
   <ItemGroup>
     <Folder Include="ExcelExport\CSVTool\" />
+    <Folder Include="SQLExport\" />
   </ItemGroup>
 
 </Project>

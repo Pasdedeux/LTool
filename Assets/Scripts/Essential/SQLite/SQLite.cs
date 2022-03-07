@@ -56,7 +56,6 @@ namespace SQLite
 			var r = SQLite3.Open (DatabasePath, out handle);
 			Handle = handle;
 			if (r != SQLite3.Result.OK) throw SQLiteException.New(r, "Could not open database : " + DatabasePath);
-			LDebug.Log($"配置表数据库链接成功 <<{databasePath}");
 			_open = true;
 			
 			BusyTimeout = TimeSpan.FromSeconds (0.1);

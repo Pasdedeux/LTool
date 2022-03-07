@@ -28,7 +28,9 @@ namespace Litframework.ExcelTool
             {
                 _db = new SQLiteConnection(sPath);
                 _db.BeginTransaction();
-
+#if UNITY_EDITOR
+                LDebug.Log($"配置表数据库链接成功 >>{sPath}");
+#endif
             }
         }
         public void Write(string aTableName, CSVReader aReader)

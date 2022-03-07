@@ -2,7 +2,6 @@
 using Litframework.ExcelTool;
 using LitFramework;
 using LitFramework.LitTool;
-using LitFrameworkEditor.EditorExtended;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,76 +18,110 @@ namespace Litframework.ExcelTool
 
     internal partial class ExcelExport
     {
-        public static void XlsxToSQLite(string extralFileStr = _defaultExtralFileType)
+        public static void XlsxToSQLite(bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            SQLiteWriter sqliteWriter = null;
+            SQLiteWriter sqliteWriter = null, sqliteSqlWriter = null;
 
             _exportFunc1 = csvpath => {
                 sqliteWriter = new SQLiteWriter(csvpath);
                 sqliteWriter.Opendb();
+
+                if (useServer)
+                {
+                    sqliteSqlWriter = new SQLiteWriter(SERVER_CSV_OUT_DIR);
+                    sqliteSqlWriter.Opendb();
+                }
             };
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt ) =>
             {
                 string tTableName = NextFile.Name.Split('.')[0];
                 CSVReader reader = new CSVReader(csvfile);
                 sqliteWriter.Write(tTableName, reader);
+
+                if( useServer ) sqliteSqlWriter.Write(tTableName, reader);
             };
             _exportFunc3 = csvpath => 
             {
                 sqliteWriter.Closedb();
+                if (useServer) sqliteSqlWriter.Closedb();
+
                 string str = "csv/csvconfigs.bytes";
                 _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + "csvconfigs.bytes"), Version = 1 });
             };
             _exportFunc4 = e =>
             {
                 sqliteWriter.Closedb();
+                if (useServer) sqliteSqlWriter.Closedb();
             };
 
-            Template_xlsx_2_csv(false, extralFileStr);
+            Template_xlsx_2_csv(false, useServer, extralFileStr);
         }
 
 
-        public static void XlsxToSQLiteCs(bool useHotFix, string extralFileStr = _defaultExtralFileType)
+        public static void XlsxToSQLiteCs(bool useHotFix, bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            SQLiteWriter sqliteWriter = null;
+            SQLiteWriter sqliteWriter = null, sqliteSqlWriter = null;
+
             _exportFunc1 = csvpath => {
                 sqliteWriter = new SQLiteWriter(csvpath);
                 sqliteWriter.Opendb();
-            };
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
-            {
-                SQLParser cp = new SQLParser();
-                CreateCSFile(csOutPath, NextFile.Name.Split('.')[0] + ".cs", cp.CreateCS(NextFile.Name.Split('.')[0], csvfile));
 
+                if (useServer)
+                {
+                    sqliteSqlWriter = new SQLiteWriter(SERVER_CSV_OUT_DIR);
+                    sqliteSqlWriter.Opendb();
+                }
+            };
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt ) =>
+            {
+                var cp = new SQLParser();
+                var tTableName = NextFile.Name.Split('.')[0];
+                var csString = cp.CreateCS(tTableName, csvfile);
+
+                CreateCSFile(csOutPath, tTableName + ".cs", csString);
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 //将excel写入csvconfigs.bytes
                 CSVReader reader = new CSVReader(csvfile);
-                sqliteWriter.Write(NextFile.Name.Split('.')[0], reader);
+                sqliteWriter.Write(tTableName, reader);
 
-                cnt.configsNameList.Add(NextFile.Name.Split('.')[0], reader.GetData(0, 2));
+                if (useServer)
+                {
+                    sqliteSqlWriter.Write(tTableName, reader);
+                    CreateCSFile(SERVER_CS_OUT_DIR, tTableName + ".cs", csString);
+                }
+
+                cnt.configsNameList.Add(tTableName, reader.GetData(0, 2));
             };
             _exportFunc3 = csvpath =>
             {
                 sqliteWriter.Closedb();
+                if (useServer) sqliteSqlWriter.Closedb();
+
                 string str = "csv/csvconfigs.bytes";
                 _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + "csvconfigs.bytes"), Version = 1 });
             };
             _exportFunc4 = e =>
             {
                 sqliteWriter.Closedb();
+                if (useServer) sqliteSqlWriter.Closedb();
             };
-            _exportFunc5 = (useHotFix, cnt) =>
+            _exportFunc5 = (useHotFix, useServer, cnt) =>
             {
                 //============更新并保存CS============//
                 IConfigsParse rpp = new SQLConfigsParse();
-
+                var createdCS = rpp.CreateCS(cnt);
+                //Client
                 if (!useHotFix)
-                    CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
+                    CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
                 else
-                    CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, rpp.CreateCS(cnt));
+                    CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, createdCS);
+
+                //Server
+                if (useServer)
+                    CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
             };
 
-            Template_xlsx_2_csv(useHotFix, extralFileStr);
+            Template_xlsx_2_csv(useHotFix, useServer, extralFileStr);
         }
     }
 

@@ -7,9 +7,8 @@ namespace Litframework.ExcelTool
     public class Program
     {
         //C:/Personal/Unity/iFunTech/BasePackage/Assets
-        private static int Main(string[] args )
+        private static int Main(string[] args)
         {
-
             // 命令行参数
             Options options = null;
             Parser.Default.ParseArguments<Options>(args)
@@ -20,13 +19,17 @@ namespace Litframework.ExcelTool
             switch (options.ExportModelType)
             {
                 case 1:
-                    ExcelExport.Xlsx_2_CSV( options.ExtralFileExtention);
+                    if (!IsTrue(options.UseSql)) ExcelExport.Xlsx_2_CSV(IsTrue(options.UseServer), options.ExtralFileExtention);
+                    else ExcelExport.XlsxToSQLite(IsTrue(options.UseServer), options.ExtralFileExtention);
+
                     Console.WriteLine("\n==================>\n");
                     Console.WriteLine("导出--CSV--成功!");
                     Console.WriteLine("");
                     break;
                 case 2:
-                    ExcelExport.Xlsx_2_CsvCs(options.UseHotFix, options.ExtralFileExtention);
+                    if (!IsTrue(options.UseSql)) ExcelExport.Xlsx_2_CsvCs(IsTrue(options.UseHotFix), IsTrue(options.UseServer), options.ExtralFileExtention);
+                    else ExcelExport.XlsxToSQLiteCs(IsTrue(options.UseHotFix), IsTrue(options.UseServer), options.ExtralFileExtention);
+
                     Console.WriteLine("\n==================>\n");
                     Console.WriteLine("导出--CSV-代码--成功!");
                     Console.WriteLine("");
@@ -37,6 +40,11 @@ namespace Litframework.ExcelTool
             }
             return 0;
 
+        }
+
+        private static bool IsTrue(int boolIndex)
+        {
+            return boolIndex == 0 ? false : true;
         }
     }
 
@@ -84,8 +92,14 @@ namespace Litframework.ExcelTool
         [Option("ExtralFileExtention", Required = true, Default = "json|dat|assetbundle", HelpText = "excel export mode, 1导csv 2导csv+代码")]
         public string ExtralFileExtention { get; set; }
 
-        [Option("UseHotFix", Required = true, Default = true, HelpText = "默认使用 true")]
-        public bool UseHotFix { get; set; }
+        [Option("UseHotFix", Required = true, Default = 1, HelpText = "1-true  0-false 默认使用 1")]
+        public int UseHotFix { get; set; }
+
+        [Option("UseServer", Required = true, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
+        public int UseServer { get; set; }
+
+        [Option("UseSql", Required = true, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
+        public int UseSql { get; set; }
 
         #endregion
     }

@@ -73,7 +73,7 @@ namespace LitFrameworkEditor.EditorExtended
             LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Application.dataPath;
-            ExcelExport.Xlsx_2_CsvCs(FrameworkConfig.Instance.UseHotFixMode, false, FrameworkConfig.Instance.configs_suffix);
+            ExcelExport.Xlsx_2_CsvCs(FrameworkConfig.Instance.UseHotFixMode, true, FrameworkConfig.Instance.configs_suffix);
 
             LDebug.Log("配置文件==>代码  成功!", LogColor.green);
 #if UNITY_EDITOR
@@ -107,7 +107,7 @@ namespace LitFrameworkEditor.EditorExtended
             LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Application.dataPath;
-            ExcelExport.XlsxToSQLiteCs(FrameworkConfig.Instance.UseHotFixMode, false, FrameworkConfig.Instance.configs_suffix);
+            ExcelExport.XlsxToSQLiteCs(FrameworkConfig.Instance.UseHotFixMode, true, FrameworkConfig.Instance.configs_suffix);
 
             LDebug.Log("配置文件==>代码  成功!", LogColor.green);
 #if UNITY_EDITOR

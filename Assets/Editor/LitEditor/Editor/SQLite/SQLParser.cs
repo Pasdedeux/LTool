@@ -39,7 +39,7 @@ namespace Litframework.ExcelTool
 
         List<string> CSString = new List<string>();
 
-        public string CreateCS(string className, string csv)
+        public string CreateCS(string className, string csv, PlatformType platformType)
         {
             StringBuilder sb = new StringBuilder();
 

@@ -1,4 +1,4 @@
-﻿预制件ID,预制件所属分类,Resource资源路径,初始数量
+﻿预制件ID,C-预制件所属分类,S-Resource资源路径,#-初始数量
 ID,SpawnType,resPath,PreloadAmount
 int,string,string,int
 1,UI,Prefabs/Test/Image_1,1

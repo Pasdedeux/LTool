@@ -48,7 +48,7 @@ namespace Litframework.ExcelTool
 
         List<string> CSString = new List<string>();
 
-        public string CreateCS( string className , string csv )
+        public string CreateCS( string className , string csv , PlatformType platformType )
         {
             StringBuilder sb = new StringBuilder();
 
@@ -79,11 +79,12 @@ namespace Litframework.ExcelTool
             //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
             //CSString.Add( "#endif" );
             CSString.Add( "/// <summary>" );
+            CSString.Add("/// ====该类自动生成请勿手动修改====");
             CSString.Add( "/// Author : Derek Liu" );
             CSString.Add( "/// </summary>" );
             //CSString.Add( "namespace " + spaceName );
             //CSString.Add( "{" );
-            CSString.Add( "public class " + _className );
+            CSString.Add( "public partial class " + _className );
             CSString.Add( "{" );
         }
         private void AddBody()

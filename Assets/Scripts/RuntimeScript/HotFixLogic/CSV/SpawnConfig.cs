@@ -3,24 +3,25 @@ using System;
 using System.Collections.Generic;
 using LitFramework;
 /// <summary>
+/// ====该类自动生成请勿手动修改====
 /// Author : Derek Liu
 /// </summary>
-public class SpawnConfig
+public partial class SpawnConfig
 {
 	/// <summary>
 	/// 预制件ID
 	/// </summary>
 	public int ID { get; private set; }
 	/// <summary>
-	/// 预制件所属分类
+	/// C-预制件所属分类
 	/// </summary>
 	public string SpawnType { get; private set; }
 	/// <summary>
-	/// Resource资源路径
+	/// S-Resource资源路径
 	/// </summary>
 	public string resPath { get; private set; }
 	/// <summary>
-	/// 初始数量
+	/// #-初始数量
 	/// </summary>
 	public int PreloadAmount { get; private set; }
 	

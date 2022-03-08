@@ -45,6 +45,14 @@ public class GlobalEditorSetting
 }
 
 
+public enum PlatformType
+{
+    Client,
+    Server,
+}
+
+
+
 #region UI/Sound文本模板
 
 #region 模板类

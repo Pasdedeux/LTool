@@ -16,10 +16,12 @@ namespace Litframework.ExcelTool
             sPath = aPath + "/" + db;
         }
         //共用一个DB
+        public const string lowerPrimaryKey = "id";
         public const string db = "csvconfigs.bytes";
         public const string droptable = "drop table if exists \"{0}\"";
         public const string create = "create table \"{0}\"(\n{1}\n)";
         public const string insert = "insert into \"{0}\"({1}) values ({2})";
+
         private SQLiteConnection _db;
 
         public void Opendb()
@@ -48,7 +50,7 @@ namespace Litframework.ExcelTool
                 string th = aReader.GetData(i, 2);
 
                 string decl = "\"" + tt + "\" " + SqlType(th) + " ";
-                if (tt.ToLower() == "id")
+                if (tt.ToLower() == lowerPrimaryKey)
                 {
                     decl += "primary key not null";
                 }

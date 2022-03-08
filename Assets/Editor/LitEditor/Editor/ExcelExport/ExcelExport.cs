@@ -131,7 +131,7 @@ namespace Litframework.ExcelTool
         //预处理：开启SQL
         private static Action<string> _exportFunc1 = null,
         //处理完毕的销毁与释放
-        _exportFunc3 = null, 
+        _exportFunc3 = null,
         //异常处理
         _exportFunc4 = null;
         //本地转换CSV与指定目录生成CS文件
@@ -175,17 +175,32 @@ namespace Litframework.ExcelTool
         /// 只导出CSV
         /// </summary>
         /// <param name="extralFileStr"></param>
-        public static void Xlsx_2_CSV( bool useServer, string extralFileStr = _defaultExtralFileType)
+        public static void Xlsx_2_CSV(bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt ) => 
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
             {
+                //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
+                CSVReader reader = new CSVReader(csvfile);
                 var fileName = NextFile.Name.Split('.')[0];
-                WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
-                if (useServer)
-                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
 
-                string str = "csv/" + fileName + ".csv";
-                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
+                var titleFlag = reader.GetRow(0);
+                //首列key标记
+                var firstKeyFlag = titleFlag[0].ToLower();
+                //如果首列配置为#则不进行后续操作
+                if (firstKeyFlag.StartsWith("#-")) return;
+
+                //客户端生成对应文件
+                if (!firstKeyFlag.StartsWith("s-"))
+                {
+                    WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
+
+                    string str = "csv/" + fileName + ".csv";
+                    _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
+                }
+
+                //服务器生成对应文件
+                if (!firstKeyFlag.StartsWith("c-") && useServer)
+                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
             };
 
             Template_xlsx_2_csv(false, useServer, extralFileStr);
@@ -198,39 +213,53 @@ namespace Litframework.ExcelTool
         /// <param name="extralFileStr"></param>
         public static void Xlsx_2_CsvCs(bool useHotFix, bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) => 
+            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
             {
-                var cp = new CSVParser();
                 var fileName = NextFile.Name.Split('.')[0];
-                var csString = cp.CreateCS(fileName, csvfile);
-
-                CreateCSFile(csOutPath, fileName + ".cs", csString);
-                WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
-
-                if( useServer )
-                {
-                    CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
-                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
-                }
 
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 CSVReader reader = new CSVReader(csvfile);
-                cnt.configsNameList.Add(fileName, reader.GetData(0, 2));
 
-                string str = "csv/" + fileName + ".csv";
-                _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
+                var titleFlag = reader.GetRow(0);
+                //首列key标记
+                var firstKeyFlag = titleFlag[0].ToLower();
+                //如果首列配置为#则不进行后续操作
+                if (firstKeyFlag.StartsWith("#-")) return;
+
+                string csString = null;
+                //客户端生成对应文件
+                if (!firstKeyFlag.StartsWith("s-"))
+                {
+                    csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Client);
+
+                    CreateCSFile(csOutPath, fileName + ".cs", csString);
+                    WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
+
+                    string str = "csv/" + fileName + ".csv";
+                    _csvListToBeRestored.Add(new ABVersion { AbName = str, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(csvpath + "/" + fileName + ".csv"), Version = 1 });
+                    cnt.configsClientNameList.Add(fileName, reader.GetData(0, 2));
+                }
+
+                //服务器生成对应文件
+                if (!firstKeyFlag.StartsWith("c-") && useServer)
+                {
+                    CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
+                    WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
+                    cnt.configsServerNameList.Add(fileName, reader.GetData(0, 2));
+                }
+
             };
-            _exportFunc5 = (useHotFix, useServer, cnt) => 
+            _exportFunc5 = (useHotFix, useServer, cnt) =>
             {
                 //============更新并保存CS============//
-                IConfigsParse rpp = new ConfigsParse();
-                var createdCS = rpp.CreateCS(cnt);
+                var createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Client);
                 //Client
                 if (!useHotFix)
                     CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
                 else
                     CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, createdCS);
 
+                createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Server);
                 //Server
                 if (useServer)
                     CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
@@ -252,7 +281,7 @@ namespace Litframework.ExcelTool
             string listpath = STREAM_OUT_DIR + "/" + _recordTxtFileName;
             FileStream fs = null;
             StreamWriter listwriter = null;
-            
+
             if (DocumentAccessor.IsExists(listpath))
             {
                 //本地主配置文件获取
@@ -345,7 +374,7 @@ namespace Litframework.ExcelTool
                 }
             }
             //将数组链表容器返回
-           
+
             var fileContent = sb.ToString();
             callBack?.Invoke(fileContent);
         }
@@ -559,7 +588,7 @@ namespace Litframework.ExcelTool
                 Directory.CreateDirectory(csOutPath);
             }
 
-            //============================
+            //===========数据库模式初始化==============
             _exportFunc1?.Invoke(csvpath);
 
             try
@@ -572,8 +601,8 @@ namespace Litframework.ExcelTool
                     {
                         string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
 
-                        //======================
-                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt );
+                        //=========生成CSV || 数据库文件===========
+                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt);
 
                     }
                     else if (Path.GetExtension(NextFile.Name) == ".txt")
@@ -587,7 +616,7 @@ namespace Litframework.ExcelTool
                     }
                 }
 
-                //======================
+                //===========关闭数据库并写入csv.txt==========
                 _exportFunc3?.Invoke(csvpath);
 
                 //遍历框架配置的额外后缀文件
@@ -599,13 +628,15 @@ namespace Litframework.ExcelTool
                     GetFiles(new DirectoryInfo(streampath), item, _csvListToBeRestored);
                 }
 
+                //===========写入Configs文件===========
                 _exportFunc5?.Invoke(useHotFix, useServer, cnt);
 
             }
             catch (Exception e)
             {
-                //======================
+                //==========异常后关闭数据库============
                 _exportFunc4?.Invoke(null);
+
                 throw new Exception(e.Message);
             }
             finally
@@ -644,20 +675,23 @@ namespace Litframework.ExcelTool
     /// </summary>
     public class ConfigsNamesTemplate
     {
-        public Dictionary<string, string> configsNameList = new Dictionary<string, string>();
+        //客户端文档记录
+        public Dictionary<string, string> configsClientNameList = new Dictionary<string, string>();
+        //服务器文档记录
+        public Dictionary<string, string> configsServerNameList = new Dictionary<string, string>();
     }
 
     /// <summary>
     /// CSV代码模板
     /// </summary>
-    class ConfigsParse: IConfigsParse
+    class ConfigsParse : IConfigsParse
     {
         private List<string> CSString = new List<string>();
 
-        public string CreateCS(ConfigsNamesTemplate rpt)
+        public string CreateCS(ConfigsNamesTemplate rpt, PlatformType platformType)
         {
             AddHead();
-            AddBody(rpt);
+            AddBody(rpt, platformType);
             AddTail();
             string result = GetFomatedCS();
 
@@ -687,9 +721,11 @@ namespace Litframework.ExcelTool
         {
             CSString.Add("}");
         }
-        public void AddBody(ConfigsNamesTemplate rpt)
+        public void AddBody(ConfigsNamesTemplate rpt, PlatformType platformType)
         {
-            foreach (var item in rpt.configsNameList)
+            Dictionary<string, string> configNameList = platformType == PlatformType.Client ? rpt.configsClientNameList : rpt.configsServerNameList;
+
+            foreach (var item in configNameList)
             {
                 CSString.Add(string.Format("public static Dictionary<{2}, {1}> {0};", item.Key + "Dict", item.Key, item.Value));
                 CSString.Add(string.Format("public static List<{1}> {0};", item.Key + "List", item.Key));
@@ -697,7 +733,7 @@ namespace Litframework.ExcelTool
 
             CSString.Add(string.Format("public static void Install()"));
             CSString.Add("{");
-            foreach (var item in rpt.configsNameList)
+            foreach (var item in configNameList)
             {
                 CSString.Add(string.Format("{0} = {1}.Values.ToList();", item.Key + "List", item.Key + "Dict"));
             }
@@ -730,13 +766,12 @@ namespace Litframework.ExcelTool
         }
     }
 
-
     interface IConfigsParse
     {
-        string CreateCS(ConfigsNamesTemplate rpt);
+        string CreateCS(ConfigsNamesTemplate rpt, PlatformType platformType);
         void AddHead();
         void AddTail();
-        void AddBody(ConfigsNamesTemplate rpt);
+        void AddBody(ConfigsNamesTemplate rpt, PlatformType platformType);
         string GetFomatedCS();
     }
 }

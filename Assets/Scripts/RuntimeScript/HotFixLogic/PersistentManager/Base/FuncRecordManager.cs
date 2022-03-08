@@ -9,7 +9,7 @@ using LitFramework.Base;
 /// </summary>
 public class FuncRecordManager : BaseLocalConfigManager<FuncRecordManager>
 {
-    public FuncRecordLocalData LocalData;
+    public  FuncRecordLocalData LocalData;
    
     /// <summary>
     /// 是否当天第一次打开功能

@@ -38,27 +38,27 @@ namespace FrameworkSys
         {
             LDebug.Log("成功反射调用执行 SpawnPoolReflection -> SpawnReflection");
 
-            //RsLoadManager.Instance.UseSpawnPool = false;
-            //var spawnConfigs = Configs.SpawnConfigDict;
-            //List<int> ids = spawnConfigs.Keys.ToList();
-            //try
-            //{
-            //    for (int i = 0; i < ids.Count; i++)
-            //    {
-            //        var spawnItem = spawnConfigs[ids[i]];
-            //        SpawnManager.Instance.CreatePool(spawnItem.resPath, tag: spawnItem.SpawnType, spawnItem.PreloadAmount, basePool: sp);
-            //    }
-            //    Resources.UnloadUnusedAssets();
-            //}
-            //catch (Exception e)
-            //{
-            //    LDebug.LogError("SpawnConfig Relection Error " + e);
-            //}
-            //finally
-            //{
-            //    RsLoadManager.Instance.UseSpawnPool = true;
-            //}
-            
+            RsLoadManager.Instance.UseSpawnPool = false;
+            var spawnConfigs = Configs.SpawnConfigDict;
+            List<int> ids = spawnConfigs.Keys.ToList();
+            try
+            {
+                for (int i = 0; i < ids.Count; i++)
+                {
+                    var spawnItem = spawnConfigs[ids[i]];
+                    SpawnManager.Instance.CreatePool(spawnItem.resPath, tag: spawnItem.SpawnType, spawnItem.PreloadAmount, basePool: sp);
+                }
+                Resources.UnloadUnusedAssets();
+            }
+            catch (Exception e)
+            {
+                LDebug.LogError("SpawnConfig Relection Error " + e);
+            }
+            finally
+            {
+                RsLoadManager.Instance.UseSpawnPool = true;
+            }
+
         }
     }
 }

@@ -25,6 +25,7 @@
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteExporter.cs" Link="SQLExport\SQLiteExporter.cs" />
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteWriter.cs" Link="SQLExport\SQLiteWriter.cs" />
     <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLParser.cs" Link="SQLExport\SQLParser.cs" />
+    <Compile Include="..\..\Assets\Editor\LitEditor\GlobalEditorSetting.cs" Link="GlobalEditorSetting.cs" />
   </ItemGroup>
 
   <ItemGroup>

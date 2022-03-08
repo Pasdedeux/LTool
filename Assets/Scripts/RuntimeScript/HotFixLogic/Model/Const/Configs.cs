@@ -14,7 +14,10 @@ using System.Linq;
 using System.Collections.Generic;
 public static partial class Configs
 {
+	public static Dictionary<int, SpawnConfig> SpawnConfigDict;
+	public static List<SpawnConfig> SpawnConfigList;
 	public static void Install()
 	{
+		SpawnConfigList = SpawnConfigDict.Values.ToList();
 	}
 }

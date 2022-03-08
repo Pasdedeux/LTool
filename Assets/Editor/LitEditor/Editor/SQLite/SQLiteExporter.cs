@@ -33,8 +33,9 @@ namespace Litframework.ExcelTool
                     sqliteSqlWriter.Opendb();
                 }
             };
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
+            _exportFunc2 = (csvpath, NextFile, csOutPath, cnt) =>
             {
+                string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 CSVReader reader = new CSVReader(csvfile);
                 string tTableName = NextFile.Name.Split('.')[0];
@@ -47,11 +48,17 @@ namespace Litframework.ExcelTool
 
                 //客户端生成对应文件
                 if (!firstKeyFlag.StartsWith("s-"))
+                {
+                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client));
                     sqliteWriter.Write(tTableName, reader);
+                }
 
                 //服务器生成对应文件
                 if (!firstKeyFlag.StartsWith("c-") && useServer)
+                {
+                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server));
                     sqliteSqlWriter.Write(tTableName, reader);
+                }
             };
             _exportFunc3 = csvpath =>
             {
@@ -86,9 +93,10 @@ namespace Litframework.ExcelTool
                     sqliteSqlWriter.Opendb();
                 }
             };
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
+            _exportFunc2 = (csvpath, NextFile,  csOutPath, cnt) =>
             {
                 var tTableName = NextFile.Name.Split('.')[0];
+                string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
 
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 //将excel写入csvconfigs.bytes
@@ -104,9 +112,10 @@ namespace Litframework.ExcelTool
                 //客户端生成对应文件
                 if (!firstKeyFlag.StartsWith("s-"))
                 {
+                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client));
                     csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Client);
                     CreateCSFile(csOutPath, tTableName + ".cs", csString);
-                    //todo 未剥离标记flag
+                    
                     sqliteWriter.Write(tTableName, reader);
 
                     cnt.configsClientNameList.Add(tTableName, reader.GetData(0, 2));
@@ -115,12 +124,12 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (!firstKeyFlag.StartsWith("c-") && useServer)
                 {
+                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server));
                     CreateCSFile(SERVER_CS_OUT_DIR, tTableName + ".cs", csString);
-                    //todo 未剥离标记flag
+                    
                     sqliteSqlWriter.Write(tTableName, reader);
                     cnt.configsServerNameList.Add(tTableName, reader.GetData(0, 2));
                 }
-
 
             };
             _exportFunc3 = csvpath =>

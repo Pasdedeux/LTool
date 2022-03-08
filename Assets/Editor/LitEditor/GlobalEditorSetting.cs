@@ -49,6 +49,7 @@ public enum PlatformType
 {
     Client,
     Server,
+    All
 }
 
 

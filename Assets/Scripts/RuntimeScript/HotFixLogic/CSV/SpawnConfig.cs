@@ -13,15 +13,15 @@ public partial class SpawnConfig
 	/// </summary>
 	public int ID { get; private set; }
 	/// <summary>
-	/// C-预制件所属分类
+	/// 预制件所属分类
 	/// </summary>
 	public string SpawnType { get; private set; }
 	/// <summary>
-	/// S-Resource资源路径
+	/// Resource资源路径
 	/// </summary>
 	public string resPath { get; private set; }
 	/// <summary>
-	/// #-初始数量
+	/// 初始数量
 	/// </summary>
 	public int PreloadAmount { get; private set; }
 	

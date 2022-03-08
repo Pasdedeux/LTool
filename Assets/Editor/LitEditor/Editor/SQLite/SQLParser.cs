@@ -92,7 +92,7 @@ namespace Litframework.ExcelTool
         }
         private void AddHead()
         {
-            CSString.Add("public class " + _className);
+            CSString.Add("public partial class " + _className);
             CSString.Add("{");
         }
         private void AddBody()
@@ -357,7 +357,7 @@ namespace Litframework.ExcelTool
         }
         private void AddHead_Table()
         {
-            CSString.Add("public class " + _className);
+            CSString.Add("public partial class " + _className);
             CSString.Add("{");
             _classNameWithoutFlag = _className;
             //增加Row后缀

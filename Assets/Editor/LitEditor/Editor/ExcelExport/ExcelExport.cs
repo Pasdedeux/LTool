@@ -135,7 +135,7 @@ namespace Litframework.ExcelTool
         //异常处理
         _exportFunc4 = null;
         //本地转换CSV与指定目录生成CS文件
-        private static Action<string, FileInfo, string, string, ConfigsNamesTemplate> _exportFunc2 = null;
+        private static Action<string, FileInfo, string, ConfigsNamesTemplate> _exportFunc2 = null;
         //Config文件生成、更新与本地保存
         private static Action<bool, bool, ConfigsNamesTemplate> _exportFunc5 = null;
 
@@ -177,8 +177,10 @@ namespace Litframework.ExcelTool
         /// <param name="extralFileStr"></param>
         public static void Xlsx_2_CSV(bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
+            _exportFunc2 = (csvpath, NextFile, csOutPath, cnt) =>
             {
+                string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
+
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
                 CSVReader reader = new CSVReader(csvfile);
                 var fileName = NextFile.Name.Split('.')[0];
@@ -192,6 +194,7 @@ namespace Litframework.ExcelTool
                 //客户端生成对应文件
                 if (!firstKeyFlag.StartsWith("s-"))
                 {
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client);
                     WriteLocalFile(csvpath + "/" + fileName + ".csv", csvfile);
 
                     string str = "csv/" + fileName + ".csv";
@@ -200,7 +203,10 @@ namespace Litframework.ExcelTool
 
                 //服务器生成对应文件
                 if (!firstKeyFlag.StartsWith("c-") && useServer)
+                {
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
                     WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
+                }
             };
 
             Template_xlsx_2_csv(false, useServer, extralFileStr);
@@ -213,8 +219,9 @@ namespace Litframework.ExcelTool
         /// <param name="extralFileStr"></param>
         public static void Xlsx_2_CsvCs(bool useHotFix, bool useServer, string extralFileStr = _defaultExtralFileType)
         {
-            _exportFunc2 = (csvpath, NextFile, csvfile, csOutPath, cnt) =>
+            _exportFunc2 = (csvpath, NextFile, csOutPath, cnt) =>
             {
+                string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
                 var fileName = NextFile.Name.Split('.')[0];
 
                 //这里固定取配置表第三行配置作为类型读取，如果需要修改配置表适配服务器（增加第四行），需要同步修改
@@ -230,6 +237,7 @@ namespace Litframework.ExcelTool
                 //客户端生成对应文件
                 if (!firstKeyFlag.StartsWith("s-"))
                 {
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client);
                     csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Client);
 
                     CreateCSFile(csOutPath, fileName + ".cs", csString);
@@ -243,6 +251,7 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (!firstKeyFlag.StartsWith("c-") && useServer)
                 {
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
                     WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
                     cnt.configsServerNameList.Add(fileName, reader.GetData(0, 2));
@@ -450,7 +459,7 @@ namespace Litframework.ExcelTool
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        private static string XLSXTOCSV(FileStream stream)
+        private static string XLSXTOCSV(FileStream stream, PlatformType platformType = PlatformType.All )
         {
             using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
             {
@@ -469,6 +478,7 @@ namespace Litframework.ExcelTool
                     rowlen++;
                 }
 
+                string titleFlag = null;
                 for (int i = 0; i < rows; i++)
                 {
                     if (result.Tables[0].Rows[i].ItemArray[0].ToString() == string.Empty)
@@ -478,9 +488,22 @@ namespace Litframework.ExcelTool
 
                     for (int j = 0; j < rowlen; j++)
                     {
-                        if (result.Tables[0].Rows[0].ItemArray[j].ToString() != _commentTag)
+                        titleFlag = result.Tables[0].Rows[0].ItemArray[j].ToString().ToLower();
+
+                        //“备注”先保留
+                        if (titleFlag != _commentTag)
                         {
-                            rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
+                            if (platformType == PlatformType.Client && !titleFlag.StartsWith("s-") && !titleFlag.StartsWith("#-"))
+                            {
+                                rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
+                            }
+                            else if (platformType == PlatformType.Server && !titleFlag.StartsWith("c-") && !titleFlag.StartsWith("#-"))
+                            {
+                                rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
+                            }
+                            //#-在 PlatformType.All 情况下先保留，方便后面做判断 
+                            else if (platformType == PlatformType.All) 
+                                rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                         }
 
                     }
@@ -599,10 +622,8 @@ namespace Litframework.ExcelTool
                 {
                     if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
                     {
-                        string csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
-
                         //=========生成CSV || 数据库文件===========
-                        _exportFunc2?.Invoke(csvpath, NextFile, csvfile, csOutPath, cnt);
+                        _exportFunc2?.Invoke(csvpath, NextFile, csOutPath, cnt);
 
                     }
                     else if (Path.GetExtension(NextFile.Name) == ".txt")

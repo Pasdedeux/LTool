@@ -59,8 +59,10 @@
     <Compile Include="Assets\Plugins\Demigiant\DOTweenPro\DOTweenDeUnityExtended.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Plugins\NLog\NLog.4.6.2\lib\netstandard2.0\NLog.dll" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\ILRuntime.dll" />
+     <None Include="Assets\Plugins\NLog\NLog.4.6.2\lib\netstandard2.0\NLog.xml" />
      <None Include="Assets\Plugins\Android\proguard-user.txt" />
      <None Include="Assets\Plugins\ILRuntime.Mono.Cecil.dll" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll" />
@@ -353,6 +355,9 @@
     </Reference>
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>Assets\Plugins\NLog\NLog.4.6.2\lib\netstandard2.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>Assets\Plugins\EPPlus.dll</HintPath>

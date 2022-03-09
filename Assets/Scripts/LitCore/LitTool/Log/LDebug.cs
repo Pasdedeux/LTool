@@ -23,7 +23,6 @@
 *
 ======================================*/
 
-#if LOG
 using System.Collections;
 using System.Diagnostics;
 
@@ -119,8 +118,6 @@ public static class LDebug
         }
     }
 }
-
-#endif
 
 
 public enum LogColor

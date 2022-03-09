@@ -192,7 +192,7 @@
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Margin.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GProgressBarAdapter.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\LDebug.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\LDebug.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\SwipeGesture.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\IHotFix.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\UBBParser.cs" />
@@ -353,6 +353,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ByteBuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLReader.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\NLogDebug.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\testLzmaWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\HotFix\HotFixItem\HotFixAB.cs" />
@@ -780,6 +781,9 @@
     </Reference>
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>Assets\Plugins\NLog\NLog.4.6.2\lib\netstandard2.0\NLog.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>Assets\Plugins\EPPlus.dll</HintPath>

@@ -327,6 +327,9 @@
     <Reference Include="ILRuntime.Mono.Cecil.Pdb">
       <HintPath>Assets\Plugins\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>Assets\Plugins\NLog\NLog.4.6.2\lib\netstandard2.0\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="DemiEditor">
       <HintPath>Assets\The3rd\Demigiant\DemiLib\Core\Editor\DemiEditor.dll</HintPath>
     </Reference>

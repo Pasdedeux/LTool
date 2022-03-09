@@ -32,6 +32,7 @@ using UnityEditor.Experimental.SceneManagement;
 using System;
 using LitFramework.LitTool;
 using LitJson;
+using System.Reflection;
 
 public class CreateUIWindow : OdinEditorWindow
 {
@@ -163,8 +164,9 @@ public class CreateUIWindow : OdinEditorWindow
     }
     private static void SetCustomCs(string aFolderName,string aScriptsName,CSWriteTool aCSWrite,bool haveClose,string uiSummary)
     {
-        string csOutPath = GetCsPath("UI /" + aFolderName);
-        if (File.Exists(csOutPath + aScriptsName + ".cs")|| rpt.UI.ContainsKey(aScriptsName))
+        string csOutPath = GetCsPath("UI/" + aFolderName);
+        string fullPath = csOutPath + aScriptsName + ".cs";
+        if (File.Exists(fullPath) || rpt.UI.ContainsKey(aScriptsName))
         {
             return;
         }
@@ -584,6 +586,31 @@ public class CreateUIWindow : OdinEditorWindow
         tempArray.Clear();
         Debug.Log("ExCom路径文件更新完成");
     }
+   private static Assembly assemblyUI;
+    private static Assembly assemblyCSharp;
+    private static bool IsClass(string aClassName)
+    {
+        Type _type;
+        if (assemblyUI==null)
+        {
+            assemblyUI = Assembly.Load("UnityEngine.UI");
+        }
+        _type = assemblyUI.GetType("UnityEngine.UI."+aClassName);
+        if (_type != null)
+        {
+            return true;
+        }
+        if (assemblyCSharp == null)
+        {
+            assemblyCSharp = Assembly.Load("Assembly-CSharp");
+        }
+        _type = assemblyCSharp.GetType("UnityEngine.UI." + aClassName);
+        if (_type != null)
+        {
+            return true;
+        }
+        return false;
+    }
 
     private static Dictionary<string, Transform> tempArray=new Dictionary<string, Transform>();
     public static void SetCsAttribute(Transform _root, string aPath, CSWriteTool cSWrite,string aScope)
@@ -684,15 +711,34 @@ public class CreateUIWindow : OdinEditorWindow
         if(!string.IsNullOrEmpty(_Name))
         {
             bool isHaveTrans = true;
-            if(!_Name.StartsWith("_"))
+            if (!_Name.StartsWith("_"))
             {
                 _Name = "_" + _Name;
                 isHaveTrans = false;
             }
-            if(isHaveTrans)
+            if (isHaveTrans)
             {
                 cSWrite.WriteLine("private RectTransform {0};", "recTrans" + _Name);
             }
+            string[] className = _Name.Split('_');
+            if (className.Length >= 1)
+            {
+                if (IsClass(className[0]))
+                {
+                    _Name = _Name.Replace(className[0], "");
+                    _Name = _Name.Replace("__", "_");
+                }
+                else if (className.Length >= 2)
+                {
+                    if (IsClass(className[1]))
+                    {
+                        _Name = _Name.Replace(className[1], "");
+                        _Name = _Name.Replace("__", "_");
+                    }
+                }
+            }
+
+            
             if (_Name.Contains("exCom") || _Name.Contains("element"))
             {
                 return;
@@ -714,18 +760,13 @@ public class CreateUIWindow : OdinEditorWindow
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
                     string _NameCom;
-                    if (_Name.Contains(_type + "_"))
+                    string endStr = _type.ToLower();
+                    if (endStr.Length > 12)
                     {
-                        _Name = _Name.Replace(_type + "_", "");
-                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
-                    }
-                    else
-                    {
-                        string endStr = _type.ToLower();
                         string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
                         endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                        _NameCom = endStr + _Name;
                     }
+                    _NameCom = endStr + _Name;
                     cSWrite.WriteLine("{0} {1} {2};", aScope, _type, _NameCom);
                 }
             }
@@ -739,8 +780,11 @@ public class CreateUIWindow : OdinEditorWindow
                     continue;
                 }
                 string endStr = _type.ToLower();
-                string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                if (endStr.Length > 12)
+                {
+                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                }
                 string _NameCom = endStr +_Name;
                 cSWrite.WriteLine("{0} {1} {2};", aScope, _type, _NameCom);
             }
@@ -817,6 +861,24 @@ public class CreateUIWindow : OdinEditorWindow
         {
             cSWrite.WriteLine("{0} RectTransform[] {1}=new RectTransform[{2}];", aScope, "recTrans" + _Name, aLen);
         }
+        string[] className = _Name.Split('_');
+        if (className.Length >= 1)
+        {
+            if (IsClass(className[0]))
+            {
+                _Name = _Name.Replace(className[0], "");
+                _Name = _Name.Replace("__", "_");
+            }
+            else if (className.Length >= 2)
+            {
+                if (IsClass(className[1]))
+                {
+                    _Name = _Name.Replace(className[1], "");
+                    _Name = _Name.Replace("__", "_");
+                }
+            }
+        }
+        
         if (_Name.Contains("exCom") || _Name.Contains("element"))
         {
             return;
@@ -832,18 +894,13 @@ public class CreateUIWindow : OdinEditorWindow
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
                     string _NameCom;
-                    if (_Name.Contains(_type + "_"))
+                    string endStr = _type.ToLower();
+                    if (endStr.Length > 12)
                     {
-                        _Name = _Name.Replace(_type + "_", "");
-                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
-                    }
-                    else
-                    {
-                        string endStr = _type.ToLower();
                         string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
                         endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                        _NameCom = endStr + _Name;
                     }
+                    _NameCom = endStr + _Name;
                     cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope, _type, _NameCom, _type, aLen);
                 }
             }
@@ -857,8 +914,11 @@ public class CreateUIWindow : OdinEditorWindow
                     continue;
                 }
                 string endStr = _type.ToLower();
-                string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                if (endStr.Length > 12)
+                {
+                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                }
                 string _NameCom = endStr + _Name;
                 cSWrite.WriteLine("{0} {1}[] {2}=new {3}[{4}];", aScope,_type, _NameCom, _type, aLen);
             }
@@ -968,8 +1028,6 @@ public class CreateUIWindow : OdinEditorWindow
         string transName;
         if(!string.IsNullOrEmpty(_Name))
         {
-
-            string[] nameArry = _Name.Split('_');
             bool isHaveTrans = true;
             if (!_Name.StartsWith("_"))
             {
@@ -988,6 +1046,24 @@ public class CreateUIWindow : OdinEditorWindow
                 transName = "_recTrans" + _Name;
                 cSWrite.WriteLine("RectTransform {0} = {1}.Find(\"{2}\") as RectTransform;", transName, _rootName, _path);
             }
+            string[] className = _Name.Split('_');
+            if (className.Length >= 1)
+            {
+                if (IsClass(className[0]))
+                {
+                    _Name=_Name.Replace(className[0], "");
+                    _Name = _Name.Replace("__", "_");
+                }
+                else if (className.Length >= 2)
+                {
+                    if (IsClass(className[1]))
+                    {
+                        _Name=_Name.Replace(className[1] , "");
+                        _Name = _Name.Replace("__", "_");
+                    }
+                }
+            }
+           
             if (_Name.Contains("exCom") ||_Name.Contains("element"))
             {
                 return;
@@ -1010,18 +1086,13 @@ public class CreateUIWindow : OdinEditorWindow
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
                     string _NameCom;
-                    if (_Name.Contains(_type + "_"))
+                    string endStr = _type.ToLower();
+                    if (endStr.Length > 12)
                     {
-                        _Name = _Name.Replace(_type + "_", "");
-                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1) + _Name;
-                    }
-                    else
-                    {
-                        string endStr = _type.ToLower();
                         string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
                         endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                        _NameCom = endStr + _Name;
                     }
+                    _NameCom = endStr + _Name;
                     cSWrite.WriteLine("{0} = {1}.GetComponent<{2}>();", _NameCom, transName, _type);
                 }
             }
@@ -1035,8 +1106,11 @@ public class CreateUIWindow : OdinEditorWindow
                     continue;
                 }
                 string endStr = _type.ToLower();
-                string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                if (endStr.Length > 12)
+                {
+                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                }
                 string _NameCom = endStr + _Name;
                 cSWrite.WriteLine("{0} = {1}.GetComponent<{2}>();", _NameCom, transName, _type);
             }
@@ -1113,6 +1187,7 @@ public class CreateUIWindow : OdinEditorWindow
     {
         MonoBehaviour[] comArray = trans.gameObject.GetComponents<MonoBehaviour>();
         bool isHaveTrans = true;
+        string[] className = _Name.Split('_');
         if (!_Name.StartsWith("_"))
         {
             _Name = "_" + _Name;
@@ -1120,7 +1195,7 @@ public class CreateUIWindow : OdinEditorWindow
         }
         _Name = _Name + "Array";
         string transName;
-        if(isHaveTrans)
+        if (isHaveTrans)
         {
             transName = "recTrans" + _Name;
         }
@@ -1133,6 +1208,23 @@ public class CreateUIWindow : OdinEditorWindow
         cSWrite.StartBracket();
         cSWrite.WriteLine("{0}[i] = {1}.Find(\"{2} (\"+i+\")\") as RectTransform;", transName, _rootName, aPath);
         cSWrite.EndBracket();
+        if (className.Length >= 1)
+        {
+            if (IsClass(className[0]))
+            {
+                _Name = _Name.Replace(className[0], "");
+                _Name = _Name.Replace("__", "_");
+            }
+            else if (className.Length >= 2)
+            {
+                if (IsClass(className[1]))
+                {
+                    _Name = _Name.Replace(className[1], "");
+                    _Name = _Name.Replace("__", "_");
+                }
+            }
+        }
+        
         if(_Name.Contains("exCom") || _Name.Contains("element"))
         {
             return;
@@ -1148,19 +1240,14 @@ public class CreateUIWindow : OdinEditorWindow
                     string[] _typePath = _type.Split('.');
                     _type = _typePath[_typePath.Length - 1];
 
-                    string _NameCom;
-                    if (_Name.Contains(_type+"_"))
+                    string _NameCom; 
+                    string endStr = _type.ToLower();
+                    if (endStr.Length > 12)
                     {
-                        _Name = _Name.Replace(_type + "_", "");
-                        _NameCom = _type.ToLower()[0] + _type.Substring(1, _type.Length - 1)+ _Name;
-                    }
-                    else
-                    {
-                        string endStr = _type.ToLower();
                         string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
                         endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                        _NameCom = endStr + _Name;
                     }
+                    _NameCom = endStr + _Name;
                     cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
                     cSWrite.StartBracket();
                     cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, transName, _type);
@@ -1176,10 +1263,14 @@ public class CreateUIWindow : OdinEditorWindow
                 {
                     continue;
                 }
+                string _NameCom;
                 string endStr = _type.ToLower();
-                string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
-                endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
-                string _NameCom = endStr + _Name;
+                if (endStr.Length > 12)
+                {
+                    string tstr = endStr.Replace("a", "").Replace("e", "").Replace("o", "").Replace("u", "");
+                    endStr = tstr.Length > 4 ? endStr.Substring(0, 4) : tstr;
+                }
+                _NameCom = endStr + _Name;
                 cSWrite.WriteLine("for(int i=0;i<{0};i++)", aLen);
                 cSWrite.StartBracket();
                 cSWrite.WriteLine("{0}[i] ={1}[i].GetComponent<{2}>();", _NameCom, transName, _type);

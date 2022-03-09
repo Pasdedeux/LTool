@@ -10,6 +10,7 @@ public class AccountManager : BaseLocalConfigManager<AccountManager>
     public AccountLocalData LocalData;
     private System.DateTime IniteDate;
     private long lineTime;
+
     /// <summary>
     /// 离线时间（毫秒）
     /// </summary>

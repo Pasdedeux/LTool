@@ -1,1 +1,16 @@
 /.svn
+/Client/Temp
+/Client/Library
+/Client/Logs
+/Client/obj
+/Client/BasePackage_ilr.unitypackage
+/Client/Client.sln
+/Client/localtest.apk
+/Client/Sirenix.OdinInspector.CompatibilityLayer.csproj
+/Client/Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj
+/Client/AndroidRuntimePermissions.Runtime.csproj
+/Client/Assembly-CSharp.csproj
+/Client/Assembly-CSharp-Editor.csproj
+/Client/Assembly-CSharp-Editor-firstpass.csproj
+/Client/Assembly-CSharp-firstpass.csproj
+/Client/BasePackage.sln

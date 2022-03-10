@@ -167,7 +167,7 @@ namespace Litframework.ExcelTool
                 var rootDir = new DirectoryInfo(ProjectPath);
                 SERVER_CONFIGS_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("HotFix").CreateSubdirectory("Configs").FullName;
                 SERVER_CSV_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("Configs").FullName;
-                SERVER_CS_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("Model").CreateSubdirectory("Generated").FullName;
+                SERVER_CS_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("Model").CreateSubdirectory("Generate").CreateSubdirectory("Config").FullName;
                 SERVER_CORE_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("App").FullName;
             }
         }

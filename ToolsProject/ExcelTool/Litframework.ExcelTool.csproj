@@ -18,14 +18,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" Link="ExcelExport\CSVTool\CSVParser.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" Link="ExcelExport\CSVTool\CSVReader.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" Link="ExcelExport\CSVTool\CSVWriter.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" Link="ExcelExport\ExcelExport.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteExporter.cs" Link="SQLExport\SQLiteExporter.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLiteWriter.cs" Link="SQLExport\SQLiteWriter.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\Editor\SQLite\SQLParser.cs" Link="SQLExport\SQLParser.cs" />
-    <Compile Include="..\..\Assets\Editor\LitEditor\GlobalEditorSetting.cs" Link="GlobalEditorSetting.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVParser.cs" Link="ExcelExport\CSVTool\CSVParser.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVReader.cs" Link="ExcelExport\CSVTool\CSVReader.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\ExcelExport\CSVTool\CSVWriter.cs" Link="ExcelExport\CSVTool\CSVWriter.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\ExcelExport\ExcelExport.cs" Link="ExcelExport\ExcelExport.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\SQLite\SQLiteExporter.cs" Link="SQLExport\SQLiteExporter.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\SQLite\SQLiteWriter.cs" Link="SQLExport\SQLiteWriter.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\Editor\SQLite\SQLParser.cs" Link="SQLExport\SQLParser.cs" />
+    <Compile Include="..\..\Client\Assets\Editor\LitEditor\GlobalEditorSetting.cs" Link="GlobalEditorSetting.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,66 +33,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>..\..\Assets\Plugins\EPPlus.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Excel">
-      <HintPath>..\..\Assets\Plugins\Excel.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ExcelDataReader">
-      <HintPath>..\..\Assets\Plugins\ExcelDataReader.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ExcelDataReader.DataSet">
-      <HintPath>..\..\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="LitJsonILR">
-      <HintPath>..\..\Assets\Plugins\LitJsonILR.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\HotfixProject\Reference\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>..\..\HotfixProject\Reference\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>..\..\HotfixProject\Reference\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\..\HotfixProject\Reference\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      <CopyLocal>False</CopyLocal>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
+    <Folder Include="ExcelExport\CSVTool\" />
+    <Folder Include="SQLExport\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ExcelExport\CSVTool\" />
-    <Folder Include="SQLExport\" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\Client\Library\ScriptAssemblies\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>..\..\Client\Assets\Plugins\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader">
+      <HintPath>..\..\Client\Assets\Plugins\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet">
+      <HintPath>..\..\Client\Assets\Plugins\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\Client\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\Client\HotfixProject\Reference\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

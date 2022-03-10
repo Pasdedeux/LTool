@@ -142,29 +142,33 @@ namespace Litframework.ExcelTool
         //刷新路径节点，包含硬编配置
         private static void CombinePath(int platform)
         {
-            // 源配置文件地址
-            XLSX_ORI_DIR = ProjectPath + "/XLSX";
-            // 目标工程StreammingAsset地址
-            STREAM_OUT_DIR = ProjectPath + "/StreamingAssets";
-            // CSV文件导出地址
-            CSV_OUTPUT_DIR = ProjectPath + "/StreamingAssets/csv";
-            // 【非热更】配置文件导出位置
-            CS_OUTPUT_DIR = ProjectPath + "/Scripts/CSV";
-            // 【热更】配置文件导出位置
-            CS_HOTFIX_OUTPUT_DIR = ProjectPath + "/Scripts/RuntimeScript/HotFixLogic/CSV";
-            // 【非热更】代码文件导出位置
-            CONFIG_CS_OUTPUT_DIR = ProjectPath + "/Scripts/Model/Const/";
-            // 【热更】代码文件导出位置
-            CONFIG_CS_HOTFIX_OUTPUT_DIR = ProjectPath + "/Scripts/RuntimeScript/HotFixLogic/Model/Const/";
+            //if (platform < 2)
+            {
+                // 源配置文件地址
+                XLSX_ORI_DIR = ProjectPath +"Excel";
+                // 目标工程StreammingAsset地址
+                STREAM_OUT_DIR = ProjectPath + "Client/Assets/StreamingAssets";
+                // CSV文件导出地址
+                CSV_OUTPUT_DIR = ProjectPath + "Client/Assets/StreamingAssets/csv";
+                // 【非热更】配置文件导出位置
+                CS_OUTPUT_DIR = ProjectPath + "Client/Assets/Scripts/CSV";
+                // 【热更】配置文件导出位置
+                CS_HOTFIX_OUTPUT_DIR = ProjectPath + "Client/Assets/Scripts/RuntimeScript/HotFixLogic/CSV";
+                // 【非热更】代码文件导出位置
+                CONFIG_CS_OUTPUT_DIR = ProjectPath + "Client/Assets/Scripts/Model/Const/";
+                // 【热更】代码文件导出位置
+                CONFIG_CS_HOTFIX_OUTPUT_DIR = ProjectPath + "Client/Assets/Scripts/RuntimeScript/HotFixLogic/Model/Const/";
+            }
 
             if (platform > 0)
             {
                 //Server配置
                 //目录不存在会提前创建 Server/HotFix/Configs
-                SERVER_CONFIGS_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("HotFix").CreateSubdirectory("Configs").FullName;
-                SERVER_CSV_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("Configs").FullName;
-                SERVER_CS_OUT_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("Model").CreateSubdirectory("Generated").FullName;
-                SERVER_CORE_DIR = Directory.GetParent(ProjectPath).CreateSubdirectory("Server").CreateSubdirectory("App").FullName;
+                var rootDir = new DirectoryInfo(ProjectPath);
+                SERVER_CONFIGS_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("HotFix").CreateSubdirectory("Configs").FullName;
+                SERVER_CSV_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("Configs").FullName;
+                SERVER_CS_OUT_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("Model").CreateSubdirectory("Generated").FullName;
+                SERVER_CORE_DIR = rootDir.CreateSubdirectory("Server").CreateSubdirectory("App").FullName;
             }
         }
 
@@ -251,6 +255,7 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
+                    csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Server);
                     csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
                     WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);

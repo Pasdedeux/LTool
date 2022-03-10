@@ -107,7 +107,7 @@ public class EditorUse
 
         #endregion
 
-        EditorApplication.hierarchyChanged += () => { FrameworkConfig.Instance.CheckPropChange(); };
+        //EditorApplication.hierarchyChanged += () => { FrameworkConfig.Instance.CheckPropChange(); };
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
     private static void OnPlayerModeStateChanged(PlayModeStateChange playModeState)

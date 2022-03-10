@@ -30,7 +30,7 @@ namespace Litframework.ExcelTool
                     if (!IsTrue(options.UseSql)) ExcelExport.Xlsx_2_CsvCs(IsTrue(options.UseHotFix), options.UseServer, options.ExtralFileExtention);
                     else ExcelExport.XlsxToSQLiteCs(IsTrue(options.UseHotFix), options.UseServer, options.ExtralFileExtention);
 
-                    Console.WriteLine("\n==================>\n");
+                    Console.WriteLine("\n==================>\n" + ExcelExport.ProjectPath);
                     Console.WriteLine("导出--CSV-代码--成功!");
                     Console.WriteLine("");
                     break;

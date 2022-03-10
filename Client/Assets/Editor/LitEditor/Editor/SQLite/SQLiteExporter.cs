@@ -10,7 +10,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 namespace Litframework.ExcelTool
@@ -132,6 +131,7 @@ namespace Litframework.ExcelTool
                 if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
                     reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server));
+                    csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, tTableName + ".cs", csString);
                     
                     sqliteSqlWriter.Write(tTableName, reader);
@@ -159,7 +159,7 @@ namespace Litframework.ExcelTool
                 //Client
                 if (useServer < 2)
                 {
-                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Client);
+                    createdCS = new SQLConfigsParse().CreateCS(cnt, PlatformType.Client);
                     if (!useHotFix)
                         CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
                     else
@@ -169,7 +169,7 @@ namespace Litframework.ExcelTool
                 //Server
                 if (useServer > 0)
                 {
-                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Server);
+                    createdCS = new SQLConfigsParse().CreateCS(cnt, PlatformType.Server);
                     CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
                 }
             };

@@ -297,6 +297,7 @@
     <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\fLZ.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\ExampleQuery.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\ILog.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Common\ConstantTool.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Int32_Binding.cs" />
@@ -464,7 +465,6 @@
     <Compile Include="Assets\Scripts\LitCore\LitTool\DocumentAccessor.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\ILog.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

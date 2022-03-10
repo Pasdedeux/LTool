@@ -137,10 +137,10 @@ namespace Litframework.ExcelTool
         //本地转换CSV与指定目录生成CS文件
         private static Action<string, FileInfo, string, ConfigsNamesTemplate> _exportFunc2 = null;
         //Config文件生成、更新与本地保存
-        private static Action<bool, bool, ConfigsNamesTemplate> _exportFunc5 = null;
+        private static Action<bool, int, ConfigsNamesTemplate> _exportFunc5 = null;
 
         //刷新路径节点，包含硬编配置
-        private static void CombinePath(bool useServer)
+        private static void CombinePath(int platform)
         {
             // 源配置文件地址
             XLSX_ORI_DIR = ProjectPath + "/XLSX";
@@ -157,7 +157,7 @@ namespace Litframework.ExcelTool
             // 【热更】代码文件导出位置
             CONFIG_CS_HOTFIX_OUTPUT_DIR = ProjectPath + "/Scripts/RuntimeScript/HotFixLogic/Model/Const/";
 
-            if (useServer)
+            if (platform > 0)
             {
                 //Server配置
                 //目录不存在会提前创建 Server/HotFix/Configs
@@ -175,7 +175,7 @@ namespace Litframework.ExcelTool
         /// 只导出CSV
         /// </summary>
         /// <param name="extralFileStr"></param>
-        public static void Xlsx_2_CSV(bool useServer, string extralFileStr = _defaultExtralFileType)
+        public static void Xlsx_2_CSV(int platform, string extralFileStr = _defaultExtralFileType)
         {
             _exportFunc2 = (csvpath, NextFile, csOutPath, cnt) =>
             {
@@ -202,14 +202,14 @@ namespace Litframework.ExcelTool
                 }
 
                 //服务器生成对应文件
-                if (!firstKeyFlag.StartsWith("c-") && useServer)
+                if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
                     csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
                     WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
                 }
             };
 
-            Template_xlsx_2_csv(false, useServer, extralFileStr);
+            Template_xlsx_2_csv(false, platform, extralFileStr);
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Litframework.ExcelTool
         /// </summary>
         /// <param name="useHotFix"></param>
         /// <param name="extralFileStr"></param>
-        public static void Xlsx_2_CsvCs(bool useHotFix, bool useServer, string extralFileStr = _defaultExtralFileType)
+        public static void Xlsx_2_CsvCs(bool useHotFix, int platform, string extralFileStr = _defaultExtralFileType)
         {
             _exportFunc2 = (csvpath, NextFile, csOutPath, cnt) =>
             {
@@ -235,7 +235,7 @@ namespace Litframework.ExcelTool
 
                 string csString = null;
                 //客户端生成对应文件
-                if (!firstKeyFlag.StartsWith("s-"))
+                if (platform < 2 && !firstKeyFlag.StartsWith("s-"))
                 {
                     csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client);
                     csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Client);
@@ -249,7 +249,7 @@ namespace Litframework.ExcelTool
                 }
 
                 //服务器生成对应文件
-                if (!firstKeyFlag.StartsWith("c-") && useServer)
+                if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
                     csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
@@ -261,20 +261,26 @@ namespace Litframework.ExcelTool
             _exportFunc5 = (useHotFix, useServer, cnt) =>
             {
                 //============更新并保存CS============//
-                var createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Client);
+                string createdCS = null;
                 //Client
-                if (!useHotFix)
-                    CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
-                else
-                    CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, createdCS);
-
-                createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Server);
+                if(useServer < 2)
+                {
+                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Client);
+                    if (!useHotFix)
+                        CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
+                    else
+                        CreateCSFile(CONFIG_CS_HOTFIX_OUTPUT_DIR, CS_CONFIGS, createdCS);
+                }
+               
                 //Server
-                if (useServer)
+                if (useServer > 0)
+                {
+                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Server);
                     CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
+                }
             };
 
-            Template_xlsx_2_csv(useHotFix, useServer, extralFileStr);
+            Template_xlsx_2_csv(useHotFix, platform, extralFileStr);
         }
 
 
@@ -459,7 +465,7 @@ namespace Litframework.ExcelTool
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        private static string XLSXTOCSV(FileStream stream, PlatformType platformType = PlatformType.All )
+        private static string XLSXTOCSV(FileStream stream, PlatformType platformType = PlatformType.All)
         {
             using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
             {
@@ -502,7 +508,7 @@ namespace Litframework.ExcelTool
                                 rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                             }
                             //#-在 PlatformType.All 情况下先保留，方便后面做判断 
-                            else if (platformType == PlatformType.All) 
+                            else if (platformType == PlatformType.All)
                                 rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                         }
 
@@ -584,9 +590,9 @@ namespace Litframework.ExcelTool
         /// <param name="useHotFix"></param>
         /// <param name="extralFileStr"></param>
         /// <exception cref="Exception"></exception>
-        private static void Template_xlsx_2_csv(bool useHotFix, bool useServer, string extralFileStr)
+        private static void Template_xlsx_2_csv(bool useHotFix, int platform, string extralFileStr)
         {
-            CombinePath(useServer);
+            CombinePath(platform);
 
             string xlsxpath = XLSX_ORI_DIR;
             string streampath = STREAM_OUT_DIR;
@@ -650,7 +656,7 @@ namespace Litframework.ExcelTool
                 }
 
                 //===========写入Configs文件===========
-                _exportFunc5?.Invoke(useHotFix, useServer, cnt);
+                _exportFunc5?.Invoke(useHotFix, platform, cnt);
 
             }
             catch (Exception e)

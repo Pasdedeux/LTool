@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class SpawnConfig
+public partial class SpawnConfig : ProtoObject
 {
 	/// <summary>
 	/// 预制件ID

@@ -158,25 +158,29 @@ namespace Litframework.ExcelTool
             {
                 case "bool":
                     {
-                        return bool.Parse(aValue);
+                        bool.TryParse(aValue, out bool result);
+                        return result;
                     }
                 case "byte":
                 case "int":
                 case "uint":
                 case "short":
                     {
-                        return int.Parse(aValue);
+                        int.TryParse(aValue, out int result);
+                        return result;
                     }
                 case "long":
                 case "ulong":
                     {
-                        return long.Parse(aValue);
+                        long.TryParse(aValue, out long result);
+                        return result;
                     }
                 case "float":
                 case "double":
                 case "decimal":
                     {
-                        return float.Parse(aValue);
+                        float.TryParse(aValue, out float result);
+                        return result;
                     }
                 case "list":
                 case "dic":

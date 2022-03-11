@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartMachineConfig
+public partial class StartMachineConfig : ProtoObject
 {
 	/// <summary>
 	/// Id

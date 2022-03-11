@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class ServerInfoConfig
+public partial class ServerInfoConfig : ProtoObject
 {
 	/// <summary>
 	/// Id

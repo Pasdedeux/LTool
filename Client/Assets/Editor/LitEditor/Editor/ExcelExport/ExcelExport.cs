@@ -611,7 +611,7 @@ namespace Litframework.ExcelTool
 
             _csvListToBeRestored.Clear();
             //文件列表
-            DirectoryInfo TheFolder = new DirectoryInfo(xlsxpath);
+            DirectoryInfo theFolder = new DirectoryInfo(xlsxpath);
 
             if (!Directory.Exists(csvpath))
             {
@@ -628,23 +628,27 @@ namespace Litframework.ExcelTool
             try
             {
                 ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
+
+                List<FileInfo> fileInfos = new List<FileInfo>(13);
+                GetAllFileInfoInSubDir(fileInfos, theFolder);
+                
                 //对文件进行遍历
-                foreach (var NextFile in TheFolder.GetFiles())
+                foreach (var nextFile in fileInfos)
                 {
-                    if (Path.GetExtension(NextFile.Name) == ".xlsx" && !NextFile.Name.StartsWith("~$"))
+                    if (Path.GetExtension(nextFile.Name) == ".xlsx" && !nextFile.Name.StartsWith("~$"))
                     {
                         //=========生成CSV || 数据库文件===========
-                        _exportFunc2?.Invoke(csvpath, NextFile, csOutPath, cnt);
+                        _exportFunc2?.Invoke(csvpath, nextFile, csOutPath, cnt);
 
                     }
-                    else if (Path.GetExtension(NextFile.Name) == ".txt")
+                    else if (Path.GetExtension(nextFile.Name) == ".txt")
                     {
-                        FileInfo fi = new FileInfo(csvpath + "/" + NextFile.Name);
+                        FileInfo fi = new FileInfo(csvpath + "/" + nextFile.Name);
                         if (fi.Exists)
                             fi.Delete();
-                        NextFile.CopyTo(csvpath + "/" + NextFile.Name);
+                        nextFile.CopyTo(csvpath + "/" + nextFile.Name);
 
-                        _csvListToBeRestored.Add(new ABVersion { AbName = NextFile.Name, MD5 = string.Empty, Version = 0 });
+                        _csvListToBeRestored.Add(new ABVersion { AbName = nextFile.Name, MD5 = string.Empty, Version = 0 });
                     }
                 }
 
@@ -689,6 +693,19 @@ namespace Litframework.ExcelTool
             _exportFunc3 = null;
             _exportFunc4 = null;
             _exportFunc5 = null;
+        }
+
+        /// <summary>
+        /// 查找文件夹下所有文件
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <param name="theFolder"></param>
+        private static void GetAllFileInfoInSubDir( List<FileInfo> fileInfo, DirectoryInfo theFolder)
+        {
+            fileInfo.AddRange(theFolder.GetFiles());
+            var subDir = theFolder.GetDirectories();
+            for (int i = 0; i < subDir.Length; i++)
+                GetAllFileInfoInSubDir(fileInfo, subDir[i]);
         }
     }
 

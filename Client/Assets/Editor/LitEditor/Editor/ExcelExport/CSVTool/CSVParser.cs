@@ -39,7 +39,7 @@ namespace Litframework.ExcelTool
         private string[] _attribute;
         private string[] _type;
         private string _className;
-        private const string SPACENAME = "LitFramework";
+        private const string SPACENAME = "ET";//引入ET相关的标记
         private const string TEMPLATE_VARS_NAME = "paras";
 
         private int _template_vars_index = 0;
@@ -74,8 +74,7 @@ namespace Litframework.ExcelTool
             CSString.Add( "using UnityEngine;" );
             CSString.Add( "using System;" );
             CSString.Add( "using System.Collections.Generic;" );
-            CSString.Add( "using ET;");
-            //CSString.Add( "using " + SPACENAME + ";" );
+            CSString.Add("using " + SPACENAME + ";");
             //CSString.Add( "#if UNITY_EDITOR" );
             //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
             //CSString.Add( "#endif" );
@@ -86,7 +85,7 @@ namespace Litframework.ExcelTool
             //CSString.Add( "namespace " + spaceName );
             //CSString.Add( "{" );
             CSString.Add("[Config]");
-            CSString.Add( $"public partial class {_className}" );
+            CSString.Add( $"public partial class {_className} : ProtoObject" );
             CSString.Add( "{" );
         }
         private void AddBody()
@@ -94,6 +93,8 @@ namespace Litframework.ExcelTool
             //添加属性
             for( int i = 0; i < _type.Length; i++ ) 
             {
+                if (!CheckValidType(_type[i])) throw new ArgumentException($"配置表 {_className} 存在不支持参数 {_type[i]} !");
+
                 _type[ i ] = CheckStringType( _type[ i ] );
                 CSString.Add( "/// <summary>" );
                 CSString.Add( string.Format( "/// {0}" , _description[ i ] ) );
@@ -110,6 +111,31 @@ namespace Litframework.ExcelTool
             AddMethod( EnMethodType.Dictionary );
             AddParseVector3();
         }
+
+        private bool CheckValidType(string v)
+        {
+            if (v.Contains("En_") || v.Contains("Dic<") || v.Contains("List<")) return true;
+            else
+            {
+                switch (v)
+                {
+                    case "string":
+                    case "char":
+                    case "DateTime":
+                    case "short":
+                    case "int":
+                    case "long":
+                    case "float":
+                    case "double":
+                    case "bool":
+                    case "Vector3":
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+
         private void AddTail()
         {
             CSString.Add( "" );
@@ -216,17 +242,31 @@ namespace Litframework.ExcelTool
 
                         CSString.Add( string.Format( "for (int k = 0; k < {0}.Length; k++)" , usubstrName ) );
                         CSString.Add( "{" );
-                        CSString.Add( string.Format( "{0}.Add({1});" , usublstname , 
-                            ParseBaseType( usubtype , string.Format( "{0}[k]" , usubstrName ), ref _needToParseFlag, out _paramName) ) );
+
+
+                        var resultParse = ParseBaseType(usubtype, string.Format("{0}[k]", usubstrName), ref _needToParseFlag, out _paramName);
+                        if (!_needToParseFlag)
+                            CSString.Add(string.Format("{0}.Add({1});", usublstname, resultParse));
+                        else
+                        {
+                            CSString.Add($"{resultParse};");
+                            CSString.Add(string.Format("{0}.Add({1});", usublstname, _paramName));
+                        }
+
+
                         CSString.Add( "}" ); 
                         CSString.Add("}");
                         CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , usublstname ) );
                     }
                     else
                     {
-                        CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , 
-                            ParseBaseType( subtype , string.Format( "{0}[j]" , substrName ), ref _needToParseFlag, out _paramName) ) );
-
+                        var resultParse = ParseBaseType(subtype, string.Format("{0}[j]", substrName), ref _needToParseFlag, out _paramName);
+                        if (!_needToParseFlag)
+                            CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], resultParse));
+                        else{
+                            CSString.Add($"{resultParse};");
+                            CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], _paramName));
+                        }
                     }
                     CSString.Add( "}" );
                     CSString.Add("}");
@@ -245,9 +285,17 @@ namespace Litframework.ExcelTool
                     CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
                     CSString.Add( "{" );
                     CSString.Add( string.Format( "string[] subArray = {0}[j].Split('|');" , substrName ) );
-                    CSString.Add( string.Format( "item.{0}.Add({1}, {2});" , _attribute[ i ] , 
-                        ParseBaseType( subtype[ 0 ] , "subArray[0]", ref _needToParseFlag, out _paramName) , 
-                        ParseBaseType( subtype[ 1 ] , "subArray[1]", ref _needToParseFlag, out _paramName) ) );
+
+                    string paramName1, paramName2;
+                    var para1 = ParseBaseType(subtype[0], "subArray[0]", ref _needToParseFlag, out paramName1);
+                    var para2 = ParseBaseType(subtype[1], "subArray[1]", ref _needToParseFlag, out paramName2);
+
+                    CSString.Add($"{para1};");
+                    CSString.Add($"{para2};");
+                    CSString.Add(string.Format("item.{0}.Add({1}, {2});", _attribute[i], paramName1, paramName2));
+
+
+
                     CSString.Add( "}" );
                     CSString.Add("}");
                 }

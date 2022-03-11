@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartZoneConfig
+public partial class StartZoneConfig : ProtoObject
 {
 	/// <summary>
 	/// Id

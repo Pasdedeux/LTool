@@ -118,7 +118,8 @@ namespace Litframework.ExcelTool
                 //客户端生成对应文件
                 if (platform < 2 && !firstKeyFlag.StartsWith("s-"))
                 {
-                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client));
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client);
+                    reader = new CSVReader(csvfile);
                     csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Client);
                     CreateCSFile(csOutPath, tTableName + ".cs", csString);
 
@@ -130,7 +131,8 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
-                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server));
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
+                    reader = new CSVReader(csvfile);
                     csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, tTableName + ".cs", csString);
                     

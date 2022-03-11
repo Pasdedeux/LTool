@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartProcessConfig
+public partial class StartProcessConfig : ProtoObject
 {
 	/// <summary>
 	/// Id

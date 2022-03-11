@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class RobotsConfig
+public partial class RobotsConfig : ProtoObject
 {
 	/// <summary>
 	/// Id

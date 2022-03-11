@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartZoneConfig
+public partial class StartZoneConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -44,7 +44,7 @@ public partial class StartZoneConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: StartZoneConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: StartZoneConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

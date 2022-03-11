@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class UnitConfig
+public partial class UnitConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -68,7 +68,7 @@ public partial class UnitConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: UnitConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: UnitConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

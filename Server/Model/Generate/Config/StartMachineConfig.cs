@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartMachineConfig
+public partial class StartMachineConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -49,7 +49,7 @@ public partial class StartMachineConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: StartMachineConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: StartMachineConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

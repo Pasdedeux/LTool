@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class RobotsConfig
+public partial class RobotsConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -62,7 +62,7 @@ public partial class RobotsConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: RobotsConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: RobotsConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

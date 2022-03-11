@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class AIConfig
+public partial class AIConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -60,7 +60,8 @@ public partial class AIConfig
 				string[] NodeParams_Array = reader.GetData(5, i).Split(';');
 				for (int j = 0; j < NodeParams_Array.Length; j++)
 				{
-					item.NodeParams.Add(int.TryParse(NodeParams_Array[j], out int paras3));
+					int.TryParse(NodeParams_Array[j], out int paras3);
+					item.NodeParams.Add(paras3);
 				}
 			}
 			try
@@ -69,7 +70,7 @@ public partial class AIConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: AIConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: AIConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

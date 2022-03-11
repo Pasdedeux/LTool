@@ -7,7 +7,7 @@ using ET;
 /// Author : Derek Liu
 /// </summary>
 [Config]
-public partial class StartSceneConfig
+public partial class StartSceneConfig : ProtoObject
 {
 	/// <summary>
 	/// Id
@@ -62,7 +62,7 @@ public partial class StartSceneConfig
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: StartSceneConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: StartSceneConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

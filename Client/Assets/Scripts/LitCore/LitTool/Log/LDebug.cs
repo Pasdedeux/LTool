@@ -2,7 +2,7 @@
 * 项目名称 ：LitFramework.Unity
 * 项目描述 ：
 * 类 名 称 ：LDebug
-* 类 描 述 ：一个自定义的日志输出
+* 类 描 述 ：一个仅用于客户端的自定义的日志输出
 * 命名空间 ：LitFramework.Unity
 * 机器名称 ：DEREK-SURFACEPR 
 * CLR 版本 ：4.0.30319.42000
@@ -13,21 +13,15 @@
 *******************************************************************
 * Copyright @ Derek Liu 2019. All rights reserved.
 *******************************************************************
+==================================*/
 
--------------------------------------------------------------------
-*Fix Note:  首版本增加颜色控制，便于阅读，根据需要支持更多类型
-*修改时间：2019/5/17 16:40:02
-*修改人： Derek Liu
-*版本号： V1.0.0.0
-*描述：
-*
-======================================*/
-
+using System;
 using System.Collections;
 using System.Diagnostics;
 
 
-
+#if !NOT_UNITY
+[Obsolete("最好使用Log.XXX来代替")]
 public static class LDebug
 {
     private static bool _enabeld = true;
@@ -119,16 +113,5 @@ public static class LDebug
     }
 }
 
+#endif
 
-public enum LogColor
-{
-    black,
-    white,
-    red,
-    yellow,
-    green,
-    blue,
-    purple,
-    orange,
-    grey
-}

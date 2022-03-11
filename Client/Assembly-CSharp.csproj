@@ -446,7 +446,6 @@
     <Compile Include="Assets\The3rd\protobuf-net\Serializers\ListDecorator.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Core\Timer\TimerType.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Module\Mongo\BsonDictionaryOptionsAttribute.cs" />
-    <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Log\NLogger.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GProgressBar.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\HitTest\ShapeHitTest.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\BaseUIAdapter.cs" />
@@ -493,7 +492,6 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\MonoBehaviour\ReferenceCollector.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Message\NetThreadComponent.cs" />
     <Compile Include="Assets\Scripts\LitCore\LitTool\Log\ILog.cs" />
-    <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Log\FileLogger.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Common\ConstantTool.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ProtoIgnoreAttribute.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\ILRBaseModel\Singleton.cs" />
@@ -604,9 +602,7 @@
     <Compile Include="Assets\Scripts\Essential\SQLite\SQLReader.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Demo\TimerType.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Numeric\NumericWatcherComponent.cs" />
-    <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Log\Log.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\NLogDebug.cs" />
     <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\testLzmaWebGLtvOS.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Serializers\CompiledSerializer.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
@@ -655,7 +651,6 @@
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLList.cs" />
-    <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Log\ILog.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ServiceModel\XmlProtoSerializer.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\Rotate.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GLoader3DAdapter.cs" />
@@ -738,7 +733,7 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Recast\PathfindingComponent.cs" />
     <Compile Include="Assets\Scripts\Essential\ResPool\ExtendSpawnPool.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\IAP\PurchaserConfig.cs" />
-    <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Log\UnityLogger.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\UnityLogger.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\BaseUICore.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ProtoEnumAttribute.cs" />
@@ -797,6 +792,9 @@
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Define.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\FileLogger.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\Log.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\NLogger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

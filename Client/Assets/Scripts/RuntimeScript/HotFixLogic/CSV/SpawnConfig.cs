@@ -50,7 +50,7 @@ public partial class SpawnConfig : ProtoObject
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: SpawnConfig 行: {i}列: ID", LogColor.red); 
+				Log.Error($"{e.Message} 表: SpawnConfig 行: {i}列: ID", LogColor.red); 
 			}
 		}
 		return vec;

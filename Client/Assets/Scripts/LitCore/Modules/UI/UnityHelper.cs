@@ -12,17 +12,17 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="chiildName">查找的子对象名称</param>
     /// <returns></returns>
-    public static Transform FindTheChildNode( Transform goParent , string chiildName )
+    public static Transform FindTheChildNode(Transform goParent, string chiildName)
     {
         Transform searchTrans = null;                   //查找结果
-        
-        searchTrans = goParent.Find( chiildName );
-        if ( searchTrans == null )
+
+        searchTrans = goParent.Find(chiildName);
+        if (searchTrans == null)
         {
-            foreach ( Transform trans in goParent )
+            foreach (Transform trans in goParent)
             {
-                searchTrans = FindTheChildNode( trans , chiildName );
-                if ( searchTrans != null )
+                searchTrans = FindTheChildNode(trans, chiildName);
+                if (searchTrans != null)
                 {
                     return searchTrans;
 
@@ -39,12 +39,12 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="childName">子对象名称</param>
     /// <returns></returns>
-    public static T GetTheChildNodeComponetScripts<T>( Transform goParent , string childName ) where T : Component
+    public static T GetTheChildNodeComponetScripts<T>(Transform goParent, string childName) where T : Component
     {
         Transform searchTranformNode = null;            //查找特定子节点
 
-        searchTranformNode = FindTheChildNode( goParent , childName );
-        if ( searchTranformNode != null )
+        searchTranformNode = FindTheChildNode(goParent, childName);
+        if (searchTranformNode != null)
         {
             return searchTranformNode.gameObject.GetComponent<T>();
         }
@@ -63,22 +63,22 @@ public class UnityHelper : MonoBehaviour
     /// <param name="goParent">父对象</param>
     /// <param name="childName">子对象名称</param>
     /// <returns></returns>
-    public static T AddChildNodeCompnent<T>( Transform goParent , string childName ) where T : Component
+    public static T AddChildNodeCompnent<T>(Transform goParent, string childName) where T : Component
     {
         Transform searchTranform = null;                //查找特定节点结果
 
         //查找特定子节点
-        searchTranform = FindTheChildNode( goParent , childName );
+        searchTranform = FindTheChildNode(goParent, childName);
         //如果查找成功，则考虑如果已经有相同的脚本了，则先删除，否则直接添加。
-        if ( searchTranform != null )
+        if (searchTranform != null)
         {
             //如果已经有相同的脚本了，则先删除
             T[] componentScriptsArray = searchTranform.GetComponents<T>();
-            for ( int i = 0 ; i < componentScriptsArray.Length ; i++ )
+            for (int i = 0; i < componentScriptsArray.Length; i++)
             {
-                if ( componentScriptsArray[ i ] != null )
+                if (componentScriptsArray[i] != null)
                 {
-                    Destroy( componentScriptsArray[ i ] );
+                    Destroy(componentScriptsArray[i]);
                 }
             }
             return searchTranform.gameObject.AddComponent<T>();
@@ -96,9 +96,9 @@ public class UnityHelper : MonoBehaviour
     /// </summary>
     /// <param name="parents">父对象的方位</param>
     /// <param name="child">子对象的方法</param>
-    public static void AddChildNodeToParentNode( Transform parents , Transform child )
+    public static void AddChildNodeToParentNode(Transform parents, Transform child)
     {
-        child.SetParent( parents , false );
+        child.SetParent(parents, false);
         child.localPosition = Vector3.zero;
         child.localScale = Vector3.one;
         child.localEulerAngles = Vector3.zero;

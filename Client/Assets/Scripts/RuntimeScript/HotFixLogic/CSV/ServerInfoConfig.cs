@@ -44,7 +44,7 @@ public partial class ServerInfoConfig : ProtoObject
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: ServerInfoConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: ServerInfoConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

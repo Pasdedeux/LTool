@@ -321,7 +321,7 @@ namespace Litframework.ExcelTool
                 CSString.Add("}");
                 CSString.Add("catch (Exception e)");
                 CSString.Add("{");
-                CSString.Add("LDebug.LogError($\"" + "{e.Message} 表: " + $"{_className} " + "行: {i}" + "列: " + $"{_attribute[0]}" + "\", LogColor.red); ");
+                CSString.Add("Log.Error($\"" + "{e.Message} 表: " + $"{_className} " + "行: {i}" + "列: " + $"{_attribute[0]}" + "\", LogColor.red); ");
                 CSString.Add("}");
             }
             CSString.Add( "}" );

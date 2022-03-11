@@ -62,7 +62,7 @@ public partial class StartSceneConfig : ProtoObject
 			}
 			catch (Exception e)
 			{
-				LDebug.LogError($"{e.Message} 表: StartSceneConfig 行: {i}列: Id", LogColor.red); 
+				Log.Error($"{e.Message} 表: StartSceneConfig 行: {i}列: Id", LogColor.red); 
 			}
 		}
 		return vec;

@@ -53,7 +53,14 @@ namespace Assets.Scripts.Controller
         {
             GameObject.DontDestroyOnLoad(GameObject.Find("Canvas_Root"));
 
+            Log.ILog = new UnityLogger();
+            Log.Enable = FrameworkConfig.Instance.showLog;
+            Options.Instance = new Options();
+
+#if !NOT_UNITY
             LDebug.Enable = FrameworkConfig.Instance.showLog;
+#endif
+
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
             AuthorizedManager.Instance.Install();
@@ -64,8 +71,8 @@ namespace Assets.Scripts.Controller
             //由于UI的使用，需要提前执行方法确定
             RsLoadManager.Instance.Install();
             //UI模块中Loading界面先于热更逻辑执行，故需要提前完成初始化UIManager
-            LitFramework.UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
-            LitFramework.UIManager.Instance.Install();
+            UIManager.Instance.LoadResourceFunc = (e) => RsLoadManager.Instance.Load<GameObject>(e);
+            UIManager.Instance.Install();
 
             //框架基础启动完毕后，需要进行的自定义加载事件
             //而UI等模块的启动依赖于框架启动，所以为了保持框架本身的快速启动，以保证UI界面能尽早完成显示（如Loading界面），故把数据加载这种可能会占用大量时间的操作，放到外面择机调用
@@ -99,8 +106,6 @@ namespace Assets.Scripts.Controller
                 StatisticManager.Instance.Install();
                 return true;
             });
-
-
 
             //==================具体项目的代码从这里开始==================//
             LoadingTaskModel.Instance.AddTask(20, () =>

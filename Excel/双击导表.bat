@@ -14,7 +14,7 @@ for %%d in (%~dp0..) do set ParentDirectory=%%~fd%\
 dotnet Litframework.ExcelTool.dll ^
 --ExportModelType=2 ^
 --UseHotFix=1 ^
---UseServer=0 ^
+--UseServer=1 ^
 --UseSql=0 ^
 --ExtralFileExtention="json|dat|assetbundle" ^
 --ProjectPath=%ParentDirectory%

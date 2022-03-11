@@ -1,0 +1,5 @@
+﻿Id,数据库地址,数据库名
+Id,DBConnection,DBName
+int,string,string
+1,mongodb://127.0.0.1,ET1
+2,mongodb://127.0.0.1,ET2

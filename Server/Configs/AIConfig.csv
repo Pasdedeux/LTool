@@ -1,0 +1,5 @@
+﻿Id,所属ai,此ai中的顺序,节点名字,描述,节点参数
+Id,AIConfigId,Order,Name,Desc,NodeParams
+int,int,int,string,string,List<int>
+101,1,1,AI_Attack,攻击,
+102,1,2,AI_XunLuo,巡逻,

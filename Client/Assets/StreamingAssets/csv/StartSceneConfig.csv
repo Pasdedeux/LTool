@@ -1,0 +1,11 @@
+﻿Id,所属进程,所属区,类型,名字,外网端口
+Id,Process,Zone,SceneType,Name,OuterPort
+int,int,int,string,string,int
+1,1,1,Realm,Realm,10002
+2,1,1,Gate,Gate1,10003
+3,1,1,Gate,Gate2,10004
+4,1,1,Location,Location,
+5,1,1,Map,Map1,
+6,1,1,Map,Map2,
+7,1,1,Account,Account,10005
+8,1,1,LoginCenter,LoginCenter,

@@ -1,0 +1,5 @@
+﻿Id,区服名称,区服描述
+Id,ServerName,ServerDesc
+int,string,string
+1,游戏一服,一个简单服
+2,游戏二服,这个服的人很强

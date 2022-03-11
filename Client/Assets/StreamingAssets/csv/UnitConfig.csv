@@ -1,0 +1,4 @@
+﻿Id,Type,名字,描述,位置,身高,体重
+Id,Type,Name,Desc,Position,Height,Weight
+int,int,string,string,int,int,int
+1001,1,米克尔,带有强力攻击技能,1,178,68

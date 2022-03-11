@@ -1,0 +1,4 @@
+﻿Id,所属进程,所属区,类型,名字,外网端口
+Id,Process,Zone,SceneType,Name,OuterPort
+int,int,int,string,string,int
+200,2,2,Robot,Robot01,

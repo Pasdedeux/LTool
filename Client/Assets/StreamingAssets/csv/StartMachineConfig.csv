@@ -1,0 +1,4 @@
+﻿Id,内网地址,外网地址,守护进程端口
+Id,InnerIP,OuterIP,WatcherPort
+int,string,string,string
+1,127.0.0.1,127.0.0.1,10000

@@ -1,0 +1,5 @@
+﻿Id,所属机器,内网端口,程序名
+Id,MachineId,InnerPort,AppName
+int,int,int,string
+1,1,20001,Server
+2,1,20002,Robot

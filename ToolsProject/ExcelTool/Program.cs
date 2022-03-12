@@ -83,22 +83,22 @@ namespace Litframework.ExcelTool
 
         #region ExcelExportSetting
 
-        [Option("ProjectPath", Required = true, Default = "", HelpText = "eg: C:/Personal/Unity/iFunTech/BasePackage/Assets")]
+        [Option("ProjectPath", Required = false, Default = "", HelpText = "eg: C:/Personal/Unity/iFunTech/BasePackage/Assets")]
         public string ProjectPath { get; set; }
 
-        [Option("ExportModelType", Required = true, Default = 1, HelpText = "excel export mode, 1导csv 2导csv+代码")]
+        [Option("ExportModelType", Required = false, Default = 1, HelpText = "excel export mode, 1导csv 2导csv+代码")]
         public int ExportModelType { get; set; }
 
-        [Option("ExtralFileExtention", Required = true, Default = "json|dat|assetbundle", HelpText = "excel export mode, 1导csv 2导csv+代码")]
+        [Option("ExtralFileExtention", Required = false, Default = "json|dat|assetbundle", HelpText = "excel export mode, 1导csv 2导csv+代码")]
         public string ExtralFileExtention { get; set; }
 
-        [Option("UseHotFix", Required = true, Default = 1, HelpText = "1-true  0-false 默认使用 1")]
+        [Option("UseHotFix", Required = false, Default = 1, HelpText = "1-true  0-false 默认使用 1")]
         public int UseHotFix { get; set; }
 
-        [Option("UseServer", Required = true, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
+        [Option("UseServer", Required = false, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
         public int UseServer { get; set; }
 
-        [Option("UseSql", Required = true, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
+        [Option("UseSql", Required = false, Default = 0, HelpText = "1-true  0-false 默认使用 0")]
         public int UseSql { get; set; }
 
         #endregion

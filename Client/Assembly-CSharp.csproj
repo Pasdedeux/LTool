@@ -141,7 +141,6 @@
     <Compile Include="Assets\The3rd\ETTask\ETTask.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\AD\ADManager.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ImplicitFields.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\lz4test.cs" />
     <Compile Include="Assets\The3rd\ShareLib\Recast\Recast.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\Model\Const\Configs.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Module\Mongo\BsonIgnoreExtraElementsAttribute.cs" />
@@ -174,8 +173,6 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Tween\GTweener.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Demo\RoleInfo\RoleInfoComponentSystem.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtest.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\SevenZipTest.cs" />
     <Compile Include="Assets\Scripts\Essential\ConfigParsing\JsonConfigData.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\Test\TestReporter.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\WireType.cs" />
@@ -228,7 +225,6 @@
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Essential\Tools\ScriptableLoader.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Compiler\CompilerDelegates.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Plugins\LZ4.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\XMLUtils.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Serializers\ByteSerializer.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterAdmob.cs" />
@@ -318,7 +314,6 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_Single_Binding.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\IUIManager.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\LZ4\Scripts\LZ4testWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Helper\MD5Helper.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Serializers\BooleanSerializer.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Module\Network\AService.cs" />
@@ -489,7 +484,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Text\DynamicFont.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\AssetPathManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\ViewTest\BezierViewTest.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\fLZ.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Module\Network\Circularbuffer.cs" />
     <Compile Include="Assets\Scripts\Essential\SQLite\ExampleQuery.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\MonoBehaviour\ReferenceCollector.cs" />
@@ -556,7 +550,6 @@
     <Compile Include="Assets\The3rd\protobuf-net\ProtoConverterAttribute.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GGroupAdapter.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\CSV\StartProcessConfig.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\lzma.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Demo\Unit\Unit.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Demo\Account\AccountInfoComponent.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ServiceModel\ProtoBehaviorExtensionElement.cs" />
@@ -573,7 +566,6 @@
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_GComboBoxAdapter.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GComponent.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Core\Object\IUpdateSystem.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\benchmark\Scripts\benchmark.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Base\UIType.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Helpers.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\Common_IEqualityComparer_1Adapter.cs" />
@@ -585,7 +577,6 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObjectPool.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Demo\Unit\M2C_CreateMyUnitHandler.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\ExtensibleUtil.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\fastLZ\Scripts\fLZtestWebGLtvOS.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GObject.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Core\Mesh\PlaneMesh.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\UI\Version_Mono\BaseUI.cs" />
@@ -606,7 +597,6 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Demo\TimerType.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Numeric\NumericWatcherComponent.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\System_String_Binding.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\SevenZip\Scripts\testLzmaWebGLtvOS.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\Serializers\CompiledSerializer.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\SDK\Example\AD\AdapterChuanShanjia.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\CoroutineLock\CoroutineLockComponent.cs" />
@@ -698,7 +688,6 @@
     <Compile Include="Assets\The3rd\ETTask\ETVoid.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GMovieClip.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\BaseComponent\Singleton.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Plugins\brotli.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PoolManager.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Core\Timer\TimerComponent.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Module\NetworkTCP\TService.cs" />
@@ -727,7 +716,6 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Message\OpcodeTypeComponent.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\Gears\IColorGear.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\HotFixLogic\PersistentManager\Base\BaseLocalConfigManager.cs" />
-    <Compile Include="Assets\The3rd\ADL-Plugins\brotli\Scripts\brotlitest.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\AI\AIConfig.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Generated\CLRBindings.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Event\EventBridge.cs" />
@@ -798,34 +786,27 @@
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-     <None Include="Assets\The3rd\ADL-Plugins\LZ4\Plugins\x86\liblz4.dll" />
      <None Include="Assets\Art\FBX\_desc.txt" />
      <None Include="Assets\Shader\LitQueueAnimate.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\Shader\CircleShader.shader" />
      <None Include="Assets\StreamingAssets\csvList.txt" />
      <None Include="Assets\smcs.rsp" />
-     <None Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\x86\libfastlz.dll" />
      <None Include="Assets\Art\Psd\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Art\Texture\_desc.txt" />
-     <None Include="Assets\The3rd\ADL-Plugins\LZ4\Plugins\x86_64\liblz4.dll" />
-     <None Include="Assets\The3rd\ADL-Plugins\brotli\Plugins\x86\libbrotli.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
      <None Include="Assets\Shader\RectShader.shader" />
      <None Include="Assets\link.xml" />
      <None Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
-     <None Include="Assets\The3rd\ADL-Plugins\zip\Plugins\x86_64\libzipw.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\The3rd\Demigiant\DOTween\DOTween.XML" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.dll" />
-     <None Include="Assets\The3rd\ADL-Plugins\zip\Plugins\x86\libzipw.dll" />
      <None Include="Assets\The3rd\ADL-Plugins\changelog.txt" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Text.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-Image.shader" />
-     <None Include="Assets\The3rd\ADL-Plugins\fastLZ\Plugins\x86_64\libfastlz.dll" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -843,14 +824,11 @@
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Resources\Shaders\UI\UIGrey.shader" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-     <None Include="Assets\The3rd\ADL-Plugins\brotli\Plugins\x86_64\libbrotli.dll" />
      <None Include="Assets\The3rd\Demigiant\DemiLib\Core\DemiLib.xml" />
      <None Include="Assets\The3rd\Demigiant\DOTweenPro\DOTweenPro.XML" />
      <None Include="Assets\Art\Font\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\The3rd\Demigiant\DOTween\readme.txt" />
-     <None Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\x86_64\liblzma.dll" />
-     <None Include="Assets\The3rd\ADL-Plugins\SevenZip\Plugins\x86\liblzma.dll" />
      <None Include="Assets\Scripts\FairyGUI\Resources\Shaders\FairyGUI-BMFont.shader" />
      <None Include="Assets\Art\Sprite\Guide\_desc.txt" />
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />

@@ -72,7 +72,10 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         SpawnManager.Instance.Install();
         //新手引导模块
         GuideShaderController.Instance.Install();
-
+#if IAP
+        //内购模块
+        PurchaserDataModel.Instance.Install();
+#endif
         //最后启动自定义模块
         afterExecuteFunc?.Invoke();
     }

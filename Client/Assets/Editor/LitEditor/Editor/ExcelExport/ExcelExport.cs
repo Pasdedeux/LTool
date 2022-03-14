@@ -255,8 +255,8 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
-                    csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Server);
                     csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
+                    csString = new CSVParser().CreateCS(fileName, csvfile, PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, fileName + ".cs", csString);
                     WriteLocalFile(SERVER_CSV_OUT_DIR + "/" + fileName + ".csv", csvfile);
                     cnt.configsServerNameList.Add(fileName, reader.GetData(0, 2));

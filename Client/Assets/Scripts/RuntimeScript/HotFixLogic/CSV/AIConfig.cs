@@ -57,7 +57,7 @@ public partial class AIConfig : ProtoObject
 			item.NodeParams= new List<int>();
 			if(!string.IsNullOrEmpty(reader.GetData(5, i)))
 			{
-				string[] NodeParams_Array = reader.GetData(6, i).Split(';');
+				string[] NodeParams_Array = reader.GetData(5, i).Split(';');
 				for (int j = 0; j < NodeParams_Array.Length; j++)
 				{
 					int.TryParse(NodeParams_Array[j], out int paras3);

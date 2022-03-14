@@ -221,6 +221,7 @@
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Core\Helper\ByteHelper.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Helper\IStaticMethod.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Module\Ping\PingComponentSystem.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\NLogger.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Generate\Message\OuterMessage.cs" />
     <Compile Include="Assets\Scripts\RuntimeScript\Adaptor\FairyGUI_WindowAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\Modules\Pool\PrefabPool.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Gesture\RotationGesture.cs" />
     <Compile Include="Assets\Scripts\Essential\Managers\AnimationManager.cs" />
     <Compile Include="Assets\The3rd\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\FileLogger.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Numeric\NumericWatcherAttribute.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\Utils\ToolSet.cs" />
     <Compile Include="Assets\Scripts\FairyGUI\Scripts\UI\GButton.cs" />
@@ -332,6 +334,7 @@
     <Compile Include="Assets\The3rd\protobuf-net\Meta\SubType.cs" />
     <Compile Include="Assets\The3rd\Reporter\Reporter\ReporterGUI.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Hotfix\Module\AI\AIComponentSystem.cs" />
+    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\Log.cs" />
     <Compile Include="Assets\The3rd\protobuf-net\IExtensible.cs" />
     <Compile Include="Assets\The3rd\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Model\Module\Message\IMessage.cs" />
@@ -792,9 +795,6 @@
     <Compile Include="Assets\Scripts\RuntimeScript\FixedBinder\CoroutineAdapter.cs" />
     <Compile Include="Assets\Scripts\LitCore\GameFlow\Controller\GameDriver.cs" />
     <Compile Include="Assets\Scripts\LitCore\ET\Mono\Define.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\FileLogger.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\Log.cs" />
-    <Compile Include="Assets\Scripts\LitCore\LitTool\Log\NLogger.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\The3rd\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

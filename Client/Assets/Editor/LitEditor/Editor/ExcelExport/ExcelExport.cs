@@ -613,13 +613,16 @@ namespace Litframework.ExcelTool
             //文件列表
             DirectoryInfo theFolder = new DirectoryInfo(xlsxpath);
 
-            if (!Directory.Exists(csvpath))
+            if (platform < 2)
             {
-                Directory.CreateDirectory(csvpath);
-            }
-            if (!Directory.Exists(csOutPath))
-            {
-                Directory.CreateDirectory(csOutPath);
+                if (!Directory.Exists(csvpath))
+                {
+                    Directory.CreateDirectory(csvpath);
+                }
+                if (!Directory.Exists(csOutPath))
+                {
+                    Directory.CreateDirectory(csOutPath);
+                }
             }
 
             //===========数据库模式初始化==============

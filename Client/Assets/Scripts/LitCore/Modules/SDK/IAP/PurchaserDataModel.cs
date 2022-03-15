@@ -319,7 +319,7 @@ public class Purchaser : Singleton<Purchaser>
         {
             foreach (var product in productDict)
             {
-                builder.AddProduct(product.Value.BuyID, ProductType.Consumable, new IDs
+                builder.AddProduct(product.Value.BuyID, product.Value.ProductType, new IDs
                 {
                     {product.Value.BuyID, AppleAppStore.Name }
                 });
@@ -327,7 +327,7 @@ public class Purchaser : Singleton<Purchaser>
                 //Discount Item
                 if (!string.IsNullOrEmpty(product.Value.AlternativeBuyID))
                 {
-                    builder.AddProduct(product.Value.AlternativeBuyID, ProductType.Consumable, new IDs
+                    builder.AddProduct(product.Value.AlternativeBuyID, product.Value.ProductType, new IDs
                 {
                     {product.Value.AlternativeBuyID, AppleAppStore.Name }
                 });
@@ -339,7 +339,7 @@ public class Purchaser : Singleton<Purchaser>
         {
             foreach (var product in productDict)
             {
-                builder.AddProduct(product.Value.BuyID, ProductType.Consumable, new IDs
+                builder.AddProduct(product.Value.BuyID, product.Value.ProductType, new IDs
                 {
                     {product.Value.BuyID, GooglePlay.Name }
                 });
@@ -347,7 +347,7 @@ public class Purchaser : Singleton<Purchaser>
                 //Discount Item
                 if (!string.IsNullOrEmpty(product.Value.AlternativeBuyID))
                 {
-                    builder.AddProduct(product.Value.AlternativeBuyID, ProductType.Consumable, new IDs
+                    builder.AddProduct(product.Value.AlternativeBuyID, product.Value.ProductType, new IDs
                 {
                     {product.Value.AlternativeBuyID, GooglePlay.Name }
                 });

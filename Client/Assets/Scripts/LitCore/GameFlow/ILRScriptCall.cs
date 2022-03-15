@@ -131,7 +131,7 @@ namespace Assets.Scripts
                 var reflectType = item.ReflectionType;
                 if (!reflectType.IsAbstract && reflectType.BaseType != null && interfaceType.IsAssignableFrom(reflectType.BaseType.BaseType))
                 {
-                    LDebug.Log(reflectType.Name);
+                    Log.TraceInfo(reflectType.Name);
                     //通过程序集获取到他的返回实例对象方法  并且初始化对象
                     System.Reflection.MethodInfo mif = reflectType.GetMethod("RegistSystem");
                     if (mif != null)
@@ -346,7 +346,7 @@ namespace Assets.Scripts
         {
             if (_appdomain.LoadedTypes.ContainsKey(uiAssembly))
             {
-                LDebug.Log("Get UI From Hotfix..." + _appdomain.LoadedTypes[uiAssembly].BaseType.BaseType + "   " + _appdomain.LoadedTypes[uiAssembly].ReflectionType + "   ");
+                Log.TraceInfo("Get UI From Hotfix..." + _appdomain.LoadedTypes[uiAssembly].BaseType.BaseType + "   " + _appdomain.LoadedTypes[uiAssembly].ReflectionType + "   ");
                 //需要获取的是实例类
                 var ss = _appdomain.Instantiate(_appdomain.LoadedTypes[uiAssembly].ReflectionType.FullName);
                 return ss.CLRInstance as IBaseUI;

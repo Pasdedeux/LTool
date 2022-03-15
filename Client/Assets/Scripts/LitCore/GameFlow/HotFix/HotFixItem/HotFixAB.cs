@@ -83,7 +83,7 @@ namespace Assets.Scripts.Module.HotFix
 
         public IEnumerator HotFixExecute()
         {
-            LDebug.Log("开始检测更新：" + CONFIG_NAME);
+            Log.TraceInfo("开始检测更新：" + CONFIG_NAME);
             //1、下载最新的资源配置信息
             bool canGoFurther = true;
             string localContent = null;
@@ -101,10 +101,10 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
@@ -140,8 +140,8 @@ namespace Assets.Scripts.Module.HotFix
                     }
                     FileInfo fileInfo = new FileInfo(AssetPathManager.Instance.GetPersistentDataPath(opFile, false));
                     if (fileInfo.Exists) fileInfo.Delete();
-                    LDebug.Log(">>>Delete " + item.Key, LogColor.red);
-                    LDebug.Log(">>>Delete Result " + DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(opFile, false)), LogColor.red);
+                    Log.TraceInfo(">>>Delete " + item.Key, LogColor.red);
+                    Log.TraceInfo(">>>Delete Result " + DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(opFile, false)), LogColor.red);
                 }
 
                 //需要更新的对象：可以根据需求拓展对version的使用规则。
@@ -155,10 +155,10 @@ namespace Assets.Scripts.Module.HotFix
                         if (opFile.Contains(".manifest")) continue;
                         opFile += ".zip";
                     }
-                    LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + opFile + " 开始访问", LogColor.yellow);
+                    Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + opFile + " 开始访问", LogColor.yellow);
                     yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + opFile, (UnityWebRequest e) =>
                    {
-                       LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key + "访问完成", LogColor.yellow);
+                       Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key + "访问完成", LogColor.yellow);
                        DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(opFile, false), e.downloadHandler.data);
                    }, (e) =>
                    {
@@ -182,12 +182,12 @@ namespace Assets.Scripts.Module.HotFix
 
                 //更新文档
                 DocumentAccessor.SaveAsset2LocalFile(localFilePath, contentByteArr);
-                LDebug.Log("检测更新完成：" + remoteFilePath);
+                Log.TraceInfo("检测更新完成：" + remoteFilePath);
             }
-            else LDebug.Log("文件不存在，不执行远程下载：" + remoteFilePath);
+            else Log.TraceInfo("文件不存在，不执行远程下载：" + remoteFilePath);
 
             //=========================ABPATH=======================//
-            LDebug.Log("开始检测更新：" + CONFIG_AB_PATH);
+            Log.TraceInfo("开始检测更新：" + CONFIG_AB_PATH);
             //1、下载最新的资源配置信息
             canGoFurther = true;
             localContent = null;
@@ -205,10 +205,10 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                 {
-                    LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                    Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                     remoteContent = e.downloadHandler.text;
                     contentByteArr = e.downloadHandler.data;
                 },
@@ -224,9 +224,9 @@ namespace Assets.Scripts.Module.HotFix
                     MsgManager.Instance.Broadcast(InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs(remoteContent, remoteFilePath));
                     yield break;
                 }
-                LDebug.Log("检测更新完成：" + remoteFilePath);
+                Log.TraceInfo("检测更新完成：" + remoteFilePath);
             }
-            else LDebug.Log("文件不存在，不执行远程下载：" + remoteFilePath);
+            else Log.TraceInfo("文件不存在，不执行远程下载：" + remoteFilePath);
         }
 
         //解压AB压缩包
@@ -242,7 +242,7 @@ namespace Assets.Scripts.Module.HotFix
                     if (item.Contains(".manifest")) continue;
                     //解压完成后，删除原压缩包
                     string fileName = $"{FrameworkConfig.Instance.ABFolderName}/{item}.zip";
-                    LDebug.Log($" 解压缩开始：[{fileName}]", LogColor.yellow);
+                    Log.TraceInfo($" 解压缩开始：[{fileName}]", LogColor.yellow);
                     FileInfo fileInfo = new FileInfo(AssetPathManager.Instance.GetPersistentDataPath(fileName, false));
                     if (fileInfo.Exists)
                     {
@@ -260,7 +260,7 @@ namespace Assets.Scripts.Module.HotFix
                             fileInfo.Delete();
                         }
                     }
-                    LDebug.Log($" 解压缩结束：[{fileName}]", LogColor.green);
+                    Log.TraceInfo($" 解压缩结束：[{fileName}]", LogColor.green);
                 }
             }
             catch (Exception e) { zipSuccess = false; }

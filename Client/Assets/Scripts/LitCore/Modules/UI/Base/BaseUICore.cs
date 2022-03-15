@@ -187,7 +187,7 @@ namespace LitFramework.UI.Base
         /// </summary>
         public virtual void OnBackPushed()
         {
-            LDebug.Log("关闭ui:" + AssetsName);
+            Log.TraceInfo("关闭ui:" + AssetsName);
             UIManager.Instance.Close(AssetsName);
         }
 

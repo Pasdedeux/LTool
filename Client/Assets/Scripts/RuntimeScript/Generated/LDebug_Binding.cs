@@ -48,7 +48,7 @@ namespace ILRuntime.Runtime.Generated
             __intp.Free(ptr_of_this_method);
 
 
-            global::LDebug.Log(@content, @color);
+            global::Log.TraceInfo(@content, @color);
 
             return __ret;
         }

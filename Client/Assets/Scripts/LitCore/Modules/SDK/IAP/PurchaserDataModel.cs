@@ -73,13 +73,13 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
         switch (obj)
         {
             case BuyFailReason.NotInit:
-                LDebug.LogError("Purchase Fail->Purchase not initialized");
+                Log.Error("Purchase Fail->Purchase not initialized");
                 break;
             case BuyFailReason.ProductError:
-                LDebug.LogError("Purchase Fail->Not purchasing product, not found or not available");
+                Log.Error("Purchase Fail->Not purchasing product, not found or not available");
                 break;
             case BuyFailReason.Other:
-                LDebug.LogError("Purchase Fail->Other");
+                Log.Error("Purchase Fail->Other");
                 break;
         }
         BuyFailEvent?.Invoke(obj);
@@ -132,14 +132,14 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
 
     private void Initialized(ProductCollection productCollection)
     {
-        LDebug.Log("IAP total count ==>" + productCollection.all.Length);
+        Log.TraceInfo("IAP total count ==>" + productCollection.all.Length);
 
         for (int i = 0; i < productCollection.all.Length; i++)
         {
             var product = productCollection.all[i];
 
-            LDebug.Log("IAP product storeSpecificId ==>" + product.definition.storeSpecificId);
-            LDebug.Log("IAP availableToPurchase ==>" + product.availableToPurchase);
+            Log.TraceInfo("IAP product storeSpecificId ==>" + product.definition.storeSpecificId);
+            Log.TraceInfo("IAP availableToPurchase ==>" + product.availableToPurchase);
 
             if (product.definition.storeSpecificId.StartsWith("buy")) continue;
 
@@ -173,8 +173,8 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
                 }
             }
 
-            LDebug.Log("IAP localizedTitle ==>" + product.metadata.localizedTitle);
-            LDebug.Log("IAP storeSpecificId ==>" + product.definition.storeSpecificId);
+            Log.TraceInfo("IAP localizedTitle ==>" + product.metadata.localizedTitle);
+            Log.TraceInfo("IAP storeSpecificId ==>" + product.definition.storeSpecificId);
         }
     }
 #endif
@@ -222,7 +222,7 @@ public class PurchaserDataModel : Singleton<PurchaserDataModel>, IDisposable, IM
 
     public void AddShopItem(string productID, bool isConfig = false)//, ProductMetadata meta = null)
     {
-        LDebug.Log("========>购买了商品 " + productID);
+        Log.TraceInfo("========>购买了商品 " + productID);
         //StatisticManager.Instance.DOT( "shop_buy_" + Purchaser.Instance.products.IndexOf( productID ) );
 
         PurchaserStoreItem result = null;
@@ -302,11 +302,11 @@ public class Purchaser : Singleton<Purchaser>
     public void InitializePurchasing()
     {
         // If we have already connected to Purchasing ...
-        LDebug.Log("====> If we have already connected to Purchasing ...");
+        Log.TraceInfo("====> If we have already connected to Purchasing ...");
         if (IsInitialized())
         {
             // ... we are done here.
-            LDebug.Log("====> ....we are done here.");
+            Log.TraceInfo("====> ....we are done here.");
             return;
         }
 
@@ -398,7 +398,7 @@ public class Purchaser : Singleton<Purchaser>
             // If the look up found a product for this device's store and that product is ready to be sold ... 
             if (product != null && product.availableToPurchase)
             {
-                LDebug.Log(string.Format("Purchasing product asychronously: '{0}'", product.definition.storeSpecificId));
+                Log.TraceInfo(string.Format("Purchasing product asychronously: '{0}'", product.definition.storeSpecificId));
                 // ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed 
                 // asynchronously.
                 m_StoreController.InitiatePurchase(product);
@@ -408,7 +408,7 @@ public class Purchaser : Singleton<Purchaser>
             {
                 ProcessPurchaseFailEventHandler?.Invoke(BuyFailReason.ProductError);
                 // ... report the product look-up failure situation  
-                LDebug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+                Log.TraceInfo("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
             }
         }
         // Otherwise ...
@@ -417,7 +417,7 @@ public class Purchaser : Singleton<Purchaser>
             ProcessPurchaseFailEventHandler?.Invoke(BuyFailReason.NotInit);
             // ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or 
             // retrying initiailization.
-            LDebug.Log("BuyProductID FAIL. Not initialized.");
+            Log.TraceInfo("BuyProductID FAIL. Not initialized.");
         }
     }
 
@@ -430,7 +430,7 @@ public class Purchaser : Singleton<Purchaser>
         if (!IsInitialized())
         {
             // ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
-            LDebug.Log("RestorePurchases FAIL. Not initialized.");
+            Log.TraceInfo("RestorePurchases FAIL. Not initialized.");
             return;
         }
 
@@ -439,7 +439,7 @@ public class Purchaser : Singleton<Purchaser>
             Application.platform == RuntimePlatform.OSXPlayer)
         {
             // ... begin restoring purchases
-            LDebug.Log("RestorePurchases started ...");
+            Log.TraceInfo("RestorePurchases started ...");
 
             // Fetch the Apple store-specific subsystem.
             var apple = m_StoreExtensionProvider.GetExtension<IAppleExtensions>();
@@ -449,14 +449,14 @@ public class Purchaser : Singleton<Purchaser>
             {
                 // The first phase of restoration. If no more responses are received on ProcessPurchase then 
                 // no purchases are available to be restored.
-                LDebug.Log("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
+                Log.TraceInfo("RestorePurchases continuing: " + result + ". If no further messages, no purchases available to restore.");
             });
         }
         // Otherwise ...
         else
         {
             // We are not running on an Apple device. No work is necessary to restore purchases.
-            LDebug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
+            Log.TraceInfo("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
         }
     }
 
@@ -470,21 +470,21 @@ public class Purchaser : Singleton<Purchaser>
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
         // Purchasing has succeeded initializing. Collect our Purchasing references.
-        LDebug.Log("OnInitialized: PASS");
+        Log.TraceInfo("OnInitialized: PASS");
 
         // Overall Purchasing system, configured with products for this application.
         m_StoreController = controller;
         // Store specific subsystem, for accessing device-specific store features.
         m_StoreExtensionProvider = extensions;
 
-        if (InitializedEventHandler != null) InitializedEventHandler(m_StoreController.products);
+        InitializedEventHandler?.Invoke(m_StoreController.products);
     }
 
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
-        LDebug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+        Log.TraceInfo("OnInitializeFailed InitializationFailureReason:" + error);
     }
 
     //购买不同商品结束后的处理方法 对应定义的商品
@@ -495,7 +495,7 @@ public class Purchaser : Singleton<Purchaser>
             // A consumable product has been purchased by this user.
             if (String.Equals(args.purchasedProduct.definition.id, prod.Value.BuyID, StringComparison.Ordinal))
             {
-                LDebug.Log(string.Format("ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id));
+                Log.TraceInfo(string.Format("ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id));
 
                 ProcessPurchaseEventHandler?.Invoke(prod.Value.BuyID);
 
@@ -513,7 +513,7 @@ public class Purchaser : Singleton<Purchaser>
             }
             else if (!string.IsNullOrEmpty(prod.Value.AlternativeBuyID) && String.Equals(args.purchasedProduct.definition.id, prod.Value.AlternativeBuyID, StringComparison.Ordinal))
             {
-                LDebug.Log(string.Format("ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id));
+                Log.TraceInfo(string.Format("ProcessPurchase: Succeed : '{0}'", args.purchasedProduct.definition.id));
 
                 ProcessPurchaseEventHandler?.Invoke(prod.Value.AlternativeBuyID);
 
@@ -531,7 +531,7 @@ public class Purchaser : Singleton<Purchaser>
             }
         }
 
-        LDebug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
+        Log.TraceInfo(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));
 
         // Return a flag indicating whether this product has completely been received, or if the application needs 
         // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
@@ -543,7 +543,7 @@ public class Purchaser : Singleton<Purchaser>
     {
         // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 
         // this reason with the user to guide their troubleshooting actions.
-        LDebug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
+        Log.TraceInfo(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 
     #endregion

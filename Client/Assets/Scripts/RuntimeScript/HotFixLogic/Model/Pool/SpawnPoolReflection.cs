@@ -36,7 +36,7 @@ namespace FrameworkSys
         /// <param name="sp"></param>
         public static void SpawnReflection( SpawnPool sp )
         {
-            LDebug.Log("成功反射调用执行 SpawnPoolReflection -> SpawnReflection");
+            Log.TraceInfo("成功反射调用执行 SpawnPoolReflection -> SpawnReflection");
 
             RsLoadManager.Instance.UseSpawnPool = false;
             var spawnConfigs = Configs.SpawnConfigDict;

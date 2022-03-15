@@ -71,7 +71,7 @@ namespace LitFramework
 
         public void Shake( VibrateState vibrateState )
         {
-            LDebug.Log( "[设置]->震动 "+ vibrateState );
+            Log.TraceInfo( "[设置]->震动 "+ vibrateState );
             switch ( vibrateState )
             {
                 case VibrateState.Softly:
@@ -106,7 +106,7 @@ namespace LitFramework
         /// <param name="repeat">-1不循环 2=无限循环</param>
         public void Shake( long[] pattern, int repeat = -1 )
         {
-            LDebug.Log( "[设置]->震动 " );
+            Log.TraceInfo( "[设置]->震动 " );
 
             _javaObject.Call( "UnityCallShake", pattern, repeat );
         }

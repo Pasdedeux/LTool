@@ -296,7 +296,7 @@ public class RegisterUIWindow : EditorWindow
             isDirty = false;
 
             EditorUtility.ClearProgressBar();
-            LDebug.Log(" 成功生成UI预制件! ");
+            Log.TraceInfo(" 成功生成UI预制件! ");
 
             if (!FrameworkConfig.Instance.UseHotFixMode)
             {

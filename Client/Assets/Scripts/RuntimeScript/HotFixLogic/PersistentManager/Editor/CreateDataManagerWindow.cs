@@ -253,7 +253,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         //}
         csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("本地数据"+ aName + m_LocalDataSuffix + "创建完成");
+        Log.TraceInfo("本地数据"+ aName + m_LocalDataSuffix + "创建完成");
     }
    
     private static void CreateConfigData(CSWriteTool csWrite, string aName)
@@ -292,7 +292,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine(" public static {0} Instance;", aName+ m_ConfigDataSuffix);
         csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("配置数据"+ aName + m_ConfigDataSuffix+"创建完成");
+        Log.TraceInfo("配置数据"+ aName + m_ConfigDataSuffix+"创建完成");
     }
     private static void CreateManager()
     {
@@ -352,7 +352,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         csWrite.EndBracket();
         csWrite.Save(managerFilePath);
-        LDebug.Log("管理" + aName + m_ManagerSuffix+"创建完成");
+        Log.TraceInfo("管理" + aName + m_ManagerSuffix+"创建完成");
     }
 
     [MenuItem(@"Assets/本地数据/更新", priority = 0)]
@@ -598,7 +598,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(filePath);
-        LDebug.Log("本地数据"+m_DataManagerName+"跟新完成");
+        Log.TraceInfo("本地数据"+m_DataManagerName+"跟新完成");
     }
     private static void SetEditorCS(CSWriteTool csWrite)
     {
@@ -698,7 +698,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("本地数据工具类"+ m_LocalDataToolWindowName+"跟新完成");
+        Log.TraceInfo("本地数据工具类"+ m_LocalDataToolWindowName+"跟新完成");
     }
 
     private static void SetConfigEditorCS(CSWriteTool csWrite)
@@ -784,6 +784,6 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("配置数据工具"+ m_ConfigToolWindowName + "跟新完成");
+        Log.TraceInfo("配置数据工具"+ m_ConfigToolWindowName + "跟新完成");
     }
 }

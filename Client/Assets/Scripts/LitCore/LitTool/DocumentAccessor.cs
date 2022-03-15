@@ -338,7 +338,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke(uwr);
-                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //Log.TraceInfo( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -371,7 +371,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke(uwr.downloadHandler.text);
-                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //Log.TraceInfo( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -405,7 +405,7 @@ namespace LitFramework.LitTool
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log(" >Load data : \n" + uwr.downloadHandler.text);
+                        Log.TraceInfo(" >Load data : \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr.downloadHandler.text);
                         return;
                     }
@@ -442,7 +442,7 @@ namespace LitFramework.LitTool
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log(" >Received: \n" + uwr.downloadHandler.text);
+                        Log.TraceInfo(" >Received: \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr);
                         return;
                     }
@@ -491,7 +491,7 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static string WWWLoadingWithWaiting(string wwwFilePath, Action<WWW> callBack = null)
         {
-            LDebug.Log(wwwFilePath);
+            Log.TraceInfo(wwwFilePath);
             string resutl = null;
             WWW www = new WWW(wwwFilePath);
             while (!www.isDone) { }
@@ -535,7 +535,7 @@ namespace LitFramework.LitTool
             {
                 var result = FTPDownload(ftpIP + configsPathsList[i], userName: name, password: password);
                 DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPathsList[i], false), result);
-                LDebug.Log(">>>" + configsPathsList[i] + result.Count());
+                Log.TraceInfo(">>>" + configsPathsList[i] + result.Count());
             }
         }
         /// <summary>
@@ -549,7 +549,7 @@ namespace LitFramework.LitTool
         {
             var result = FTPDownload(ftpIP + configsPath, userName: name, password: password);
             DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPath, false), result);
-            LDebug.Log(">>>" + configsPath + result.Count());
+            Log.TraceInfo(">>>" + configsPath + result.Count());
         }
 
         private byte[] FTPDownload(string ftpUrl, string savePath = "", string userName = "", string password = "")
@@ -571,14 +571,14 @@ namespace LitFramework.LitTool
             if (!string.IsNullOrEmpty(savePath))
             {
                 webResponse = request.GetResponse();
-                LDebug.Log("FTP连接状态: " + webResponse);
+                Log.TraceInfo("FTP连接状态: " + webResponse);
                 DownloadAndSave(webResponse, savePath);
                 return null;
             }
             else
             {
                 webResponse = request.GetResponse();
-                LDebug.Log("FTP连接状态: " + webResponse);
+                Log.TraceInfo("FTP连接状态: " + webResponse);
                 return DownloadAsbyteArray(webResponse);
             }
         }

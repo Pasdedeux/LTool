@@ -51,12 +51,12 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         private static void XlsxToCSV()
         {
-            LDebug.Log("配置文件==>CSV  开始!", LogColor.yellow);
+            Log.TraceInfo("配置文件==>CSV  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Directory.GetParent(Application.dataPath).Parent.FullName.Replace("\\", "/")+"/";
             ExcelExport.Xlsx_2_CSV(0, FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件==>CSV  成功!", LogColor.green);
+            Log.TraceInfo("配置文件==>CSV  成功!", LogColor.green);
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif
@@ -70,12 +70,12 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void CsvToCs()
         {
-            LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
+            Log.TraceInfo("配置文件==>代码  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Directory.GetParent( Application.dataPath).Parent.FullName.Replace("\\", "/") + "/";
             ExcelExport.Xlsx_2_CsvCs(FrameworkConfig.Instance.UseHotFixMode, 0, FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件==>代码  成功!", LogColor.green);
+            Log.TraceInfo("配置文件==>代码  成功!", LogColor.green);
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif
@@ -86,12 +86,12 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void Csv_2_Sql()
         {
-            LDebug.Log("配置文件==>CSV  开始!", LogColor.yellow);
+            Log.TraceInfo("配置文件==>CSV  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Directory.GetParent(Application.dataPath).Parent.FullName.Replace("\\", "/") + "/";
             ExcelExport.XlsxToSQLite(0, FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件==>CSV  成功!", LogColor.green);
+            Log.TraceInfo("配置文件==>CSV  成功!", LogColor.green);
 
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
@@ -104,12 +104,12 @@ namespace LitFrameworkEditor.EditorExtended
 #endif
         public static void Csv_2_SqlCs()
         {
-            LDebug.Log("配置文件==>代码  开始!", LogColor.yellow);
+            Log.TraceInfo("配置文件==>代码  开始!", LogColor.yellow);
 
             ExcelExport.ProjectPath = Directory.GetParent(Application.dataPath).Parent.FullName.Replace("\\", "/") + "/";
             ExcelExport.XlsxToSQLiteCs(FrameworkConfig.Instance.UseHotFixMode, 0, FrameworkConfig.Instance.configs_suffix);
 
-            LDebug.Log("配置文件==>代码  成功!", LogColor.green);
+            Log.TraceInfo("配置文件==>代码  成功!", LogColor.green);
 #if UNITY_EDITOR
             AssetDatabase.Refresh();
 #endif

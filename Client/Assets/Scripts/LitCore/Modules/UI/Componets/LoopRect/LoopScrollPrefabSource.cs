@@ -41,7 +41,7 @@ namespace UnityEngine.UI
             }
             ScrollElementDict[insID][trans] = ExecuteTypeScript();
             ScrollElementDict[insID][trans].RegisterEvent(scrollRect, trans);
-            //LDebug.Log("赋值ID " + idx);
+            //Log.TraceInfo("赋值ID " + idx);
             ScrollElementDict[insID][trans].index = idx;
             ScrollElementDict[insID][trans].SetElement();
         }

@@ -134,7 +134,7 @@ public class ADManager : Singleton<ADManager>, IManager
         InterstitialPlayEvent?.Invoke(succ);
         InterstitialPlayEvent = null;
 
-        LDebug.Log("Interstitial Show Status: " + succ + "! ");
+        Log.TraceInfo("Interstitial Show Status: " + succ + "! ");
     }
 
     private void InterstitialLoadEventHandler(bool succ)
@@ -142,7 +142,7 @@ public class ADManager : Singleton<ADManager>, IManager
         InterstitialLoadEvent?.Invoke(succ);
         InterstitialLoadEvent = null;
 
-        LDebug.Log("Interstitial Load Status: " + succ + "! ");
+        Log.TraceInfo("Interstitial Load Status: " + succ + "! ");
     }
 
     #endregion
@@ -157,7 +157,7 @@ public class ADManager : Singleton<ADManager>, IManager
         RewardPlayEventHandler?.Invoke(succ);
         RewardPlayEventHandler = null;
 
-        LDebug.Log("Reward Show Status " + succ);
+        Log.TraceInfo("Reward Show Status " + succ);
     }
 
     private void RewardCloseEventHandler(bool succ)
@@ -168,7 +168,7 @@ public class ADManager : Singleton<ADManager>, IManager
         RewardShutDownEventHandler?.Invoke(succ);
         RewardShutDownEventHandler = null;
 
-        LDebug.Log("Reward Close Status " + succ);
+        Log.TraceInfo("Reward Close Status " + succ);
     }
 
     #endregion

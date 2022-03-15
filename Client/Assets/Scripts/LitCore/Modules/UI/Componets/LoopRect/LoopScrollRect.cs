@@ -726,7 +726,7 @@ namespace UnityEngine.UI
         {
             RectTransform nextItem = null;
 
-            //LDebug.Log("<>" + deletedItemTypeStart + "<>" + deletedItemTypeEnd);
+            //Log.TraceInfo("<>" + deletedItemTypeStart + "<>" + deletedItemTypeEnd);
 
             if (deletedItemTypeStart > 0)
             {

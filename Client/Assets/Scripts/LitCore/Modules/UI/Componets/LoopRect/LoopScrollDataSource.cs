@@ -32,7 +32,7 @@ namespace UnityEngine.UI
 
         public override void ProvideData(LoopScrollRect sr, int idx)
         {
-            LDebug.Log($"  UI元件： {sr.name}以下子对象Index {idx}更新");
+            Log.TraceInfo($"  UI元件： {sr.name}以下子对象Index {idx}更新");
         }
     }
 }

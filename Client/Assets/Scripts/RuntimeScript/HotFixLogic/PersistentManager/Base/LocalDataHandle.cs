@@ -21,13 +21,13 @@ public static class LocalDataHandle
     {
         string aName = typeof( T ).ToString();
 
-        //  LDebug.Log(aName + "------------------LoadData");
+        //  Log.TraceInfo(aName + "------------------LoadData");
         string localTextPath = AssetPathManager.Instance.GetPersistentDataPath( aName + ".bin", false );
         if ( !File.Exists( localTextPath ) )
         {
             return new T();
         }
-        //LDebug.Log(">>> LOAD SAVE DATA");
+        //Log.TraceInfo(">>> LOAD SAVE DATA");
         T tObject = LitJson.JsonMapper.ToObject<T>( DocumentAccessor.ReadFile( localTextPath ) );
         return tObject;
     }
@@ -42,7 +42,7 @@ public static class LocalDataHandle
     {
         string aName = typeof(T).ToString();
 
-        //  LDebug.Log(aName + "------------------LoadData");
+        //  Log.TraceInfo(aName + "------------------LoadData");
         string localTextPath;
         
         if (LitFramework.FrameworkConfig.Instance.UsePersistantPath)
@@ -58,7 +58,7 @@ public static class LocalDataHandle
         {
             return new T();
         }
-        //LDebug.Log(">>> LOAD SAVE DATA");
+        //Log.TraceInfo(">>> LOAD SAVE DATA");
         T tObject = LitJson.JsonMapper.ToObject<T>(DocumentAccessor.ReadFile(localTextPath));
         return tObject;
     }

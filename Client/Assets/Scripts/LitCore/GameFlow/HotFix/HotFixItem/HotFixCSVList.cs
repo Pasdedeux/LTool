@@ -65,7 +65,7 @@ namespace Assets.Scripts.Module.HotFix
 
         public IEnumerator HotFixExecute()
         {
-            LDebug.Log("开始检测更新：" + CONFIG_NAME);
+            Log.TraceInfo("开始检测更新：" + CONFIG_NAME);
             //1、下载最新的资源配置信息
             bool canGoFurther = true;
             string wrongFileName = string.Empty;
@@ -82,11 +82,11 @@ namespace Assets.Scripts.Module.HotFix
                 string remoteContent = null;
                 byte[] contentByteArr = null;
 
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 //远程主配置文件获取
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
@@ -118,23 +118,23 @@ namespace Assets.Scripts.Module.HotFix
                 //{
                 //    FileInfo fileInfo = new FileInfo( AssetPathManager.Instance.GetPersistentDataPath( item, false ) );
                 //    if ( fileInfo.Exists ) fileInfo.Delete();
-                //    LDebug.Log( ">>>Delete " + item, LogColor.red );
-                //    LDebug.Log( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ), LogColor.red );
+                //    Log.TraceInfo( ">>>Delete " + item, LogColor.red );
+                //    Log.TraceInfo( ">>>Delete Result " + DocumentAccessor.IsExists( AssetPathManager.Instance.GetPersistentDataPath( item, false ) ), LogColor.red );
                 //}
 
                 //for ( int w = 0; w < str.Length; w++ )
                 //{
-                //    LDebug.Log( "Remote update..." + str[ w ] + "开始读取" );
+                //    Log.TraceInfo( "Remote update..." + str[ w ] + "开始读取" );
                 //    yield return DocumentAccessor.ILoadAsset( FrameworkConfig.Instance.RemoteUrlConfig + str[ w ], ( UnityWebRequest e ) =>
                 //    {
-                //        LDebug.Log( "Remote update..." + str[ w ] + "读取完成", LogColor.yellow );
+                //        Log.TraceInfo( "Remote update..." + str[ w ] + "读取完成", LogColor.yellow );
                 //        DocumentAccessor.SaveAsset2LocalFile( AssetPathManager.Instance.GetPersistentDataPath( str[ w ], false ), e.downloadHandler.data );
                 //    } );
                 //}
 
                 ////更新文档
                 //DocumentAccessor.SaveAsset2LocalFile( localFilePath, contentByteArr );
-                //LDebug.Log( "检测更新完成：" + CONFIG_NAME );
+                //Log.TraceInfo( "检测更新完成：" + CONFIG_NAME );
 
                 //本地配置表默认增量更新。修改为增量更新后，后续的逻辑跟HOTFIXAB是一样的
                 Dictionary<string, ABVersion> remoteABVersionsDic = ResolveABContent(remoteContent);
@@ -146,8 +146,8 @@ namespace Assets.Scripts.Module.HotFix
                 {
                     FileInfo fileInfo = new FileInfo(AssetPathManager.Instance.GetPersistentDataPath(item.Key, false));
                     if (fileInfo.Exists) fileInfo.Delete();
-                    LDebug.Log(">>>Delete " + item.Key, LogColor.red);
-                    LDebug.Log(">>>Delete Result " + DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item.Key, false)), LogColor.red);
+                    Log.TraceInfo(">>>Delete " + item.Key, LogColor.red);
+                    Log.TraceInfo(">>>Delete Result " + DocumentAccessor.IsExists(AssetPathManager.Instance.GetPersistentDataPath(item.Key, false)), LogColor.red);
                 }
 
                 //需要更新的对象：可以根据需求拓展对version的使用规则。
@@ -155,10 +155,10 @@ namespace Assets.Scripts.Module.HotFix
                 var toUpdate = remoteABVersionsDic.Where(a => !localABVersionsDic.ContainsKey(a.Key) || a.Value.Version > localABVersionsDic[a.Key].Version);
                 foreach (var item in toUpdate)
                 {
-                    LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key + " 开始读取", LogColor.yellow);
+                    Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key + " 开始读取", LogColor.yellow);
                     yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + "/" + item.Key, (UnityWebRequest e) =>
                    {
-                       LDebug.Log("Remote update..." + item.Key + "读取完成", LogColor.yellow);
+                       Log.TraceInfo("Remote update..." + item.Key + "读取完成", LogColor.yellow);
                        DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(item.Key, false), e.downloadHandler.data);
                    }, (e) =>
                    {
@@ -180,7 +180,7 @@ namespace Assets.Scripts.Module.HotFix
 
                 //更新文档
                 DocumentAccessor.SaveAsset2LocalFile(localFilePath, contentByteArr);
-                LDebug.Log("检测更新完成：" + CONFIG_NAME);
+                Log.TraceInfo("检测更新完成：" + CONFIG_NAME);
             }
         }
 

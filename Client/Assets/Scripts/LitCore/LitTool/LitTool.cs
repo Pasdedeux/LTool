@@ -91,7 +91,7 @@ namespace LitFramework.LitTool
                 if (_delayFuncTimeCouting >= _delayFuncWaitTimeMax)
                 {
                     _delayFuncTimeCouting = 0f;
-                    //LDebug.Log( DelayFuncRealEvent?.GetInvocationList().Length );
+                    //Log.TraceInfo( DelayFuncRealEvent?.GetInvocationList().Length );
 
                     DelayFuncEvent?.Invoke(Time.time);
                     DelayFuncRealEvent?.Invoke(Time.unscaledTime);

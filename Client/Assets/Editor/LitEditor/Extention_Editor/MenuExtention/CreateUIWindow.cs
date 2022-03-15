@@ -1399,7 +1399,7 @@ public class CreateUIWindow : OdinEditorWindow
         cSWrite.StartBracket();
         foreach (FileInfo fileInfo in files)
         {
-            LDebug.Log(fileInfo.Name);
+            Log.TraceInfo(fileInfo.Name);
             if ("Canvas_Loading.prefab".Equals(fileInfo.Name))
             {
                 continue;

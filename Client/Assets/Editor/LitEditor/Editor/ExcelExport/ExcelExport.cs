@@ -629,9 +629,9 @@ namespace Litframework.ExcelTool
             {
                 ConfigsNamesTemplate cnt = new ConfigsNamesTemplate();
 
-                List<FileInfo> fileInfos = new List<FileInfo>(13);
-                GetAllFileInfoInSubDir(fileInfos, theFolder);
-                
+                //List<FileInfo> fileInfos = new List<FileInfo>(13);
+                var fileInfos = theFolder.GetFiles("*.xlsx", SearchOption.AllDirectories);//GetAllFileInfoInSubDir(fileInfos, theFolder);
+
                 //对文件进行遍历
                 foreach (var nextFile in fileInfos)
                 {

@@ -26,6 +26,9 @@ public class EditorUse
     //初始化类时,注册事件处理函数
     static EditorUse()
     {
+        Log.ILog = new UnityLogger();
+        Options.Instance = new Options();
+
         #region Build/Build UI功能
         //放到这里是因为Dotween效果无法包含在库中
 

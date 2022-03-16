@@ -834,7 +834,7 @@ namespace UnityEngine.UI
             BeyongdDisplay = 2
         }
 
-        public NativeSizeType ImageSizeType= NativeSizeType.ShowAll;
+        public NativeSizeType ImageSizeType= NativeSizeType.PictureSize;
         /// <summary>
         /// Adjusts the image size to make it pixel-perfect.
         /// </summary>

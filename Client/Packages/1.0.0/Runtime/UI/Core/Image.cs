@@ -831,7 +831,8 @@ namespace UnityEngine.UI
             /// <summary>
             /// ≥¨≥ˆœ‘ æ
             /// </summary>
-            BeyongdDisplay = 2
+            BeyongdDisplay = 2,
+
         }
 
         public NativeSizeType ImageSizeType= NativeSizeType.PictureSize;
@@ -849,8 +850,8 @@ namespace UnityEngine.UI
                 float h = activeSprite.rect.height / pixelsPerUnit;
                 if(ImageSizeType == NativeSizeType.ShowAll)
                 {
-                    float wRatio = w / rectTransform.rect.width;
-                    float hRatio = h / rectTransform.rect.height;
+                    float wRatio = w / m_FixdWidth;
+                    float hRatio = h / m_FixdHeight;
                     float _ratio = Mathf.Max(wRatio, hRatio);
                     w = w / _ratio;
                     h = h / _ratio;
@@ -858,8 +859,8 @@ namespace UnityEngine.UI
                 }
                 else if(ImageSizeType == NativeSizeType.BeyongdDisplay)
                 {
-                    float wRatio = w / rectTransform.rect.width;
-                    float hRatio = h / rectTransform.rect.height;
+                    float wRatio = w / m_FixdWidth;
+                    float hRatio = h / m_FixdHeight;
                     float _ratio = Mathf.Min(wRatio, hRatio);
                     w = w / _ratio;
                     h = h / _ratio;
@@ -868,12 +869,12 @@ namespace UnityEngine.UI
                 {
                     if(rectTransform.anchorMax.x!= rectTransform.anchorMin.x)
                     {
-                        float parentWith = rectTransform.rect.width - rectTransform.sizeDelta.x;
+                        float parentWith = m_FixdWidth - m_FixdSizeDelta.x;
                         w = w - parentWith;
                     }
                     if (rectTransform.anchorMax.y != rectTransform.anchorMin.y)
                     {
-                        float parentHeight = rectTransform.rect.height - rectTransform.sizeDelta.y;
+                        float parentHeight = m_FixdHeight - m_FixdSizeDelta.y;
                         h = h - parentHeight;
                     }
                     rectTransform.sizeDelta = new Vector2(w, h);
@@ -881,13 +882,21 @@ namespace UnityEngine.UI
                 }
                 else
                 {
-                    Vector2 t = rectTransform.offsetMax;
-                    t = rectTransform.offsetMin;
                     rectTransform.sizeDelta = new Vector2(w, h);
                 }
                     
                 SetAllDirty();
             }
+        }
+
+        private float m_FixdWidth;
+        private float m_FixdHeight;
+        private Vector2 m_FixdSizeDelta;
+        public void SetFixdSize()
+        {
+            m_FixdWidth = rectTransform.rect.width;
+            m_FixdHeight = rectTransform.rect.height;
+            m_FixdSizeDelta = rectTransform.sizeDelta;
         }
         /// <summary>
         /// Update the UI renderer mesh.
@@ -928,7 +937,11 @@ namespace UnityEngine.UI
                 m_Tracked = true;
             }
         }
-
+        protected override void Awake()
+        {
+            base.Awake();
+            SetFixdSize();
+        }
         protected override void OnEnable()
         {
             base.OnEnable();

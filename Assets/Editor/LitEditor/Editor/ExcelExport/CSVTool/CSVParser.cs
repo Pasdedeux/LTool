@@ -232,21 +232,27 @@ namespace Litframework.ExcelTool
                 }
                 else if( _type[ i ].Contains( "Dictionary<" ) )
                 {
-                    int stb = _type[ i ].IndexOf( '<' );
-                    int ste = _type[ i ].IndexOf( '>' );
-                    string[] subtype = _type[ i ].Substring( stb + 1 , ste - stb - 1 ).Split( ',' );
-                    CSString.Add( string.Format( "item.{0} = new Dictionary<{1}, {2}>();" , _attribute[ i ] , subtype[ 0 ] , subtype[ 1 ] ) );
-                    string substrName = string.Format( "{0}_Array" , _attribute[ i ] );
-                    CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))",  string.Format("reader.GetData({0}, i)", i)));
+                    int stb = _type[i].IndexOf('<');
+                    int ste = _type[i].IndexOf('>');
+                    string[] subtype = _type[i].Substring(stb + 1, ste - stb - 1).Split(',');
+                    CSString.Add(string.Format("item.{0} = new Dictionary<{1}, {2}>();", _attribute[i], subtype[0], subtype[1]));
+                    string substrName = string.Format("{0}_Array", _attribute[i]);
+                    CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))", string.Format("reader.GetData({0}, i)", i)));
                     CSString.Add("{");
-                    CSString.Add( string.Format( "string[] {0} = {1}.Split(';');" , substrName , string.Format( "reader.GetData({0}, i)" , i ) ) );
-                    CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
-                    CSString.Add( "{" );
-                    CSString.Add( string.Format( "string[] subArray = {0}[j].Split('|');" , substrName ) );
-                    CSString.Add( string.Format( "item.{0}.Add({1}, {2});" , _attribute[ i ] , 
-                        ParseBaseType( subtype[ 0 ] , "subArray[0]", ref _needToParseFlag, out _paramName) , 
-                        ParseBaseType( subtype[ 1 ] , "subArray[1]", ref _needToParseFlag, out _paramName) ) );
-                    CSString.Add( "}" );
+                    CSString.Add(string.Format("string[] {0} = {1}.Split(';');", substrName, string.Format("reader.GetData({0}, i)", i)));
+                    CSString.Add(string.Format("for (int j = 0; j < {0}.Length; j++)", substrName));
+                    CSString.Add("{");
+                    CSString.Add(string.Format("string[] subArray = {0}[j].Split('|');", substrName));
+
+                    string paramName1, paramName2;
+                    var para1 = ParseBaseType(subtype[0], "subArray[0]", ref _needToParseFlag, out paramName1);
+                    var para2 = ParseBaseType(subtype[1], "subArray[1]", ref _needToParseFlag, out paramName2);
+
+                    CSString.Add($"var {paramName1} = {para1};");
+                    CSString.Add($"var {paramName2} = {para2};");
+                    CSString.Add(string.Format("item.{0}.Add({1}, {2});", _attribute[i], paramName1, paramName2));
+
+                    CSString.Add("}");
                     CSString.Add("}");
                 }
                 else

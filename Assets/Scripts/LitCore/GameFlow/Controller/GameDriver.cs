@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitFramework.Singleton;
 
 /// <summary>
 /// 框架驱动器。提供Update FixedUpdate LateUpdate驱动

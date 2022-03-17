@@ -26,6 +26,7 @@ using LitFramework.Mono;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using LitFramework.Singleton;
 using UnityEngine.UI;
 
 /// <summary>

@@ -30,6 +30,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using LitFramework.Singleton;
 
 /// <summary>
 /// 总启动器。
@@ -72,6 +73,10 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         SpawnManager.Instance.Install();
         //新手引导模块
         GuideShaderController.Instance.Install();
+
+#if IAP
+        PurchaserDataModel.Instance.Install();
+#endif
 
         //最后启动自定义模块
         afterExecuteFunc?.Invoke();

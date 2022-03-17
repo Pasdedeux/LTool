@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Singleton;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;

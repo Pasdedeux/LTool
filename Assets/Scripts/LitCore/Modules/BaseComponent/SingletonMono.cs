@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace LitFramework
+namespace LitFramework.Singleton
 {
     /// <summary>
     /// 组件单例基类

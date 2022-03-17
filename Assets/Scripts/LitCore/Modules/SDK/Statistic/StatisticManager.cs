@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using LitFramework;
 using LitFramework.Base;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts
 {

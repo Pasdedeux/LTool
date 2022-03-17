@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts.Module.HotFix
 {

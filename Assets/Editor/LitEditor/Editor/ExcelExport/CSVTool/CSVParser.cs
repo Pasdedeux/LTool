@@ -210,20 +210,38 @@ namespace Litframework.ExcelTool
                         CSString.Add("{");
                         CSString.Add( string.Format( "string[] {0} = {1}[j].Split('|');" , usubstrName , substrName ) );
 
-                        CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , usubtype ) );
+                        //CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , usubtype ) );
 
                         CSString.Add( string.Format( "for (int k = 0; k < {0}.Length; k++)" , usubstrName ) );
                         CSString.Add( "{" );
-                        CSString.Add( string.Format( "{0}.Add({1});" , usublstname , 
-                            ParseBaseType( usubtype , string.Format( "{0}[k]" , usubstrName ), ref _needToParseFlag, out _paramName) ) );
+
+
+                        string paramName1;
+                        var para1 = ParseBaseType(usubtype, string.Format("{0}[k]", usubstrName), ref _needToParseFlag, out paramName1);
+                        if (!_needToParseFlag)
+                            CSString.Add($"var {paramName1} = {para1};");
+                        else
+                            CSString.Add($"{para1};");
+                        CSString.Add(string.Format("{0}.Add({1});", usublstname, paramName1));
+
+
                         CSString.Add( "}" ); 
                         CSString.Add("}");
+
                         CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , usublstname ) );
                     }
                     else
                     {
-                        CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , 
-                            ParseBaseType( subtype , string.Format( "{0}[j]" , substrName ), ref _needToParseFlag, out _paramName) ) );
+
+
+                        string paramName1;
+                        var para1 = ParseBaseType(subtype, string.Format("{0}[j]", substrName), ref _needToParseFlag, out paramName1);
+                        if (!_needToParseFlag)
+                            CSString.Add($"var {paramName1} = {para1};");
+                        else
+                            CSString.Add($"{para1};");
+
+                        CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], paramName1));
 
                     }
                     CSString.Add( "}" );
@@ -246,10 +264,16 @@ namespace Litframework.ExcelTool
 
                     string paramName1, paramName2;
                     var para1 = ParseBaseType(subtype[0], "subArray[0]", ref _needToParseFlag, out paramName1);
+                    if(!_needToParseFlag)
+                        CSString.Add($"var {paramName1} = {para1};");
+                    else
+                        CSString.Add($"{para1};");
                     var para2 = ParseBaseType(subtype[1], "subArray[1]", ref _needToParseFlag, out paramName2);
+                    if (!_needToParseFlag)
+                        CSString.Add($"var {paramName2} = {para2};");
+                    else
+                        CSString.Add($"{para2};");
 
-                    CSString.Add($"var {paramName1} = {para1};");
-                    CSString.Add($"var {paramName2} = {para2};");
                     CSString.Add(string.Format("item.{0}.Add({1}, {2});", _attribute[i], paramName1, paramName2));
 
                     CSString.Add("}");
@@ -336,6 +360,7 @@ namespace Litframework.ExcelTool
             needTryParse = true;
             paramName = $"{TEMPLATE_VARS_NAME}{_template_vars_index}";
             string result = "";
+            _template_vars_index++;
             switch( type )
             {
                 case "string":
@@ -375,7 +400,6 @@ namespace Litframework.ExcelTool
                     result = "(" + type + ")Enum.Parse(typeof(" +type +")," + attribute + ")";
                     break;
             }
-            _template_vars_index++;
             return result;
         }
     }

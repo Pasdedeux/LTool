@@ -159,7 +159,7 @@ namespace Litframework.ExcelTool
                 //Client
                 if (useServer < 2)
                 {
-                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Client);
+                    createdCS = new SQLConfigsParse().CreateCS(cnt, PlatformType.Client);
                     if (!useHotFix)
                         CreateCSFile(CONFIG_CS_OUTPUT_DIR, CS_CONFIGS, createdCS);
                     else
@@ -169,7 +169,7 @@ namespace Litframework.ExcelTool
                 //Server
                 if (useServer > 0)
                 {
-                    createdCS = new ConfigsParse().CreateCS(cnt, PlatformType.Server);
+                    createdCS = new SQLConfigsParse().CreateCS(cnt, PlatformType.Server);
                     CreateCSFile(SERVER_CONFIGS_OUT_DIR, CS_CONFIGS, createdCS);
                 }
             };

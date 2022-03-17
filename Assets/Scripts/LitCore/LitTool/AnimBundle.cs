@@ -21,6 +21,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace LitFramework.LitTool
 {

@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using LitFramework.InputSystem;
+using LitFramework.Singleton;
 
 public enum LitShaderType
 {

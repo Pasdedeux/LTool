@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Android;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts.Essential.SDK
 {

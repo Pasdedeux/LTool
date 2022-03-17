@@ -14,7 +14,7 @@
 
 using UnityEngine;
 
-namespace ILRBaseModel
+namespace ILRBaseModel.Singleton
 {
     /// <summary>
     /// 组件单例基类

@@ -38,6 +38,7 @@ using UnityEngine.UI;
 using LitFramework.LitTool;
 using LitFramework.UI.Base;
 using System.Diagnostics;
+using LitFramework.Singleton;
 
 namespace LitFramework
 {

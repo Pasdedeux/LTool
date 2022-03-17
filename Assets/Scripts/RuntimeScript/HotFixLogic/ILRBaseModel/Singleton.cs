@@ -12,7 +12,7 @@
  * Copyright @ Derek Liu 2018 All rights reserved 
 *****************************************************************/
 
-namespace ILRBaseModel
+namespace ILRBaseModel.Singleton
 {
     /// <summary>
     /// 非组件单例基类

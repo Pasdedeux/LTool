@@ -32,6 +32,7 @@ using LitFramework.Base;
 using LitFramework.InputSystem;
 using LitFramework.Mono;
 using UnityEngine;
+using LitFramework.Singleton;
 
 #if IAP
 using UnityEngine.Purchasing;

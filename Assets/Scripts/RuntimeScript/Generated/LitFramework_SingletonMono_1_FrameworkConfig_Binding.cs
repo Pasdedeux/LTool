@@ -21,7 +21,7 @@ namespace ILRuntime.Runtime.Generated
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
             MethodBase method;
             Type[] args;
-            Type type = typeof(LitFramework.SingletonMono<LitFramework.FrameworkConfig>);
+            Type type = typeof(LitFramework.Singleton.SingletonMono<LitFramework.FrameworkConfig>);
             args = new Type[]{};
             method = type.GetMethod("get_Instance", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_Instance_0);
@@ -36,7 +36,7 @@ namespace ILRuntime.Runtime.Generated
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
 
 
-            var result_of_this_method = LitFramework.SingletonMono<LitFramework.FrameworkConfig>.Instance;
+            var result_of_this_method = LitFramework.Singleton.SingletonMono<LitFramework.FrameworkConfig>.Instance;
 
             object obj_result_of_this_method = result_of_this_method;
             if(obj_result_of_this_method is CrossBindingAdaptorType)

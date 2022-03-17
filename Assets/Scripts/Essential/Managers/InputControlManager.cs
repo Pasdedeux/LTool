@@ -27,6 +27,7 @@
 
 namespace LitFramework.InputSystem
 {
+    using LitFramework.Singleton;
     using UnityEngine;
     using UnityEngine.UI;
     using System.Collections;

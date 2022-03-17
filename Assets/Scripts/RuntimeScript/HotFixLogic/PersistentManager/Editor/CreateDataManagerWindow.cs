@@ -57,13 +57,9 @@ public class CreateDataManagerWindow : OdinEditorWindow
     /// </summary>
     private static string m_BaseDire = "Base/";
     /// <summary>
-    /// 本地数据cs目录
+    /// 功能数据cs目录
     /// </summary>
-    private static string m_LocalDataDire = "LocalData/";
-    /// <summary>
-    /// 数据功能管理类cs目录
-    /// </summary>
-    private static string m_ManagerDire= "Manager/";
+    private static string m_FuncDire = "Func/";
     /// <summary>
     /// 配置类cs目录
     /// </summary>
@@ -103,7 +99,11 @@ public class CreateDataManagerWindow : OdinEditorWindow
     /// <summary>
     /// 数据功能管理类基类名字
     /// </summary>
-    private static string m_BaseLocalConfigManagerName = "BaseLocalConfigManager";
+    private static string m_BaseLocalDataManagerName = "BaseLocalDataManager";
+    /// <summary>
+    /// 功能管理类基类名字
+    /// </summary>
+    private static string m_BaseFuncManagerName = "BaseFuncDataManager";
     /// <summary>
     /// 玩家账号数据类类名
     /// </summary>
@@ -121,7 +121,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
     /// </summary>
     private static string m_ConfigToolWindowName = "ConfigToolWindow";
 
-    CSWriteTool csWrite=new CSWriteTool();
+    CSWriteTool csWrite = new CSWriteTool();
     [MenuItem(@"Assets/本地数据/Build", priority = 0)]
     public static CreateDataManagerWindow OpenWindow()
     {
@@ -135,7 +135,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         {
             return false;
         }
-       
+
         return !string.IsNullOrWhiteSpace(aValue);
     }
     [ValidateInput("CheckClassNameValid", "类名不可以为空、空格")]
@@ -146,11 +146,12 @@ public class CreateDataManagerWindow : OdinEditorWindow
         IsCreateConfigData = false;
         IsCreateManager = false;
         IsCreateLocalData = false;
-        if (createType== CreateType.CreateLocalAndManager)
+        if (createType == CreateType.CreateLocalAndManager)
         {
             IsCreateManager = true;
             IsCreateLocalData = true;
-        }else if(createType == CreateType.CreateConfigData)
+        }
+        else if (createType == CreateType.CreateConfigData)
         {
             IsCreateConfigData = true;
         }
@@ -167,9 +168,9 @@ public class CreateDataManagerWindow : OdinEditorWindow
     [LabelText("创建类型")]
     [OnValueChanged("CheckCreateTypeValid")]
     public CreateType createType = CreateType.CreateLocalAndManager;
-    private bool IsCreateConfigData=false;
-    private bool IsCreateManager=true;
-    private bool IsCreateLocalData=true;
+    private bool IsCreateConfigData = false;
+    private bool IsCreateManager = true;
+    private bool IsCreateLocalData = true;
 
 
     [Button("创建脚本", ButtonSizes.Medium, ButtonHeight = 40), GUIColor(0f, 0.8f, 0f)]
@@ -180,21 +181,33 @@ public class CreateDataManagerWindow : OdinEditorWindow
             Debug.LogError("类名不可以为空");
             return;
         }
-       
-        if(IsCreateConfigData)
+
+        if (IsCreateConfigData)
         {
             CreateConfigData(csWrite, ClassName);
             SetConfigEditorCS(csWrite);
-        }else
+        }
+        else
         {
+            string _Dire = "";
+            if (IsCreateLocalData && IsCreateManager)
+            {
+                if (!Directory.Exists(m_HeadAllPath + m_FuncDire))
+                {
+                    Directory.CreateDirectory(m_HeadAllPath + m_FuncDire);
+                }
+                _Dire = ClassName + "/";
+            }
+
             if (IsCreateLocalData)
             {
-                CreateLocalData(csWrite, ClassName);
+                CreateLocalData(csWrite, ClassName, _Dire);
             }
             if (IsCreateManager)
             {
-                CreateManager(csWrite, ClassName);
+                CreateManager(csWrite, ClassName, _Dire);
             }
+
             SetEditorCS(csWrite);
         }
         UpdataLacalDataManager(csWrite);
@@ -202,42 +215,39 @@ public class CreateDataManagerWindow : OdinEditorWindow
         this.Close();
     }
 
-   
-    private static void CreateLocalData(CSWriteTool csWrite, string aName)
+
+    private static void CreateLocalData(CSWriteTool csWrite, string aName, string aDire)
     {
-        string managerFoderPath = m_HeadAllPath+m_ManagerDire;
-        if (!Directory.Exists(managerFoderPath))
-        {
-            Directory.CreateDirectory(managerFoderPath);
-        }
-        string managerFilePath = managerFoderPath + aName + m_ManagerSuffix+m_FileType;
-        string locaFoderPath = m_HeadAllPath+m_LocalDataDire;
+        string locaFoderPath = m_HeadAllPath + m_FuncDire + aDire;
         if (!Directory.Exists(locaFoderPath))
         {
             Directory.CreateDirectory(locaFoderPath);
         }
-        string localFilePath = locaFoderPath + aName + m_LocalDataSuffix+m_FileType;
+        string localFilePath = locaFoderPath + aName + m_LocalDataSuffix + m_FileType;
         csWrite.Reset();
         csWrite.WriteLine("using System.Collections;");
         csWrite.WriteLine("using Sirenix.OdinInspector;");
         csWrite.WriteLine("using System.Collections.Generic;");
         csWrite.WriteLine("using UnityEngine;");
+        csWrite.WriteLine("namespace LitFramework.Persistent");
+        csWrite.StartBracket();
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
+        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {
             aName = m_NewFileName;
-            localFilePath = locaFoderPath + aName + m_LocalDataSuffix+m_FileType;
+            localFilePath = locaFoderPath + aName + m_LocalDataSuffix + m_FileType;
         }
         if (File.Exists(localFilePath))
         {
-            LDebug.LogError(aName + m_LocalDataSuffix+m_FileType+ "已经存在");
+            LDebug.LogError(aName + m_LocalDataSuffix + m_FileType + "已经存在");
             return;
         }
 
 
-        csWrite.WriteLine("public class {0}:"+m_LocalDataBaseName, aName+ m_LocalDataSuffix);
+        csWrite.WriteLine("public class {0}:" + m_LocalDataBaseName, aName + m_LocalDataSuffix);
         csWrite.StartBracket();
         csWrite.WriteLine("");
         //if (File.Exists(managerFilePath))
@@ -252,36 +262,40 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         //}
         csWrite.EndBracket();
+        csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("本地数据"+ aName + m_LocalDataSuffix + "创建完成");
+        LDebug.Log("本地数据" + aName + m_LocalDataSuffix + "创建完成");
     }
-   
+
     private static void CreateConfigData(CSWriteTool csWrite, string aName)
     {
-       
-       
-        string locaFoderPath = m_HeadAllPath+m_ConfigDataDire;
+
+
+        string locaFoderPath = m_HeadAllPath + m_ConfigDataDire;
         if (!Directory.Exists(locaFoderPath))
         {
             Directory.CreateDirectory(locaFoderPath);
         }
-        string localFilePath = locaFoderPath + aName + m_ConfigDataSuffix+m_FileType;
+        string localFilePath = locaFoderPath + aName + m_ConfigDataSuffix + m_FileType;
         csWrite.Reset();
         csWrite.WriteLine("using System.Collections;");
         csWrite.WriteLine("using Sirenix.OdinInspector;");
         csWrite.WriteLine("using System.Collections.Generic;");
         csWrite.WriteLine("using UnityEngine;");
+        csWrite.WriteLine("namespace LitFramework.Persistent");
+        csWrite.StartBracket();
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
+        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {
             aName = m_NewFileName;
-            localFilePath = locaFoderPath + aName + m_ConfigDataSuffix+m_FileType;
+            localFilePath = locaFoderPath + aName + m_ConfigDataSuffix + m_FileType;
         }
         if (File.Exists(localFilePath))
         {
-            Debug.LogError(aName + m_ConfigDataSuffix + m_FileType+"已经存在");
+            Debug.LogError(aName + m_ConfigDataSuffix + m_FileType + "已经存在");
             return;
         }
 
@@ -289,56 +303,52 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("public class {0}", aName + m_ConfigDataSuffix);
         csWrite.StartBracket();
         csWrite.WriteLine("");
-        csWrite.WriteLine(" public static {0} Instance;", aName+ m_ConfigDataSuffix);
+        csWrite.WriteLine(" public static {0} Instance;", aName + m_ConfigDataSuffix);
+        csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("配置数据"+ aName + m_ConfigDataSuffix+"创建完成");
+        LDebug.Log("配置数据" + aName + m_ConfigDataSuffix + "创建完成");
     }
-    private static void CreateManager()
+
+    private static void CreateManager(CSWriteTool csWrite, string aName, string aDire)
     {
-        CreateManager(new CSWriteTool(), null);
-        AssetDatabase.Refresh();
-    }
-    private static void CreateManager(CSWriteTool csWrite,string aName)
-    {
-        string managerFoderPath = m_HeadAllPath+m_ManagerDire;
+        string managerFoderPath = m_HeadAllPath + m_FuncDire + aDire; ;
         if (!Directory.Exists(managerFoderPath))
         {
             Directory.CreateDirectory(managerFoderPath);
         }
-        string managerFilePath= managerFoderPath + aName + m_ManagerSuffix+m_FileType;
-        string locaFoderPath = m_HeadAllPath+m_LocalDataDire;
-        if (!Directory.Exists(locaFoderPath))
-        {
-            Directory.CreateDirectory(locaFoderPath);
-        }
-        string localFilePath = locaFoderPath + aName + m_LocalDataSuffix+m_FileType;
+        string managerFilePath = managerFoderPath + aName + m_ManagerSuffix + m_FileType;
         csWrite.Reset();
         csWrite.WriteLine("using LitFramework;");
         csWrite.WriteLine("using LitFramework.Base;");
         csWrite.WriteLine("using System.Collections;");
         csWrite.WriteLine("using System.Collections.Generic;");
         csWrite.WriteLine("using UnityEngine;");
+        csWrite.WriteLine("namespace LitFramework.Persistent");
+        csWrite.StartBracket();
         csWrite.WriteLine("/// <summary>");
         csWrite.WriteLine("/// 代码自动创建");
+        csWrite.WriteLine("/// 创建时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         if (string.IsNullOrEmpty(aName))
         {
-            aName = m_NewFileName; 
-            managerFilePath = managerFoderPath + aName + m_ManagerSuffix+m_FileType;
-            localFilePath = locaFoderPath + aName + m_LocalDataSuffix+m_FileType;
+            aName = m_NewFileName;
+            managerFilePath = managerFoderPath + aName + m_ManagerSuffix + m_FileType;
         }
-        if(File.Exists(managerFilePath))
+        if (File.Exists(managerFilePath))
         {
-            Debug.LogError(aName + m_LocalDataSuffix + m_FileType+ "已经存在");
+            Debug.LogError(aName + m_LocalDataSuffix + m_FileType + "已经存在");
             return;
         }
-        csWrite.WriteLine("public class {0} : {1}<{2}>", aName+ m_ManagerSuffix, m_BaseLocalConfigManagerName, aName + m_ManagerSuffix);
-        csWrite.StartBracket();
-        if(File.Exists(localFilePath))
+        if (!string.IsNullOrEmpty(aDire))
         {
-            csWrite.WriteLine("public {0} LocalData;", aName+m_LocalDataSuffix);
+            csWrite.WriteLine("public class {0} : {1}<{2},{3}>", aName + m_ManagerSuffix, m_BaseLocalDataManagerName, aName + m_ManagerSuffix, aName + m_LocalDataSuffix);
         }
+        else
+        {
+            csWrite.WriteLine("public class {0} : {1}<{2}>", aName + m_ManagerSuffix, m_BaseFuncManagerName, aName + m_ManagerSuffix);
+        }
+        csWrite.StartBracket();
         csWrite.WriteLine("");
         csWrite.WriteLine("");
         csWrite.WriteLine("public override void Install()");
@@ -351,8 +361,9 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
 
         csWrite.EndBracket();
+        csWrite.EndBracket();
         csWrite.Save(managerFilePath);
-        LDebug.Log("管理" + aName + m_ManagerSuffix+"创建完成");
+        LDebug.Log("管理" + aName + m_ManagerSuffix + "创建完成");
     }
 
     [MenuItem(@"Assets/本地数据/更新", priority = 0)]
@@ -367,18 +378,13 @@ public class CreateDataManagerWindow : OdinEditorWindow
     [MenuItem(@"Assets/本地数据/删除", priority = 0)]
     private static void DeleteDate()
     {
-        string path=AssetDatabase.GetAssetPath(Selection.activeInstanceID);
-        if (path.Contains(m_HeadAssetsPath+m_ConfigDataDire))
+        string path = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+        if (path.Contains(m_HeadAssetsPath + m_ConfigDataDire))
         {
             AssetDatabase.DeleteAsset(path);
             UpdataLacalDataManager();
         }
-        else if(path.Contains(m_HeadAssetsPath + m_LocalDataDire))
-        {
-            AssetDatabase.DeleteAsset(path);
-            UpdataLacalDataManager();
-        }
-        else if (path.Contains(m_HeadAssetsPath + m_ManagerDire))
+        else if (path.Contains(m_HeadAssetsPath + m_FuncDire))
         {
             AssetDatabase.DeleteAsset(path);
             UpdataLacalDataManager();
@@ -387,58 +393,107 @@ public class CreateDataManagerWindow : OdinEditorWindow
     private static void UpdataLacalDataManager(CSWriteTool csWrite)
     {
         string className = m_DataManagerName;
-        string[] ManagerFileNames = null;
-        string managerFoderPath = m_HeadAllPath+m_ManagerDire;
-        if (!Directory.Exists(managerFoderPath))
+        string _FuncPath = m_HeadAllPath + m_FuncDire;
+        if (!Directory.Exists(_FuncPath))
         {
-            Directory.CreateDirectory(managerFoderPath);
+            Directory.CreateDirectory(_FuncPath);
         }
-        else
-        {
-             ManagerFileNames = Directory.GetFiles(managerFoderPath, "*"+m_FileType);
 
-            for (int i = 0; i < ManagerFileNames.Length; i++)
+        List<string> HaveDataManagerFileNames = new List<string>();
+        List<string> NoDataManagerFileNames = new List<string>();
+        HaveDataManagerFileNames.Add(m_AccountName);
+        HaveDataManagerFileNames.Add(m_FuncRecorName);
+        string[] ManagerFileNames = Directory.GetFiles(_FuncPath, "*" + m_ManagerSuffix + m_FileType, SearchOption.AllDirectories);
+        for (int i = 0; i < ManagerFileNames.Length; i++)
+        {
+            string _Name = ManagerFileNames[i].Replace("\\", "/").Replace(_FuncPath, "").Replace(m_ManagerSuffix + m_FileType, "");
+            if (_Name.Contains("/"))
             {
-                ManagerFileNames[i] = ManagerFileNames[i].Replace(managerFoderPath, "").Replace(m_ManagerSuffix+m_FileType, "");
+                int _NameIndex = _Name.LastIndexOf('/');
+                _Name = _Name.Substring(_NameIndex + 1);
+                HaveDataManagerFileNames.Add(_Name);
+            }
+            else
+            {
+                NoDataManagerFileNames.Add(_Name);
+            }
+            ManagerFileNames[i] = _Name;
+
+        }
+
+        List<string> NoManagerDataFileNames = new List<string>();
+        string[] LocalDataFileNames = Directory.GetFiles(_FuncPath, "*" + m_LocalDataSuffix + m_FileType, SearchOption.AllDirectories);
+        for (int i = 0; i < LocalDataFileNames.Length; i++)
+        {
+            string _Name = LocalDataFileNames[i].Replace("\\", "/").Replace(_FuncPath, "").Replace(m_LocalDataSuffix + m_FileType, "");
+            if (_Name.Contains("/"))
+            {
+                int _NameIndex = _Name.LastIndexOf('/');
+                LocalDataFileNames[i] = _Name.Substring(_NameIndex + 1);
+            }
+            else
+            {
+                NoManagerDataFileNames.Add(_Name);
+                LocalDataFileNames[i] = _Name;
             }
         }
-        string configFoderPath = m_HeadAllPath+m_ConfigDataDire;
+        //再次检查是否没有Data
+        int managerIndex = 2;
+        while (managerIndex < HaveDataManagerFileNames.Count)
+        {
+            string _Name = HaveDataManagerFileNames[managerIndex];
+
+            if (!LocalDataFileNames.Contains(_Name))
+            {
+                HaveDataManagerFileNames.Remove(_Name);
+            }
+            else
+            {
+                managerIndex = managerIndex + 1;
+            }
+        }
+        //再次检查是否没有Manager
+        int dataIndex = 0;
+        while (dataIndex < NoManagerDataFileNames.Count)
+        {
+            string _Name = NoManagerDataFileNames[dataIndex];
+            if (ManagerFileNames.Contains(_Name))
+            {
+                NoManagerDataFileNames.Remove(_Name);
+            }
+            else
+            {
+                dataIndex = dataIndex + 1;
+            }
+        }
+        string configFoderPath = m_HeadAllPath + m_ConfigDataDire;
         string[] ConfigFileNames = null;
         if (!Directory.Exists(configFoderPath))
         {
             Directory.CreateDirectory(configFoderPath);
-        }else
-        {
-            ConfigFileNames = Directory.GetFiles(configFoderPath, "*"+m_FileType);
-            for (int i = 0; i < ConfigFileNames.Length; i++)
-            {
-                ConfigFileNames[i] = ConfigFileNames[i].Replace(configFoderPath, "").Replace(m_ConfigDataSuffix+m_FileType, "");
-            }
-        }
-       
-
-        string locaFoderPath = m_HeadAllPath+m_LocalDataDire;
-        string[] LocalDataFileNames = null;
-        if (!Directory.Exists(locaFoderPath))
-        {
-            Directory.CreateDirectory(locaFoderPath);
         }
         else
         {
-            LocalDataFileNames = Directory.GetFiles(locaFoderPath, "*"+m_FileType);
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
+            ConfigFileNames = Directory.GetFiles(configFoderPath, "*" + m_ConfigDataSuffix + m_FileType, SearchOption.AllDirectories);
+            for (int i = 0; i < ConfigFileNames.Length; i++)
             {
-                LocalDataFileNames[i] = LocalDataFileNames[i].Replace(locaFoderPath, "").Replace(m_LocalDataSuffix+m_FileType, "");
+                ConfigFileNames[i] = ConfigFileNames[i].Replace("\\", "/").Replace(configFoderPath, "").Replace(m_ConfigDataSuffix + m_FileType, "");
             }
         }
-        string filePath = m_HeadAllPath+m_BaseDire + className + m_FileType;
-        
-        List<string> managerFileNameList = new List<string>(ManagerFileNames);
+
+
+
+
+        string filePath = m_HeadAllPath + m_BaseDire + className + m_FileType;
+
+        List<string> managerFileNameList = new List<string>(HaveDataManagerFileNames);
 
         csWrite.Reset();
         csWrite.WriteLine("using LitFramework;");
         csWrite.WriteLine("using LitFramework.Base;");
+        csWrite.WriteLine("using ILRBaseModel.Singleton;");
         csWrite.WriteLine("using LitFramework.LitTool;");
+        csWrite.WriteLine("using LitFramework.Persistent;");
         csWrite.WriteLine("/// 代码自动创建、更新");
         csWrite.WriteLine("/// 更新时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
@@ -448,133 +503,134 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("public void Install()");
         csWrite.StartBracket();
         csWrite.WriteLine("LoadData();");
-        csWrite.WriteLine("SetPlayerData();");
         csWrite.WriteLine("CheckFristLogin();");
         csWrite.WriteLine("InstallManagers();");
         csWrite.WriteLine("GameDriver.Instance.UpdateEventHandler += SaveData;");
         csWrite.WriteLine("DataInstallEnd?.Invoke();");
         csWrite.EndBracket();
         //属性
-        csWrite.WriteLine("public "+m_AccountName+m_LocalDataSuffix+" "+m_AccountName+"Local;");
-        csWrite.WriteLine("public "+m_FuncRecorName+m_LocalDataSuffix+" "+m_FuncRecorName+"Local;");
-        if(LocalDataFileNames!=null)
+
+        csWrite.WriteLine("private ILocalDataManager[] m_LocalDataManagerArry = new ILocalDataManager[{0}];", HaveDataManagerFileNames.Count.ToString());
+        if (NoDataManagerFileNames.Count > 0)
         {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
+            csWrite.WriteLine("private IFuncDataManager[] m_FuncDataManagerArry = new IFuncDataManager[{0}];", NoDataManagerFileNames.Count.ToString());
+        }
+        if (NoManagerDataFileNames.Count > 0)
+        {
+            foreach (string _Name in NoManagerDataFileNames)
             {
-                string fileName = LocalDataFileNames[i];
-                csWrite.WriteLine("public {0} {1}Local;", fileName+m_LocalDataSuffix, fileName);
+                csWrite.WriteLine("private {0} {1}Local;", _Name + m_LocalDataSuffix, _Name);
             }
         }
-        
         //加载Data
         csWrite.WriteLine("private void LoadData()");
         csWrite.StartBracket();
-       
-        csWrite.WriteLine(m_AccountName+"Local = LocalDataHandle.LoadData<"+m_AccountName+m_LocalDataSuffix+">();");
-        csWrite.WriteLine(m_FuncRecorName+"Local = LocalDataHandle.LoadData<"+m_FuncRecorName+m_LocalDataSuffix+">();");
-
-
         csWrite.WriteLine("");
         if (ConfigFileNames != null)
         {
             for (int i = 0; i < ConfigFileNames.Length; i++)
             {
                 string fileName = ConfigFileNames[i];
-                csWrite.WriteLine("{0}.Instance= LocalDataHandle.LoadConfig<{1}>();", fileName + m_ConfigDataSuffix, fileName+m_ConfigDataSuffix);
+                csWrite.WriteLine("{0}.Instance= LocalDataHandle.LoadConfig<{1}>();", fileName + m_ConfigDataSuffix, fileName + m_ConfigDataSuffix);
+            }
+        }
+        if (NoManagerDataFileNames.Count > 0)
+        {
+            for (int i = 0; i < NoManagerDataFileNames.Count; i++)
+            {
+                string fileName = NoManagerDataFileNames[i];
+                csWrite.WriteLine("{0}Local = LocalDataHandle.LoadConfig<{1}>();", fileName, fileName + m_LocalDataSuffix);
             }
         }
         csWrite.WriteLine("");
-
-        if (LocalDataFileNames != null)
+        for (int i = 0; i < HaveDataManagerFileNames.Count; i++)
         {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
-            {
-                string fileName = LocalDataFileNames[i];
-                csWrite.WriteLine("{0}Local = LocalDataHandle.LoadData<{1}>();", fileName, fileName+m_LocalDataSuffix);
-            }
+            string fileName = HaveDataManagerFileNames[i];
+            csWrite.WriteLine("m_LocalDataManagerArry[{0}] = {1}.Instance;", i, fileName + m_ManagerSuffix);
         }
-        csWrite.EndBracket();
-        //Manager的LocalData赋值
-        csWrite.WriteLine("private void SetPlayerData()");
+        csWrite.WriteLine("");
+        for (int i = 0; i < NoDataManagerFileNames.Count; i++)
+        {
+            string fileName = NoDataManagerFileNames[i];
+            csWrite.WriteLine("m_FuncDataManagerArry[{0}] = {1}.Instance;", i, fileName + m_ManagerSuffix);
+        }
+        csWrite.WriteLine("");
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_AccountName+m_ManagerSuffix+".Instance.LocalData = "+m_AccountName+"Local;");
-        csWrite.WriteLine(m_FuncRecorName+m_ManagerSuffix+".Instance.LocalData = "+m_FuncRecorName+"Local;");
-        if (LocalDataFileNames != null)
-        {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
-            {
-                string fileName = LocalDataFileNames[i];
-                if (managerFileNameList.Contains(fileName))
-                {
-                    csWrite.WriteLine(fileName+m_ManagerSuffix+".Instance.LocalData = {0}Local;", fileName, fileName);
-                }
-            }
-        }
-       
+        csWrite.WriteLine("manager.LoadLocalData();");
         csWrite.EndBracket();
+        csWrite.EndBracket();
+
         //Manager初始化
         csWrite.WriteLine("private void InstallManagers()");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_AccountName+m_ManagerSuffix+".Instance.Install();");
-        csWrite.WriteLine(m_FuncRecorName+m_ManagerSuffix+".Instance.Install();");
-        if (ManagerFileNames != null)
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
+        csWrite.StartBracket();
+        csWrite.WriteLine("manager.Install();");
+        csWrite.EndBracket();
+        if (NoDataManagerFileNames.Count > 0)
         {
-            for (int i = 0; i < ManagerFileNames.Length; i++)
-            {
-                string fileName = ManagerFileNames[i];
-                csWrite.WriteLine("{0}Manager.Instance.Install();", fileName);
-            }
+            csWrite.WriteLine("foreach (IFuncDataManager manager in m_FuncDataManagerArry)");
+            csWrite.StartBracket();
+            csWrite.WriteLine("manager.Install();");
+            csWrite.EndBracket();
         }
         csWrite.EndBracket();
         //首次登录检测
         csWrite.WriteLine("private void CheckFristLogin()");
         csWrite.StartBracket();
-        csWrite.WriteLine("if (0L !="+m_AccountName+"Local.CreateAccountTime)");
+        csWrite.WriteLine("if (0L !=" + m_AccountName + "Manager.Instance.LocalData.CreateAccountTime)");
         csWrite.StartBracket();
         csWrite.WriteLine("return;");
         csWrite.EndBracket();
-        csWrite.WriteLine(m_AccountName+m_ManagerSuffix+".Instance.FirstIniteData();");
-        csWrite.WriteLine(m_FuncRecorName+m_ManagerSuffix+".Instance.FirstIniteData();");
-        if (ManagerFileNames != null)
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
+        csWrite.StartBracket();
+        csWrite.WriteLine("manager.FirstIniteData();");
+        csWrite.EndBracket();
+        if (NoDataManagerFileNames.Count > 0)
         {
-            for (int i = 0; i < ManagerFileNames.Length; i++)
-            {
-                string fileName = ManagerFileNames[i];
-                csWrite.WriteLine("{0}Manager.Instance.FirstIniteData();", fileName);
-            }
+            csWrite.WriteLine("foreach (IFuncDataManager manager in m_FuncDataManagerArry)");
+            csWrite.StartBracket();
+            csWrite.WriteLine("manager.FirstIniteData();");
+            csWrite.EndBracket();
         }
-        csWrite.WriteLine(m_AccountName+"Local.CreateAccountTime = LitTool.GetTimeStamp();");
+        csWrite.WriteLine(m_AccountName + "Manager.Instance.LocalData.CreateAccountTime = LitTool.GetTimeStamp();");
         csWrite.WriteLine("SaveAllFlag();");
         csWrite.WriteLine("SaveData();");
         csWrite.EndBracket();
-       
+
         //保存标记
         csWrite.WriteLine("public void SaveAllFlag()");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_AccountName+"Local.SaveFlag();");
-        csWrite.WriteLine(m_FuncRecorName+"Local.SaveFlag();");
-        if (LocalDataFileNames != null)
+        if (NoManagerDataFileNames.Count > 0)
         {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
+            for (int i = 0; i < NoManagerDataFileNames.Count; i++)
             {
-                string fileName = LocalDataFileNames[i];
-                csWrite.WriteLine("{0}Local.SaveFlag();", fileName);
+                string fileName = NoManagerDataFileNames[i];
+                csWrite.WriteLine("{0}Local.SaveFlag(); ", fileName);
             }
         }
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
+        csWrite.StartBracket();
+        csWrite.WriteLine("manager.LocalData.SaveFlag();");
+        csWrite.EndBracket();
+
         csWrite.EndBracket();
         //马上保存
         csWrite.WriteLine("public void SaveData()");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_AccountName+"Local.SaveImmit();");
-        csWrite.WriteLine(m_FuncRecorName+"Local.SaveImmit();");
-        if (LocalDataFileNames != null)
+        if (NoManagerDataFileNames.Count > 0)
         {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
+            for (int i = 0; i < NoManagerDataFileNames.Count; i++)
             {
-                string fileName = LocalDataFileNames[i];
-                csWrite.WriteLine("{0}Local.SaveImmit();", fileName);
+                string fileName = NoManagerDataFileNames[i];
+                csWrite.WriteLine("{0}Local.SaveImmit(); ", fileName);
             }
         }
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
+        csWrite.StartBracket();
+        csWrite.WriteLine("manager.LocalData.SaveImmit();");
+        csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.WriteLine("public System.Action DestroyPayerData;");
         //卸载
@@ -585,60 +641,63 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("SaveAllFlag();");
         csWrite.WriteLine("SaveData();");
 
-        csWrite.WriteLine(m_AccountName+"Local = null;");
-        csWrite.WriteLine(m_FuncRecorName+"Local= null;");
-        if (LocalDataFileNames != null)
+        csWrite.WriteLine("foreach (ILocalDataManager manager in m_LocalDataManagerArry)");
+        csWrite.StartBracket();
+        csWrite.WriteLine("manager.Uninstall();");
+        csWrite.EndBracket();
+        if (NoDataManagerFileNames.Count > 0)
         {
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
+            csWrite.WriteLine("foreach (IFuncDataManager manager in m_FuncDataManagerArry)");
+            csWrite.StartBracket();
+            csWrite.WriteLine("manager.Uninstall();");
+            csWrite.EndBracket();
+        }
+        if (NoManagerDataFileNames.Count > 0)
+        {
+            for (int i = 0; i < NoManagerDataFileNames.Count; i++)
             {
-                string fileName = LocalDataFileNames[i];
-                csWrite.WriteLine("{0}Local= null;", fileName);
+                string fileName = NoManagerDataFileNames[i];
+                csWrite.WriteLine("{0}Local = null;", fileName);
             }
         }
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(filePath);
-        LDebug.Log("本地数据"+m_DataManagerName+"跟新完成");
+        LDebug.Log("本地数据" + m_DataManagerName + "跟新完成");
     }
     private static void SetEditorCS(CSWriteTool csWrite)
     {
         string className = m_LocalDataToolWindowName;
-        string editorFoderPath = m_HeadAllPath+ m_EditorDire;
+        string editorFoderPath = m_HeadAllPath + m_EditorDire;
         if (!Directory.Exists(editorFoderPath))
         {
             Directory.CreateDirectory(editorFoderPath);
         }
-        string locaFoderPath = m_HeadAllPath+m_LocalDataDire;
-        string[] LocalDataFileNames= null;
+        string locaFoderPath = m_HeadAllPath + m_FuncDire;
+        string[] LocalDataFileNames = null;
         if (!Directory.Exists(locaFoderPath))
         {
             Directory.CreateDirectory(locaFoderPath);
-        }else
-        {
-            LocalDataFileNames = Directory.GetFiles(locaFoderPath, "*"+m_FileType);
-            for (int i = 0; i < LocalDataFileNames.Length; i++)
-            {
-                LocalDataFileNames[i] = LocalDataFileNames[i].Replace(locaFoderPath, "").Replace(m_LocalDataSuffix+m_FileType, "");
-            }
-
-        }
-
-
-
-        string configFoderPath = m_HeadAllPath+m_ConfigDataDire;
-        string[] ConfigFileNames = null;
-        if (!Directory.Exists(configFoderPath))
-        {
-            Directory.CreateDirectory(configFoderPath);
         }
         else
         {
-            ConfigFileNames = Directory.GetFiles(configFoderPath, "*"+m_FileType);
-            for (int i = 0; i < ConfigFileNames.Length; i++)
+            LocalDataFileNames = Directory.GetFiles(locaFoderPath, "*" + m_LocalDataSuffix + m_FileType, SearchOption.AllDirectories);
+            for (int i = 0; i < LocalDataFileNames.Length; i++)
             {
-                ConfigFileNames[i] = ConfigFileNames[i].Replace(configFoderPath, "").Replace(m_ConfigDataSuffix+m_FileType, "");
+                string _Name = LocalDataFileNames[i].Replace("\\", "/").Replace(locaFoderPath, "").Replace(m_LocalDataSuffix + m_FileType, "");
+                if (_Name.Contains("/"))
+                {
+                    int _NameIndex = _Name.LastIndexOf('/');
+                    LocalDataFileNames[i] = _Name.Substring(_NameIndex + 1);
+                }
+                else
+                {
+                    LocalDataFileNames[i] = _Name;
+                }
             }
+
         }
+
         Color c0 = new Color(0.1f, 0.4f, 0.8f);
         Color c1 = new Color(0f, 0.8f, 0.6f);
         csWrite.Reset();
@@ -650,6 +709,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("using System.Collections.Generic;");
         csWrite.WriteLine("using UnityEditor; ");
         csWrite.WriteLine("using UnityEngine;");
+        csWrite.WriteLine("using LitFramework.Persistent;");
         csWrite.WriteLine("/// 代码自动创建、更新");
         csWrite.WriteLine("/// 更新时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
@@ -662,56 +722,54 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 800);");
         csWrite.WriteLine(" return window;");
         csWrite.EndBracket();
-        csWrite.WriteLine("[Button(\""+m_FuncRecorName+m_LocalDataSuffix+"\", buttonSize: ButtonSizes.Large), GUIColor("+ c0 .r+ "f, "+ c0.g+ "f,"+c0.b+"f)]");
-        csWrite.WriteLine("public void Set"+m_FuncRecorName+m_LocalDataSuffix+"()");
+        csWrite.WriteLine("[Button(\"" + m_FuncRecorName + m_LocalDataSuffix + "\", buttonSize: ButtonSizes.Large), GUIColor(" + c0.r + "f, " + c0.g + "f," + c0.b + "f)]");
+        csWrite.WriteLine("public void Set" + m_FuncRecorName + m_LocalDataSuffix + "()");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_FuncRecorName+m_LocalDataSuffix+" LocalData = LocalDataHandle.LoadData<"+m_FuncRecorName+m_LocalDataSuffix+">();");
+        csWrite.WriteLine(m_FuncRecorName + m_LocalDataSuffix + " LocalData = LocalDataHandle.LoadData<" + m_FuncRecorName + m_LocalDataSuffix + ">();");
         csWrite.WriteLine("var window = OdinEditorWindow.InspectObject(LocalData);");
         csWrite.WriteLine("window.OnClose += LocalData.SaveFlag;");
         csWrite.WriteLine("window.OnClose += LocalData.SaveImmit;");
         csWrite.EndBracket();
-        csWrite.WriteLine("[Button(\""+m_AccountName+m_LocalDataSuffix+"\", buttonSize: ButtonSizes.Large),GUIColor(" + c1.r + "f, " + c1.g + "f," + c1.b + "f)]");
-        csWrite.WriteLine("public void Set"+m_AccountName+m_LocalDataSuffix+"()");
+        csWrite.WriteLine("[Button(\"" + m_AccountName + m_LocalDataSuffix + "\", buttonSize: ButtonSizes.Large),GUIColor(" + c1.r + "f, " + c1.g + "f," + c1.b + "f)]");
+        csWrite.WriteLine("public void Set" + m_AccountName + m_LocalDataSuffix + "()");
         csWrite.StartBracket();
-        csWrite.WriteLine(m_AccountName+m_LocalDataSuffix+" LocalData = LocalDataHandle.LoadData<"+m_AccountName+m_LocalDataSuffix+">();");
+        csWrite.WriteLine(m_AccountName + m_LocalDataSuffix + " LocalData = LocalDataHandle.LoadData<" + m_AccountName + m_LocalDataSuffix + ">();");
         csWrite.WriteLine("var window = OdinEditorWindow.InspectObject(LocalData);");
         csWrite.WriteLine("window.OnClose += LocalData.SaveFlag;");
         csWrite.WriteLine("window.OnClose += LocalData.SaveImmit;");
         csWrite.EndBracket();
-        if(LocalDataFileNames!=null)
+        if (LocalDataFileNames != null)
         {
             for (int i = 0; i < LocalDataFileNames.Length; i++)
             {
                 string localName = LocalDataFileNames[i];
                 Color cTemp = i % 2 == 0 ? c0 : c1;
-                csWrite.WriteLine("[Button(\"" + localName +m_LocalDataSuffix+ "\", buttonSize: ButtonSizes.Large),GUIColor(" + cTemp.r + "f, " + cTemp.g + "f," + cTemp.b + "f)]");
+                csWrite.WriteLine("[Button(\"" + localName + m_LocalDataSuffix + "\", buttonSize: ButtonSizes.Large),GUIColor(" + cTemp.r + "f, " + cTemp.g + "f," + cTemp.b + "f)]");
                 csWrite.WriteLine("public void Set{0}()", localName);
                 csWrite.StartBracket();
-                csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadData<{1}>();", localName+m_LocalDataSuffix, localName + m_LocalDataSuffix);
+                csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadData<{1}>();", localName + m_LocalDataSuffix, localName + m_LocalDataSuffix);
                 csWrite.WriteLine("var window = OdinEditorWindow.InspectObject(LocalData);");
                 csWrite.WriteLine("window.OnClose += LocalData.SaveFlag;");
                 csWrite.WriteLine("window.OnClose += LocalData.SaveImmit;");
                 csWrite.EndBracket();
             }
         }
-        
+
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("本地数据工具类"+ m_LocalDataToolWindowName+"跟新完成");
+        LDebug.Log("本地数据工具类" + m_LocalDataToolWindowName + "跟新完成");
     }
 
     private static void SetConfigEditorCS(CSWriteTool csWrite)
     {
         string className = m_ConfigToolWindowName;
-        string editorFoderPath = m_HeadAllPath+ m_EditorDire;
+        string editorFoderPath = m_HeadAllPath + m_EditorDire;
         if (!Directory.Exists(editorFoderPath))
         {
             Directory.CreateDirectory(editorFoderPath);
         }
-        
-
-        string configFoderPath = m_HeadAllPath+m_ConfigDataDire;
+        string configFoderPath = m_HeadAllPath + m_ConfigDataDire;
         string[] ConfigFileNames = null;
         if (!Directory.Exists(configFoderPath))
         {
@@ -719,10 +777,10 @@ public class CreateDataManagerWindow : OdinEditorWindow
         }
         else
         {
-            ConfigFileNames = Directory.GetFiles(configFoderPath, "*"+m_FileType);
+            ConfigFileNames = Directory.GetFiles(configFoderPath, "*" + m_ConfigDataSuffix + m_FileType, SearchOption.AllDirectories);
             for (int i = 0; i < ConfigFileNames.Length; i++)
             {
-                ConfigFileNames[i] = ConfigFileNames[i].Replace(configFoderPath, "").Replace(m_ConfigDataSuffix+m_FileType, "");
+                ConfigFileNames[i] = ConfigFileNames[i].Replace("\\", "/").Replace(configFoderPath, "").Replace(m_ConfigDataSuffix + m_FileType, "");
             }
         }
         Color c0 = new Color(0.8f, 0.1f, 0.8f);
@@ -736,15 +794,16 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("using System.Collections.Generic;");
         csWrite.WriteLine("using UnityEditor; ");
         csWrite.WriteLine("using UnityEngine;");
+        csWrite.WriteLine("using LitFramework.Persistent;");
         csWrite.WriteLine("/// 代码自动创建、更新");
         csWrite.WriteLine("/// 更新时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");
         csWrite.WriteLine("public class {0} : OdinEditorWindow", className);
         csWrite.StartBracket();
-       
+
         if (ConfigFileNames != null)
         {
-            if(ConfigFileNames.Length>1)
+            if (ConfigFileNames.Length > 1)
             {
                 csWrite.WriteLine("[MenuItem(\"本地数据 / 本地配置数据\")]");
                 csWrite.WriteLine(" public static {0} OpenWindow()", className);
@@ -760,30 +819,31 @@ public class CreateDataManagerWindow : OdinEditorWindow
                     csWrite.WriteLine("[Button(\"" + localName + m_ConfigDataSuffix + "\", buttonSize: ButtonSizes.Large),GUIColor(" + cTemp.r + "f, " + cTemp.g + "f," + cTemp.b + "f)]");
                     csWrite.WriteLine("public void Set{0}()", localName);
                     csWrite.StartBracket();
-                    csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadData<{1}>();", localName+m_ConfigDataSuffix, localName + m_ConfigDataSuffix);
+                    csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadData<{1}>();", localName + m_ConfigDataSuffix, localName + m_ConfigDataSuffix);
                     csWrite.WriteLine("var window = OdinEditorWindow.InspectObject(LocalData);");
                     csWrite.WriteLine("window.OnClose +=()=>{ LocalDataHandle.SaveConfig(LocalData);};");
                     csWrite.EndBracket();
                 }
-            }else
+            }
+            else
             {
                 int i = 0;
                 string localName = ConfigFileNames[i];
                 csWrite.WriteLine("[MenuItem(\"本地数据 / 本地配置数据\")]");
                 csWrite.WriteLine("public static void Set{0}()", localName);
                 csWrite.StartBracket();
-                csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadConfig<{1}>();", localName+m_ConfigDataSuffix, localName + m_ConfigDataSuffix);
+                csWrite.WriteLine("{0} LocalData = LocalDataHandle.LoadConfig<{1}>();", localName + m_ConfigDataSuffix, localName + m_ConfigDataSuffix);
                 csWrite.WriteLine("var window = OdinEditorWindow.InspectObject(LocalData);");
                 csWrite.WriteLine("window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 800);");
                 csWrite.WriteLine("window.OnClose +=()=>{ LocalDataHandle.SaveConfig(LocalData);};");
                 csWrite.EndBracket();
             }
-           
+
         }
 
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("配置数据工具"+ m_ConfigToolWindowName + "跟新完成");
+        LDebug.Log("配置数据工具" + m_ConfigToolWindowName + "跟新完成");
     }
 }

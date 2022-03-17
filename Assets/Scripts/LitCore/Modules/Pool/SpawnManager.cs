@@ -33,6 +33,7 @@ using LitFramework.UI.Base;
 using LitFramework.Base;
 using System.Linq;
 using UnityEngine.Assertions;
+using LitFramework.Singleton;
 
 namespace LitFramework.LitPool
 {

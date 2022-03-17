@@ -20,6 +20,7 @@ using LitFramework;
 using LitFramework.Base;
 using Assets.Scripts.Essential.Managers;
 using LitFramework.LitPool;
+using LitFramework.Singleton;
 
 public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
 {

@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using LitFramework.LitTool;
 using LitFramework;
+using LitFramework.Singleton;
 
 namespace SQLite
 {

@@ -84,22 +84,6 @@
           }
         }
       },
-      "UnityEngine.Purchasing/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.Stores/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.Stores.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "Unity.TextMeshPro/0.0.0.0": {
         "runtime": {
           "Unity.TextMeshPro.dll": {
@@ -111,70 +95,6 @@
       "UnityEngine.SharedInternalsModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.SharedInternalsModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "Purchasing.Common/0.0.0.0": {
-        "runtime": {
-          "Purchasing.Common.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.AppleCore/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.AppleCore.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.SecurityCore/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.SecurityCore.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.SecurityStub/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.SecurityStub.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.WinRTCore/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.WinRTCore.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.AppleStub/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.AppleStub.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.AppleMacosStub/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.AppleMacosStub.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.Purchasing.WinRTStub/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.Purchasing.WinRTStub.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -230,62 +150,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.Purchasing/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.Stores/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Unity.TextMeshPro/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "UnityEngine.SharedInternalsModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Purchasing.Common/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.AppleCore/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.SecurityCore/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.SecurityStub/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.WinRTCore/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.AppleStub/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.AppleMacosStub/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.Purchasing.WinRTStub/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

@@ -54,8 +54,8 @@ public partial class RobotsConfig : ProtoObject
 			item.Zone = paras2;
 			item.SceneType = reader.GetData(3, i);
 			item.Name = reader.GetData(4, i);
-			int.TryParse(reader.GetData(5, i), out int paras3);
-			item.OuterPort = paras3;
+			int.TryParse(reader.GetData(5, i), out int paras5);
+			item.OuterPort = paras5;
 			try
 			{
 				vec.Add(item.Id, item);

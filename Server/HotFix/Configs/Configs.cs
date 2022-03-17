@@ -25,12 +25,12 @@ public static partial class Configs
 	public static List<StartMachineConfig> StartMachineConfigList;
 	public static Dictionary<int, StartProcessConfig> StartProcessConfigDict;
 	public static List<StartProcessConfig> StartProcessConfigList;
-	public static Dictionary<int, UnitConfig> UnitConfigDict;
-	public static List<UnitConfig> UnitConfigList;
 	public static Dictionary<int, StartSceneConfig> StartSceneConfigDict;
 	public static List<StartSceneConfig> StartSceneConfigList;
 	public static Dictionary<int, StartZoneConfig> StartZoneConfigDict;
 	public static List<StartZoneConfig> StartZoneConfigList;
+	public static Dictionary<int, UnitConfig> UnitConfigDict;
+	public static List<UnitConfig> UnitConfigList;
 	public static void Install()
 	{
 		AIConfigList = AIConfigDict.Values.ToList();
@@ -39,8 +39,8 @@ public static partial class Configs
 		SpawnConfigList = SpawnConfigDict.Values.ToList();
 		StartMachineConfigList = StartMachineConfigDict.Values.ToList();
 		StartProcessConfigList = StartProcessConfigDict.Values.ToList();
-		UnitConfigList = UnitConfigDict.Values.ToList();
 		StartSceneConfigList = StartSceneConfigDict.Values.ToList();
 		StartZoneConfigList = StartZoneConfigDict.Values.ToList();
+		UnitConfigList = UnitConfigDict.Values.ToList();
 	}
 }

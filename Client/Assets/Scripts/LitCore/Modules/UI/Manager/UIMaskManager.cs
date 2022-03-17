@@ -16,6 +16,7 @@ using LitFramework;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using LitFramework.Singleton;
 
 /// <summary>
 /// 遮罩控制器。用于控制Image_Mask显示行为

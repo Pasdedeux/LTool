@@ -30,6 +30,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using LitFramework.Singleton;
 
 /// <summary>
 /// 总启动器。

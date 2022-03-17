@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LitFramework.Singleton;
 /// <summary>
 /// 事件管理器
 /// 

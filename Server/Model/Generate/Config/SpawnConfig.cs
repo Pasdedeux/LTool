@@ -42,8 +42,8 @@ public partial class SpawnConfig : ProtoObject
 			item.ID = paras0;
 			item.SpawnType = reader.GetData(1, i);
 			item.resPath = reader.GetData(2, i);
-			int.TryParse(reader.GetData(3, i), out int paras1);
-			item.PreloadAmount = paras1;
+			int.TryParse(reader.GetData(3, i), out int paras3);
+			item.PreloadAmount = paras3;
 			try
 			{
 				vec.Add(item.ID, item);

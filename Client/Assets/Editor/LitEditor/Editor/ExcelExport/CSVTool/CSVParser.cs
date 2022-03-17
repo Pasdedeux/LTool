@@ -48,16 +48,16 @@ namespace Litframework.ExcelTool
 
         List<string> CSString = new List<string>();
 
-        public string CreateCS( string className , string csv , PlatformType platformType )
+        public string CreateCS(string className, string csv, PlatformType platformType)
         {
             StringBuilder sb = new StringBuilder();
 
-            CSVReader reader = new CSVReader( csv );
+            CSVReader reader = new CSVReader(csv);
 
             _template_vars_index = 0;
-            _description = reader.GetRow( 0 );
-            _attribute = reader.GetRow( 1 );
-            _type = reader.GetRow( 2 );
+            _description = reader.GetRow(0);
+            _attribute = reader.GetRow(1);
+            _type = reader.GetRow(2);
 
             _className = className;
 
@@ -71,44 +71,44 @@ namespace Litframework.ExcelTool
 
         private void AddHead()
         {
-            CSString.Add( "using UnityEngine;" );
-            CSString.Add( "using System;" );
-            CSString.Add( "using System.Collections.Generic;" );
+            CSString.Add("using UnityEngine;");
+            CSString.Add("using System;");
+            CSString.Add("using System.Collections.Generic;");
             CSString.Add("using " + SPACENAME + ";");
             //CSString.Add( "#if UNITY_EDITOR" );
             //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
             //CSString.Add( "#endif" );
-            CSString.Add( "/// <summary>" );
+            CSString.Add("/// <summary>");
             CSString.Add("/// ====该类自动生成请勿手动修改====");
-            CSString.Add( "/// Author : Derek Liu" );
-            CSString.Add( "/// </summary>" );
+            CSString.Add("/// Author : Derek Liu");
+            CSString.Add("/// </summary>");
             //CSString.Add( "namespace " + spaceName );
             //CSString.Add( "{" );
             CSString.Add("[Config]");
-            CSString.Add( $"public partial class {_className} : ProtoObject" );
-            CSString.Add( "{" );
+            CSString.Add($"public partial class {_className} : ProtoObject");
+            CSString.Add("{");
         }
         private void AddBody()
         {
             //添加属性
-            for( int i = 0; i < _type.Length; i++ ) 
+            for (int i = 0; i < _type.Length; i++)
             {
                 if (!CheckValidType(_type[i])) throw new ArgumentException($"配置表 {_className} 存在不支持参数 {_type[i]} !");
 
-                _type[ i ] = CheckStringType( _type[ i ] );
-                CSString.Add( "/// <summary>" );
-                CSString.Add( string.Format( "/// {0}" , _description[ i ] ) );
-                CSString.Add( "/// </summary>" );
-                string subtype = _type[ i ];
-                if( subtype.Contains( "En_" ) )
+                _type[i] = CheckStringType(_type[i]);
+                CSString.Add("/// <summary>");
+                CSString.Add(string.Format("/// {0}", _description[i]));
+                CSString.Add("/// </summary>");
+                string subtype = _type[i];
+                if (subtype.Contains("En_"))
                 {
-                    subtype = subtype.Substring( 3 );
+                    subtype = subtype.Substring(3);
                 }
-                CSString.Add( string.Format( "public {0} {1} {{ get; private set; }}" , CheckDictType( subtype ) , _attribute[ i ] ) );
+                CSString.Add(string.Format("public {0} {1} {{ get; private set; }}", CheckDictType(subtype), _attribute[i]));
             }
             //添加方法
             //AddMethod( EnMethodType.List );
-            AddMethod( EnMethodType.Dictionary );
+            AddMethod(EnMethodType.Dictionary);
             AddParseVector3();
         }
 
@@ -138,141 +138,145 @@ namespace Litframework.ExcelTool
 
         private void AddTail()
         {
-            CSString.Add( "" );
-            CSString.Add( "}" );
+            CSString.Add("");
+            CSString.Add("}");
             //CSString.Add( "}" );
         }
 
         private void AddParseVector3()
         {
-            CSString.Add( "" );
-            CSString.Add( "/// <summary>" );
-            CSString.Add( "/// 解析Vector3" );
-            CSString.Add( "/// </summary>" );
-            CSString.Add( "/// <param name=\"string\">配置文件数据</param>" );
-            CSString.Add( "/// <returns>Vector3</returns>" );
-            CSString.Add( "static Vector3 ParseVector3(string str)" );
-            CSString.Add( "{" );
-            CSString.Add( "str = str.Substring(1, str.Length - 2);" );
-            CSString.Add( "str.Replace(\" \", \"\");" );
-            CSString.Add( "string[] splits = str.Split(',');" );
-            CSString.Add( "float x = float.Parse(splits[0]);" );
-            CSString.Add( "float y = float.Parse(splits[1]);" );
-            CSString.Add( "float z = float.Parse(splits[2]);" );
-            CSString.Add( "return new Vector3(x, y, z);" );
-            CSString.Add( "}" );
+            CSString.Add("");
+            CSString.Add("/// <summary>");
+            CSString.Add("/// 解析Vector3");
+            CSString.Add("/// </summary>");
+            CSString.Add("/// <param name=\"string\">配置文件数据</param>");
+            CSString.Add("/// <returns>Vector3</returns>");
+            CSString.Add("static Vector3 ParseVector3(string str)");
+            CSString.Add("{");
+            CSString.Add("str = str.Substring(1, str.Length - 2);");
+            CSString.Add("str.Replace(\" \", \"\");");
+            CSString.Add("string[] splits = str.Split(',');");
+            CSString.Add("float x = float.Parse(splits[0]);");
+            CSString.Add("float y = float.Parse(splits[1]);");
+            CSString.Add("float z = float.Parse(splits[2]);");
+            CSString.Add("return new Vector3(x, y, z);");
+            CSString.Add("}");
         }
 
-        private string CheckDictType( string type )
+        private string CheckDictType(string type)
         {
-            return type.Replace( "|" , "," );
+            return type.Replace("|", ",");
         }
 
-        private string CheckEnType( string type )
+        private string CheckEnType(string type)
         {
-            if( type.Contains( "En_" ) )
+            if (type.Contains("En_"))
             {
-                return type.Substring( 3 );
+                return type.Substring(3);
             }
             return type;
         }
 
-        private void AddMethod( EnMethodType mtype )
+        private void AddMethod(EnMethodType mtype)
         {
             //if ( mtype == EnMethodType.List )
             //    CSString.Add( string.Format( "private static List<{0}> vec = new List<{0}>();", _className ) );
             //else
             //    CSString.Add( string.Format( "private static Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();", CheckEnType( _type[ 0 ] ), _className ) );
 
-            CSString.Add( "" );
-            CSString.Add( "/// <summary>" );
-            CSString.Add( "/// 读取配置文件" );
-            CSString.Add( "/// </summary>" );
-            CSString.Add( "/// <param name=\"config\">配置文件数据</param>" );
-            CSString.Add( "/// <returns>数据列表</returns>" );
-            if( mtype == EnMethodType.List )
-                CSString.Add( "public static List<" + _className + "> ReturnList(string csv)" );
+            CSString.Add("");
+            CSString.Add("/// <summary>");
+            CSString.Add("/// 读取配置文件");
+            CSString.Add("/// </summary>");
+            CSString.Add("/// <param name=\"config\">配置文件数据</param>");
+            CSString.Add("/// <returns>数据列表</returns>");
+            if (mtype == EnMethodType.List)
+                CSString.Add("public static List<" + _className + "> ReturnList(string csv)");
             else
-                CSString.Add( string.Format( "public static Dictionary<{0}, {1}> ReturnDictionary(string csv)" , CheckEnType( _type[ 0 ] ) , _className ) );
-            CSString.Add( "{" );
-            if( mtype == EnMethodType.List )
-                CSString.Add( string.Format( "List<{0}> vec = new List<{0}>();" , _className ) );
+                CSString.Add(string.Format("public static Dictionary<{0}, {1}> ReturnDictionary(string csv)", CheckEnType(_type[0]), _className));
+            CSString.Add("{");
+            if (mtype == EnMethodType.List)
+                CSString.Add(string.Format("List<{0}> vec = new List<{0}>();", _className));
             else
-                CSString.Add( string.Format( "Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();" , CheckEnType( _type[ 0 ] ) , _className ) );
-            CSString.Add( "CSVReader reader = new CSVReader(csv);" );
-            CSString.Add( "for (int i = 3; i < reader.Row; i++)" );
-            CSString.Add( "{" );
-            CSString.Add( string.Format( "{0} item = new {0}();" , _className ) );
+                CSString.Add(string.Format("Dictionary<{0}, {1}> vec = new Dictionary<{0}, {1}>();", CheckEnType(_type[0]), _className));
+            CSString.Add("CSVReader reader = new CSVReader(csv);");
+            CSString.Add("for (int i = 3; i < reader.Row; i++)");
+            CSString.Add("{");
+            CSString.Add(string.Format("{0} item = new {0}();", _className));
             //中心
-            for ( int i = 0; i < _type.Length; i++ )
+            for (int i = 0; i < _type.Length; i++)
             {
-                if( _type[ i ].Contains( "En_" ) )
+                if (_type[i].Contains("En_"))
                 {
-                    string subtype = _type[ i ].Substring( 3 );
-                    CSString.Add( string.Format( "item.{0} = {1};" , _attribute[ i ] , 
-                        ParseBaseType( subtype , string.Format( "reader.GetData({0}, i)" , i ), ref _needToParseFlag, out _paramName) ) );
+                    string subtype = _type[i].Substring(3);
+                    CSString.Add(string.Format("item.{0} = {1};", _attribute[i],
+                        ParseBaseType(subtype, string.Format("reader.GetData({0}, i)", i), ref _needToParseFlag, out _paramName)));
                 }
-                else if( _type[ i ].Contains( "List<" ) )
+                else if (_type[i].Contains("List<"))
                 {
-                    int stb = _type[ i ].IndexOf( '<' );
-                    int ste = _type[ i ].Count() - 1;
-                    string subtype = _type[ i ].Substring( stb + 1 , ste - stb - 1 );
-                    string substrName = string.Format( "{0}_Array" , _attribute[ i ] );
+                    int stb = _type[i].IndexOf('<');
+                    int ste = _type[i].Count() - 1;
+                    string subtype = _type[i].Substring(stb + 1, ste - stb - 1);
+                    string substrName = string.Format("{0}_Array", _attribute[i]);
 
-                    CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , subtype ) );
+                    CSString.Add(string.Format("item.{0}= new List<{1}>();", _attribute[i], subtype));
 
                     CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))", string.Format("reader.GetData({0}, i)", i)));
                     CSString.Add("{");
                     CSString.Add(string.Format("string[] {0} = {1}.Split(';');", substrName, string.Format("reader.GetData({0}, i)", i)));
-                    CSString.Add( string.Format( "for (int j = 0; j < {0}.Length; j++)" , substrName ) );
-                    CSString.Add( "{" );
-                    if( subtype.Contains( "List<" ) )
+                    CSString.Add(string.Format("for (int j = 0; j < {0}.Length; j++)", substrName));
+                    CSString.Add("{");
+                    if (subtype.Contains("List<"))
                     {
-                        int ustb = subtype.IndexOf( '<' );
+                        int ustb = subtype.IndexOf('<');
                         int uste = subtype.Count() - 1;
-                        string usubtype = subtype.Substring( ustb + 1 , uste - ustb - 1 );//基础type
-                        string usubstrName = string.Format( "{0}_Array2" , _attribute[ i ] );//一级数组
-                        string usublstname = string.Format( "{0}_List" , _attribute[ i ] );//一级list名
-                        CSString.Add( string.Format( "List<{0}> {1} = new List<{0}>();" , usubtype , usublstname ) );
+                        string usubtype = subtype.Substring(ustb + 1, uste - ustb - 1);//基础type
+                        string usubstrName = string.Format("{0}_Array2", _attribute[i]);//一级数组
+                        string usublstname = string.Format("{0}_List", _attribute[i]);//一级list名
+                        CSString.Add(string.Format("List<{0}> {1} = new List<{0}>();", usubtype, usublstname));
                         CSString.Add(string.Format("if(!string.IsNullOrEmpty({0}))", string.Format("reader.GetData({0}, i)", i)));
                         CSString.Add("{");
-                        CSString.Add( string.Format( "string[] {0} = {1}[j].Split('|');" , usubstrName , substrName ) );
+                        CSString.Add(string.Format("string[] {0} = {1}[j].Split('|');", usubstrName, substrName));
 
-                        CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , usubtype ) );
+                        //CSString.Add( string.Format( "item.{0}= new List<{1}>();" , _attribute[ i ] , usubtype ) );
 
-                        CSString.Add( string.Format( "for (int k = 0; k < {0}.Length; k++)" , usubstrName ) );
-                        CSString.Add( "{" );
+                        CSString.Add(string.Format("for (int k = 0; k < {0}.Length; k++)", usubstrName));
+                        CSString.Add("{");
 
 
-                        var resultParse = ParseBaseType(usubtype, string.Format("{0}[k]", usubstrName), ref _needToParseFlag, out _paramName);
+                        string paramName1;
+                        var para1 = ParseBaseType(usubtype, string.Format("{0}[k]", usubstrName), ref _needToParseFlag, out paramName1);
                         if (!_needToParseFlag)
-                            CSString.Add(string.Format("{0}.Add({1});", usublstname, resultParse));
+                            CSString.Add($"var {paramName1} = {para1};");
                         else
-                        {
-                            CSString.Add($"{resultParse};");
-                            CSString.Add(string.Format("{0}.Add({1});", usublstname, _paramName));
-                        }
+                            CSString.Add($"{para1};");
+                        CSString.Add(string.Format("{0}.Add({1});", usublstname, paramName1));
 
 
-                        CSString.Add( "}" ); 
                         CSString.Add("}");
-                        CSString.Add( string.Format( "item.{0}.Add({1});" , _attribute[ i ] , usublstname ) );
+                        CSString.Add("}");
+
+                        CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], usublstname));
                     }
                     else
                     {
-                        var resultParse = ParseBaseType(subtype, string.Format("{0}[j]", substrName), ref _needToParseFlag, out _paramName);
+
+
+                        string paramName1;
+                        var para1 = ParseBaseType(subtype, string.Format("{0}[j]", substrName), ref _needToParseFlag, out paramName1);
                         if (!_needToParseFlag)
-                            CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], resultParse));
-                        else{
-                            CSString.Add($"{resultParse};");
-                            CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], _paramName));
-                        }
+                            CSString.Add($"var {paramName1} = {para1};");
+                        else
+                            CSString.Add($"{para1};");
+
+                        CSString.Add(string.Format("item.{0}.Add({1});", _attribute[i], paramName1));
+
                     }
-                    CSString.Add( "}" );
+                    CSString.Add("}");
                     CSString.Add("}");
 
                 }
-                else if( _type[ i ].Contains( "Dictionary<" ) )
+                else if (_type[i].Contains("Dictionary<"))
                 {
                     int stb = _type[i].IndexOf('<');
                     int ste = _type[i].IndexOf('>');
@@ -288,10 +292,16 @@ namespace Litframework.ExcelTool
 
                     string paramName1, paramName2;
                     var para1 = ParseBaseType(subtype[0], "subArray[0]", ref _needToParseFlag, out paramName1);
+                    if (!_needToParseFlag)
+                        CSString.Add($"var {paramName1} = {para1};");
+                    else
+                        CSString.Add($"{para1};");
                     var para2 = ParseBaseType(subtype[1], "subArray[1]", ref _needToParseFlag, out paramName2);
+                    if (!_needToParseFlag)
+                        CSString.Add($"var {paramName2} = {para2};");
+                    else
+                        CSString.Add($"{para2};");
 
-                    CSString.Add($"var {paramName1} = {para1};");
-                    CSString.Add($"var {paramName2} = {para2};");
                     CSString.Add(string.Format("item.{0}.Add({1}, {2});", _attribute[i], paramName1, paramName2));
 
                     CSString.Add("}");
@@ -302,7 +312,8 @@ namespace Litframework.ExcelTool
                     var resultParse = ParseBaseType(_type[i], string.Format("reader.GetData({0}, i)", i), ref _needToParseFlag, out _paramName);
                     if (!_needToParseFlag)
                         CSString.Add(string.Format("item.{0} = {1};", _attribute[i], resultParse));
-                    else{
+                    else
+                    {
                         CSString.Add($"{resultParse};");
                         CSString.Add(string.Format("item.{0} = {1};", _attribute[i], _paramName));
                     }
@@ -322,21 +333,21 @@ namespace Litframework.ExcelTool
                 CSString.Add("Log.Error($\"" + "{e.Message} 表: " + $"{_className} " + "行: {i}" + "列: " + $"{_attribute[0]}" + "\", LogColor.red); ");
                 CSString.Add("}");
             }
-            CSString.Add( "}" );
-            CSString.Add( "return vec;" );
-            CSString.Add( "}" );
+            CSString.Add("}");
+            CSString.Add("return vec;");
+            CSString.Add("}");
         }
 
-        private string CheckStringType( string type )
+        private string CheckStringType(string type)
         {
-            if( type.Length == 0 )
+            if (type.Length == 0)
                 return "string";
-            if( type.Contains( "Dic" ) )
-                return type.Replace( "Dic" , "Dictionary" );
-           if( type.Contains( "\"" ) )
-                return type.Replace( "\"" , "" );
-            if( type.Contains( " " ) )
-                return type.Replace( " " , "" );
+            if (type.Contains("Dic"))
+                return type.Replace("Dic", "Dictionary");
+            if (type.Contains("\""))
+                return type.Replace("\"", "");
+            if (type.Contains(" "))
+                return type.Replace(" ", "");
 
             return type;
         }
@@ -349,36 +360,37 @@ namespace Litframework.ExcelTool
         {
             StringBuilder result = new StringBuilder();
             int tablevel = 0;
-            for( int i = 0; i < CSString.Count; i++ )
+            for (int i = 0; i < CSString.Count; i++)
             {
                 string tab = "";
 
-                for( int j = 0; j < tablevel; ++j )
+                for (int j = 0; j < tablevel; ++j)
                     tab += "\t";
 
-                if( CSString[ i ].Contains( "{" ) )
+                if (CSString[i].Contains("{"))
                     tablevel++;
-                if( CSString[ i ].Contains( "}" ) )
+                if (CSString[i].Contains("}"))
                 {
                     tablevel--;
                     tab = "";
-                    for( int j = 0; j < tablevel; ++j )
+                    for (int j = 0; j < tablevel; ++j)
                         tab += "\t";
                 }
 
-                result.Append( tab + CSString[ i ] + "\n" );
+                result.Append(tab + CSString[i] + "\n");
             }
             return result.ToString();
         }
 
-        private string ParseBaseType( string type , string attribute , ref bool needTryParse , out string paramName )
+        private string ParseBaseType(string type, string attribute, ref bool needTryParse, out string paramName)
         {
             if (type.Length == 0) throw new Exception($"解析配置表 {_className} 失败！存在空数据类型! ");
-            
+
             needTryParse = true;
             paramName = $"{TEMPLATE_VARS_NAME}{_template_vars_index}";
             string result = "";
-            switch( type )
+            _template_vars_index++;
+            switch (type)
             {
                 case "string":
                     result = attribute;
@@ -414,10 +426,9 @@ namespace Litframework.ExcelTool
                     needTryParse = false;
                     break;
                 case "En_":
-                    result = "(" + type + ")Enum.Parse(typeof(" +type +")," + attribute + ")";
+                    result = "(" + type + ")Enum.Parse(typeof(" + type + ")," + attribute + ")";
                     break;
             }
-            _template_vars_index++;
             return result;
         }
     }

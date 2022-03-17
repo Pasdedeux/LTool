@@ -60,8 +60,8 @@ public partial class AIConfig : ProtoObject
 				string[] NodeParams_Array = reader.GetData(5, i).Split(';');
 				for (int j = 0; j < NodeParams_Array.Length; j++)
 				{
-					int.TryParse(NodeParams_Array[j], out int paras3);
-					item.NodeParams.Add(paras3);
+					int.TryParse(NodeParams_Array[j], out int paras5);
+					item.NodeParams.Add(paras5);
 				}
 			}
 			try

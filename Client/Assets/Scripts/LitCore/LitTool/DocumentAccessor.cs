@@ -27,6 +27,7 @@ using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using LitFramework.Singleton;
 
 namespace LitFramework.LitTool
 {

@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using LitFramework.Singleton;
 
 namespace LitFramework
 {

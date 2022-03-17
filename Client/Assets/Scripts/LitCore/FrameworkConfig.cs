@@ -17,12 +17,14 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Singleton;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace LitFramework
 {

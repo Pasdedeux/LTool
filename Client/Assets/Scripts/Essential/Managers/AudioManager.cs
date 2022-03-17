@@ -31,6 +31,7 @@ namespace LitFramework
     using System.Collections.Generic;
     using System;
     using LitFramework.Base;
+    using LitFramework.Singleton;
 
     /// <summary>
     /// 音频组建更新

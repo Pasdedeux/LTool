@@ -23,6 +23,7 @@ using LitFramework.HotFix;
 using LitFramework.MsgSystem;
 using System.Collections.Generic;
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts.Controller
 {

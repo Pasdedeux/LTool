@@ -26,6 +26,7 @@ using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Checksum;
 #endif
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts.LitCore.LitTool
 {

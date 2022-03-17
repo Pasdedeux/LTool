@@ -32,6 +32,7 @@ namespace LitFramework.InputSystem
     using System.Collections;
     using UnityEngine.EventSystems;
     using LitFramework.Base;
+    using LitFramework.Singleton;
     using System;
 
     [Flags]

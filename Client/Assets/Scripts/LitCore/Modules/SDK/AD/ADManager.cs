@@ -44,7 +44,7 @@ using LitFramework;
 using LitFramework.Base;
 using System;
 using UnityEngine;
-
+using LitFramework.Singleton;
 
 public class ADManager : Singleton<ADManager>, IManager
 {

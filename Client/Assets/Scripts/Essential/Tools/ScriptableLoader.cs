@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using Assets.Scripts.Module;
 using LitFramework;
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace Assets.Scripts.Essential.ConfigParsing
 {

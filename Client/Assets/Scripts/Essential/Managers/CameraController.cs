@@ -25,6 +25,7 @@ using DG.Tweening;
 using Assets.Scripts.Controller;
 using LitFramework.InputSystem;
 using LitFramework.HotFix;
+using LitFramework.Singleton;
 
 /// <summary>
 /// 相机控制器

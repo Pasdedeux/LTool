@@ -56,12 +56,12 @@ public partial class UnitConfig : ProtoObject
 			item.Type = paras1;
 			item.Name = reader.GetData(2, i);
 			item.Desc = reader.GetData(3, i);
-			int.TryParse(reader.GetData(4, i), out int paras2);
-			item.Position = paras2;
-			int.TryParse(reader.GetData(5, i), out int paras3);
-			item.Height = paras3;
-			int.TryParse(reader.GetData(6, i), out int paras4);
-			item.Weight = paras4;
+			int.TryParse(reader.GetData(4, i), out int paras4);
+			item.Position = paras4;
+			int.TryParse(reader.GetData(5, i), out int paras5);
+			item.Height = paras5;
+			int.TryParse(reader.GetData(6, i), out int paras6);
+			item.Weight = paras6;
 			try
 			{
 				vec.Add(item.Id, item);

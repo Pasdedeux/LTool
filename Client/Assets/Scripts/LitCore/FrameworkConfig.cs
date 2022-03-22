@@ -288,10 +288,14 @@ namespace LitFramework
         #region Func
         void Awake()
         {
-            DontDestroyOnLoad( transform.parent );
             //帧率设定
             Application.targetFrameRate = TargetFrameRate;
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
+        }
+
+        private void Start()
+        {
+            DontDestroyOnLoad( transform.parent );
         }
 
 #if UNITY_EDITOR

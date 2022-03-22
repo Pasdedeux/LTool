@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using LitFramework.Singleton;
 
 namespace LitFramework
 {
@@ -179,7 +180,9 @@ namespace LitFramework
         [OnInspectorGUI]
         private void CheckDebugSetting()
         {
+#if UNITY_EDITOR
             if (!IsNotDebug) UnityEditor.EditorGUILayout.HelpBox("调试设置开启", UnityEditor.MessageType.Warning);
+#endif
         }
 
         [BoxGroup("调试设置",centerLabel:true)]
@@ -226,6 +229,7 @@ namespace LitFramework
             if (isProgramTest) DEBUG_Info += "IsProgramTest\n";
             //强制更新读写目录
             if (ForceUpdatePersistant) DEBUG_Info += "ForceUpdatePersistant\n";
+#if UNITY_EDITOR
             //Reporter插件
             if (Reporter)
             {
@@ -246,6 +250,7 @@ namespace LitFramework
                 if (item != null) GameObject.DestroyImmediate(item);
                 item = null;
             }
+#endif
             //LOG宏
             if (UseLogSymbol)
             {
@@ -283,20 +288,25 @@ namespace LitFramework
         #region Func
         void Awake()
         {
-            DontDestroyOnLoad( transform.parent );
             //帧率设定
             Application.targetFrameRate = TargetFrameRate;
             QualitySettings.vSyncCount = vSyncCount;//默认不开启垂直同步
         }
-       
 
+        private void Start()
+        {
+            DontDestroyOnLoad( transform.parent );
+        }
+
+#if UNITY_EDITOR
         [UnityEditor.Callbacks.DidReloadScripts]
         private static void OnScriptsReloaded()
         {
             FrameworkConfig.Instance.CheckPropChange();
         }
+#endif
 
-        #endregion
+#endregion
     }
 
     /// <summary>

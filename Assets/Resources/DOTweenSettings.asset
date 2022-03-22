@@ -24,7 +24,7 @@ MonoBehaviour:
   logBehaviour: 2
   drawGizmos: 1
   defaultRecyclable: 1
-  defaultAutoPlay: 3
+  defaultAutoPlay: 2
   defaultUpdateType: 0
   defaultTimeScaleIndependent: 1
   defaultEaseType: 6
@@ -33,9 +33,9 @@ MonoBehaviour:
   defaultAutoKill: 1
   defaultLoopType: 0
   debugMode: 0
-  debugStoreTargetId: 0
+  debugStoreTargetId: 1
   showPreviewPanel: 1
-  storeSettingsLocation: 2
+  storeSettingsLocation: 0
   modules:
     showPanel: 0
     audioEnabled: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
     physics2DEnabled: 1
     spriteEnabled: 1
     uiEnabled: 1
-    textMeshProEnabled: 1
+    textMeshProEnabled: 0
     tk2DEnabled: 0
     deAudioEnabled: 0
     deUnityExtendedEnabled: 0

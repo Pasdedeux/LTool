@@ -39,6 +39,7 @@ using LitFramework.LitTool;
 using LitFramework.UI.Base;
 using System.Diagnostics;
 using LitFramework.Singleton;
+using LitFramework.InputSystem;
 
 namespace LitFramework
 {
@@ -338,8 +339,9 @@ namespace LitFramework
                     baseUI.Show(args: args);
             }
 
+            InputControlManager.Instance.IsEnable = false;
             //动画播放前界面刷新已完成，动画独立
-            AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (baseUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
+            AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (baseUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; InputControlManager.Instance.IsEnable = true; });
             return baseUI;
         }
 
@@ -401,8 +403,11 @@ namespace LitFramework
                 {
                     _dictLoadedAllUIs.Remove(uiName);
                 }
+
+                InputControlManager.Instance.IsEnable = true;
             };
 
+            InputControlManager.Instance.IsEnable = false;
             if (useAnim) AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.CLOSEID, innerFunc);
             else innerFunc();
 

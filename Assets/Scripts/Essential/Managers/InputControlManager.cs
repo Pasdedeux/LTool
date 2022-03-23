@@ -27,12 +27,12 @@
 
 namespace LitFramework.InputSystem
 {
-    using LitFramework.Singleton;
     using UnityEngine;
     using UnityEngine.UI;
     using System.Collections;
     using UnityEngine.EventSystems;
     using LitFramework.Base;
+    using LitFramework.Singleton;
     using System;
 
     [Flags]
@@ -121,8 +121,9 @@ namespace LitFramework.InputSystem
             {
                 if ( _isInit )
                     return _isEnable;
-                else
-                    throw new Exception( "UIControlManager is not installed" );
+                //else
+                //    throw new Exception( "UIControlManager is not installed" );
+                return true; ;
             }
             set
             {
@@ -131,8 +132,8 @@ namespace LitFramework.InputSystem
                     _isEnable = value;
                     _currentEventSys.enabled = value;
                 }
-                else
-                    throw new Exception( "UIControlManager is not installed" );
+                //else
+                //    throw new Exception( "UIControlManager is not installed" );
             }
         }
 

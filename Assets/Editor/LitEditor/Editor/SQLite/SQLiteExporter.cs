@@ -10,7 +10,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 namespace Litframework.ExcelTool
@@ -48,7 +47,7 @@ namespace Litframework.ExcelTool
                 //首列key标记
                 var firstKeyFlag = titleFlag[0].ToLower();
                 //如果首列配置为#则不进行后续操作
-                if (firstKeyFlag.StartsWith("#-")) return;
+                if (firstKeyFlag.StartsWith("#")) return;
 
                 //客户端生成对应文件
                 if (platform < 2 && !firstKeyFlag.StartsWith("s-"))
@@ -113,13 +112,14 @@ namespace Litframework.ExcelTool
                 //首列key标记
                 var firstKeyFlag = titleFlag[0].ToLower();
                 //如果首列配置为#则不进行后续操作
-                if (firstKeyFlag.StartsWith("#-")) return;
+                if (firstKeyFlag.StartsWith("#")) return;
 
                 string csString = null;
                 //客户端生成对应文件
                 if (platform < 2 && !firstKeyFlag.StartsWith("s-"))
                 {
-                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client));
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Client);
+                    reader = new CSVReader(csvfile);
                     csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Client);
                     CreateCSFile(csOutPath, tTableName + ".cs", csString);
 
@@ -131,7 +131,9 @@ namespace Litframework.ExcelTool
                 //服务器生成对应文件
                 if (platform > 0 && !firstKeyFlag.StartsWith("c-"))
                 {
-                    reader = new CSVReader(XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server));
+                    csvfile = XLSXTOCSV(NextFile.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite), PlatformType.Server);
+                    reader = new CSVReader(csvfile);
+                    csString = new SQLParser().CreateCS(tTableName, csvfile, PlatformType.Server);
                     CreateCSFile(SERVER_CS_OUT_DIR, tTableName + ".cs", csString);
                     
                     sqliteSqlWriter.Write(tTableName, reader);

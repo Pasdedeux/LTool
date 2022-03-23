@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{12F44184-A422-5F27-22E6-507969043F15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI.Tests", "UnityEngine.UI.Tests.csproj", "{0FC402ED-E14D-5FEF-50DF-8B1AE2187ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.UI", "UnityEngine.UI.csproj", "{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidRuntimePermissions.Runtime", "AndroidRuntimePermissions.Runtime.csproj", "{8788DD0E-3E4F-773A-7CB4-C0CA8AB50490}"
 EndProject
@@ -31,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Release|Any CPU.Build.0 = Release|Any CPU
 		{12F44184-A422-5F27-22E6-507969043F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{12F44184-A422-5F27-22E6-507969043F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12F44184-A422-5F27-22E6-507969043F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,6 +39,10 @@ Global
 		{0FC402ED-E14D-5FEF-50DF-8B1AE2187ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC402ED-E14D-5FEF-50DF-8B1AE2187ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC402ED-E14D-5FEF-50DF-8B1AE2187ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8DA974E-1B47-BC8E-E6A8-7BF55A8B1A61}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8788DD0E-3E4F-773A-7CB4-C0CA8AB50490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8788DD0E-3E4F-773A-7CB4-C0CA8AB50490}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8788DD0E-3E4F-773A-7CB4-C0CA8AB50490}.Release|Any CPU.ActiveCfg = Release|Any CPU

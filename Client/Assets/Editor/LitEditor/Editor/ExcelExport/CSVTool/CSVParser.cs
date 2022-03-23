@@ -39,7 +39,7 @@ namespace Litframework.ExcelTool
         private string[] _attribute;
         private string[] _type;
         private string _className;
-        private const string SPACENAME = "ET";//引入ET相关的标记
+        private const string SPACENAME = "LitFramework";
         private const string TEMPLATE_VARS_NAME = "paras";
 
         private int _template_vars_index = 0;
@@ -84,8 +84,7 @@ namespace Litframework.ExcelTool
             CSString.Add("/// </summary>");
             //CSString.Add( "namespace " + spaceName );
             //CSString.Add( "{" );
-            CSString.Add("[Config]");
-            CSString.Add($"public partial class {_className} : ProtoObject");
+            CSString.Add("public partial class " + _className);
             CSString.Add("{");
         }
         private void AddBody()
@@ -93,11 +92,11 @@ namespace Litframework.ExcelTool
             //添加属性
             for (int i = 0; i < _type.Length; i++)
             {
-                if (!CheckValidType(_type[i])) throw new ArgumentException($"配置表 {_className} 存在不支持参数 {_type[i]} !");
-
                 _type[i] = CheckStringType(_type[i]);
                 CSString.Add("/// <summary>");
-                CSString.Add(string.Format("/// {0}", _description[i]));
+                var ss = _description[i].Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                for (int k = 0; k < ss.Length; k++)
+                    CSString.Add(string.Format("/// {0}", ss[k]));
                 CSString.Add("/// </summary>");
                 string subtype = _type[i];
                 if (subtype.Contains("En_"))
@@ -111,31 +110,6 @@ namespace Litframework.ExcelTool
             AddMethod(EnMethodType.Dictionary);
             AddParseVector3();
         }
-
-        private bool CheckValidType(string v)
-        {
-            if (v.Contains("En_") || v.Contains("Dic<") || v.Contains("List<")) return true;
-            else
-            {
-                switch (v)
-                {
-                    case "string":
-                    case "char":
-                    case "DateTime":
-                    case "short":
-                    case "int":
-                    case "long":
-                    case "float":
-                    case "double":
-                    case "bool":
-                    case "Vector3":
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-        }
-
         private void AddTail()
         {
             CSString.Add("");

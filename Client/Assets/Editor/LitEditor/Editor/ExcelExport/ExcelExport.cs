@@ -193,7 +193,7 @@ namespace Litframework.ExcelTool
                 //首列key标记
                 var firstKeyFlag = titleFlag[0].ToLower();
                 //如果首列配置为#则不进行后续操作
-                if (firstKeyFlag.StartsWith("#-")) return;
+                if (firstKeyFlag.StartsWith("#")) return;
 
                 //客户端生成对应文件
                 if (!firstKeyFlag.StartsWith("s-"))
@@ -235,7 +235,7 @@ namespace Litframework.ExcelTool
                 //首列key标记
                 var firstKeyFlag = titleFlag[0].ToLower();
                 //如果首列配置为#则不进行后续操作
-                if (firstKeyFlag.StartsWith("#-")) return;
+                if (firstKeyFlag.StartsWith("#")) return;
 
                 string csString = null;
                 //客户端生成对应文件
@@ -504,15 +504,15 @@ namespace Litframework.ExcelTool
                         //“备注”先保留
                         if (titleFlag != _commentTag)
                         {
-                            if (platformType == PlatformType.Client && !titleFlag.StartsWith("s-") && !titleFlag.StartsWith("#-"))
+                            if (platformType == PlatformType.Client && !titleFlag.StartsWith("s-") && !titleFlag.StartsWith("#"))
                             {
                                 rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                             }
-                            else if (platformType == PlatformType.Server && !titleFlag.StartsWith("c-") && !titleFlag.StartsWith("#-"))
+                            else if (platformType == PlatformType.Server && !titleFlag.StartsWith("c-") && !titleFlag.StartsWith("#"))
                             {
                                 rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                             }
-                            //#-在 PlatformType.All 情况下先保留，方便后面做判断 
+                            //#在 PlatformType.All 情况下先保留，方便后面做判断 
                             else if (platformType == PlatformType.All)
                                 rowlist.Add(result.Tables[0].Rows[i].ItemArray[j]);
                         }

@@ -39,6 +39,7 @@ using LitFramework.LitTool;
 using LitFramework.UI.Base;
 using System.Diagnostics;
 using LitFramework.Singleton;
+using LitFramework.InputSystem;
 
 namespace LitFramework
 {
@@ -338,8 +339,9 @@ namespace LitFramework
                     baseUI.Show(args: args);
             }
 
+            InputControlManager.Instance.IsEnable = false;
             //动画播放前界面刷新已完成，动画独立
-            AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (baseUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
+            AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (baseUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; InputControlManager.Instance.IsEnable = true; });
             return baseUI;
         }
 
@@ -401,14 +403,17 @@ namespace LitFramework
                 {
                     _dictLoadedAllUIs.Remove(uiName);
                 }
+
+                InputControlManager.Instance.IsEnable = true;
             };
 
+            InputControlManager.Instance.IsEnable = false;
             if (useAnim) AnimationManager.Restart(baseUI.DotAnims, FrameworkConfig.Instance.CLOSEID, innerFunc);
             else innerFunc();
 
             Application.targetFrameRate = FrameworkConfig.Instance.TargetFrameRate;
 
-            Log.TraceInfo($"   UIClose: {baseUI.AssetsName}");
+            LDebug.Log($"   UIClose: {baseUI.AssetsName}");
         }
 
 
@@ -479,19 +484,19 @@ namespace LitFramework
                     var assembly = Assembly.Load("Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
                     if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet || uiName.IndexOf("Canvas_Loading") != -1)
                     {
-                        Log.TraceInfo(">>>>>UI Load Search Assembly " + assembly.FullName + "  :  " + _allRegisterUIDict[uiName]);
+                        LDebug.Log(">>>>>UI Load Search Assembly " + assembly.FullName + "  :  " + _allRegisterUIDict[uiName]);
                         baseUIOri = assembly.CreateInstance(_allRegisterUIDict[uiName], true);
                     }
                     else if (FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.ILRuntime)
                     {
                         //获取热更工程程序集
                         //借由反射现成方法，调取生成ILR内部实例，并返回结果
-                        Log.TraceInfo(">>>> RunEnvironment.ILRuntime " + assembly.FullName);
+                        LDebug.Log(">>>> RunEnvironment.ILRuntime " + assembly.FullName);
                         var ssstype = assembly.GetType("Assets.Scripts.ILRScriptCall");
                         baseUIOri = ssstype.GetMethod("GetUITypeByThis").Invoke(null, new object[1] { _allRegisterUIDict[uiName] });
                         if (baseUIOri == null)
                         {
-                            Log.TraceInfo(">>>>>UI Load Search Assembly " + assembly.FullName + "  :  " + _allRegisterUIDict[uiName]);
+                            LDebug.Log(">>>>>UI Load Search Assembly " + assembly.FullName + "  :  " + _allRegisterUIDict[uiName]);
                             baseUIOri = assembly.CreateInstance(_allRegisterUIDict[uiName], true);
                         }
                     }
@@ -825,7 +830,7 @@ namespace LitFramework
             if (!String.IsNullOrEmpty(uiPathName) && !_allRegisterUIDict.ContainsKey(uiPathName))
                 _allRegisterUIDict.Add(uiPathName, className);
 
-            Log.TraceInfo("LitFramework UI添加成功 " + uiPathName);
+            LDebug.Log("LitFramework UI添加成功 " + uiPathName);
         }
 
         private void AssemblyReflection()

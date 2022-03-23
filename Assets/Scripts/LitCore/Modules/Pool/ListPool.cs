@@ -58,7 +58,7 @@ namespace LitFramework.LitPool
             public void Release(T element)
             {
                 if (m_Stack.Count > 0 && ReferenceEquals(m_Stack.Peek(), element))
-                    Log.Info("Internal error. Trying to destroy object that is already released to pool.");
+                    LDebug.LogError("Internal error. Trying to destroy object that is already released to pool.");
                 if (m_ActionOnRelease != null)
                     m_ActionOnRelease(element);
                 m_Stack.Push(element);

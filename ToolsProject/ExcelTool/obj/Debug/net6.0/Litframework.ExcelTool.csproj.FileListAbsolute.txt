@@ -67,3 +67,17 @@ C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\UnityEng
 C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\UnityEngine.Purchasing.AppleStub.pdb
 C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\UnityEngine.Purchasing.AppleMacosStub.pdb
 C:\Personal\Unity\iFunTech\BasePackage\Excel\ExcelTool\bin\Debug\net6.0\UnityEngine.Purchasing.WinRTStub.pdb
+C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin\Debug\net6.0\Litframework.ExcelTool.exe
+C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin\Debug\net6.0\Litframework.ExcelTool.deps.json
+C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin\Debug\net6.0\Litframework.ExcelTool.runtimeconfig.json
+C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin\Debug\net6.0\Litframework.ExcelTool.dll
+C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin\Debug\net6.0\Litframework.ExcelTool.pdb
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.csproj.AssemblyReference.cache
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.AssemblyInfoInputs.cache
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.AssemblyInfo.cs
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.csproj.CoreCompileInputs.cache
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.csproj.CopyComplete
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.dll
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.pdb
+E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Debug\net6.0\Litframework.ExcelTool.genruntimeconfig.cache

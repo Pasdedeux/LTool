@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using ET;
+using LitFramework;
 /// <summary>
 /// ====该类自动生成请勿手动修改====
 /// Author : Derek Liu
 /// </summary>
-[Config]
-public partial class SpawnConfig : ProtoObject
+public partial class SpawnConfig
 {
 	/// <summary>
 	/// 预制件ID

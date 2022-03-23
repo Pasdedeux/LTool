@@ -139,3 +139,8 @@ E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Release\net6.0\Litframe
 E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Release\net6.0\Litframework.ExcelTool.csproj.CoreCompileInputs.cache
 E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Release\net6.0\Litframework.ExcelTool.csproj.CopyComplete
 E:\MyGitHub\Unity\BasePackage\ToolsProject\ExcelTool\obj\Release\net6.0\Litframework.ExcelTool.genruntimeconfig.cache
+E:\MyGitHub\Unity\BasePackage\Tools\App\ExcelTool\bin\Release\net6.0\Litframework.ExcelTool.exe
+E:\MyGitHub\Unity\BasePackage\Tools\App\ExcelTool\bin\Release\net6.0\Litframework.ExcelTool.deps.json
+E:\MyGitHub\Unity\BasePackage\Tools\App\ExcelTool\bin\Release\net6.0\Litframework.ExcelTool.runtimeconfig.json
+E:\MyGitHub\Unity\BasePackage\Tools\App\ExcelTool\bin\Release\net6.0\Litframework.ExcelTool.dll
+E:\MyGitHub\Unity\BasePackage\Tools\App\ExcelTool\bin\Release\net6.0\Litframework.ExcelTool.pdb

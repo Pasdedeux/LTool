@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <OutputType>Exe</OutputType>
-    <BaseOutputPath>C:\Personal\Unity\iFunTech\BasePackage\Tools\App\ExcelTool\bin</BaseOutputPath>
+    <BaseOutputPath>..\..\Tools\App\ExcelTool\bin</BaseOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

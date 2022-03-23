@@ -295,7 +295,7 @@ namespace LitFramework
 
         private void Start()
         {
-            DontDestroyOnLoad( transform.parent );
+            DontDestroyOnLoad( GameObject.Find("Configs") );
         }
 
 #if UNITY_EDITOR

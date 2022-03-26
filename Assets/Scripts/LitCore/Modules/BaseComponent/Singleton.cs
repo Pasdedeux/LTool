@@ -14,6 +14,7 @@
 
 namespace LitFramework.Singleton
 {
+    [System.Diagnostics.DebuggerStepThrough]
     /// <summary>
     /// 非组件单例基类
     /// </summary>

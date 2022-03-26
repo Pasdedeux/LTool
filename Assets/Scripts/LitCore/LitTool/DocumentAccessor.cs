@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Singleton;
 using LitJson;
 using System;
 using System.Collections;
@@ -27,7 +28,6 @@ using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using LitFramework.Singleton;
 
 namespace LitFramework.LitTool
 {
@@ -304,7 +304,7 @@ namespace LitFramework.LitTool
         public static T ToObject<T>(string jsonRelativePath, bool usePersistPath)
         {
             T result = default;
-            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath, false) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath, false);
+            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath);
             LoadAsset(path, (string s) => { result = JsonMapper.ToObject<T>(s); });
             return result;
         }

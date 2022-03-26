@@ -21,7 +21,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 namespace Litframework.ExcelTool
@@ -35,7 +34,7 @@ namespace Litframework.ExcelTool
         private string[] _attribute;
         private string[] _type;
         private string _className, _classNameWithoutFlag;
-        private const string SPACENAME = "LitFramework";
+        private const string SPACENAME = "ET";
 
         List<string> CSString = new List<string>();
 
@@ -92,7 +91,8 @@ namespace Litframework.ExcelTool
         }
         private void AddHead()
         {
-            CSString.Add("public partial class " + _className);
+            //CSString.Add("[Config]"); //这个SQL因为是按需再取数据，不执行前后摇
+            CSString.Add($"public partial class {_className}");
             CSString.Add("{");
         }
         private void AddBody()
@@ -125,7 +125,7 @@ namespace Litframework.ExcelTool
                             CSString.Add(string.Format("public {0} {1} {{ ", subtype, tAttrib));
                             CSString.Add("get {");
                             CSString.Add(string.Format("if(string.IsNullOrEmpty({0})){{", sPriAtrri));
-                            CSString.Add(string.Format("{0} = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{1}\",TName,ID,\"{2}\"));", sPriAtrri, tAttrib, _attribute[0]));
+                            CSString.Add(string.Format("{0} = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{1}\",TName,{2},\"{2}\"));", sPriAtrri, tAttrib, _attribute[0]));
                             CSString.Add("}");
                             CSString.Add(string.Format("return {0};", sPriAtrri));
                             CSString.Add("}");
@@ -146,7 +146,7 @@ namespace Litframework.ExcelTool
                             CSString.Add(string.Format("if({0} == null){{", sPriAtrri));
                             CSString.Add(string.Format("{0} = new {1}();", sPriAtrri, subtype));
                             CSString.Add("}");
-                            CSString.Add(string.Format("var tData = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,ID,\"{1}\"));", tAttrib, _attribute[0]));
+                            CSString.Add(string.Format("var tData = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,{1},\"{1}\"));", tAttrib, _attribute[0]));
                             CSString.Add("if(string.IsNullOrEmpty(tData)){");
                             CSString.Add(string.Format("return {0};", sPriAtrri));
                             CSString.Add("}");
@@ -187,7 +187,7 @@ namespace Litframework.ExcelTool
                             CSString.Add(string.Format("{0} = new {1}();", sPriAtrri, subtype));
                             CSString.Add("}");
 
-                            CSString.Add(string.Format("var tData = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,ID,\"{1}\"));", tAttrib, _attribute[0]));
+                            CSString.Add(string.Format("var tData = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,{1},\"{1}\"));", tAttrib, _attribute[0]));
                             CSString.Add("if(string.IsNullOrEmpty(tData)){");
                             CSString.Add(string.Format("return {0};", sPriAtrri));
                             CSString.Add("}");
@@ -226,7 +226,7 @@ namespace Litframework.ExcelTool
                             CSString.Add(string.Format("public {0} {1} {{ ", subtype, tAttrib));
                             CSString.Add("get{");
                             CSString.Add(string.Format("if(!{0}_v3) {{", sPriAtrri));
-                            CSString.Add(string.Format("var aStr = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,ID,\"{1}\"));", tAttrib, _attribute[0]));
+                            CSString.Add(string.Format("var aStr = SQLManager.Instance.ExcurteScalar<string>(string.Format(SQLReader.SINGLE,\"{0}\",TName,{1},\"{1}\"));", tAttrib, _attribute[0]));
                             CSString.Add("if(string.IsNullOrEmpty(aStr)){");
                             CSString.Add(string.Format("{0}_v3 = true;", sPriAtrri));
                             CSString.Add(string.Format("return {0};", sPriAtrri));
@@ -357,7 +357,7 @@ namespace Litframework.ExcelTool
         }
         private void AddHead_Table()
         {
-            CSString.Add("public partial class " + _className);
+            CSString.Add($"public partial class {_className} : ProtoObject");
             CSString.Add("{");
             _classNameWithoutFlag = _className;
             //增加Row后缀

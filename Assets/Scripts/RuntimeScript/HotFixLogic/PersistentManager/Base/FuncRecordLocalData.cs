@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//[System.Serializable]
+
 public class FuncRecordLocalData: LocalDataBase
 {
     [Sirenix.OdinInspector.DictionaryDrawerSettings(KeyLabel = "功能名字", ValueLabel = "时间")]

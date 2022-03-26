@@ -17,11 +17,11 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Singleton;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using LitFramework.Singleton;
 
 namespace LitFramework.UI.Base
 {

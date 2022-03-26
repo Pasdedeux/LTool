@@ -17,7 +17,6 @@
 //----------------------------------------------------------------*/
 #endregion
 
-using LitFramework.Singleton;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -124,7 +123,7 @@ namespace LitFramework
         
         [FoldoutGroup("配置档设置")]
         [LabelText( "额外登记的文件后缀" )]
-        public string configs_suffix = "json|dat|assetbundle";
+        public string configs_suffix = "json|dat|assetbundle|bin";
        
         [FoldoutGroup("配置档设置")]
         [LabelText("是否打成压缩包")]

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace UnityEngine.UI
 {
@@ -19,6 +20,11 @@ namespace UnityEngine.UI
                 size += LayoutUtility.GetPreferredWidth(item);
             }
             return size;
+        }
+
+        internal void OnScroll(object onScrollEnd)
+        {
+            throw new NotImplementedException();
         }
 
         protected override float GetDimension(Vector2 vector)

@@ -25,13 +25,13 @@
 ======================================*/
 
 using LitFramework.GameFlow.Manager;
+using LitFramework.Singleton;
 using LitFramework.UI.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using LitFramework.Singleton;
 
 namespace LitFramework.GameFlow
 {

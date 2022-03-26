@@ -26,6 +26,9 @@ public class EditorUse
     //初始化类时,注册事件处理函数
     static EditorUse()
     {
+        Log.ILog = new UnityLogger();
+        Options.Instance = new Options();
+
         #region Build/Build UI功能
         //放到这里是因为Dotween效果无法包含在库中
 
@@ -107,7 +110,7 @@ public class EditorUse
 
         #endregion
 
-        EditorApplication.hierarchyChanged += () => { FrameworkConfig.Instance.CheckPropChange(); };
+        //EditorApplication.hierarchyChanged += () => { FrameworkConfig.Instance.CheckPropChange(); };
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
     }
     private static void OnPlayerModeStateChanged(PlayModeStateChange playModeState)
@@ -162,7 +165,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         string[] movedAssets,
         string[] movedFromAssetPaths)
     {
-        //LDebug.Log( "====>importedAssets<====" );
+        //Log.TraceInfo( "====>importedAssets<====" );
     }
 
     /// <summary>
@@ -170,7 +173,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAsset()
     {
-        //LDebug.Log( "====>OnPreprocessAsset<====" );
+        //Log.TraceInfo( "====>OnPreprocessAsset<====" );
     }
 
     /// <summary>
@@ -183,7 +186,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         //fbx.importLights = false;
         //fbx.isReadable = false;
 
-        //LDebug.Log( "====>OnPreprocessModel<====" + fbx.name );
+        //Log.TraceInfo( "====>OnPreprocessModel<====" + fbx.name );
     }
 
     /// <summary>
@@ -191,7 +194,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessModel(GameObject go)
     {
-        //LDebug.Log( "====>OnPostprocessModel<====" );
+        //Log.TraceInfo( "====>OnPostprocessModel<====" );
     }
 
     /// <summary>
@@ -199,7 +202,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAnimation()
     {
-        //LDebug.Log( "====>OnPreprocessAnimation<====" );
+        //Log.TraceInfo( "====>OnPreprocessAnimation<====" );
     }
 
     /// <summary>
@@ -207,7 +210,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessAnimation(GameObject go, AnimationClip ac)
     {
-        //LDebug.Log( "====>OnPostprocessAnimation<====" );
+        //Log.TraceInfo( "====>OnPostprocessAnimation<====" );
     }
 
     /// <summary>
@@ -215,7 +218,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessAssetbundleNameChanged(string s1, string s2, string s3)
     {
-        //LDebug.Log( "====>OnPostprocessAssetbundleNameChanged<====" );
+        //Log.TraceInfo( "====>OnPostprocessAssetbundleNameChanged<====" );
     }
 
     /// <summary>
@@ -223,7 +226,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessCubemap(Cubemap cm)
     {
-        //LDebug.Log( "====>OnPostprocessCubemap<====" );
+        //Log.TraceInfo( "====>OnPostprocessCubemap<====" );
     }
 
     /// <summary>
@@ -246,7 +249,7 @@ public class AssetsInEditorManager : AssetPostprocessor
         //        bindings[ i ].type = typeof( ParticleSystem );
         //    }
         //}
-        //LDebug.Log( "====>OnPostprocessGameObjectWithAnimatedUserProperties<====" );
+        //Log.TraceInfo( "====>OnPostprocessGameObjectWithAnimatedUserProperties<====" );
     }
 
     /// <summary>
@@ -254,7 +257,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessMaterial(Material material)
     {
-        //LDebug.Log( "====>OnPostprocessMaterial<====" );
+        //Log.TraceInfo( "====>OnPostprocessMaterial<====" );
     }
 
     /// <summary>
@@ -262,7 +265,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     void OnPostprocessSprites(Texture2D texture, Sprite[] sprites)
     {
-        //LDebug.Log( "====>Sprites: " + sprites.Length + "<====" );
+        //Log.TraceInfo( "====>Sprites: " + sprites.Length + "<====" );
     }
 
     /// <summary>
@@ -297,7 +300,7 @@ public class AssetsInEditorManager : AssetPostprocessor
                 break;
         }
 
-        LDebug.Log("====>OnPreprocessTexture<====" + textureImporter.name);
+        Log.TraceInfo("====>OnPreprocessTexture<====" + textureImporter.name);
     }
 
     /// <summary>
@@ -305,7 +308,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessTexture(Texture2D texture)
     {
-        //LDebug.Log( "====>OnPostprocessTexture<====" );
+        //Log.TraceInfo( "====>OnPostprocessTexture<====" );
     }
 
     /// <summary>
@@ -313,7 +316,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPreprocessAudio()
     {
-        //LDebug.Log( "====>OnPreprocessAudio<====" );
+        //Log.TraceInfo( "====>OnPreprocessAudio<====" );
     }
 
     /// <summary>
@@ -321,7 +324,7 @@ public class AssetsInEditorManager : AssetPostprocessor
     /// </summary>
     public void OnPostprocessAudio(AudioClip audio)
     {
-        //LDebug.Log( "====>OnPostprocessAudio<====" );
+        //Log.TraceInfo( "====>OnPostprocessAudio<====" );
     }
 
 }

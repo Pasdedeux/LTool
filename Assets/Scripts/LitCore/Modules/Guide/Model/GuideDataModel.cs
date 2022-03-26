@@ -23,10 +23,10 @@
 using LitFramework;
 using LitFramework.LitTool;
 using LitFramework.Mono;
+using LitFramework.Singleton;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using LitFramework.Singleton;
 using UnityEngine.UI;
 
 /// <summary>

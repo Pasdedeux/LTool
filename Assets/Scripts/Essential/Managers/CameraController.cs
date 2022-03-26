@@ -35,7 +35,7 @@ public class CameraController : SingletonMono<CameraController>
     public Camera sCamera { get; private set; }
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         sCamera = Camera.main;
     }
 }

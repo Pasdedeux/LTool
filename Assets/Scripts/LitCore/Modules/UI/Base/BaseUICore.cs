@@ -77,7 +77,7 @@ namespace LitFramework.UI.Base
             else
             {
                 if (IsInitOver)
-                    OnEnabled(false);
+                    OnEnabled(replay);
 
                 IsShowing = true;
 
@@ -85,8 +85,8 @@ namespace LitFramework.UI.Base
 
                 if (!replay)
                     RootCanvas.enabled = IsShowing;
-                else
-                    OnEnabled(replay);
+                //else
+                //    OnEnabled(replay);
 
                 if (!IsStarted) DoStart();
 

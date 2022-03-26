@@ -210,7 +210,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.EndBracket();
 
 
-
+        aCSWrite.WriteLine("");
         aCSWrite.WriteLine("#region 点击回调事件");
         if (haveClose)
         {
@@ -269,7 +269,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("");
         aCSWrite.EndBracket();
 
-
+        aCSWrite.WriteLine("");
         aCSWrite.WriteLine("#region 点击回调事件");
         aCSWrite.WriteLine("");
         aCSWrite.WriteLine("");
@@ -328,6 +328,7 @@ public class CreateUIWindow : OdinEditorWindow
         aCSWrite.WriteLine("_callBack = null;");
         aCSWrite.EndBracket();
 
+        aCSWrite.WriteLine("");
         aCSWrite.WriteLine("#region 点击回调事件");
         aCSWrite.WriteLine("");
         aCSWrite.WriteLine("");
@@ -501,7 +502,8 @@ public class CreateUIWindow : OdinEditorWindow
 
         aCSWrite.WriteLine("public override void FindMember()");
         aCSWrite.StartBracket();
-
+        aCSWrite.WriteLine("recTrans = linkedTrans as RectTransform;");
+        
         CsFindPathCom(aPrefab.transform, "","", "recTrans", aCSWrite);
         SetCsFindPath(aPrefab.transform, "", "recTrans", aCSWrite);
         foreach (KeyValuePair<string, Transform> keyValue in tempArray)
@@ -927,6 +929,10 @@ public class CreateUIWindow : OdinEditorWindow
     private static bool IsCanExport(Transform trans)
     {
         bool isExport = false;
+        if(trans.name.StartsWith("_"))
+        {
+            return true;
+        }
         UnityEngine.EventSystems.UIBehaviour[] uiarray = trans.GetComponents<UnityEngine.EventSystems.UIBehaviour>();
         foreach (UnityEngine.EventSystems.UIBehaviour uIBehaviour in uiarray)
         {
@@ -1399,7 +1405,7 @@ public class CreateUIWindow : OdinEditorWindow
         cSWrite.StartBracket();
         foreach (FileInfo fileInfo in files)
         {
-            LDebug.Log(fileInfo.Name);
+            Log.TraceInfo(fileInfo.Name);
             if ("Canvas_Loading.prefab".Equals(fileInfo.Name))
             {
                 continue;

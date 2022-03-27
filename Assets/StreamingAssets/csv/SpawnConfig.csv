@@ -1,4 +1,0 @@
-预制件ID,预制件所属分类,AB包资源名称#分割,Resource资源路径,初始数量
-ID,SpawnType,ABName,resPath,PreloadAmount
-string,string,string,string,int
-1,子弹,font#Cube,Prefabs/UI/Image,3

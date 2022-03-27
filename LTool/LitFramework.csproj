@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.61\build\Microsoft.Diagnostics.Tracing.TraceEvent.props" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.61\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA4FBEDF-BEAE-4FCD-B0D3-CEB94D3C595D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LitFramework</RootNamespace>
+    <AssemblyName>LitFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Output\LitFramework.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Output\</OutputPath>
+    <DefineConstants>TRACE;IAP;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>..\Output\LitFramework.xml</DocumentationFile>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Output|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="LitCore\BaseModel\Cloneable.cs" />
+    <Compile Include="LitCore\BaseModel\IManager.cs" />
+    <Compile Include="LitCore\BaseModel\Singleton.cs" />
+    <Compile Include="LitCore\BaseModel\SingletonMono.cs" />
+    <Compile Include="LitCore\Crypto\Crypto.cs" />
+    <Compile Include="LitCore\Crypto\CryptoMD5.cs" />
+    <Compile Include="LitCore\Crypto\CryptoSHA1.cs" />
+    <Compile Include="LitCore\Crypto\ICrypto.cs" />
+    <Compile Include="LitCore\Device\ShowFPS.cs" />
+    <Compile Include="LitCore\Extention_Editor\CSVReader.cs" />
+    <Compile Include="LitCore\FrameworkConfig.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\GameDriver.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\GameFlowController.cs" />
+    <Compile Include="LitCore\GameFlow\Controller\LitFrameworkFacade.cs" />
+    <Compile Include="LitCore\GameFlow\Manager\SceneLoadManager.cs" />
+    <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\BaseLocalData.cs" />
+    <Compile Include="LitCore\GameFlow\Model\DataLoadInterface\LocalDataManager.cs" />
+    <Compile Include="LitCore\GameFlow\Model\LoadingTaskModel.cs" />
+    <Compile Include="LitCore\Guide\Control\GuideShaderController.cs" />
+    <Compile Include="LitCore\Guide\GuideConfig.cs" />
+    <Compile Include="LitCore\Guide\Model\EventPenetrate.cs" />
+    <Compile Include="LitCore\Guide\Model\GuideDataModel.cs" />
+    <Compile Include="LitCore\HotFix\HotFixController.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotFixAB.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotFixCSVList.cs" />
+    <Compile Include="LitCore\HotFix\HotFixItem\HotfixLogic.cs" />
+    <Compile Include="LitCore\HotFix\IHotFix.cs" />
+    <Compile Include="LitCore\InputSystem\InputControlManager.cs" />
+    <Compile Include="LitCore\LitPool\PoolManager.cs" />
+    <Compile Include="LitCore\LitPool\PrefabPool.cs" />
+    <Compile Include="LitCore\LitPool\PrefabsDict.cs" />
+    <Compile Include="LitCore\LitPool\SpawnManager.cs" />
+    <Compile Include="LitCore\LitPool\SpawnPool.cs" />
+    <Compile Include="LitCore\LitTool\AnimBundle.cs" />
+    <Compile Include="LitCore\LitTool\AssetPathManager.cs" />
+    <Compile Include="LitCore\LitTool\AudioManager.cs" />
+    <Compile Include="LitCore\LitTool\CameraCapture.cs" />
+    <Compile Include="LitCore\LitTool\CSExtention.cs" />
+    <Compile Include="LitCore\LitTool\DocumentAccessor.cs" />
+    <Compile Include="LitCore\LitTool\LDebug.cs" />
+    <Compile Include="LitCore\LitTool\LitTool.cs" />
+    <Compile Include="LitCore\LitTool\LMath.cs" />
+    <Compile Include="LitCore\LitTool\Optimization.cs" />
+    <Compile Include="LitCore\LitTool\SpriteAdapter.cs" />
+    <Compile Include="LitCore\LitTool\ZipManager.cs" />
+    <Compile Include="LitCore\MsgSystem\InternalEvent.cs" />
+    <Compile Include="LitCore\MsgSystem\MsgManager.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\ADManager.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\BaseAdAdapter.cs" />
+    <Compile Include="LitCore\ThirdParty\AD\IAd.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserConfig.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserDataModel.cs" />
+    <Compile Include="LitCore\ThirdParty\IAP\PurchaserStoreItem.cs" />
+    <Compile Include="LitCore\ThirdParty\Statistic\BaseStatistician.cs" />
+    <Compile Include="LitCore\ThirdParty\Statistic\StatisticManager.cs" />
+    <Compile Include="LitCore\TimeRecord\ZeroTimeRecord.cs" />
+    <Compile Include="LitCore\UI\Base\BindingProperty.cs" />
+    <Compile Include="LitCore\UI\Base\IUIManager.cs" />
+    <Compile Include="LitCore\UI\Base\IViewModel.cs" />
+    <Compile Include="LitCore\UI\Base\UIModelBehavior.cs" />
+    <Compile Include="LitCore\UI\Base\UIType.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\BaseScrollElement.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopHorizontalScrollRect.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollDataSource.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollPrefabSource.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopScrollRect.cs" />
+    <Compile Include="LitCore\UI\Componets\LoopRect\LoopVerticalScrollRect.cs" />
+    <Compile Include="LitCore\UI\Manager\UIMaskManager.cs" />
+    <Compile Include="LitCore\UI\SysDefine.cs" />
+    <Compile Include="LitCore\UI\UnityHelper.cs" />
+    <Compile Include="LitCore\UI\Version_Mono\BaseUI.cs" />
+    <Compile Include="LitCore\UI\Version_Mono\UIManager.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\BaseUI.cs" />
+    <Compile Include="LitCore\UI\Vsrsion_HotFix\UIManager.cs" />
+    <Compile Include="LitCore\ViewTest\BezierViewTest.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LitCore\GameFlow\View\" />
+    <Folder Include="NotInclude\" />
+    <Folder Include="UnityPackage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Apple, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkDotNet, Version=0.13.0.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\BenchmarkDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkDotNet.Annotations, Version=0.13.0.0, Culture=neutral, PublicKeyToken=aa0ca2f9092cefc4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\BenchmarkDotNet.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="ChannelPurchase, Version=0.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine, Version=2.4.3.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Iced, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5baba79f4264913b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Iced.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\References\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil, Version=0.11.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ILRuntime.Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="ILRuntime.Mono.Cecil.Pdb">
+      <HintPath>..\References\ILRuntime.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.FastSerialization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Diagnostics.FastSerialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.NETCore.Client, Version=0.2.1.11701, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Diagnostics.NETCore.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Runtime, Version=1.1.2.26102, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Diagnostics.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.TraceEvent, Version=2.0.61.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Diagnostics.Tracing.TraceEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Perfolizer, Version=0.2.1.0, Culture=neutral, PublicKeyToken=e864f2ec9c0b6d4c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Perfolizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="spine-unity, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\spine-unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <HintPath>..\References\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\References\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>..\References\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions">
+      <HintPath>..\References\System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>..\References\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <HintPath>..\References\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\References\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>..\References\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <HintPath>..\References\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter">
+      <HintPath>..\References\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Cecil">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\Unity.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Cecil.Mdb">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\Unity.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Cecil.Pdb">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\Unity.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Legacy.NRefactory">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\Unity.Legacy.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing.Stores, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEngine.Purchasing.Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\Program Files\Unity\2019.4.27f1c1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LitJsonILR\LitJsonILR.csproj">
+      <Project>{e23993d7-796a-4d39-9d72-49755653a332}</Project>
+      <Name>LitJsonILR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.61\build\Microsoft.Diagnostics.Tracing.TraceEvent.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.TraceEvent.2.0.61\build\Microsoft.Diagnostics.Tracing.TraceEvent.props'))" />
+  </Target>
+</Project>

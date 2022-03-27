@@ -27,11 +27,13 @@ using LitFramework.Singleton;
 using LitFramework.TimeRecord;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[System.Diagnostics.DebuggerStepThrough]
 /// <summary>
 /// 总启动器。
 /// 包含各个模块的初始化统一初始化
@@ -80,5 +82,13 @@ public class LitFrameworkFacade : SingletonMono<LitFrameworkFacade>
         //最后启动自定义模块
         afterExecuteFunc?.Invoke();
     }
-    
+
+    //防裁剪
+    private static readonly Int32Converter i32c = new Int32Converter();
+    private static readonly Int64Converter i64c = new Int64Converter();
+    private static readonly StringConverter sc = new StringConverter();
+    private static readonly NullableConverter nc = new NullableConverter(typeof(bool?));
+    private static readonly BooleanConverter bc = new BooleanConverter();
 }
+
+

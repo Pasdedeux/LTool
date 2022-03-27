@@ -283,7 +283,7 @@ MonoBehaviour:
   useSql: 0
   useSpawnConfig: 1
   loadType: 0
-  UsePersistantPath: 0
+  UsePersistantPath: 1
   UseRemotePersistantPath: 0
   RemoteUrlConfig: http://192.168.1.102/
   showLog: 1

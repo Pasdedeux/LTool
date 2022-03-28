@@ -12,31 +12,31 @@ public class NLogger : ILog
         this.logger = LogManager.GetLogger(name);
     }
 
-    public void Trace(string message, LogColor logColor = LogColor.white)
+    public void Trace(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.logger.Trace(message);
     }
 
-    public void Warning(string message, LogColor logColor = LogColor.white)
+    public void Warning(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.logger.Warn(message);
     }
 
-    public void Info(string message, LogColor logColor = LogColor.white)
+    public void Info(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.logger.Info(message);
     }
 
-    public void Debug(string message, LogColor logColor = LogColor.white)
+    public void Debug(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.logger.Debug(message);
     }
 
-    public void Error(string message, LogColor logColor = LogColor.white)
+    public void Error(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.logger.Error(message);

@@ -12,35 +12,35 @@ public class FileLogger : ILog
         this.stream.AutoFlush = true;
     }
 
-    public void Trace(string message, LogColor logColor = LogColor.white)
+    public void Trace(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.stream.WriteLine(message);
         this.stream.Flush();
     }
 
-    public void Warning(string message, LogColor logColor = LogColor.white)
+    public void Warning(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.stream.WriteLine(message);
         this.stream.Flush();
     }
 
-    public void Info(string message, LogColor logColor = LogColor.white)
+    public void Info(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.stream.WriteLine(message);
         this.stream.Flush();
     }
 
-    public void Debug(string message, LogColor logColor = LogColor.white)
+    public void Debug(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.stream.WriteLine(message);
         this.stream.Flush();
     }
 
-    public void Error(string message, LogColor logColor = LogColor.white)
+    public void Error(string message, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         this.stream.WriteLine(message);

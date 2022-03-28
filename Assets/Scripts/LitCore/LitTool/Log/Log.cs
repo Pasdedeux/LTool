@@ -28,7 +28,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void Trace(string msg, LogColor logColor = LogColor.white)
+    public static void Trace(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         if (!CheckLogLevel(DebugLevel))
@@ -40,7 +40,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void Debug(string msg, LogColor logColor = LogColor.white)
+    public static void Debug(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         if (!CheckLogLevel(DebugLevel))
@@ -51,7 +51,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void Info(string msg, LogColor logColor = LogColor.white)
+    public static void Info(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         if (!CheckLogLevel(InfoLevel))
@@ -62,7 +62,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void TraceInfo(string msg, LogColor logColor = LogColor.white)
+    public static void TraceInfo(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         if (!CheckLogLevel(InfoLevel))
@@ -74,7 +74,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void Warning(string msg, LogColor logColor = LogColor.white)
+    public static void Warning(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         if (!CheckLogLevel(WarningLevel))
@@ -86,7 +86,7 @@ public static class Log
     }
 
     [Conditional("LOG")]
-    public static void Error(string msg, LogColor logColor = LogColor.white)
+    public static void Error(string msg, LogColor logColor = LogColor.green)
     {
         if (!Enable) return;
         StackTrace st = new StackTrace(1, true);

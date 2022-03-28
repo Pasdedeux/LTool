@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,6 +603,23 @@ MonoBehaviour:
   handImageOffset: {x: 0.5, y: 0, z: 0}
   thresholdCircle: 0.3
   thresholdRect: 0.01
+--- !u!1 &2072043057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1868260648909560, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
+  m_PrefabInstance: {fileID: 154436690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2072043058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072043057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803bee4ab6a6cb748b8cbe9c56ba0076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1367300784974725956
 PrefabInstance:
   m_ObjectHideFlags: 0

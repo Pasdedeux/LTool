@@ -11,6 +11,7 @@
  * Copyright @ Derek Liu 2022 All rights reserved 
 *****************************************************************/
 
+using LitFramework;
 using LitFramework.LitTool;
 using System;
 using System.IO;
@@ -27,6 +28,7 @@ using UnityEngine;
 public static class LocalDataHandle
 {
     public static System.Action onSaveData;
+    private static string m_FileType = ".bin";
 
     /// <summary>
     /// 存数据类默认存可读写目录
@@ -35,7 +37,7 @@ public static class LocalDataHandle
     public static void SaveData(object aValue)
     {
         Type rType = aValue.GetType();
-        DocumentAccessor.ToJson(aValue, rType.ToString() + ".bin", true);
+        DocumentAccessor.ToJson(aValue, rType.ToString() + m_FileType, true);
         
         onSaveData?.Invoke();
     }
@@ -44,14 +46,14 @@ public static class LocalDataHandle
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T LoadData<T>() where T :  new()
+    public static T LoadData<T>() where T : class, new()
     {
-        string aName = typeof( T ).ToString();
+        string aName = typeof( T ).ToString() + m_FileType;
+        string localTextPath = AssetPathManager.Instance.GetPersistentDataPath( aName, false );
 
-        string localTextPath = AssetPathManager.Instance.GetPersistentDataPath( aName + ".bin", false );
         if ( !File.Exists( localTextPath ) ) return new T();
 
-        T tObject = DocumentAccessor.ToObject<T>(aName + ".bin", true);
+        T tObject = DocumentAccessor.ToObject<T>(aName, true);
         return tObject;
     }
 
@@ -64,7 +66,7 @@ public static class LocalDataHandle
     public static void EditorSaveConfig(object aValue)
     {
         Type rType = aValue.GetType();
-        DocumentAccessor.ToJson(aValue, rType.ToString() + ".bin", false);
+        DocumentAccessor.ToJson(aValue, rType.ToString() + m_FileType, false);
 
         onSaveData?.Invoke();
     }
@@ -73,16 +75,10 @@ public static class LocalDataHandle
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T LoadConfig<T>() where T : new()
+    public static T LoadConfig<T>() where T : class, new()
     {
-        string aName = typeof(T).ToString();
-        string localTextPath;
-
-        localTextPath = LitFramework.FrameworkConfig.Instance.UsePersistantPath ? AssetPathManager.Instance.GetPersistentDataPath(aName + ".bin", false) : AssetPathManager.Instance.GetStreamAssetDataPath(aName + ".bin", false);
-
-        if (!File.Exists(localTextPath)) return new T();
-
-        T tObject = DocumentAccessor.ToObject<T>(aName + ".bin", LitFramework.FrameworkConfig.Instance.UsePersistantPath);
+        string aName = typeof(T).ToString() + m_FileType;
+        T tObject = DocumentAccessor.ToObject<T>(aName, Application.isPlaying && FrameworkConfig.Instance.UsePersistantPath);
         return tObject;
     }
 

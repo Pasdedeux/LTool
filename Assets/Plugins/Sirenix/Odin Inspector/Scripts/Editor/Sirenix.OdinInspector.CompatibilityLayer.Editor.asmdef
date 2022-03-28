@@ -1,8 +1,6 @@
 {
     "name": "Sirenix.OdinInspector.CompatibilityLayer.Editor",
-    "references": [
-        "Sirenix.OdinInspector.CompatibilityLayer"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

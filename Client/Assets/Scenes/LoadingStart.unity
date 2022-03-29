@@ -286,7 +286,7 @@ MonoBehaviour:
   configs_suffix: json|dat|assetbundle
   useZIP: 0
   useSql: 0
-  useSpawnConfig: 1
+  useSpawnConfig: 0
   loadType: 0
   UsePersistantPath: 1
   UseRemotePersistantPath: 0
@@ -467,6 +467,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   products: []
+--- !u!1 &1365796629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1868260648909560, guid: aad45bf110d52bd4ea7fa6807c76f5ab, type: 3}
+  m_PrefabInstance: {fileID: 154436690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365796633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365796629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803bee4ab6a6cb748b8cbe9c56ba0076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1371280596
 GameObject:
   m_ObjectHideFlags: 0

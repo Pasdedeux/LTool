@@ -17,6 +17,7 @@
 //----------------------------------------------------------------*/
 #endregion
 
+using LitFramework.Singleton;
 using LitJson;
 using System;
 using System.Collections;
@@ -27,7 +28,6 @@ using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using LitFramework.Singleton;
 
 namespace LitFramework.LitTool
 {
@@ -304,7 +304,7 @@ namespace LitFramework.LitTool
         public static T ToObject<T>(string jsonRelativePath, bool usePersistPath)
         {
             T result = default;
-            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath, false) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath, false);
+            string path = usePersistPath ? AssetPathManager.Instance.GetPersistentDataPath(jsonRelativePath) : AssetPathManager.Instance.GetStreamAssetDataPath(jsonRelativePath);
             LoadAsset(path, (string s) => { result = JsonMapper.ToObject<T>(s); });
             return result;
         }
@@ -339,7 +339,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke(uwr);
-                    //Log.TraceInfo( " >Received: \n" + uwr.downloadHandler.text );
+                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -372,7 +372,7 @@ namespace LitFramework.LitTool
                 else
                 {
                     callBack?.Invoke(uwr.downloadHandler.text);
-                    //Log.TraceInfo( " >Received: \n" + uwr.downloadHandler.text );
+                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -406,7 +406,7 @@ namespace LitFramework.LitTool
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        Log.TraceInfo(" >Load data : \n" + uwr.downloadHandler.text);
+                        LDebug.Log(" >Load data : \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr.downloadHandler.text);
                         return;
                     }
@@ -443,7 +443,7 @@ namespace LitFramework.LitTool
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        Log.TraceInfo(" >Received: \n" + uwr.downloadHandler.text);
+                        LDebug.Log(" >Received: \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr);
                         return;
                     }
@@ -492,7 +492,7 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static string WWWLoadingWithWaiting(string wwwFilePath, Action<WWW> callBack = null)
         {
-            Log.TraceInfo(wwwFilePath);
+            LDebug.Log(wwwFilePath);
             string resutl = null;
             WWW www = new WWW(wwwFilePath);
             while (!www.isDone) { }
@@ -536,7 +536,7 @@ namespace LitFramework.LitTool
             {
                 var result = FTPDownload(ftpIP + configsPathsList[i], userName: name, password: password);
                 DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPathsList[i], false), result);
-                Log.TraceInfo(">>>" + configsPathsList[i] + result.Count());
+                LDebug.Log(">>>" + configsPathsList[i] + result.Count());
             }
         }
         /// <summary>
@@ -550,7 +550,7 @@ namespace LitFramework.LitTool
         {
             var result = FTPDownload(ftpIP + configsPath, userName: name, password: password);
             DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPath, false), result);
-            Log.TraceInfo(">>>" + configsPath + result.Count());
+            LDebug.Log(">>>" + configsPath + result.Count());
         }
 
         private byte[] FTPDownload(string ftpUrl, string savePath = "", string userName = "", string password = "")
@@ -572,14 +572,14 @@ namespace LitFramework.LitTool
             if (!string.IsNullOrEmpty(savePath))
             {
                 webResponse = request.GetResponse();
-                Log.TraceInfo("FTP连接状态: " + webResponse);
+                LDebug.Log("FTP连接状态: " + webResponse);
                 DownloadAndSave(webResponse, savePath);
                 return null;
             }
             else
             {
                 webResponse = request.GetResponse();
-                Log.TraceInfo("FTP连接状态: " + webResponse);
+                LDebug.Log("FTP连接状态: " + webResponse);
                 return DownloadAsbyteArray(webResponse);
             }
         }

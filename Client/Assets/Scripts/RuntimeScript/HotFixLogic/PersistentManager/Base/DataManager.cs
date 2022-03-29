@@ -1,8 +1,7 @@
-﻿using ILRBaseModel.Singleton;
-using LitFramework;
+﻿using LitFramework;
 using LitFramework.Base;
 using LitFramework.LitTool;
-
+using ILRBaseModel.Singleton;
 /// 代码自动创建、更新
 /// 更新时间:2022/3/2   18:43:28
 /// </summary>

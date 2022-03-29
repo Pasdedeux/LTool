@@ -16,7 +16,7 @@ dotnet Litframework.ExcelTool.dll ^
 --UseHotFix=1 ^
 --UseServer=1 ^
 --UseSql=0 ^
---ExtralFileExtention="json|dat|assetbundle" ^
+--ExtralFileExtention="json|dat|assetbundle|bin" ^
 --ProjectPath=%ParentDirectory%
 
 pause

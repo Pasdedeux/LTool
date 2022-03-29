@@ -22,9 +22,9 @@ public class LoadingStart : MonoBehaviour
     /// </summary>
     void Start()
     {
-                //启动框架本身
+        //启动框架本身
         FrameworkController.Instance.InitFramework();
         
-        Log.TraceInfo( ">>Loading Start Initialized !" );
+        LDebug.Log( ">>Loading Start Initialized !" );
     }   
 }

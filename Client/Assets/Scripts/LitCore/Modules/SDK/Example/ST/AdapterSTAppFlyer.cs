@@ -37,9 +37,9 @@ namespace Assets.Scripts.Statistic
         private void InitAppFlyer()
         {
 #if APPFLY
-            Log.TraceInfo( ">>>AppsFlyer initSDK " );
+            LDebug.Log( ">>>AppsFlyer initSDK " );
             AppsFlyer.initSDK( "devkey", "appID" );
-            Log.TraceInfo( ">>>AppsFlyer UNITY_ANDROID initSDK " );
+            LDebug.Log( ">>>AppsFlyer UNITY_ANDROID initSDK " );
             AppsFlyer.startSDK();
 #endif
         }

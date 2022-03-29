@@ -66,7 +66,7 @@ public class CSVConfigData : BaseLocalData
                   else
                       Assets.Scripts.ILRScriptCall.SetConfigInstall( className, strMethod, e );
 
-                  Log.TraceInfo( string.Format( "配置档解析完成-> {0}", item ) );
+                  Log.Info( string.Format( "配置档解析完成-> {0}", item ) );
               } );
         }
 

@@ -51,14 +51,14 @@ namespace Assets.Scripts
                 //{
                 //    // 认证失败 返回错误信息
                 //    var resultErrMsg = "RealNameVerified OnFail:" + Errno + ",errMsg:" + ErrMsg;
-                //    Log.TraceInfo(resultErrMsg);
+                //    LDebug.Log(resultErrMsg);
 
                 //};
                 //LGAbsRealName.GlobalRealNameSuccessCallback = delegate (bool isAdult)
                 //{
                 //    // 认证成功 返回用户是否成年
                 //    var msg = "RealNameVerified onSuc isAdult:" + isAdult;
-                //    Log.TraceInfo(msg);
+                //    LDebug.Log(msg);
                 //    FrameworkController.Instance.StartLoadingLogo();
                 //};
                 //LGSDKDevKit.RealNameService.RealNameAuth();
@@ -70,13 +70,13 @@ namespace Assets.Scripts
                 {
                     var msg = "get device Verified onSuc isRealNameVerified:" + isRealNameVerified + "---isAdult:" +
                               isAdult;
-                    Log.TraceInfo(msg);
+                    LDebug.Log(msg);
                     FrameworkController.Instance.StartLoadingLogo();
                 },
                 delegate (int Errno, string ErrMsg) // 查询失败 返回错误信息
                 {
                     var msg = "get device Verified info OnFail:" + Errno + ",errMsg:" + ErrMsg;
-                    Log.TraceInfo(msg);
+                    LDebug.Log(msg);
                 }
                 );
                 //ToastManager.Instance.ShowToast("InitSuccess");
@@ -87,14 +87,14 @@ namespace Assets.Scripts
                     var msg = $"TriggerAntiAddiction 是否已经自动弹窗：{result.AutoPopup}" +
                                    $"-- CanPlayTime : {result.CanPlayTime}";
                     Log.D(msg);
-                    Log.TraceInfo(msg);
+                    LDebug.Log(msg);
                     //ToastManager.Instance.ShowToast(msg);
 
                     // 若 autoPopup 为true, 说明应用启动的时候触发了防沉迷策略，已经自动弹窗提示，需要接入方关闭APP
                     //  若为false:说明在游戏的过程中触发了防沉迷策略，未自动弹窗提示，若用户正在游戏中，可等待该局游戏结束后进行关闭应用
                     if (result.AutoPopup)
                     {
-                        Log.TraceInfo("防沉迷弹窗已自动弹出，游戏可关闭应用");
+                        LDebug.Log("防沉迷弹窗已自动弹出，游戏可关闭应用");
                         Application.Quit();
                     }
                 };

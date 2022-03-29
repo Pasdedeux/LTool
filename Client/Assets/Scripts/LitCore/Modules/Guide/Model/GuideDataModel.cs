@@ -23,11 +23,11 @@
 using LitFramework;
 using LitFramework.LitTool;
 using LitFramework.Mono;
+using LitFramework.Singleton;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using LitFramework.Singleton;
 
 /// <summary>
 /// 分部类。可以在业务逻辑上继续扩展

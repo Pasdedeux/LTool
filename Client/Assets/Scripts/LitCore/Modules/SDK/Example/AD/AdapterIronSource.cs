@@ -43,8 +43,8 @@ public class AdapterIronSource : BaseAdAdapter
 #if DEBUG
         IronSource.Agent.validateIntegration();
         IronSource.Agent.setAdaptersDebug( true );
-        Log.TraceInfo( IronSource.pluginVersion() );
-        Log.TraceInfo( IronSource.unityVersion() );
+        LDebug.Log( IronSource.pluginVersion() );
+        LDebug.Log( IronSource.unityVersion() );
 #endif
 #endif
 
@@ -71,14 +71,14 @@ public class AdapterIronSource : BaseAdAdapter
 #if IRONSOURCE
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
         HideBanner(false);
-        Log.TraceInfo(">>>>CreateBanner");
+        LDebug.Log(">>>>CreateBanner");
 #endif
     }
 
     public override void ShowBanner()
     {
 #if IRONSOURCE
-        Log.TraceInfo(">>>>ShowBanner");
+        LDebug.Log(">>>>ShowBanner");
         IronSource.Agent.displayBanner();
 #endif
     }
@@ -86,7 +86,7 @@ public class AdapterIronSource : BaseAdAdapter
     public override void HideBanner(bool destroy)
     {
 #if IRONSOURCE
-        Log.TraceInfo(">>>>HideBanner");
+        LDebug.Log(">>>>HideBanner");
         if (destroy) IronSource.Agent.destroyBanner();
         else IronSource.Agent.hideBanner();
 #endif
@@ -110,14 +110,14 @@ public class AdapterIronSource : BaseAdAdapter
     //Invoked once the banner has loaded
     void BannerAdLoadedEvent()
     {
-        Log.TraceInfo("banner OK");
+        LDebug.Log("banner OK");
         ShowBanner();
     }
     //Invoked when the banner loading process has failed.
     //@param description - string - contains information about the failure.
     void BannerAdLoadFailedEvent(IronSourceError error)
     {
-        Log.TraceInfo("banner Fail");
+        LDebug.Log("banner Fail");
         CreateBanner();
     }
     // Invoked when end user clicks on the banner ad
@@ -198,8 +198,8 @@ public class AdapterIronSource : BaseAdAdapter
     //@param description - string - contains information about the failure.
     void InterstitialAdLoadFailedEvent(IronSourceError error)
     {
-        Log.TraceInfo("==InterstitialAdLoadFailedEvent");
-        if (error != null) Log.TraceInfo(error.getDescription());
+        LDebug.Log("==InterstitialAdLoadFailedEvent");
+        if (error != null) LDebug.Log(error.getDescription());
         if (InterstitialLoadEventHandler != null) InterstitialLoadEventHandler(false);
     }
     //Invoked right before the Interstitial screen is about to open.
@@ -209,7 +209,7 @@ public class AdapterIronSource : BaseAdAdapter
     //@param description - string - contains information about the failure.
     void InterstitialAdShowFailedEvent(IronSourceError error)
     {
-        Log.TraceInfo("==InterstitialAdShowFailedEvent");
+        LDebug.Log("==InterstitialAdShowFailedEvent");
         if (InterstitialShowEventHandler != null) InterstitialShowEventHandler(false);
     }
     // Invoked when end user clicked on the interstitial ad
@@ -219,7 +219,7 @@ public class AdapterIronSource : BaseAdAdapter
     //Invoked when the interstitial ad closed and the user goes back to the application screen.
     void InterstitialAdClosedEvent()
     {
-        Log.TraceInfo("==InterstitialAdClosedEvent");
+        LDebug.Log("==InterstitialAdClosedEvent");
         if (InterstitialShowEventHandler != null) InterstitialShowEventHandler(true);
         CreateInterstitial();
     }
@@ -243,7 +243,7 @@ public class AdapterIronSource : BaseAdAdapter
     public override void ShowRewarded()
     {
 #if IRONSOURCE
-        Log.TraceInfo("==ShowRewardedVedio");
+        LDebug.Log("==ShowRewardedVedio");
 
         if (IsRewardedVideoAvailable())
             IronSource.Agent.showRewardedVideo();
@@ -273,13 +273,13 @@ public class AdapterIronSource : BaseAdAdapter
     //tasks till the video ad will be closed.
     void RewardedVideoAdOpenedEvent()
     {
-        Log.TraceInfo("RewardedVideoAdOpenedEvent");
+        LDebug.Log("RewardedVideoAdOpenedEvent");
     }
     //Invoked when the RewardedVideo ad view is about to be closed.
     //Your activity will now regain its focus.
     void RewardedVideoAdClosedEvent()
     {
-        Log.TraceInfo("RewardedVideoAdClosedEvent");
+        LDebug.Log("RewardedVideoAdClosedEvent");
         if (RewardCloseEventHandler != null) RewardCloseEventHandler(false);
     }
     //Invoked when there is a change in the ad availability status.
@@ -288,7 +288,7 @@ public class AdapterIronSource : BaseAdAdapter
     //Value will change to false when no videos are available.
     void RewardedVideoAvailabilityChangedEvent(bool available)
     {
-        Log.TraceInfo("RewardedVideoAvailabilityChangedEvent");
+        LDebug.Log("RewardedVideoAvailabilityChangedEvent");
         //Change the in-app 'Traffic Driver' state according to availability.
         //bool rewardedVideoAvailability = available;
     }
@@ -300,7 +300,7 @@ public class AdapterIronSource : BaseAdAdapter
     //Invoked when the video ad starts playing.
     void RewardedVideoAdStartedEvent()
     {
-        Log.TraceInfo("RewardedVideoAdStartedEvent");
+        LDebug.Log("RewardedVideoAdStartedEvent");
     }
     //Invoked when the video ad finishes playing.
     void RewardedVideoAdEndedEvent()
@@ -322,7 +322,7 @@ public class AdapterIronSource : BaseAdAdapter
     //@param description - string - contains information about the failure.
     void RewardedVideoAdShowFailedEvent(IronSourceError error)
     {
-        Log.TraceInfo("RewardedVideoAdShowFailedEvent" + "  " + (error != null ? error.getDescription() : "error is null"));
+        LDebug.Log("RewardedVideoAdShowFailedEvent" + "  " + (error != null ? error.getDescription() : "error is null"));
         if (RewardShowEventHandler != null) RewardShowEventHandler(false);
     }
 
@@ -331,7 +331,7 @@ public class AdapterIronSource : BaseAdAdapter
     public override bool IsRewardedVideoAvailable()
     {
 #if IRONSOURCE
-        Log.TraceInfo( ">>>IsRewardedVideoAvailable  " + IronSource.Agent.isRewardedVideoAvailable() );
+        LDebug.Log( ">>>IsRewardedVideoAvailable  " + IronSource.Agent.isRewardedVideoAvailable() );
         return IronSource.Agent.isRewardedVideoAvailable();
 #else
         return false;

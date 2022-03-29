@@ -173,19 +173,28 @@ public static partial class CSExtention
     /// <summary>
     /// 图片置灰
     /// </summary>
-    public static void SetUIGray( this Image img )
+    public static void SetGray( this Image img, bool color )
     {
-        img.material = GetGrayMat();
-        img.SetMaterialDirty();
+        if(!color)
+        {
+            img.material = GetGrayMat();
+            img.SetMaterialDirty();
+        }
+       else
+            img.material = null;
     }
 
+
     /// <summary>
-    /// 图片回复
+    /// 设置按钮可用性
     /// </summary>
-    public static void SetUIGrayRecover( this Image img )
+    /// <param name="btn"></param>
+    public static void SetEnable( this Button btn, bool enbale )
     {
-        img.material = null;
+        btn.enabled = enbale;
+        btn.image.SetGray(enbale);
     }
+
     #endregion
 
 

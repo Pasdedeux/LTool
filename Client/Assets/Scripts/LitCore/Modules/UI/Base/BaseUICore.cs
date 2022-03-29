@@ -77,7 +77,7 @@ namespace LitFramework.UI.Base
             else
             {
                 if (IsInitOver)
-                    OnEnabled(false);
+                    OnEnabled(replay);
 
                 IsShowing = true;
 
@@ -85,8 +85,8 @@ namespace LitFramework.UI.Base
 
                 if (!replay)
                     RootCanvas.enabled = IsShowing;
-                else
-                    OnEnabled(replay);
+                //else
+                //    OnEnabled(replay);
 
                 if (!IsStarted) DoStart();
 
@@ -187,7 +187,7 @@ namespace LitFramework.UI.Base
         /// </summary>
         public virtual void OnBackPushed()
         {
-            Log.TraceInfo("关闭ui:" + AssetsName);
+            LDebug.Log("关闭ui:" + AssetsName);
             UIManager.Instance.Close(AssetsName);
         }
 

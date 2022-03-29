@@ -53,7 +53,7 @@ namespace Assets.Scripts.Statistic
             GA.StartLevel( "enter game test" );
 
             //var testInfoMac = GA.GetTestDeviceInfo(1);
-            //Log.TraceInfo( "===>Umeng  "+ testInfoMac );
+            //LDebug.Log( "===>Umeng  "+ testInfoMac );
 #endif
         }
 

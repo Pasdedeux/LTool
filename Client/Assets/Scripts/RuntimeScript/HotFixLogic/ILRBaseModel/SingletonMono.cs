@@ -16,6 +16,7 @@ using UnityEngine;
 
 namespace ILRBaseModel.Singleton
 {
+    [System.Diagnostics.DebuggerStepThrough]
     /// <summary>
     /// 组件单例基类
     /// </summary>

@@ -91,7 +91,7 @@ namespace SQLite
             if (_db != null)
             {
                 if (debugTrace)
-                    Log.TraceInfo(": closing connection");
+                    LDebug.Log(": closing connection");
 
                 _db.Close();
             }
@@ -102,7 +102,7 @@ namespace SQLite
             if (_db != null)
             {
                 if (debugTrace)
-                    Log.TraceInfo(": disposing connection");
+                    LDebug.Log(": disposing connection");
 
                 _db.Dispose();
                 _db = null;

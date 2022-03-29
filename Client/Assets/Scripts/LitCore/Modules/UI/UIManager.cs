@@ -143,7 +143,10 @@ namespace LitFramework
         /// 记录顺序开启的所有弹窗，原则上按照顺序记录顺次关闭。stack弹窗使用单独队列管理顺序，并共享此列表
         /// </summary>
         private List<IBaseUI> _listCurrentPopupShowUIs;
-
+        /// <summary>
+        /// 告知ClearStack清除期间栈内后面的对象无须执行Show
+        /// </summary>
+        private bool _needShowNextStackFlag = true;
         public void Install()
         {
             _allRegisterUIDict = new Dictionary<string, string>();
@@ -309,8 +312,8 @@ namespace LitFramework
             var modelType = UIModelBehavior.Instance.GetBehavior(uiName);
             UIType targetUIType = modelType != null ? modelType : baseUI.CurrentUIType;
 
-            //判断是否清空“栈”结构体集合
-            if (targetUIType.isClearPopUp)
+            //判断是否清空“栈”结构体集合,必须是讲之前的stackUI 全部隐藏的情况
+            if (targetUIType.isClearPopUp && targetUIType.uiNodeType == UINodeTypeEnum.PopUp && targetUIType.uiShowMode != UIShowModeEnum.Parallel )
                 ClearPopUpStackArray();
 
             //只针对pop up 类型窗口适用 uiShowMode 功能
@@ -351,7 +354,7 @@ namespace LitFramework
         /// <param name="uiName"></param>
         /// <param name="isDestroy">是否直接释放所有资源，销毁</param>
         /// <param name="useAnim">是否需要播放Dotween动画</param>
-        public void Close(string uiName, bool isDestroy = false, bool useAnim = true, bool force = false)
+        public void Close(string uiName, bool isDestroy = false, bool useAnim = true, bool force = false, Action exitCallback = null )
         {
             if (string.IsNullOrEmpty(uiName))
                 return;
@@ -372,26 +375,44 @@ namespace LitFramework
             //参数目前没有用，可能会在未来版本移除
             baseUI.OnDisabled(false);
 
+
+
+
+            //只针对pop up 类型窗口适用 uiShowMode 功能
+            if (targetUIType.uiNodeType == UINodeTypeEnum.PopUp)
+            {
+                //不同类型窗体执行各自关闭逻辑
+                switch (baseUI.CurrentUIType.uiShowMode)
+                {
+                    case UIShowModeEnum.Parallel:
+                        UnLoadParallelUI(uiName, isDestroy);
+                        break;
+                    case UIShowModeEnum.Stack:
+                        UnLoadStackUI(uiName, isDestroy);
+                        break;
+                    case UIShowModeEnum.Unique:
+                        UnLoadUniqueUI(uiName, isDestroy);
+                        break;
+                    default:
+                        throw new Exception("未登记的UI类型--" + baseUI.CurrentUIType);
+                }
+            }
+
+
+
             Action innerFunc = () =>
             {
                 //只针对pop up 类型窗口适用 uiShowMode 功能
                 if (targetUIType.uiNodeType == UINodeTypeEnum.PopUp)
                 {
-                    //不同类型窗体执行各自关闭逻辑
-                    switch (baseUI.CurrentUIType.uiShowMode)
+                    while (_toCloseStackUI.Count>0) _toCloseStackUI.Dequeue().Close(isDestroy: isDestroy);
+                    while (_toRecoverStackUI.Count > 0)
                     {
-                        case UIShowModeEnum.Parallel:
-                            UnLoadParallelUI(uiName, isDestroy);
-                            break;
-                        case UIShowModeEnum.Stack:
-                            UnLoadStackUI(uiName, isDestroy);
-                            break;
-                        case UIShowModeEnum.Unique:
-                            UnLoadUniqueUI(uiName, isDestroy);
-                            break;
-                        default:
-                            throw new Exception("未登记的UI类型--" + baseUI.CurrentUIType);
+                        var nextUI = _toRecoverStackUI.Dequeue();
+                        nextUI.Show(true);
+                        AnimationManager.Restart(nextUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (nextUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
                     }
+                    CheckCurrentUIMask();
                 }
                 else
                 {
@@ -405,6 +426,8 @@ namespace LitFramework
                 }
 
                 InputControlManager.Instance.IsEnable = true;
+
+                exitCallback?.Invoke();
             };
 
             InputControlManager.Instance.IsEnable = false;
@@ -425,12 +448,14 @@ namespace LitFramework
         {
             if (_stackCurrentUI != null && _stackCurrentUI.Count > 0)
             {
+                _needShowNextStackFlag = false;
                 while (_stackCurrentUI.Count > 0)
                 {
                     var stackUI = _stackCurrentUI.Pop();
                     Close(stackUI.AssetsName, useAnim: false);
                 }
                 _stackCurrentUI.Clear();
+                _needShowNextStackFlag = true;
                 return true;
             }
             return false;
@@ -609,12 +634,20 @@ namespace LitFramework
 
             baseUI.Close(isDestroy: isDestroy);
 
-            //如果需要清空已有 popup 窗口
-            if (baseUI.CurrentUIType.isClearPopUp)
-                ClearPopUpStackArray();
+            //判断栈里是否有窗口，有则冻结响应
+            if (_stackCurrentUI.Count > 0)
+            {
+                IBaseUI topUI = _stackCurrentUI.Peek();
+                if (!topUI.AssetsName.Equals(uiName))
+                    topUI.OnEnabled(true);
+            }
+
+            ////如果需要清空已有 popup 窗口
+            //if (baseUI.CurrentUIType.isClearPopUp)
+            //    ClearPopUpStackArray();
 
             //if (baseUI.CurrentUIType.uiNodeType == UINodeTypeEnum.PopUp)
-                CheckCurrentUIMask();
+            //CheckCurrentUIMask();
         }
 
         /// <summary>
@@ -684,7 +717,7 @@ namespace LitFramework
             if (baseUI.CurrentUIType.isClearPopUp)
                 ClearPopUpStackArray();
 
-            CheckCurrentUIMask();
+            //CheckCurrentUIMask();
         }
 
         /// <summary>
@@ -742,11 +775,21 @@ namespace LitFramework
         }
         private Stack<IBaseUI> _backStack = new Stack<IBaseUI>();
 
+
+        /// <summary>
+        /// 关闭任意窗口时，从stack栈中记录所有即将被恢复的窗口
+        /// </summary>
+        private Queue<IBaseUI> _toRecoverStackUI = new Queue<IBaseUI>(8);
+        /// <summary>
+        /// 关闭任意窗口时，从stack栈中记录所有即将被关闭的窗口
+        /// </summary>
+        private Queue<IBaseUI> _toCloseStackUI = new Queue<IBaseUI>(2);
+
         /// <summary>
         /// 弹出窗口，出栈
         /// </summary>
         /// <param name="uiName"></param>
-        private void UnLoadStackUI(string uiName, bool isDestroy = false)
+        private void UnLoadStackUI(string uiName, bool isDestroy = false )
         {
             IBaseUI topUI = null;
             //有两个以上弹窗出现时
@@ -754,23 +797,30 @@ namespace LitFramework
             {
                 //第一个出栈
                 topUI = _stackCurrentUI.Pop();
-                topUI.Close(isDestroy: isDestroy);
+                _toCloseStackUI.Enqueue(topUI);
+                //topUI.Close(isDestroy: isDestroy);
 
                 //第二个重新显示
-                IBaseUI nextUI = _stackCurrentUI.Peek();
-                nextUI.Show(true);
-                AnimationManager.Restart(nextUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (nextUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
+                if( _needShowNextStackFlag) {
+                    IBaseUI nextUI = _stackCurrentUI.Peek();
+                    _toRecoverStackUI.Enqueue(nextUI);
+                }
+                
+                //nextUI.Show(true);
+                //AnimationManager.Restart(nextUI.DotAnims, FrameworkConfig.Instance.OPENID, () => { if (nextUI.UseLowFrame) Application.targetFrameRate = FrameworkConfig.Instance.UI_LOW_FRAMERATE; });
+
             }
             //当前只有一个弹窗
             else if (_stackCurrentUI.Count == 1)
             {
                 //出栈的窗体进行隐藏
                 topUI = _stackCurrentUI.Pop();
-                topUI.Close(isDestroy: isDestroy);
+                _toCloseStackUI.Enqueue(topUI);
+                //topUI.Close(isDestroy: isDestroy);
             }
             _listCurrentPopupShowUIs.Remove(topUI);
 
-            CheckCurrentUIMask();
+            //CheckCurrentUIMask();
         }
 
         /// <summary>
@@ -791,9 +841,11 @@ namespace LitFramework
         /// <param name="force">是否关闭带有FixedFlag的UI</param>
         public void CloseAll(bool force = false, bool isDestroy = false, bool useAnim = true)
         {
+            _needShowNextStackFlag = false;
             var toCloseUI = _dictLoadedAllUIs.Where(e => !force ? e.Value.Flag != UIFlag.Fix : (e.Value is IBaseUI)).Select(e => e.Value).ToList();
             foreach (var item in toCloseUI)
                 Close(item.AssetsName, isDestroy, useAnim, force);
+            _needShowNextStackFlag = true;
         }
 
 

@@ -59,22 +59,22 @@ public class RsLoadManager : Singleton<RsLoadManager>, IManager, IRsLoad
         return null;
     }
 
-    ///// <summary>
-    ///// 获取指定路径/名称下的指定类型对象
-    ///// </summary>
-    ///// <typeparam name="T"></typeparam>
-    ///// <param name="aPath"></param>
-    ///// <returns></returns>
-    //public T Get<T>(string aPath) where T : UnityEngine.Object
-    //{
-    //    var alter = CheckAlternaltiveName(aPath);
-    //    if (UseSpawnPool && _spawnManager.IsSpawned(alter)) return _spawnManager.SpwanObject(CheckAlternaltiveName(alter)) as T;
+    /// <summary>
+    /// 获取指定路径/名称下的指定类型对象
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="aPath"></param>
+    /// <returns></returns>
+    public T Get<T>(string aPath) where T : UnityEngine.Object
+    {
+        var alter = CheckAlternaltiveName(aPath);
+        if (UseSpawnPool && _spawnManager.IsSpawned(alter)) return ((UnityEngine.Object)_spawnManager.SpwanObject(alter)) as T;
 
-    //    var loadedPreafab = Load<GameObject>(aPath) as T;
-    //    if (loadedPreafab != null) return GameObject.Instantiate<T>(loadedPreafab);
+        var loadedPreafab = Load<T>(aPath);
+        if (loadedPreafab != null) return GameObject.Instantiate<UnityEngine.Object>(loadedPreafab) as T;
 
-    //    return null;
-    //}
+        return null;
+    }
 
     /// <summary>
     /// 获取指定预制（非实例）
@@ -270,6 +270,13 @@ public static class RsLoadManagerSystem
         if (self == null) throw new Exception("被销毁对象为空");
         if (SpawnManager.Instance.IsSpawned(self)) { SpawnManager.Instance.DespawnObject(self); return; }
         GameObject.Destroy(self.gameObject);
+    }
+
+    public static void Destroy<T>(this T self) where T : UnityEngine.Object
+    {
+        if (self == null) throw new Exception("被销毁对象为空");
+        //除以上两种无需执行回收
+        GameObject.Destroy(self);
     }
 }
 

@@ -14,6 +14,9 @@ namespace UnityEngine.UI
     [RequireComponent(typeof(RectTransform))]
     public abstract class LoopScrollRect : UIBehaviour, IInitializePotentialDragHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IScrollHandler, ICanvasElement, ILayoutElement, ILayoutGroup
     {
+        //滚动状态结束回调
+        public event Action ScrollEndHandler;
+
         //==========LoopScrollRect==========
         [Tooltip("Prefab Source")]
         public LoopScrollPrefabSource prefabSource;
@@ -449,6 +452,8 @@ namespace UnityEngine.UI
             }
             StopMovement();
             UpdatePrevData();
+
+            ScrollEndHandler?.Invoke();
         }
 
         public void RefreshCells()

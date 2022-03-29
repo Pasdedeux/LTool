@@ -491,9 +491,9 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.Reset();
         csWrite.WriteLine("using LitFramework;");
         csWrite.WriteLine("using LitFramework.Base;");
+        csWrite.WriteLine("using ILRBaseModel.Singleton;");
         csWrite.WriteLine("using LitFramework.LitTool;");
         csWrite.WriteLine("using LitFramework.Persistent;");
-        csWrite.WriteLine("using ILRBaseModel.Singleton;");
         csWrite.WriteLine("/// 代码自动创建、更新");
         csWrite.WriteLine("/// 更新时间:" + System.DateTime.Now.Year + "/" + System.DateTime.Now.Month + "/" + System.DateTime.Now.Day + "   " + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second);
         csWrite.WriteLine("/// </summary>");

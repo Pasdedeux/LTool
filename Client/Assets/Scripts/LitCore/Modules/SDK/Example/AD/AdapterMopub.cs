@@ -160,7 +160,7 @@ public class AdapterMopub : BaseAdAdapter
     public override void ShowInterstitial()
     {
 #if MOPUB
-        Log.TraceInfo("IsIntersititialReady " + IsIntersititialReady());
+        LDebug.Log("IsIntersititialReady " + IsIntersititialReady());
 
         if (IsIntersititialReady())
         {
@@ -168,23 +168,23 @@ public class AdapterMopub : BaseAdAdapter
             if ( DataModel.Instance.CurrentLevel <= 20 )
             {
                 MoPub.ShowInterstitialAd( _interstitialAdUnits[ 1 ] );
-                Log.TraceInfo( "===>MoPub.ShowInterstitialAd _interstitialAdUnits[1]" );
+                LDebug.Log( "===>MoPub.ShowInterstitialAd _interstitialAdUnits[1]" );
             }
             else
             {
                 MoPub.ShowInterstitialAd( _interstitialAdUnits[ 0 ] );
-                Log.TraceInfo( "===>MoPub.ShowInterstitialAd _interstitialAdUnits[0]" );
+                LDebug.Log( "===>MoPub.ShowInterstitialAd _interstitialAdUnits[0]" );
             }
 #elif UNITY_IOS
             if (DataModel.Instance.CurrentLevel <= 20)
             {
                 MoPub.ShowInterstitialAd(_interstitialAdUnits[1]);
-                Log.TraceInfo("===>MoPub.ShowInterstitialAd _interstitialAdUnits[1]");
+                LDebug.Log("===>MoPub.ShowInterstitialAd _interstitialAdUnits[1]");
             }
             else
             {
                 MoPub.ShowInterstitialAd(_interstitialAdUnits[0]);
-                Log.TraceInfo("===>MoPub.ShowInterstitialAd _interstitialAdUnits[0]");
+                LDebug.Log("===>MoPub.ShowInterstitialAd _interstitialAdUnits[0]");
             }
 #endif
         }
@@ -282,31 +282,31 @@ public class AdapterMopub : BaseAdAdapter
     //banner读取成功
     private void OnAdLoadedEvent(string adUnitId, float height)
     {
-        Log.TraceInfo("mopub调试——banner读取成功");
+        LDebug.Log("mopub调试——banner读取成功");
     }
 
     //banner读取失败
     private void OnAdFailedEvent(string adUnitId, string error)
     {
-        Log.TraceInfo("mopub调试——banner读取失败, id:" + adUnitId);
+        LDebug.Log("mopub调试——banner读取失败, id:" + adUnitId);
     }
 
     //单击banner
     private void OnAdClickedEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——单击banner, id:" + adUnitId);
+        LDebug.Log("mopub调试——单击banner, id:" + adUnitId);
     }
 
     //Fired when a banner ad expands to encompass a greater portion of the screen
     private void OnAdExpandedEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——OnAdExpandedEvent, id:" + adUnitId);
+        LDebug.Log("mopub调试——OnAdExpandedEvent, id:" + adUnitId);
     }
 
     //Fired when a banner ad collapses back to its initial size  
     private void OnAdCollapsedEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——OnAdCollapsedEvent, id:" + adUnitId);
+        LDebug.Log("mopub调试——OnAdCollapsedEvent, id:" + adUnitId);
     }
 
 
@@ -317,43 +317,43 @@ public class AdapterMopub : BaseAdAdapter
     //interstitial读取成功
     private void OnInterstitialLoadedEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——interstitial读取成功");
+        LDebug.Log("mopub调试——interstitial读取成功");
         if (InterstitialLoadEventHandler != null) InterstitialLoadEventHandler(true);
     }
 
     //interstitial读取失败
     private void OnInterstitialFailedEvent(string adUnitId, string error)
     {
-        if (error != null) Log.TraceInfo("OnInterstitialFailedEvent " + error);
+        if (error != null) LDebug.Log("OnInterstitialFailedEvent " + error);
         if (InterstitialLoadEventHandler != null) InterstitialLoadEventHandler(false);
-        Log.TraceInfo("mopub调试——interstitial读取失败, id:" + adUnitId);
-        Log.TraceInfo("error-----" + error);
+        LDebug.Log("mopub调试——interstitial读取失败, id:" + adUnitId);
+        LDebug.Log("error-----" + error);
     }
     //申请插屏过期
     private void OnInterstitialExpiredEvent(string adUnitId)
     {
         //重新申请
         //MoPub.RequestInterstitialAd(_interstitialAdUnits[0]);
-        Log.TraceInfo("mopub调试——interstitial读取失败, id:" + adUnitId);
+        LDebug.Log("mopub调试——interstitial读取失败, id:" + adUnitId);
     }
 
     //interstitial关闭
     private void OnInterstitialDismissedEvent(string adUnitId)
     {
         //MoPub.RequestInterstitialAd(_interstitialAdUnits[0]);
-        Log.TraceInfo("mopub调试——interstitial关闭");
+        LDebug.Log("mopub调试——interstitial关闭");
     }
 
     //插屏激活回调
     private void OnInterstitialShownEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——interstitial插屏激活回调,id:" + adUnitId);
+        LDebug.Log("mopub调试——interstitial插屏激活回调,id:" + adUnitId);
         if (InterstitialShowEventHandler != null) InterstitialShowEventHandler(true);
     }
     //单击的时候回调
     private void OnInterstitialClickedEvent(string adUnitId)
     {
-        Log.TraceInfo("mopub调试——interstitial单击的时候回调,id:" + adUnitId);
+        LDebug.Log("mopub调试——interstitial单击的时候回调,id:" + adUnitId);
         if (InterstitialShowEventHandler != null) InterstitialShowEventHandler(true);
     }
 
@@ -366,23 +366,23 @@ public class AdapterMopub : BaseAdAdapter
     //加载
     private void OnRewardedVideoLoadedEvent(string adUnitId)
     {
-        Log.TraceInfo("激励视频广告读取,id:" + adUnitId);
+        LDebug.Log("激励视频广告读取,id:" + adUnitId);
 
     }
     //加载失败
     private void OnRewardedVideoFailedEvent(string adUnitId, string error)
     {
         //MoPub.RequestRewardedVideo(_rewardedVideoAdUnits[0]);
-        Log.TraceInfo("激励视频广告加载失败,id:" + adUnitId);
-        Log.TraceInfo("激励视频广告加载失败,error:" + error);
+        LDebug.Log("激励视频广告加载失败,id:" + adUnitId);
+        LDebug.Log("激励视频广告加载失败,error:" + error);
         RewardShowEventHandler?.Invoke(false);
     }
 
     //播放失败
     private void OnRewardedVideoFailedToPlayEvent(string adUnitId, string error)
     {
-        Log.TraceInfo("激励视频广告播放失败,id:" + adUnitId);
-        Log.TraceInfo("激励视频广告播放失败,error:" + error);
+        LDebug.Log("激励视频广告播放失败,id:" + adUnitId);
+        LDebug.Log("激励视频广告播放失败,error:" + error);
     }
 
     //申请视频过期
@@ -390,32 +390,32 @@ public class AdapterMopub : BaseAdAdapter
     {
         //重新申请
         MoPub.RequestRewardedVideo(_rewardedVideoAdUnits[0]);
-        Log.TraceInfo("激励视频申请视频过期,id:" + adUnitId);
+        LDebug.Log("激励视频申请视频过期,id:" + adUnitId);
     }
     //视频激活的时候回调
     private void OnRewardedVideoShownEvent(string adUnitId)
     {
-        Log.TraceInfo("视频激活的时候回调,id:" + adUnitId);
+        LDebug.Log("视频激活的时候回调,id:" + adUnitId);
     }
     //视频单击回调
     private void OnRewardedVideoClickedEvent(string adUnitId)
     {
-        Log.TraceInfo("视频单击回调,id:" + adUnitId);
+        LDebug.Log("视频单击回调,id:" + adUnitId);
     }
 
     //视频完整播放完回调
     private void OnRewardedVideoReceivedRewardEvent(string adUnitId, string label, float amount)
     {
-        Log.TraceInfo("视频完整播放完回调,id:" + adUnitId);
-        Log.TraceInfo("视频完整播放完回调,label:" + label);
-        Log.TraceInfo("视频完整播放完回调,amount:" + amount);
+        LDebug.Log("视频完整播放完回调,id:" + adUnitId);
+        LDebug.Log("视频完整播放完回调,label:" + label);
+        LDebug.Log("视频完整播放完回调,amount:" + amount);
         RewardShowEventHandler?.Invoke(true);
     }
 
     //关闭激励视频回调
     private void OnRewardedVideoClosedEvent(string adUnitId)
     {
-        Log.TraceInfo("关闭激励视频回调,id:" + adUnitId);
+        LDebug.Log("关闭激励视频回调,id:" + adUnitId);
         MoPub.RequestRewardedVideo(_rewardedVideoAdUnits[0]);
         if (RewardCloseEventHandler != null) RewardCloseEventHandler(false);
     }
@@ -423,7 +423,7 @@ public class AdapterMopub : BaseAdAdapter
     //激励视频跳转其他应用
     private void OnRewardedVideoLeavingApplicationEvent(string adUnitId)
     {
-        Log.TraceInfo("激励视频跳转其他应用,id:" + adUnitId);
+        LDebug.Log("激励视频跳转其他应用,id:" + adUnitId);
     }
 #endif
 

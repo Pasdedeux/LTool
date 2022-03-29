@@ -191,7 +191,7 @@ public class AdapterAdmob
             // the next Update() loop.
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
-                Log.TraceInfo("Initialization complete");
+                LDebug.Log("Initialization complete");
                 isInited = true;
 
                 CreateBanner();
@@ -258,12 +258,12 @@ public class AdapterAdmob
 #region Banner/Ins Callback
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdLoaded event received");
+        LDebug.Log("HandleAdLoaded event received");
     }
 
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Log.TraceInfo("HandleFailedToReceiveAd event received with message: "
+        LDebug.Log("HandleFailedToReceiveAd event received with message: "
                             + args.LoadAdError.GetMessage());
 
 
@@ -288,21 +288,21 @@ public class AdapterAdmob
         AdError underlyingError = loadAdError.GetCause();
 
         // All of this information is available via the error's toString() method.
-        Log.TraceInfo("Load error string: " + loadAdError.ToString());
+        LDebug.Log("Load error string: " + loadAdError.ToString());
 
         // Get response information, which may include results of mediation requests.
         ResponseInfo responseInfo = loadAdError.GetResponseInfo();
-        Log.TraceInfo("Response info: " + responseInfo.ToString());
+        LDebug.Log("Response info: " + responseInfo.ToString());
     }
 
     public void HandleOnAdOpened(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdOpened event received");
+        LDebug.Log("HandleAdOpened event received");
     }
 
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdClosed event received");
+        LDebug.Log("HandleAdClosed event received");
     }
 
 #endregion
@@ -310,12 +310,12 @@ public class AdapterAdmob
 #region Ins Callback
     public void HandleInsOnAdLoaded(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdLoaded event received");
+        LDebug.Log("HandleAdLoaded event received");
     }
 
     public void HandleInsOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Log.TraceInfo("HandleFailedToReceiveAd event received with message: "
+        LDebug.Log("HandleFailedToReceiveAd event received with message: "
                             + args.LoadAdError.GetMessage());
 
 
@@ -340,21 +340,21 @@ public class AdapterAdmob
         AdError underlyingError = loadAdError.GetCause();
 
         // All of this information is available via the error's toString() method.
-        Log.TraceInfo("Load error string: " + loadAdError.ToString());
+        LDebug.Log("Load error string: " + loadAdError.ToString());
 
         // Get response information, which may include results of mediation requests.
         ResponseInfo responseInfo = loadAdError.GetResponseInfo();
-        Log.TraceInfo("Response info: " + responseInfo.ToString());
+        LDebug.Log("Response info: " + responseInfo.ToString());
     }
 
     public void HandleInsOnAdOpened(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdOpened event received");
+        LDebug.Log("HandleAdOpened event received");
     }
 
     public void HandleInsOnAdClosed(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleAdClosed event received");
+        LDebug.Log("HandleAdClosed event received");
         InterstitialShowEventHandler?.Invoke(true);
         CreateInterstitial();
     }
@@ -365,12 +365,12 @@ public class AdapterAdmob
 
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleRewardedAdLoaded event received");
+        LDebug.Log("HandleRewardedAdLoaded event received");
     }
 
     public void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Log.TraceInfo(
+        LDebug.Log(
             "HandleRewardedAdFailedToLoad event received with message: "
                              + args.LoadAdError.GetMessage());
 
@@ -395,21 +395,21 @@ public class AdapterAdmob
         AdError underlyingError = loadAdError.GetCause();
 
         // All of this information is available via the error's toString() method.
-        Log.TraceInfo("Load error string: " + loadAdError.ToString());
+        LDebug.Log("Load error string: " + loadAdError.ToString());
 
         // Get response information, which may include results of mediation requests.
         ResponseInfo responseInfo = loadAdError.GetResponseInfo();
-        Log.TraceInfo("Response info: " + responseInfo.ToString());
+        LDebug.Log("Response info: " + responseInfo.ToString());
     }
 
     public void HandleRewardedAdOpening(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleRewardedAdOpening event received");
+        LDebug.Log("HandleRewardedAdOpening event received");
     }
 
     public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-        Log.TraceInfo(
+        LDebug.Log(
             "HandleRewardedAdFailedToShow event received with message: "
                              + args.AdError.GetMessage());
         InterstitialShowEventHandler?.Invoke(false);
@@ -419,7 +419,7 @@ public class AdapterAdmob
 
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        Log.TraceInfo("HandleRewardedAdClosed event received");
+        LDebug.Log("HandleRewardedAdClosed event received");
         RewardShowEventHandler?.Invoke(true);
         CreateRewarded();
     }
@@ -428,7 +428,7 @@ public class AdapterAdmob
     {
         string type = args.Type;
         double amount = args.Amount;
-        Log.TraceInfo(
+        LDebug.Log(
             "HandleRewardedAdRewarded event received for "
                         + amount.ToString() + " " + type);
     }

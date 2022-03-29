@@ -21,9 +21,9 @@ using LitFramework;
 using LitFramework.GameFlow;
 using LitFramework.HotFix;
 using LitFramework.MsgSystem;
+using LitFramework.Singleton;
 using System.Collections.Generic;
 using UnityEngine;
-using LitFramework.Singleton;
 
 namespace Assets.Scripts.Controller
 {
@@ -111,8 +111,8 @@ namespace Assets.Scripts.Controller
             //==================具体项目的代码从这里开始==================//
             LoadingTaskModel.Instance.AddTask(20, () =>
             {
-                _asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
-                _asyncOperation.allowSceneActivation = true;
+                //_asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
+                //_asyncOperation.allowSceneActivation = true;
                 return true;
             });
             //==================具体项目的代码从这里结束==================//
@@ -122,7 +122,10 @@ namespace Assets.Scripts.Controller
 
             LoadingTaskModel.Instance.AddTask(100, () =>
             {
-                while (!_asyncOperation.isDone) { };
+                if(_asyncOperation!=null)
+                {
+                    while (!_asyncOperation.isDone) { };
+                }
                 sc.StartRun();
                 UIManager.Instance.Close(ResPath.UI.UILOADING, true);
                 MsgManager.Instance.Broadcast(InternalEvent.START_UP);

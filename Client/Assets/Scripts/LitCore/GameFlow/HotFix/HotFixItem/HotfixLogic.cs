@@ -76,10 +76,10 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
@@ -125,10 +125,10 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
@@ -170,10 +170,10 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                Log.TraceInfo("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   Log.TraceInfo("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },

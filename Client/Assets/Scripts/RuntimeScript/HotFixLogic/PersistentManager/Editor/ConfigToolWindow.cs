@@ -17,6 +17,6 @@ public class ConfigToolWindow : OdinEditorWindow
 		CommonData LocalData = LocalDataHandle.LoadConfig<CommonData>();
 		var window = OdinEditorWindow.InspectObject(LocalData);
 		window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 800);
-		window.OnClose +=()=>{ LocalDataHandle.SaveConfig(LocalData);};
+		window.OnClose +=()=>{ LocalDataHandle.EditorSaveConfig(LocalData);};
 	}
 }

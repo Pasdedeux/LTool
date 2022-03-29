@@ -14,22 +14,22 @@ public class UnityLogger : ILog
         }
     }
 
-    public void Trace(string msg, LogColor logColor = LogColor.white)
+    public void Trace(string msg, LogColor logColor = LogColor.green)
     {
         UnityEngine.Debug.LogFormat("<color={0}>{1}</color>", logColor, msg);
     }
 
-    public void Debug(string msg, LogColor logColor = LogColor.white)
+    public void Debug(string msg, LogColor logColor = LogColor.green)
     {
         UnityEngine.Debug.LogFormat("<color={0}>{1}</color>", logColor, msg);
     }
 
-    public void Info(string msg, LogColor logColor = LogColor.white)
+    public void Info(string msg, LogColor logColor = LogColor.green)
     {
         UnityEngine.Debug.LogFormat("<color={0}>{1}</color>", logColor, msg);
     }
 
-    public void Warning(string msg, LogColor logColor = LogColor.white)
+    public void Warning(string msg, LogColor logColor = LogColor.green)
     {
         UnityEngine.Debug.LogWarningFormat("<color={0}>{1}</color>", logColor, msg);
     }

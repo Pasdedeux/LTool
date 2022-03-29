@@ -20,13 +20,6 @@ namespace Sirenix.OdinInspector.Editor.Drawers
     [DrawerPriority(0, 0, 2)]
     public class SyncListDrawer<TList, TElement> : OdinValueDrawer<TList> where TList : SyncList<TElement>
     {
-        private LocalPersistentContext<bool> visible;
-
-        protected override void Initialize()
-        {
-            this.visible = this.Property.Context.GetPersistent(this, "expanded", GeneralDrawerConfig.Instance.OpenListsByDefault);
-        }
-
         /// <summary>
         /// Draws the property.
         /// </summary>
@@ -36,6 +29,13 @@ namespace Sirenix.OdinInspector.Editor.Drawers
             var property = entry.Property;
             int minCount = int.MaxValue;
             int maxCount = 0;
+
+            PropertyContext<bool> isVisible;
+
+            if (entry.Context.Get(this, "is_visible", out isVisible))
+            {
+                isVisible.Value = GeneralDrawerConfig.Instance.OpenListsByDefault;
+            }
 
             for (int i = 0; i < entry.ValueCount; i++)
             {
@@ -51,11 +51,11 @@ namespace Sirenix.OdinInspector.Editor.Drawers
             }
 
             SirenixEditorGUI.BeginHorizontalToolbar();
-            this.visible.Value = SirenixEditorGUI.Foldout(this.visible.Value, GUIHelper.TempContent("SyncList " + label.text + "  [" + typeof(TList).Name + "]"));
+            isVisible.Value = SirenixEditorGUI.Foldout(isVisible.Value, GUIHelper.TempContent("SyncList " + label.text + "  [" + typeof(TList).Name + "]"));
             EditorGUILayout.LabelField(GUIHelper.TempContent(minCount == maxCount ? (minCount == 0 ? "Empty" : minCount + " items") : minCount + " (" + maxCount + ") items"), SirenixGUIStyles.RightAlignedGreyMiniLabel);
             SirenixEditorGUI.EndHorizontalToolbar();
 
-            if (SirenixEditorGUI.BeginFadeGroup(this.visible, this.visible.Value))
+            if (SirenixEditorGUI.BeginFadeGroup(isVisible, isVisible.Value))
             {
                 GUIHelper.PushGUIEnabled(false);
                 SirenixEditorGUI.BeginVerticalList();

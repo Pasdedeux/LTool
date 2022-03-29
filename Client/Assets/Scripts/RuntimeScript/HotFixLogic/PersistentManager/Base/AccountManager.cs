@@ -4,7 +4,6 @@ using UnityEngine;
 using LitFramework;
 using LitFramework.LitTool;
 using System;
-using LitFramework.Singleton;
 
 public class AccountManager : BaseLocalConfigManager<AccountManager>
 {

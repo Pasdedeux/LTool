@@ -500,12 +500,14 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.WriteLine("public class {0} : Singleton<{0}>,IManager", className, className);
         csWrite.StartBracket();
         csWrite.WriteLine("public System.Action DataInstallEnd;");
+        csWrite.WriteLine("public System.Action FirstUseHandler;");
         csWrite.WriteLine("public void Install()");
         csWrite.StartBracket();
         csWrite.WriteLine("LoadData();");
         csWrite.WriteLine("CheckFristLogin();");
         csWrite.WriteLine("InstallManagers();");
         csWrite.WriteLine("GameDriver.Instance.UpdateEventHandler += SaveData;");
+        csWrite.WriteLine("FirstUseHandler?.Invoke();");
         csWrite.WriteLine("DataInstallEnd?.Invoke();");
         csWrite.EndBracket();
         //属性

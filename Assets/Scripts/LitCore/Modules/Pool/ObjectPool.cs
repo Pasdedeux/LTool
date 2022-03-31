@@ -10,23 +10,23 @@ namespace LitFramework.LitPool
     /// <typeparam name="T"></typeparam>
     public static class ObjectPool<T> where T : class, IPoolClass, new()
     {
-        private static readonly Stack<T> m_Stack = new Stack<T>();
+        private static readonly Stack<T> _stack = new Stack<T>();
 
         public static int CountAll { get; private set; }
         public static int CountActive { get { return CountAll - CountInactive; } }
-        public static int CountInactive { get { return m_Stack.Count; } }
+        public static int CountInactive { get { return _stack.Count; } }
 
         public static T Get()
         {
             T element;
-            if (m_Stack.Count == 0)
+            if (_stack.Count == 0)
             {
                 element = new T();
                 CountAll++;
             }
             else
             {
-                element = m_Stack.Pop();
+                element = _stack.Pop();
             }
             element.PrivateInit();
             return element;
@@ -34,10 +34,13 @@ namespace LitFramework.LitPool
 
         public static void Release(T element)
         {
-            if (m_Stack.Count > 0 && ReferenceEquals(m_Stack.Peek(), element))
+            if (_stack.Count > 0 && ReferenceEquals(_stack.Peek(), element))
+            {
                 Log.Info("Internal error. Trying to destroy object that is already released to pool.");
+                return;
+            }
             element.PrivateRelease();
-            m_Stack.Push(element);
+            _stack.Push(element);
         }
     }
 }

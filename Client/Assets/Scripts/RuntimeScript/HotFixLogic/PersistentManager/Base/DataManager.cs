@@ -8,6 +8,7 @@ using ILRBaseModel.Singleton;
 public class DataManager : Singleton<DataManager>,IManager
 {
 	public System.Action DataInstallEnd;
+	public System.Action FirstUseHandler;
 	public void Install()
 	{
 		LoadData();
@@ -15,6 +16,7 @@ public class DataManager : Singleton<DataManager>,IManager
 		CheckFristLogin();
 		InstallManagers();
 		GameDriver.Instance.UpdateEventHandler += SaveData;
+		FirstUseHandler?.Invoke();
 		DataInstallEnd?.Invoke();
 	}
 	public AccountLocalData AccountLocal;

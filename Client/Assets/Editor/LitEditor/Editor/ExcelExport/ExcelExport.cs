@@ -124,7 +124,7 @@ namespace Litframework.ExcelTool
         /// <summary>
         /// 额外需要登记添加进入csvList的文件
         /// </summary>
-        private const string _defaultExtralFileType = "json|dat|assetbundle";
+        private const string _defaultExtralFileType = "json|dat|assetbundle|bin";
 
         #endregion
 

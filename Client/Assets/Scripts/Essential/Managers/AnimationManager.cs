@@ -69,6 +69,8 @@ public static class AnimationManager
                 var condition = animArray.Where(k => k.id.Equals(id));
                 if (condition.Count() > 0)
                     LitFramework.LitTool.LitTool.DelayPlayFunction(condition.Max(e => e.delay + e.duration), () => { callBack.Invoke(); });
+                else
+                    callBack.Invoke();
             }
         }
         else callBack?.Invoke();

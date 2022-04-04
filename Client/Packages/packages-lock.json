@@ -153,7 +153,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.ugui": {
-      "version": "file:1.0.0",
+      "version": "file:com.unity.ugui",
       "depth": 0,
       "source": "embedded",
       "dependencies": {

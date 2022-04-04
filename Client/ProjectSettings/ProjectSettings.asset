@@ -673,7 +673,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_EDITOR_ONLY
-    7: ODIN_INSPECTOR;IAP;ODIN_INSPECTOR_3;ODIN_INSPECTOR_EDITOR_ONLY;LOG
+    7: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_EDITOR_ONLY;IAP;LOG
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -290,7 +290,6 @@ MonoBehaviour:
   isProgramTest: 1
   ForceUpdatePersistant: 1
   Reporter: 1
-  UseLogSymbol: 1
   scriptEnvironment: 0
 --- !u!1 &697112009
 GameObject:

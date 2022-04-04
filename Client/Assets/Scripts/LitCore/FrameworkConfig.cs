@@ -16,12 +16,9 @@
 *******************************************************************
 //----------------------------------------------------------------*/
 #endregion
-
+#define LOG_ENABLE_FALSE
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using LitFramework.Singleton;
 
@@ -30,7 +27,7 @@ namespace LitFramework
     /// <summary>
     /// 框架控制参数
     /// </summary>
-    public class FrameworkConfig:SingletonMono<FrameworkConfig>
+    public class FrameworkConfig : SingletonMono<FrameworkConfig>
     {
         #region 基础设置
         [FoldoutGroup("基础设置")]
@@ -49,13 +46,13 @@ namespace LitFramework
         /// <summary>
         /// 延迟调用函数计时检测间隔
         /// </summary>
-        [LabelText( "延迟调用函数计时检测间隔" )]
+        [LabelText("延迟调用函数计时检测间隔")]
         public float DelayFuncDetectInterver = 0.1f;
         [FoldoutGroup("基础设置")]
         /// <summary>
         /// 开启使用逐帧遍历延迟函数调用。默认为false
         /// </summary>
-        [LabelText( "使用逐帧遍历延迟函数" )]
+        [LabelText("使用逐帧遍历延迟函数")]
         public bool UseDelayFuncPreciseDetect = false;
         //[FoldoutGroup("基础设置")]
         /// <summary>
@@ -68,7 +65,7 @@ namespace LitFramework
         /// <summary>
         /// 当前项目资源加载方式
         /// </summary>
-        [LabelText( "资源加载方式" )]
+        [LabelText("资源加载方式")]
         [OnValueChanged("CheckRsLoadType")]
         public ResLoadType resLoadType = ResLoadType.Resource;
         private void CheckRsLoadType()
@@ -85,7 +82,7 @@ namespace LitFramework
         /// <summary>
         /// 触碰/点击忽略UI。默认为true
         /// </summary>
-        [LabelText( "触碰/点击UI检测" )]
+        [LabelText("触碰/点击UI检测")]
         public bool TouchDetectUI = true;
         [FoldoutGroup("UI设置")]
         [LabelText("UI DOT动画默认进场ID")]
@@ -113,18 +110,18 @@ namespace LitFramework
         #endregion
 
         #region 配置档设置
-        
+
         [FoldoutGroup("配置档设置")]
-        [LabelText( "AB包文件夹名称" )]
+        [LabelText("AB包文件夹名称")]
         public string ABFolderName = "ABPackages";
         //[LabelText( "AB总包名称" )]
         [HideInInspector]
         public string ABTotalName = "ABPackages";
-        
+
         [FoldoutGroup("配置档设置")]
-        [LabelText( "额外登记的文件后缀" )]
+        [LabelText("额外登记的文件后缀")]
         public string configs_suffix = "json|dat|assetbundle|bin";
-       
+
         [FoldoutGroup("配置档设置")]
         [LabelText("是否打成压缩包")]
         public bool useZIP = false;
@@ -141,7 +138,7 @@ namespace LitFramework
         [FoldoutGroup("配置档设置")]
         [LabelText("是否动态添加对象池")]
         public bool useSpawnConfig = false;
-       
+
         [FoldoutGroup("配置档设置")]
         [ShowIf("useSpawnConfig")]
         [LabelText("动态加载方式")]
@@ -150,7 +147,7 @@ namespace LitFramework
 
         [FoldoutGroup("热更新")]
         [OnValueChanged("CheckUseSql")]
-        [ LabelText("使用可读写目录")]
+        [LabelText("使用可读写目录")]
         public bool UsePersistantPath = false;
         private void CheckUseSql()
         {
@@ -159,7 +156,7 @@ namespace LitFramework
 
         [FoldoutGroup("热更新")]
         [ShowIf("UsePersistantPath")]
-        [LabelText( "开启远程更新" )]
+        [LabelText("开启远程更新")]
         public bool UseRemotePersistantPath = false;
 
         [FoldoutGroup("热更新")]
@@ -184,7 +181,7 @@ namespace LitFramework
 #endif
         }
 
-        [BoxGroup("调试设置",centerLabel:true)]
+        [BoxGroup("调试设置", centerLabel: true)]
         [OnValueChanged("CheckPropChange")]
         [LabelText("是否打印日志")]
         public bool showLog = true;
@@ -205,25 +202,25 @@ namespace LitFramework
         [OnValueChanged("CheckPropChange")]
         public bool Reporter = false;
 
+#if LOG_ENABLE_TRUE
         [BoxGroup("调试设置", centerLabel: true)]
         [LabelText("Log宏（慎点，有编译时间）")]
         [OnValueChanged("CheckPropChange")]
         [OnValueChanged("LinkShowLog")]
         public bool UseLogSymbol = false;
 
-        
-        
         private void LinkShowLog()
         {
             if (showLog != UseLogSymbol) showLog = UseLogSymbol;
         }
+#endif
 
         public void CheckPropChange()
         {
             DEBUG_Info = DEBUG_INFO_BASE + "\n";
 
             //是否打印日志
-            if ( showLog ) DEBUG_Info += "ShowLog\n";
+            if (showLog) DEBUG_Info += "ShowLog\n";
             //程序开发调试
             if (isProgramTest) DEBUG_Info += "IsProgramTest\n";
             //强制更新读写目录
@@ -250,41 +247,46 @@ namespace LitFramework
                 item = null;
             }
 #endif
-            //LOG宏
-            if (UseLogSymbol)
-            {
+
+#if LOG_ENABLE_TRUE
+
+                        //LOG宏
+                        if (UseLogSymbol)
+                        {
 #if UNITY_EDITOR
-                var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
-                if (!symb.Contains("LOG"))
-                {
-                    symb.Add("LOG");
-                    UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
-                }
+                            var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+                            if (!symb.Contains("LOG"))
+                            {
+                                symb.Add("LOG");
+                                UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
+                            }
 #endif
-                DEBUG_Info += "symbol define: LOG\n";
-            }
-            else
-            {
+                            DEBUG_Info += "symbol define: LOG\n";
+                        }
+                        else
+                        {
 #if UNITY_EDITOR
-                var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
-                if (symb.Contains("LOG"))
-                {
-                    symb.Remove("LOG");
-                    UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
-                }
+                            var symb = UnityEditor.PlayerSettings.GetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+                            if (symb.Contains("LOG"))
+                            {
+                                symb.Remove("LOG");
+                                UnityEditor.PlayerSettings.SetScriptingDefineSymbolsForGroup(UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", symb));
+                            }
 #endif
-            }
-           
+                        }
+
+#endif
+
             IsNotDebug = DEBUG_Info.Equals(DEBUG_INFO_BASE + "\n");
         }
 
         [Space(10)]
         [LabelText("代码运行环境")]
         public RunEnvironment scriptEnvironment = RunEnvironment.DotNet;
-        
-        #endregion
 
-        #region Func
+#endregion
+
+#region Func
         void Awake()
         {
             //帧率设定
@@ -294,7 +296,7 @@ namespace LitFramework
 
         private void Start()
         {
-            DontDestroyOnLoad( GameObject.Find("Configs") );
+            DontDestroyOnLoad(GameObject.Find("Configs"));
         }
 
 #if UNITY_EDITOR

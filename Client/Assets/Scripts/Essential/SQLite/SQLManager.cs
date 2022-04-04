@@ -49,7 +49,7 @@ namespace SQLite
             {
                 if (changeWorkingName && workingName.Trim() == "")
                 {
-                    LDebug.LogError("If you want to change the database's working name, then you will need to supply a new working name in the SimpleSQLManager [xxx" + /*gameObject.name+ */ "]");
+                    Log.Error("If you want to change the database's working name, then you will need to supply a new working name in the SimpleSQLManager [xxx" + /*gameObject.name+ */ "]");
                     return;
                 }
 
@@ -91,7 +91,7 @@ namespace SQLite
             if (_db != null)
             {
                 if (debugTrace)
-                    LDebug.Log(": closing connection");
+                    Log.Info(": closing connection");
 
                 _db.Close();
             }
@@ -102,7 +102,7 @@ namespace SQLite
             if (_db != null)
             {
                 if (debugTrace)
-                    LDebug.Log(": disposing connection");
+                    Log.Info(": disposing connection");
 
                 _db.Dispose();
                 _db = null;

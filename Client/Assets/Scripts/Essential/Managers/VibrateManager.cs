@@ -108,7 +108,7 @@ namespace LitFramework
         /// <param name="repeat">-1不循环 2=无限循环</param>
         public void Shake( long[] pattern, int repeat = -1 )
         {
-            LDebug.Log( "[设置]->震动 " );
+            Log.Info( "[设置]->震动 " );
 
             _javaObject.Call( "UnityCallShake", pattern, repeat );
         }

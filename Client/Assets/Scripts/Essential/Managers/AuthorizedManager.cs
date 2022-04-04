@@ -90,7 +90,7 @@ namespace Assets.Scripts.Essential.SDK
             var checkPermission = AndroidRuntimePermissions.CheckPermissions(_permissionToRequestDict);
             for (int i = 0; i < checkPermission.Length; i++)
             {
-                LDebug.Log($">>{_permissionToRequestDict[i]}: {checkPermission[i]}" );
+                Log.Info($">>{_permissionToRequestDict[i]}: {checkPermission[i]}" );
             }
             var toCheckListIndex = checkPermission.Select( ( a, k ) => new { value = a, index = k } ).Where( a => a.value != AndroidRuntimePermissions.Permission.Granted ).Select( k => k.index ).ToList();
 
@@ -99,7 +99,7 @@ namespace Assets.Scripts.Essential.SDK
             var ps = AndroidRuntimePermissions.RequestPermissions( toRequestArray );
             for (int i = 0; i < ps.Length; i++)
             {
-                LDebug.Log($">>Re request {toRequestArray[ i ]} : {ps[i]}");
+                Log.Info($">>Re request {toRequestArray[ i ]} : {ps[i]}");
             }
 #endif
         }

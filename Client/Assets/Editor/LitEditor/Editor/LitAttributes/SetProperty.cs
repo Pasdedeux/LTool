@@ -65,7 +65,7 @@ namespace LitFrameworkEditor.LitAttributes
                 PropertyInfo pi = type.GetProperty( setProperty.Name );
                 if ( pi == null )
                 {
-                    LDebug.LogError( "Invalid property name: " + setProperty.Name + "\nCheck your [SetProperty] attribute" );
+                    Log.Error( "Invalid property name: " + setProperty.Name + "\nCheck your [SetProperty] attribute" );
                 }
                 else
                 {

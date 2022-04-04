@@ -21,7 +21,7 @@ namespace LHotfixProject
         /// </summary>
         public static void Pre_RunGame_ILRuntime()
         {
-            LDebug.Log( ">>>>执行预加载或初始化", LogColor.yellow );
+            Log.Info( ">>>>执行预加载或初始化", LogColor.yellow );
 
             DataManager.Instance.Install();
         }
@@ -32,7 +32,7 @@ namespace LHotfixProject
         public static void RunGame_ILRuntime()
         {
             //记得完成相关CLR绑定以及适配器制作
-            LDebug.Log( string.Format( "《《《 --- {0} version v1.0.0 --- 》》》", FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet ? "DotNet" : "HotFix" ), LogColor.yellow );
+            Log.Info( string.Format( "《《《 --- {0} version v1.0.0 --- 》》》", FrameworkConfig.Instance.scriptEnvironment == RunEnvironment.DotNet ? "DotNet" : "HotFix" ), LogColor.yellow );
         }
     }
 }

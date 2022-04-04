@@ -572,7 +572,7 @@ namespace Litframework.ExcelTool
                         realName = realName.Substring(realName.LastIndexOf("StreamingAssets") + "StreamingAssets".Length + 1);
                         if (listwriter.Any(e => e.AbName == realName))
                         {
-                            LDebug.LogWarning($">>配置档 {realName} 重复录入。已忽略 ");
+                            Log.Warning($">>配置档 {realName} 重复录入。已忽略 ");
                             continue;
                         }
                         listwriter.Add(new ABVersion { AbName = realName, MD5 = LitFramework.Crypto.Crypto.md5.GetFileHash(info.FullName), Version = 0 });

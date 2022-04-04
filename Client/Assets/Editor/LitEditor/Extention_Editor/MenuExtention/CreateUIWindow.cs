@@ -1350,7 +1350,7 @@ public class CreateUIWindow : OdinEditorWindow
         //    var asmb = System.Reflection.Assembly.Load("Assembly-CSharp");
         //    var t = asmb.GetType("Assets.Scripts.UI." + uiScriptsName);
         //    if (null != t) newCanvas.gameObject.AddComponent(t);
-        //    else LDebug.LogError("UI脚本绑定失败");
+        //    else Log.Error("UI脚本绑定失败");
         //}
         GameObject prefab=  PrefabUtility.SaveAsPrefabAsset(newCanvas.gameObject,localPath);
         DestroyImmediate(newCanvas.gameObject);

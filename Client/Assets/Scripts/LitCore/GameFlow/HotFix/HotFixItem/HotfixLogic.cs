@@ -76,23 +76,23 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.Info("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   Log.Info("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
                 errorCallBack: (UnityWebRequest e) =>
                 {
-                    LDebug.LogError("Remote Error..." + e + ": " + remoteFilePath);
+                    Log.Error("Remote Error..." + e + ": " + remoteFilePath);
                     if (!string.IsNullOrEmpty(e.error)) { canGoFurther = false; return; }
                 });
 
                 // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
                 if (!canGoFurther)
                 {
-                    LDebug.LogError("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
+                    Log.Error("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
                     MsgManager.Instance.Broadcast(InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs(remoteContent, remoteFilePath, wrongFileName));
                     yield break;
                 }
@@ -125,23 +125,23 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.Info("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   Log.Info("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
                 errorCallBack: (UnityWebRequest e) =>
                 {
-                    LDebug.LogError("Remote Error..." + e + ": " + remoteFilePath);
+                    Log.Error("Remote Error..." + e + ": " + remoteFilePath);
                     if (!string.IsNullOrEmpty(e.error)) { canGoFurther = false; return; }
                 });
 
                 // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
                 if (!canGoFurther)
                 {
-                    LDebug.LogError("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
+                    Log.Error("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
                     MsgManager.Instance.Broadcast(InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs(remoteContent, remoteFilePath, wrongFileName));
                     yield break;
                 }
@@ -170,23 +170,23 @@ namespace Assets.Scripts.Module.HotFix
                 byte[] contentByteArr = null;
 
                 //远程主配置文件获取
-                LDebug.Log("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
+                Log.Info("Remote update..." + FrameworkConfig.Instance.RemoteUrlConfig + "/" + remoteFilePath + " 开始读取", LogColor.yellow);
                 yield return DocumentAccessor.ILoadAsset(FrameworkConfig.Instance.RemoteUrlConfig + remoteFilePath, callBack: (UnityWebRequest e) =>
                {
-                   LDebug.Log("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
+                   Log.Info("Remote update..." + remoteFilePath + "读取完成", LogColor.yellow);
                    remoteContent = e.downloadHandler.text;
                    contentByteArr = e.downloadHandler.data;
                },
                 errorCallBack: (UnityWebRequest e) =>
                 {
-                    LDebug.LogError("Remote Error..." + e + ": " + remoteFilePath);
+                    Log.Error("Remote Error..." + e + ": " + remoteFilePath);
                     if (!string.IsNullOrEmpty(e.error)) { canGoFurther = false; return; }
                 });
 
                 // 因为加载出问题导致无法继续时，目前先使用中断后续步骤，并弹窗提醒的方式搞
                 if (!canGoFurther)
                 {
-                    LDebug.LogError("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
+                    Log.Error("Remote Update Abort..." + wrongFileName + " : " + remoteFilePath);
                     MsgManager.Instance.Broadcast(InternalEvent.REMOTE_UPDATE_ERROR, new MsgArgs(remoteContent, remoteFilePath, wrongFileName));
                     yield break;
                 }

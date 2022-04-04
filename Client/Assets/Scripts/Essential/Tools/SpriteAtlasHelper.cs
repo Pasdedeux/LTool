@@ -20,7 +20,7 @@ public class SpriteAtlasHelper : Singleton<SpriteAtlasHelper>
     {
         SpriteAtlasManager.atlasRequested += (string tag, System.Action<SpriteAtlas> action) =>
         {
-            LDebug.Log(">>>>>>>Request sprite atlas: " + tag); 
+            Log.Info(">>>>>>>Request sprite atlas: " + tag); 
             SpriteAtlas tAtlas = null;
             if(!AtlasDic.TryGetValue(tag ,out tAtlas))
             {
@@ -32,7 +32,7 @@ public class SpriteAtlasHelper : Singleton<SpriteAtlasHelper>
 
         SpriteAtlasManager.atlasRegistered += (SpriteAtlas spriteAtlas) =>
         {
-            LDebug.Log(">>>>>>>AtlasRegistered: " + spriteAtlas.name);
+            Log.Info(">>>>>>>AtlasRegistered: " + spriteAtlas.name);
         };
         Texture2D defaultTex = Texture2D.blackTexture;
         Default = Sprite.Create(defaultTex, new Rect(0,0, defaultTex.width, defaultTex.height),new Vector2(0.5f,0.5f));

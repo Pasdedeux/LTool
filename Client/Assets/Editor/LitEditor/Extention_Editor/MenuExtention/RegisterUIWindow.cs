@@ -304,7 +304,7 @@ public class RegisterUIWindow : EditorWindow
                 var asmb = System.Reflection.Assembly.Load("Assembly-CSharp");
                 var t = asmb.GetType("Assets.Scripts.UI." + uiScriptsName);
                 if (null != t) newCanvas.gameObject.AddComponent(t);
-                else LDebug.LogError("UI脚本绑定失败");
+                else Log.Error("UI脚本绑定失败");
             }
 
             string localPath = "Assets/Resources/" + GlobalEditorSetting.UI_PREFAB_PATH + newCanvas.gameObject.name + ".prefab";

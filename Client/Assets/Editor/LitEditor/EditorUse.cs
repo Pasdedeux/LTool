@@ -115,7 +115,7 @@ public class EditorUse
     }
     private static void OnPlayerModeStateChanged(PlayModeStateChange playModeState)
     {
-        LDebug.LogWarning(string.Format("state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying));
+        Log.Warning(string.Format("state:{0} will:{1} isPlaying:{2}", playModeState, EditorApplication.isPlayingOrWillChangePlaymode, EditorApplication.isPlaying));
     }
 
     #endregion

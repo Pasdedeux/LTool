@@ -25,6 +25,6 @@ public class LoadingStart : MonoBehaviour
         //启动框架本身
         FrameworkController.Instance.InitFramework();
         
-        LDebug.Log( ">>Loading Start Initialized !" );
+        Log.Info( ">>Loading Start Initialized !" );
     }   
 }

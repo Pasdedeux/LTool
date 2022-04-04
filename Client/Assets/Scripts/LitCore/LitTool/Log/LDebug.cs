@@ -21,7 +21,7 @@ using System.Diagnostics;
 
 
 #if !NOT_UNITY
-[Obsolete("最好使用Log.XXX来代替")]
+[Obsolete("推荐使用Log.XXX来代替")]
 public static class LDebug
 {
     private static bool _enabeld = true;

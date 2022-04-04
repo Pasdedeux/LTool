@@ -528,7 +528,7 @@ namespace AssetBundleBrowser
                 }
                 catch (Exception)
                 {
-                    LDebug.LogError($" 压缩错误：[{fullName}]", LogColor.green);
+                    Log.Error($" 压缩错误：[{fullName}]", LogColor.green);
                     return;
                 }
             }
@@ -708,7 +708,7 @@ namespace AssetBundleBrowser
                         path = path.Remove(endDot, path.Length - endDot);
                         if (abPathDic.ContainsKey(path))
                         {
-                            // LDebug.LogError(path + "----" + "重名了！！！或者打到两包里了");
+                            // Log.Error(path + "----" + "重名了！！！或者打到两包里了");
                         }
                         else
                         {

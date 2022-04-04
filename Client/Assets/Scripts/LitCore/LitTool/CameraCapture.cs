@@ -71,7 +71,7 @@ namespace LitFramework.LitTool
                if( size == Vector2.zero )
                 {
                     size = new Vector2( Screen.currentResolution.width, Screen.currentResolution.height );
-                    LDebug.LogWarning( "[SaveCapture]当前截屏方式为CaptureSize.FixedSize，且未指定区域像素范围。采用当前屏幕分辨率横纵像素值!" );
+                    Log.Warning( "[SaveCapture]当前截屏方式为CaptureSize.FixedSize，且未指定区域像素范围。采用当前屏幕分辨率横纵像素值!" );
                 }
             }
             string path = outPut.Equals( "default" )  ?AssetPathManager.Instance.GetTemporaryCachePath( outPutName , false ) : outPut;

@@ -51,7 +51,7 @@ namespace Assets.Scripts.Controller
             {
                 if ( BaseCamera != null )
                 {
-                    LDebug.LogError( string.Format( "URP Camera 配置错误，有多个Base Camera！ Old = {0}, New = {1}  ", BaseCamera.name, _camera.name ) );
+                    Log.Error( string.Format( "URP Camera 配置错误，有多个Base Camera！ Old = {0}, New = {1}  ", BaseCamera.name, _camera.name ) );
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace Assets.Scripts.Controller
                 }
                 else
                 {
-                    LDebug.LogError( "URP Camera 配置错误，没有Base Camera！" );
+                    Log.Error( "URP Camera 配置错误，没有Base Camera！" );
                 }
             }
         }

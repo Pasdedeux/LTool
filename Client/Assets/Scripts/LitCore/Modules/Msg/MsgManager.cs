@@ -82,7 +82,7 @@ public class MsgManager : Singleton<MsgManager>
     public void Broadcast<T>( T id, MsgArgs msg = null ) where T : IComparable, IConvertible, IFormattable
     {
         ushort idCode = id.ToUInt16( null );
-        if ( !_internalMsgDict.ContainsKey( idCode ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
+        if ( !_internalMsgDict.ContainsKey( idCode ) ) { Log.Warning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgDict[ idCode ].Invoke( msg );
         msg?.Dispose();
         msg = null;
@@ -124,7 +124,7 @@ public class MsgManager : Singleton<MsgManager>
     /// <param name="msg">事件参数</param>
     public void Broadcast( ushort id, MsgArgs msg = null )
     {
-        if ( !_internalMsgDict.ContainsKey( id ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
+        if ( !_internalMsgDict.ContainsKey( id ) ) { Log.Warning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgDict[ id ].Invoke( msg );
         msg?.Dispose();
         msg = null;
@@ -165,7 +165,7 @@ public class MsgManager : Singleton<MsgManager>
     /// <param name="msg">事件参数</param>
     public void Broadcast( string id, MsgArgs msg = null )
     {
-        if ( !_internalMsgTempleDict.ContainsKey( id ) ) { LDebug.LogWarning( "事件未注册：" + id.ToString() ); return; }
+        if ( !_internalMsgTempleDict.ContainsKey( id ) ) { Log.Warning( "事件未注册：" + id.ToString() ); return; }
         _internalMsgTempleDict[ id ].Invoke( msg );
         msg?.Dispose();
         msg = null;

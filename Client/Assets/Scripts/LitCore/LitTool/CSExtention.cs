@@ -160,7 +160,7 @@ public static partial class CSExtention
             Shader shader = Resources.Load<Shader>( "Shaders/UI/UIGrey" );
             if ( shader == null )
             {
-                LDebug.LogWarning( "未发现Shader Custom/UI-Gray" );
+                Log.Warning( "未发现Shader Custom/UI-Gray" );
                 return null;
             }
             Material mat = new Material( shader );

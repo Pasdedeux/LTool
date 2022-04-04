@@ -321,7 +321,7 @@ namespace LitFramework.LitTool
         public static IEnumerator ILoadAsset(string path, Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
             Uri uri = new Uri(path);
-            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            Log.Warning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
             using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
@@ -333,13 +333,13 @@ namespace LitFramework.LitTool
 
                 if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    LDebug.LogError("  >Error: " + uwr.error);
+                    Log.Error("  >Error: " + uwr.error);
                     errorCallBack?.Invoke(uwr);
                 }
                 else
                 {
                     callBack?.Invoke(uwr);
-                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //Log.Info( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -354,7 +354,7 @@ namespace LitFramework.LitTool
         public static IEnumerator ILoadAsset(string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
             Uri uri = new Uri(path);
-            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            Log.Warning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
             using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
@@ -366,13 +366,13 @@ namespace LitFramework.LitTool
 
                 if (uwr.isNetworkError || uwr.isHttpError)
                 {
-                    LDebug.LogError("  >Error: " + uwr.error);
+                    Log.Error("  >Error: " + uwr.error);
                     errorCallBack?.Invoke(uwr);
                 }
                 else
                 {
                     callBack?.Invoke(uwr.downloadHandler.text);
-                    //LDebug.Log( " >Received: \n" + uwr.downloadHandler.text );
+                    //Log.Info( " >Received: \n" + uwr.downloadHandler.text );
                 }
             }
         }
@@ -386,7 +386,7 @@ namespace LitFramework.LitTool
         public static void LoadAsset(string path, Action<string> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
             Uri uri = new Uri(path);
-            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            Log.Warning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
             using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
@@ -400,13 +400,13 @@ namespace LitFramework.LitTool
                 {
                     if (uwr.isHttpError || uwr.isNetworkError)
                     {
-                        LDebug.LogError("  >Error: " + uwr.error + " " + uwr.url);
+                        Log.Error("  >Error: " + uwr.error + " " + uwr.url);
                         errorCallBack?.Invoke(uwr);
                         return;
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log(" >Load data : \n" + uwr.downloadHandler.text);
+                        Log.Info(" >Load data : \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr.downloadHandler.text);
                         return;
                     }
@@ -423,7 +423,7 @@ namespace LitFramework.LitTool
         public static void LoadAsset(string path, Action<UnityWebRequest> callBack, Action<UnityWebRequest> errorCallBack = null)
         {
             Uri uri = new Uri(path);
-            LDebug.LogWarning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
+            Log.Warning(" >路径: \n AbsoluteUri : " + uri.AbsoluteUri + " \n AbsolutePath: " + uri.AbsolutePath + " \n LocalPath: " + uri.LocalPath);
             using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
             {
                 uwr.timeout = 3;
@@ -437,13 +437,13 @@ namespace LitFramework.LitTool
                 {
                     if (uwr.isHttpError || uwr.isNetworkError)
                     {
-                        LDebug.LogError("  >Error: " + uwr.error + " " + uwr.url);
+                        Log.Error("  >Error: " + uwr.error + " " + uwr.url);
                         errorCallBack?.Invoke(uwr);
                         return;
                     }
                     else if (uwr.downloadProgress == 1)
                     {
-                        LDebug.Log(" >Received: \n" + uwr.downloadHandler.text);
+                        Log.Info(" >Received: \n" + uwr.downloadHandler.text);
                         callBack?.Invoke(uwr);
                         return;
                     }
@@ -492,7 +492,7 @@ namespace LitFramework.LitTool
         /// <returns></returns>
         public static string WWWLoadingWithWaiting(string wwwFilePath, Action<WWW> callBack = null)
         {
-            LDebug.Log(wwwFilePath);
+            Log.Info(wwwFilePath);
             string resutl = null;
             WWW www = new WWW(wwwFilePath);
             while (!www.isDone) { }
@@ -536,7 +536,7 @@ namespace LitFramework.LitTool
             {
                 var result = FTPDownload(ftpIP + configsPathsList[i], userName: name, password: password);
                 DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPathsList[i], false), result);
-                LDebug.Log(">>>" + configsPathsList[i] + result.Count());
+                Log.Info(">>>" + configsPathsList[i] + result.Count());
             }
         }
         /// <summary>
@@ -550,7 +550,7 @@ namespace LitFramework.LitTool
         {
             var result = FTPDownload(ftpIP + configsPath, userName: name, password: password);
             DocumentAccessor.SaveAsset2LocalFile(AssetPathManager.Instance.GetPersistentDataPath(configsPath, false), result);
-            LDebug.Log(">>>" + configsPath + result.Count());
+            Log.Info(">>>" + configsPath + result.Count());
         }
 
         private byte[] FTPDownload(string ftpUrl, string savePath = "", string userName = "", string password = "")
@@ -572,14 +572,14 @@ namespace LitFramework.LitTool
             if (!string.IsNullOrEmpty(savePath))
             {
                 webResponse = request.GetResponse();
-                LDebug.Log("FTP连接状态: " + webResponse);
+                Log.Info("FTP连接状态: " + webResponse);
                 DownloadAndSave(webResponse, savePath);
                 return null;
             }
             else
             {
                 webResponse = request.GetResponse();
-                LDebug.Log("FTP连接状态: " + webResponse);
+                Log.Info("FTP连接状态: " + webResponse);
                 return DownloadAsbyteArray(webResponse);
             }
         }

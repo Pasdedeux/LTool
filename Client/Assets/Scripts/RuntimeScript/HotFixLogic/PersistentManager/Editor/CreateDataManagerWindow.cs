@@ -242,7 +242,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         }
         if (File.Exists(localFilePath))
         {
-            LDebug.LogError(aName + m_LocalDataSuffix + m_FileType + "已经存在");
+            Log.Error(aName + m_LocalDataSuffix + m_FileType + "已经存在");
             return;
         }
 
@@ -264,7 +264,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("本地数据" + aName + m_LocalDataSuffix + "创建完成");
+        Log.Info("本地数据" + aName + m_LocalDataSuffix + "创建完成");
     }
 
     private static void CreateConfigData(CSWriteTool csWrite, string aName)
@@ -307,7 +307,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(localFilePath);
-        LDebug.Log("配置数据" + aName + m_ConfigDataSuffix + "创建完成");
+        Log.Info("配置数据" + aName + m_ConfigDataSuffix + "创建完成");
     }
 
     private static void CreateManager(CSWriteTool csWrite, string aName, string aDire)
@@ -363,7 +363,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(managerFilePath);
-        LDebug.Log("管理" + aName + m_ManagerSuffix + "创建完成");
+        Log.Info("管理" + aName + m_ManagerSuffix + "创建完成");
     }
 
     [MenuItem(@"Assets/本地数据/更新", priority = 0)]
@@ -665,7 +665,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
         csWrite.EndBracket();
         csWrite.EndBracket();
         csWrite.Save(filePath);
-        LDebug.Log("本地数据" + m_DataManagerName + "跟新完成");
+        Log.Info("本地数据" + m_DataManagerName + "跟新完成");
     }
     private static void SetEditorCS(CSWriteTool csWrite)
     {
@@ -760,7 +760,7 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("本地数据工具类" + m_LocalDataToolWindowName + "跟新完成");
+        Log.Info("本地数据工具类" + m_LocalDataToolWindowName + "跟新完成");
     }
 
     private static void SetConfigEditorCS(CSWriteTool csWrite)
@@ -846,6 +846,6 @@ public class CreateDataManagerWindow : OdinEditorWindow
 
         csWrite.EndBracket();
         csWrite.Save(editorFoderPath + className + m_FileType);
-        LDebug.Log("配置数据工具" + m_ConfigToolWindowName + "跟新完成");
+        Log.Info("配置数据工具" + m_ConfigToolWindowName + "跟新完成");
     }
 }

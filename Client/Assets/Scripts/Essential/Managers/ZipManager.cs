@@ -245,7 +245,7 @@ namespace Assets.Scripts.LitCore.LitTool
                         }
                         catch (Exception e)
                         {
-                            LDebug.LogError(" Zip Error >> " + e);
+                            Log.Error(" Zip Error >> " + e);
                         }
                         finally
                         {

@@ -172,7 +172,7 @@ namespace Assets.Scripts.Essential.Managers
                 {
                     if (ab == null)
                     {
-                        LDebug.LogError(abName + " is Null!");
+                        Log.Error(abName + " is Null!");
                         onComplete?.Invoke(null);
                     }
                     else
@@ -225,7 +225,7 @@ namespace Assets.Scripts.Essential.Managers
             reAsset.onComplete?.Invoke(assetBundle);
             if (assetBundle == null)
             {
-                LDebug.LogError(_abPath + aABName + "加载错误");
+                Log.Error(_abPath + aABName + "加载错误");
             }
             return assetBundle;
         }

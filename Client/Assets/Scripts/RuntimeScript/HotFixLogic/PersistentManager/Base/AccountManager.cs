@@ -3,33 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitFramework;
 using LitFramework.LitTool;
-using System;
+using System.Linq;
+using LitFramework.LitPool;
+using System.Runtime.InteropServices;
 
-public class AccountManager : BaseLocalConfigManager<AccountManager>
+namespace LitFramework.Persistent
 {
-    public AccountLocalData LocalData;
-    private System.DateTime IniteDate;
-    private long lineTime;
+    public class AccountManager : BaseLocalDataManager<AccountManager, AccountLocalData>
+    {
+        private long lineTime;
+        private System.DateTime IniteDate;
 
-    /// <summary>
-    /// 离线时间（毫秒）
-    /// </summary>
-    public long LineTime
-    {
-        get => lineTime;
-    }
-   
-    public override void Install()
-    {
-        lineTime = LocalData.localSaveTime;
-        LocalDataHandle.onSaveData += RefreshSaveTime;
-    }
-    /// <summary>
-    /// 更新保存时间
-    /// </summary>
-    private void RefreshSaveTime()
-    {
-        LocalData.localSaveTime = LitTool.GetTimeMillisStamp();
+        /// <summary>
+        /// 离线时间（毫秒）
+        /// </summary>
+        public long LineTime
+        {
+            get => lineTime;
+        }
+
+        public override void Install()
+        {
+            lineTime = LocalData.localSaveTime;
+            LocalDataHandle.onSaveData += RefreshSaveTime;
+        }
+
+        /// <summary>
+        /// 更新保存时间
+        /// </summary>
+        private void RefreshSaveTime()
+        {
+            LocalData.localSaveTime = LitTool.LitTool.GetTimeMillisStamp();
+        }
     }
 
 }

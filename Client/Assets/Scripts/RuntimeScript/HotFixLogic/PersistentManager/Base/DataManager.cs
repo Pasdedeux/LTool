@@ -1,65 +1,71 @@
 ﻿using LitFramework;
 using LitFramework.Base;
 using LitFramework.LitTool;
+using LitFramework.Persistent;
 using ILRBaseModel.Singleton;
 /// 代码自动创建、更新
-/// 更新时间:2022/3/2   18:43:28
+/// 更新时间:2022/4/5   12:29:50
 /// </summary>
 public class DataManager : Singleton<DataManager>,IManager
 {
 	public System.Action DataInstallEnd;
-	public System.Action FirstUseHandler;
 	public void Install()
 	{
 		LoadData();
-		SetPlayerData();
 		CheckFristLogin();
 		InstallManagers();
 		GameDriver.Instance.UpdateEventHandler += SaveData;
-		FirstUseHandler?.Invoke();
 		DataInstallEnd?.Invoke();
 	}
-	public AccountLocalData AccountLocal;
-	public FuncRecordLocalData FuncRecordLocal;
+	private ILocalDataManager[] m_LocalDataManagerArry = new ILocalDataManager[2];
 	private void LoadData()
 	{
-		AccountLocal = LocalDataHandle.LoadData<AccountLocalData>();
-		FuncRecordLocal = LocalDataHandle.LoadData<FuncRecordLocalData>();
 		
 		CommonData.Instance= LocalDataHandle.LoadConfig<CommonData>();
 		
-	}
-	private void SetPlayerData()
-	{
-		AccountManager.Instance.LocalData = AccountLocal;
-		FuncRecordManager.Instance.LocalData = FuncRecordLocal;
+		m_LocalDataManagerArry[0] = AccountManager.Instance;
+		m_LocalDataManagerArry[1] = FuncRecordManager.Instance;
+		
+		
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.LoadLocalData();
+		}
 	}
 	private void InstallManagers()
 	{
-		AccountManager.Instance.Install();
-		FuncRecordManager.Instance.Install();
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.Install();
+		}
 	}
 	private void CheckFristLogin()
 	{
-		if (0L !=AccountLocal.CreateAccountTime)
+		if (0L !=AccountManager.Instance.LocalData.CreateAccountTime)
 		{
 			return;
 		}
-		AccountManager.Instance.FirstIniteData();
-		FuncRecordManager.Instance.FirstIniteData();
-		AccountLocal.CreateAccountTime = LitTool.GetTimeStamp();
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.FirstIniteData();
+		}
+		AccountManager.Instance.LocalData.CreateAccountTime = LitTool.GetTimeStamp();
 		SaveAllFlag();
 		SaveData();
 	}
 	public void SaveAllFlag()
 	{
-		AccountLocal.SaveFlag();
-		FuncRecordLocal.SaveFlag();
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.LocalData.SaveFlag();
+		}
 	}
 	public void SaveData()
 	{
-		AccountLocal.SaveImmit();
-		FuncRecordLocal.SaveImmit();
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.LocalData.SaveImmit();
+		}
 	}
 	public System.Action DestroyPayerData;
 	public void Uninstall()
@@ -68,7 +74,9 @@ public class DataManager : Singleton<DataManager>,IManager
 		DestroyPayerData = null;
 		SaveAllFlag();
 		SaveData();
-		AccountLocal = null;
-		FuncRecordLocal= null;
+		foreach (ILocalDataManager manager in m_LocalDataManagerArry)
+		{
+			manager.Uninstall();
+		}
 	}
 }

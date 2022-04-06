@@ -763,7 +763,7 @@ namespace Litframework.ExcelTool
             CSString.Add("//**                  该类由工具自动生成，请勿手动修改                   **");
             CSString.Add("//*******************************************************************");
             CSString.Add("");
-            CSString.Add("using LitFramework;");
+
             CSString.Add("using System.Linq;");
             CSString.Add("using System.Collections.Generic;");
             CSString.Add("public static partial class Configs");

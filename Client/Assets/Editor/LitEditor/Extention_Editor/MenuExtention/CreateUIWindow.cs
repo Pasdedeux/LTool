@@ -1405,7 +1405,7 @@ public class CreateUIWindow : OdinEditorWindow
         cSWrite.StartBracket();
         foreach (FileInfo fileInfo in files)
         {
-            Log.TraceInfo(fileInfo.Name);
+            Log.Info(fileInfo.Name+" 脚本刷新");
             if ("Canvas_Loading.prefab".Equals(fileInfo.Name))
             {
                 continue;

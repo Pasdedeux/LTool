@@ -74,7 +74,7 @@ namespace Litframework.ExcelTool
             CSString.Add("using UnityEngine;");
             CSString.Add("using System;");
             CSString.Add("using System.Collections.Generic;");
-            CSString.Add("using " + SPACENAME + ";");
+            //CSString.Add("using " + SPACENAME + ";");
             //CSString.Add( "#if UNITY_EDITOR" );
             //CSString.Add( "using LitFrameworkEditor.EditorExtended;" );
             //CSString.Add( "#endif" );

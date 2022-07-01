@@ -16,7 +16,7 @@ using System.IO;
 using System.Text;
 
 
-namespace LitJson
+namespace LitFramework.LitJson
 {
     internal enum Condition
     {

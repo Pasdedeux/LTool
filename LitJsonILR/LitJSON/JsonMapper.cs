@@ -23,7 +23,7 @@ using Object = System.Object;
 using UnityEngine;
 using ILRuntime.CLR.TypeSystem;
 
-namespace LitJson
+namespace LitFramework.LitJson
 {
     /// <summary>
     /// Attribute for skip json serialized/deserialized

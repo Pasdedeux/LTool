@@ -962,6 +962,8 @@ namespace LitFramework.LitJson
             IList<PropertyMetadata> props = type_properties[ obj_type ];
 
             writer.WriteObjectStart();
+            writer.WritePropertyName("_t");
+            writer.Write(obj_type.Name);
             foreach ( PropertyMetadata p_data in props )
             {
                 if ( p_data.IsField )
